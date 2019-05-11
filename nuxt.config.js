@@ -3,6 +3,7 @@ const isDev = buildEnv === 'development'
 const pkg = require('./package')
 const baseUrl = require('./.env').BASE_URL
 const qiniu = require('./qiniu')
+const injectScript = require('./.script')
 
 module.exports = {
   mode: 'universal',
@@ -18,15 +19,51 @@ module.exports = {
     title: '咔哩吧',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      {
+        name: 'viewport',
+        content: 'width=device-width,initial-scale=1,maximum-scale=1'
+      },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
+      { name: 'force-rendering', content: 'webkit' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'calibur，C站, 咔哩吧'
+      },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content: 'calibur，C站, 咔哩吧'
+      }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://file.calibur.tv/favicon.ico' }
     ],
     bodyAttrs: {
       id: 'calibur'
-    }
+    },
+    script: [
+      {
+        innerHTML: injectScript.baiduStat,
+        type: 'text/javascript',
+        async: true
+      },
+      {
+        innerHTML: injectScript.baiduPush,
+        type: 'text/javascript',
+        async: true
+      },
+      { innerHTML: injectScript.iPhoneXViewport, type: 'text/javascript' },
+      {
+        src: '//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js',
+        type: 'text/javascript'
+      },
+      {
+        src: '//res2.wx.qq.com/open/js/jweixin-1.4.0.js',
+        type: 'text/javascript'
+      }
+    ].filter(_ => _),
+    __dangerouslyDisableSanitizers: 'script'
   },
 
   /*
