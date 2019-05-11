@@ -1,0 +1,25 @@
+@import "reboot";
+@import "custom";
+
+.container {
+  margin-right: auto !important;
+  margin-left: auto !important;
+
+  @media (min-width: 768px) {
+    width: 750px;
+  }
+
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 1140px;
+  }
+}
+
+.panel {
+  background-color: #fff;
+  border: 1px solid #e3e8ec;
+  border-radius: 12px;
+}

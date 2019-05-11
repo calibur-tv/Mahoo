@@ -1,0 +1,12 @@
+%clearfix {
+  &:before, &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+%breakWord {
+  word-break: break-word !important;
+  word-break: break-all;
+}

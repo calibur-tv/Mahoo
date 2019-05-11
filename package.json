@@ -1,0 +1,53 @@
+{
+  "name": "Mahoo",
+  "version": "1.0.0",
+  "description": "My dandy Nuxt.js project",
+  "author": "falstack",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build --modern",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --fix --ext .js,.vue . --ignore-path .gitignore",
+    "precommit": "npm run lint",
+    "analyze": "nuxt build --analyze",
+    "theme": "et -c assets/css/theme.scss -w",
+    "test": "echo 1"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "cache-manager": "^2.9.0",
+    "cache-manager-redis": "^0.6.0",
+    "cross-env": "^5.2.0",
+    "element-ui": "^2.8.2",
+    "js-cookie": "^2.2.0",
+    "koa": "^2.6.2",
+    "normalize.css": "^8.0.1",
+    "nuxt": "2.6.3",
+    "qs": "^6.7.0",
+    "redis": "^2.8.0",
+    "v-switcher": "^0.0.12",
+    "vue-mixin-store": "0.1.8"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^0.0.1",
+    "@nuxtjs/style-resources": "^0.1.2",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
+    "element-theme-chalk": "2.8.2",
+    "eslint": "^5.15.1",
+    "eslint-config-standard": ">=12.0.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": ">=2.16.0",
+    "eslint-plugin-jest": ">=22.5.1",
+    "eslint-plugin-node": ">=9.0.1",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "eslint-plugin-promise": ">=4.0.1",
+    "eslint-plugin-standard": ">=4.0.0",
+    "eslint-plugin-vue": "^5.2.2",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.0",
+    "sass-loader": "^7.1.0"
+  }
+}
