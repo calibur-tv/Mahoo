@@ -21,9 +21,6 @@
     <el-button type="danger">
       危险按钮
     </el-button>
-    <el-button type="text">
-      文字按钮
-    </el-button>
   </div>
 </template>
 
