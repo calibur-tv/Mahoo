@@ -21,6 +21,15 @@ async function start() {
 
   app.use(ctx => {
     ctx.status = 200
+    ctx.set('X-XSS-Protection', '1; mode=block')
+    ctx.set('X-Content-Type-Options', 'nosniff')
+    ctx.set('Cache-Control', 'max-age=0, private, no-siteapp, no-transform')
+    ctx.set('X-Frame-Options', 'DENY')
+    ctx.set(
+      'Content-Security-Policy',
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' *.calibur.tv hm.baidu.com *.geetest.com zz.bdstatic.com push.zhanzhang.baidu.com res2.wx.qq.com qzonestyle.gtimg.cn;`
+    )
+
     ctx.respond = false // Mark request as handled for Koa
     ctx.req.ctx = ctx // This might be useful later on, e.g. in nuxtServerInit or with nuxt-stash
     nuxt.render(ctx.req, ctx.res)
