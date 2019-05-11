@@ -1,6 +1,5 @@
 const buildEnv = process.env.NODE_ENV
 const isDev = buildEnv === 'development'
-const pkg = require('./package')
 const baseUrl = require('./.env').BASE_URL
 const qiniu = require('./qiniu')
 const injectScript = require('./.script')
