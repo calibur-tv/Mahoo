@@ -2,6 +2,7 @@ const buildEnv = process.env.NODE_ENV
 const isDev = buildEnv === 'development'
 const pkg = require('./package')
 const baseUrl = require('./.env').BASE_URL
+const qiniu = require('./qiniu')
 
 module.exports = {
   mode: 'universal',
@@ -14,7 +15,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'ShojoClub 烧酒俱乐部',
+    title: '咔哩吧',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -24,7 +25,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     bodyAttrs: {
-      id: 'shojo'
+      id: 'calibur'
     }
   },
 
@@ -129,6 +130,7 @@ module.exports = {
         camelCase: true
       }
     },
+    publicPath: isDev ? '/_nuxt/' : `${qiniu.host}${qiniu.key_prefix}`,
     babel: {
       plugins: [
         [

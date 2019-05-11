@@ -38,13 +38,6 @@ $border-height: 3px;
         padding: 5px 5px;
         color: #333333;
       }
-
-      .tail {
-        padding: 5px 10px;
-        border-radius: 7px;
-        background-color: $color-main;
-        color: #fff;
-      }
     }
 
     .v-switcher {
@@ -82,12 +75,13 @@ $border-height: 3px;
     <div class="container nav">
       <nav class="left">
         <nuxt-link class="logo" to="/">
-          <span class="prefix">Shojo</span><span class="tail">Club</span>
+          <span class="prefix">calibur.tv</span>
         </nuxt-link>
         <!--
         <v-switcher :headers="headers" :routable="true" align="start" />
         -->
       </nav>
+      <!--
       <div class="right">
         <nuxt-link to="/create/cosplay/">
           <el-button size="large" type="primary" icon="el-icon-s-promotion">
@@ -95,6 +89,7 @@ $border-height: 3px;
           </el-button>
         </nuxt-link>
       </div>
+      -->
     </div>
   </header>
 </template>
