@@ -8,13 +8,13 @@ async function start() {
 
   // Import and Set Nuxt.js options
   const config = require('../nuxt.config.js')
-  config.dev = !(app.env === 'production')
+  const isDev = !(app.env === 'production')
 
   // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
 
   // Build in development
-  if (config.dev) {
+  if (isDev) {
     const builder = new Builder(nuxt)
     await builder.build()
   }
@@ -35,7 +35,7 @@ async function start() {
     nuxt.render(ctx.req, ctx.res)
   })
 
-  app.listen(port, host)
+  isDev ? app.listen(port) : app.listen(port, host)
   console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
 }
 
