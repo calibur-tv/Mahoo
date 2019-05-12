@@ -18,7 +18,7 @@
     <el-button type="warning" @click="showMessage">
       警告按钮
     </el-button>
-    <el-button type="danger">
+    <el-button type="danger" @click="throwError">
       危险按钮
     </el-button>
   </div>
@@ -70,6 +70,9 @@ export default {
     },
     showMessage() {
       this.$toast.success('hello world')
+    },
+    throwError() {
+      throw new Error('2333')
     }
   }
 }

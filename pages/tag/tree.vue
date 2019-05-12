@@ -69,13 +69,14 @@ export default {
   },
   computed: {},
   watch: {},
-  asyncData({ app }) {
+  asyncData({ app, error }) {
     return show(app, {
       slug: '1e1'
     })
       .then(root => {
         return { root }
       })
+      .catch(error)
   },
   created() {},
   mounted() {},
