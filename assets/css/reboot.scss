@@ -6,6 +6,9 @@ body {
   *:before,
   *:after {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    padding: 0;
+    margin: 0;
   }
 
   *:focus, *:active {
@@ -34,12 +37,20 @@ img, span {
   vertical-align: middle;
 }
 
-::selection {
+::selection,
+::-moz-selection {
   background-color: $color-main;
   color: #fff;
 }
 
-::-moz-selection {
-  background-color: $color-main;
-  color: #fff;
+@media (max-width: 768px) {
+  body {
+    padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  button,
+  a {
+    cursor: default;
+  }
 }
