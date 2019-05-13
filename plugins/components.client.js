@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Cookies from 'js-cookie'
 import Toast from '~/assets/js/toast'
-import { MessageBox } from 'element-ui'
+
+const isMobile = window.screen.width <= 768 || /^\/app/.test(window.location.pathname)
 
 Vue.use({
   install(Vue) {
@@ -9,12 +10,6 @@ Vue.use({
 
     Vue.prototype.$channel = new Vue()
 
-    Vue.prototype.$toast = Toast
-
-    Vue.prototype.$alert = MessageBox.alert
-
-    Vue.prototype.$confirm = MessageBox.confirm
-
-    Vue.prototype.$prompt = MessageBox.prompt
+    Vue.prototype.$toast = new Toast(isMobile)
   }
 })

@@ -1,6 +1,8 @@
 #calibur {
-  .v-modal {
-    background-color: hsla(0, 0%, 100%, 0.7);
+  @media (min-width: 768px) {
+    .v-modal {
+      background-color: hsla(0, 0%, 100%, 0.7);
+    }
   }
 
   .el-dialog {
@@ -178,6 +180,49 @@
           background-color: rgba(66,192,46,.05) !important;
         }
       }
+    }
+  }
+
+  .mint-indicator {
+    z-index: 5000;
+    position: relative;
+  }
+
+  .mint-msgbox {
+    border-radius: 13px;
+    background-color: rgba(255, 255, 255, 0.95);
+
+    &-message {
+      line-height: 24px;
+      font-size: 14px;
+      color: #000;
+
+      span {
+        display: block;
+        text-align: left;
+        font-size: 14px;
+        text-indent: 2em;
+        word-break: break-all;
+      }
+
+      p {
+        line-height: 36px;
+      }
+    }
+
+    &-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    &-confirm {
+      color: $color-main !important;
+    }
+
+    &-btn {
+      background-color: transparent;
+      font-size: 17px;
+      font-weight: 500;
     }
   }
 

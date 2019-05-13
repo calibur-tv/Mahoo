@@ -15,6 +15,8 @@ import nuxt_plugin_axios_1bf5e970 from 'nuxt_plugin_axios_1bf5e970' // Source: .
 import nuxt_plugin_axiosall_6aea33a4 from 'nuxt_plugin_axiosall_6aea33a4' // Source: ../plugins/axios.all.js (mode: 'all')
 import nuxt_plugin_componentsall_f6b62450 from 'nuxt_plugin_componentsall_f6b62450' // Source: ../plugins/components.all.js (mode: 'all')
 import nuxt_plugin_componentsclient_4637342c from 'nuxt_plugin_componentsclient_4637342c' // Source: ../plugins/components.client.js (mode: 'client')
+import nuxt_plugin_h5client_6cb9663e from 'nuxt_plugin_h5client_6cb9663e' // Source: ../plugins/h5.client.js (mode: 'client')
+import nuxt_plugin_pcclient_6f6ed2f2 from 'nuxt_plugin_pcclient_6f6ed2f2' // Source: ../plugins/pc.client.js (mode: 'client')
 
 // Component: <NoSsr>
 Vue.component(NoSsr.name, NoSsr)
@@ -168,6 +170,14 @@ async function createApp(ssrContext) {
 
   if (process.client && typeof nuxt_plugin_componentsclient_4637342c === 'function') {
     await nuxt_plugin_componentsclient_4637342c(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_h5client_6cb9663e === 'function') {
+    await nuxt_plugin_h5client_6cb9663e(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_pcclient_6f6ed2f2 === 'function') {
+    await nuxt_plugin_pcclient_6f6ed2f2(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

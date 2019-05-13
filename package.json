@@ -25,12 +25,13 @@
     "element-ui": "^2.8.2",
     "js-cookie": "^2.2.0",
     "koa": "^2.6.2",
+    "mint-ui": "^2.2.13",
     "normalize.css": "^8.0.1",
     "nuxt": "2.6.3",
     "qs": "^6.7.0",
     "redis": "^2.8.0",
-    "v-switcher": "^0.0.12",
-    "vue-mixin-store": "0.1.8"
+    "v-switcher": "^0.0.13",
+    "vue-mixin-store": "0.1.11"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

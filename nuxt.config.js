@@ -84,7 +84,9 @@ module.exports = {
   plugins: [
     '~/plugins/axios.all.js',
     '~/plugins/components.all.js',
-    '~/plugins/components.client.js'
+    '~/plugins/components.client.js',
+    '~/plugins/h5.client.js',
+    '~/plugins/pc.client.js'
   ],
 
   /*
@@ -112,13 +114,6 @@ module.exports = {
           }
         }
       }
-      /*
-      routes.push({
-        name: 'error-fallback',
-        path: '*',
-        component: resolve('pages/error/404.vue')
-      })
-      */
     },
     scrollBehavior: function (to, from, savedPosition) {
       if (savedPosition) {
@@ -172,11 +167,26 @@ module.exports = {
         [
           'component',
           {
+            libraryName: 'mint-ui',
+            style: true
+          },
+          'mint-ui'
+        ],
+        [
+          'component',
+          {
             'libraryName': 'element-ui',
             'styleLibraryName': '~theme'
           }
         ]
       ]
+    },
+    postcss: {
+      preset: {
+        autoprefixer: {
+          remove: false
+        }
+      }
     }
   }
 }
