@@ -20,10 +20,23 @@ module.exports = {
       { charset: 'utf-8' },
       {
         name: 'viewport',
-        content: 'width=device-width,initial-scale=1,maximum-scale=1'
+        content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
       },
-      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
+      {
+        name: 'theme-color',
+        content: '#f06595'
+      },
+      {
+        name: 'application-name',
+        content: '咔哩吧'
+      },
+      {
+        name: 'format-detection',
+        content: 'telephone=no'
+      },
+      { name: 'renderer', content: 'webkit' },
       { name: 'force-rendering', content: 'webkit' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
       {
         hid: 'description',
         name: 'description',
@@ -61,14 +74,14 @@ module.exports = {
         src: '//res2.wx.qq.com/open/js/jweixin-1.4.0.js',
         type: 'text/javascript'
       }
-    ].filter(_ => _),
+    ],
     __dangerouslyDisableSanitizers: 'script'
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#f06595' },
 
   /*
   ** Global CSS
