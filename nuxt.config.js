@@ -95,6 +95,7 @@ module.exports = {
   modules: [
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
+    '@nuxtjs/pwa',
     '~/modules/cache',
     '~/modules/auth'
   ],
