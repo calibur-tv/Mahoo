@@ -119,7 +119,7 @@ module.exports = {
         lang: 'zh-cn',
         name: '咔哩吧',
         author: '冰淤',
-        description: 'calibur - 二次元社区'
+        description: '咔哩吧 - 二次元社区'
       }
     }],
     '~/modules/cache'
@@ -127,7 +127,7 @@ module.exports = {
 
   manifest: {
     name: '咔哩吧',
-    short_name: 'calibur',
+    short_name: '咔哩吧',
     description: '二次元社区'
   },
 
