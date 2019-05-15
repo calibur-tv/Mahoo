@@ -78,10 +78,8 @@ export default {
       const Components = this.getPrefetchComponents()
 
       for (const Component of Components) {
-        try {
-          Component()
-          Component.__prefetched = true
-        } catch (e) {}
+        Component().catch(() => {})
+        Component.__prefetched = true
       }
     }
   }

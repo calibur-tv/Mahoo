@@ -23,3 +23,7 @@
   border: 1px solid #e3e8ec;
   border-radius: 12px;
 }
+
+.v-switcher-header-item.is-active {
+  color: $color-main;
+}

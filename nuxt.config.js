@@ -129,7 +129,8 @@ module.exports = {
         description: '咔哩吧 - 二次元社区'
       }
     }],
-    '~/modules/cache'
+    '~/modules/cache',
+    '~/modules/auth'
   ],
 
   manifest: {
@@ -138,7 +139,7 @@ module.exports = {
     description: '二次元社区',
     background_color: '#ffffff',
     display: 'standalone',
-    start_url: 'https://www.calibur.tv/app/?utm_source=pwa',
+    start_url: 'https://www.calibur.tv/app/launch/?utm_source=pwa',
     lang: 'zh-CN'
   },
 
