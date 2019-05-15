@@ -114,9 +114,13 @@ module.exports = {
     ['@nuxtjs/pwa', {
       meta: {
         mobileApp: false,
-        mobileAppIOS: false
-      } }
-    ],
+        title: '咔哩吧',
+        author: '冰淤',
+        lang: 'zh-CN',
+        description: '一个二次元社区'
+      },
+      icon: false
+    }],
     '~/modules/cache',
     '~/modules/auth'
   ],
