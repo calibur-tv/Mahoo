@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         name: 'applicable-device',
-        content: 'mobile'
+        content: 'pc,mobile'
       },
       { name: 'renderer', content: 'webkit|ie-comp|ie-stand' },
       { name: 'force-rendering', content: 'webkit' },
@@ -136,7 +136,7 @@ module.exports = {
     name: '咔哩吧',
     short_name: '咔哩吧',
     description: '二次元社区',
-    background_color: '#ffffff',
+    background_color: 'transparent',
     display: 'standalone',
     scope: 'https://www.calibur.tv/app/',
     start_url: 'https://www.calibur.tv/app/?utm_source=pwa',
