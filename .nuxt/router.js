@@ -3,9 +3,6 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 
 const _56b21124 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
-const _3eadceee = () => interopDefault(import('../pages/app/flow.vue' /* webpackChunkName: "pages/app/flow" */))
-const _ae88fbc2 = () => interopDefault(import('../pages/app/home.vue' /* webpackChunkName: "pages/app/home" */))
-const _1e3b4a85 = () => interopDefault(import('../pages/app/pin.vue' /* webpackChunkName: "pages/app/pin" */))
 const _3006978c = () => interopDefault(import('../pages/create/cosplay.vue' /* webpackChunkName: "pages/create/cosplay" */))
 const _5a895c05 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
 const _5b43da6e = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
@@ -38,21 +35,6 @@ export function createRouter() {
       component: _56b21124,
       props: false,
       name: "test"
-    }, {
-      path: "/app/flow",
-      component: _3eadceee,
-      props: false,
-      name: "app-flow"
-    }, {
-      path: "/app/home",
-      component: _ae88fbc2,
-      props: false,
-      name: "app-home"
-    }, {
-      path: "/app/pin",
-      component: _1e3b4a85,
-      props: false,
-      name: "app-pin"
     }, {
       path: "/create/cosplay",
       component: _3006978c,

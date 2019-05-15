@@ -1,2 +1,0 @@
-exports.ids=[5],exports.modules={85:function(e,t,o){"use strict";o.r(t);var r={name:"",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=o(1);var component=Object(n.a)(r,function(){var e=this.$createElement;return(this._self._c||e)("div",{attrs:{id:"app-home"}},[this._ssrNode("\n  user-home\n")])},[],!1,function(e){},null,"4e0c7f11");t.default=component.exports}};
-//# sourceMappingURL=c35fe1a5f9a492dc8afa.js.map

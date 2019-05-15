@@ -24,5 +24,8 @@ module.exports = {
     'camelcase': 'off',
     'vue/no-unused-components': 'warn',
     'arrow-parens': [1, 'as-needed']
+  },
+  globals: {
+    workbox: true
   }
 }

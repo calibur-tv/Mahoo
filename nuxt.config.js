@@ -3,7 +3,6 @@ const isDev = nodeEnv === 'development'
 const baseUrl = require('./.env').BASE_URL
 const qiniu = require('./qiniu')
 const injectScript = require('./.script')
-const isGenerate = process.env.BUILD_ENV === 'generate'
 
 module.exports = {
   mode: 'universal',
@@ -12,14 +11,6 @@ module.exports = {
     API_URL_BROWSER: baseUrl.API_URL_BROWSER[nodeEnv]
   },
   buildDir: isDev ? '.nuxt-dev' : '.nuxt',
-  generate: {
-    dir: 'app',
-    routes: [
-      '/app/flow',
-      '/app/pin',
-      '/app/home'
-    ],
-  },
   /*
   ** Headers of the page
   */
@@ -39,21 +30,28 @@ module.exports = {
         name: 'format-detection',
         content: 'telephone=no'
       },
-      { name: 'renderer', content: 'webkit' },
+      {
+        name: 'applicable-device',
+        content: 'pc,mobile'
+      },
+      { name: 'renderer', content: 'webkit|ie-comp|ie-stand' },
       { name: 'force-rendering', content: 'webkit' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'calibur，C站, 咔哩吧'
+        content: 'calibur - 二次元社区'
       },
       {
         hid: 'keywords',
         name: 'keywords',
-        content: 'calibur，C站, 咔哩吧'
+        content: 'C站,calibur,咔哩吧,ACG,二次元,社区'
       }
     ],
     link: [
+      { rel: 'dns-prefetch', href: 'https://file.calibur.tv' },
+      { rel: 'preconnect', href: 'https://www.calibur.tv' },
+      { rel: 'preconnect', href: 'https://api.calibur.tv' },
       { rel: 'icon', type: 'image/x-icon', href: 'https://file.calibur.tv/favicon.ico' }
     ],
     bodyAttrs: {
@@ -70,12 +68,12 @@ module.exports = {
         type: 'text/javascript',
         async: true
       },
-      isGenerate ? '' : { innerHTML: injectScript.iPhoneXViewport, type: 'text/javascript' },
-      isGenerate ? '' : {
+      { innerHTML: injectScript.iPhoneXViewport, type: 'text/javascript' },
+      {
         src: '//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js',
         type: 'text/javascript'
       },
-      isGenerate ? '' : {
+      {
         src: '//res2.wx.qq.com/open/js/jweixin-1.4.0.js',
         type: 'text/javascript'
       }
@@ -110,29 +108,22 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: (() => {
-    const result = [
-      '@nuxtjs/style-resources',
-      '@nuxtjs/axios'
-    ]
-
-    if (!isDev && !isGenerate) {
-      result.push(['@nuxtjs/pwa', {
-        meta: {
-          mobileApp: false,
-          lang: 'zh-cn',
-          name: '咔哩吧',
-          author: 'falstack',
-          description: 'calibur，C站, 咔哩吧'
-        }
-      }])
-    }
-
-    if (!isGenerate) {
-      result.push('~/modules/cache')
-    }
-    return result
-  })(),
+  modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios',
+    ['@nuxtjs/pwa', {
+      meta: {
+        mobileApp: true,
+        mobileAppIOS: true,
+        appleStatusBarStyle: 'default',
+        lang: 'zh-cn',
+        name: '咔哩吧',
+        author: '冰淤',
+        description: 'calibur - 二次元社区'
+      }
+    }],
+    '~/modules/cache'
+  ],
 
   router: {
     extendRoutes(routes) {
