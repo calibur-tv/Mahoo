@@ -125,6 +125,12 @@ module.exports = {
     '~/modules/cache'
   ],
 
+  manifest: {
+    name: '咔哩吧',
+    short_name: 'calibur',
+    description: '二次元社区'
+  },
+
   router: {
     extendRoutes(routes) {
       for (const route of routes) {
