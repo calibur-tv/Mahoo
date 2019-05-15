@@ -81,7 +81,4 @@ typings/
 .idea
 .DS_Store
 
-# Service worker
-sw.*
-
 .env.js

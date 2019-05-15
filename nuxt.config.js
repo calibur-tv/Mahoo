@@ -110,20 +110,29 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: isGenerate ? [
-    '@nuxtjs/style-resources',
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa'
-  ] : [
-    '@nuxtjs/style-resources',
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    '~/modules/cache'
-  ],
+  modules: (() => {
+    const result = [
+      '@nuxtjs/style-resources',
+      '@nuxtjs/axios'
+    ]
 
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
+    if (!isDev) {
+      result.push(['@nuxtjs/pwa', {
+        meta: {
+          mobileApp: false,
+          lang: 'zh-cn',
+          name: '咔哩吧',
+          author: 'falstack',
+          description: 'calibur，C站, 咔哩吧'
+        }
+      }])
+    }
+
+    if (!isGenerate) {
+      result.push('~/modules/cache')
+    }
+    return result
+  })(),
 
   router: {
     extendRoutes(routes) {

@@ -1,11 +1,11 @@
 {
-  "src_dir"            :   "/Users/yuistack/Documents/calibur/Mahoo/.nuxt/dist/client",
+  "src_dir"            :   "./.nuxt/dist/client",
   "bucket"             :   "file",
   "overwrite"          :   true,
   "rescan_local"       :   true,
   "skip_suffixes"      :   ".DS_Store,.map",
   "key_prefix"         :   "web/",
-  "log_file"           :   "/Users/yuistack/Documents/calibur/Mahoo/log/qiniu.log",
+  "log_file"           :   "./log/qiniu.log",
   "log_level"          :   "info",
   "log_stdout"         :   true,
   "file_type"          :   0,
