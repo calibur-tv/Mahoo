@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         name: 'applicable-device',
-        content: 'pc,mobile'
+        content: 'mobile'
       },
       { name: 'renderer', content: 'webkit|ie-comp|ie-stand' },
       { name: 'force-rendering', content: 'webkit' },
@@ -52,7 +52,14 @@ module.exports = {
       { rel: 'dns-prefetch', href: 'https://file.calibur.tv' },
       { rel: 'preconnect', href: 'https://www.calibur.tv' },
       { rel: 'preconnect', href: 'https://api.calibur.tv' },
-      { rel: 'icon', type: 'image/x-icon', href: 'https://file.calibur.tv/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'https://file.calibur.tv/favicon.ico' },
+      { rel: 'apple-touch-startup-image', href: 'https://file.calibur.tv/images/splash/launch-640x1136.png', media: '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' },
+      { rel: 'apple-touch-startup-image', href: 'https://file.calibur.tv/images/splash/launch-750x1294.png', media: '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' },
+      { rel: 'apple-touch-startup-image', href: 'https://file.calibur.tv/images/splash/launch-1242x2148.png', media: '(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)' },
+      { rel: 'apple-touch-startup-image', href: 'https://file.calibur.tv/images/splash/launch-1125x2436.png', media: '(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)' },
+      { rel: 'apple-touch-startup-image', href: 'https://file.calibur.tv/images/splash/launch-1536x2048.png', media: '(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' },
+      { rel: 'apple-touch-startup-image', href: 'https://file.calibur.tv/images/splash/launch-1668x2224.png', media: '(device-width: 834px) and (device-height: 834px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' },
+      { rel: 'apple-touch-startup-image', href: 'https://file.calibur.tv/images/splash/launch-2048x2732.png', media: '(device-width: 1024px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)' }
     ],
     bodyAttrs: {
       id: 'calibur'
