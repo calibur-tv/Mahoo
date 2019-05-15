@@ -136,7 +136,7 @@ module.exports = {
     name: '咔哩吧',
     short_name: '咔哩吧',
     description: '二次元社区',
-    background_color: 'transparent',
+    background_color: '#ffffff',
     display: 'standalone',
     scope: 'https://www.calibur.tv/app/',
     start_url: 'https://www.calibur.tv/app/?utm_source=pwa',
