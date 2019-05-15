@@ -1,7 +1,11 @@
 <style lang="scss">
 $tabBarHeight: 50px;
 #app-launch {
-  height: 100vh;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
   padding-bottom: $tabBarHeight;
 
   .tab-bar {

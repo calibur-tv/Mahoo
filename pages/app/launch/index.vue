@@ -19,6 +19,10 @@
       &-wrap {
         flex-grow: 1;
       }
+
+      &-panel {
+        height: 100%;
+      }
     }
   }
 }
