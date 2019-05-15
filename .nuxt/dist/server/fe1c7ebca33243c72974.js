@@ -1,2 +1,0 @@
-exports.ids=[5],exports.modules={92:function(t,e,n){"use strict";n.r(e);var r={name:"",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},c=n(1);var component=Object(c.a)(r,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"launch-create"}},[this._ssrNode("\n  launch create\n")])},[],!1,function(t){},null,"ab413954");e.default=component.exports}};
-//# sourceMappingURL=fe1c7ebca33243c72974.js.map
