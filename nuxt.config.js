@@ -138,8 +138,8 @@ module.exports = {
     description: '二次元社区',
     background_color: '#ffffff',
     display: 'standalone',
-    scope: '/app/',
-    start_url: '/app/?utm_source=pwa',
+    scope: 'https://www.calibur.tv/app/',
+    start_url: 'https://www.calibur.tv/app/?utm_source=pwa',
     lang: 'zh-CN'
   },
 

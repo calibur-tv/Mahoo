@@ -1,2 +1,0 @@
-exports.ids=[4],exports.modules={89:function(t,e,n){"use strict";n.r(e);var o={name:"",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},r=n(1);var component=Object(r.a)(o,function(){var t=this.$createElement,e=this._self._c||t;return e("div",{attrs:{id:"app"}},[this._ssrNode("\n  pwa-index "),e("nuxt-link",{attrs:{to:"/"}},[e("button",[this._v("去首页")])])],2)},[],!1,function(t){},null,"707eb2e0");e.default=component.exports}};
-//# sourceMappingURL=420869a1435f2c9ed5c9.js.map
