@@ -123,7 +123,7 @@ module.exports = {
         mobileApp: true,
         mobileAppIOS: true,
         appleStatusBarStyle: 'default',
-        lang: 'zh-cn',
+        lang: 'zh-CN',
         name: '咔哩吧',
         author: '冰淤',
         description: '咔哩吧 - 二次元社区'
@@ -135,7 +135,11 @@ module.exports = {
   manifest: {
     name: '咔哩吧',
     short_name: '咔哩吧',
-    description: '二次元社区'
+    description: '二次元社区',
+    background_color: '#fff',
+    display: 'standalone',
+    scope: '/app/',
+    start_url: './app/'
   },
 
   router: {
