@@ -1,5 +1,3 @@
-import qs from 'qs'
-
 export default req => {
   const isClient = typeof window !== 'undefined'
   if (isClient && window.__JWT_TOKEN__) {
@@ -9,22 +7,31 @@ export default req => {
   const cookies = isClient ? document.cookie : req ? req.headers.cookie : ''
   if (cookies) {
     cookies.split('; ').forEach(item => {
-      const temp = item.split('=')
-      if (temp[0] === 'JWT-TOKEN') {
-        token = temp[1]
+      if (item.startsWith('JWT-TOKEN=')) {
+        token = item.split('JWT-TOKEN=')[1]
       }
     })
   }
+
+  if (token) {
+    if (isClient) {
+      window.__JWT_TOKEN__ = token
+    }
+    return token
+  }
+
   const authHeader = req ? req.headers.authorization : ''
   if (authHeader) {
     token = authHeader.split('Bearer ')[1]
   }
-  const requestUrl = isClient ? window.location.href : req.url
-  const params = qs.parse(requestUrl.split('?')[1])
 
-  if (params && params.from) {
-    token = params.token
+  if (token) {
+    if (isClient) {
+      window.__JWT_TOKEN__ = token
+    }
+    return token
   }
+
   if (isClient) {
     let pageData = ''
     try {

@@ -1,16 +1,25 @@
-const buildEnv = process.env.NODE_ENV
-const isDev = buildEnv === 'development'
+const nodeEnv = process.env.NODE_ENV
+const isDev = nodeEnv === 'development'
 const baseUrl = require('./.env').BASE_URL
 const qiniu = require('./qiniu')
 const injectScript = require('./.script')
+const isGenerate = process.env.BUILD_ENV === 'generate'
 
 module.exports = {
   mode: 'universal',
   env: {
-    API_URL: baseUrl.API_URL[buildEnv],
-    API_URL_BROWSER: baseUrl.API_URL_BROWSER[buildEnv]
+    API_URL: baseUrl.API_URL[nodeEnv],
+    API_URL_BROWSER: baseUrl.API_URL_BROWSER[nodeEnv]
   },
   buildDir: isDev ? '.nuxt-dev' : '.nuxt',
+  generate: {
+    dir: 'app',
+    routes: [
+      '/app/flow',
+      '/app/pin',
+      '/app/home'
+    ],
+  },
   /*
   ** Headers of the page
   */
@@ -25,10 +34,6 @@ module.exports = {
       {
         name: 'theme-color',
         content: '#f06595'
-      },
-      {
-        name: 'application-name',
-        content: '咔哩吧'
       },
       {
         name: 'format-detection',
@@ -65,16 +70,16 @@ module.exports = {
         type: 'text/javascript',
         async: true
       },
-      { innerHTML: injectScript.iPhoneXViewport, type: 'text/javascript' },
-      {
+      isGenerate ? '' : { innerHTML: injectScript.iPhoneXViewport, type: 'text/javascript' },
+      isGenerate ? '' : {
         src: '//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js',
         type: 'text/javascript'
       },
-      {
+      isGenerate ? '' : {
         src: '//res2.wx.qq.com/open/js/jweixin-1.4.0.js',
         type: 'text/javascript'
       }
-    ],
+    ].filter(_ => _),
     __dangerouslyDisableSanitizers: 'script'
   },
 
@@ -105,12 +110,15 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [
+  modules: isGenerate ? [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa'
+  ] : [
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '~/modules/cache',
-    '~/modules/auth'
+    '~/modules/cache'
   ],
 
   axios: {

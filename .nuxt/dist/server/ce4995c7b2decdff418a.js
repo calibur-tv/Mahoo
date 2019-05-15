@@ -1,0 +1,2 @@
+exports.ids=[4],exports.modules={87:function(t,e,o){"use strict";o.r(e);var n={name:"",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},r=o(1);var component=Object(r.a)(n,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"app-flow"}},[this._ssrNode("\n  flowlist\n")])},[],!1,function(t){},null,"b512d7c0");e.default=component.exports}};
+//# sourceMappingURL=ce4995c7b2decdff418a.js.map

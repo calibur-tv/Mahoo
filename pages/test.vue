@@ -34,11 +34,10 @@ export default {
   },
   methods: {
     openAlertModal() {
-      this.$alert('这是一段内容', '标题名称', {
-        confirmButtonText: '确定',
-        callback: action => {
-          this.$toast.success(`action: ${action}`)
-        }
+      window.api.alert({
+        title: '标题',
+        msg: 'message',
+        buttons: ['确定']
       })
     },
     openConfirmModal() {
