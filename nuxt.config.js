@@ -136,10 +136,11 @@ module.exports = {
     name: '咔哩吧',
     short_name: '咔哩吧',
     description: '二次元社区',
-    background_color: '#fff',
+    background_color: '#ffffff',
     display: 'standalone',
     scope: '/app/',
-    start_url: './app/'
+    start_url: '/app/?utm_source=pwa',
+    lang: 'zh-CN'
   },
 
   router: {

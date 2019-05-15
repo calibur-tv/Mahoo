@@ -1,1 +1,0 @@
-{"version":3,"file":"9210712bf415f9aba689.js","sources":["webpack:///./pages/app/index.vue"],"sourcesContent":["var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{\"id\":\"app\"}},[_vm._ssrNode(\"\\n  pwa-index\\n\")])}\nvar staticRenderFns = []\n\nexport { render, staticRenderFns }"],"mappings":"AAAA","sourceRoot":""}

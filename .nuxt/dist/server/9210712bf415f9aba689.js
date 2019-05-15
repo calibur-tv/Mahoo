@@ -1,2 +1,0 @@
-exports.ids=[4],exports.modules={89:function(t,e,n){"use strict";n.r(e);var r={name:"",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},o=n(1);var component=Object(o.a)(r,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"app"}},[this._ssrNode("\n  pwa-index\n")])},[],!1,function(t){},null,"707eb2e0");e.default=component.exports}};
-//# sourceMappingURL=9210712bf415f9aba689.js.map
