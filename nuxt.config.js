@@ -116,7 +116,7 @@ module.exports = {
       '@nuxtjs/axios'
     ]
 
-    if (!isDev) {
+    if (!isDev && !isGenerate) {
       result.push(['@nuxtjs/pwa', {
         meta: {
           mobileApp: false,
