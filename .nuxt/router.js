@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _b14948b4 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
-const _1d977788 = () => interopDefault(import('../pages/create/cosplay.vue' /* webpackChunkName: "pages/create/cosplay" */))
-const _48a59587 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
-const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
-const _ca26461e = () => interopDefault(import('../pages/tag/_slug.vue' /* webpackChunkName: "pages/tag/_slug" */))
-const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _56b21124 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
+const _3006978c = () => interopDefault(import('../pages/create/cosplay.vue' /* webpackChunkName: "pages/create/cosplay" */))
+const _5a895c05 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
+const _5b43da6e = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
+const _74fc339a = () => interopDefault(import('../pages/tag/_slug.vue' /* webpackChunkName: "pages/tag/_slug" */))
+const _cf3462a0 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -32,32 +32,32 @@ export function createRouter() {
 
     routes: [{
       path: "/test",
-      component: _b14948b4,
+      component: _56b21124,
       props: false,
       name: "test"
     }, {
       path: "/create/cosplay",
-      component: _1d977788,
+      component: _3006978c,
       props: false,
       name: "create-cosplay"
     }, {
       path: "/tag/tree",
-      component: _48a59587,
+      component: _5a895c05,
       props: false,
       name: "tag-tree"
     }, {
       path: "/pin/:slug?",
-      component: _30aed12c,
+      component: _5b43da6e,
       props: true,
       name: "pin-slug"
     }, {
       path: "/tag/:slug?",
-      component: _ca26461e,
+      component: _74fc339a,
       props: true,
       name: "tag-slug"
     }, {
       path: "/",
-      component: _5ce5d46e,
+      component: _cf3462a0,
       props: false,
       name: "index"
     }],

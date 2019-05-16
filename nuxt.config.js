@@ -40,7 +40,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'calibur - 二次元社区'
+        content: '咔哩吧是一个二次元社区'
       },
       {
         hid: 'keywords',
@@ -114,16 +114,24 @@ module.exports = {
     ['@nuxtjs/pwa', {
       meta: {
         mobileApp: false,
-        title: '咔哩吧',
-        author: '冰淤',
         lang: 'zh-CN',
-        description: '一个二次元社区'
+        name: '咔哩吧',
+        author: '冰淤',
+        description: '咔哩吧是一个二次元社区'
       },
       icon: false
     }],
     '~/modules/cache',
     '~/modules/auth'
   ],
+
+  manifest: {
+    name: '咔哩吧',
+    short_name: '咔哩吧',
+    description: '咔哩吧是一个二次元社区',
+    start_url: 'https://www.calibur.tv/?utm_source=pwa',
+    lang: 'zh-CN'
+  },
 
   router: {
     extendRoutes(routes) {
