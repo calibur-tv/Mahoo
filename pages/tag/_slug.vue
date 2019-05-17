@@ -39,11 +39,11 @@
           <button @click="combineTag">
             合并标签
           </button>
-          <button @click="removeTag">
+          <button @click="deleteTag">
             删除标签
           </button>
-          <button @click="redirectTag">
-            重定向标签
+          <button @click="relinkTag">
+            修改父节点
           </button>
           <button @click="updateTag">
             更新标签
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { show, create } from '~/api/tag'
+import * as API from '~/api/tag'
 
 export default {
   name: 'TagTree',
@@ -76,7 +76,7 @@ export default {
   computed: {},
   watch: {},
   asyncData({ app, error, params }) {
-    return show(app, {
+    return API.showTag(app, {
       slug: params.slug
     })
       .then(data => {
@@ -98,7 +98,7 @@ export default {
           if (name.length > 32) {
             return this.$toast.error('名字不能超过32个字')
           }
-          create(this, {
+          API.createTag(this, {
             name,
             parent_slug: this.slug
           })
@@ -115,14 +115,72 @@ export default {
     combineTag() {
       console.log('combineTag')
     },
-    removeTag() {
-      console.log('removeTag')
+    deleteTag() {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '删除标签', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          API.deleteTag(this, {
+            slug: this.slug
+          })
+            .then(() => {
+              this.$toast.success('标签删除成功')
+                .then(() => {
+                  window.location.reload()
+                })
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+            })
+        })
+        .catch(() => {})
     },
-    redirectTag() {
-      console.log('redirectTag')
+    relinkTag() {
+      this.$prompt('请输入目标父节点id', '移动标签', {
+        confirmButtonText: '提交',
+        cancelButtonText: '取消',
+        inputPattern: /^[a-z0-9]+$/i,
+        inputErrorMessage: '格式不正确'
+      })
+        .then(({ value }) => {
+          API.relinkTag(this, {
+            slug: this.slug,
+            target_slug: value
+          })
+            .then(() => {
+              this.$toast.success('标签移动成功')
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+            })
+        })
+        .catch(() => {})
     },
     updateTag() {
-      console.log('updateTag')
+      this.$prompt('请输入标签名', '更新标签', {
+        confirmButtonText: '提交',
+        cancelButtonText: '取消'
+      })
+        .then(({ value }) => {
+          const name = value.trim()
+          if (name.length > 32) {
+            return this.$toast.error('名字不能超过32个字')
+          }
+          API.updateTag(this, {
+            name,
+            slug: this.slug,
+            avatar: ''
+          })
+            .then(() => {
+              this.$toast.success('标签更新成功')
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+            })
+        })
+        .catch(() => {})
     }
   }
 }

@@ -3,8 +3,6 @@
   .el-tree {
     $tree-height: 50px;
     &-node {
-      height: $tree-height;
-
       &__content {
         height: 100%;
       }
@@ -48,7 +46,7 @@
 
 <script>
 import { Tree } from 'element-ui'
-import { show } from '~/api/tag'
+import { showTag } from '~/api/tag'
 
 export default {
   name: '',
@@ -70,7 +68,7 @@ export default {
   computed: {},
   watch: {},
   asyncData({ app, error }) {
-    return show(app, {
+    return showTag(app, {
       slug: '1e1'
     })
       .then(root => {
@@ -85,7 +83,7 @@ export default {
       if (node.level === 0) {
         return resolve(this.root.children)
       }
-      await show(this, {
+      await showTag(this, {
         slug: node.data.slug
       })
         .then(tags => {

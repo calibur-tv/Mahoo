@@ -11,6 +11,6 @@ export default err => {
     return result
   }
   result.statusCode = err.response.status
-  result.message = err.response.data.message
+  result.message = err.response.data.message || '发生错误了，请稍后再试！'
   return result
 }

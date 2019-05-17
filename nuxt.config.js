@@ -108,22 +108,29 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    '@nuxtjs/style-resources',
-    '@nuxtjs/axios',
-    ['@nuxtjs/pwa', {
-      meta: {
-        mobileApp: false,
-        title: '咔哩吧',
-        author: '冰淤',
-        lang: 'zh-CN',
-        description: '一个二次元社区'
-      },
-      icon: false
-    }],
-    '~/modules/cache',
-    '~/modules/auth'
-  ],
+  modules: (() => {
+    const result = [
+      '@nuxtjs/style-resources',
+      '@nuxtjs/axios',
+      '~/modules/cache',
+      '~/modules/auth'
+    ]
+
+    if (!isDev) {
+      result.push(['@nuxtjs/pwa', {
+        meta: {
+          mobileApp: false,
+          title: '咔哩吧',
+          author: '冰淤',
+          lang: 'zh-CN',
+          description: '一个二次元社区'
+        },
+        icon: false
+      }])
+    }
+
+    return result
+  })(),
 
   router: {
     extendRoutes(routes) {
