@@ -27,3 +27,15 @@
 .v-switcher-header-item.is-active {
   color: $color-main;
 }
+
+.hidden-select {
+  &-options {
+    display: none;
+  }
+
+  &-input {
+    .el-input__suffix {
+      display: none;
+    }
+  }
+}

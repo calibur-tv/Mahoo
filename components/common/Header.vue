@@ -77,11 +77,17 @@ $border-height: 3px;
         <nuxt-link class="logo" to="/">
           <span class="prefix">calibur.tv</span>
         </nuxt-link>
-        <!--
-        <v-switcher :headers="headers" :routable="true" align="start" />
-        -->
+        <v-switcher :headers="headers" :routable="true" align="start">
+          <nuxt-link
+            v-for="(item, index) in headers"
+            :key="index"
+            :slot="`tab-${index}`"
+            :to="item.route"
+          >
+            <span v-text="item.name" />
+          </nuxt-link>
+        </v-switcher>
       </nav>
-      <!--
       <div class="right">
         <nuxt-link to="/create/cosplay/">
           <el-button size="large" type="primary" icon="el-icon-s-promotion">
@@ -89,7 +95,6 @@ $border-height: 3px;
           </el-button>
         </nuxt-link>
       </div>
-      -->
     </div>
   </header>
 </template>
@@ -102,20 +107,20 @@ export default {
     return {
       headers: [
         {
-          route: 'index',
+          route: '/',
           name: '首页'
         },
         {
-          route: 'bangumi-tags',
+          route: '/tag/2he',
           name: '动漫'
         },
         {
-          route: 'game-tags',
+          route: '/tag/285',
           name: '游戏'
         },
         {
-          route: 'channel-tags',
-          name: '圈子'
+          route: '/tag/3p6',
+          name: '话题'
         }
       ]
     }

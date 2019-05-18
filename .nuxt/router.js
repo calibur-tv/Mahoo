@@ -6,7 +6,8 @@ const _b14948b4 = () => interopDefault(import('../pages/test.vue' /* webpackChun
 const _1d977788 = () => interopDefault(import('../pages/create/cosplay.vue' /* webpackChunkName: "pages/create/cosplay" */))
 const _48a59587 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
 const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
-const _ca26461e = () => interopDefault(import('../pages/tag/_slug.vue' /* webpackChunkName: "pages/tag/_slug" */))
+const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
+const _d3605bd0 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
 const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
@@ -52,9 +53,14 @@ export function createRouter() {
       name: "pin-slug"
     }, {
       path: "/tag/:slug?",
-      component: _ca26461e,
+      component: _75622ab4,
       props: true,
       name: "tag-slug"
+    }, {
+      path: "/tag/:slug?/edit",
+      component: _d3605bd0,
+      props: true,
+      name: "tag-slug-edit"
     }, {
       path: "/",
       component: _5ce5d46e,

@@ -8,7 +8,8 @@ module.exports = {
   mode: 'universal',
   env: {
     API_URL: baseUrl.API_URL[nodeEnv],
-    API_URL_BROWSER: baseUrl.API_URL_BROWSER[nodeEnv]
+    API_URL_BROWSER: baseUrl.API_URL_BROWSER[nodeEnv],
+    META_KEYS: injectScript.keywords
   },
   buildDir: isDev ? '.nuxt-dev' : '.nuxt',
   /*
@@ -45,11 +46,12 @@ module.exports = {
       {
         hid: 'keywords',
         name: 'keywords',
-        content: 'C站,calibur,咔哩吧,ACG,二次元,社区'
+        content: injectScript.keywords
       }
     ],
     link: [
       { rel: 'dns-prefetch', href: 'https://file.calibur.tv' },
+      { rel: 'dns-prefetch', href: 'https://m1.calibur.tv' },
       { rel: 'preconnect', href: 'https://www.calibur.tv' },
       { rel: 'preconnect', href: 'https://api.calibur.tv' },
       { rel: 'icon', type: 'image/x-icon', href: 'https://file.calibur.tv/favicon.ico' }
@@ -71,11 +73,13 @@ module.exports = {
       { innerHTML: injectScript.iPhoneXViewport, type: 'text/javascript' },
       {
         src: '//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js',
-        type: 'text/javascript'
+        type: 'text/javascript',
+        async: true
       },
       {
         src: '//res2.wx.qq.com/open/js/jweixin-1.4.0.js',
-        type: 'text/javascript'
+        type: 'text/javascript',
+        async: true
       }
     ],
     __dangerouslyDisableSanitizers: 'script'
@@ -100,7 +104,8 @@ module.exports = {
   plugins: [
     '~/plugins/axios.all.js',
     '~/plugins/components.all.js',
-    '~/plugins/components.client.js',
+    '~/plugins/prototypes.all.js',
+    '~/plugins/prototypes.client.js',
     '~/plugins/h5.client.js',
     '~/plugins/pc.client.js'
   ],

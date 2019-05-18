@@ -25,5 +25,7 @@ module.exports = {
     'vue/no-unused-components': 'warn',
     'arrow-parens': [1, 'as-needed']
   },
-  globals: {}
+  globals: {
+    workbox: true
+  }
 }

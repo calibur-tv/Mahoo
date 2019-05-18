@@ -15,7 +15,7 @@ export default {
         'image/jpg'
       ].join(', '),
       imageUploadAction: 'https://upload.qiniup.com',
-      imagePrefix: 'http://pr04zzjnf.bkt.clouddn.com',
+      imagePrefix: 'https://m1.calibur.tv',
       getUpTokenTimer: 0,
       uploadPending: 0,
       uploadImageTotal: 0,

@@ -27,7 +27,7 @@ async function start() {
     ctx.set('X-Frame-Options', 'DENY')
     ctx.set(
       'Content-Security-Policy',
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' *.calibur.tv hm.baidu.com *.geetest.com zz.bdstatic.com push.zhanzhang.baidu.com res2.wx.qq.com qzonestyle.gtimg.cn;`
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' *.calibur.tv cdn.jsdelivr.net hm.baidu.com *.geetest.com zz.bdstatic.com push.zhanzhang.baidu.com res2.wx.qq.com qzonestyle.gtimg.cn;`
     )
 
     ctx.respond = false // Mark request as handled for Koa

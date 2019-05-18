@@ -35,7 +35,7 @@
       text-align: center;
       font-size: 12px;
       color: $color-gray;
-      margin-bottom: 0;
+      margin-top: 20px;
     }
 
     .el-upload {
