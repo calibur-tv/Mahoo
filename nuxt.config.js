@@ -145,6 +145,10 @@ module.exports = {
     lang: 'zh-CN'
   },
 
+  workbox: {
+    offlineStrategy: 'NetworkOnly'
+  },
+
   router: {
     extendRoutes(routes) {
       for (const route of routes) {

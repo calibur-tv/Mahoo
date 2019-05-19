@@ -144,8 +144,6 @@ export default {
     }
     return {
       tag: null,
-      parent: null,
-      children: [],
       rules: {
         alias: [
           { validator: validateAlias, trigger: 'submit' }
@@ -159,7 +157,9 @@ export default {
       slug: params.slug
     })
       .then(data => {
-        return { ...data }
+        const { tag } = data
+        tag.alias = tag.alias.split(',')
+        return { tag }
       })
       .catch(error)
   },
