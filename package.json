@@ -30,8 +30,8 @@
     "normalize.css": "^8.0.1",
     "nuxt": "2.7.1",
     "redis": "^2.8.0",
-    "v-switcher": "^0.0.13",
-    "vue-mixin-store": "0.1.17"
+    "v-switcher": "^1.0.2",
+    "vue-mixin-store": "1.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

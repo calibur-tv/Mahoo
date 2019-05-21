@@ -9122,10 +9122,10 @@ uuid@^3.3.2:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
 
-v-switcher@^0.0.13:
-  version "0.0.13"
-  resolved "https://registry.npm.taobao.org/v-switcher/download/v-switcher-0.0.13.tgz#b5865ea93caf9255f17896f8d3b6aa4b090ae004"
-  integrity sha1-tYZeqTyvklXxeJb407aqSwkK4AQ=
+v-switcher@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.2.tgz#4874c1ffc72cbfee51753d6012fa6971425f19b2"
+  integrity sha512-3eSinsb8kodaiDskUeQgYdR42U1qinypACcToC/yZfl03bncLiQqoeTl3AlxpgZ3oRVbMOxzZ0xvGqFlGx3SNg==
   dependencies:
     vue "^2.6.6"
 
@@ -9206,10 +9206,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@0.1.17:
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-0.1.17.tgz#52b9d7eb49e64835a3b6be1a8874573b467344ff"
-  integrity sha512-ti/TNJFXDZdZxJqb1rXOxZQMzYOYY5f9sgAbaBRiqfOmHOUIn/igylSFaQscWOoG522uxn0hyEi32R8ygPClRA==
+vue-mixin-store@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.0.0.tgz#dd07be49bc3b123b2416036a1c82ca3c5cbc9e99"
+  integrity sha512-Gx6Bjs/85ztO9b4I0Af9DVY/SeB5IGChvRb8z7jOBfakSFEkpCXfUqQ2QeYcYN3Nk76wxPC0Ir1I98z/j1isug==
   dependencies:
     throttle-debounce "^2.1.0"
 

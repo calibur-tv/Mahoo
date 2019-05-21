@@ -1,8 +1,7 @@
 import Vue from 'vue'
-import Switcher from 'v-switcher'
-import 'v-switcher/dist/v-switcher.css'
+import Switcher from 'v-switcher/dist/v-switcher.vue'
 import VDialog from '~/components/common/Dialog'
-import MixinStore from 'vue-mixin-store'
+import FlowLoader from 'vue-mixin-store/dist/FlowLoader'
 import {
   Button,
   Row,
@@ -10,8 +9,8 @@ import {
   Dialog
 } from 'element-ui'
 
-Vue.component(MixinStore.FlowLoader.name, MixinStore.FlowLoader)
-Vue.component(Switcher.name, Switcher)
+Vue.use(Switcher)
+Vue.use(FlowLoader)
 Vue.component(Button.name, Button)
 Vue.component(Row.name, Row)
 Vue.component(Col.name, Col)

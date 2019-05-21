@@ -1,7 +1,7 @@
-import MixinStore from 'vue-mixin-store'
+import FlowStore from 'vue-mixin-store/dist/flow.js'
 
 const api = {}
-const flow = MixinStore.FlowStore(api)
+const flow = FlowStore(api)
 
 export const state = flow.state
 
