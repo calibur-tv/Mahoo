@@ -9,8 +9,8 @@ import {
   Dialog
 } from 'element-ui'
 
-Vue.use(Switcher)
-Vue.use(FlowLoader)
+Vue.component(Switcher.name, Switcher)
+Vue.component(FlowLoader.name, FlowLoader)
 Vue.component(Button.name, Button)
 Vue.component(Row.name, Row)
 Vue.component(Col.name, Col)
