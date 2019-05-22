@@ -1207,15 +1207,15 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^3.2.0"
 
-"@nuxtjs/axios@^5.3.6":
-  version "5.4.1"
-  resolved "https://registry.npm.taobao.org/@nuxtjs/axios/download/@nuxtjs/axios-5.4.1.tgz#8dbc841e939c082271f7053edc1180bf5a441ee3"
-  integrity sha1-jbyEHpOcCCJx9wU+3BGAv1pEHuM=
+"@nuxtjs/axios@^5.4.2":
+  version "5.4.2"
+  resolved "https://registry.npm.taobao.org/@nuxtjs/axios/download/@nuxtjs/axios-5.4.2.tgz#8242952c72f8579430248067c8fcef9715f0cf86"
+  integrity sha1-gkKVLHL4V5QwJIBnyPzvlxXwz4Y=
   dependencies:
     "@nuxtjs/proxy" "^1.3.3"
     axios "^0.18.0"
     axios-retry "^3.1.2"
-    consola "^2.5.6"
+    consola "^2.6.2"
 
 "@nuxtjs/eslint-config@^0.0.1":
   version "0.0.1"
@@ -2666,7 +2666,7 @@ consola@^2.0.0-1, consola@^2.3.0, consola@^2.4.0, consola@^2.5.6, consola@^2.6.0
   resolved "https://registry.npm.taobao.org/consola/download/consola-2.6.1.tgz#d2f2bee385b5dba11907e4e0d17fc563d5fb9fa6"
   integrity sha1-0vK+44W126EZB+Tg0X/FY9X7n6Y=
 
-consola@^2.6.1:
+consola@^2.6.1, consola@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/consola/-/consola-2.6.2.tgz#4c1238814bb80688b19f0db97123508889577752"
   integrity sha512-GNJhwvF4bJ8eiAlyB8r4WNM8kBqkl+y4DvMehMbyywoJiv37N0M6/xrKqrrZw/5maZA+UagQV8UZ+XBeuGMzUg==
@@ -9122,10 +9122,10 @@ uuid@^3.3.2:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
 
-v-switcher@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.2.tgz#4874c1ffc72cbfee51753d6012fa6971425f19b2"
-  integrity sha512-3eSinsb8kodaiDskUeQgYdR42U1qinypACcToC/yZfl03bncLiQqoeTl3AlxpgZ3oRVbMOxzZ0xvGqFlGx3SNg==
+v-switcher@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/v-switcher/download/v-switcher-1.0.3.tgz#c2d501d68fc1ea77c92018244972ee79d9aecf1b"
+  integrity sha1-wtUB1o/B6nfJIBgkSXLuedmuzxs=
   dependencies:
     vue "^2.6.6"
 

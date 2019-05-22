@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Switcher from 'v-switcher/dist/v-switcher.vue'
+import Switcher from 'v-switcher'
 import VDialog from '~/components/common/Dialog'
 import FlowLoader from 'vue-mixin-store/dist/FlowLoader'
 import {

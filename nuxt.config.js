@@ -146,7 +146,9 @@ module.exports = {
   },
 
   workbox: {
-    offlineStrategy: 'NetworkOnly'
+    offlineStrategy: 'NetworkOnly',
+    workboxVersion: '4.3.1',
+    workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
   },
 
   router: {

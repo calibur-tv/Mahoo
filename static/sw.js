@@ -1,4 +1,4 @@
-importScripts('https://cdn.jsdelivr.net/npm/workbox-cdn@4.3.1/workbox/workbox-sw.js')
+importScripts('https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js')
 
 // --------------------------------------------------
 // Configure
