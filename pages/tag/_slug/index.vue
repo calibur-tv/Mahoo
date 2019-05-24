@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import * as API from '~/api/tag'
+import * as API from '~/api/tagApi'
 
 export default {
   name: 'TagTree',

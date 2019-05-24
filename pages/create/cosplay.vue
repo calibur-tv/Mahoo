@@ -283,16 +283,13 @@
 
 <script>
 import upload from '~/mixins/upload'
-import { Upload, Input, Form, FormItem, Radio, RadioGroup, Cascader, Select, Option, Divider, Tag } from 'element-ui'
+import { Upload, Radio, RadioGroup, Cascader, Select, Option, Divider, Tag } from 'element-ui'
 
 export default {
   name: '',
   layout: 'web',
   components: {
     'el-upload': Upload,
-    'el-input': Input,
-    'el-form': Form,
-    'el-form-item': FormItem,
     'el-radio': Radio,
     'el-radio-group': RadioGroup,
     'el-cascader': Cascader,

@@ -106,18 +106,15 @@
 
 <script>
 import upload from '~/mixins/upload'
-import { showTag, updateTag } from '~/api/tag'
-import { Upload, Input, Form, FormItem, Select } from 'element-ui'
+import { showTag, updateTag } from '~/api/tagApi'
+import { Upload, Select } from 'element-ui'
 
 export default {
   name: '',
   layout: 'web',
   components: {
     'el-upload': Upload,
-    'el-input': Input,
-    'el-form': Form,
-    'el-select': Select,
-    'el-form-item': FormItem
+    'el-select': Select
   },
   mixins: [upload],
   props: {

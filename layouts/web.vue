@@ -5,16 +5,19 @@
   <div id="layout-web">
     <v-header />
     <nuxt />
+    <sign-dialog />
   </div>
 </template>
 
 <script>
 import VHeader from '~/components/common/Header'
+import SignDialog from '~/components/SignDialog'
 
 export default {
-  name: '',
+  name: 'WebLayout',
   components: {
-    VHeader
+    VHeader,
+    SignDialog
   },
   props: {},
   data() {

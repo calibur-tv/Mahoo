@@ -46,7 +46,7 @@
 
 <script>
 import { Tree } from 'element-ui'
-import { showTag } from '~/api/tag'
+import { showTag } from '~/api/tagApi'
 
 export default {
   name: '',
@@ -76,8 +76,6 @@ export default {
       })
       .catch(error)
   },
-  created() {},
-  mounted() {},
   methods: {
     async loadTags(node, resolve) {
       if (node.level === 0) {

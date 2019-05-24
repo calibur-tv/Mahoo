@@ -89,6 +89,8 @@ $border-height: 3px;
         </v-switcher>
       </nav>
       <div class="right">
+        <el-button type="text" @click="$channel.$emit('sign-in')">登录</el-button>
+        &nbsp;&nbsp;
         <nuxt-link to="/create/cosplay/">
           <el-button size="large" type="primary" icon="el-icon-s-promotion">
             投稿

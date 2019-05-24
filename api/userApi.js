@@ -1,0 +1,85 @@
+export const getRecommendedUsers = ctx => ctx.$axios.$get('user/recommended')
+
+export const getLoginUser = ctx => ctx.$axios.$post('door/refresh')
+
+export const settingProfile = (ctx, params) => ctx.$axios.$post('user/setting/profile', params)
+
+export const settingImage = (ctx, { type, url }) => ctx.$axios.$post('user/setting/image', { type, url })
+
+export const getUserInfo = (ctx, { zone }) => ctx.$axios.$get(`user/${zone}/show`)
+
+export const bindPhone = (ctx, { id, phone, password, authCode }) => ctx.$axios.$post('door/bind_phone', {
+  id,
+  phone,
+  password,
+  authCode
+})
+
+export const sendMessage = (ctx, { phone_number, type, geetest }) => ctx.$axios.$post('door/message', {
+  phone_number,
+  type,
+  geetest
+})
+
+export const register = (
+  ctx,
+  { access, secret, nickname, authCode, inviteCode }
+) => ctx.$axios.$post('door/register', {
+  access,
+  secret,
+  nickname,
+  authCode,
+  inviteCode
+})
+
+export const login = (ctx, { access, secret, remember, geetest }) => ctx.$axios.$post('door/login', {
+  access,
+  secret,
+  remember,
+  geetest
+})
+
+export const logout = ctx => ctx.$axios.$post('door/logout')
+
+export const feedback = (ctx, { type, desc, ua }) => ctx.$axios.$post('user/feedback', { type, desc, ua })
+
+export const daySignAction = ctx => ctx.$axios.$post('user/daySign')
+
+export const getUserCard = (ctx, { id }) => ctx.$axios.$get('user/card', {
+  params: { id }
+})
+
+export const getUserBadgeDetail = (ctx, { user_id, badge_id }) => ctx.$axios.$get('user/badge/item', {
+  params: {
+    user_id,
+    badge_id
+  }
+})
+
+export const report = (ctx, { id, type, model, message }) => ctx.$axios.$post('report/send', {
+  id,
+  type,
+  model,
+  message
+})
+
+export const resetPassword = (ctx, { method, access, authCode, secret }) => ctx.$axios.$post('door/reset', {
+  method,
+  access,
+  authCode,
+  secret
+})
+
+export const readAllMessage = ctx => ctx.$axios.$post('user/notification/clear')
+
+export const readMessage = (ctx, { id }) => ctx.$axios.$post('user/notification/read', { id })
+
+export const readNotice = (ctx, { id }) => ctx.$axios.$post('user/notice/mark', { id })
+
+export const getNotifications = (ctx, { minId }) => ctx.$axios.$get('user/notification/list', {
+  params: { minId }
+})
+
+export const getNotificationCount = ctx => ctx.$axios.$get('user/notification/count')
+
+export const getSystemNotice = ctx => ctx.$axios.$get('user/notice/list')
