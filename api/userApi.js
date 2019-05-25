@@ -1,6 +1,6 @@
 export const getRecommendedUsers = ctx => ctx.$axios.$get('user/recommended')
 
-export const getLoginUser = ctx => ctx.$axios.$post('door/refresh')
+export const getLoginUser = ctx => ctx.$axios.$post('v1/door/get_user_info')
 
 export const settingProfile = (ctx, params) => ctx.$axios.$post('user/setting/profile', params)
 
@@ -32,14 +32,14 @@ export const register = (
   inviteCode
 })
 
-export const login = (ctx, { access, secret, remember, geetest }) => ctx.$axios.$post('door/login', {
+export const login = (ctx, { access, secret, remember, geetest }) => ctx.$axios.$post('v1/door/login', {
   access,
   secret,
   remember,
   geetest
 })
 
-export const logout = ctx => ctx.$axios.$post('door/logout')
+export const logout = ctx => ctx.$axios.$post('v1/door/logout')
 
 export const feedback = (ctx, { type, desc, ua }) => ctx.$axios.$post('user/feedback', { type, desc, ua })
 

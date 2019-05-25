@@ -1,3 +1,5 @@
+import { getUpToken } from '~/api/imageApi'
+
 export default {
   data() {
     return {
@@ -15,7 +17,7 @@ export default {
         'image/jpg'
       ].join(', '),
       imageUploadAction: 'https://upload.qiniup.com',
-      imagePrefix: 'https://m1.calibur.tv',
+      imagePrefix: 'https://m1.calibur.tv/',
       getUpTokenTimer: 0,
       uploadPending: 0,
       uploadImageTotal: 0,
@@ -25,24 +27,33 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.user
+    },
+    login() {
+      return this.$store.state.login
+    }
+  },
+  watch: {
+    login(val) {
+      val && this.initUpToken()
     }
   },
   mounted() {
-    this.getUpToken()
-    this.getUpTokenTimer = setInterval(() => {
-      this.getUpToken()
-    }, 1000 * 60 * 30)
+    if (this.login) {
+      this.initUpToken()
+    }
   },
   beforeDestroy() {
     this.getUpTokenTimer && clearInterval(this.getUpTokenTimer)
   },
   methods: {
+    initUpToken() {
+      this.getUpToken()
+      this.getUpTokenTimer = setInterval(() => {
+        this.getUpToken()
+      }, 1000 * 60 * 30)
+    },
     async getUpToken() {
-      try {
-        this.uploadHeaders.token = await this.$axios.get('v1/image/uptoken')
-      } catch (e) {
-        // do nothing
-      }
+      this.uploadHeaders.token = await getUpToken(this)
     },
     handleImageUploadError(err, file) {
       this.uploadImageList.forEach((item, index) => {
@@ -68,10 +79,9 @@ export default {
           this.uploadImageList[index] = Object.assign(item, {
             data: res.data,
             status: 'success',
-            // url: this.$resize(`${this.imagePrefix}${res.data.url}`, {
-            //   width: 100
-            // }),
-            url: `${this.imagePrefix}/${res.data.url}`
+            url: this.$resize(`${this.imagePrefix}${res.data.url}`, {
+              width: 200
+            })
           })
         }
       })
@@ -79,10 +89,10 @@ export default {
       this.uploadPending--
     },
     handleImageUploadExceed() {
-      this.$toast.warn(`最多还能上传${this.uploadImageLimit - this.uploadImageTotal}张图片`)
+      this.$toast.info(`最多还能上传${this.uploadImageLimit - this.uploadImageTotal}张图片`)
     },
     handleImageUploadBefore(file) {
-      if (!this.currentUser) {
+      if (!this.login) {
         this.$channel.$emit('sign-in')
         return false
       }

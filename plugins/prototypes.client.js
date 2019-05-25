@@ -6,14 +6,16 @@ import { getCaptcha } from '~/api/imageApi'
 
 const isMobile = window.screen.width <= 768 || /^\/app/.test(window.location.pathname)
 
-Vue.use({
-  install(Vue) {
-    Vue.prototype.$cookie = Cookies
+export default ({ $axios }) => {
+  Vue.use({
+    install(Vue) {
+      Vue.prototype.$cookie = Cookies
 
-    Vue.prototype.$channel = new Vue()
+      Vue.prototype.$channel = new Vue()
 
-    Vue.prototype.$toast = new Toast(isMobile)
+      Vue.prototype.$toast = new Toast(isMobile)
 
-    Vue.prototype.$captcha = new Captcha(getCaptcha)
-  }
-})
+      Vue.prototype.$captcha = new Captcha(() => getCaptcha({ $axios }))
+    }
+  })
+}

@@ -4,12 +4,7 @@ import parseToken from '~/assets/js/parseToken'
 export default ({ $axios, app }) => {
   const isClient = typeof window !== 'undefined'
 
-  $axios.setHeader('Accept', 'application/x.api.latest+json')
-  if (app.store.state.login) {
-    $axios.setToken(app.store.state.user.token, 'Bearer')
-  } else {
-    $axios.setToken(parseToken(isClient ? '' : app.context.req), 'Bearer')
-  }
+  $axios.setToken(parseToken(app), 'Bearer')
 
   $axios.onRequest(config => {
     config.baseURL = isClient
@@ -35,13 +30,7 @@ export default ({ $axios, app }) => {
       //   code: 200
       // })
     }
-    const newToken = resp.headers.authorization
-    if (newToken) {
-      Object.assign(resp.data.data, {
-        token: newToken.split('Bearer ').pop()
-      })
-    }
-    return resp.data.data
+    return resp.data
   })
 
   $axios.onError(error => {

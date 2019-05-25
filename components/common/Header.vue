@@ -89,7 +89,20 @@ $border-height: 3px;
         </v-switcher>
       </nav>
       <div class="right">
-        <el-button type="text" @click="$channel.$emit('sign-in')">登录</el-button>
+        <el-button
+          v-if="login"
+          type="text"
+          @click="handleLogout"
+        >
+          退出
+        </el-button>
+        <el-button
+          v-else
+          type="text"
+          @click="handleSignIn"
+        >
+          登录
+        </el-button>
         &nbsp;&nbsp;
         <nuxt-link to="/create/cosplay/">
           <el-button size="large" type="primary" icon="el-icon-s-promotion">
@@ -127,10 +140,23 @@ export default {
       ]
     }
   },
-  computed: {},
+  computed: {
+    login() {
+      return this.$store.state.login
+    }
+  },
   watch: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {
+    handleLogout() {
+      this.$store.dispatch('destroyAuth')
+      this.$cookie.remove('JWT-TOKEN')
+      window.location = '/'
+    },
+    handleSignIn() {
+      this.$channel.$emit('sign-in')
+    }
+  }
 }
 </script>
