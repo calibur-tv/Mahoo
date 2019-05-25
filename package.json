@@ -14,7 +14,7 @@
     "lint": "eslint --fix --ext .js,.vue . --ignore-path .gitignore",
     "precommit": "npm run lint",
     "analyze": "nuxt build --analyze",
-    "theme": "et -c assets/css/theme.scss -w",
+    "theme": "et -c assets/css/theme.scss",
     "test": "echo 1"
   },
   "dependencies": {
@@ -24,7 +24,7 @@
     "cache-manager-redis": "^0.6.0",
     "cross-env": "^5.2.0",
     "element-ui": "^2.8.2",
-    "geetest-captcha": "^1.0.4",
+    "geetest-captcha": "^1.0.8",
     "js-cookie": "^2.2.0",
     "koa": "^2.6.2",
     "mint-ui": "^2.2.13",
@@ -43,7 +43,7 @@
     "eslint": "^5.15.1",
     "eslint-config-standard": ">=12.0.0",
     "eslint-loader": "^2.1.2",
-    "eslint-plugin-import": ">=2.16.0",
+    "eslint-plugin-import": ">=2.17.3",
     "eslint-plugin-jest": ">=22.6.4",
     "eslint-plugin-node": ">=9.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",

@@ -1,12 +1,10 @@
 <style lang="scss">
-$page-height: 60px;
-$border-height: 3px;
+$page-height: 50px;
 
 #page-header {
   position: relative;
   z-index: 3;
-  border-top: 3px solid $color-main;
-  box-shadow: 0 2px 6px 0 rgba(36, 33, 46, 0.06);
+  box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
   background-color: #fff;
 
   .nav {
@@ -31,30 +29,24 @@ $border-height: 3px;
 
     .logo {
       line-height: $page-height;
-      margin-right: 20px;
-      font-size: 24px;
+      margin-right: 10px;
 
-      .prefix {
-        padding: 5px 5px;
-        color: #333333;
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
       }
     }
 
     .v-switcher {
-      li {
-        margin-left: 3px;
-        padding: 0;
-      }
-
       a {
         display: block;
         padding: 0 12px;
-        font-weight: 600;
-        font-size: 16px;
+        font-size: 15px;
         line-height: 34px;
         background-color: transparent;
         border-radius: 4px;
-        color: #757575;
+        color: #222;
         border-bottom-width: 0;
 
         &:hover {
@@ -75,7 +67,7 @@ $border-height: 3px;
     <div class="container nav">
       <nav class="left">
         <nuxt-link class="logo" to="/">
-          <span class="prefix">calibur.tv</span>
+          <img :src="$resize('default-poster', { width: 64, height: 64 })">
         </nuxt-link>
         <v-switcher :headers="headers" :routable="true" align="start">
           <nuxt-link
@@ -105,7 +97,7 @@ $border-height: 3px;
         </el-button>
         &nbsp;&nbsp;
         <nuxt-link to="/create/cosplay/">
-          <el-button size="large" type="primary" icon="el-icon-s-promotion">
+          <el-button size="small" type="primary" icon="el-icon-s-promotion">
             投稿
           </el-button>
         </nuxt-link>

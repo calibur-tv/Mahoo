@@ -173,21 +173,30 @@ export default {
         return
       }
       this.loading = true
-      login(this, {
-        access: this.form.access,
-        secret: this.form.secret,
-        remember: this.form.remember
-      })
-        .then(token => {
-          this.$cookie.set('JWT-TOKEN', token, {
-            expires: this.form.remember ? 365 : 1
+      this.$captcha({
+        ctx: this,
+        success: ({ data }) => {
+          login(this, {
+            access: this.form.access,
+            secret: this.form.secret,
+            remember: this.form.remember,
+            geetest: data
           })
-          window.location.reload()
-        })
-        .catch(err => {
-          this.$toast.error(err.message)
+            .then(token => {
+              this.$cookie.set('JWT-TOKEN', token, {
+                expires: this.form.remember ? 365 : 1
+              })
+              window.location.reload()
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+              this.loading = false
+            })
+        },
+        close: () => {
           this.loading = false
-        })
+        }
+      })
     },
     showReset() {
       this.$emit('to-reset')

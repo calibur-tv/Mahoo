@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  layout: 'trend',
+  layout: 'web',
   data() {
     return {
       pageInfo: '123'
@@ -34,10 +34,8 @@ export default {
   },
   methods: {
     openAlertModal() {
-      window.api.alert({
-        title: '标题',
-        msg: 'message',
-        buttons: ['确定']
+      this.$captcha(() => {
+        this.$toast.success('ok')
       })
     },
     openConfirmModal() {
