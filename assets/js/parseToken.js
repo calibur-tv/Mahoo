@@ -1,7 +1,7 @@
 export default app => {
-  const isClient = typeof window !== 'undefined'
+  let token = ''
 
-  if (isClient) {
+  if (typeof window !== 'undefined') {
     let pageData
 
     try {
@@ -14,18 +14,17 @@ export default app => {
       }
     }
 
-    return pageData.authToken
+    token = pageData.authToken
+  } else {
+    const cookies = app.context.req.headers.cookie
+    if (cookies) {
+      cookies.split('; ').forEach(item => {
+        if (item.startsWith('JWT-TOKEN=')) {
+          token = item.split('JWT-TOKEN=')[1]
+        }
+      })
+    }
   }
 
-  let token = ''
-  const cookies = app.context.req.headers.cookie
-  if (cookies) {
-    cookies.split('; ').forEach(item => {
-      if (item.startsWith('JWT-TOKEN=')) {
-        token = item.split('JWT-TOKEN=')[1]
-      }
-    })
-  }
-
-  return token
+  return ~['undefined', 'null'].indexOf(token) ? '' : token
 }
