@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
+import '../node_modules/normalize.css/normalize.css'
+
 import '../assets/css/global.scss'
 
-import '../node_modules/normalize.css/normalize.css'
+import '../theme/index.css'
 
 const _6f6c098b = () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m)
 const _1a3b339e = () => import('../layouts/web.vue'  /* webpackChunkName: "layouts/web" */).then(m => m.default || m)

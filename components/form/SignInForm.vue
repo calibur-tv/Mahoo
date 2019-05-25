@@ -2,7 +2,6 @@
 .sign-in-form {
   .sign-in-opt {
     margin-bottom: 10px;
-    margin-top: -12px;
 
     .opt-container {
       display: flex;
@@ -174,7 +173,6 @@ export default {
       }
       this.loading = true
       this.$captcha({
-        ctx: this,
         success: ({ data }) => {
           login(this, {
             access: this.form.access,

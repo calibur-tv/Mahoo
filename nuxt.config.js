@@ -94,8 +94,9 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'normalize.css',
     '~/assets/css/global.scss',
-    'normalize.css'
+    '~/theme/index.css'
   ],
 
   /*
@@ -227,8 +228,8 @@ module.exports = {
         [
           'component',
           {
-            'libraryName': 'element-ui',
-            'styleLibraryName': '~theme'
+            libraryName: 'element-ui',
+            style: false
           }
         ]
       ]
