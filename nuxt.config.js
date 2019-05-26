@@ -1,15 +1,16 @@
 const nodeEnv = process.env.NODE_ENV
 const isDev = nodeEnv === 'development'
-const baseUrl = require('./.env').BASE_URL
+const ENV = require('./.env')
 const qiniu = require('./qiniu')
 const injectScript = require('./.script')
 
 module.exports = {
   mode: 'universal',
   env: {
-    API_URL: baseUrl.API_URL[nodeEnv],
-    API_URL_BROWSER: baseUrl.API_URL_BROWSER[nodeEnv],
-    META_KEYS: injectScript.keywords
+    API_URL: ENV.BASE_URL.API_URL[nodeEnv],
+    API_URL_BROWSER: ENV.BASE_URL.API_URL_BROWSER[nodeEnv],
+    META_KEYS: injectScript.keywords,
+    SOCKET_HOST: ENV.SOCKET_HOST[nodeEnv]
   },
   buildDir: isDev ? '.nuxt-dev' : '.nuxt',
   /*
@@ -108,7 +109,8 @@ module.exports = {
     '~/plugins/prototypes.all.js',
     '~/plugins/prototypes.client.js',
     '~/plugins/h5.client.js',
-    '~/plugins/pc.client.js'
+    '~/plugins/pc.client.js',
+    '~/plugins/socket.client.js'
   ],
 
   /*

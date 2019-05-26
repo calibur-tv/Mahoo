@@ -138,7 +138,7 @@ export async function setContext(app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"API_URL":"http://localhost/","API_URL_BROWSER":"https://api.calibur.tv/","META_KEYS":"C站,calibur,咔哩吧,ACG,二次元,社区"}
+      env: {"API_URL":"http://localhost/","API_URL_BROWSER":"https://api.calibur.tv/","META_KEYS":"C站,calibur,咔哩吧,ACG,二次元,社区","SOCKET_HOST":"ws://api.calibur.tv/ws"}
     }
     // Only set once
     if (context.req) {

@@ -32,7 +32,8 @@
     "nuxt": "2.7.1",
     "redis": "^2.8.0",
     "v-switcher": "^1.0.4",
-    "vue-mixin-store": "1.0.0"
+    "vue-mixin-store": "1.0.0",
+    "vue-native-websocket": "^2.0.13"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",

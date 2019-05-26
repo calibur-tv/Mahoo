@@ -114,7 +114,7 @@
         </div>
       </div>
     </div>
-    <div class="header-shim"/>
+    <div class="header-shim" />
   </header>
 </template>
 
@@ -156,6 +156,7 @@ export default {
     handleLogout() {
       this.$store.dispatch('destroyAuth')
       this.$cookie.remove('JWT-TOKEN')
+      this.$channel.socketDisconnect()
       window.location = '/'
     },
     handleSignIn() {

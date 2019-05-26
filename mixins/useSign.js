@@ -5,7 +5,9 @@ export default {
     const token = parseToken()
     this.$store.commit('SET_USER_TOKEN', token)
     const user = await this.$store.dispatch('initAuth')
-    if (!user) {
+    if (user) {
+      this.$channel.socketConnect()
+    } else {
       this.$cookie.remove('JWT-TOKEN')
     }
   }

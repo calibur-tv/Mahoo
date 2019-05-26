@@ -58,19 +58,19 @@
         :span="5"
       >
         <ul
-          class="parent-node"
           v-if="parent"
+          class="parent-node"
         >
           <li class="node">
             <nuxt-link :to="`/tag/${parent.slug}`">
               <img :src="$resize(parent.avatar, { width: 64 })" :alt="parent.name">
-              <span v-text="parent.name"/>
+              <span v-text="parent.name" />
             </nuxt-link>
           </li>
         </ul>
         <ul
-          class="child-node"
           v-if="children.length"
+          class="child-node"
         >
           <li
             v-for="item in children.slice(0, 10)"
@@ -79,7 +79,7 @@
           >
             <nuxt-link :to="`/tag/${item.slug}`">
               <img :src="$resize(item.avatar, { width: 64 })" :alt="item.name">
-              <span v-text="item.name"/>
+              <span v-text="item.name" />
             </nuxt-link>
           </li>
         </ul>
