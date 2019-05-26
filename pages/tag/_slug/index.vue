@@ -1,32 +1,192 @@
 <style lang="scss">
+#tag-show {
+  .left-aside {
+    .parent-node,
+    .child-node {
+      margin-right: 10px;
+
+      li {
+        padding: 10px;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #f6f6f6;
+        }
+      }
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 5px;
+        margin-right: 5px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+
+      a {
+        display: block;
+      }
+    }
+
+    .parent-node {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f6f6f6;
+    }
+  }
+
+  .main-wrap {
+    background-color: #f6f6f6;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
+    margin-top: -$page-header-hgt;
+    padding-top: $page-header-hgt + 20;
+  }
+}
 </style>
 
 <template>
   <div id="tag-show">
     <el-row class="container">
-      <el-col :span="4">
-        <div class="panel">
-          <template v-if="parent">
-            <p>父标签</p>
+      <el-col
+        class="left-aside"
+        :span="5"
+      >
+        <ul
+          class="parent-node"
+          v-if="parent"
+        >
+          <li class="node">
             <nuxt-link :to="`/tag/${parent.slug}`">
-              {{ parent.name }}
+              <img :src="$resize(parent.avatar, { width: 64 })" :alt="parent.name">
+              <span v-text="parent.name"/>
             </nuxt-link>
-          </template>
-          <template v-if="children.length">
-            <p>子标签</p>
-            <nuxt-link
-              v-for="item in children"
-              :key="item.slug"
-              :to="`/tag/${item.slug}`"
-            >
-              {{ item.name }}
+          </li>
+        </ul>
+        <ul
+          class="child-node"
+          v-if="children.length"
+        >
+          <li
+            v-for="item in children.slice(0, 10)"
+            :key="item.slug"
+            class="node"
+          >
+            <nuxt-link :to="`/tag/${item.slug}`">
+              <img :src="$resize(item.avatar, { width: 64 })" :alt="item.name">
+              <span v-text="item.name"/>
             </nuxt-link>
-          </template>
-        </div>
+          </li>
+        </ul>
       </el-col>
-      <el-col :span="15">
+      <el-col :span="14" class="main-wrap">
         <p>当前标签</p>
         {{ tag.name }}
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
       </el-col>
       <el-col :span="5">
         <div class="panel">

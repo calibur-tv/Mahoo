@@ -26,8 +26,10 @@ export const actions = {
     try {
       const user = await getLoginUser(this)
       commit('SET_USER_INFO', user)
+      return user
     } catch (e) {
       commit('SET_USER_INFO', {})
+      return null
     }
   },
   destroyAuth({ state, commit }) {

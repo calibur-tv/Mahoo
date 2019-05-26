@@ -1,108 +1,120 @@
 <style lang="scss">
-$page-height: 50px;
-
 #page-header {
-  position: relative;
-  z-index: 3;
-  box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
-  background-color: #fff;
-
-  .nav {
-    height: $page-height;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .header-fixed {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    height: $page-header-hgt;
+    z-index: 3;
+    box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
+    background-color: #fff;
 
     @media (max-width: 991px) {
       height: 44px;
       line-height: 44px;
       padding: 0;
     }
+
+    .nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .left {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+
+        .logo {
+          line-height: $page-header-hgt;
+          margin-left: 10px;
+          margin-right: 10px;
+
+          img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+          }
+        }
+
+        .v-switcher {
+          a {
+            display: block;
+            padding: 0 12px;
+            font-size: 15px;
+            line-height: 34px;
+            background-color: transparent;
+            border-radius: 4px;
+            color: #222;
+            border-bottom-width: 0;
+
+            &:hover {
+              background-color: #F3F3F3;
+            }
+
+            &.nuxt-link-exact-active {
+              color: $color-main;
+            }
+          }
+        }
+      }
+    }
   }
 
-  .left {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-
-    .logo {
-      line-height: $page-height;
-      margin-right: 10px;
-
-      img {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-      }
-    }
-
-    .v-switcher {
-      a {
-        display: block;
-        padding: 0 12px;
-        font-size: 15px;
-        line-height: 34px;
-        background-color: transparent;
-        border-radius: 4px;
-        color: #222;
-        border-bottom-width: 0;
-
-        &:hover {
-          background-color: #F3F3F3;
-        }
-
-        &.nuxt-link-exact-active {
-          color: $color-main;
-        }
-      }
-    }
+  .header-shim {
+    height: $page-header-hgt;
+    width: 100%;
   }
 }
 </style>
 
 <template>
   <header id="page-header">
-    <div class="container nav">
-      <nav class="left">
-        <nuxt-link class="logo" to="/">
-          <img :src="$resize('default-poster', { width: 64, height: 64 })">
-        </nuxt-link>
-        <v-switcher :headers="headers" :routable="true" align="start">
-          <nuxt-link
-            v-for="(item, index) in headers"
-            :key="index"
-            :slot="`tab-${index}`"
-            :to="item.route"
-          >
-            <span v-text="item.name" />
+    <div class="header-fixed">
+      <div class="container nav">
+        <nav class="left">
+          <nuxt-link class="logo" to="/">
+            <img :src="$resize('default-poster', { width: 64, height: 64 })" alt="calibur">
           </nuxt-link>
-        </v-switcher>
-      </nav>
-      <div class="right">
-        <el-button
-          v-if="login"
-          type="text"
-          @click="handleLogout"
-        >
-          退出
-        </el-button>
-        <el-button
-          v-else
-          type="text"
-          @click="handleSignIn"
-        >
-          登录
-        </el-button>
-        &nbsp;&nbsp;
-        <nuxt-link to="/create/cosplay/">
-          <el-button size="small" type="primary" icon="el-icon-s-promotion">
-            投稿
+          <v-switcher :headers="headers" :routable="true" align="start">
+            <nuxt-link
+              v-for="(item, index) in headers"
+              :key="index"
+              :slot="`tab-${index}`"
+              :to="item.route"
+            >
+              <span v-text="item.name" />
+            </nuxt-link>
+          </v-switcher>
+        </nav>
+        <div class="right">
+          <el-button
+            v-if="login"
+            type="text"
+            @click="handleLogout"
+          >
+            退出
           </el-button>
-        </nuxt-link>
+          <el-button
+            v-else
+            type="text"
+            @click="handleSignIn"
+          >
+            登录
+          </el-button>
+          &nbsp;&nbsp;
+          <nuxt-link to="/create/cosplay/">
+            <el-button size="small" type="primary" icon="el-icon-s-promotion">
+              投稿
+            </el-button>
+          </nuxt-link>
+        </div>
       </div>
     </div>
+    <div class="header-shim"/>
   </header>
 </template>
 

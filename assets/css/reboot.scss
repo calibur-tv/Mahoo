@@ -36,6 +36,10 @@ img, span {
   vertical-align: middle;
 }
 
+ul {
+  list-style-type: none;
+}
+
 ::selection,
 ::-moz-selection {
   background-color: $color-main;
