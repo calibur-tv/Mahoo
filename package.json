@@ -18,7 +18,7 @@
     "test": "echo 1"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.5.1",
+    "@nuxtjs/axios": "^5.5.2",
     "@nuxtjs/pwa": "^3.0.0-beta.16",
     "cache-manager": "^2.9.0",
     "cache-manager-redis": "^0.6.0",
@@ -31,7 +31,7 @@
     "normalize.css": "^8.0.1",
     "nuxt": "2.7.1",
     "redis": "^2.8.0",
-    "v-switcher": "^1.0.4",
+    "v-switcher": "^1.0.5",
     "vue-mixin-store": "1.0.0",
     "vue-native-websocket": "^2.0.13"
   },
@@ -52,7 +52,7 @@
     "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.2.2",
     "node-sass": "^4.12.0",
-    "nodemon": "^1.19.0",
+    "nodemon": "^1.19.1",
     "sass-loader": "^7.1.0"
   }
 }

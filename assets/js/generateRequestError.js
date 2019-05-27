@@ -12,5 +12,8 @@ export default err => {
   }
   result.statusCode = err.response.status
   result.message = err.response.data.message || '发生错误了，请稍后再试！'
+  if (typeof result.message !== 'string') {
+    result.message = '网络错误，请稍后再试！'
+  }
   return result
 }
