@@ -2,20 +2,20 @@ export const getRecommendedUsers = ctx => ctx.$axios.$get('user/recommended')
 
 export const getLoginUser = ctx => ctx.$axios.$post('v1/door/get_user_info')
 
-export const settingProfile = (ctx, params) => ctx.$axios.$post('user/setting/profile', params)
+export const settingProfile = (ctx, params) => ctx.$axios.$post('v1/user/update_info', params)
 
 export const settingImage = (ctx, { type, url }) => ctx.$axios.$post('user/setting/image', { type, url })
 
 export const getUserInfo = (ctx, { zone }) => ctx.$axios.$get(`user/${zone}/show`)
 
-export const bindPhone = (ctx, { id, phone, password, authCode }) => ctx.$axios.$post('door/bind_phone', {
+export const bindPhone = (ctx, { id, phone, password, authCode }) => ctx.$axios.$post('v1/door/bind_phone', {
   id,
   phone,
   password,
   authCode
 })
 
-export const sendMessage = (ctx, { phone_number, type, geetest }) => ctx.$axios.$post('door/message', {
+export const sendMessage = (ctx, { phone_number, type, geetest }) => ctx.$axios.$post('v1/door/message', {
   phone_number,
   type,
   geetest

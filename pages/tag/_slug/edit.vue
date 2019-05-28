@@ -49,12 +49,13 @@
                 :on-error="handleImageUploadError"
               >
                 <el-button
+                  :loading="!!uploadPending"
                   type="success"
                   plain
                   round
                   size="mini"
                 >
-                  上传标签封面
+                  {{ uploadPending ? '图片上传中...' : '上传标签封面' }}
                 </el-button>
               </el-upload>
             </div>
@@ -161,7 +162,8 @@ export default {
       .catch(error)
   },
   methods: {
-    avatarUploadSuccess(res) {
+    avatarUploadSuccess(res, file) {
+      this.handleImageUploadSuccess(res, file)
       this.tag.avatar = res.data.url
     },
     submit() {

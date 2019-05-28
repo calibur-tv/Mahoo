@@ -61,6 +61,24 @@
           }
         }
       }
+
+      .right {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        .user-panel {
+          .avatar {
+            img {
+              width: 33px;
+              height: 33px;
+              border-radius: 50%;
+              border: 1px solid $color-gray-normal;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -91,6 +109,20 @@
           </v-switcher>
         </nav>
         <div class="right">
+          <no-ssr>
+            <div
+              v-if="login"
+              class="user-panel"
+            >
+              <nuxt-link
+                :to="$alias.user(user.slug)"
+                class="avatar"
+              >
+                <img :src="$resize(user.avatar, { width: 64 })" :alt="user.nickname">
+              </nuxt-link>
+            </div>
+          </no-ssr>
+          &nbsp;&nbsp;
           <el-button
             v-if="login"
             type="text"
@@ -147,6 +179,9 @@ export default {
   computed: {
     login() {
       return this.$store.state.login
+    },
+    user() {
+      return this.$store.state.user
     }
   },
   watch: {},

@@ -1,0 +1,2 @@
+exports.ids=[10],exports.modules={79:function(t,e,o){"use strict";o.r(e);var r={layout:"web",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},c=o(1);var component=Object(c.a)(r,function(){var t=this.$createElement,e=this._self._c||t;return e("div",{attrs:{id:"user-layout"}},[e("nuxt-child")],1)},[],!1,function(t){},null,"04cb800a");e.default=component.exports}};
+//# sourceMappingURL=507e6912752a87524a6c.js.map

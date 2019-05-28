@@ -7,6 +7,9 @@ const _1d977788 = () => interopDefault(import('../pages/create/cosplay.vue' /* w
 const _48a59587 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
 const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
 const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
+const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
+const _1ef87b5d = () => interopDefault(import('../pages/user/_slug/index.vue' /* webpackChunkName: "pages/user/_slug/index" */))
+const _2a5f011b = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
 const _d3605bd0 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
 const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -56,6 +59,21 @@ export function createRouter() {
       component: _75622ab4,
       props: true,
       name: "tag-slug"
+    }, {
+      path: "/user/:slug?",
+      component: _0513205a,
+      props: true,
+      children: [{
+        path: "",
+        component: _1ef87b5d,
+        props: true,
+        name: "user-slug"
+      }, {
+        path: "setting",
+        component: _2a5f011b,
+        props: true,
+        name: "user-slug-setting"
+      }]
     }, {
       path: "/tag/:slug?/edit",
       component: _d3605bd0,

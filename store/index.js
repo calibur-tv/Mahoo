@@ -1,8 +1,10 @@
+import Vue from 'vue'
 import { getLoginUser, logout } from '~/api/userApi'
 
 export const state = () => ({
   user: {},
   login: false,
+  isAuth: false,
   socket: {
     isConnected: false,
     message: '',
@@ -12,11 +14,16 @@ export const state = () => ({
 
 export const mutations = {
   SET_USER_INFO(state, user) {
+    const signed = !!(user && user.slug)
     state.user = user
-    state.login = !!(user && user.slug)
+    state.login = signed
+    state.isAuth = signed
   },
   SET_USER_TOKEN(state, token) {
     state.login = !!token
+  },
+  UPDATE_USER_INFO(state, { key, value }) {
+    Vue.set(state.user, key, value)
   },
   SOCKET_ONOPEN(state, event) {
     state.socket.isConnected = true
@@ -41,10 +48,10 @@ export const mutations = {
 export const actions = {
   async initAuth({ state, commit }) {
     if (!state.login) {
-      return
+      return null
     }
     if (state.user.slug) {
-      return
+      return state.user
     }
     try {
       const user = await getLoginUser(this)
