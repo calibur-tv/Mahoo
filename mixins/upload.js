@@ -80,7 +80,7 @@ export default {
             data: res.data,
             status: 'success',
             url: this.$resize(`${this.imagePrefix}${res.data.url}`, {
-              width: 200
+              width: 100
             })
           })
         }

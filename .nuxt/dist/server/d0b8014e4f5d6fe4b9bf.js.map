@@ -1,0 +1,1 @@
+{"version":3,"file":"d0b8014e4f5d6fe4b9bf.js","sources":["webpack:///./pages/user/_slug.vue"],"sourcesContent":["var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{\"id\":\"user-layout\"}},[_c('nuxt-child')],1)}\nvar staticRenderFns = []\n\nexport { render, staticRenderFns }"],"mappings":"AAAA","sourceRoot":""}

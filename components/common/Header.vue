@@ -95,7 +95,7 @@
       <div class="container nav">
         <nav class="left">
           <nuxt-link class="logo" to="/">
-            <img :src="$resize('default-poster', { width: 64, height: 64 })" alt="calibur">
+            <img :src="$resize('default-poster', { width: 32 })" alt="calibur">
           </nuxt-link>
           <v-switcher :headers="headers" :routable="true" align="start">
             <nuxt-link
@@ -118,7 +118,7 @@
                 :to="$alias.user(user.slug)"
                 class="avatar"
               >
-                <img :src="$resize(user.avatar, { width: 64 })" :alt="user.nickname">
+                <img :src="$resize(user.avatar, { width: 32 })" :alt="user.nickname">
               </nuxt-link>
             </div>
           </no-ssr>

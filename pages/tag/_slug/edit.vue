@@ -35,7 +35,7 @@
           <el-form-item label="头像">
             <div class="avatar-field">
               <img
-                :src="$resize(tag.avatar, { width: 200, height: 200 })"
+                :src="$resize(tag.avatar, { width: 100 })"
                 class="avatar"
               >
               <el-upload

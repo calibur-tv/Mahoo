@@ -3,7 +3,7 @@
 
 <template>
   <div id="user-layout">
-    <nuxt-child/>
+    <nuxt-child />
   </div>
 </template>
 

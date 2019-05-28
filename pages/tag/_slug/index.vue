@@ -63,7 +63,7 @@
         >
           <li class="node">
             <nuxt-link :to="`/tag/${parent.slug}`">
-              <img :src="$resize(parent.avatar, { width: 64 })" :alt="parent.name">
+              <img :src="$resize(parent.avatar, { width: 32 })" :alt="parent.name">
               <span v-text="parent.name" />
             </nuxt-link>
           </li>
@@ -78,7 +78,7 @@
             class="node"
           >
             <nuxt-link :to="`/tag/${item.slug}`">
-              <img :src="$resize(item.avatar, { width: 64 })" :alt="item.name">
+              <img :src="$resize(item.avatar, { width: 32 })" :alt="item.name">
               <span v-text="item.name" />
             </nuxt-link>
           </li>

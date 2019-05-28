@@ -41,13 +41,14 @@ export default (url, options = {}) => {
 
   let width
   let height
+  const radio = typeof window === 'undefined' ? 2 : window.devicePixelRatio
 
   if (mode === 1) {
-    width = `/w/${options.width}`
-    height = options.height ? `/h/${options.height}` : `/h/${options.width}`
+    width = `/w/${options.width * radio}`
+    height = options.height ? `/h/${options.height * radio}` : `/h/${options.width * radio}`
   } else {
-    width = options.width ? `/w/${options.width}` : ''
-    height = options.height ? `/h/${options.height}` : ''
+    width = options.width ? `/w/${options.width * radio}` : ''
+    height = options.height ? `/h/${options.height * radio}` : ''
   }
 
   return `${link}?imageMogr2/auto-orient/strip|imageView2/${mode}${width}${height}${format}`

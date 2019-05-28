@@ -66,7 +66,7 @@
           <el-form-item label="头像">
             <div class="avatar-field">
               <img
-                :src="$resize(user.avatar, { width: 200, height: 200 })"
+                :src="$resize(user.avatar, { width: 100 })"
                 class="avatar"
               >
               <el-upload
@@ -160,13 +160,13 @@
           </el-form-item>
           <el-form-item label="绑定">
             <div class="providers">
-              <a :href="`https://api.calibur.tv/callback/oauth2/qq?from=bind&slug=${user.slug}`">
+              <a :href="user.providers.bind_qq ? 'javascript:;' : `https://api.calibur.tv/callback/oauth2/qq?from=bind&slug=${user.slug}`">
                 <i
                   :class="{ 'is-bind': user.providers.bind_qq }"
                   class="iconfont icon-qq"
                 />
               </a>
-              <a :href="`https://api.calibur.tv/callback/oauth2/wechat?from=bind&slug=${user.slug}`">
+              <a :href="user.providers.bind_wechat ? 'javascript:;' : `https://api.calibur.tv/callback/oauth2/wechat?from=bind&slug=${user.slug}`">
                 <i
                   :class="{ 'is-bind': user.providers.bind_wechat }"
                   class="iconfont icon-v-chat"
@@ -407,7 +407,6 @@ export default {
         .then(({ value }) => {
           this.phone = value
           this.$captcha({
-            ctx: this,
             success: async ({ data }) => {
               try {
                 await sendMessage(this, {
@@ -416,8 +415,8 @@ export default {
                   geetest: data
                 })
                 this.showInfoForm = true
-              } catch (e) {
-                // do nothing
+              } catch (err) {
+                this.$toast.error(err.message)
               } finally {
                 this.timeout = 60
                 const timer = setInterval(() => {
@@ -459,8 +458,8 @@ export default {
           this.showInfoForm = false
           window.location.reload()
         })
-      } catch (e) {
-        // do nothing
+      } catch (err) {
+        this.$toast.error(err.message)
       } finally {
         this.loadingBindPhone = false
       }
