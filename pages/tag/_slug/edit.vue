@@ -106,9 +106,10 @@
 </template>
 
 <script>
-import upload from '~/mixins/upload'
 import { showTag, updateTag } from '~/api/tagApi'
 import { Upload, Select } from 'element-ui'
+import upload from '~/mixins/upload'
+import mustSign from '~/mixins/mustSign'
 
 export default {
   name: '',
@@ -117,7 +118,7 @@ export default {
     'el-upload': Upload,
     'el-select': Select
   },
-  mixins: [upload],
+  mixins: [upload, mustSign],
   props: {
     slug: {
       type: String,

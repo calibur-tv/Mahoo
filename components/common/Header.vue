@@ -189,7 +189,7 @@ export default {
   mounted() {},
   methods: {
     handleLogout() {
-      this.$store.dispatch('destroyAuth')
+      this.$store.dispatch('removeAuth')
       this.$cookie.remove('JWT-TOKEN')
       this.$channel.socketDisconnect()
       window.location = '/'

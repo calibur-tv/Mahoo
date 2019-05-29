@@ -60,7 +60,7 @@ export default {
         if (item.uid === file.uid) {
           this.uploadPending--
           this.uploadImageList.splice(index, 1)
-          console.log(err)
+          console.log(err) // eslint-disable-line
         }
       })
       this.$toast.error(`图片：${file.name} 上传失败`)

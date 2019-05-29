@@ -6,7 +6,7 @@ export const settingProfile = (ctx, params) => ctx.$axios.$post('v1/user/update_
 
 export const settingImage = (ctx, { type, url }) => ctx.$axios.$post('user/setting/image', { type, url })
 
-export const getUserInfo = (ctx, { zone }) => ctx.$axios.$get(`user/${zone}/show`)
+export const getUserInfo = (ctx, { slug }) => ctx.$axios.$get(`v1/user/show`, { params: { slug } })
 
 export const bindPhone = (ctx, { id, phone, password, authCode }) => ctx.$axios.$post('v1/door/bind_phone', {
   id,

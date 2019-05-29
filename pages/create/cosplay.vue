@@ -283,10 +283,9 @@
 
 <script>
 import upload from '~/mixins/upload'
-import { Upload, Radio, RadioGroup, Cascader, Select, Option, Divider, Tag } from 'element-ui'
+import { Upload, Radio, RadioGroup, Cascader, Select, Option, Divider } from 'element-ui'
 
 export default {
-  name: '',
   layout: 'web',
   components: {
     'el-upload': Upload,
@@ -295,8 +294,7 @@ export default {
     'el-cascader': Cascader,
     'el-select': Select,
     'el-option': Option,
-    'el-divider': Divider,
-    'el-tag': Tag
+    'el-divider': Divider
   },
   mixins: [upload],
   props: {},

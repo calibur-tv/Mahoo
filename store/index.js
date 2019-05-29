@@ -5,6 +5,7 @@ export const state = () => ({
   user: {},
   login: false,
   isAuth: false,
+  logging: false,
   socket: {
     isConnected: false,
     message: '',
@@ -18,9 +19,13 @@ export const mutations = {
     state.user = user
     state.login = signed
     state.isAuth = signed
+    state.logging = false
   },
   SET_USER_TOKEN(state, token) {
     state.login = !!token
+  },
+  SET_LOGGING(state) {
+    state.logging = true
   },
   UPDATE_USER_INFO(state, { key, value }) {
     Vue.set(state.user, key, value)
@@ -47,13 +52,14 @@ export const mutations = {
 
 export const actions = {
   async initAuth({ state, commit }) {
-    if (!state.login) {
+    if (!state.login || state.logging) {
       return null
     }
     if (state.user.slug) {
       return state.user
     }
     try {
+      commit('SET_LOGGING')
       const user = await getLoginUser(this)
       commit('SET_USER_INFO', user)
       return user
@@ -62,7 +68,7 @@ export const actions = {
       return null
     }
   },
-  destroyAuth({ state, commit }) {
+  removeAuth({ state, commit }) {
     if (!state.login) {
       return
     }

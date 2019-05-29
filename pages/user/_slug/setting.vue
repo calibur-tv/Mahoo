@@ -216,6 +216,7 @@
 import { settingProfile, sendMessage, bindPhone } from '~/api/userApi'
 import { Switch, Radio, RadioGroup, Tooltip, DatePicker, Upload } from 'element-ui'
 import upload from '~/mixins/upload'
+import mustSign from '~/mixins/mustSign'
 
 export default {
   components: {
@@ -226,8 +227,7 @@ export default {
     'el-date-picker': DatePicker,
     'el-upload': Upload
   },
-  mixins: [upload],
-  props: {},
+  mixins: [upload, mustSign],
   data() {
     const validateNickname = (rule, value, callback) => {
       const length = value.replace(/([\u4e00-\u9fa5])/g, 'aa').trim().length
@@ -352,7 +352,16 @@ export default {
   },
   watch: {},
   created() {},
-  mounted() {},
+  mounted() {
+    const canceler = this.$watch('isAuth', val => {
+      if (val) {
+        if (!this.isMine) {
+          window.location.href = this.$alias.user(this.user.slug, 'setting')
+        }
+        canceler()
+      }
+    })
+  },
   methods: {
     avatarUploadSuccess(res, file) {
       this.handleImageUploadSuccess(res, file)
