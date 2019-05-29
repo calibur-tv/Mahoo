@@ -14,6 +14,11 @@
       background-size: cover;
       background-repeat: no-repeat;
       height: 200px;
+
+      @media (min-width: 768px) {
+        background-size: contain;
+        background-repeat: repeat-x;
+      }
     }
   }
 }
@@ -22,7 +27,7 @@
 <template>
   <div id="user-layout">
     <div id="user-panel" class="container">
-      <div class="banner" :style="{ backgroundImage: `url(${$resize(this.banner, { width: 1140 })})`}" />
+      <div class="banner" :style="{ backgroundImage: `url(${$resize(banner, { height: 200, mode: 2 })})`}" />
     </div>
     <div class="container">
       <v-switcher
