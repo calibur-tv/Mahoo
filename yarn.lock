@@ -2271,10 +2271,18 @@ cache-manager-redis@^0.6.0:
     redis-url "^1.2.1"
     sol-redis-pool "^0.3.2"
 
-cache-manager@^2.2.0, cache-manager@^2.9.0:
+cache-manager@^2.2.0:
   version "2.9.0"
   resolved "https://registry.npm.taobao.org/cache-manager/download/cache-manager-2.9.0.tgz#5e1f6317ca1a25e40ddf365a7162757af152353e"
   integrity sha1-Xh9jF8oaJeQN3zZacWJ1evFSNT4=
+  dependencies:
+    async "1.5.2"
+    lru-cache "4.0.0"
+
+cache-manager@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-2.9.1.tgz#1b487252a77e63ccf46be5e41438282bcbc528fb"
+  integrity sha512-xHSL/neqi9HmaJJmPetbVoIp2C+vXXr2FgfVK6ZcS9H2nXQJVvf3DPm+yD2FG4g7cQSF8l3wOzQ8eHbWcqmOaQ==
   dependencies:
     async "1.5.2"
     lru-cache "4.0.0"
@@ -9139,10 +9147,10 @@ uuid@^3.3.2:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
 
-v-switcher@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.5.tgz#1a8947a6217c7126c018309132515a050ba3da43"
-  integrity sha512-+J7TYw2qpbvMsu/XStv/CPvOsVvRJ0hz9w1ZXsLbylOAN6YQ8j6eZ8vIvLXtceXT946jgg6nMldI7RAmo9PBZw==
+v-switcher@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.6.tgz#97714b0ea4ca04aee4184d2fb0138388dba873a3"
+  integrity sha512-syP2Xo6n2zbw85KCz8FLJAxIADYZyGJ5vNXBNtHv+Yg03lfe3WadEN8EgGA06qFlzaOTn7tuIBX1BVeZ2qvUtg==
   dependencies:
     vue "^2.6.6"
 
@@ -9223,10 +9231,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.0.0.tgz#dd07be49bc3b123b2416036a1c82ca3c5cbc9e99"
-  integrity sha512-Gx6Bjs/85ztO9b4I0Af9DVY/SeB5IGChvRb8z7jOBfakSFEkpCXfUqQ2QeYcYN3Nk76wxPC0Ir1I98z/j1isug==
+vue-mixin-store@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.0.1.tgz#59d59a32f73a43e084eaeb071732dec8e842329c"
+  integrity sha512-Ok/G74rwhm56e4ajutCIsvXn1KJxepP7qi0vnEGqdzijbnuPZXn3zqHJN110P0OjzcTbi+ycLH451XUFR/Gm4Q==
   dependencies:
     throttle-debounce "^2.1.0"
 
