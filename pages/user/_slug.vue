@@ -15,7 +15,8 @@
       background-repeat: no-repeat;
       height: 200px;
 
-      @media (min-width: 992px) {
+      @media (min-width: 768px) {
+        background-size: contain;
         background-repeat: repeat-x;
       }
     }
