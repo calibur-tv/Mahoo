@@ -2,6 +2,26 @@
 @import "custom";
 @import "font";
 
+.oneline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clearfix {
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+
+  &:before {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
 .container {
   margin-right: auto !important;
   margin-left: auto !important;

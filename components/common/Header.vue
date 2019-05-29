@@ -32,6 +32,7 @@
           line-height: $page-header-hgt;
           margin-left: 10px;
           margin-right: 10px;
+          font-size: 0;
 
           img {
             width: 32px;

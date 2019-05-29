@@ -1,2 +1,0 @@
-exports.ids=[5],exports.modules={88:function(t,e,n){"use strict";n.r(e);var o={name:"",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},r=n(1);var component=Object(r.a)(o,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"pin-show"}},[this._ssrNode("\n  pin-show\n")])},[],!1,function(t){},null,"60127bbc");e.default=component.exports}};
-//# sourceMappingURL=01cd9b1d1136b6f5347c.js.map

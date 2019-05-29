@@ -1,2 +1,0 @@
-exports.ids=[11],exports.modules={85:function(t,e,r){"use strict";r.r(e);var o={components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=r(1);var component=Object(n.a)(o,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"user-show"}},[this._ssrNode("\n  user\n")])},[],!1,function(t){},null,"60aacecd");e.default=component.exports}};
-//# sourceMappingURL=baf5c768dccccae60e46.js.map

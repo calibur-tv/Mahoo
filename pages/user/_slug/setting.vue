@@ -27,10 +27,15 @@
   }
 
   .providers {
+    li {
+      display: inline-block;
+      margin-right: 12px;
+    }
+
     i {
       font-size: 24px;
-      margin-right: 12px;
       color: $color-gray-deep;
+      cursor: pointer;
     }
 
     .icon-qq.is-bind,
@@ -52,7 +57,7 @@
 </style>
 
 <template>
-  <div id="user-setting">
+  <div id="user-setting" class="container">
     <el-row>
       <el-col :span="12" :offset="6">
         <el-form
@@ -159,26 +164,26 @@
             />
           </el-form-item>
           <el-form-item label="绑定">
-            <div class="providers">
-              <a :href="user.providers.bind_qq ? 'javascript:;' : `https://api.calibur.tv/callback/oauth2/qq?from=bind&slug=${user.slug}`">
+            <ul class="providers">
+              <li @click="bindUserQQ">
                 <i
                   :class="{ 'is-bind': user.providers.bind_qq }"
                   class="iconfont icon-qq"
                 />
-              </a>
-              <a :href="user.providers.bind_wechat ? 'javascript:;' : `https://api.calibur.tv/callback/oauth2/wechat?from=bind&slug=${user.slug}`">
+              </li>
+              <li @click="bindUserWechat">
                 <i
                   :class="{ 'is-bind': user.providers.bind_wechat }"
                   class="iconfont icon-v-chat"
                 />
-              </a>
-              <a href="javascript:;" @click="bindUserPhone">
+              </li>
+              <li @click="bindUserPhone">
                 <i
                   :class="{ 'is-bind': user.providers.bind_phone }"
                   class="iconfont icon-phone"
                 />
-              </a>
-            </div>
+              </li>
+            </ul>
           </el-form-item>
           <el-form-item>
             <el-button :loading="submitting" type="primary" @click="submit">
@@ -217,6 +222,7 @@ import { settingProfile, sendMessage, bindPhone } from '~/api/userApi'
 import { Switch, Radio, RadioGroup, Tooltip, DatePicker, Upload } from 'element-ui'
 import upload from '~/mixins/upload'
 import mustSign from '~/mixins/mustSign'
+import parseToken from '~/assets/js/parseToken'
 
 export default {
   components: {
@@ -398,6 +404,18 @@ export default {
           return false
         }
       })
+    },
+    bindUserQQ() {
+      if (this.user.providers.bind_qq) {
+        return
+      }
+      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=bind&token=${parseToken()}`
+    },
+    bindUserWechat() {
+      if (this.user.providers.bind_wechat) {
+        return
+      }
+      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=bind&token=${parseToken()}`
     },
     bindUserPhone() {
       if (this.user.providers.bind_phone) {

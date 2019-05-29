@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <div id="user-show">
+  <div id="user-show" class="container">
     user
   </div>
 </template>
