@@ -28,6 +28,6 @@ deploy:
     script:
       ssh -p $PORT $USER@$PRODUCTION_SERVER 'cd /var/www/mahoo && git pull' &&
       ssh -p $PORT $USER@$PRODUCTION_SERVER 'cd /var/www/mahoo && yarn' &&
-      ssh -p $PORT $USER@$PRODUCTION_SERVER 'cd /var/www/mahoo && pm2 reload pm2.config.js -i --env=production'
+      ssh -p $PORT $USER@$PRODUCTION_SERVER 'cd /var/www/mahoo && pm2 reload pm2.config.js --env=production -i max'
     on:
       branch: master
