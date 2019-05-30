@@ -65,6 +65,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -106,6 +108,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -185,6 +189,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -226,6 +232,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -299,6 +307,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -340,6 +350,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -419,6 +431,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -460,6 +474,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -799,6 +815,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -840,6 +858,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -919,6 +939,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -961,6 +983,8 @@
 --------------------------*/
 /* Timeline
 --------------------------*/
+/* Backtop
+--------------------------*/
 /* Link
 --------------------------*/
 /* Calendar
@@ -968,18 +992,72 @@
 /* Break-point
 --------------------------*/
 .el-tag {
-  background-color: rgba(255, 104, 129, 0.1);
+  background-color: #fff0f2;
+  border-color: #ffe1e6;
+  color: #ff6881;
   display: inline-block;
-  padding: 0 10px;
   height: 32px;
+  padding: 0 10px;
   line-height: 30px;
   font-size: 12px;
   color: #ff6881;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 4px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid rgba(255, 104, 129, 0.2);
   white-space: nowrap; }
+  .el-tag.is-hit {
+    border-color: #ff6881; }
+  .el-tag .el-tag__close {
+    color: #ff6881; }
+    .el-tag .el-tag__close:hover {
+      color: #FFFFFF;
+      background-color: #ff6881; }
+  .el-tag.el-tag--info {
+    background-color: #f7f8f8;
+    border-color: #eff0f2;
+    color: #adb5bd; }
+    .el-tag.el-tag--info.is-hit {
+      border-color: #adb5bd; }
+    .el-tag.el-tag--info .el-tag__close {
+      color: #adb5bd; }
+      .el-tag.el-tag--info .el-tag__close:hover {
+        color: #FFFFFF;
+        background-color: #adb5bd; }
+  .el-tag.el-tag--success {
+    background-color: #e9faf5;
+    border-color: #d2f4ea;
+    color: #20c997; }
+    .el-tag.el-tag--success.is-hit {
+      border-color: #20c997; }
+    .el-tag.el-tag--success .el-tag__close {
+      color: #20c997; }
+      .el-tag.el-tag--success .el-tag__close:hover {
+        color: #FFFFFF;
+        background-color: #20c997; }
+  .el-tag.el-tag--warning {
+    background-color: #fff9e8;
+    border-color: #fef3d1;
+    color: #fcc419; }
+    .el-tag.el-tag--warning.is-hit {
+      border-color: #fcc419; }
+    .el-tag.el-tag--warning .el-tag__close {
+      color: #fcc419; }
+      .el-tag.el-tag--warning .el-tag__close:hover {
+        color: #FFFFFF;
+        background-color: #fcc419; }
+  .el-tag.el-tag--danger {
+    background-color: #fff0f0;
+    border-color: #ffe1e1;
+    color: #ff6b6b; }
+    .el-tag.el-tag--danger.is-hit {
+      border-color: #ff6b6b; }
+    .el-tag.el-tag--danger .el-tag__close {
+      color: #ff6b6b; }
+      .el-tag.el-tag--danger .el-tag__close:hover {
+        color: #FFFFFF;
+        background-color: #ff6b6b; }
   .el-tag .el-icon-close {
     border-radius: 50%;
     text-align: center;
@@ -991,57 +1069,119 @@
     line-height: 16px;
     vertical-align: middle;
     top: -1px;
-    right: -5px;
-    color: #ff6881; }
+    right: -5px; }
     .el-tag .el-icon-close::before {
       display: block; }
-    .el-tag .el-icon-close:hover {
-      background-color: #ff6881;
-      color: #FFFFFF; }
-  .el-tag--info {
-    background-color: rgba(173, 181, 189, 0.1);
-    border-color: rgba(173, 181, 189, 0.2);
-    color: #adb5bd; }
-    .el-tag--info.is-hit {
-      border-color: #adb5bd; }
-    .el-tag--info .el-tag__close {
-      color: #adb5bd; }
-    .el-tag--info .el-tag__close:hover {
+  .el-tag--dark {
+    background-color: #ff6881;
+    border-color: #ff6881;
+    color: white; }
+    .el-tag--dark.is-hit {
+      border-color: #ff6881; }
+    .el-tag--dark .el-tag__close {
+      color: white; }
+      .el-tag--dark .el-tag__close:hover {
+        color: #FFFFFF;
+        background-color: #ff869a; }
+    .el-tag--dark.el-tag--info {
       background-color: #adb5bd;
-      color: #FFFFFF; }
-  .el-tag--success {
-    background-color: rgba(32, 201, 151, 0.1);
-    border-color: rgba(32, 201, 151, 0.2);
-    color: #20c997; }
-    .el-tag--success.is-hit {
-      border-color: #20c997; }
-    .el-tag--success .el-tag__close {
-      color: #20c997; }
-    .el-tag--success .el-tag__close:hover {
+      border-color: #adb5bd;
+      color: white; }
+      .el-tag--dark.el-tag--info.is-hit {
+        border-color: #adb5bd; }
+      .el-tag--dark.el-tag--info .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--info .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #bdc4ca; }
+    .el-tag--dark.el-tag--success {
       background-color: #20c997;
-      color: #FFFFFF; }
-  .el-tag--warning {
-    background-color: rgba(252, 196, 25, 0.1);
-    border-color: rgba(252, 196, 25, 0.2);
-    color: #fcc419; }
-    .el-tag--warning.is-hit {
-      border-color: #fcc419; }
-    .el-tag--warning .el-tag__close {
-      color: #fcc419; }
-    .el-tag--warning .el-tag__close:hover {
+      border-color: #20c997;
+      color: white; }
+      .el-tag--dark.el-tag--success.is-hit {
+        border-color: #20c997; }
+      .el-tag--dark.el-tag--success .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--success .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #4dd4ac; }
+    .el-tag--dark.el-tag--warning {
       background-color: #fcc419;
-      color: #FFFFFF; }
-  .el-tag--danger {
-    background-color: rgba(255, 107, 107, 0.1);
-    border-color: rgba(255, 107, 107, 0.2);
-    color: #ff6b6b; }
-    .el-tag--danger.is-hit {
-      border-color: #ff6b6b; }
-    .el-tag--danger .el-tag__close {
-      color: #ff6b6b; }
-    .el-tag--danger .el-tag__close:hover {
+      border-color: #fcc419;
+      color: white; }
+      .el-tag--dark.el-tag--warning.is-hit {
+        border-color: #fcc419; }
+      .el-tag--dark.el-tag--warning .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--warning .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #fdd047; }
+    .el-tag--dark.el-tag--danger {
       background-color: #ff6b6b;
-      color: #FFFFFF; }
+      border-color: #ff6b6b;
+      color: white; }
+      .el-tag--dark.el-tag--danger.is-hit {
+        border-color: #ff6b6b; }
+      .el-tag--dark.el-tag--danger .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--danger .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #ff8989; }
+  .el-tag--plain {
+    background-color: white;
+    border-color: #ffc3cd;
+    color: #ff6881; }
+    .el-tag--plain.is-hit {
+      border-color: #ff6881; }
+    .el-tag--plain .el-tag__close {
+      color: #ff6881; }
+      .el-tag--plain .el-tag__close:hover {
+        color: #FFFFFF;
+        background-color: #ff6881; }
+    .el-tag--plain.el-tag--info {
+      background-color: white;
+      border-color: #dee1e5;
+      color: #adb5bd; }
+      .el-tag--plain.el-tag--info.is-hit {
+        border-color: #adb5bd; }
+      .el-tag--plain.el-tag--info .el-tag__close {
+        color: #adb5bd; }
+        .el-tag--plain.el-tag--info .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #adb5bd; }
+    .el-tag--plain.el-tag--success {
+      background-color: white;
+      border-color: #a6e9d5;
+      color: #20c997; }
+      .el-tag--plain.el-tag--success.is-hit {
+        border-color: #20c997; }
+      .el-tag--plain.el-tag--success .el-tag__close {
+        color: #20c997; }
+        .el-tag--plain.el-tag--success .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #20c997; }
+    .el-tag--plain.el-tag--warning {
+      background-color: white;
+      border-color: #fee7a3;
+      color: #fcc419; }
+      .el-tag--plain.el-tag--warning.is-hit {
+        border-color: #fcc419; }
+      .el-tag--plain.el-tag--warning .el-tag__close {
+        color: #fcc419; }
+        .el-tag--plain.el-tag--warning .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #fcc419; }
+    .el-tag--plain.el-tag--danger {
+      background-color: white;
+      border-color: #ffc4c4;
+      color: #ff6b6b; }
+      .el-tag--plain.el-tag--danger.is-hit {
+        border-color: #ff6b6b; }
+      .el-tag--plain.el-tag--danger .el-tag__close {
+        color: #ff6b6b; }
+        .el-tag--plain.el-tag--danger .el-tag__close:hover {
+          color: #FFFFFF;
+          background-color: #ff6b6b; }
   .el-tag--medium {
     height: 28px;
     line-height: 26px; }
@@ -1130,6 +1270,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -1171,6 +1313,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -1250,6 +1394,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -1291,6 +1437,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -1455,6 +1603,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -1496,6 +1646,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/

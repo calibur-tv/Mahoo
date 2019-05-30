@@ -65,6 +65,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -106,6 +108,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -187,6 +191,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -228,6 +234,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -307,6 +315,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -349,6 +359,8 @@
 --------------------------*/
 /* Timeline
 --------------------------*/
+/* Backtop
+--------------------------*/
 /* Link
 --------------------------*/
 /* Calendar
@@ -368,9 +380,9 @@
     .el-progress__text i {
       vertical-align: middle;
       display: block; }
-  .el-progress--circle {
+  .el-progress--circle, .el-progress--dashboard {
     display: inline-block; }
-    .el-progress--circle .el-progress__text {
+    .el-progress--circle .el-progress__text, .el-progress--dashboard .el-progress__text {
       position: absolute;
       top: 50%;
       left: 0;
@@ -379,7 +391,7 @@
       margin: 0;
       -webkit-transform: translate(0, -50%);
       transform: translate(0, -50%); }
-      .el-progress--circle .el-progress__text i {
+      .el-progress--circle .el-progress__text i, .el-progress--dashboard .el-progress__text i {
         vertical-align: middle;
         display: inline-block; }
   .el-progress--without-text .el-progress__text {
@@ -395,6 +407,10 @@
     background-color: #20c997; }
   .el-progress.is-success .el-progress__text {
     color: #20c997; }
+  .el-progress.is-warning .el-progress-bar__inner {
+    background-color: #fcc419; }
+  .el-progress.is-warning .el-progress__text {
+    color: #fcc419; }
   .el-progress.is-exception .el-progress-bar__inner {
     background-color: #ff6b6b; }
   .el-progress.is-exception .el-progress__text {
@@ -515,6 +531,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -556,6 +574,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/

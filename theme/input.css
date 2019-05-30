@@ -64,6 +64,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -105,6 +107,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -184,6 +188,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -225,6 +231,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -316,7 +324,6 @@
   .el-input .el-input__clear {
     color: #C0C4CC;
     font-size: 14px;
-    line-height: 16px;
     cursor: pointer;
     -webkit-transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1); }
@@ -334,6 +341,7 @@
     font-size: 12px; }
     .el-input .el-input__count .el-input__count-inner {
       background: #FFFFFF;
+      line-height: initial;
       display: inline-block;
       padding: 0 5px; }
   .el-input__inner {

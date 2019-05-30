@@ -64,6 +64,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -105,6 +107,8 @@
 /* Main
 --------------------------*/
 /* Timeline
+--------------------------*/
+/* Backtop
 --------------------------*/
 /* Link
 --------------------------*/
@@ -184,6 +188,8 @@
 -------------------------- */
 /* Pagination
 -------------------------- */
+/* Popup
+-------------------------- */
 /* Popover
 -------------------------- */
 /* Tooltip
@@ -226,6 +232,8 @@
 --------------------------*/
 /* Timeline
 --------------------------*/
+/* Backtop
+--------------------------*/
 /* Link
 --------------------------*/
 /* Calendar
@@ -246,10 +254,10 @@
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   background-color: #edf2fc;
-  -webkit-transition: opacity 0.3s, -webkit-transform .4s;
-  transition: opacity 0.3s, -webkit-transform .4s;
-  transition: opacity 0.3s, transform .4s;
-  transition: opacity 0.3s, transform .4s, -webkit-transform .4s;
+  -webkit-transition: opacity 0.3s, top 0.4s, -webkit-transform .4s;
+  transition: opacity 0.3s, top 0.4s, -webkit-transform .4s;
+  transition: opacity 0.3s, transform .4s, top 0.4s;
+  transition: opacity 0.3s, transform .4s, top 0.4s, -webkit-transform .4s;
   overflow: hidden;
   padding: 15px 15px 15px 20px;
   display: -webkit-box;
