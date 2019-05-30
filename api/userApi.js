@@ -24,7 +24,7 @@ export const sendMessage = (ctx, { phone_number, type, geetest }) => ctx.$axios.
 export const register = (
   ctx,
   { access, secret, nickname, authCode, inviteCode }
-) => ctx.$axios.$post('door/register', {
+) => ctx.$axios.$post('v1/door/register', {
   access,
   secret,
   nickname,
