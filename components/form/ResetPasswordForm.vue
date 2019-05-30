@@ -134,7 +134,6 @@ export default {
     getResetAuthCode() {
       this.step = 1
       this.$captcha({
-        ctx: this,
         success: async ({ data }) => {
           try {
             await sendMessage(this, {
@@ -144,7 +143,8 @@ export default {
             })
             this.step = 2
             this.openConfirmModal()
-          } catch (e) {
+          } catch (err) {
+            this.$toast.error(err.message)
             this.step = 0
           } finally {
             this.timeout = 60
@@ -184,8 +184,8 @@ export default {
         })
         this.$toast.success(res)
         this.showLogin()
-      } catch (e) {
-        // do nothing
+      } catch (err) {
+        this.$toast.error(err.message)
       } finally {
         this.step = 0
       }

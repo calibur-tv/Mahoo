@@ -34,10 +34,14 @@
   .provider {
     height: 40px;
 
+    li {
+      display: inline-block;
+      margin-left: 8px;
+    }
+
     i {
       font-size: 20px;
       vertical-align: middle;
-      margin-left: 8px;
       color: $color-text-normal;
       cursor: pointer;
     }
@@ -84,14 +88,14 @@
           <el-checkbox v-model="form.remember">
             记住我
           </el-checkbox>
-          <div v-if="showOAuth" class="provider">
-            <a href="https://api.calibur.tv/callback/oauth2/qq?from=sign">
+          <ul v-if="showOAuth" class="provider">
+            <li @click="authQQ">
               <i class="iconfont icon-qq" />
-            </a>
-            <a href="https://api.calibur.tv/callback/oauth2/wechat?from=sign">
+            </li>
+            <li @click="authWechat">
               <i class="iconfont icon-v-chat" />
-            </a>
-          </div>
+            </li>
+          </ul>
           <button v-else type="button" @click="showOAuth = true">
             社交账号登录
           </button>
@@ -158,6 +162,14 @@ export default {
     }
   },
   methods: {
+    authQQ() {
+      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
+      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=sign&redirect=${redirect}`
+    },
+    authWechat() {
+      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
+      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=sign&redirect=${redirect}`
+    },
     submitForm() {
       this.$refs.form.validate(valid => {
         if (valid) {

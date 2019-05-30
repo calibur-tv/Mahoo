@@ -32,6 +32,10 @@
       line-height: 21px;
     }
 
+    li {
+      display: inline-block;
+    }
+
     i {
       font-size: 20px;
       vertical-align: middle;
@@ -110,15 +114,15 @@
       </el-form-item>
     </el-form>
     <div class="others">
-      <div class="provider">
-        <span>社交账号注册</span>
-        <a :href="qqRegisterLink">
+      <span>社交账号注册</span>
+      <ul class="provider">
+        <li @click="qqRegisterLink">
           <i class="iconfont icon-qq" />
-        </a>
-        <a :href="wechatRegisterLink">
+        </li>
+        <li @click="wechatRegisterLink">
           <i class="iconfont icon-v-chat" />
-        </a>
-      </div>
+        </li>
+      </ul>
       <a v-if="!inviteCode" @click="showLogin">已有账号»</a>
     </div>
   </div>
@@ -249,7 +253,9 @@ export default {
         this.query.key ===
           this.$md5(`${this.query.uid}-the-world-${this.query.time}`)
       )
-    },
+    }
+  },
+  methods: {
     qqRegisterLink() {
       let link = 'https://api.calibur.tv/callback/oauth2/qq?from=sign'
       if (this.paramsIsOK) {
@@ -257,7 +263,8 @@ export default {
       } else if (this.$route.name === 'about-invite-id') {
         link = `${link}&invite=${this.$route.params.id}`
       }
-      return link
+      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
+      window.location.href = `${link}&redirect=${redirect}`
     },
     wechatRegisterLink() {
       let link = 'https://api.calibur.tv/callback/oauth2/wechat?from=sign'
@@ -266,10 +273,9 @@ export default {
       } else if (this.$route.name === 'about-invite-id') {
         link = `${link}&invite=${this.$route.params.id}`
       }
-      return link
-    }
-  },
-  methods: {
+      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
+      window.location.href = `${link}&redirect=${redirect}`
+    },
     submitForm() {
       this.$refs.form.validate(valid => {
         if (valid) {
@@ -287,7 +293,6 @@ export default {
     getRegisterAuthCode() {
       this.step = 1
       this.$captcha({
-        ctx: this,
         success: async ({ data }) => {
           try {
             await sendMessage(this, {
@@ -297,7 +302,8 @@ export default {
             })
             this.step = 2
             this.openConfirmModal()
-          } catch (e) {
+          } catch (err) {
+            this.$toast.error(err.message)
             this.step = 0
           } finally {
             this.timeout = 60
@@ -339,11 +345,11 @@ export default {
         .then(res => {
           this.$toast.success('注册成功！')
           this.$cookie.set('JWT-TOKEN', res)
-          window.location = '/about/hello'
+          window.location.reload()
         })
         .catch(err => {
           this.step = 0
-          this.$toast.error(err)
+          this.$toast.error(err.message)
         })
     },
     showLogin() {
