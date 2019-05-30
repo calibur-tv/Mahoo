@@ -409,13 +409,13 @@ export default {
       if (this.user.providers.bind_qq) {
         return
       }
-      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=bind&token=${parseToken()}`
+      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=bind&token=${parseToken()}&redirect=${encodeURIComponent(window.location.href)}`
     },
     bindUserWechat() {
       if (this.user.providers.bind_wechat) {
         return
       }
-      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=bind&token=${parseToken()}`
+      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=bind&token=${parseToken()}&redirect=${encodeURIComponent(window.location.href)}`
     },
     bindUserPhone() {
       if (this.user.providers.bind_phone) {

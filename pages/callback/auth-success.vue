@@ -32,6 +32,9 @@ export default {
   computed: {
     message() {
       return this.$route.query.message
+    },
+    redirect() {
+      return this.$route.query.redirect
     }
   },
   mounted() {
@@ -40,7 +43,7 @@ export default {
     })
     setInterval(() => {
       if (this.timer === 1) {
-        window.location = 'https://www.calibur.tv'
+        window.location = this.redirect ? decodeURIComponent(this.redirect) : 'https://www.calibur.tv'
       } else {
         this.timer--
       }
