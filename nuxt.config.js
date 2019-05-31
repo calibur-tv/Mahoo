@@ -36,10 +36,6 @@ module.exports = {
         name: 'applicable-device',
         content: 'pc,mobile'
       },
-      {
-        name: '360-site-verification',
-        content: 'f0cefe5d346c7e02bc159cb713e5393d'
-      },
       { name: 'renderer', content: 'webkit|ie-comp|ie-stand' },
       { name: 'force-rendering', content: 'webkit' },
       { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
@@ -115,7 +111,7 @@ module.exports = {
     '~/plugins/h5.client.js',
     '~/plugins/pc.client.js',
     '~/plugins/socket.client.js',
-    '~/plugins/analytics.client.js'
+    '~/plugins/router.client.js'
   ],
 
   /*
