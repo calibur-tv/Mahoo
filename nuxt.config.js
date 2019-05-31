@@ -110,7 +110,8 @@ module.exports = {
     '~/plugins/prototypes.client.js',
     '~/plugins/h5.client.js',
     '~/plugins/pc.client.js',
-    '~/plugins/socket.client.js'
+    '~/plugins/socket.client.js',
+    '~/plugins/router.client.js'
   ],
 
   /*

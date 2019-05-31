@@ -20,6 +20,7 @@ import nuxt_plugin_prototypesclient_020776b6 from 'nuxt_plugin_prototypesclient_
 import nuxt_plugin_h5client_6cb9663e from 'nuxt_plugin_h5client_6cb9663e' // Source: ../plugins/h5.client.js (mode: 'client')
 import nuxt_plugin_pcclient_6f6ed2f2 from 'nuxt_plugin_pcclient_6f6ed2f2' // Source: ../plugins/pc.client.js (mode: 'client')
 import nuxt_plugin_socketclient_03aac5f2 from 'nuxt_plugin_socketclient_03aac5f2' // Source: ../plugins/socket.client.js (mode: 'client')
+import nuxt_plugin_routerclient_3702c15d from 'nuxt_plugin_routerclient_3702c15d' // Source: ../plugins/router.client.js (mode: 'client')
 
 // Component: <NoSsr>
 Vue.component(NoSsr.name, NoSsr)
@@ -193,6 +194,10 @@ async function createApp(ssrContext) {
 
   if (process.client && typeof nuxt_plugin_socketclient_03aac5f2 === 'function') {
     await nuxt_plugin_socketclient_03aac5f2(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_routerclient_3702c15d === 'function') {
+    await nuxt_plugin_routerclient_3702c15d(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first
