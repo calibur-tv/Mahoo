@@ -26,6 +26,7 @@ module.exports = {
     'arrow-parens': [1, 'as-needed']
   },
   globals: {
-    workbox: true
+    workbox: true,
+    _hmt: true
   }
 }
