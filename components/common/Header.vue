@@ -51,6 +51,7 @@
             border-radius: 4px;
             color: #222;
             border-bottom-width: 0;
+            height: 100%;
 
             &:hover {
               background-color: #F3F3F3;

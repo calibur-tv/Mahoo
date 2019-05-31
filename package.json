@@ -31,7 +31,7 @@
     "normalize.css": "^8.0.1",
     "nuxt": "2.8.0",
     "redis": "^2.8.0",
-    "v-switcher": "^1.0.7",
+    "v-switcher": "^1.0.10",
     "vue-mixin-store": "1.0.1",
     "vue-native-websocket": "^2.0.13"
   },

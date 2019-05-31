@@ -9297,10 +9297,10 @@ uuid@^3.3.2:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
 
-v-switcher@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.7.tgz#5610470fd06c60e185a78822811aca039724e58a"
-  integrity sha512-6MdjvSLF7NOnhgGDFLVL0w05C/mrhSJdbv0F70t4eflZWZglXJ8PiwmUNh5u+V1ldgXdPqls3Mwdir/XK86KWw==
+v-switcher@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.10.tgz#c109ed5ff01e34f10bbbb416c5006d645ae19f4d"
+  integrity sha512-A09uAMyp6SJyPOq/HF/0fTRxAC305izBSf4rxhx9oUQwtStbuEcK23zNur98J8R13U/bnBo3fyOmlC3ekPVbOw==
   dependencies:
     vue "^2.6.6"
 

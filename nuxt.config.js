@@ -195,10 +195,6 @@ module.exports = {
       commons: true
     },
     extractCSS: true,
-    transpile: [
-      /^v-switcher/,
-      /^vue-mixin-store/
-    ],
     /*
     ** You can extend webpack config here
     */
