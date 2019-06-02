@@ -10,12 +10,6 @@
     box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
     background-color: #fff;
 
-    @media (max-width: 991px) {
-      height: 44px;
-      line-height: 44px;
-      padding: 0;
-    }
-
     .nav {
       display: flex;
       flex-direction: row;

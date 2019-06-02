@@ -284,7 +284,7 @@ export default {
         .catch(() => {})
     },
     combineTag() {
-      console.log('combineTag')
+      console.log('combineTag') // eslint-disable-line
     },
     deleteTag() {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '删除标签', {

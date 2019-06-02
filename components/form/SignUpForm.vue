@@ -44,11 +44,11 @@
       cursor: pointer;
     }
 
-    .icon-qq:hover {
+    .ic-qq:hover {
       color: #3194d0;
     }
 
-    .icon-v-chat:hover {
+    .ic-v-chat:hover {
       color: #42c02e;
     }
   }
@@ -87,7 +87,7 @@
           type="button"
           @click="watchPwd = !watchPwd"
         >
-          <i class="iconfont icon-ai-eye" />
+          <i class="iconfont ic-ai-eye" />
         </button>
       </el-form-item>
       <el-form-item v-if="!inviteCode">
@@ -114,13 +114,13 @@
       </el-form-item>
     </el-form>
     <div class="others">
-      <span>社交账号注册</span>
       <ul class="provider">
+        <span>社交账号注册</span>
         <li @click="qqRegisterLink">
-          <i class="iconfont icon-qq" />
+          <i class="iconfont ic-qq" />
         </li>
         <li @click="wechatRegisterLink">
-          <i class="iconfont icon-v-chat" />
+          <i class="iconfont ic-v-chat" />
         </li>
       </ul>
       <a v-if="!inviteCode" @click="showLogin">已有账号»</a>

@@ -8,6 +8,7 @@ export default (url, options = {}) => {
   }
 
   const link = /^http/.test(url) ? url : `https://m1.calibur.tv/${url}`
+  /*
   const canUseWebP = () => {
     if (typeof window === 'undefined') {
       return false
@@ -33,6 +34,8 @@ export default (url, options = {}) => {
     : canUseWebP()
       ? '/format/webp'
       : ''
+   */
+  const format = ''
   const mode = options.mode === undefined ? 1 : options.mode
 
   if ((mode === 1 && !options.width) || (!options.width && !options.height)) {

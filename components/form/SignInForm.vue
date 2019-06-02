@@ -46,11 +46,11 @@
       cursor: pointer;
     }
 
-    .icon-qq:hover {
+    .ic-qq:hover {
       color: #3194d0;
     }
 
-    .icon-v-chat:hover {
+    .ic-v-chat:hover {
       color: #42c02e;
     }
   }
@@ -80,7 +80,7 @@
           type="button"
           @click="watchPwd = !watchPwd"
         >
-          <i class="iconfont icon-ai-eye" />
+          <i class="iconfont ic-ai-eye" />
         </button>
       </el-form-item>
       <el-form-item class="sign-in-opt">
@@ -90,10 +90,10 @@
           </el-checkbox>
           <ul v-if="showOAuth" class="provider">
             <li @click="authQQ">
-              <i class="iconfont icon-qq" />
+              <i class="iconfont ic-qq" />
             </li>
             <li @click="authWechat">
-              <i class="iconfont icon-v-chat" />
+              <i class="iconfont ic-v-chat" />
             </li>
           </ul>
           <button v-else type="button" @click="showOAuth = true">

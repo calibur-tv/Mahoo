@@ -8,6 +8,8 @@
 
   #user-panel {
     margin-bottom: 20px;
+    box-shadow: 0 0 0 1px #eee;
+    border-radius: 0 0 4px 4px;
 
     .banner {
       position: relative;
@@ -67,6 +69,36 @@
         }
       }
     }
+
+    .v-switcher {
+      padding: 0 20px;
+
+      &-header {
+        &-anchor {
+          height: 3px;
+          bottom: 0;
+          background-color: $color-main;
+        }
+
+        &-item {
+          margin-right: 31px;
+
+          .iconfont {
+            font-size: 20px;
+          }
+
+          a {
+            display: block;
+            line-height: 66px;
+            height: 66px;
+
+            span {
+              font-size: 13px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
@@ -76,16 +108,18 @@
     <div id="user-panel" class="container">
       <div class="banner" :style="{ backgroundImage: `url(${$resize(banner, { height: 200, mode: 2 })})`}">
         <div class="user">
-          <user-avatar :user="user" :size="68" />
+          <user-avatar :user="user" :avatar="avatar" :size="68" />
           <div class="content">
-            <user-nickname :user="user" />
-            <p class="signature oneline" v-text="user.signature" />
+            <user-nickname :user="user" :nickname="nickname" :sex="true" />
+            <p class="signature oneline" v-text="signature" />
           </div>
         </div>
       </div>
       <v-switcher
         :headers="headers"
         :routable="true"
+        :item-height="66"
+        anchor-trigger="hover"
         align="start"
       >
         <nuxt-link
@@ -94,6 +128,7 @@
           :slot="`tab-${index}`"
           :to="item.route"
         >
+          <i class="iconfont" :class="`ic-${item.icon}`" :style="{ color: item.color }" />
           <span v-text="item.name" />
         </nuxt-link>
       </v-switcher>
@@ -140,17 +175,27 @@ export default {
     banner() {
       return this.isMine ? this.self.banner : this.user.banner
     },
+    nickname() {
+      return this.isMine ? this.self.nickname : this.user.nickname
+    },
+    signature() {
+      return this.isMine ? this.self.signature : this.user.signature
+    },
     headers() {
       const result = [
         {
           name: '动态',
+          icon: 'homepage_fill',
+          color: '#00c091',
           route: `/user/${this.slug}/`
         }
       ]
       if (this.isMine) {
         result.push({
           name: '设置',
-          route: `/user/${this.slug}/setting`
+          icon: 'setup_fill',
+          color: '#23c9ed',
+          route: `/user/${this.slug}/setting/`
         })
       }
       return result

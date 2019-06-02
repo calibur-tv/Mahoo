@@ -17,7 +17,7 @@
     :to="$alias.user(user.slug)"
     class="user-avatar"
   >
-    <img class="avatar" :src="$resize(user.avatar, { width: size })" :alt="user.nickname">
+    <img class="avatar" :src="$resize(avatar || user.avatar, { width: size })" :alt="user.nickname">
   </nuxt-link>
 </template>
 
@@ -28,6 +28,10 @@ export default {
     user: {
       type: Object,
       required: true
+    },
+    avatar: {
+      type: String,
+      default: ''
     },
     size: {
       type: Number,

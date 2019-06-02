@@ -14,6 +14,20 @@
     }
   }
 
+  .banner-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .banner {
+      width: auto;
+      height: 100px;
+      max-width: 450px;
+      margin-right: 15px;
+    }
+  }
+
   .el-icon-question {
     color: $color-gray-deep;
     margin-left: 10px;
@@ -38,18 +52,18 @@
       cursor: pointer;
     }
 
-    .icon-qq.is-bind,
-    .icon-qq:hover {
+    .ic-qq.is-bind,
+    .ic-qq:hover {
       color: #3194d0;
     }
 
-    .icon-v-chat.is-bind,
-    .icon-v-chat:hover {
+    .ic-v-chat.is-bind,
+    .ic-v-chat:hover {
       color: #42c02e;
     }
 
-    .icon-phone.is-bind,
-    .icon-phone:hover {
+    .ic-phone.is-bind,
+    .ic-phone:hover {
       color: $color-main;
     }
   }
@@ -96,6 +110,34 @@
               </el-upload>
             </div>
           </el-form-item>
+          <el-form-item label="背景">
+            <div class="banner-field">
+              <img
+                :src="$resize(user.banner, { height: 100, mode: 2 })"
+                class="banner"
+              >
+              <el-upload
+                :show-file-list="false"
+                :action="imageUploadAction"
+                :limit="uploadImageLimit"
+                :data="uploadHeaders"
+                :accept="imageUploadAccept"
+                :before-upload="handleImageUploadBefore"
+                :on-success="bannerUploadSuccess"
+                :on-error="handleImageUploadError"
+              >
+                <el-button
+                  :loading="!!uploadPending"
+                  type="success"
+                  plain
+                  round
+                  size="mini"
+                >
+                  {{ uploadPending ? '图片上传中...' : '点击更换背景' }}
+                </el-button>
+              </el-upload>
+            </div>
+          </el-form-item>
           <el-form-item label="昵称" prop="nickname">
             <el-input v-model.trim="nickname" />
           </el-form-item>
@@ -131,15 +173,6 @@
               <el-radio :label="2">
                 女
               </el-radio>
-              <el-radio :label="3">
-                伪娘
-              </el-radio>
-              <el-radio :label="4">
-                药娘
-              </el-radio>
-              <el-radio :label="5">
-                扶她
-              </el-radio>
             </el-radio-group>
             <el-tooltip
               class="item"
@@ -160,7 +193,7 @@
               v-model="signature"
               :rows="5"
               type="textarea"
-              placeholder="用简单的言语，表达深刻的心"
+              placeholder="留下自己想说的话"
             />
           </el-form-item>
           <el-form-item label="绑定">
@@ -168,19 +201,19 @@
               <li @click="bindUserQQ">
                 <i
                   :class="{ 'is-bind': user.providers.bind_qq }"
-                  class="iconfont icon-qq"
+                  class="iconfont ic-qq"
                 />
               </li>
               <li @click="bindUserWechat">
                 <i
                   :class="{ 'is-bind': user.providers.bind_wechat }"
-                  class="iconfont icon-v-chat"
+                  class="iconfont ic-v-chat"
                 />
               </li>
               <li @click="bindUserPhone">
                 <i
                   :class="{ 'is-bind': user.providers.bind_phone }"
-                  class="iconfont icon-phone"
+                  class="iconfont ic-phone"
                 />
               </li>
             </ul>
@@ -225,6 +258,7 @@ import mustSign from '~/mixins/mustSign'
 import parseToken from '~/assets/js/parseToken'
 
 export default {
+  name: 'UserSetting',
   components: {
     'el-switch': Switch,
     'el-radio': Radio,
@@ -373,6 +407,13 @@ export default {
       this.handleImageUploadSuccess(res, file)
       this.$store.commit('UPDATE_USER_INFO', {
         key: 'avatar',
+        value: res.data.url
+      })
+    },
+    bannerUploadSuccess(res, file) {
+      this.handleImageUploadSuccess(res, file)
+      this.$store.commit('UPDATE_USER_INFO', {
+        key: 'banner',
         value: res.data.url
       })
     },
