@@ -1,9 +1,14 @@
 <style lang="scss">
+#user-show {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 15px 20px;
+}
 </style>
 
 <template>
   <div id="user-show" class="container">
-    user
+    coding...
   </div>
 </template>
 

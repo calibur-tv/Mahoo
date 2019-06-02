@@ -1,2 +1,0 @@
-exports.ids=[7],exports.modules={93:function(t,e,r){"use strict";r.r(e);var n={components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},o=r(1);var component=Object(o.a)(n,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"create-atfield"}},[this._ssrNode("\n  atfield\n")])},[],!1,function(t){},null,"334af64a");e.default=component.exports}};
-//# sourceMappingURL=c44e09c051a726141bba.js.map

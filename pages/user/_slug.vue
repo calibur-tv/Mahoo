@@ -1,6 +1,7 @@
 <style lang="scss">
 #user-layout {
   background-color: #f6f6f6;
+  min-height: 100vh;
 
   .container {
     background-color: #fff;

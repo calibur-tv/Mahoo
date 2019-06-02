@@ -201,6 +201,7 @@
               placeholder="留下自己想说的话"
               maxlength="60"
               show-word-limit
+              resize="none"
             />
           </el-form-item>
           <el-form-item label="绑定">
