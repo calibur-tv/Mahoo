@@ -19,8 +19,12 @@
       background-repeat: no-repeat;
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAEElEQVR4AWP48vU7MqKUDwA7qkfh9iF73wAAAABJRU5ErkJggg==);
       transition: background-image .2s ease,background-size 1s ease;
-      height: 200px;
-      padding-top: 116px;
+      height: 110px;
+      padding-top: 24px;
+      @media (min-width: 768px) {
+        height: 200px;
+        padding-top: 116px;
+      }
 
       &:before {
         content: '';
@@ -52,12 +56,18 @@
           padding-top: 10px;
           overflow: hidden;
 
-          .nickname {
-            margin-right: 5px;
-            font-weight: 700;
-            line-height: 18px;
-            font-size: 18px;
-            color: #fff;
+          .user-nickname {
+            @media (min-width: 768px) {
+              float: left;
+            }
+
+            .nickname {
+              margin-right: 5px;
+              font-weight: 700;
+              line-height: 18px;
+              font-size: 18px;
+              color: #fff;
+            }
           }
 
           .signature {
@@ -111,7 +121,9 @@
         <div class="user">
           <user-avatar :user="user" :avatar="avatar" :size="68" />
           <div class="content">
-            <user-nickname :user="user" :nickname="nickname" :sex="sex" />
+            <div class="clearfix">
+              <user-nickname :user="user" :nickname="nickname" :sex="sex" />
+            </div>
             <p class="signature oneline" v-text="signature" />
           </div>
         </div>
