@@ -22,6 +22,7 @@
     border-radius: 50%;
     text-align: center;
     line-height: 18px;
+    font-weight: bold;
   }
 
   .ic-level {
@@ -87,8 +88,8 @@ export default {
       required: true
     },
     sex: {
-      type: Boolean,
-      default: false
+      type: Number,
+      default: 0
     },
     level: {
       type: Boolean,
@@ -105,7 +106,7 @@ export default {
   },
   computed: {
     sexClass() {
-      switch (this.user.sex) {
+      switch (this.sex) {
         case -1:
           return {
             name: 'simi',

@@ -1,5 +1,9 @@
 <style lang="scss">
 #user-setting {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 15px 20px;
+
   .avatar-field {
     display: flex;
     flex-direction: row;
@@ -25,6 +29,7 @@
       height: 100px;
       max-width: 450px;
       margin-right: 15px;
+      border-radius: 12px;
     }
   }
 
@@ -194,6 +199,8 @@
               :rows="5"
               type="textarea"
               placeholder="留下自己想说的话"
+              maxlength="60"
+              show-word-limit
             />
           </el-form-item>
           <el-form-item label="绑定">

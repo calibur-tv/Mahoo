@@ -44,7 +44,8 @@ export default (url, options = {}) => {
 
   let width
   let height
-  const radio = typeof window === 'undefined' ? 2 : window.devicePixelRatio
+  // const radio = typeof window === 'undefined' ? 2 : window.devicePixelRatio
+  const radio = 2
 
   if (mode === 1) {
     width = `/w/${options.width * radio}`

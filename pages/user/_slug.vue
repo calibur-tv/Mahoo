@@ -110,7 +110,7 @@
         <div class="user">
           <user-avatar :user="user" :avatar="avatar" :size="68" />
           <div class="content">
-            <user-nickname :user="user" :nickname="nickname" :sex="true" />
+            <user-nickname :user="user" :nickname="nickname" :sex="sex" />
             <p class="signature oneline" v-text="signature" />
           </div>
         </div>
@@ -180,6 +180,11 @@ export default {
     },
     signature() {
       return this.isMine ? this.self.signature : this.user.signature
+    },
+    sex() {
+      return this.isMine ? (
+        this.self.sex_secret ? -1 : this.self.sex
+      ) : this.user.sex
     },
     headers() {
       const result = [
