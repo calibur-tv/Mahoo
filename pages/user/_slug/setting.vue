@@ -27,7 +27,7 @@
     .banner {
       width: auto;
       height: 100px;
-      max-width: 450px;
+      max-width: 430px;
       margin-right: 15px;
       border-radius: 12px;
     }

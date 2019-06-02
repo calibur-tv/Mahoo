@@ -114,7 +114,7 @@ export default {
           }
         case 0:
           return {
-            name: 'weizhi',
+            name: 'unknown',
             color: 'gold'
           }
         case 1:
