@@ -33,13 +33,6 @@
     }
   }
 
-  .el-icon-question {
-    color: $color-gray-deep;
-    margin-left: 10px;
-    margin-top: 13px;
-    float: right;
-  }
-
   .el-switch {
     float: right;
     margin-top: 10px;
@@ -156,14 +149,6 @@
               value-format="yyyy-MM-dd"
               placeholder="选择生日"
             />
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="设置为私密后将不对外公开"
-              placement="top"
-            >
-              <i class="el-icon-question" />
-            </el-tooltip>
             <el-switch
               v-model="birthSecret"
               active-text="私密"
@@ -179,14 +164,6 @@
                 女
               </el-radio>
             </el-radio-group>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="设置为私密后将不对外公开"
-              placement="top"
-            >
-              <i class="el-icon-question" />
-            </el-tooltip>
             <el-switch
               v-model="sexSecret"
               active-text="私密"
@@ -260,7 +237,7 @@
 
 <script>
 import { settingProfile, sendMessage, bindPhone } from '~/api/userApi'
-import { Switch, Radio, RadioGroup, Tooltip, DatePicker, Upload } from 'element-ui'
+import { Switch, Radio, RadioGroup, DatePicker, Upload } from 'element-ui'
 import upload from '~/mixins/upload'
 import mustSign from '~/mixins/mustSign'
 import parseToken from '~/assets/js/parseToken'
@@ -271,7 +248,6 @@ export default {
     'el-switch': Switch,
     'el-radio': Radio,
     'el-radio-group': RadioGroup,
-    'el-tooltip': Tooltip,
     'el-date-picker': DatePicker,
     'el-upload': Upload
   },

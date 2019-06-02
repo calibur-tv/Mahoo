@@ -112,7 +112,7 @@ import upload from '~/mixins/upload'
 import mustSign from '~/mixins/mustSign'
 
 export default {
-  name: '',
+  name: 'TagEdit',
   layout: 'web',
   components: {
     'el-upload': Upload,

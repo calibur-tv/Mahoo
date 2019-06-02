@@ -256,6 +256,7 @@ import upload from '~/mixins/upload'
 import { Upload, Radio, RadioGroup, Cascader, Select, Option, Divider } from 'element-ui'
 
 export default {
+  name: 'CreateCosplay',
   layout: 'web',
   components: {
     'el-upload': Upload,

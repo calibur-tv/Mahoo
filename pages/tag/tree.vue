@@ -49,7 +49,7 @@ import { Tree } from 'element-ui'
 import { showTag } from '~/api/tagApi'
 
 export default {
-  name: '',
+  name: 'TagTree',
   layout: 'web',
   components: {
     'el-tree': Tree

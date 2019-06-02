@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: 'CreateATField',
   components: {},
   props: {},
   data() {

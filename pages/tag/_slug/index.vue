@@ -220,7 +220,7 @@
 import * as API from '~/api/tagApi'
 
 export default {
-  name: 'TagTree',
+  name: 'TagShow',
   components: {},
   head() {
     const { tag } = this

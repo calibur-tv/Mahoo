@@ -8,12 +8,13 @@
 
 <template>
   <div id="user-show" class="container">
-    coding...
+    timeline, coding...
   </div>
 </template>
 
 <script>
 export default {
+  name: 'UserShow',
   components: {},
   props: {},
   data() {

@@ -104,6 +104,27 @@
         }
       }
     }
+
+    .user-meta {
+      li {
+        display: inline-block;
+        width: 58px;
+        text-align: center;
+
+        .label {
+          line-height: 14px;
+          font-size: 12px;
+          color: #99a2aa;
+        }
+
+        .value {
+          line-height: 16px;
+          margin-top: 5px;
+          color: #222;
+          font-size: 12px;
+        }
+      }
+    }
   }
 }
 </style>
@@ -136,6 +157,32 @@
           <i class="iconfont" :class="`ic-${item.icon}`" :style="{ color: item.color }" />
           <span v-text="item.name" />
         </nuxt-link>
+        <ul slot="header-after" class="user-meta">
+          <li>
+            <div class="label">
+              关注数
+            </div>
+            <span class="value">0</span>
+          </li>
+          <li>
+            <div class="label">
+              粉丝数
+            </div>
+            <span class="value">0</span>
+          </li>
+          <li>
+            <div class="label">
+              曝光度
+            </div>
+            <span class="value">0</span>
+          </li>
+          <li>
+            <div class="label">
+              活跃度
+            </div>
+            <span class="value">0</span>
+          </li>
+        </ul>
       </v-switcher>
     </div>
     <nuxt-child />
@@ -148,6 +195,7 @@ import UserAvatar from '~/components/user/UserAvatar'
 import UserNickname from '~/components/user/UserNickname'
 
 export default {
+  name: 'UserLayout',
   layout: 'web',
   components: {
     UserAvatar,
@@ -201,26 +249,45 @@ export default {
       ) : this.user.sex
     },
     headers() {
-      const result = [
+      let result = [
         {
           name: '动态',
           icon: 'homepage_fill',
           color: '#00c091',
           route: `/user/${this.slug}/`
+        },
+        {
+          name: '喜好',
+          icon: 'like_fill',
+          color: '#fb7299',
+          route: `/user/${this.slug}/emotion/`
         }
       ]
       if (this.isMine) {
-        result.push({
-          name: '设置',
-          icon: 'setup_fill',
-          color: '#23c9ed',
-          route: `/user/${this.slug}/setting/`
-        })
+        result = result.concat([
+          {
+            name: '消息',
+            icon: 'message_fill',
+            color: '#02b5da',
+            route: `/user/${this.slug}/message/`
+          },
+          {
+            name: '通知',
+            icon: 'remind_fill',
+            color: '#ff5d47',
+            route: `/user/${this.slug}/notice/`
+          },
+          {
+            name: '设置',
+            icon: 'setup_fill',
+            color: '#23c9ed',
+            route: `/user/${this.slug}/setting/`
+          }
+        ])
       }
       return result
     }
   },
-  watch: {},
   asyncData({ app, error, params }) {
     return getUserInfo(app, {
       slug: params.slug
@@ -231,7 +298,9 @@ export default {
       .catch(error)
   },
   created() {},
-  mounted() {},
+  mounted() {
+    window.test = this.$cookie
+  },
   methods: {}
 }
 </script>

@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: 'CreateSimple',
   components: {},
   props: {},
   data() {

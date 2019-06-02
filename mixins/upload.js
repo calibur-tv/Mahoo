@@ -53,7 +53,16 @@ export default {
       }, 1000 * 60 * 30)
     },
     async getUpToken() {
-      this.uploadHeaders.token = await getUpToken(this)
+      let token = this.$cookie.get('UPLOAD-TOKEN')
+      if (token) {
+        this.uploadHeaders.token = this.$cookie.get('UPLOAD-TOKEN')
+        return
+      }
+      token = await getUpToken(this)
+      this.uploadHeaders.token = token
+      this.$cookie.set('UPLOAD-TOKEN', token, {
+        expires: new Date(new Date().getTime() + 3000000)
+      })
     },
     handleImageUploadError(err, file) {
       this.uploadImageList.forEach((item, index) => {
