@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media (min-width: 768px) {
+    float: left;
+  }
 
   .nickname {
     overflow: hidden;
@@ -50,33 +53,35 @@
 </style>
 
 <template>
-  <nuxt-link
-    :to="$alias.user(user.slug)"
-    class="user-nickname"
-  >
-    <div class="nickname">
-      <p class="oneline" v-text="nickname || user.nickname" />
-    </div>
-    <span
-      v-if="sex"
-      class="badge"
+  <div class="clearfix">
+    <nuxt-link
+      :to="$alias.user(user.slug)"
+      class="user-nickname"
     >
-      <i class="iconfont ic-sex" :class="`ic-${sexClass.name}`" :style="{ backgroundColor: sexClass.color }" />
-    </span>
-    <span
-      v-if="level"
-      class="badge ic-level"
-      v-text="`Lv${user.level}`"
-    />
-    <template v-if="badge">
+      <div class="nickname">
+        <p class="oneline" v-text="nickname || user.nickname" />
+      </div>
       <span
-        v-for="(item, index) in user.roles"
-        :key="index"
-        class="badge ic-badge"
-        v-text="item"
+        v-if="sex"
+        class="badge"
+      >
+        <i class="iconfont ic-sex" :class="`ic-${sexClass.name}`" :style="{ backgroundColor: sexClass.color }" />
+      </span>
+      <span
+        v-if="level"
+        class="badge ic-level"
+        v-text="`Lv${user.level}`"
       />
-    </template>
-  </nuxt-link>
+      <template v-if="badge">
+        <span
+          v-for="(item, index) in user.roles"
+          :key="index"
+          class="badge ic-badge"
+          v-text="item"
+        />
+      </template>
+    </nuxt-link>
+  </div>
 </template>
 
 <script>

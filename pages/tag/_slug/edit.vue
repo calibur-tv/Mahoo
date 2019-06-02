@@ -61,7 +61,7 @@
             </div>
           </el-form-item>
           <el-form-item label="名称">
-            <el-input v-model="tag.name" disabled />
+            <el-input v-model="tag.name" />
           </el-form-item>
           <el-form-item label="别名" prop="alias">
             <p class="form-tip">

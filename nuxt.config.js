@@ -10,6 +10,7 @@ module.exports = {
     API_URL: ENV.BASE_URL.API_URL[nodeEnv],
     API_URL_BROWSER: ENV.BASE_URL.API_URL_BROWSER[nodeEnv],
     META_KEYS: injectScript.keywords,
+    META_DESC: injectScript.description,
     SOCKET_HOST: ENV.SOCKET_HOST[nodeEnv]
   },
   buildDir: isDev ? '.nuxt-dev' : '.nuxt',
@@ -18,6 +19,7 @@ module.exports = {
   */
   head: {
     title: '咔哩吧',
+    titleTemplate: val => val === '咔哩吧' ? val : `${val} - 咔哩吧`,
     meta: [
       { charset: 'utf-8' },
       {
@@ -42,7 +44,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: '咔哩吧是一个二次元社区'
+        content: injectScript.description
       },
       {
         hid: 'keywords',
@@ -132,7 +134,7 @@ module.exports = {
           lang: 'zh-CN',
           name: '咔哩吧',
           author: '冰淤',
-          description: '咔哩吧是一个二次元社区'
+          description: injectScript.description
         },
         icon: false
       }])
@@ -144,7 +146,7 @@ module.exports = {
   manifest: {
     name: '咔哩吧',
     short_name: '咔哩吧',
-    description: '咔哩吧是一个二次元社区',
+    description: injectScript.description,
     start_url: 'https://www.calibur.tv/?utm_source=pwa',
     lang: 'zh-CN'
   },

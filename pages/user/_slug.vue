@@ -56,18 +56,12 @@
           padding-top: 10px;
           overflow: hidden;
 
-          .user-nickname {
-            @media (min-width: 768px) {
-              float: left;
-            }
-
-            .nickname {
-              margin-right: 5px;
-              font-weight: 700;
-              line-height: 18px;
-              font-size: 18px;
-              color: #fff;
-            }
+          .nickname {
+            margin-right: 5px;
+            font-weight: 700;
+            line-height: 18px;
+            font-size: 18px;
+            color: #fff;
           }
 
           .signature {
@@ -121,9 +115,7 @@
         <div class="user">
           <user-avatar :user="user" :avatar="avatar" :size="68" />
           <div class="content">
-            <div class="clearfix">
-              <user-nickname :user="user" :nickname="nickname" :sex="sex" />
-            </div>
+            <user-nickname :user="user" :nickname="nickname" :sex="sex" />
             <p class="signature oneline" v-text="signature" />
           </div>
         </div>
@@ -165,6 +157,15 @@ export default {
     slug: {
       type: String,
       required: true
+    }
+  },
+  head() {
+    const { user } = this
+    return {
+      title: user.nickname,
+      meta: [
+        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` }
+      ]
     }
   },
   data() {
