@@ -30,6 +30,7 @@
     "mint-ui": "^2.2.13",
     "normalize.css": "^8.0.1",
     "nuxt": "2.8.0",
+    "oh-my-chat": "^1.0.2",
     "redis": "^2.8.0",
     "throttle-debounce": "^2.1.0",
     "v-switcher": "^1.0.11",
