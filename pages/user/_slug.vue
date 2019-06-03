@@ -73,6 +73,18 @@
           }
         }
       }
+
+      .actions {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+
+        button {
+          margin: 0 20px 17px 0;
+          box-shadow: 0 0 0 2px #fff;
+        }
+      }
     }
 
     .v-switcher {
@@ -139,6 +151,14 @@
             <user-nickname :user="user" :nickname="nickname" :sex="sex" />
             <p class="signature oneline" v-text="signature" />
           </div>
+        </div>
+        <div class="actions">
+          <el-button type="primary" size="small">
+            关注
+          </el-button>
+          <el-button type="info" size="small">
+            发消息
+          </el-button>
         </div>
       </div>
       <v-switcher
