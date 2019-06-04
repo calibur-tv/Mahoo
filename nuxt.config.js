@@ -24,7 +24,7 @@ module.exports = {
       { charset: 'utf-8' },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
+        content: 'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover'
       },
       {
         name: 'theme-color',
@@ -73,7 +73,6 @@ module.exports = {
         type: 'text/javascript',
         async: true
       },
-      { innerHTML: injectScript.iPhoneXViewport, type: 'text/javascript' },
       {
         src: '//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js',
         type: 'text/javascript',
