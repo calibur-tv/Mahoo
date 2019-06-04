@@ -44,6 +44,7 @@
 
 <script>
 import ChatRoom from 'oh-my-chat'
+import 'oh-my-chat/dist/oh-my-chat.css'
 import Avatar from '~/components/chat/Avatar'
 
 export default {
