@@ -8,7 +8,6 @@ export default (url, options = {}) => {
   }
 
   const link = /^http/.test(url) ? url : `https://m1.calibur.tv/${url}`
-  /*
   const canUseWebP = () => {
     if (typeof window === 'undefined') {
       return false
@@ -34,8 +33,6 @@ export default (url, options = {}) => {
     : canUseWebP()
       ? '/format/webp'
       : ''
-   */
-  const format = ''
   const mode = options.mode === undefined ? 1 : options.mode
 
   if ((mode === 1 && !options.width) || (!options.width && !options.height)) {
@@ -44,8 +41,18 @@ export default (url, options = {}) => {
 
   let width
   let height
-  // const radio = typeof window === 'undefined' ? 2 : window.devicePixelRatio
-  const radio = 2
+  const getRadio = () => {
+    if (typeof window === 'undefined') {
+      return 2
+    }
+    if (window.computedRadio !== undefined) {
+      return window.computedRadio
+    }
+    const result = Math.max(window.devicePixelRatio, 2)
+    window.computedRadio = result
+    return result
+  }
+  const radio = getRadio()
 
   if (mode === 1) {
     width = `/w/${options.width * radio}`
