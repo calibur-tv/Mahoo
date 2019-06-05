@@ -46,6 +46,7 @@
 import ChatRoom from 'oh-my-chat'
 import 'oh-my-chat/dist/oh-my-chat.css'
 import Avatar from '~/components/chat/Avatar'
+import parseToken from '~/assets/js/parseToken'
 
 export default {
   name: 'UserMessage',
@@ -73,6 +74,7 @@ export default {
       }
       const type = 'text-msg'
       const user = this.$store.state.user
+      const content = this.message.trim().replace(/\r?\n/g, '<br>')
       this.$refs.room.addMessage({
         type,
         float: 'right',
@@ -85,12 +87,23 @@ export default {
           text: '#fff'
         },
         data: {
-          content: this.message.trim().replace(/\r?\n/g, '<br>'),
+          content,
           created_at: Date.now(),
           user
         }
       })
       this.message = ''
+      this.$channel.send({
+        message_type: 0,
+        to_user_slug: '14u',
+        from_user_token: parseToken(),
+        content: [
+          {
+            type: 'txt',
+            text: content
+          }
+        ]
+      })
     },
     handleNewLine() {
       if (!this.message) {

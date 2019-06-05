@@ -63,7 +63,7 @@ export const report = (ctx, { id, type, model, message }) => ctx.$axios.$post('r
   message
 })
 
-export const resetPassword = (ctx, { method, access, authCode, secret }) => ctx.$axios.$post('door/reset', {
+export const resetPassword = (ctx, { method, access, authCode, secret }) => ctx.$axios.$post('v1/door/reset_password', {
   method,
   access,
   authCode,

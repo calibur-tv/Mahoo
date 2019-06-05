@@ -316,11 +316,6 @@ export default {
         return { user }
       })
       .catch(error)
-  },
-  created() {},
-  mounted() {
-    window.test = this.$cookie
-  },
-  methods: {}
+  }
 }
 </script>

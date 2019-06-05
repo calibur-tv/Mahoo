@@ -2,6 +2,10 @@ export default app => {
   let token = ''
 
   if (typeof window !== 'undefined') {
+    if (window.__AUTH_TOKEN__) {
+      return window.__AUTH_TOKEN__
+    }
+
     let pageData
 
     try {
@@ -26,5 +30,10 @@ export default app => {
     }
   }
 
-  return ~['undefined', 'null'].indexOf(token) ? '' : token
+  token = ~['undefined', 'null'].indexOf(token) ? '' : token
+  if (typeof window !== 'undefined') {
+    window.__AUTH_TOKEN__ = token
+  }
+
+  return token
 }

@@ -7,7 +7,7 @@ export default {
       this.$disconnect()
     },
     send(data) {
-      this.$socket.sendObj(data)
+      this.$socket && this.$socket.sendObj(data)
     }
   }
 }

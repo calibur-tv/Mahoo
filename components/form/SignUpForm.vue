@@ -342,10 +342,12 @@ export default {
         authCode: this.form.authCode,
         inviteCode: this.form.inviteCode
       })
-        .then(res => {
+        .then(token => {
+          this.$cookie.set('JWT-TOKEN', token)
           this.$toast.success('注册成功！')
-          this.$cookie.set('JWT-TOKEN', res)
-          window.location.reload()
+            .then(() => {
+              window.location.reload()
+            })
         })
         .catch(err => {
           this.step = 0
