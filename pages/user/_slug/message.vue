@@ -47,6 +47,7 @@ import ChatRoom from 'oh-my-chat'
 import 'oh-my-chat/dist/oh-my-chat.css'
 import Avatar from '~/components/chat/Avatar'
 import parseToken from '~/assets/js/parseToken'
+import { getUserInfo } from '~/api/userApi'
 
 export default {
   name: 'UserMessage',
@@ -56,18 +57,61 @@ export default {
   props: {},
   data() {
     return {
-      message: ''
+      message: '',
+      target: null
     }
   },
   computed: {
     avatarComp() {
       return Avatar
+    },
+    mailto() {
+      return this.$router.query.mailto
     }
   },
-  watch: {},
+  watch: {
+    '$store.state.socket.lastGetAt'() {
+      this.appendMessage(this.$store.state.socket.message)
+    }
+  },
   created() {},
-  mounted() {},
+  mounted() {
+    this.getMailtoUser()
+  },
   methods: {
+    getMailtoUser() {
+      if (!this.mailto) {
+        return
+      }
+      getUserInfo(this, {
+        slug: this.mailto
+      })
+        .then(target => {
+          this.target = target
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+    },
+    appendMessage(message) {
+      this.$refs.room.addMessage({
+        type: 'text-msg',
+        float: 'left',
+        id: Math.random().toString(10).substring(3, 6),
+        color: message.from_user.sex === 2 ? {
+          bg: '#ff6881',
+          text: '#fff'
+        } : {
+          bg: '#00a1d6',
+          text: '#fff'
+        },
+        data: {
+          content: message.content,
+          created_at: message.created_at,
+          user: message.from_user
+        }
+      })
+    },
     handleAddBubble() {
       if (!this.message.trim()) {
         return
@@ -95,7 +139,7 @@ export default {
       this.message = ''
       this.$channel.send({
         message_type: 0,
-        to_user_slug: '14u',
+        to_user_slug: this.mailto,
         from_user_token: parseToken(),
         content: [
           {

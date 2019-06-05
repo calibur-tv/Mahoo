@@ -156,7 +156,7 @@
           <el-button type="primary" size="small">
             关注
           </el-button>
-          <el-button type="info" size="small">
+          <el-button type="info" size="small" @click="toMessage">
             发消息
           </el-button>
         </div>
@@ -232,7 +232,7 @@ export default {
     return {
       title: user.nickname,
       meta: [
-        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` }
+        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature},${process.env.META_DESC}` }
       ]
     }
   },
@@ -242,8 +242,11 @@ export default {
     }
   },
   computed: {
+    isAuth() {
+      return this.$store.state.isAuth
+    },
     isMine() {
-      if (!this.$store.state.isAuth) {
+      if (!this.isAuth) {
         return false
       }
       return this.self.slug === this.slug
@@ -316,6 +319,18 @@ export default {
         return { user }
       })
       .catch(error)
+  },
+  methods: {
+    toMessage() {
+      if (!this.isAuth) {
+        this.$channel.$emit('sign-in')
+        return
+      }
+      if (this.isMine) {
+        return
+      }
+      window.open(this.$alias.user(this.self.slug, `message?mailto=${this.slug}`))
+    }
   }
 }
 </script>

@@ -8,7 +8,9 @@ export const state = () => ({
   logging: false,
   socket: {
     isConnected: false,
-    message: '',
+    messageTotal: {},
+    message: null,
+    lastGetAt: 0,
     reconnectError: false
   }
 })
@@ -40,7 +42,12 @@ export const mutations = {
     // console.error(state, event)
   },
   SOCKET_ONMESSAGE(state, message) {
-    state.socket.message = message
+    if (message.channel === 0) {
+      state.socket.messageTotal = message
+    } else {
+      state.socket.message = message
+      state.socket.lastGetAt = `${Date.now()}-${Math.random().toString(36).substring(3, 6)}`
+    }
   },
   SOCKET_RECONNECT(state, count) {
     // console.info(state, count)
@@ -74,11 +81,5 @@ export const actions = {
     }
     logout(this)
     commit('SET_USER_INFO', {})
-  }
-}
-
-export const getters = {
-  currentUserKey: state => key => {
-    return state.login ? state.user[key] || '' : ''
   }
 }
