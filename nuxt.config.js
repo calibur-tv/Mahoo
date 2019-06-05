@@ -1,3 +1,4 @@
+/* eslint-disable nuxt/no-cjs-in-config */
 const nodeEnv = process.env.NODE_ENV
 const isDev = nodeEnv === 'development'
 const ENV = require('./.env')

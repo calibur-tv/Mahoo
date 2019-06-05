@@ -58,6 +58,28 @@ export default class {
     return timeout(time)
   }
 
+  info(tip) {
+    this.stop()
+    let text = '操作成功'
+    let time
+    if (typeof tip === 'object') {
+      text = tip.tip
+      time = tip.time || showTime
+    } else {
+      text = tip
+      time = showTime
+    }
+    if (this.isMobile) {
+      Toast({
+        duration: time,
+        message: text
+      })
+    } else {
+      Message.info(text)
+    }
+    return timeout(time)
+  }
+
   loading(tip) {
     this.stop()
     let message = ''

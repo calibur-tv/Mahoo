@@ -3,6 +3,37 @@
   border: 1px solid #eee;
   border-radius: 4px;
   padding: 15px 20px;
+
+  .message-menu {
+    .user-avatar {
+      float: left;
+    }
+
+    .content {
+      overflow: hidden;
+    }
+  }
+
+  .message-header {
+    .status {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      float: right;
+
+      &-ok {
+        background-color: $color-green;
+      }
+
+      &-error {
+        background-color: $color-red;
+      }
+
+      &-warn {
+        background-color: $color-yellow;
+      }
+    }
+  }
 }
 </style>
 
@@ -10,9 +41,24 @@
   <div id="user-message" class="container">
     <el-row>
       <el-col :span="6">
-&nbsp;
+        <ul class="message-menu">
+          <li
+            v-for="item in menu"
+            :key="item.channel"
+          >
+            <nuxt-link :to="$alias.user($route.params.slug, `message/?mailto=${item.user.slug}`)" tag="div" class="clearfix">
+              <user-avatar :user="item.user" />
+              <div class="content">
+                <user-nickname :user="item.user" />
+              </div>
+            </nuxt-link>
+          </li>
+        </ul>
       </el-col>
       <el-col :span="12">
+        <div class="message-header">
+          <div class="status" :class="`status-${status}`" />
+        </div>
         <ChatRoom
           ref="room"
           :avatar-component="avatarComp"
@@ -41,7 +87,9 @@
 <script>
 import ChatRoom from 'oh-my-chat'
 import 'oh-my-chat/dist/oh-my-chat.css'
-import Avatar from '~/components/chat/Avatar'
+import ChatAvatar from '~/components/chat/Avatar'
+import UserAvatar from '~/components/user/UserAvatar'
+import UserNickname from '~/components/user/UserNickname'
 import Message from '~/components/chat/Message'
 import parseToken from '~/assets/js/parseToken'
 import { getUserInfo } from '~/api/userApi'
@@ -49,18 +97,20 @@ import { getUserInfo } from '~/api/userApi'
 export default {
   name: 'UserMessage',
   components: {
-    ChatRoom
+    ChatRoom,
+    UserAvatar,
+    UserNickname
   },
-  props: {},
   data() {
     return {
       message: '',
-      target: null
+      target: null,
+      menu: []
     }
   },
   computed: {
     avatarComp() {
-      return Avatar
+      return ChatAvatar
     },
     messageComps() {
       return {
@@ -69,6 +119,15 @@ export default {
     },
     mailto() {
       return this.$route.query.mailto
+    },
+    status() {
+      if (this.$store.state.socket.reconnectError) {
+        return 'error'
+      }
+      if (this.$store.state.socket.isConnected) {
+        return 'ok'
+      }
+      return 'warn'
     }
   },
   watch: {
@@ -79,6 +138,7 @@ export default {
   created() {},
   mounted() {
     this.getMailtoUser()
+    this.getMessageMenu()
   },
   methods: {
     getMailtoUser() {
@@ -93,6 +153,12 @@ export default {
         })
         .catch(err => {
           this.$toast.error(err.message)
+        })
+    },
+    getMessageMenu() {
+      this.$axios.$get('v1/message/menu')
+        .then(data => {
+          this.menu = data
         })
     },
     appendMessage(message) {
@@ -115,8 +181,12 @@ export default {
       })
     },
     handleAddBubble() {
-      if (!this.$store.state.socket.isConnected) {
-        this.$toast.error('正在连接服务器')
+      if (this.status === 'warn') {
+        this.$toast.info('正在连接服务器')
+        return
+      }
+      if (this.status === 'error') {
+        this.$toast.error('请稍候再试')
         return
       }
       if (!this.message.trim()) {
