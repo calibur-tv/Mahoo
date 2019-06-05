@@ -66,7 +66,7 @@ export default {
       return Avatar
     },
     mailto() {
-      return this.$router.query.mailto
+      return this.$route.query.mailto
     }
   },
   watch: {

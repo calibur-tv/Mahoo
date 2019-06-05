@@ -329,7 +329,7 @@ export default {
       if (this.isMine) {
         return
       }
-      window.open(this.$alias.user(this.self.slug, `message?mailto=${this.slug}`))
+      window.open(this.$alias.user(this.self.slug, `message/?mailto=${this.slug}`))
     }
   }
 }
