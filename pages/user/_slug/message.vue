@@ -3,11 +3,6 @@
   border: 1px solid #eee;
   border-radius: 4px;
   padding: 15px 20px;
-
-  .msg-bubble {
-    font-size: 14px;
-    line-height: 1.6;
-  }
 }
 </style>
 
@@ -21,6 +16,7 @@
         <ChatRoom
           ref="room"
           :avatar-component="avatarComp"
+          :message-components="messageComps"
         />
         <div>
           <el-input
@@ -46,6 +42,7 @@
 import ChatRoom from 'oh-my-chat'
 import 'oh-my-chat/dist/oh-my-chat.css'
 import Avatar from '~/components/chat/Avatar'
+import Message from '~/components/chat/Message'
 import parseToken from '~/assets/js/parseToken'
 import { getUserInfo } from '~/api/userApi'
 
@@ -64,6 +61,11 @@ export default {
   computed: {
     avatarComp() {
       return Avatar
+    },
+    messageComps() {
+      return {
+        'message': Message
+      }
     },
     mailto() {
       return this.$route.query.mailto
@@ -95,14 +97,14 @@ export default {
     },
     appendMessage(message) {
       this.$refs.room.addMessage({
-        type: 'text-msg',
+        type: 'message',
         float: 'left',
         id: Math.random().toString(10).substring(3, 6),
         color: message.from_user.sex === 2 ? {
           bg: '#ff6881',
           text: '#fff'
         } : {
-          bg: '#00a1d6',
+          bg: '#12b7f5',
           text: '#fff'
         },
         data: {
@@ -113,12 +115,21 @@ export default {
       })
     },
     handleAddBubble() {
+      if (!this.$store.state.socket.isConnected) {
+        this.$toast.error('正在连接服务器')
+        return
+      }
       if (!this.message.trim()) {
         return
       }
-      const type = 'text-msg'
+      const type = 'message'
       const user = this.$store.state.user
-      const content = this.message.trim().replace(/\r?\n/g, '<br>')
+      const jsonContent = [
+        {
+          type: 'txt',
+          content: this.message.trim().replace(/\r?\n/g, '<br>')
+        }
+      ]
       this.$refs.room.addMessage({
         type,
         float: 'right',
@@ -127,26 +138,21 @@ export default {
           bg: '#ff6881',
           text: '#fff'
         } : {
-          bg: '#00a1d6',
+          bg: '#12b7f5',
           text: '#fff'
         },
         data: {
-          content,
+          content: jsonContent,
           created_at: Date.now(),
           user
         }
       })
       this.message = ''
       this.$channel.send({
-        message_type: 0,
+        message_type: 1,
         to_user_slug: this.mailto,
         from_user_token: parseToken(),
-        content: [
-          {
-            type: 'txt',
-            text: content
-          }
-        ]
+        content: jsonContent
       })
     },
     handleNewLine() {

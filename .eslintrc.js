@@ -23,9 +23,11 @@ module.exports = {
     'no-empty': 'off',
     'camelcase': 'off',
     'vue/no-unused-components': 'warn',
+    'vue/no-v-html': 'off',
     'arrow-parens': [1, 'as-needed']
   },
   globals: {
+    importScripts: true,
     workbox: true,
     _hmt: true
   }

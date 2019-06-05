@@ -2,24 +2,24 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _2d669611 = () => interopDefault(import('../pages/create/index.vue' /* webpackChunkName: "pages/create/index" */))
-const _01f9faa9 = () => interopDefault(import('../pages/create/index/atfield.vue' /* webpackChunkName: "pages/create/index/atfield" */))
-const _25a4453d = () => interopDefault(import('../pages/create/index/cosplay.vue' /* webpackChunkName: "pages/create/index/cosplay" */))
-const _5ebf01c0 = () => interopDefault(import('../pages/create/index/simple.vue' /* webpackChunkName: "pages/create/index/simple" */))
-const _52e2f78b = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
-const _53d88cae = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
-const _5e93e146 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
-const _5a895c05 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
-const _5b43da6e = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
-const _57a7ba76 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
-const _2d1f3f58 = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
-const _f536384a = () => interopDefault(import('../pages/user/_slug/index.vue' /* webpackChunkName: "pages/user/_slug/index" */))
-const _41de56a4 = () => interopDefault(import('../pages/user/_slug/emotion.vue' /* webpackChunkName: "pages/user/_slug/emotion" */))
-const _7a918050 = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
-const _9cb0ebc2 = () => interopDefault(import('../pages/user/_slug/notice.vue' /* webpackChunkName: "pages/user/_slug/notice" */))
-const _b1597bce = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
-const _e5cf7bd4 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
-const _cf3462a0 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _503382da = () => interopDefault(import('../pages/create/index.vue' /* webpackChunkName: "pages/create/index" */))
+const _1ddbfdaa = () => interopDefault(import('../pages/create/index/atfield.vue' /* webpackChunkName: "pages/create/index/atfield" */))
+const _14bc4bbf = () => interopDefault(import('../pages/create/index/cosplay.vue' /* webpackChunkName: "pages/create/index/cosplay" */))
+const _a1e6bf44 = () => interopDefault(import('../pages/create/index/simple.vue' /* webpackChunkName: "pages/create/index/simple" */))
+const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
+const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
+const _527cab04 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
+const _48a59587 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
+const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
+const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
+const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
+const _1ef87b5d = () => interopDefault(import('../pages/user/_slug/index.vue' /* webpackChunkName: "pages/user/_slug/index" */))
+const _762bd4b4 = () => interopDefault(import('../pages/user/_slug/emotion.vue' /* webpackChunkName: "pages/user/_slug/emotion" */))
+const _04c5815c = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
+const _4a86e2dd = () => interopDefault(import('../pages/user/_slug/notice.vue' /* webpackChunkName: "pages/user/_slug/notice" */))
+const _2a5f011b = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
+const _d3605bd0 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
+const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 Vue.use(Router)
 
@@ -44,93 +44,93 @@ export function createRouter() {
 
     routes: [{
       path: "/create",
-      component: _2d669611,
+      component: _503382da,
       props: false,
       name: "create",
       children: [{
         path: "atfield",
-        component: _01f9faa9,
+        component: _1ddbfdaa,
         props: false,
         name: "create-index-atfield"
       }, {
         path: "cosplay",
-        component: _25a4453d,
+        component: _14bc4bbf,
         props: false,
         name: "create-index-cosplay"
       }, {
         path: "simple",
-        component: _5ebf01c0,
+        component: _a1e6bf44,
         props: false,
         name: "create-index-simple"
       }]
     }, {
       path: "/callback/auth-error",
-      component: _52e2f78b,
+      component: _314f18c9,
       props: false,
       name: "callback-auth-error"
     }, {
       path: "/callback/auth-redirect",
-      component: _53d88cae,
+      component: _5f4427ab,
       props: false,
       name: "callback-auth-redirect"
     }, {
       path: "/callback/auth-success",
-      component: _5e93e146,
+      component: _527cab04,
       props: false,
       name: "callback-auth-success"
     }, {
       path: "/tag/tree",
-      component: _5a895c05,
+      component: _48a59587,
       props: false,
       name: "tag-tree"
     }, {
       path: "/pin/:slug?",
-      component: _5b43da6e,
+      component: _30aed12c,
       props: true,
       name: "pin-slug"
     }, {
       path: "/tag/:slug?",
-      component: _57a7ba76,
+      component: _75622ab4,
       props: true,
       name: "tag-slug"
     }, {
       path: "/user/:slug?",
-      component: _2d1f3f58,
+      component: _0513205a,
       props: true,
       children: [{
         path: "",
-        component: _f536384a,
+        component: _1ef87b5d,
         props: true,
         name: "user-slug"
       }, {
         path: "emotion",
-        component: _41de56a4,
+        component: _762bd4b4,
         props: true,
         name: "user-slug-emotion"
       }, {
         path: "message",
-        component: _7a918050,
+        component: _04c5815c,
         props: true,
         name: "user-slug-message"
       }, {
         path: "notice",
-        component: _9cb0ebc2,
+        component: _4a86e2dd,
         props: true,
         name: "user-slug-notice"
       }, {
         path: "setting",
-        component: _b1597bce,
+        component: _2a5f011b,
         props: true,
         name: "user-slug-setting"
       }]
     }, {
       path: "/tag/:slug?/edit",
-      component: _e5cf7bd4,
+      component: _d3605bd0,
       props: true,
       name: "tag-slug-edit"
     }, {
       path: "/",
-      component: _cf3462a0,
+      component: _5ce5d46e,
       props: false,
       name: "index"
     }],
