@@ -28,17 +28,17 @@ export default {
     currentUser() {
       return this.$store.state.user
     },
-    login() {
-      return this.$store.state.login
+    isAuth() {
+      return this.$store.state.isAuth
     }
   },
   watch: {
-    login(val) {
+    isAuth(val) {
       val && this.initUpToken()
     }
   },
   mounted() {
-    if (this.login) {
+    if (this.isAuth) {
       this.initUpToken()
     }
   },
@@ -101,7 +101,7 @@ export default {
       this.$toast.info(`最多还能上传${this.uploadImageLimit - this.uploadImageTotal}张图片`)
     },
     handleImageUploadBefore(file) {
-      if (!this.login) {
+      if (!this.isAuth) {
         this.$channel.$emit('sign-in')
         return false
       }

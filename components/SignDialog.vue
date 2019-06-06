@@ -270,7 +270,7 @@ export default {
   },
   computed: {
     isGuest() {
-      return !this.$store.state.login
+      return !this.$store.state.isAuth
     }
   },
   mounted() {

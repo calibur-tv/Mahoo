@@ -34,12 +34,7 @@ export default {
       }
 
       const [matchedRoute] = this.$route.matched
-
-      if (!matchedRoute) {
-        return this.$route.path
-      }
-
-      const Component = matchedRoute.components.default
+      const Component = matchedRoute && matchedRoute.components.default
 
       if (Component && Component.options) {
         const { options } = Component

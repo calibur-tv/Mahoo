@@ -107,7 +107,7 @@
         <div class="right">
           <no-ssr>
             <div
-              v-if="login"
+              v-if="isAuth"
               class="user-panel"
             >
               <nuxt-link
@@ -120,7 +120,7 @@
           </no-ssr>
           &nbsp;&nbsp;
           <el-button
-            v-if="login"
+            v-if="isAuth"
             type="text"
             @click="handleLogout"
           >
@@ -147,6 +147,8 @@
 </template>
 
 <script>
+import { logout } from '~/api/userApi'
+
 export default {
   components: {},
   props: {},
@@ -173,8 +175,8 @@ export default {
     }
   },
   computed: {
-    login() {
-      return this.$store.state.login
+    isAuth() {
+      return this.$store.state.isAuth
     },
     user() {
       return this.$store.state.user
@@ -185,7 +187,7 @@ export default {
   mounted() {},
   methods: {
     handleLogout() {
-      this.$store.dispatch('removeAuth')
+      logout(this)
       this.$cookie.remove('JWT-TOKEN')
       this.$channel.socketDisconnect()
       window.location = '/'
