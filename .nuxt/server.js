@@ -1,5 +1,4 @@
 import { stringify } from 'querystring'
-import consola from 'consola'
 import Vue from 'vue'
 import fetch from 'node-fetch'
 import middleware from './middleware.js'
@@ -93,7 +92,7 @@ export default async (ssrContext) => {
     try {
       await store.dispatch('nuxtServerInit', app.context)
     } catch (err) {
-      consola.debug('Error occurred when calling nuxtServerInit: ', err.message)
+      console.debug('Error occurred when calling nuxtServerInit: ', err.message)
       throw err
     }
   }
