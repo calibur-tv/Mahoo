@@ -57,7 +57,6 @@
           overflow: hidden;
 
           .nickname {
-            margin-right: 5px;
             font-weight: 700;
             line-height: 18px;
             font-size: 18px;

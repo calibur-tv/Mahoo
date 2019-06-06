@@ -12,7 +12,15 @@
 </style>
 
 <template>
+  <div
+    v-if="disabled"
+    :style="{ width: `${size}px`, height: `${size}px` }"
+    class="user-avatar"
+  >
+    <img class="avatar" :src="$resize(avatar || user.avatar, { width: size })" :alt="user.nickname">
+  </div>
   <nuxt-link
+    v-else
     :style="{ width: `${size}px`, height: `${size}px` }"
     :to="$alias.user(user.slug)"
     class="user-avatar"
@@ -36,6 +44,10 @@ export default {
     size: {
       type: Number,
       default: 40
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   }
 }
