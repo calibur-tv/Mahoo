@@ -1,13 +1,9 @@
 <style lang="scss">
-#user-show {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  padding: 15px 20px;
-}
+#user-show {}
 </style>
 
 <template>
-  <div id="user-show" class="container">
+  <div id="user-show">
     timeline, coding...
   </div>
 </template>

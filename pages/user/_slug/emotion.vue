@@ -1,13 +1,9 @@
 <style lang="scss">
-#user-emotion {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  padding: 15px 20px;
-}
+#user-emotion {}
 </style>
 
 <template>
-  <div id="user-emotion" class="container">
+  <div id="user-emotion">
     看过的，喜欢的，讨厌的，收藏的 tag
   </div>
 </template>

@@ -35,6 +35,7 @@ export default {
         return
       }
       if (this.value.sign.daily_signed) {
+        this.$toast.info('今天已签过到')
         return
       }
       this.signing = true

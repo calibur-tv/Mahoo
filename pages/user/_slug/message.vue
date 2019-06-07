@@ -1,18 +1,15 @@
 <style lang="scss">
-#user-message {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  padding: 15px 20px;
-}
+#user-message {}
 </style>
 
 <template>
-  <div id="user-message" class="container">
-    <el-row>
+  <div id="user-message">
+    <el-row :gutter="20">
       <el-col :span="6">
+        &nbsp;
         <message-menu />
       </el-col>
-      <el-col :span="12">
+      <el-col :span="18">
         <message-room
           v-if="mailto"
           :mailto="mailto"
@@ -21,9 +18,6 @@
           ... chat
         </template>
       </el-col>
-      <el-col :span="6">
-&nbsp;
-      </el-col>
     </el-row>
   </div>
 </template>
@@ -31,6 +25,8 @@
 <script>
 import MessageMenu from '~/components/chat/Menu'
 import MessageRoom from '~/components/chat/Room'
+import mustSelf from '~/mixins/mustSelf'
+import mustSign from '~/mixins/mustSign'
 
 export default {
   name: 'UserMessage',
@@ -38,6 +34,7 @@ export default {
     MessageMenu,
     MessageRoom
   },
+  mixins: [mustSign, mustSelf],
   computed: {
     mailto() {
       return this.$route.query.mailto

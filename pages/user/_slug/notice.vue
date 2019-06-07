@@ -1,21 +1,21 @@
 <style lang="scss">
-#user-notice {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  padding: 15px 20px;
-}
+#user-notice {}
 </style>
 
 <template>
-  <div id="user-notice" class="container">
+  <div id="user-notice">
     通知
   </div>
 </template>
 
 <script>
+import mustSelf from '~/mixins/mustSelf'
+import mustSign from '~/mixins/mustSign'
+
 export default {
   name: 'UserNotice',
   components: {},
+  mixins: [mustSign, mustSelf],
   props: {},
   data() {
     return {}

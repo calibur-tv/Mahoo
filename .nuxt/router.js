@@ -18,6 +18,8 @@ const _762bd4b4 = () => interopDefault(import('../pages/user/_slug/emotion.vue' 
 const _04c5815c = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
 const _4a86e2dd = () => interopDefault(import('../pages/user/_slug/notice.vue' /* webpackChunkName: "pages/user/_slug/notice" */))
 const _2a5f011b = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
+const _0049a4ba = () => interopDefault(import('../pages/user/_slug/setting/basic.vue' /* webpackChunkName: "pages/user/_slug/setting/basic" */))
+const _e22709c2 = () => interopDefault(import('../pages/user/_slug/setting/oauth2.vue' /* webpackChunkName: "pages/user/_slug/setting/oauth2" */))
 const _d3605bd0 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
 const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -121,7 +123,16 @@ export function createRouter() {
         path: "setting",
         component: _2a5f011b,
         props: true,
-        name: "user-slug-setting"
+        name: "user-slug-setting",
+        children: [{
+          path: "basic",
+          component: _0049a4ba,
+          name: "user-slug-setting-basic"
+        }, {
+          path: "oauth2",
+          component: _e22709c2,
+          name: "user-slug-setting-oauth2"
+        }]
       }]
     }, {
       path: "/tag/:slug?/edit",

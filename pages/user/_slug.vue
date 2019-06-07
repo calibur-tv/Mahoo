@@ -3,14 +3,11 @@
   background-color: #f6f6f6;
   min-height: 100vh;
 
-  .container {
-    background-color: #fff;
-  }
-
   #user-panel {
-    margin-bottom: 20px;
+    background-color: #fff;
     box-shadow: 0 0 0 1px #eee;
     border-radius: 0 0 4px 4px;
+    margin-bottom: 10px;
 
     .banner {
       position: relative;
@@ -137,6 +134,67 @@
       }
     }
   }
+
+  .user-section {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 15px 20px;
+    overflow: hidden;
+  }
+
+  .v-switcher-vertical {
+    .v-switcher {
+      &-header-wrap {
+        width: 100%;
+      }
+
+      &-header-item {
+        text-align: left;
+        padding-left: 30px;
+        transition: background-color .3s ease;
+
+        a {
+          display: block;
+          height: 100%;
+          font-size: 14px;
+        }
+
+        &.is-active {
+          background-color: $color-main !important;
+          color: #fff !important;
+        }
+
+        &:hover {
+          color: $color-main;
+          background-color: #f4f5f7;
+        }
+      }
+    }
+  }
+
+  .column-wrap {
+    .el-col:first-child {
+      margin-left: -20px;
+      margin-top: -5px;
+    }
+
+    .el-col:last-child {
+      position: relative;
+      box-sizing: content-box;
+      padding-left: 20px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 1px;
+        top: -15px;
+        bottom: -999px;
+        background-color: #eee;
+      }
+    }
+  }
 }
 </style>
 
@@ -190,22 +248,23 @@
             </div>
             <span class="value">0</span>
           </li>
-          <li>
-            <div class="label">
-              曝光度
-            </div>
-            <span class="value">0</span>
-          </li>
-          <li>
-            <div class="label">
-              活跃度
-            </div>
-            <span class="value">0</span>
-          </li>
         </ul>
       </v-switcher>
     </div>
-    <nuxt-child />
+    <div class="container">
+      <el-row :gutter="10">
+        <el-col :span="18">
+          <section class="user-section">
+            <nuxt-child />
+          </section>
+        </el-col>
+        <el-col :span="6">
+          <aside class="user-section">
+            6
+          </aside>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -306,7 +365,7 @@ export default {
             name: '设置',
             icon: 'setup_fill',
             color: '#23c9ed',
-            route: `/user/${this.slug}/setting/`
+            route: `/user/${this.slug}/setting/basic/`
           }
         ])
       }
