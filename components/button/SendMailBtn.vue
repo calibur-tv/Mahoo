@@ -37,7 +37,7 @@ export default {
         this.$toast.info('不能给自己发消息')
         return
       }
-      window.open(this.$alias.user(this.self.slug, `message/?mailto=${this.slug}`))
+      window.open(this.$alias.user(this.$store.state.user.slug, `message/?mailto=${this.slug}`))
     }
   }
 }
