@@ -1,24 +1,94 @@
-<style lang="scss">
-</style>
-
 <template>
-  <div class="user-fff-btn">
-    user fff btn
-  </div>
+  <el-button
+    :loading="loading || action === 'unknown'"
+    class="user-fff-btn"
+    @click="handleFollowClick"
+  >
+    <span v-text="btnText" />
+  </el-button>
 </template>
 
 <script>
 export default {
   name: 'UserFollowBtn',
-  components: {},
-  props: {},
-  data() {
-    return {}
+  props: {
+    slug: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: String,
+      default: 'unknown',
+      validator: val => ~['unknown', 'self', 'friends', 'followed', 'following', 'stranger'].indexOf(val)
+    }
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  data() {
+    return {
+      loading: false,
+      action: this.value
+    }
+  },
+  computed: {
+    btnText() {
+      switch (this.action) {
+        case 'unknown':
+          return ''
+        case 'self':
+          return '关注'
+        case 'friends':
+          return '互相关注'
+        case 'followed':
+          return '关注了我'
+        case 'following':
+          return '已关注'
+        case 'stranger':
+          return '关注'
+        default:
+          return '关注'
+      }
+    }
+  },
+  watch: {
+    value(val) {
+      this.action = val
+    }
+  },
+  mounted() {
+    this.$channel.$on(`user-follow-${this.slug}`, result => {
+      this.action = result
+    })
+  },
+  methods: {
+    handleFollowClick() {
+      if (this.action === 'unknown' || this.loading) {
+        return
+      }
+      if (this.action === 'self') {
+        this.$toast.info('不能关注自己')
+        return
+      }
+      if (this.action === 'followed' || this.action === 'stranger') {
+        this.submit()
+      }
+      this.$confirm('确定要取消关注吗？')
+        .then(() => this.submit())
+        .catch(() => {})
+    },
+    submit() {
+      this.loading = true
+      this.$axios.post('v1/user/toggle_follow', {
+        slug: this.slug
+      })
+        .then(result => {
+          this.$channel.$emit(`user-follow-${this.slug}`, result)
+          this.$emit('change', result)
+          this.loading = false
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+          this.loading = false
+        })
+    }
+  }
 }
 </script>

@@ -3,7 +3,8 @@
 
 <template>
   <el-button
-    :loading="signing"
+    class="daily-sign-btn"
+    :loading="loading"
     @click="handleSign"
   >
     {{ value.sign.daily_signed ? '已签到' : '签到' }}
@@ -21,7 +22,7 @@ export default {
   },
   data() {
     return {
-      signing: false
+      loading: false
     }
   },
   computed: {
@@ -31,14 +32,14 @@ export default {
   },
   methods: {
     handleSign() {
-      if (!this.isMine || this.signing) {
+      if (!this.isMine || this.loading) {
         return
       }
       if (this.value.sign.daily_signed) {
         this.$toast.info('今天已签过到')
         return
       }
-      this.signing = true
+      this.loading = true
       this.$axios.$post('v1/user/daily_sign')
         .then(data => {
           this.value.sign.daily_signed = true
@@ -47,11 +48,11 @@ export default {
           this.value.sign.total_sign_count++
           this.value.balance.coin += data.add_coin_count
           this.$toast.success(data.message)
-          this.signing = false
+          this.loading = false
         })
         .catch(err => {
           this.$toast.error(err.message)
-          this.signing = false
+          this.loading = false
         })
     }
   }

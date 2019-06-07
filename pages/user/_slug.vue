@@ -212,12 +212,8 @@
         </div>
         <div class="actions">
           <daily-sign-btn v-model="user" />
-          <el-button type="primary" size="small">
-            关注
-          </el-button>
-          <el-button type="info" size="small" @click="toMessage">
-            发消息
-          </el-button>
+          <user-follow-btn v-model="user.social.relation" :slug="slug" />
+          <send-mail-btn :slug="slug" />
         </div>
       </div>
       <v-switcher
@@ -241,13 +237,13 @@
             <div class="label">
               关注数
             </div>
-            <span class="value">0</span>
+            <span class="value" v-text="user.social.following_count" />
           </li>
           <li>
             <div class="label">
               粉丝数
             </div>
-            <span class="value">0</span>
+            <span class="value" v-text="user.social.followers_count" />
           </li>
         </ul>
       </v-switcher>
@@ -274,6 +270,8 @@ import { getUserInfo } from '~/api/userApi'
 import UserAvatar from '~/components/user/UserAvatar'
 import UserNickname from '~/components/user/UserNickname'
 import DailySignBtn from '~/components/button/DailySignBtn'
+import UserFollowBtn from '~/components/button/UserFollowBtn'
+import SendMailBtn from '~/components/button/SendMailBtn'
 
 export default {
   name: 'UserLayout',
@@ -281,7 +279,9 @@ export default {
   components: {
     UserAvatar,
     UserNickname,
-    DailySignBtn
+    DailySignBtn,
+    UserFollowBtn,
+    SendMailBtn
   },
   props: {
     slug: {
@@ -388,16 +388,20 @@ export default {
       })
       .catch(error)
   },
+  mounted() {
+    this.patchUser()
+  },
   methods: {
-    toMessage() {
-      if (!this.isAuth) {
-        this.$channel.$emit('sign-in')
-        return
-      }
-      if (this.isMine) {
-        return
-      }
-      window.open(this.$alias.user(this.self.slug, `message/?mailto=${this.slug}`))
+    patchUser() {
+      this.$axios.$get('v1/user/patch', {
+        params: {
+          slug: this.slug
+        }
+      })
+        .then(data => {
+          this.user.social = data
+        })
+        .catch(() => {})
     }
   }
 }
