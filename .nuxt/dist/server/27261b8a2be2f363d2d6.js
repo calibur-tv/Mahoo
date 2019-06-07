@@ -1,2 +1,0 @@
-exports.ids=[34],exports.modules={127:function(t,e,r){"use strict";r.r(e);var l={asyncData({redirect:t,route:e}){t(`${e.path}following/`,e.query)}},n=r(1),component=Object(n.a)(l,function(){var t=this.$createElement;return(this._self._c||t)("div",[])},[],!1,null,null,"19743845");e.default=component.exports}};
-//# sourceMappingURL=27261b8a2be2f363d2d6.js.map

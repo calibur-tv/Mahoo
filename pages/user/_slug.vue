@@ -210,7 +210,10 @@
             <p class="signature oneline" v-text="signature" />
           </div>
         </div>
-        <div class="actions">
+        <div
+          v-if="user"
+          class="actions"
+        >
           <daily-sign-btn v-model="user" />
           <user-follow-btn v-model="user.social.relation" :slug="slug" />
           <send-mail-btn :slug="slug" />
