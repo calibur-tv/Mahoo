@@ -39,8 +39,6 @@ export default {
     mailto() {
       return this.$route.query.mailto
     }
-  },
-  created() {},
-  methods: {}
+  }
 }
 </script>

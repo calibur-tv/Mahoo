@@ -1,0 +1,2 @@
+exports.ids=[25],exports.modules={137:function(e,t,r){"use strict";r.r(t);var o={name:"UserSystemNotice",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=r(1);var component=Object(n.a)(o,function(){var e=this.$createElement;return(this._self._c||e)("div",{attrs:{id:"user-system-notice"}},[this._ssrNode("\n  UserSystemNotice\n")])},[],!1,function(e){},null,"1ce75a81");t.default=component.exports}};
+//# sourceMappingURL=2d2e609484307ba14d48.js.map

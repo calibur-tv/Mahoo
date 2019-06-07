@@ -140,6 +140,7 @@
     border: 1px solid #eee;
     border-radius: 4px;
     padding: 15px 20px;
+    margin-bottom: 10px;
     overflow: hidden;
   }
 
@@ -255,7 +256,7 @@
       <el-row :gutter="10">
         <el-col :span="18">
           <section class="user-section">
-            <nuxt-child />
+            <nuxt-child :user="user" />
           </section>
         </el-col>
         <el-col :span="6">
@@ -338,13 +339,19 @@ export default {
           name: '动态',
           icon: 'homepage_fill',
           color: '#00c091',
-          route: `/user/${this.slug}/`
+          route: `/user/${this.slug}/timeline/`
         },
         {
-          name: '喜好',
+          name: '爱好',
           icon: 'like_fill',
           color: '#fb7299',
           route: `/user/${this.slug}/emotion/`
+        },
+        {
+          name: '圈子',
+          icon: 'group_fill',
+          color: '#02b5da',
+          route: `/user/${this.slug}/social/`
         }
       ]
       if (this.isMine) {
@@ -352,7 +359,7 @@ export default {
           {
             name: '消息',
             icon: 'message_fill',
-            color: '#02b5da',
+            color: '#23c9ed',
             route: `/user/${this.slug}/message/`
           },
           {
@@ -365,7 +372,7 @@ export default {
             name: '设置',
             icon: 'setup_fill',
             color: '#23c9ed',
-            route: `/user/${this.slug}/setting/basic/`
+            route: `/user/${this.slug}/setting/`
           }
         ])
       }

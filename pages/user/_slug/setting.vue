@@ -36,10 +36,13 @@ import mustSelf from '~/mixins/mustSelf'
 export default {
   name: 'UserSettingLayout',
   mixins: [mustSign, mustSelf],
+  props: {
+    slug: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
-    slug() {
-      return this.$route.params.slug
-    },
     headers() {
       return [
         {

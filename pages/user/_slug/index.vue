@@ -1,25 +1,11 @@
-<style lang="scss">
-#user-show {}
-</style>
-
 <template>
-  <div id="user-show">
-    timeline, coding...
-  </div>
+  <div />
 </template>
 
 <script>
 export default {
-  name: 'UserShow',
-  components: {},
-  props: {},
-  data() {
-    return {}
-  },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  asyncData({ redirect, route }) {
+    redirect(`${route.path}timeline/`, route.query)
+  }
 }
 </script>
