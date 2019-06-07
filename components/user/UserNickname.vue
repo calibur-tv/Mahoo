@@ -11,7 +11,7 @@
     overflow: hidden;
   }
 
-  .badge {
+  .title {
     flex-shrink: 0;
     margin-left: 5px;
   }
@@ -39,7 +39,7 @@
     line-height: 16px;
   }
 
-  .ic-badge {
+  .ic-title {
     display: block;
     background-color: $color-main;
     color: #fff;
@@ -63,23 +63,21 @@
       </div>
       <span
         v-if="sex"
-        class="badge"
+        class="title"
       >
         <i class="iconfont ic-sex" :class="`ic-${sexClass.name}`" :style="{ backgroundColor: sexClass.color }" />
       </span>
       <span
         v-if="level"
-        class="badge ic-level"
+        class="title ic-level"
         v-text="`Lv${user.level}`"
       />
-      <template v-if="badge">
-        <span
-          v-for="(item, index) in user.roles"
-          :key="index"
-          class="badge ic-badge"
-          v-text="item"
-        />
-      </template>
+      <span
+        v-for="(item, index) in user.roles"
+        :key="index"
+        class="title ic-title"
+        v-text="item"
+      />
     </div>
     <nuxt-link
       v-else
@@ -91,23 +89,21 @@
       </div>
       <span
         v-if="sex"
-        class="badge"
+        class="title"
       >
         <i class="iconfont ic-sex" :class="`ic-${sexClass.name}`" :style="{ backgroundColor: sexClass.color }" />
       </span>
       <span
         v-if="level"
-        class="badge ic-level"
+        class="title ic-level"
         v-text="`Lv${user.level}`"
       />
-      <template v-if="badge">
-        <span
-          v-for="(item, index) in user.roles"
-          :key="index"
-          class="badge ic-badge"
-          v-text="item"
-        />
-      </template>
+      <span
+        v-for="(item, index) in user.title"
+        :key="index"
+        class="title ic-title"
+        v-text="item"
+      />
     </nuxt-link>
   </div>
 </template>
@@ -125,10 +121,6 @@ export default {
       default: 0
     },
     level: {
-      type: Boolean,
-      default: true
-    },
-    badge: {
       type: Boolean,
       default: true
     },

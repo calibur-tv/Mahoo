@@ -47,3 +47,9 @@ export const mutations = {
     state.socket.reconnectError = true
   }
 }
+
+export const getters = {
+  isMine: state => slug => {
+    return state.isAuth ? state.user.slug === slug : false
+  }
+}

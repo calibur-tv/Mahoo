@@ -152,6 +152,7 @@
           </div>
         </div>
         <div class="actions">
+          <daily-sign-btn v-model="user" />
           <el-button type="primary" size="small">
             关注
           </el-button>
@@ -212,13 +213,15 @@
 import { getUserInfo } from '~/api/userApi'
 import UserAvatar from '~/components/user/UserAvatar'
 import UserNickname from '~/components/user/UserNickname'
+import DailySignBtn from '~/components/button/DailySignBtn'
 
 export default {
   name: 'UserLayout',
   layout: 'web',
   components: {
     UserAvatar,
-    UserNickname
+    UserNickname,
+    DailySignBtn
   },
   props: {
     slug: {
