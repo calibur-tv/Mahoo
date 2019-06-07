@@ -48,15 +48,15 @@ export default {
       return [
         {
           name: `${TA}的关注`,
-          route: `/user/${this.slug}/social/following/`
+          route: `/user/${this.slug}/social/following`
         },
         {
           name: `${TA}的粉丝`,
-          route: `/user/${this.slug}/social/followers/`
+          route: `/user/${this.slug}/social/followers`
         },
         {
           name: `${TA}的朋友`,
-          route: `/user/${this.slug}/social/friends/`
+          route: `/user/${this.slug}/social/friends`
         }
       ]
     }

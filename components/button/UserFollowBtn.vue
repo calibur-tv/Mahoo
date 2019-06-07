@@ -69,19 +69,23 @@ export default {
       }
       if (this.action === 'followed' || this.action === 'stranger') {
         this.submit()
+        return
       }
-      this.$confirm('确定要取消关注吗？')
+      this.$confirm('确定要取消关注吗？', '提示')
         .then(() => this.submit())
         .catch(() => {})
     },
     submit() {
       this.loading = true
-      this.$axios.post('v1/user/toggle_follow', {
+      this.$axios.$post('v1/user/toggle_follow', {
         slug: this.slug
       })
-        .then(result => {
-          this.$channel.$emit(`user-follow-${this.slug}`, result)
-          this.$emit('change', result)
+        .then(relation => {
+          this.$channel.$emit(`user-follow-${this.slug}`, relation)
+          this.$emit('change', {
+            relation,
+            change: (relation === 'friends' || relation === 'following') ? 1 : -1
+          })
           this.loading = false
         })
         .catch(err => {

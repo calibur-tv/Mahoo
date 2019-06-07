@@ -215,7 +215,7 @@
           class="actions"
         >
           <daily-sign-btn v-model="user" />
-          <user-follow-btn v-model="user.social.relation" :slug="slug" />
+          <user-follow-btn v-model="user.social.relation" :slug="slug" @change="handleFollowAction" />
           <send-mail-btn :slug="slug" />
         </div>
       </div>
@@ -342,19 +342,19 @@ export default {
           name: '动态',
           icon: 'homepage_fill',
           color: '#00c091',
-          route: `/user/${this.slug}/timeline/`
+          route: `/user/${this.slug}/timeline`
         },
         {
           name: '爱好',
           icon: 'like_fill',
           color: '#fb7299',
-          route: `/user/${this.slug}/emotion/`
+          route: `/user/${this.slug}/emotion`
         },
         {
           name: '圈子',
           icon: 'group_fill',
           color: '#02b5da',
-          route: `/user/${this.slug}/social/`
+          route: `/user/${this.slug}/social`
         }
       ]
       if (this.isMine) {
@@ -363,19 +363,19 @@ export default {
             name: '消息',
             icon: 'message_fill',
             color: '#23c9ed',
-            route: `/user/${this.slug}/message/`
+            route: `/user/${this.slug}/message`
           },
           {
             name: '通知',
             icon: 'remind_fill',
             color: '#ff5d47',
-            route: `/user/${this.slug}/notice/`
+            route: `/user/${this.slug}/notice`
           },
           {
             name: '设置',
             icon: 'setup_fill',
             color: '#23c9ed',
-            route: `/user/${this.slug}/setting/`
+            route: `/user/${this.slug}/setting`
           }
         ])
       }
@@ -405,6 +405,9 @@ export default {
           this.user.social = data
         })
         .catch(() => {})
+    },
+    handleFollowAction({ change }) {
+      this.user.social.followers_count += change
     }
   }
 }

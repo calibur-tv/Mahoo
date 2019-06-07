@@ -47,11 +47,11 @@ export default {
       return [
         {
           name: '社区消息',
-          route: `/user/${this.slug}/notice/social/`
+          route: `/user/${this.slug}/notice/social`
         },
         {
           name: '系统通知',
-          route: `/user/${this.slug}/notice/system/`
+          route: `/user/${this.slug}/notice/system`
         }
       ]
     }

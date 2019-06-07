@@ -5,7 +5,7 @@
 <script>
 export default {
   asyncData({ redirect, route }) {
-    redirect(`${route.path.replace(/\/$/, '')}/social/`, route.query)
+    redirect(`${route.path.replace(/\/$/, '')}/social`, route.query)
   }
 }
 </script>

@@ -7,7 +7,7 @@
     :loading="loading"
     @click="handleSign"
   >
-    {{ value.sign.daily_signed ? '已签到' : '签到' }}
+    {{ value.sign.daily_signed ? '已签到' : '未签到' }}
   </el-button>
 </template>
 
@@ -32,7 +32,11 @@ export default {
   },
   methods: {
     handleSign() {
-      if (!this.isMine || this.loading) {
+      if (!this.isMine) {
+        this.$toast.info('不能替别人签到')
+        return
+      }
+      if (this.loading) {
         return
       }
       if (this.value.sign.daily_signed) {

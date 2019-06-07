@@ -47,11 +47,11 @@ export default {
       return [
         {
           name: '基础设置',
-          route: `/user/${this.slug}/setting/basic/`
+          route: `/user/${this.slug}/setting/basic`
         },
         {
           name: '认证设置',
-          route: `/user/${this.slug}/setting/oauth2/`
+          route: `/user/${this.slug}/setting/oauth2`
         }
       ]
     }
