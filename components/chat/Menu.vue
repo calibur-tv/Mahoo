@@ -39,13 +39,13 @@
       :key="item.channel"
     >
       <nuxt-link
-        :to="$alias.user($route.params.slug, `message/?mailto=${item.user.slug}`)"
+        :to="$alias.user($route.params.slug, `message/?mailto=${item.from.slug}`)"
         class="room-item clearfix"
       >
-        <img class="avatar" :src="$resize(item.user.avatar, { width: 40 })" :alt="item.user.nickname">
+        <img class="avatar" :src="$resize(item.from.avatar, { width: 40 })" :alt="item.from.nickname">
         <div class="content">
-          <p class="oneline" v-text="item.user.nickname" />
-          <div class="read-badge">
+          <p class="oneline" v-text="item.from.nickname" />
+          <div v-if="item.count" class="read-badge">
             {{ item.count > 99 ? '99+' : item.count }}
           </div>
         </div>
@@ -57,15 +57,18 @@
 <script>
 export default {
   name: 'MessageMenu',
-  props: {},
   data() {
     return {
       menu: []
     }
   },
-  computed: {},
-  watch: {},
-  created() {},
+  watch: {
+    '$store.state.mailbox.unread_message_total'(newVal, oldVal) {
+      if (newVal > oldVal) {
+        this.getMessageMenu()
+      }
+    }
+  },
   mounted() {
     this.getMessageMenu()
   },

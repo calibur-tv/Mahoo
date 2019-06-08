@@ -228,12 +228,12 @@
 <script>
 import { logout } from '~/api/userApi'
 import { Badge } from 'element-ui'
+import { throttle } from 'throttle-debounce'
 
 export default {
   components: {
     'el-badge': Badge
   },
-  props: {},
   data() {
     return {
       headers: [
@@ -267,6 +267,13 @@ export default {
       return this.$store.state.mailbox
     }
   },
+  watch: {
+    isAuth(val) {
+      if (val) {
+        this.getUnreadMessageCount()
+      }
+    }
+  },
   methods: {
     handleLogout() {
       logout(this)
@@ -276,6 +283,18 @@ export default {
     },
     handleSignIn() {
       this.$channel.$emit('sign-in')
+    },
+    getUnreadMessageCount() {
+      this.$channel.socketConnect()
+      let lastMoveAt = Date.now()
+      window.addEventListener('mousemove', throttle(3000, () => {
+        lastMoveAt = Date.now()
+      }))
+      setInterval(() => {
+        if (Date.now() - lastMoveAt < 60000) {
+          this.$store.dispatch('refreshMailbox')
+        }
+      }, 10000)
     }
   }
 }

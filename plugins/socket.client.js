@@ -6,6 +6,8 @@ export default ({ store }) => {
   Vue.use(VueNativeSock, `${process.env.SOCKET_HOST}?token=${parseToken()}`, {
     connectManually: true,
     reconnection: true,
+    reconnectionAttempts: 12,
+    reconnectionDelay: 5000,
     store,
     format: 'json'
   })

@@ -32,6 +32,10 @@ export default {
   },
   methods: {
     handleSign() {
+      if (!this.$store.state.isAuth) {
+        this.$channel.$emit('sign-in')
+        return
+      }
       if (!this.isMine) {
         this.$toast.info('不能替别人签到')
         return

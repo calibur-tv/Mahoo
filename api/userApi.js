@@ -15,6 +15,11 @@ export const bindPhone = (ctx, { id, phone, password, authCode }) => ctx.$axios.
   authCode
 })
 
+export const getMailboxTotal = (ctx, { slug }) => ctx.$axios.$get('v1/message/total', {
+  params: { slug },
+  progress: false
+})
+
 export const sendMessage = (ctx, { phone_number, type, geetest }) => ctx.$axios.$post('v1/door/message', {
   phone_number,
   type,

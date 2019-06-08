@@ -1,6 +1,6 @@
 <template>
   <el-button
-    :loading="loading || action === 'unknown'"
+    :loading="loading"
     class="user-fff-btn"
     @click="handleFollowClick"
   >
@@ -32,7 +32,7 @@ export default {
     btnText() {
       switch (this.action) {
         case 'unknown':
-          return ''
+          return '关注'
         case 'self':
           return '关注'
         case 'friends':
@@ -60,6 +60,10 @@ export default {
   },
   methods: {
     handleFollowClick() {
+      if (!this.$store.state.isAuth) {
+        this.$channel.$emit('sign-in')
+        return
+      }
       if (this.action === 'unknown' || this.loading) {
         return
       }

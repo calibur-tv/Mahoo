@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { getLoginUser } from '~/api/userApi'
+import { getLoginUser, getMailboxTotal } from '~/api/userApi'
 
 export const state = () => ({
   user: {},
@@ -70,6 +70,15 @@ export const actions = {
       commit('SET_USER_INFO', {})
       return null
     }
+  },
+  async refreshMailbox({ state, commit }) {
+    if (state.socket.isConnected) {
+      return
+    }
+    const data = await getMailboxTotal(this, {
+      slug: state.user.slug
+    })
+    commit('SOCKET_ONMESSAGE', data)
   }
 }
 
