@@ -267,12 +267,12 @@ export default {
       return this.$store.state.mailbox
     }
   },
-  watch: {
-    isAuth(val) {
+  beforeMount() {
+    this.$watch('isAuth', val => {
       if (val) {
         this.getUnreadMessageCount()
       }
-    }
+    })
   },
   methods: {
     handleLogout() {
@@ -286,6 +286,11 @@ export default {
     },
     getUnreadMessageCount() {
       this.$channel.socketConnect()
+      setTimeout(() => {
+        if (this.$store.state.socket.reconnectErr) {
+          this.$store.dispatch('refreshMailbox')
+        }
+      }, 1000)
       let lastMoveAt = Date.now()
       window.addEventListener('mousemove', throttle(3000, () => {
         lastMoveAt = Date.now()

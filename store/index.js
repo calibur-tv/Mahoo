@@ -12,7 +12,7 @@ export const state = () => ({
   },
   socket: {
     isConnected: false,
-    reconnectError: false
+    reconnectErr: false
   }
 })
 
@@ -35,12 +35,14 @@ export const mutations = {
   },
   SOCKET_ONOPEN(state, event) {
     state.socket.isConnected = true
+    state.socket.reconnectErr = false
   },
   SOCKET_ONCLOSE(state, event) {
     state.socket.isConnected = false
   },
   SOCKET_ONERROR(state, event) {
     // console.error(state, event)
+    state.socket.reconnectErr = true
   },
   SOCKET_ONMESSAGE(state, message) {
     state.mailbox = message
@@ -49,7 +51,7 @@ export const mutations = {
     // console.info(state, count)
   },
   SOCKET_RECONNECT_ERROR(state) {
-    state.socket.reconnectError = true
+    state.socket.reconnectErr = true
   }
 }
 

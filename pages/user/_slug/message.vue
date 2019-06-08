@@ -4,10 +4,10 @@
 
 <template>
   <div id="user-message">
-    <el-row :gutter="20">
+    <el-row class="column-wrap">
       <el-col :span="6">
-        &nbsp;
         <message-menu />
+        &nbsp;
       </el-col>
       <el-col :span="18">
         <message-room

@@ -1,7 +1,9 @@
 <style lang="scss">
 .message-room {
   .message-header {
-    height: 40px;
+    height: 58px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid #e9eaec;
 
     .user-avatar {
       float: left;
@@ -13,6 +15,10 @@
       line-height: 40px;
     }
   }
+
+  .room-wrap {
+    height: 500px;
+  }
 }
 </style>
 
@@ -22,11 +28,21 @@
       <user-avatar v-if="target" :user="target" />
       <user-nickname v-if="target" :user="target" class="nickname-wrap" />
     </div>
-    <ChatRoom
-      ref="room"
-      :avatar-component="avatarComp"
-      :message-components="messageComps"
-    />
+    <div class="room-wrap">
+      <no-ssr>
+        <flow-loader
+          func="getUserMessage"
+          type="sinceId"
+          :query="query"
+        >
+          <ChatRoom
+            ref="room"
+            :avatar-component="avatarComp"
+            :message-components="messageComps"
+          />
+        </flow-loader>
+      </no-ssr>
+    </div>
     <div>
       <el-input
         v-model="message"
@@ -71,6 +87,13 @@ export default {
     }
   },
   computed: {
+    query() {
+      return {
+        message_type: 1,
+        getter_slug: this.mailto,
+        axios: this.$axios
+      }
+    },
     avatarComp() {
       return ChatAvatar
     },
@@ -82,6 +105,9 @@ export default {
   },
   mounted() {
     this.getMailtoUser()
+    this.$watch('$route', () => {
+      this.getMailtoUser()
+    })
   },
   methods: {
     getMailtoUser() {
@@ -149,7 +175,7 @@ export default {
       this.message = ''
       this.$axios.$post('v1/message/send', {
         message_type: 1,
-        target_slug: this.mailto,
+        getter_slug: this.mailto,
         content: jsonContent
       })
     },

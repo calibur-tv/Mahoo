@@ -157,6 +157,10 @@ module.exports = {
     workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
   },
 
+  axios: {
+    progress: false
+  },
+
   router: {
     extendRoutes(routes) {
       for (const route of routes) {

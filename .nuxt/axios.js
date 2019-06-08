@@ -44,65 +44,6 @@ const extendAxiosInstance = axios => {
   }
 }
 
-const setupProgress = (axios, ctx) => {
-  if (process.server) {
-    return
-  }
-
-  // A noop loading inteterface for when $nuxt is not yet ready
-  const noopLoading = {
-    finish: () => { },
-    start: () => { },
-    fail: () => { },
-    set: () => { }
-  }
-
-  const $loading = () => (window.$nuxt && window.$nuxt.$loading && window.$nuxt.$loading.set) ? window.$nuxt.$loading : noopLoading
-
-  let currentRequests = 0
-
-  axios.onRequest(config => {
-    if (config && config.progress === false) {
-      return
-    }
-
-    currentRequests++
-  })
-
-  axios.onResponse(response => {
-    if (response && response.config && response.config.progress === false) {
-      return
-    }
-
-    currentRequests--
-    if (currentRequests <= 0) {
-      currentRequests = 0
-      $loading().finish()
-    }
-  })
-
-  axios.onError(error => {
-    if (error && error.config && error.config.progress === false) {
-      return
-    }
-
-    currentRequests--
-    $loading().fail()
-    $loading().finish()
-  })
-
-  const onProgress = e => {
-    if (!currentRequests) {
-      return
-    }
-    const progress = ((e.loaded * 100) / (e.total * currentRequests))
-    $loading().set(Math.min(100, progress))
-  }
-
-  axios.defaults.onUploadProgress = onProgress
-  axios.defaults.onDownloadProgress = onProgress
-}
-
 export default (ctx, inject) => {
   // baseURL
   const baseURL = process.browser
@@ -149,8 +90,6 @@ export default (ctx, inject) => {
   extendAxiosInstance(axios)
 
   // Setup interceptors
-
-  setupProgress(axios, ctx)
 
   // Inject axios to the context as $axios
   ctx.$axios = axios

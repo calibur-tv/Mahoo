@@ -253,12 +253,12 @@
     </div>
     <div class="container">
       <el-row :gutter="10">
-        <el-col :span="18">
+        <el-col :span="17">
           <section class="user-section">
             <nuxt-child :user="user" />
           </section>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="7">
           <aside class="user-section">
             6
           </aside>
