@@ -12,8 +12,6 @@ export const state = () => ({
   },
   socket: {
     isConnected: false,
-    message: null,
-    lastGetAt: 0,
     reconnectError: false
   }
 })
@@ -45,12 +43,7 @@ export const mutations = {
     // console.error(state, event)
   },
   SOCKET_ONMESSAGE(state, message) {
-    if (message.channel === 0) {
-      state.mailbox = message
-    } else {
-      state.socket.message = message
-      state.socket.lastGetAt = `${Date.now()}-${Math.random().toString(36).substring(3, 6)}`
-    }
+    state.mailbox = message
   },
   SOCKET_RECONNECT(state, count) {
     // console.info(state, count)

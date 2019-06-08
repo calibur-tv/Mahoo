@@ -1,0 +1,2 @@
+exports.ids=[9],exports.modules={131:function(e,t,r){"use strict";r.r(t);var n={name:"CreateSimple",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},c=r(1);var component=Object(c.a)(n,function(){var e=this.$createElement;return(this._self._c||e)("div",{attrs:{id:"create-simple"}},[this._ssrNode("\n  simple\n")])},[],!1,function(e){},null,"11cce6ae");t.default=component.exports}};
+//# sourceMappingURL=72689d8e56ae02dac816.js.map

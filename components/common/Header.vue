@@ -64,8 +64,45 @@
         justify-content: flex-end;
         align-items: center;
 
+        .icon-link {
+          width: $page-header-hgt;
+          height: $page-header-hgt;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &:hover {
+            background-color: #F3F3F3;
+          }
+
+          i {
+            font-size: 25px;
+          }
+        }
+
         .user-panel {
+          position: relative;
+          height: $page-header-hgt;
+          margin-right: 8px;
+
+          &:hover {
+            background-color: transparent;
+
+            .user-popover {
+              opacity: 1;
+              visibility: visible;
+            }
+
+            .avatar {
+              transform: scale(2) translateY(10px);
+            }
+          }
+
           .avatar {
+            position: relative;
+            transition: .3s;
+            z-index: 1;
+
             img {
               width: 33px;
               height: 33px;
@@ -73,6 +110,40 @@
               border: 1px solid $color-gray-normal;
             }
           }
+
+          .user-popover {
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%);
+            background-color: #fff;
+            width: 260px;
+            padding: 50px 0 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,.16);
+            border-radius: 0 0 4px 4px;
+            transition: .3s;
+
+            &:hover {
+              opacity: 1;
+              visibility: visible;
+            }
+
+            .bottom {
+              padding: 0 20px;
+              height: 30px;
+              line-height: 30px;
+              background-color: #f4f5f7;
+              text-align: right;
+              font-size: 12px;
+            }
+          }
+        }
+
+        .creator-wrap {
+          margin-left: 8px;
         }
       }
     }
@@ -105,40 +176,48 @@
           </v-switcher>
         </nav>
         <div class="right">
-          <no-ssr>
-            <div
-              v-if="isAuth"
-              class="user-panel"
-            >
+          <template v-if="isAuth">
+            <div class="user-panel icon-link">
               <nuxt-link
                 :to="$alias.user(user.slug)"
                 class="avatar"
               >
-                <img :src="$resize(user.avatar, { width: 32 })" :alt="user.nickname">
+                <img :src="$resize(user.avatar, { width: 64 })" :alt="user.nickname">
               </nuxt-link>
+              <div class="user-popover">
+                <div class="bottom">
+                  <button @click="handleLogout">
+                    退出
+                  </button>
+                </div>
+              </div>
             </div>
-          </no-ssr>
-          &nbsp;&nbsp;
-          <el-button
-            v-if="isAuth"
-            type="text"
-            @click="handleLogout"
-          >
-            退出
-          </el-button>
-          <el-button
-            v-else
-            type="text"
-            @click="handleSignIn"
-          >
-            登录
-          </el-button>
-          &nbsp;&nbsp;
-          <nuxt-link to="/create/cosplay/">
-            <el-button size="small" type="primary" icon="el-icon-s-promotion">
-              投稿
+            <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
+              <el-badge :value="mailbox.unread_message_total" :hidden="!mailbox.unread_message_total">
+                <i class="iconfont ic-message" />
+              </el-badge>
+            </nuxt-link>
+            <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'notice')">
+              <el-badge :value="mailbox.unread_notice_total" :hidden="!mailbox.unread_notice_total">
+                <i class="iconfont ic-remind" />
+              </el-badge>
+            </nuxt-link>
+          </template>
+          <template v-else>
+            <el-button
+              type="text"
+              @click="handleSignIn"
+            >
+              登录
             </el-button>
-          </nuxt-link>
+          </template>
+          <div class="creator-wrap">
+            <nuxt-link to="/create/cosplay/">
+              <el-button size="small" type="primary" icon="el-icon-s-promotion">
+                投稿
+              </el-button>
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -148,9 +227,12 @@
 
 <script>
 import { logout } from '~/api/userApi'
+import { Badge } from 'element-ui'
 
 export default {
-  components: {},
+  components: {
+    'el-badge': Badge
+  },
   props: {},
   data() {
     return {
@@ -180,11 +262,11 @@ export default {
     },
     user() {
       return this.$store.state.user
+    },
+    mailbox() {
+      return this.$store.state.mailbox
     }
   },
-  watch: {},
-  created() {},
-  mounted() {},
   methods: {
     handleLogout() {
       logout(this)

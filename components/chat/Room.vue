@@ -12,27 +12,6 @@
       overflow: hidden;
       line-height: 40px;
     }
-
-    .status {
-      margin-top: 14px;
-      margin-left: 14px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      float: right;
-
-      &-ok {
-        background-color: $color-green;
-      }
-
-      &-error {
-        background-color: $color-red;
-      }
-
-      &-warn {
-        background-color: $color-yellow;
-      }
-    }
   }
 }
 </style>
@@ -41,7 +20,6 @@
   <div class="message-room">
     <div class="message-header">
       <user-avatar v-if="target" :user="target" />
-      <div class="status" :class="`status-${status}`" />
       <user-nickname v-if="target" :user="target" class="nickname-wrap" />
     </div>
     <ChatRoom
@@ -70,7 +48,6 @@ import 'oh-my-chat/dist/oh-my-chat.css'
 import { getUserInfo } from '~/api/userApi'
 import ChatAvatar from '~/components/chat/Avatar'
 import Message from '~/components/chat/Message'
-import parseToken from '~/assets/js/parseToken'
 import UserAvatar from '~/components/user/UserAvatar'
 import UserNickname from '~/components/user/UserNickname'
 
@@ -101,23 +78,8 @@ export default {
       return {
         'message': Message
       }
-    },
-    status() {
-      if (this.$store.state.socket.reconnectError) {
-        return 'error'
-      }
-      if (this.$store.state.socket.isConnected) {
-        return 'ok'
-      }
-      return 'warn'
     }
   },
-  watch: {
-    '$store.state.socket.lastGetAt'() {
-      this.appendMessage(this.$store.state.socket.message)
-    }
-  },
-  created() {},
   mounted() {
     this.getMailtoUser()
   },
@@ -156,14 +118,6 @@ export default {
       })
     },
     handleAddBubble() {
-      if (this.status === 'warn') {
-        this.$toast.info('正在连接服务器')
-        return
-      }
-      if (this.status === 'error') {
-        this.$toast.error('请稍候再试')
-        return
-      }
       if (!this.message.trim()) {
         return
       }
@@ -193,10 +147,9 @@ export default {
         }
       })
       this.message = ''
-      this.$channel.send({
+      this.$axios.$post('v1/message/send', {
         message_type: 1,
-        to_user_slug: this.mailto,
-        from_user_token: parseToken(),
+        target_slug: this.mailto,
         content: jsonContent
       })
     },
