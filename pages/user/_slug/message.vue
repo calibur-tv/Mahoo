@@ -13,6 +13,7 @@
         <message-room
           v-if="mailto"
           :mailto="mailto"
+          :slug="slug"
         />
         <template v-else>
           ... chat
@@ -35,6 +36,12 @@ export default {
     MessageRoom
   },
   mixins: [mustSign, mustSelf],
+  props: {
+    slug: {
+      type: String,
+      required: true
+    }
+  },
   computed: {
     mailto() {
       return this.$route.query.mailto
