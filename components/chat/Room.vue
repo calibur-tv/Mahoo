@@ -26,6 +26,28 @@
     overflow-y: scroll;
     margin-right: -15px;
     padding-right: 15px;
+
+    .msg-status {
+      width: 14px;
+      height: 14px;
+      line-height: 14px;
+      border-radius: 50%;
+      font-family: "iconfont" !important;
+      font-size: 12px;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+
+      &-error {
+        background-color: $color-red;
+        color: #fff;
+
+        &:before {
+          content: "\e6e9";
+        }
+      }
+    }
   }
 
   &-footer {
@@ -83,6 +105,7 @@
     </div>
     <no-ssr>
       <flow-loader
+        ref="loader"
         func="getUserMessage"
         type="sinceId"
         :query="query"
@@ -244,6 +267,17 @@ export default {
         getter_slug: this.mailto,
         content: jsonContent
       })
+        .then(msg => {
+          this.$refs.room.updateMessage(randomId, {
+            id: msg.id
+          })
+          this.$refs.loader.append(msg)
+        })
+        .catch(() => {
+          this.$refs.room.updateMessage(randomId, {
+            status: 'error'
+          })
+        })
     },
     handleNewLine() {
       if (!this.message) {
