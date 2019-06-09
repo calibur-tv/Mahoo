@@ -26,7 +26,7 @@
 
 <template>
   <div class="json-content-txt-parser">
-    <p v-html="item.content" />
+    <p v-html="item.content.replace(/\r?\n/g, '<br>')" />
   </div>
 </template>
 

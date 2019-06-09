@@ -1,10 +1,21 @@
 <style lang="scss">
 .room {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   &-header {
-    height: 57px;
-    padding: 0 20px 17px;
-    margin: 0 -20px;
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
     border-bottom: 1px solid #e9eaec;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-shrink: 0;
 
     .user-avatar {
       float: left;
@@ -13,19 +24,23 @@
 
     .nickname-wrap {
       overflow: hidden;
-      line-height: 40px;
     }
   }
 
   &-body {
+    flex-grow: 1;
     overflow: hidden;
   }
 
   &-chats {
-    height: 500px;
+    height: 100%;
     overflow-y: scroll;
     margin-right: -15px;
     padding-right: 15px;
+
+    .chat-room {
+      padding: 0 10px;
+    }
 
     .msg-status {
       width: 14px;
@@ -51,11 +66,12 @@
   }
 
   &-footer {
+    width: 100%;
     border-top: 1px solid #e9eaec;
-    margin: 0 -20px -15px;
+    flex-shrink: 0;
 
     textarea {
-      height: 120px;
+      height: 90px;
       width: 100%;
       resize: none;
       background-color: transparent;
@@ -68,7 +84,7 @@
 
     .helper {
       text-align: right;
-      padding-bottom: 20px;
+      padding-bottom: 10px;
 
       span {
         color: #888;
@@ -86,7 +102,7 @@
         line-height: 24px;
         border: 1px solid #c1c1c1;
         border-radius: 4px;
-        margin-right: 20px;
+        margin-right: 10px;
 
         &:hover {
           background-color: #f8f8f8;
@@ -100,7 +116,7 @@
 <template>
   <div class="room">
     <div class="room-header">
-      <user-avatar v-if="target" :user="target" />
+      <user-avatar v-if="target" :user="target" :size="36" />
       <user-nickname v-if="target" :user="target" class="nickname-wrap" />
     </div>
     <no-ssr>
@@ -251,7 +267,7 @@ export default {
       const jsonContent = [
         {
           type: 'txt',
-          content: this.message.trim().replace(/\r?\n/g, '<br>')
+          content: this.message.trim()
         }
       ]
       const randomId = Math.random().toString(10).substring(3, 6)
