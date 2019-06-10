@@ -1,0 +1,2 @@
+exports.ids=[31],exports.modules={152:function(e,t,o){"use strict";o.r(t);var r={name:"UserSocialFollowers",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},l=o(1);var component=Object(l.a)(r,function(){var e=this.$createElement;return(this._self._c||e)("div",{attrs:{id:"user-social-followers"}},[this._ssrNode("\n  UserSocialFollowers\n")])},[],!1,function(e){},null,"6a1396f0");t.default=component.exports}};
+//# sourceMappingURL=f7074f9870e56c4ce8e7.js.map
