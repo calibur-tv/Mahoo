@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import { getLoginUser, getMailboxTotal } from '~/api/userApi'
+import { getUserFromSessionStore } from '~/assets/js/cache'
 
 export const state = () => ({
   user: {},
@@ -9,6 +10,10 @@ export const state = () => ({
   mailbox: {
     unread_message_total: 0,
     unread_notice_total: 0
+  },
+  messageMenu: {
+    list: [],
+    time: 0
   },
   socket: {
     isConnected: false,
@@ -47,6 +52,9 @@ export const mutations = {
   SOCKET_ONMESSAGE(state, message) {
     if (message.channel === 0) {
       state.mailbox = message
+    } else if (message.channel === 'message-menu') {
+      state.messageMenu.list = message.data.map(_ => Object.assign(_, { user: {} }))
+      state.messageMenu.time = Date.now()
     }
   },
   SOCKET_RECONNECT(state, count) {
@@ -54,6 +62,24 @@ export const mutations = {
   },
   SOCKET_RECONNECT_ERROR(state) {
     state.socket.reconnectErr = true
+  },
+  SET_MESSAGE_MENU(state, menu) {
+    state.messageMenu.list = menu.map(_ => Object.assign(_, { user: {} }))
+    state.messageMenu.time = Date.now()
+  },
+  UPDATE_MESSAGE_MENU_USER(state, { channel, user }) {
+    state.messageMenu.list.forEach(item => {
+      if (item.channel === channel) {
+        item.user = user
+      }
+    })
+  },
+  DELETE_MESSAGE_MENU(state, channel) {
+    state.messageMenu.list.forEach((item, index) => {
+      if (item.channel === channel) {
+        state.messageMenu.list.splice(index, 1)
+      }
+    })
   }
 }
 
@@ -83,6 +109,22 @@ export const actions = {
       slug: state.user.slug
     })
     commit('SOCKET_ONMESSAGE', data)
+  },
+  async getMessageMenu({ commit }) {
+    const menu = await this.$axios.$get('v1/message/menu')
+    commit('SET_MESSAGE_MENU', menu)
+  },
+  updateMessageMenu({ state, commit }) {
+    const self = state.user.slug
+    state.messageMenu.list.forEach(async item => {
+      const arr = item.channel.split('@')
+      let slug = arr[2]
+      if (slug === self) {
+        slug = arr[3]
+      }
+      const user = await getUserFromSessionStore(this, slug)
+      commit('UPDATE_MESSAGE_MENU_USER', { channel: item.channel, user })
+    })
   }
 }
 

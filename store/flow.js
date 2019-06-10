@@ -1,7 +1,7 @@
 import VueMixinStore from 'vue-mixin-store'
 import * as api from '~/api/flowApi'
 
-const flow = VueMixinStore.FlowStore(api, process.env.NODE_ENV === 'development')
+const flow = VueMixinStore.FlowStore(api, false)
 
 export const state = flow.state
 

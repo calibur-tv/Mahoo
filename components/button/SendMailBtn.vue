@@ -38,7 +38,7 @@ export default {
         return
       }
       const redirectWindow = window.open()
-      this.$axios.$get('v1/message/channel', {
+      this.$axios.$get('v1/message/get_channel', {
         params: {
           type: 1,
           slug: this.slug

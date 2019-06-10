@@ -26,7 +26,7 @@
   <div id="user-message">
     <el-row class="column-wrap">
       <el-col :span="6">
-        <message-menu />
+        <message-menu :slug="slug" />
         &nbsp;
       </el-col>
       <el-col :span="18">

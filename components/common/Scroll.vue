@@ -1,7 +1,7 @@
 <template>
   <div
     ref="wrapper"
-    class="socrll-warppper"
+    class="scroll-warp"
   >
     <slot />
   </div>
@@ -15,46 +15,46 @@ export default {
   props: {
     probeType: {
       type: Number,
-      default: 1,
+      default: 1
     },
     click: {
       type: Boolean,
-      default: true,
+      default: true
     },
     data: {
       type: Array,
-      default: null,
+      default: null
     },
     listenScroll: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 是否开启上拉刷新
     pullup: {
       type: Boolean,
-      default: true,
+      default: true
     },
     // 是否开启下拉刷新
     pulldown: {
       type: Boolean,
-      default: false,
+      default: false
     },
     // 是否监听开始滚动
     beforeScroll: {
       type: Boolean,
-      default: false,
+      default: false
     },
     scrollX: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   watch: {
     data() {
       setTimeout(() => {
         this.refresh()
       }, 20)
-    },
+    }
   },
   mounted() {
     setTimeout(() => {
@@ -76,7 +76,7 @@ export default {
         click: this.click,
         fade: true,
         scrollX: this.scrollX,
-        scrollY: !this.scrollX,
+        scrollY: !this.scrollX
       })
       if (this.listenScroll) {
         this.scroll.on('scroll', pos => {
@@ -130,13 +130,13 @@ export default {
     },
     scrollToElement() {
       this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
-    },
-  },
+    }
+  }
 }
 </script>
 
 <style lang="less">
-.socrll-warppper {
+.scroll-warp {
   height: 100%;
   overflow: hidden;
 }
