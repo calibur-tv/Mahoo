@@ -20,6 +20,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.5.4",
     "@nuxtjs/pwa": "^3.0.0-beta.16",
+    "better-scroll": "^1.15.2",
     "cache-manager": "^2.9.1",
     "cache-manager-redis": "^0.6.0",
     "cross-env": "^5.2.0",
