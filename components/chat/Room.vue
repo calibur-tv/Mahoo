@@ -160,7 +160,6 @@
 <script>
 import ChatRoom from 'oh-my-chat'
 import 'oh-my-chat/dist/oh-my-chat.css'
-import { getUserInfo } from '~/api/userApi'
 import ChatAvatar from '~/components/chat/Avatar'
 import Message from '~/components/chat/Message'
 import UserAvatar from '~/components/user/UserAvatar'
@@ -192,9 +191,8 @@ export default {
   computed: {
     query() {
       return {
-        message_type: 1,
-        getter_slug: this.mailto,
-        axios: this.$axios
+        channel: this.mailto,
+        $axios: this.$axios
       }
     },
     avatarComp() {
@@ -215,12 +213,6 @@ export default {
       return '按下Cmd+Enter换行'
     }
   },
-  mounted() {
-    this.getMailtoUser()
-    this.$watch('$route', () => {
-      this.getMailtoUser()
-    })
-  },
   methods: {
     handleMessageLoad({ data, args }) {
       this.$nextTick(() => {
@@ -230,20 +222,6 @@ export default {
           })
         }
       })
-    },
-    getMailtoUser() {
-      if (!this.mailto) {
-        return
-      }
-      getUserInfo(this, {
-        slug: this.mailto
-      })
-        .then(target => {
-          this.target = target
-        })
-        .catch(err => {
-          this.$toast.error(err.message)
-        })
     },
     appendMessage(msg, insertToAfter = true) {
       this.$refs.room.addMessage({

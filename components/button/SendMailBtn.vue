@@ -37,7 +37,20 @@ export default {
         this.$toast.info('不能给自己发消息')
         return
       }
-      window.open(this.$alias.user(this.$store.state.user.slug, `message/?mailto=${this.slug}`))
+      const redirectWindow = window.open()
+      this.$axios.$get('v1/message/channel', {
+        params: {
+          type: 1,
+          slug: this.slug
+        }
+      })
+        .then(channel => {
+          redirectWindow.location = this.$alias.user(this.$store.state.user.slug, `message?mailto=${channel}`)
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+          redirectWindow.close()
+        })
     }
   }
 }

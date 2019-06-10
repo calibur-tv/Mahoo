@@ -85,18 +85,19 @@
       v-for="item in menu"
       :key="item.channel"
     >
-      <nuxt-link
-        :to="$alias.user($route.params.slug, `message/?mailto=${item.from.slug}`)"
-        class="room-item clearfix"
-      >
-        <img class="avatar" :src="$resize(item.from.avatar, { width: 42 })" :alt="item.from.nickname">
-        <div class="content">
-          <p class="nickname oneline" v-text="item.from.nickname" />
-          <div class="footer">
-            <div v-if="item.count" class="read-badge" v-text="item.count" />
-          </div>
-        </div>
-      </nuxt-link>
+      {{ item.channel }}
+      <!--      <nuxt-link-->
+      <!--        :to="$alias.user($route.params.slug, `message/?mailto=${item.from.slug}`)"-->
+      <!--        class="room-item clearfix"-->
+      <!--      >-->
+      <!--        <img class="avatar" :src="$resize(item.from.avatar, { width: 42 })" :alt="item.from.nickname">-->
+      <!--        <div class="content">-->
+      <!--          <p class="nickname oneline" v-text="item.from.nickname" />-->
+      <!--          <div class="footer">-->
+      <!--            <div v-if="item.count" class="read-badge" v-text="item.count" />-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </nuxt-link>-->
       <div class="close">
         &times;
       </div>

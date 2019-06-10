@@ -45,7 +45,9 @@ export const mutations = {
     state.socket.reconnectErr = true
   },
   SOCKET_ONMESSAGE(state, message) {
-    state.mailbox = message
+    if (message.channel === 0) {
+      state.mailbox = message
+    }
   },
   SOCKET_RECONNECT(state, count) {
     // console.info(state, count)
