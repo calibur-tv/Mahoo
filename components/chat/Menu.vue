@@ -100,11 +100,8 @@
 
 <template>
   <ul class="message-menu">
-    <div class="searcher">
-      <input v-model="filter" type="text" placeholder="搜索好友">
-    </div>
     <li
-      v-for="item in filterMenu"
+      v-for="item in menu"
       :key="item.channel"
     >
       <nuxt-link
@@ -141,7 +138,6 @@ export default {
   },
   data() {
     return {
-      filter: '',
       menuWatcher: null,
       timeWatcher: null,
       friends: []
@@ -150,13 +146,6 @@ export default {
   computed: {
     menu() {
       return this.$store.state.messageMenu.list
-    },
-    filterMenu() {
-      if (!this.filter) {
-        return this.menu
-      }
-      // TODO 这里应该搜的是朋友列表，但是搜到之后需要获取 channel。。
-      return this.menu.filter(_ => _.user.nickname.toLocaleLowerCase().indexOf(this.filter.toLocaleLowerCase()) === 0)
     }
   },
   mounted() {
