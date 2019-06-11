@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { getLoginUser, getMailboxTotal } from '~/api/userApi'
 import { getUserFromSessionStore } from '~/assets/js/cache'
+import { randomStr } from '~/assets/js/utils'
 
 export const state = () => ({
   user: {},
@@ -13,8 +14,9 @@ export const state = () => ({
   },
   messageMenu: {
     list: [],
-    time: 0
+    time: ''
   },
+  messageRoom: {},
   socket: {
     isConnected: false,
     reconnectErr: false
@@ -53,8 +55,23 @@ export const mutations = {
     if (message.channel === 0) {
       state.mailbox = message
     } else if (message.channel === 'message-menu') {
-      state.messageMenu.list = message.data.map(_ => Object.assign(_, { user: {} }))
-      state.messageMenu.time = Date.now()
+      const result = []
+      message.data.forEach(item => {
+        if (!state.messageRoom[item.channel]) {
+          Vue.set(state.messageRoom, item.channel, {
+            time: '',
+            data: null
+          })
+        }
+        result.push(Object.assign(item, {
+          user: {}
+        }))
+      })
+      state.messageMenu.list = result
+      state.messageMenu.time = randomStr()
+    } else {
+      state.messageRoom[message.channel].data = message
+      state.messageRoom[message.channel].time = randomStr()
     }
   },
   SOCKET_RECONNECT(state, count) {
@@ -64,8 +81,19 @@ export const mutations = {
     state.socket.reconnectErr = true
   },
   SET_MESSAGE_MENU(state, menu) {
-    state.messageMenu.list = menu.map(_ => Object.assign(_, { user: {} }))
-    state.messageMenu.time = Date.now()
+    const result = []
+    menu.forEach(item => {
+      if (!state.messageRoom[item.channel]) {
+        Vue.set(state.messageRoom, item.channel, {
+          time: '',
+          data: null
+        })
+      }
+      item.user = {}
+      result.push(item)
+    })
+    state.messageMenu.list = result
+    state.messageMenu.time = randomStr()
   },
   UPDATE_MESSAGE_MENU_USER(state, { channel, user }) {
     state.messageMenu.list.forEach(item => {
@@ -79,6 +107,12 @@ export const mutations = {
       if (item.channel === channel) {
         state.messageMenu.list.splice(index, 1)
       }
+    })
+  },
+  INIT_MESSAGE_ROOM(state, channel) {
+    Vue.set(state.messageRoom, channel, {
+      time: '',
+      data: null
     })
   }
 }

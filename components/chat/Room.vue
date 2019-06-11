@@ -28,6 +28,7 @@
   }
 
   &-body {
+    width: 100%;
     flex-grow: 1;
     overflow: hidden;
   }
@@ -124,9 +125,11 @@
         ref="loader"
         func="getUserMessage"
         type="sinceId"
+        sort="asc"
         :query="query"
         :callback="handleMessageLoad"
         :cache-timeout="86400000"
+        :auto="0"
         class="room-body"
       >
         <div class="room-chats">
@@ -195,6 +198,9 @@ export default {
         $axios: this.$axios
       }
     },
+    count() {
+      return parseInt(this.$route.query.count || -1)
+    },
     avatarComp() {
       return ChatAvatar
     },
@@ -212,6 +218,16 @@ export default {
       }
       return '按下Cmd+Enter换行'
     }
+  },
+  beforeMount() {
+    if (!this.$store.state.messageRoom[this.mailto]) {
+      this.$store.commit('INIT_MESSAGE_ROOM', this.mailto)
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.loader.initData()
+    })
   },
   methods: {
     handleMessageLoad({ data, args }) {
@@ -257,8 +273,7 @@ export default {
       })
       this.message = ''
       this.$axios.$post('v1/message/send', {
-        message_type: 1,
-        getter_slug: this.mailto,
+        channel: this.mailto,
         content: jsonContent
       })
         .then(msg => {

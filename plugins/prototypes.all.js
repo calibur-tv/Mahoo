@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import alias from '~/assets/js/alias'
-import utils from '~/assets/js/utils'
+import * as utils from '~/assets/js/utils'
 import imageResize from '~/assets/js/imageResize'
 
 Vue.use({
