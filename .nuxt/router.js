@@ -16,10 +16,6 @@ const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpa
 const _1ef87b5d = () => interopDefault(import('../pages/user/_slug/index.vue' /* webpackChunkName: "pages/user/_slug/index" */))
 const _315d47a9 = () => interopDefault(import('../pages/user/_slug/emotion/index.vue' /* webpackChunkName: "pages/user/_slug/emotion/index" */))
 const _04c5815c = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
-const _4a86e2dd = () => interopDefault(import('../pages/user/_slug/notice.vue' /* webpackChunkName: "pages/user/_slug/notice" */))
-const _6639e0c0 = () => interopDefault(import('../pages/user/_slug/notice/index.vue' /* webpackChunkName: "pages/user/_slug/notice/index" */))
-const _3663050f = () => interopDefault(import('../pages/user/_slug/notice/social.vue' /* webpackChunkName: "pages/user/_slug/notice/social" */))
-const _682fa25e = () => interopDefault(import('../pages/user/_slug/notice/system.vue' /* webpackChunkName: "pages/user/_slug/notice/system" */))
 const _2a5f011b = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
 const _356f075e = () => interopDefault(import('../pages/user/_slug/setting/index.vue' /* webpackChunkName: "pages/user/_slug/setting/index" */))
 const _0049a4ba = () => interopDefault(import('../pages/user/_slug/setting/basic.vue' /* webpackChunkName: "pages/user/_slug/setting/basic" */))
@@ -180,23 +176,6 @@ export function createRouter() {
         component: _04c5815c,
         props: true,
         name: "user-slug-message"
-      }, {
-        path: "notice",
-        component: _4a86e2dd,
-        props: true,
-        children: [{
-          path: "",
-          component: _6639e0c0,
-          name: "user-slug-notice"
-        }, {
-          path: "social",
-          component: _3663050f,
-          name: "user-slug-notice-social"
-        }, {
-          path: "system",
-          component: _682fa25e,
-          name: "user-slug-notice-system"
-        }]
       }, {
         path: "setting",
         component: _2a5f011b,
