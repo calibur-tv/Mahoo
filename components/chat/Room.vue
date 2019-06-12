@@ -34,13 +34,14 @@
   }
 
   &-chats {
+    position: relative;
     height: 100%;
-    overflow-y: scroll;
     margin-right: -15px;
     padding-right: 15px;
+    overflow: hidden;
 
     .chat-room {
-      padding: 0 10px;
+      padding: 10px;
     }
 
     .msg-status {
@@ -132,12 +133,14 @@
         :auto="0"
         class="room-body"
       >
-        <div class="room-chats">
-          <ChatRoom
-            ref="room"
-            :avatar-component="avatarComp"
-            :message-components="messageComps"
-          />
+        <div ref="wrap" slot-scope="{ flow }" class="room-chats">
+          <scroll ref="scroll" :data="flow">
+            <chat-room
+              ref="room"
+              :avatar-component="avatarComp"
+              :message-components="messageComps"
+            />
+          </scroll>
         </div>
       </flow-loader>
     </no-ssr>
@@ -167,10 +170,12 @@ import ChatAvatar from '~/components/chat/Avatar'
 import Message from '~/components/chat/Message'
 import UserAvatar from '~/components/user/UserAvatar'
 import UserNickname from '~/components/user/UserNickname'
+import Scroll from '~/components/common/Scroll'
 
 export default {
   name: 'MessageRoom',
   components: {
+    Scroll,
     ChatRoom,
     UserAvatar,
     UserNickname
@@ -232,9 +237,12 @@ export default {
   methods: {
     handleMessageLoad({ data, args }) {
       this.$nextTick(() => {
-        if (args.is_up === 0) {
+        if (args.is_up === 1) {
           data.result.map(msg => {
             this.appendMessage(msg)
+          })
+          this.$nextTick(() => {
+            this.$refs.scroll.scrollTo(0, this.$refs.wrap.clientHeight - this.$refs.room.$el.clientHeight)
           })
         }
       })

@@ -52,7 +52,7 @@ export const mutations = {
     state.socket.reconnectErr = true
   },
   SOCKET_ONMESSAGE(state, message) {
-    if (message.channel === 0) {
+    if (message.channel === 'unread_total') {
       state.mailbox = message
     } else if (message.channel === 'message-menu') {
       const result = []

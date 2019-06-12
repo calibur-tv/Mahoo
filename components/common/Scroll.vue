@@ -8,7 +8,8 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
+import BScroll from '@better-scroll/core'
+import MouseWheel from '@better-scroll/mouse-wheel'
 
 export default {
   name: 'VScroll',
@@ -24,25 +25,6 @@ export default {
     data: {
       type: Array,
       default: null
-    },
-    listenScroll: {
-      type: Boolean,
-      default: false
-    },
-    // 是否开启上拉刷新
-    pullup: {
-      type: Boolean,
-      default: true
-    },
-    // 是否开启下拉刷新
-    pulldown: {
-      type: Boolean,
-      default: false
-    },
-    // 是否监听开始滚动
-    beforeScroll: {
-      type: Boolean,
-      default: false
     },
     scrollX: {
       type: Boolean,
@@ -71,47 +53,27 @@ export default {
       if (!this.$refs.wrapper) {
         return
       }
+      BScroll.use(MouseWheel)
       this.scroll = new BScroll(this.$refs.wrapper, {
         probeType: this.probeType,
         click: this.click,
         fade: true,
         scrollX: this.scrollX,
-        scrollY: !this.scrollX
+        scrollY: !this.scrollX,
+        mouseWheel: {
+          invert: false,
+          speed: 30,
+          easeTime: 300
+        }
       })
-      if (this.listenScroll) {
-        this.scroll.on('scroll', pos => {
-          // 发送滚动的位置事件
-          this.$emit('scroll', pos)
-          if (this.scroll.y <= this.scroll.maxScrollY + 50) {
-            this.$emit('scrollToBottom', this.scroll)
-          }
-        })
-      }
-      // 上拉加载抛出事件
-      if (this.pullup) {
-        this.scroll.on('scrollEnd', () => {
-          if (this.scroll.y <= this.scroll.maxScrollY + 50) {
-            this.$emit('scrollToEnd', this.scroll)
-          }
-        })
-      }
-      // 下拉刷新抛出事件
-      if (this.pulldown) {
-        this.scroll.on('touchend', pos => {
-          if (pos.y > 50) {
-            this.$emit('scrollToTop')
-          }
-        })
-      }
-      // 滚动结束抛出事件
-      this.scroll.on('touchend', pos => {
-        this.$emit('touchend', pos)
+      this.scroll.on('scrollEnd', () => {
+        if (this.scroll.y > -50) {
+          this.$emit('on-top')
+        }
+        if (this.scroll.y <= this.scroll.maxScrollY + 50) {
+          this.$emit('on-bottom')
+        }
       })
-      if (this.beforeScroll) {
-        this.scroll.on('beforeScrollStart', () => {
-          this.$emit('beforeScroll')
-        })
-      }
     },
     enable() {
       this.scroll && this.scroll.enable()
@@ -126,16 +88,20 @@ export default {
     },
     scrollTo() {
       // 滚动到相应位置
-      this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+      setTimeout(() => {
+        this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+      }, 0)
     },
     scrollToElement() {
-      this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
+      setTimeout(() => {
+        this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
+      }, 0)
     }
   }
 }
 </script>
 
-<style lang="less">
+<style>
 .scroll-warp {
   height: 100%;
   overflow: hidden;

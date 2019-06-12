@@ -151,7 +151,7 @@ export default {
   mounted() {
     this.menuWatcher = this.$watch('$store.state.mailbox.unread_message_total', (newVal, oldVal) => {
       if (newVal > oldVal && !this.$store.state.socket.isConnected) {
-        this.getMessageMenu()
+        this.$store.dispatch('getMessageMenu')
       }
     })
     this.timeWatcher = this.$watch('$store.state.messageMenu.time', () => {
@@ -160,18 +160,22 @@ export default {
     if (this.menu.length && this.$store.state.socket.isConnected) {
       return
     }
-    const loading = Loading.service({
-      target: this.$el
-    })
-    this.getUserFriends()
-    this.getMessageMenu(loading)
+    this.initChatRoom()
   },
   beforeDestroy() {
     this.menuWatcher && this.menuWatcher()
     this.timeWatcher && this.timeWatcher()
   },
   methods: {
-    getUserFriends() {
+    async initChatRoom() {
+      const loading = Loading.service({
+        target: this.$el
+      })
+      await this.getUserFriends()
+      await this.$store.dispatch('getMessageMenu')
+      loading.close()
+    },
+    async getUserFriends() {
       const getData = () => {
         getUserRelation({
           $axios: this.$axios,
@@ -187,19 +191,15 @@ export default {
       try {
         const cache = sessionStorage.getItem('user-friends-list')
         if (!cache) {
-          getData()
+          await getData()
           return
         }
         const result = JSON.parse(cache)
         result.forEach(user => setUserSessionStore(user))
         this.friends = result
       } catch (e) {
-        getData()
+        await getData()
       }
-    },
-    async getMessageMenu(loading) {
-      await this.$store.dispatch('getMessageMenu')
-      loading.close()
     },
     deleteChannel(item) {
       this.$axios.$post('v1/message/delete_channel', {
