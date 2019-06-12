@@ -157,6 +157,7 @@ export default {
     this.timeWatcher = this.$watch('$store.state.messageMenu.time', () => {
       this.$store.dispatch('updateMessageMenu')
     })
+    this.$store.dispatch('updateMessageMenu')
     if (this.menu.length && this.$store.state.socket.isConnected) {
       return
     }

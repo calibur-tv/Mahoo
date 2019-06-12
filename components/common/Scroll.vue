@@ -33,9 +33,7 @@ export default {
   },
   watch: {
     data() {
-      setTimeout(() => {
-        this.refresh()
-      }, 20)
+      this.refresh()
     }
   },
   mounted() {
@@ -68,10 +66,10 @@ export default {
       })
       this.scroll.on('scrollEnd', () => {
         if (this.scroll.y > -50) {
-          this.$emit('on-top')
+          this.$emit('top')
         }
         if (this.scroll.y <= this.scroll.maxScrollY + 50) {
-          this.$emit('on-bottom')
+          this.$emit('bottom')
         }
       })
     },
@@ -82,8 +80,15 @@ export default {
       this.scroll && this.scroll.disable()
     },
     refresh() {
-      this.$nextTick(() => {
-        this.scroll && this.scroll.refresh()
+      return new Promise(resolve => {
+        this.$nextTick(() => {
+          setTimeout(() => {
+            this.scroll && this.scroll.refresh()
+            this.$nextTick(() => {
+              resolve()
+            })
+          }, 20)
+        })
       })
     },
     scrollTo() {

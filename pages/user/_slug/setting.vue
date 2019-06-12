@@ -9,7 +9,7 @@
         <v-switcher
           :headers="headers"
           :routable="true"
-          :item-height="44"
+          :header-height="44"
           align="vertical"
         >
           <nuxt-link

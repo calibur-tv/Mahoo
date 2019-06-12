@@ -129,12 +129,12 @@
         sort="asc"
         :query="query"
         :callback="handleMessageLoad"
-        :cache-timeout="86400000"
+        :cache-timeout="0"
         :auto="0"
         class="room-body"
       >
         <div ref="wrap" slot-scope="{ flow }" class="room-chats">
-          <scroll ref="scroll" :data="flow">
+          <scroll ref="scroll" :data="flow" @top="handleScrollUp">
             <chat-room
               ref="room"
               :avatar-component="avatarComp"
@@ -193,7 +193,8 @@ export default {
   data() {
     return {
       message: '',
-      target: null
+      target: null,
+      chatsHeight: 0
     }
   },
   computed: {
@@ -202,9 +203,6 @@ export default {
         channel: this.mailto,
         $axios: this.$axios
       }
-    },
-    count() {
-      return parseInt(this.$route.query.count || -1)
     },
     avatarComp() {
       return ChatAvatar
@@ -230,22 +228,77 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.$refs.loader.initData()
-    })
+    this.initRoom()
   },
   methods: {
+    initRoom() {
+      this.$nextTick(async () => {
+        await this.$refs.loader.initData()
+        await this.$refs.loader.loadMore({ force: true })
+        this.clearUnreadCount()
+        this.watchMessageLoop()
+      })
+    },
+    clearUnreadCount() {
+      const menu = this.$store.state.messageMenu.list.filter(_ => _.channel === this.mailto)[0]
+      if (!menu || menu.count <= 0) {
+        return
+      }
+      this.$axios.$post('v1/message/clear_channel', {
+        channel: this.mailto
+      })
+      this.$store.commit('CLEAR_NOTIFICATION', {
+        channel: this.mailto,
+        count: menu.count
+      })
+    },
+    watchMessageLoop() {
+      const self = this
+      this.$watch(
+        function () {
+          return self.$store.getters.msgRoom(self.mailto, 'time')
+        },
+        function () {
+          const message = self.$store.getters.msgRoom(self.mailto, 'data')
+          if (self.$store.state.socket.isConnected && message) {
+            self.appendMessage(message)
+          } else {
+            self.$refs.loader.loadMore({ force: true })
+          }
+          self.screenScroll()
+          self.clearUnreadCount()
+        }
+      )
+    },
+    handleScrollUp() {
+      this.$refs.loader.loadBefore()
+    },
     handleMessageLoad({ data, args }) {
       this.$nextTick(() => {
         if (args.is_up === 1) {
+          data.result.map(_ => _).reverse().map(msg => {
+            this.appendMessage(msg, false)
+          })
+          this.screenScroll(false)
+        } else {
           data.result.map(msg => {
             this.appendMessage(msg)
           })
-          this.$nextTick(() => {
-            this.$refs.scroll.scrollTo(0, this.$refs.wrap.clientHeight - this.$refs.room.$el.clientHeight)
-          })
+          this.screenScroll()
         }
       })
+    },
+    screenScroll(forceBottom = true) {
+      this.$refs.scroll.refresh()
+        .then(() => {
+          const newChatsHeight = this.$refs.room.$el.clientHeight
+          if (this.lastChatsHeight && !forceBottom) {
+            this.$refs.scroll.scrollTo(0, this.lastChatsHeight - newChatsHeight)
+          } else {
+            this.$refs.scroll.scrollTo(0, this.$refs.wrap.clientHeight - newChatsHeight)
+          }
+          this.lastChatsHeight = newChatsHeight
+        })
     },
     appendMessage(msg, insertToAfter = true) {
       this.$refs.room.addMessage({
@@ -289,6 +342,7 @@ export default {
             id: msg.id
           })
           this.$refs.loader.append(msg)
+          this.screenScroll()
         })
         .catch(() => {
           this.$refs.room.updateMessage(randomId, {
