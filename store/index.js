@@ -178,8 +178,5 @@ export const actions = {
 export const getters = {
   isMine: state => slug => {
     return state.isAuth ? state.user.slug === slug : false
-  },
-  msgRoom: state => (channel, key) => {
-    return state.messageRoom[channel][key]
   }
 }

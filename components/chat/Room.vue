@@ -129,7 +129,7 @@
         sort="asc"
         :query="query"
         :callback="handleMessageLoad"
-        :cache-timeout="0"
+        :cache-timeout="86400000"
         :auto="0"
         class="room-body"
       >
@@ -256,10 +256,10 @@ export default {
       const self = this
       this.$watch(
         function () {
-          return self.$store.getters.msgRoom(self.mailto, 'time')
+          return self.$store.state.messageRoom[self.mailto].time
         },
         function () {
-          const message = self.$store.getters.msgRoom(self.mailto, 'data')
+          const message = self.$store.state.messageRoom[self.mailto].data
           if (self.$store.state.socket.isConnected && message) {
             self.appendMessage(message)
           } else {
@@ -271,7 +271,7 @@ export default {
       )
     },
     handleScrollUp() {
-      this.$refs.loader.loadBefore()
+      this.$refs.loader.loadBefore({ force: true })
     },
     handleMessageLoad({ data, args }) {
       this.$nextTick(() => {

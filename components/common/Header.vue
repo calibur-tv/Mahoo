@@ -299,7 +299,7 @@ export default {
         if (Date.now() - lastMoveAt < 60000) {
           this.$store.dispatch('refreshMailbox')
         }
-      }, 10000)
+      }, 30000)
     }
   }
 }
