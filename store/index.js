@@ -83,7 +83,12 @@ export const mutations = {
   SET_MESSAGE_MENU(state, menu) {
     const result = []
     menu.forEach(item => {
-      if (!state.messageRoom[item.channel]) {
+      if (state.messageRoom[item.channel]) {
+        Vue.set(state.messageRoom, item.channel, {
+          time: randomStr(),
+          data: null
+        })
+      } else {
         Vue.set(state.messageRoom, item.channel, {
           time: '',
           data: null
@@ -113,6 +118,14 @@ export const mutations = {
     Vue.set(state.messageRoom, channel, {
       time: '',
       data: null
+    })
+  },
+  CLEAR_NOTIFICATION(state, { channel, count }) {
+    state.messageMenu.list.forEach((item, index) => {
+      if (item.channel === channel) {
+        state.messageMenu.list[index].count -= count
+        state.mailbox.unread_message_total -= count
+      }
     })
   }
 }
@@ -165,5 +178,8 @@ export const actions = {
 export const getters = {
   isMine: state => slug => {
     return state.isAuth ? state.user.slug === slug : false
+  },
+  msgRoom: state => (channel, key) => {
+    return state.messageRoom[channel][key]
   }
 }

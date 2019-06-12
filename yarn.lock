@@ -6298,10 +6298,10 @@ object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-oh-my-chat@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/oh-my-chat/-/oh-my-chat-1.0.8.tgz#8cc03d7c8d1ea4c3d7e0b851256f004e1a18410e"
-  integrity sha512-WNDql1RNuK5J7hT5dCTUFX3fcDZ+TAjdVv3tDYSgmXVZ2DPdaHm2u3h1/OPsjue8XKhQlsGAzzzRTpsrUhhSWw==
+oh-my-chat@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/oh-my-chat/-/oh-my-chat-1.0.9.tgz#45c8202d88ca00864143f098e4b0cd3b00de4e3f"
+  integrity sha512-012aKw13RbSuRiKwKFSphiLLvndw4WAIJOuoElgMWHPLP5dm32Vqt6EqAx0+CKf7U3UJXFVTG5fqW62r0z7IlA==
   dependencies:
     vue "^2.6.10"
 
@@ -9127,10 +9127,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.12:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.12.tgz#34b645d0b346abf84b9327346d7e4cecf0325cd4"
-  integrity sha512-D0WH+V5aO0kKOUvmYAJLjEPBnvNtdt4gA9r1tkSGCKorWBXtha8oiOtBnoTCiHRdQGqEfdLV9gli3a/+FSb8vA==
+v-switcher@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.14.tgz#0a6373d8fcb929f185aca4cfefd96fe281550595"
+  integrity sha512-kc+Vl7jqUBHZTSVHWCFwT9DtK0b0ylpg61U8/XC0SKD4NaTW8nbbR4FoA09BZXTnP6ivuCD8T2sqMUWDLMKzUA==
   dependencies:
     vue "^2.6.6"
 
@@ -9211,10 +9211,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.5.tgz#68b52f9421a7ce3c3628fafe7a57e0deda1eb572"
-  integrity sha512-oTRbT6v/dLIHp4JZgKT/2TF8yqF1XsMIaAfyBPnQuvgb6YGC7rHajgWTsuqaCkn3qfJkbGCvIFCLdPEjX2D7yg==
+vue-mixin-store@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.8.tgz#70b469fabdbd4090263f032230ed96fcd1360e38"
+  integrity sha512-+B7Ukvs/pPO52ulrSeoJtMdCnE1tDGVvyxrRaN/uExdHlLfBbdmbC0cx84dS6MkKL73WVKG5mneklBQvWMKi2g==
   dependencies:
     throttle-debounce "^2.1.0"
 

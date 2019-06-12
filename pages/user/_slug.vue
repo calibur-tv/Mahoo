@@ -222,7 +222,7 @@
       <v-switcher
         :headers="headers"
         :routable="true"
-        :item-height="66"
+        :header-height="66"
         anchor-trigger="hover"
         align="start"
       >
@@ -361,15 +361,9 @@ export default {
         result = result.concat([
           {
             name: '消息',
-            icon: 'message_fill',
-            color: '#23c9ed',
-            route: `/user/${this.slug}/message`
-          },
-          {
-            name: '通知',
             icon: 'remind_fill',
             color: '#ff5d47',
-            route: `/user/${this.slug}/notice`
+            route: `/user/${this.slug}/message`
           },
           {
             name: '设置',

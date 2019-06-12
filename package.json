@@ -32,11 +32,11 @@
     "mint-ui": "^2.2.13",
     "normalize.css": "^8.0.1",
     "nuxt": "2.8.1",
-    "oh-my-chat": "^1.0.8",
+    "oh-my-chat": "^1.0.9",
     "redis": "^2.8.0",
     "throttle-debounce": "^2.1.0",
-    "v-switcher": "^1.0.12",
-    "vue-mixin-store": "1.1.5",
+    "v-switcher": "^1.0.14",
+    "vue-mixin-store": "1.1.8",
     "vue-native-websocket": "^2.0.13"
   },
   "devDependencies": {
