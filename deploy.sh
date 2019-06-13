@@ -4,8 +4,8 @@
 set -e
 
 # 切换分支
-git checkout master
-git pull origin dev
+# git checkout master
+# git pull origin dev
 
 # 构建
 npm run build
@@ -13,9 +13,7 @@ npm run upload
 
 git add -A
 git commit -m 'deploy'
-
-# 部署到 https://<USERNAME>.github.io/<REPO>
 git push origin master
 
 # 切回分支
-git checkout dev
+# git checkout dev

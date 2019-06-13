@@ -20,7 +20,12 @@
       <user-avatar :user="user" />
     </div>
     <div class="control">
-      <user-follow-btn v-model="action" :slug="user.slug" @change="handleFollowAction" />
+      <user-follow-btn
+        v-if="relation !== 'follower'"
+        v-model="action"
+        :slug="user.slug"
+        @change="handleFollowAction"
+      />
       <send-mail-btn :slug="user.slug" />
     </div>
     <div class="intro">

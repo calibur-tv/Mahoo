@@ -274,10 +274,10 @@
               签到
             </h3>
             <daily-sign-btn v-model="user" />
-            <template v-if="user.sign.total_sign_count">
+            <template>
               <p>总签到次数：{{ user.sign.total_sign_count }}次</p>
-              <p>共连续签到：{{ user.sign.total_sign_count }}次</p>
-              <p>最后签到于：{{ $utils.time.from(user.sign.latest_signed_at) }}</p>
+              <p>连续签到数：{{ user.sign.total_sign_count }}次</p>
+              <p>最后签到于：{{ user.sign.total_sign_count ? $utils.time.from(user.sign.latest_signed_at) : '未签到' }}</p>
             </template>
           </aside>
         </el-col>
