@@ -6303,10 +6303,10 @@ object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-oh-my-chat@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/oh-my-chat/-/oh-my-chat-1.0.9.tgz#45c8202d88ca00864143f098e4b0cd3b00de4e3f"
-  integrity sha512-012aKw13RbSuRiKwKFSphiLLvndw4WAIJOuoElgMWHPLP5dm32Vqt6EqAx0+CKf7U3UJXFVTG5fqW62r0z7IlA==
+oh-my-chat@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/oh-my-chat/-/oh-my-chat-1.0.10.tgz#379ac0d1bd66d995a5a06f50cbf19af0a42da4be"
+  integrity sha512-VhPbkuqBj2yZcIJeSuTDnaJz+JD+wYoJcAW13Qh42EZKJysjfqRd4OE8Dve/T/C4yLXqqxRIVImvhIG3ecvBuw==
   dependencies:
     vue "^2.6.10"
 
@@ -9216,10 +9216,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.8.tgz#70b469fabdbd4090263f032230ed96fcd1360e38"
-  integrity sha512-+B7Ukvs/pPO52ulrSeoJtMdCnE1tDGVvyxrRaN/uExdHlLfBbdmbC0cx84dS6MkKL73WVKG5mneklBQvWMKi2g==
+vue-mixin-store@1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.10.tgz#d765aacdafaef3a887da056b7f098554ac0870ca"
+  integrity sha512-rw1NjOMCXmRcIal2isJyCdMLZUOmhrtFfzXx1ekaBaoMl0hvaM1c6L2/J99Zb8Uhcy1b3x9vOTwq2Yf/Z64r0A==
   dependencies:
     throttle-debounce "^2.1.0"
 

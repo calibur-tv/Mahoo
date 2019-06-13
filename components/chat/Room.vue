@@ -194,7 +194,8 @@ export default {
     return {
       message: '',
       target: null,
-      chatsHeight: 0
+      chatsHeight: 0,
+      stopWatcher: null
     }
   },
   computed: {
@@ -233,6 +234,7 @@ export default {
   methods: {
     initRoom() {
       this.$nextTick(async () => {
+        this.$refs.room && this.$refs.room.clearMessage()
         await this.$refs.loader.initData()
         await this.$refs.loader.loadMore({ force: true })
         this.clearUnreadCount()
@@ -252,13 +254,22 @@ export default {
         count: menu.count
       })
     },
+    switchRoom() {
+      this.stopWatcher()
+      this.initRoom()
+    },
     watchMessageLoop() {
       const self = this
-      this.$watch(
+      const roomId = self.mailto
+      this.stopWatcher = this.$watch(
         function () {
           return self.$store.state.messageRoom[self.mailto].time
         },
         function () {
+          if (roomId !== self.mailto) {
+            this.switchRoom()
+            return
+          }
           const message = self.$store.state.messageRoom[self.mailto].data
           if (self.$store.state.socket.isConnected && message) {
             self.appendMessage(message)
@@ -289,6 +300,9 @@ export default {
       })
     },
     screenScroll(forceBottom = true) {
+      if (!this.$refs.scroll) {
+        return
+      }
       this.$refs.scroll.refresh()
         .then(() => {
           const newChatsHeight = this.$refs.room.$el.clientHeight
