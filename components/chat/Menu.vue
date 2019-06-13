@@ -181,7 +181,7 @@ export default {
         getUserRelation({
           $axios: this.$axios,
           slug: this.slug,
-          relation: 'friends'
+          relation: 'friend'
         })
           .then(data => {
             data.result.forEach(user => setUserSessionStore(user))

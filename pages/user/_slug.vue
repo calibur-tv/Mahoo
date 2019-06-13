@@ -142,6 +142,17 @@
     padding: 15px 20px;
     margin-bottom: 10px;
     overflow: hidden;
+
+    .title {
+      color: #000;
+      border-bottom: 1px solid #e5e9ef;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 0;
+      margin: -15px 0 10px;
+      height: 45px;
+      line-height: 45px;
+    }
   }
 
   .v-switcher-vertical {
@@ -214,7 +225,6 @@
           v-if="user"
           class="actions"
         >
-          <daily-sign-btn v-model="user" />
           <user-follow-btn v-model="user.social.relation" :slug="slug" @change="handleFollowAction" />
           <send-mail-btn :slug="slug" />
         </div>
@@ -259,8 +269,16 @@
           </section>
         </el-col>
         <el-col :span="7">
-          <aside class="user-section">
-            6
+          <aside v-if="user" class="user-section">
+            <h3 class="title">
+              签到
+            </h3>
+            <daily-sign-btn v-model="user" />
+            <template v-if="user.sign.total_sign_count">
+              <p>总签到次数：{{ user.sign.total_sign_count }}次</p>
+              <p>共连续签到：{{ user.sign.total_sign_count }}次</p>
+              <p>最后签到于：{{ $utils.time.from(user.sign.latest_signed_at) }}</p>
+            </template>
           </aside>
         </el-col>
       </el-row>

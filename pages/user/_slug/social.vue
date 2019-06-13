@@ -23,7 +23,7 @@
         </v-switcher>
       </el-col>
       <el-col :span="18">
-        <nuxt-child />
+        <nuxt-child :slug="slug" />
       </el-col>
     </el-row>
   </div>
