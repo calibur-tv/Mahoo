@@ -7,6 +7,7 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    box-shadow: 0 0 0 1px #edf2f9;
   }
 }
 </style>
@@ -23,6 +24,7 @@
     v-else
     :style="{ width: `${size}px`, height: `${size}px` }"
     :to="$alias.user(user.slug)"
+    target="_blank"
     class="user-avatar"
   >
     <img class="avatar" :src="$resize(avatar || user.avatar, { width: size })" :alt="user.nickname">

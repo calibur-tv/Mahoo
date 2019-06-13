@@ -84,9 +84,14 @@
     }
 
     .v-switcher {
-      padding: 0 20px;
-
       &-header {
+        &-wrap {
+          background-color: #fff;
+          padding: 0 20px;
+          box-shadow: 0 0 0 1px #eee;
+          border-radius: 0 0 4px 4px;
+        }
+
         &-anchor {
           height: 3px;
           bottom: 0;
@@ -233,6 +238,7 @@
         :headers="headers"
         :routable="true"
         :header-height="66"
+        :fixed-top="50"
         anchor-trigger="hover"
         align="start"
       >
@@ -268,8 +274,17 @@
             <nuxt-child :user="user" />
           </section>
         </el-col>
-        <el-col :span="7">
-          <aside v-if="user" class="user-section">
+        <el-col v-if="user" :span="7">
+          <aside class="user-section">
+            <h3 class="title">
+              钱包
+            </h3>
+            <template>
+              <p>团子：{{ user.balance.coin }}</p>
+              <p>光玉：{{ user.balance.money }}</p>
+            </template>
+          </aside>
+          <aside class="user-section">
             <h3 class="title">
               签到
             </h3>

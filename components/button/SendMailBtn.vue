@@ -4,6 +4,9 @@
 <template>
   <el-button
     class="send-mail-btn"
+    type="info"
+    round
+    plain
     @click="toMessage"
   >
     发消息

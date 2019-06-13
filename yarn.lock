@@ -710,24 +710,24 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@better-scroll/core@^2.0.0-alpha.13":
-  version "2.0.0-alpha.13"
-  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.0.0-alpha.13.tgz#a34b302e70ccf17afb601b8410e3cbd6f6b2d041"
-  integrity sha512-8PnGlAto+xhIQc+DRBSiAS0USm+p78EsgeIiNjQzrYZcIlA2BUzdBo00kvBqGm+ht/Mwfwjtz8s38smycG5VvA==
+"@better-scroll/core@^2.0.0-alpha.14":
+  version "2.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.0.0-alpha.14.tgz#8728377afbb4ef7a2b03a01fe6263ec3dcbff0ab"
+  integrity sha512-wKz3iZxWvRJzvVFcovILbTzmLq6jINuGzke4w/ANSv1SAr/VikaGhkox0Mnr2jhABJkmq8WdYSxuvn9GegS4Mg==
   dependencies:
-    "@better-scroll/shared-utils" "^2.0.0-alpha.13"
+    "@better-scroll/shared-utils" "^2.0.0-alpha.14"
 
-"@better-scroll/mouse-wheel@^2.0.0-alpha.13":
-  version "2.0.0-alpha.13"
-  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.0.0-alpha.13.tgz#7c4fc2d9dc026d95c2846a4f1b54ea8fd900b59e"
-  integrity sha512-FIHFN7L7cWWp1bBCrmjsZ+tNx9h4ZVdI0Ln8sj/Q+e17FNEAv7vIQl0YuVexBl2hUJmM+3jGg7sJtuMIfdBCbQ==
+"@better-scroll/mouse-wheel@^2.0.0-alpha.14":
+  version "2.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.0.0-alpha.14.tgz#5a1b62fb36c9b9ff4acd0fa065a3b11cae3a47be"
+  integrity sha512-hPg/bRJuDDocXFKiTcpDrltHYFN2/g93Uh57XsuHQ4D9XrSMqnCcsrGaI2uJ9DKAx8ETt/jI64DgCp3CssGC+w==
   dependencies:
-    "@better-scroll/core" "^2.0.0-alpha.13"
+    "@better-scroll/core" "^2.0.0-alpha.14"
 
-"@better-scroll/shared-utils@^2.0.0-alpha.13":
-  version "2.0.0-alpha.13"
-  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.0-alpha.13.tgz#b2a817c3ef3bb7a576b47902ab6c4732992d0671"
-  integrity sha512-6tqSfs1BHE8L9bZQKIXMTz3b094PZNROgSvPnclWRvgw93hwpG+YwOzTRjoXU9CNhXrgX0eeJP74oAH2fgy11A==
+"@better-scroll/shared-utils@^2.0.0-alpha.14":
+  version "2.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.0-alpha.14.tgz#d0343463c65219de022cf4f378205f97974b7544"
+  integrity sha512-vqRLtpl1dTIeoIz3ehGiTY+4c9EEvFHHw+jv/tSdd5EHedyQy0CzZtlzCoHdUg7Opwj3cIFeB3vO4EQNslOR1Q==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -4287,10 +4287,10 @@ gaze@^1.0.0:
   dependencies:
     globule "^1.0.0"
 
-geetest-captcha@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.npm.taobao.org/geetest-captcha/download/geetest-captcha-1.0.9.tgz#24d4f6396668ff4cfd3af9fc9505eccb53c8189f"
-  integrity sha1-JNT2OWZo/0z9Ovn8lQXsy1PIGJ8=
+geetest-captcha@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/geetest-captcha/-/geetest-captcha-1.1.1.tgz#0cd4afc3788dfe2f9a1a5c875ec43f1341b3655b"
+  integrity sha512-z92hpew433HiIyXOuhzDz6BYykYHiOGGdSEpG7B8u+VULVkbKYUA77nymdJW/z5azeQL/QgDQU5C8uI9wGO3Ig==
 
 generic-pool@2.2.1:
   version "2.2.1"
@@ -9132,10 +9132,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.14:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.14.tgz#0a6373d8fcb929f185aca4cfefd96fe281550595"
-  integrity sha512-kc+Vl7jqUBHZTSVHWCFwT9DtK0b0ylpg61U8/XC0SKD4NaTW8nbbR4FoA09BZXTnP6ivuCD8T2sqMUWDLMKzUA==
+v-switcher@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.15.tgz#10125b785cd4222e968576181687ee7f8dd01156"
+  integrity sha512-+Vg8aRw4nxBnfPyaJmzRVJiIjSUnNCjLO1XAXsIWJnda0UQz7cInAgAX000IPOzQS8JGzLRbU6qRR+efDGk0LQ==
   dependencies:
     vue "^2.6.6"
 

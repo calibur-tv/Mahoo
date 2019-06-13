@@ -2,6 +2,9 @@
   <el-button
     :loading="loading"
     class="user-fff-btn"
+    round
+    type="primary"
+    :plain="action !== 'stranger'"
     @click="handleFollowClick"
   >
     <span v-text="btnText" />

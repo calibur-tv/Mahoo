@@ -6,7 +6,7 @@
     left: 0;
     top: 0;
     height: $page-header-hgt;
-    z-index: 3;
+    z-index: 11;
     box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
     background-color: #fff;
 

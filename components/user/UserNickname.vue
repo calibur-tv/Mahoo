@@ -3,6 +3,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: color .2s ease,background-color .2s ease;
+
+  &:hover {
+    color: $color-main;
+  }
+
   @media (min-width: 768px) {
     float: left;
   }
@@ -84,6 +90,7 @@
     <nuxt-link
       v-else
       :to="$alias.user(user.slug)"
+      target="_blank"
       class="user-nickname"
     >
       <div class="nickname">

@@ -18,8 +18,8 @@
     "test": "echo 1"
   },
   "dependencies": {
-    "@better-scroll/core": "^2.0.0-alpha.13",
-    "@better-scroll/mouse-wheel": "^2.0.0-alpha.13",
+    "@better-scroll/core": "^2.0.0-alpha.14",
+    "@better-scroll/mouse-wheel": "^2.0.0-alpha.14",
     "@nuxtjs/axios": "^5.5.4",
     "@nuxtjs/pwa": "^3.0.0-beta.16",
     "cache-manager": "^2.9.1",
@@ -27,7 +27,7 @@
     "cross-env": "^5.2.0",
     "dayjs": "^1.8.14",
     "element-ui": "^2.9.1",
-    "geetest-captcha": "^1.0.9",
+    "geetest-captcha": "^1.1.1",
     "js-cookie": "^2.2.0",
     "koa": "^2.6.2",
     "mint-ui": "^2.2.13",
@@ -36,7 +36,7 @@
     "oh-my-chat": "^1.0.9",
     "redis": "^2.8.0",
     "throttle-debounce": "^2.1.0",
-    "v-switcher": "^1.0.14",
+    "v-switcher": "^1.0.15",
     "vue-mixin-store": "1.1.8",
     "vue-native-websocket": "^2.0.13"
   },
