@@ -19,7 +19,7 @@ export default {
     value: {
       type: String,
       default: 'unknown',
-      validator: val => ~['unknown', 'self', 'friends', 'followed', 'following', 'stranger'].indexOf(val)
+      validator: val => ~['unknown', 'self', 'friend', 'follower', 'following', 'stranger'].indexOf(val)
     }
   },
   data() {
@@ -35,9 +35,9 @@ export default {
           return '关注'
         case 'self':
           return '关注'
-        case 'friends':
+        case 'friend':
           return '互相关注'
-        case 'followed':
+        case 'follower':
           return '关注了我'
         case 'following':
           return '已关注'
@@ -71,7 +71,7 @@ export default {
         this.$toast.info('不能关注自己')
         return
       }
-      if (this.action === 'followed' || this.action === 'stranger') {
+      if (this.action === 'follower' || this.action === 'stranger') {
         this.submit()
         return
       }
@@ -88,7 +88,7 @@ export default {
           this.$channel.$emit(`user-follow-${this.slug}`, relation)
           this.$emit('change', {
             relation,
-            change: (relation === 'friends' || relation === 'following') ? 1 : -1
+            change: (relation === 'friend' || relation === 'following') ? 1 : -1
           })
           this.loading = false
         })

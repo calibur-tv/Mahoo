@@ -10,45 +10,47 @@
   .nickname {
     overflow: hidden;
   }
+}
+</style>
 
-  .title {
-    flex-shrink: 0;
-    margin-left: 5px;
-  }
+<style lang="scss" module>
+.title {
+  flex-shrink: 0;
+  margin-left: 5px;
+}
 
-  .ic-sex {
-    width: 18px;
-    height: 18px;
-    display: block;
-    font-size: 12px;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 18px;
-    font-weight: bold;
-  }
+.ic-sex {
+  width: 18px;
+  height: 18px;
+  display: block;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  font-weight: bold;
+}
 
-  .ic-level {
-    display: block;
-    background-color: $color-orange;
-    color: #fff;
-    padding: 0 5px;
-    border-radius: 4px;
-    font-size: 12px;
-    height: 16px;
-    line-height: 16px;
-  }
+.ic-level {
+  display: block;
+  background-color: $color-orange;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  height: 16px;
+  line-height: 16px;
+}
 
-  .ic-title {
-    display: block;
-    background-color: $color-main;
-    color: #fff;
-    padding: 0 5px;
-    border-radius: 4px;
-    font-size: 12px;
-    height: 16px;
-    line-height: 16px;
-  }
+.ic-title {
+  display: block;
+  background-color: $color-main;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 4px;
+  font-size: 12px;
+  height: 16px;
+  line-height: 16px;
 }
 </style>
 
@@ -63,19 +65,19 @@
       </div>
       <span
         v-if="sex"
-        class="title"
+        :class="$style.title"
       >
-        <i class="iconfont ic-sex" :class="`ic-${sexClass.name}`" :style="{ backgroundColor: sexClass.color }" />
+        <i class="iconfont" :class="[$style['ic-sex'], `ic-${sexClass.name}`]" :style="{ backgroundColor: sexClass.color }" />
       </span>
       <span
         v-if="level"
-        class="title ic-level"
+        :class="[$style.title, $style['ic-level']]"
         v-text="`Lv${user.level}`"
       />
       <span
         v-for="(item, index) in user.roles"
         :key="index"
-        class="title ic-title"
+        :class="[$style.title, $style['ic-title']]"
         v-text="item"
       />
     </div>
@@ -89,19 +91,19 @@
       </div>
       <span
         v-if="sex"
-        class="title"
+        :class="$style.title"
       >
-        <i class="iconfont ic-sex" :class="`ic-${sexClass.name}`" :style="{ backgroundColor: sexClass.color }" />
+        <i class="iconfont" :class="[$style['ic-sex'], `ic-${sexClass.name}`]" :style="{ backgroundColor: sexClass.color }" />
       </span>
       <span
         v-if="level"
-        class="title ic-level"
+        :class="[$style.title, $style['ic-level']]"
         v-text="`Lv${user.level}`"
       />
       <span
         v-for="(item, index) in user.title"
         :key="index"
-        class="title ic-title"
+        :class="[$style.title, $style['ic-title']]"
         v-text="item"
       />
     </nuxt-link>
