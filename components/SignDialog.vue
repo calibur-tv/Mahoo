@@ -58,7 +58,7 @@ $input-height: 40px;
         height: $input-height;
         font-size: 12px;
         padding: 8px 12px;
-        color: $color-text-deep;
+        color: $color-text-1;
       }
 
       .captcha {
@@ -132,7 +132,7 @@ $input-height: 40px;
         top: 0;
         width: $input-height;
         height: $input-height;
-        color: $color-gray-deep;
+        color: $color-gray-1;
       }
     }
 
@@ -146,7 +146,7 @@ $input-height: 40px;
         input[type='password'],
         input[type='number'] {
           border-radius: 4px;
-          border: 1px solid $color-gray-deep;
+          border: 1px solid $color-gray-1;
         }
 
         input[type='checkbox'] {
@@ -162,7 +162,7 @@ $input-height: 40px;
 
       .form {
         border-radius: 4px;
-        border: 1px solid $color-gray-deep;
+        border: 1px solid $color-gray-1;
         overflow: hidden;
 
         > div {
@@ -173,7 +173,7 @@ $input-height: 40px;
       input {
         width: 100%;
         border: 0;
-        border-bottom: 1px solid $color-gray-normal;
+        border-bottom: 1px solid $color-gray-2;
 
         &.last-input {
           border-bottom: 0;
@@ -188,7 +188,7 @@ $input-height: 40px;
       height: $input-height;
       padding: 0 10px;
       font-size: 12px;
-      color: $color-text-normal;
+      color: $color-text-1;
     }
   }
 }

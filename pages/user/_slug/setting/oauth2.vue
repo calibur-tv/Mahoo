@@ -10,18 +10,18 @@
 
     i {
       font-size: 24px;
-      color: $color-gray-deep;
+      color: $color-gray-1;
       cursor: pointer;
     }
 
     .ic-qq.is-bind,
     .ic-qq:hover {
-      color: #3194d0;
+      color: $color-blue;
     }
 
     .ic-v-chat.is-bind,
     .ic-v-chat:hover {
-      color: #42c02e;
+      color: $color-green;
     }
 
     .ic-phone.is-bind,

@@ -40,8 +40,6 @@
 
   .main-wrap {
     background-color: #f6f6f6;
-    height: 100vh;
-    overflow-y: auto;
     padding: 20px;
     box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
     margin-top: -$page-header-hgt;
@@ -57,32 +55,34 @@
         class="left-aside"
         :span="5"
       >
-        <ul
-          v-if="parent"
-          class="parent-node"
-        >
-          <li class="node">
-            <nuxt-link :to="`/tag/${parent.slug}`">
-              <img :src="$resize(parent.avatar, { width: 32 })" :alt="parent.name">
-              <span v-text="parent.name" />
-            </nuxt-link>
-          </li>
-        </ul>
-        <ul
-          v-if="children.length"
-          class="child-node"
-        >
-          <li
-            v-for="item in children.slice(0, 10)"
-            :key="item.slug"
-            class="node"
+        <affix :top="50">
+          <ul
+            v-if="parent"
+            class="parent-node"
           >
-            <nuxt-link :to="`/tag/${item.slug}`">
-              <img :src="$resize(item.avatar, { width: 32 })" :alt="item.name">
-              <span v-text="item.name" />
-            </nuxt-link>
-          </li>
-        </ul>
+            <li class="node">
+              <nuxt-link :to="`/tag/${parent.slug}`">
+                <img :src="$resize(parent.avatar, { width: 32 })" :alt="parent.name">
+                <span v-text="parent.name" />
+              </nuxt-link>
+            </li>
+          </ul>
+          <ul
+            v-if="children.length"
+            class="child-node"
+          >
+            <li
+              v-for="item in children.slice(0, 10)"
+              :key="item.slug"
+              class="node"
+            >
+              <nuxt-link :to="`/tag/${item.slug}`">
+                <img :src="$resize(item.avatar, { width: 32 })" :alt="item.name">
+                <span v-text="item.name" />
+              </nuxt-link>
+            </li>
+          </ul>
+        </affix>
       </el-col>
       <el-col :span="14" class="main-wrap">
         <p>当前标签</p>
@@ -189,28 +189,30 @@
         <p>123</p>
       </el-col>
       <el-col :span="5">
-        <div class="panel">
-          当前标签活跃用户
-        </div>
-        <div class="panel">
-          <button @click="createTag">
-            添加子标签
-          </button>
-          <button @click="combineTag">
-            合并标签
-          </button>
-          <button @click="deleteTag">
-            删除标签
-          </button>
-          <button @click="relinkTag">
-            修改父节点
-          </button>
-          <nuxt-link :to="$alias.tag(slug, 'edit')">
-            <button>
-              更新标签
+        <affix :top="50">
+          <div class="panel">
+            当前标签活跃用户
+          </div>
+          <div class="panel">
+            <button @click="createTag">
+              添加子标签
             </button>
-          </nuxt-link>
-        </div>
+            <button @click="combineTag">
+              合并标签
+            </button>
+            <button @click="deleteTag">
+              删除标签
+            </button>
+            <button @click="relinkTag">
+              修改父节点
+            </button>
+            <nuxt-link :to="$alias.tag(slug, 'edit')">
+              <button>
+                更新标签
+              </button>
+            </nuxt-link>
+          </div>
+        </affix>
       </el-col>
     </el-row>
   </div>
@@ -218,10 +220,13 @@
 
 <script>
 import * as API from '~/api/tagApi'
+import Affix from '~/components/common/Affix'
 
 export default {
   name: 'TagShow',
-  components: {},
+  components: {
+    Affix
+  },
   head() {
     const { tag } = this
     return {

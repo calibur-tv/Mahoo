@@ -99,7 +99,7 @@ module.exports = {
   css: [
     'normalize.css',
     '~/assets/css/global.scss',
-    '~/theme/index.css'
+    '~/assets/css/theme.scss'
   ],
 
   /*

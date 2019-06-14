@@ -15,7 +15,7 @@
       p {
         font-size: 14px;
         margin-top: 10px;
-        color: $color-text-normal;
+        color: $color-text-1;
       }
     }
   }

@@ -11,67 +11,40 @@ export default {
       preload: 1
     }
 
-    Vue.directive('v-lazy', {
+    Vue.directive('lazyload', {
       bind(el, binding) {
-        const src = el.getAttribute('src')
-        // 用于图片懒加载
-        if (!binding.value && src) {
-          // src设置为空 先阻止浏览器发出请求
-          el.setAttribute('src', '')
-
-          addList({ type: 'img', el, src })
-        }
-
-        if (typeof binding.value === 'function') {
-          addList({ type: 'fun', el, handler: binding.value })
-        }
-      },
-      update(el, binding) {
-        tProcess()
+        list.push({ el, handler: binding.value })
       },
       inserted() {
         tProcess()
       },
-      unbind(el, binding) {
-        removeList({ el })
+      update() {
+        tProcess()
+      },
+      unbind(el) {
+        removeList(el)
       }
     })
 
-    function addList(obj) {
-      list.push(obj)
-    }
-
-    function removeList(obj) {
+    const removeList = el => {
       for (let i = 0, len = list.length; i < len; i++) {
-        if (list[i] && list[i].el === obj.el) {
+        if (list[i] && list[i].el === el) {
           list.splice(i, 1)
+          break
         }
       }
     }
 
-    // 集中处理
-    function loadHandler(obj) {
+    const loadHandler = obj => {
       removeList(obj)
 
-      switch (obj.type) {
-        case 'img':
-          obj.el.setAttribute('src', obj.src)
-          break
-        case 'fun':
-          obj.handler()
-          break
-        default:break
-      }
-
-      tProcess()
+      obj.handler()
     }
 
-    // 运行并判断是否达到触发条件
-    function running() {
-      list.filter(_ => _ && checkInView(_.el, opt.preload)).map(loadHandler)
-    }
+    const running = () => list.filter(_ => _ && checkInView(_.el, opt.preload)).map(loadHandler)
 
     const tProcess = throttle(200, running);
+
     ['scroll', 'resize', 'load'].forEach(evt => {
       window.addEventListener(evt, () => {
         tProcess()

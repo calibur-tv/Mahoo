@@ -28,7 +28,7 @@
     right: 16px;
     top: 11px;
     font-size: 18px;
-    color: $color-gray-deep;
+    color: $color-gray-1;
   }
 
   .provider {
@@ -42,16 +42,16 @@
     i {
       font-size: 20px;
       vertical-align: middle;
-      color: $color-text-normal;
+      color: $color-text-1;
       cursor: pointer;
     }
 
     .ic-qq:hover {
-      color: #3194d0;
+      color: $color-blue;
     }
 
     .ic-v-chat:hover {
-      color: #42c02e;
+      color: $color-green;
     }
   }
 }

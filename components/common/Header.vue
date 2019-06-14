@@ -107,7 +107,7 @@
               width: 33px;
               height: 33px;
               border-radius: 50%;
-              border: 1px solid $color-gray-normal;
+              border: 1px solid $color-gray-1;
             }
           }
 
