@@ -1,16 +1,17 @@
 <template>
   <div id="user-social-friends">
     <flow-loader
+      ref="loader"
       func="getUserRelation"
       type="seenIds"
       :query="query"
+      :callback="detectUserRelation"
     >
       <ul slot-scope="{ flow }">
         <user-relation-item
           v-for="user in flow"
           :key="user.slug"
           :user="user"
-          relation="friend"
         />
       </ul>
     </flow-loader>
@@ -36,8 +37,34 @@ export default {
       return {
         $axios: this.$axios,
         slug: this.slug,
-        relation: 'friend'
+        relation: 'friend',
+        changing: 'slug'
       }
+    }
+  },
+  methods: {
+    detectUserRelation({ data }) {
+      const { result } = data
+      if (!result.length) {
+        return
+      }
+      this.$axios.$get('v1/user/detect_relation', {
+        params: {
+          type: 'user',
+          targets: result.map(_ => _.slug).join(',')
+        }
+      })
+        .then(data => {
+          const arr = []
+          Object.keys(data).forEach(slug => {
+            arr.push({
+              slug,
+              relation: data[slug]
+            })
+          })
+          this.$refs.loader.patch(arr)
+        })
+        .catch(() => {})
     }
   }
 }

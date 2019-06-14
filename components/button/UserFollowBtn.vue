@@ -37,7 +37,7 @@ export default {
         case 'unknown':
           return '关注'
         case 'self':
-          return '关注'
+          return '自己'
         case 'friend':
           return '互相关注'
         case 'follower':

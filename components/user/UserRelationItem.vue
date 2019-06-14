@@ -51,9 +51,8 @@
     </div>
     <div class="control">
       <user-follow-btn
-        v-model="action"
+        v-model="user.relation"
         :slug="user.slug"
-        @change="handleFollowAction"
       />
       <send-mail-btn :slug="user.slug" />
     </div>
@@ -78,20 +77,6 @@ export default {
     user: {
       type: Object,
       required: true
-    },
-    relation: {
-      type: String,
-      required: true
-    }
-  },
-  data() {
-    return {
-      action: this.relation
-    }
-  },
-  methods: {
-    handleFollowAction({ relation }) {
-      this.action = relation
     }
   }
 }
