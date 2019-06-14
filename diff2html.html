@@ -11,11 +11,24 @@
 </head>
 <body>
 <div id="wrap">
-  <div v-html="prettyHtml" />
+  <div>
+    <div v-html="prettyHtml" />
+  </div>
+  <input type="text" v-focus="testFunc">
 </div>
 <script>
     new Vue({
         el: '#wrap',
+        directives: {
+          focus: {
+            // 指令的定义
+            inserted: function (el, binding) {
+              el.focus()
+              console.log(binding)
+              console.log(binding.value)
+            }
+          }
+        },
         components: {
 
         },
@@ -38,7 +51,9 @@
 
         },
         methods : {
-
+          testFunc() {
+            console.log('123')
+          }
         }
      });
 </script>

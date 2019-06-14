@@ -23,3 +23,15 @@ export const randomStr = () => {
 }
 
 export const time = dayjs()
+
+export const checkInView = (dom, preload = 1) => {
+  if (!dom) {
+    return false
+  }
+  const rect = dom.getBoundingClientRect()
+  return (
+    rect.top < window.innerHeight + preload &&
+    rect.bottom + preload > 0 &&
+    (rect.left < window.innerWidth + preload && rect.right + preload > 0)
+  )
+}
