@@ -291,8 +291,8 @@
             <daily-sign-btn v-model="user" />
             <template>
               <p>总签到次数：{{ user.sign.total_sign_count }}次</p>
-              <p>连续签到数：{{ user.sign.total_sign_count }}次</p>
-              <p>最后签到于：{{ user.sign.total_sign_count ? $utils.time.from(user.sign.latest_signed_at) : '未签到' }}</p>
+              <p>连续签到数：{{ user.sign.continuous_sign_count }}次</p>
+              <p>最后签到于：{{ user.sign.latest_signed_at ? $utils.time.from(user.sign.latest_signed_at) : '未签到' }}</p>
             </template>
           </aside>
         </el-col>
