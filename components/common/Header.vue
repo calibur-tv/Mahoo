@@ -40,7 +40,7 @@
             display: block;
             padding: 0 12px;
             font-size: 15px;
-            line-height: 34px;
+            line-height: 40px;
             background-color: transparent;
             border-radius: 4px;
             color: #222;
@@ -197,7 +197,7 @@
                 <i class="iconfont ic-message" />
               </el-badge>
             </nuxt-link>
-            <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'notice')">
+            <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
               <el-badge :value="mailbox.unread_notice_total" :hidden="!mailbox.unread_notice_total">
                 <i class="iconfont ic-remind" />
               </el-badge>

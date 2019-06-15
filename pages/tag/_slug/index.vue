@@ -39,7 +39,7 @@
   }
 
   .main-wrap {
-    background-color: #f6f6f6;
+    background-color: $color-gray-bg;
     padding: 20px;
     box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
     margin-top: -$page-header-hgt;

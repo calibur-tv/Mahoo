@@ -1,6 +1,6 @@
 <style lang="scss">
 #user-layout {
-  background-color: #f6f6f6;
+  background-color: $color-gray-bg;
   min-height: 100vh;
 
   #user-panel {

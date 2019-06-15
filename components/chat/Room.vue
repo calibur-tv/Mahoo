@@ -362,6 +362,7 @@ export default {
           this.$refs.room.updateMessage(randomId, {
             status: 'error'
           })
+          this.screenScroll()
         })
     },
     handleNewLine() {
