@@ -190,10 +190,10 @@
       </el-col>
       <el-col :span="5">
         <affix :top="50">
-          <div class="panel">
+          <div>
             当前标签活跃用户
           </div>
-          <div class="panel">
+          <div>
             <button @click="createTag">
               添加子标签
             </button>

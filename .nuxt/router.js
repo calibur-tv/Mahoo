@@ -5,7 +5,7 @@ import { interopDefault } from './utils'
 const _503382da = () => interopDefault(import('../pages/create/index.vue' /* webpackChunkName: "pages/create/index" */))
 const _1ddbfdaa = () => interopDefault(import('../pages/create/index/atfield.vue' /* webpackChunkName: "pages/create/index/atfield" */))
 const _14bc4bbf = () => interopDefault(import('../pages/create/index/cosplay.vue' /* webpackChunkName: "pages/create/index/cosplay" */))
-const _a1e6bf44 = () => interopDefault(import('../pages/create/index/simple.vue' /* webpackChunkName: "pages/create/index/simple" */))
+const _1b0bf6c6 = () => interopDefault(import('../pages/create/index/daily.vue' /* webpackChunkName: "pages/create/index/daily" */))
 const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
 const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
 const _527cab04 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
@@ -122,10 +122,10 @@ export function createRouter() {
         props: false,
         name: "create-index-cosplay"
       }, {
-        path: "simple",
-        component: _a1e6bf44,
+        path: "daily",
+        component: _1b0bf6c6,
         props: false,
-        name: "create-index-simple"
+        name: "create-index-daily"
       }]
     }, {
       path: "/callback/auth-error",
