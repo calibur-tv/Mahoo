@@ -2,6 +2,11 @@
 .create-talk-form {
   $base-hgt: 75px;
 
+  .title-wrap {
+    padding-right: $base-hgt + 8px;
+    margin-bottom: 8px;
+  }
+
   .content-wrap {
     .submit-btn {
       float: right;
@@ -52,8 +57,15 @@
 
 <template>
   <div class="create-talk-form">
+    <div class="title-wrap">
+      <el-input
+        v-model="title"
+        placeholder="请输入标题（建议30字以内）"
+        maxlength="30"
+      />
+    </div>
     <div class="content-wrap">
-      <button class="submit-btn">
+      <button class="submit-btn" @click="submit">
         点击<br>发送
       </button>
       <div class="input-wrap">
@@ -62,9 +74,8 @@
           type="textarea"
           :autosize="{ minRows: 3 }"
           :show-word-limit="true"
-          resize="none"
-          maxlength="1000"
-          placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"
+          maxlength="10000"
+          placeholder="请输入正文（请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论）"
         />
       </div>
     </div>
@@ -114,6 +125,7 @@ export default {
   data() {
     return {
       uploadImageLimit: 9,
+      title: '',
       content: ''
     }
   },
@@ -126,6 +138,19 @@ export default {
       this.handleImageUploadSuccess(res, file)
       this.uploadImageList = this.uploadImageList.filter(_ => (_.status === 'success' && _.data.width >= 420 && _.data.height >= 420) || _.status !== 'success')
       this.uploadImageTotal = this.uploadImageList.length
+    },
+    submit() {
+      this.$axios.$post('v1/pin/create/daily', {
+        title: this.title,
+        content: this.content,
+        images: this.uploadImageList.map(_ => _.data)
+      })
+        .then(data => {
+          console.log(data)
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
     }
   }
 }
