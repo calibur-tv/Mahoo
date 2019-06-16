@@ -431,7 +431,9 @@
       <div class="logo">
         <img :src="$resize('default-poster', { width: 32 })" alt="calibur">
       </div>
-      <h1 class="title">calibur.tv is never gone.</h1>
+      <h1 class="title">
+        calibur.tv is never gone.
+      </h1>
     </div>
     <div class="display">
       <el-carousel :autoplay="false">
@@ -452,17 +454,17 @@
         <el-carousel-item :key="1">
           <div class="solar-syst-wrap">
             <div class="solar-syst">
-              <div class="sun"></div>
-              <div class="mercury"></div>
-              <div class="venus"></div>
-              <div class="earth"></div>
-              <div class="mars"></div>
-              <div class="jupiter"></div>
-              <div class="saturn"></div>
-              <div class="uranus"></div>
-              <div class="neptune"></div>
-              <div class="pluto"></div>
-              <div class="asteroids-belt"></div>
+              <div class="sun" />
+              <div class="mercury" />
+              <div class="venus" />
+              <div class="earth" />
+              <div class="mars" />
+              <div class="jupiter" />
+              <div class="saturn" />
+              <div class="uranus" />
+              <div class="neptune" />
+              <div class="pluto" />
+              <div class="asteroids-belt" />
             </div>
             <div class="desc">
               <p>组件名称：太阳系</p>
@@ -488,7 +490,9 @@
         <br>
         更多专业级动画特效敬请期待
       </div>
-      <p class="beian">互联网 ICP 备案：沪 ICP 备 17050785 号 - 1</p>
+      <p class="beian">
+        互联网 ICP 备案：沪 ICP 备 17050785 号 - 1
+      </p>
     </div>
   </div>
 </template>
