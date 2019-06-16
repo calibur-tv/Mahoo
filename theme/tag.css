@@ -1,0 +1,454 @@
+/* BEM support Func
+ -------------------------- */
+/* Element Chalk Variables */
+/* Transition
+-------------------------- */
+/* Color
+-------------------------- */
+/* 53a8ff */
+/* 66b1ff */
+/* 79bbff */
+/* 8cc5ff */
+/* a0cfff */
+/* b3d8ff */
+/* c6e2ff */
+/* d9ecff */
+/* ecf5ff */
+/* Link
+-------------------------- */
+/* Border
+-------------------------- */
+/* Fill
+-------------------------- */
+/* Typography
+-------------------------- */
+/* Size
+-------------------------- */
+/* z-index
+-------------------------- */
+/* Disable base
+-------------------------- */
+/* Icon
+-------------------------- */
+/* Checkbox
+-------------------------- */
+/* Radio
+-------------------------- */
+/* Select
+-------------------------- */
+/* Alert
+-------------------------- */
+/* MessageBox
+-------------------------- */
+/* Message
+-------------------------- */
+/* Notification
+-------------------------- */
+/* Input
+-------------------------- */
+/* Cascader
+-------------------------- */
+/* Group
+-------------------------- */
+/* Tab
+-------------------------- */
+/* Button
+-------------------------- */
+/* cascader
+-------------------------- */
+/* Switch
+-------------------------- */
+/* Dialog
+-------------------------- */
+/* Table
+-------------------------- */
+/* Pagination
+-------------------------- */
+/* Popup
+-------------------------- */
+/* Popover
+-------------------------- */
+/* Tooltip
+-------------------------- */
+/* Tag
+-------------------------- */
+/* Tree
+-------------------------- */
+/* Dropdown
+-------------------------- */
+/* Badge
+-------------------------- */
+/* Card
+--------------------------*/
+/* Slider
+--------------------------*/
+/* Steps
+--------------------------*/
+/* Menu
+--------------------------*/
+/* Rate
+--------------------------*/
+/* DatePicker
+--------------------------*/
+/* Loading
+--------------------------*/
+/* Scrollbar
+--------------------------*/
+/* Carousel
+--------------------------*/
+/* Collapse
+--------------------------*/
+/* Transfer
+--------------------------*/
+/* Header
+  --------------------------*/
+/* Footer
+--------------------------*/
+/* Main
+--------------------------*/
+/* Timeline
+--------------------------*/
+/* Backtop
+--------------------------*/
+/* Link
+--------------------------*/
+/* Calendar
+--------------------------*/
+/* Break-point
+--------------------------*/
+/* Break-points
+ -------------------------- */
+/* Scrollbar
+ -------------------------- */
+/* Placeholder
+ -------------------------- */
+/* BEM
+ -------------------------- */
+/* Element Chalk Variables */
+/* Transition
+-------------------------- */
+/* Color
+-------------------------- */
+/* 53a8ff */
+/* 66b1ff */
+/* 79bbff */
+/* 8cc5ff */
+/* a0cfff */
+/* b3d8ff */
+/* c6e2ff */
+/* d9ecff */
+/* ecf5ff */
+/* Link
+-------------------------- */
+/* Border
+-------------------------- */
+/* Fill
+-------------------------- */
+/* Typography
+-------------------------- */
+/* Size
+-------------------------- */
+/* z-index
+-------------------------- */
+/* Disable base
+-------------------------- */
+/* Icon
+-------------------------- */
+/* Checkbox
+-------------------------- */
+/* Radio
+-------------------------- */
+/* Select
+-------------------------- */
+/* Alert
+-------------------------- */
+/* MessageBox
+-------------------------- */
+/* Message
+-------------------------- */
+/* Notification
+-------------------------- */
+/* Input
+-------------------------- */
+/* Cascader
+-------------------------- */
+/* Group
+-------------------------- */
+/* Tab
+-------------------------- */
+/* Button
+-------------------------- */
+/* cascader
+-------------------------- */
+/* Switch
+-------------------------- */
+/* Dialog
+-------------------------- */
+/* Table
+-------------------------- */
+/* Pagination
+-------------------------- */
+/* Popup
+-------------------------- */
+/* Popover
+-------------------------- */
+/* Tooltip
+-------------------------- */
+/* Tag
+-------------------------- */
+/* Tree
+-------------------------- */
+/* Dropdown
+-------------------------- */
+/* Badge
+-------------------------- */
+/* Card
+--------------------------*/
+/* Slider
+--------------------------*/
+/* Steps
+--------------------------*/
+/* Menu
+--------------------------*/
+/* Rate
+--------------------------*/
+/* DatePicker
+--------------------------*/
+/* Loading
+--------------------------*/
+/* Scrollbar
+--------------------------*/
+/* Carousel
+--------------------------*/
+/* Collapse
+--------------------------*/
+/* Transfer
+--------------------------*/
+/* Header
+  --------------------------*/
+/* Footer
+--------------------------*/
+/* Main
+--------------------------*/
+/* Timeline
+--------------------------*/
+/* Backtop
+--------------------------*/
+/* Link
+--------------------------*/
+/* Calendar
+--------------------------*/
+/* Break-point
+--------------------------*/
+.el-tag {
+  background-color: #fff0f2;
+  border-color: #ffe1e6;
+  color: #ff6881;
+  display: inline-block;
+  height: 32px;
+  padding: 0 10px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #ff6881;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  white-space: nowrap; }
+  .el-tag.is-hit {
+    border-color: #ff6881; }
+  .el-tag .el-tag__close {
+    color: #ff6881; }
+    .el-tag .el-tag__close:hover {
+      color: #fff;
+      background-color: #ff6881; }
+  .el-tag.el-tag--info {
+    background-color: #f7f8f8;
+    border-color: #eff0f2;
+    color: #adb5bd; }
+    .el-tag.el-tag--info.is-hit {
+      border-color: #adb5bd; }
+    .el-tag.el-tag--info .el-tag__close {
+      color: #adb5bd; }
+      .el-tag.el-tag--info .el-tag__close:hover {
+        color: #fff;
+        background-color: #adb5bd; }
+  .el-tag.el-tag--success {
+    background-color: #e9faf5;
+    border-color: #d2f4ea;
+    color: #20c997; }
+    .el-tag.el-tag--success.is-hit {
+      border-color: #20c997; }
+    .el-tag.el-tag--success .el-tag__close {
+      color: #20c997; }
+      .el-tag.el-tag--success .el-tag__close:hover {
+        color: #fff;
+        background-color: #20c997; }
+  .el-tag.el-tag--warning {
+    background-color: #fff9e8;
+    border-color: #fef3d1;
+    color: #fcc419; }
+    .el-tag.el-tag--warning.is-hit {
+      border-color: #fcc419; }
+    .el-tag.el-tag--warning .el-tag__close {
+      color: #fcc419; }
+      .el-tag.el-tag--warning .el-tag__close:hover {
+        color: #fff;
+        background-color: #fcc419; }
+  .el-tag.el-tag--danger {
+    background-color: #fff0f0;
+    border-color: #ffe1e1;
+    color: #ff6b6b; }
+    .el-tag.el-tag--danger.is-hit {
+      border-color: #ff6b6b; }
+    .el-tag.el-tag--danger .el-tag__close {
+      color: #ff6b6b; }
+      .el-tag.el-tag--danger .el-tag__close:hover {
+        color: #fff;
+        background-color: #ff6b6b; }
+  .el-tag .el-icon-close {
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    top: -1px;
+    right: -5px; }
+    .el-tag .el-icon-close::before {
+      display: block; }
+  .el-tag--dark {
+    background-color: #ff6881;
+    border-color: #ff6881;
+    color: white; }
+    .el-tag--dark.is-hit {
+      border-color: #ff6881; }
+    .el-tag--dark .el-tag__close {
+      color: white; }
+      .el-tag--dark .el-tag__close:hover {
+        color: #fff;
+        background-color: #ff869a; }
+    .el-tag--dark.el-tag--info {
+      background-color: #adb5bd;
+      border-color: #adb5bd;
+      color: white; }
+      .el-tag--dark.el-tag--info.is-hit {
+        border-color: #adb5bd; }
+      .el-tag--dark.el-tag--info .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--info .el-tag__close:hover {
+          color: #fff;
+          background-color: #bdc4ca; }
+    .el-tag--dark.el-tag--success {
+      background-color: #20c997;
+      border-color: #20c997;
+      color: white; }
+      .el-tag--dark.el-tag--success.is-hit {
+        border-color: #20c997; }
+      .el-tag--dark.el-tag--success .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--success .el-tag__close:hover {
+          color: #fff;
+          background-color: #4dd4ac; }
+    .el-tag--dark.el-tag--warning {
+      background-color: #fcc419;
+      border-color: #fcc419;
+      color: white; }
+      .el-tag--dark.el-tag--warning.is-hit {
+        border-color: #fcc419; }
+      .el-tag--dark.el-tag--warning .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--warning .el-tag__close:hover {
+          color: #fff;
+          background-color: #fdd047; }
+    .el-tag--dark.el-tag--danger {
+      background-color: #ff6b6b;
+      border-color: #ff6b6b;
+      color: white; }
+      .el-tag--dark.el-tag--danger.is-hit {
+        border-color: #ff6b6b; }
+      .el-tag--dark.el-tag--danger .el-tag__close {
+        color: white; }
+        .el-tag--dark.el-tag--danger .el-tag__close:hover {
+          color: #fff;
+          background-color: #ff8989; }
+  .el-tag--plain {
+    background-color: white;
+    border-color: #ffc3cd;
+    color: #ff6881; }
+    .el-tag--plain.is-hit {
+      border-color: #ff6881; }
+    .el-tag--plain .el-tag__close {
+      color: #ff6881; }
+      .el-tag--plain .el-tag__close:hover {
+        color: #fff;
+        background-color: #ff6881; }
+    .el-tag--plain.el-tag--info {
+      background-color: white;
+      border-color: #dee1e5;
+      color: #adb5bd; }
+      .el-tag--plain.el-tag--info.is-hit {
+        border-color: #adb5bd; }
+      .el-tag--plain.el-tag--info .el-tag__close {
+        color: #adb5bd; }
+        .el-tag--plain.el-tag--info .el-tag__close:hover {
+          color: #fff;
+          background-color: #adb5bd; }
+    .el-tag--plain.el-tag--success {
+      background-color: white;
+      border-color: #a6e9d5;
+      color: #20c997; }
+      .el-tag--plain.el-tag--success.is-hit {
+        border-color: #20c997; }
+      .el-tag--plain.el-tag--success .el-tag__close {
+        color: #20c997; }
+        .el-tag--plain.el-tag--success .el-tag__close:hover {
+          color: #fff;
+          background-color: #20c997; }
+    .el-tag--plain.el-tag--warning {
+      background-color: white;
+      border-color: #fee7a3;
+      color: #fcc419; }
+      .el-tag--plain.el-tag--warning.is-hit {
+        border-color: #fcc419; }
+      .el-tag--plain.el-tag--warning .el-tag__close {
+        color: #fcc419; }
+        .el-tag--plain.el-tag--warning .el-tag__close:hover {
+          color: #fff;
+          background-color: #fcc419; }
+    .el-tag--plain.el-tag--danger {
+      background-color: white;
+      border-color: #ffc4c4;
+      color: #ff6b6b; }
+      .el-tag--plain.el-tag--danger.is-hit {
+        border-color: #ff6b6b; }
+      .el-tag--plain.el-tag--danger .el-tag__close {
+        color: #ff6b6b; }
+        .el-tag--plain.el-tag--danger .el-tag__close:hover {
+          color: #fff;
+          background-color: #ff6b6b; }
+  .el-tag--medium {
+    height: 28px;
+    line-height: 26px; }
+    .el-tag--medium .el-icon-close {
+      -webkit-transform: scale(0.8);
+      transform: scale(0.8); }
+  .el-tag--small {
+    height: 24px;
+    padding: 0 8px;
+    line-height: 22px; }
+    .el-tag--small .el-icon-close {
+      -webkit-transform: scale(0.8);
+      transform: scale(0.8); }
+  .el-tag--mini {
+    height: 20px;
+    padding: 0 5px;
+    line-height: 19px; }
+    .el-tag--mini .el-icon-close {
+      margin-left: -3px;
+      -webkit-transform: scale(0.7);
+      transform: scale(0.7); }
