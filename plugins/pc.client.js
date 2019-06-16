@@ -6,6 +6,8 @@ const isMobile = window.screen.width <= 768 || /^\/app/.test(window.location.pat
 if (!isMobile) {
   Vue.use({
     install(Vue) {
+      Vue.prototype.$h5 = false
+
       Vue.prototype.$alert = MessageBox.alert
 
       Vue.prototype.$confirm = MessageBox.confirm
