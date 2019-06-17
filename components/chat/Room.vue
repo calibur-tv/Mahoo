@@ -195,7 +195,8 @@ export default {
       message: '',
       target: null,
       chatsHeight: 0,
-      stopWatcher: null
+      stopWatcher: null,
+      noMore: false
     }
   },
   computed: {
@@ -282,9 +283,15 @@ export default {
       )
     },
     handleScrollUp() {
+      if (this.noMore) {
+        return
+      }
       this.$refs.loader.loadBefore({ force: true })
     },
     handleMessageLoad({ data, args }) {
+      if (args.is_up === 0 && !data.result.length) {
+        this.noMore = true
+      }
       this.$nextTick(() => {
         if (args.is_up === 1) {
           data.result.map(_ => _).reverse().map(msg => {
@@ -306,10 +313,14 @@ export default {
       this.$refs.scroll.refresh()
         .then(() => {
           const newChatsHeight = this.$refs.room.$el.clientHeight
+          const wrapChatHeight = this.$refs.wrap.clientHeight
+          if (newChatsHeight < wrapChatHeight) {
+            return
+          }
           if (this.lastChatsHeight && !forceBottom) {
             this.$refs.scroll.scrollTo(0, this.lastChatsHeight - newChatsHeight)
           } else {
-            this.$refs.scroll.scrollTo(0, this.$refs.wrap.clientHeight - newChatsHeight)
+            this.$refs.scroll.scrollTo(0, wrapChatHeight - newChatsHeight)
           }
           this.lastChatsHeight = newChatsHeight
         })
@@ -346,6 +357,7 @@ export default {
         content: jsonContent,
         created_at: Date.now()
       })
+      this.screenScroll()
       this.message = ''
       this.$axios.$post('v1/message/send', {
         channel: this.mailto,
@@ -356,13 +368,11 @@ export default {
             id: msg.id
           })
           this.$refs.loader.append(msg)
-          this.screenScroll()
         })
         .catch(() => {
           this.$refs.room.updateMessage(randomId, {
             status: 'error'
           })
-          this.screenScroll()
         })
     },
     handleNewLine() {
