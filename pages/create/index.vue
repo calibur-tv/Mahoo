@@ -93,9 +93,6 @@ export default {
   layout: 'web',
   components: {},
   props: {},
-  data() {
-    return {}
-  },
   computed: {
     headers() {
       return [
@@ -116,10 +113,6 @@ export default {
         }
       ]
     }
-  },
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  }
 }
 </script>

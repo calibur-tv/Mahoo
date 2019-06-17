@@ -13,7 +13,6 @@ export default {
   components: {
     CreateTalkForm
   },
-  props: {},
   data() {
     return {}
   },

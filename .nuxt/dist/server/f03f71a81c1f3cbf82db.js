@@ -1,0 +1,2 @@
+exports.ids=[11],exports.modules={177:function(t,e,n){"use strict";n.r(e);var o={name:"PinShow",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},r=n(2);var component=Object(r.a)(o,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"pin-show"}},[this._ssrNode("\n  pin-show\n")])},[],!1,function(t){},null,"64d88908");e.default=component.exports}};
+//# sourceMappingURL=f03f71a81c1f3cbf82db.js.map

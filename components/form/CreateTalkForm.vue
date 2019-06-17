@@ -2,9 +2,9 @@
 .create-talk-form {
   $base-hgt: 75px;
 
-  .title-wrap {
-    padding-right: $base-hgt + 8px;
-    margin-bottom: 8px;
+  .item-title {
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   .content-wrap {
@@ -30,10 +30,6 @@
   }
 
   .el-upload {
-    &-wrap {
-      margin-top: 8px;
-    }
-
     &-list__item,
     &--picture-card {
       width: $base-hgt;
@@ -52,87 +48,122 @@
       display: none !important;
     }
   }
+
+  .bottom-btn {
+    button {
+      width: 100%;
+    }
+  }
 }
 </style>
 
 <template>
-  <div class="create-talk-form">
-    <div class="title-wrap">
-      <el-input
-        v-model="title"
-        placeholder="请输入标题（建议30字以内）"
-        maxlength="30"
-      />
-    </div>
-    <div class="content-wrap">
-      <button class="submit-btn" @click="submit">
-        点击<br>发送
-      </button>
-      <div class="input-wrap">
+  <el-form class="create-talk-form" label-position="top">
+    <template v-if="!tag">
+      <el-form-item label="标题">
         <el-input
-          v-model="content"
-          type="textarea"
-          :autosize="{ minRows: 3 }"
-          :show-word-limit="true"
-          maxlength="10000"
-          placeholder="请输入正文（请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论）"
+          v-model="title"
+          placeholder="请输入标题（建议30字以内）"
+          maxlength="30"
         />
+      </el-form-item>
+      <el-form-item label="分区">
+        <el-cascader v-model="area" placeholder="选择分区，如约会大作战" :options="options" filterable>
+          <template slot-scope="{ node, data }">
+            <template v-if="node.isLeaf">
+              <span>{{ data.label }}</span>
+            </template>
+            <template v-else>
+              <span>{{ data.label }}</span>
+              <span> ({{ data.children.length }}) </span>
+            </template>
+          </template>
+        </el-cascader>
+      </el-form-item>
+    </template>
+    <el-form-item :label="tag ? '' : '正文'">
+      <div class="content-wrap">
+        <button
+          v-if="tag"
+          class="submit-btn"
+          @click="submit"
+        >
+          点击<br>发送
+        </button>
+        <div class="input-wrap">
+          <el-input
+            v-model="content"
+            type="textarea"
+            :autosize="tag ? { minRows: 3 } : { minRows: 8 }"
+            :show-word-limit="true"
+            :maxlength="tag ? 1000 : 10000"
+            placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论"
+          />
+        </div>
       </div>
-    </div>
-    <el-upload
-      multiple
-      list-type="picture-card"
-      :action="imageUploadAction"
-      :limit="uploadImageLimit"
-      :data="uploadHeaders"
-      :file-list="uploadImageList"
-      :accept="imageUploadAccept"
-      :before-upload="handleImageUploadBefore"
-      :on-success="customImageUploadSuccess"
-      :on-error="handleImageUploadError"
-      :on-remove="handleImageUploadRemove"
-      :on-exceed="handleImageUploadExceed"
-      class="el-upload-wrap"
-    >
-      <i class="el-icon-plus" />
-    </el-upload>
-  </div>
+    </el-form-item>
+    <el-form-item>
+      <el-upload
+        multiple
+        list-type="picture-card"
+        :action="imageUploadAction"
+        :limit="uploadImageLimit"
+        :data="uploadHeaders"
+        :file-list="uploadImageList"
+        :accept="imageUploadAccept"
+        :before-upload="handleImageUploadBefore"
+        :on-success="customImageUploadSuccess"
+        :on-error="handleImageUploadError"
+        :on-remove="handleImageUploadRemove"
+        :on-exceed="handleImageUploadExceed"
+      >
+        <i class="el-icon-plus" />
+      </el-upload>
+    </el-form-item>
+    <el-form-item v-if="!tag">
+      <div class="bottom-btn">
+        <el-button type="primary" round :loading="loading" @click="submit">
+          点击发送
+        </el-button>
+      </div>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>
-import { Upload, Select, Option } from 'element-ui'
+import { Upload, Cascader } from 'element-ui'
 import upload from '~/mixins/upload'
 
 export default {
   name: 'CreateTalkForm',
   components: {
     'el-upload': Upload,
-    'el-select': Select,
-    'el-option': Option
+    'el-cascader': Cascader
   },
   mixins: [upload],
   props: {
-    parentSlug: {
+    tag: {
       type: String,
       default: ''
-    },
-    parentType: {
-      type: String,
-      default: '',
-      validator: val => ~['', 'pin', 'tag'].indexOf(val)
     }
   },
   data() {
     return {
       uploadImageLimit: 9,
       title: '',
-      content: ''
+      content: '',
+      area: this.tag ? this.tag.split('-') : ['topic', 'ugf6'],
+      loading: false
     }
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
+  computed: {
+    options() {
+      return this.$store.state.share.contributionTags.data
+    }
+  },
+  mounted() {
+    this.$store.dispatch('share/getUserContributionTags')
+  },
   methods: {
     customImageUploadSuccess(res, file) {
       this.handleImageUploadSuccess(res, file)
@@ -140,16 +171,22 @@ export default {
       this.uploadImageTotal = this.uploadImageList.length
     },
     submit() {
+      if (this.loading) {
+        return
+      }
+      this.loading = true
       this.$axios.$post('v1/pin/create/daily', {
         title: this.title,
         content: this.content,
-        images: this.uploadImageList.map(_ => _.data)
+        images: this.uploadImageList.map(_ => _.data),
+        area: this.area[1]
       })
         .then(data => {
-          console.log(data)
+          this.loading = false
         })
         .catch(err => {
           this.$toast.error(err.message)
+          this.loading = false
         })
     }
   }

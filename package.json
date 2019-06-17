@@ -36,7 +36,7 @@
     "oh-my-chat": "^1.0.10",
     "redis": "^2.8.0",
     "throttle-debounce": "^2.1.0",
-    "v-switcher": "^1.0.15",
+    "v-switcher": "^1.0.23",
     "vue-mixin-store": "1.1.14",
     "vue-native-websocket": "^2.0.13"
   },

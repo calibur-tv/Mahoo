@@ -15,6 +15,7 @@ void (function updateModules() {
   store.modules = store.modules || {}
 
   resolveStoreModules(require('../store/flow.js'), 'flow.js')
+  resolveStoreModules(require('../store/share.js'), 'share.js')
 
   // If the environment supports hot reloading...
 })()
