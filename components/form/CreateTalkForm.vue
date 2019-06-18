@@ -2,6 +2,11 @@
 .create-talk-form {
   $base-hgt: 75px;
 
+  .form-tip {
+    font-size: 12px;
+    color: $color-orange;
+  }
+
   .item-title {
     margin-bottom: 10px;
     margin-top: 10px;
@@ -68,6 +73,9 @@
         />
       </el-form-item>
       <el-form-item label="分区">
+        <p class="form-tip">
+          提示：只能选择你通过了考验的分区
+        </p>
         <el-cascader v-model="area" placeholder="选择分区，如约会大作战" :options="options" filterable>
           <template slot-scope="{ node, data }">
             <template v-if="node.isLeaf">
@@ -170,15 +178,25 @@ export default {
       if (this.loading) {
         return
       }
+      if (!this.tag) {
+        if (!this.title.trim().length) {
+          this.$toast.error('请为文章起个标题')
+          return
+        }
+      }
+      if (this.content.trim().length < 2) {
+        this.$toast.error('内容至少要两个字')
+        return
+      }
       this.loading = true
       this.$axios.$post('v1/pin/create/daily', {
-        title: this.title,
-        content: this.content,
+        title: this.title.trim(),
+        content: this.content.trim(),
         images: this.uploadImageList.map(_ => _.data),
         area: this.area[1]
       })
-        .then(data => {
-          this.loading = false
+        .then(slug => {
+          window.location = this.$alias.pin(slug)
         })
         .catch(err => {
           this.$toast.error(err.message)

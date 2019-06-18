@@ -60,22 +60,24 @@
   <div id="create-layout">
     <el-row class="container">
       <el-col :span="4">
-        <v-switcher
-          :headers="headers"
-          :routable="true"
-          :header-height="44"
-          align="vertical"
-        >
-          <nuxt-link
-            v-for="(item, index) in headers"
-            :key="index"
-            :slot="`tab-${index}`"
-            :to="item.route"
+        <affix :top="27">
+          <v-switcher
+            :headers="headers"
+            :routable="true"
+            :header-height="44"
+            align="vertical"
           >
-            <i class="iconfont" :class="`ic-${item.icon}`" />
-            <span v-text="item.name" />
-          </nuxt-link>
-        </v-switcher>
+            <nuxt-link
+              v-for="(item, index) in headers"
+              :key="index"
+              :slot="`tab-${index}`"
+              :to="item.route"
+            >
+              <i class="iconfont" :class="`ic-${item.icon}`" />
+              <span v-text="item.name" />
+            </nuxt-link>
+          </v-switcher>
+        </affix>
       </el-col>
       <el-col :span="15">
         <nuxt-child class="main-section" :tags="tags" />
@@ -90,10 +92,14 @@
 <script>
 import mustSign from '~/mixins/mustSign'
 import { bookmarkTags } from '~/api/tagApi'
+import Affix from '~/components/common/Affix'
 
 export default {
   name: 'CreateLayout',
   layout: 'web',
+  components: {
+    Affix
+  },
   mixins: [mustSign],
   data() {
     return {

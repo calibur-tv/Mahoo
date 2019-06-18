@@ -169,7 +169,7 @@
       <div class="block-title">
         <nuxt-link class="text" to="bangumi" append>
           <span class="fade-link">看过的动漫</span>
-          <i class="count" v-if="tags.bangumi.length" v-text="tags.bangumi.length"></i>
+          <i v-if="tags.bangumi.length" class="count" v-text="tags.bangumi.length" />
         </nuxt-link>
         <nuxt-link v-if="tags.bangumi.length > 4" class="more fade-link" to="bangumi" append>
           <span>更多</span>
@@ -203,7 +203,7 @@
       <div class="block-title">
         <nuxt-link class="text" to="game" append>
           <span class="fade-link">玩过的游戏</span>
-          <i class="count" v-if="tags.game.length" v-text="tags.game.length"></i>
+          <i v-if="tags.game.length" class="count" v-text="tags.game.length" />
         </nuxt-link>
         <nuxt-link v-if="tags.game.length > 5" class="more fade-link" to="game" append>
           <span>更多</span>
@@ -232,7 +232,7 @@
       <div class="block-title">
         <nuxt-link class="text" to="topic" append>
           <span class="fade-link">参与的话题</span>
-          <i class="count" v-if="tags.topic.length" v-text="tags.topic.length"></i>
+          <i v-if="tags.topic.length" class="count" v-text="tags.topic.length" />
         </nuxt-link>
         <nuxt-link v-if="tags.topic.length > 12" class="more fade-link" to="topic" append>
           <span>更多</span>

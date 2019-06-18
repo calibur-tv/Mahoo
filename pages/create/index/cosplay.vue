@@ -137,7 +137,7 @@
       </div>
       <el-form-item label="分区" required>
         <el-col :span="16">
-          <el-cascader v-model="formItem.area" placeholder="添加作品分区，如约会大作战" :options="tags" filterable />
+          <el-cascader v-model="formItem.area" placeholder="添加作品分区，如约会大作战" :options="areaOptions" filterable />
         </el-col>
       </el-form-item>
       <el-form-item label="标题" required>
@@ -310,7 +310,11 @@ export default {
       ]
     }
   },
-  computed: {},
+  computed: {
+    areaOptions() {
+      return this.tags.filter(_ => _.value !== 'topic')
+    }
+  },
   watch: {},
   created() {
   },

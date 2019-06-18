@@ -5,5 +5,9 @@ export default {
 
   user(slug, path = '') {
     return `/user/${slug}/${path}`
+  },
+
+  pin(slug) {
+    return `/pin/${slug}`
   }
 }
