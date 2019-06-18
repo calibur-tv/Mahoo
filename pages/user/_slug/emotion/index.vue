@@ -8,12 +8,75 @@
 
     &-title {
       padding-bottom: 15px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
 
       .text {
-        color: #000;
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 33px;
+        span {
+          color: #000;
+          font-size: 20px;
+          font-weight: 400;
+          line-height: 33px;
+        }
+
+        i {
+          position: relative;
+          font-style: normal;
+          display: inline-block;
+          background-color: #f7f7f7;
+          border: 1px solid #ddd;
+          border-radius: 3px;
+          color: #777;
+          font-size: 12px;
+          line-height: 18px;
+          height: 20px;
+          margin-left: 10px;
+          padding: 0 5px;
+
+          &:before,
+          &:after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+          }
+
+          &:before {
+            border-width: 5px;
+            top: 3px;
+            left: -5px;
+            border-right-color: #ddd;
+            border-left-width: 0;
+          }
+
+          &:after {
+            border-width: 4px;
+            top: 4px;
+            left: -4px;
+            border-right-color: #f7f7f7;
+            border-left-width: 0;
+          }
+        }
+      }
+
+      .empty {
+        line-height: 14px;
+        font-size: 12px;
+        color: #6d757a;
+      }
+
+      .more {
+        font-size: 12px;
+        line-height: 22px;
+        border: 1px solid #b8c0cc;
+        border-radius: 4px;
+        padding-left: 10px;
+        padding-right: 5px;
       }
     }
   }
@@ -101,12 +164,23 @@
 </style>
 
 <template>
-  <div id="user-emotion">
+  <div v-if="tags" id="user-emotion">
     <div class="block">
       <div class="block-title">
-        <nuxt-link class="text fade-link" to="bangumi" append>
-          看过的动漫
+        <nuxt-link class="text" to="bangumi" append>
+          <span class="fade-link">看过的动漫</span>
+          <i class="count" v-if="tags.bangumi.length" v-text="tags.bangumi.length"></i>
         </nuxt-link>
+        <nuxt-link v-if="tags.bangumi.length > 4" class="more fade-link" to="bangumi" append>
+          <span>更多</span>
+          <i class="el-icon-arrow-right" />
+        </nuxt-link>
+        <template v-else-if="!tags.bangumi.length">
+          <p class="empty">
+            TA还不是一个动漫迷~
+          </p>
+          <span />
+        </template>
       </div>
       <ul v-if="tags.bangumi" class="bangumis clearfix">
         <li
@@ -127,9 +201,20 @@
     </div>
     <div class="block">
       <div class="block-title">
-        <nuxt-link class="text fade-link" to="game" append>
-          玩过的游戏
+        <nuxt-link class="text" to="game" append>
+          <span class="fade-link">玩过的游戏</span>
+          <i class="count" v-if="tags.game.length" v-text="tags.game.length"></i>
         </nuxt-link>
+        <nuxt-link v-if="tags.game.length > 5" class="more fade-link" to="game" append>
+          <span>更多</span>
+          <i class="el-icon-arrow-right" />
+        </nuxt-link>
+        <template v-else-if="!tags.game.length">
+          <p class="empty">
+            TA从来不玩游戏~
+          </p>
+          <span />
+        </template>
       </div>
       <ul v-if="tags.game" class="games clearfix">
         <li
@@ -145,9 +230,20 @@
     </div>
     <div class="block">
       <div class="block-title">
-        <nuxt-link class="text fade-link" to="topic" append>
-          关注的话题
+        <nuxt-link class="text" to="topic" append>
+          <span class="fade-link">参与的话题</span>
+          <i class="count" v-if="tags.topic.length" v-text="tags.topic.length"></i>
         </nuxt-link>
+        <nuxt-link v-if="tags.topic.length > 12" class="more fade-link" to="topic" append>
+          <span>更多</span>
+          <i class="el-icon-arrow-right" />
+        </nuxt-link>
+        <template v-else-if="!tags.topic.length">
+          <p class="empty">
+            TA不喜欢参与任何话题~
+          </p>
+          <span />
+        </template>
       </div>
       <ul v-if="tags.topic" class="topics clearfix">
         <li
@@ -175,7 +271,7 @@ export default {
   props: {},
   data() {
     return {
-      tags: {}
+      tags: null
     }
   },
   computed: {},
