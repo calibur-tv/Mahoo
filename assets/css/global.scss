@@ -54,3 +54,11 @@
     }
   }
 }
+
+.fade-link {
+  transition: color .2s ease;
+
+  &:hover {
+    color: $color-main !important;
+  }
+}

@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <create-talk-form />
+  <create-talk-form :options="tags" />
 </template>
 
 <script>
@@ -12,6 +12,12 @@ export default {
   name: 'CreateDaily',
   components: {
     CreateTalkForm
+  },
+  props: {
+    tags: {
+      type: Array,
+      required: true
+    }
   },
   data() {
     return {}

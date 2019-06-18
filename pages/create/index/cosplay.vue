@@ -137,7 +137,7 @@
       </div>
       <el-form-item label="分区" required>
         <el-col :span="16">
-          <el-cascader v-model="formItem.area" placeholder="添加作品分区，如约会大作战" :options="areaList" filterable />
+          <el-cascader v-model="formItem.area" placeholder="添加作品分区，如约会大作战" :options="tags" filterable />
         </el-col>
       </el-form-item>
       <el-form-item label="标题" required>
@@ -259,7 +259,12 @@ export default {
     'el-divider': Divider
   },
   mixins: [upload],
-  props: {},
+  props: {
+    tags: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
       contentType: 1,
@@ -302,54 +307,7 @@ export default {
           value: 'Canberra',
           label: 'Canberra'
         }
-      ],
-      areaList: [{
-        value: 'beijing',
-        label: '北京',
-        children: [
-          {
-            value: 'gugong',
-            label: '故宫'
-          },
-          {
-            value: 'tiantan',
-            label: '天坛'
-          },
-          {
-            value: 'wangfujing',
-            label: '王府井'
-          }
-        ]
-      }, {
-        value: 'jiangsu',
-        label: '江苏',
-        children: [
-          {
-            value: 'nanjing',
-            label: '南京',
-            children: [
-              {
-                value: 'fuzimiao',
-                label: '夫子庙'
-              }
-            ]
-          },
-          {
-            value: 'suzhou',
-            label: '苏州',
-            children: [
-              {
-                value: 'zhuozhengyuan',
-                label: '拙政园'
-              },
-              {
-                value: 'shizilin',
-                label: '狮子林'
-              }
-            ]
-          }
-        ]
-      }]
+      ]
     }
   },
   computed: {},

@@ -9,3 +9,5 @@ export const updateTag = (ctx, { name, slug, avatar, alias, intro }) => ctx.$axi
 export const relinkTag = (ctx, { slug, target_slug }) => ctx.$axios.$post('v1/tag/relink', { slug, target_slug })
 
 export const deleteTag = (ctx, { slug }) => ctx.$axios.$post('v1/tag/delete', { slug })
+
+export const bookmarkTags = (ctx, { slug }) => ctx.$axios.$get('v1/tag/bookmarks', { params: { slug } })

@@ -11,7 +11,12 @@
 export default {
   name: 'CreateATField',
   components: {},
-  props: {},
+  props: {
+    tags: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {}
   },

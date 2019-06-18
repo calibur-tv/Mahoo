@@ -145,6 +145,10 @@ export default {
     tag: {
       type: String,
       default: ''
+    },
+    options: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
@@ -155,14 +159,6 @@ export default {
       area: this.tag ? this.tag.split('-') : ['topic', 'ugf6'],
       loading: false
     }
-  },
-  computed: {
-    options() {
-      return this.$store.state.share.contributionTags.data
-    }
-  },
-  mounted() {
-    this.$store.dispatch('share/getUserContributionTags')
   },
   methods: {
     customImageUploadSuccess(res, file) {
