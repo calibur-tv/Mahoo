@@ -4,6 +4,7 @@ import Captcha from 'geetest-captcha'
 import { getCaptcha } from '~/api/imageApi'
 import Toast from '~/assets/js/toast'
 import channel from '~/assets/js/channel'
+import * as Cache from '~/assets/js/cache'
 
 const isMobile = window.screen.width <= 768 || /^\/app/.test(window.location.pathname)
 
@@ -15,6 +16,8 @@ export default ({ $axios }) => {
       Vue.prototype.$channel = new Vue(channel)
 
       Vue.prototype.$toast = new Toast(isMobile)
+
+      Vue.prototype.$cache = Cache
 
       Vue.prototype.$captcha = new Captcha(() => getCaptcha({ $axios }))
     }

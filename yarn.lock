@@ -773,11 +773,6 @@
   resolved "https://registry.yarnpkg.com/@editorjs/marker/-/marker-1.2.0.tgz#4e3130870c2ca4b3ac5b05405b4e49add55893cb"
   integrity sha512-BkAvAvf2B0xsUbMPoht7g1oWaxw79NeqJM//+wM3VnEruj908qw7AluDBVy1gwOe2fhhryaDXQ3kbqU6HC8o1g==
 
-"@editorjs/paragraph@^2.5.1":
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/@editorjs/paragraph/-/paragraph-2.5.1.tgz#08d64ee5a3b88dbbf7da5cac3b7ed7a036c70186"
-  integrity sha512-kYAcocG9eEBCUU3d/Js1CQMsEJFbSOs7iULBIy7HR5MugRSbjTjtbreXkjQMkg3U1LeZgVweA9uhw3r0HekXug==
-
 "@editorjs/table@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@editorjs/table/-/table-1.2.0.tgz#547d7b28c96f8a37605bea10bd4f016e8bfc344d"

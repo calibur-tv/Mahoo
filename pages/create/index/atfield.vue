@@ -3,7 +3,6 @@
 
 <template>
   <div id="create-atfield">
-    atfield
     <editor />
   </div>
 </template>

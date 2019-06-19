@@ -22,3 +22,42 @@ export const setUserSessionStore = user => {
     sessionStorage.setItem(`user-item-${user.slug}`, JSON.stringify(user))
   } catch (e) {}
 }
+
+export const has = key => {
+  try {
+    const val = localStorage.getItem(key)
+    return val !== null
+  } catch (e) {
+    return false
+  }
+}
+
+export const set = (key, val) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(val))
+  } catch (e) {}
+}
+
+export const get = (key, def) => {
+  try {
+    const val = localStorage.getItem(key)
+    if (val === null) {
+      return def
+    }
+    return JSON.parse(val)
+  } catch (e) {
+    return def
+  }
+}
+
+export const remove = key => {
+  try {
+    localStorage.removeItem(key)
+  } catch (e) {}
+}
+
+export const clear = () => {
+  try {
+    localStorage.clear()
+  } catch (e) {}
+}

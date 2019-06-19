@@ -125,7 +125,6 @@
 
 <script>
 import { getUserRelation } from '~/api/flowApi'
-import { setUserSessionStore } from '~/assets/js/cache'
 import { Loading } from 'element-ui'
 
 export default {
@@ -184,7 +183,7 @@ export default {
           relation: 'friend'
         })
           .then(data => {
-            data.result.forEach(user => setUserSessionStore(user))
+            data.result.forEach(user => this.$cache.setUserSessionStore(user))
             this.friends = data.result
             sessionStorage.setItem('user-friends-list', JSON.stringify(data.result))
           })
@@ -196,7 +195,7 @@ export default {
           return
         }
         const result = JSON.parse(cache)
-        result.forEach(user => setUserSessionStore(user))
+        result.forEach(user => this.$cache.setUserSessionStore(user))
         this.friends = result
       } catch (e) {
         await getData()
