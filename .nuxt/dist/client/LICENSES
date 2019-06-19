@@ -93,3 +93,98 @@ and limitations under the License.
  * (c) 2016-2019 ustbhuangyi
  * Released under the MIT License.
  */
+
+/**
+ * Delimiter Block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
+/*!
+ * Editor.js
+ * 
+ * @version 2.14.0
+ * 
+ * @licence Apache-2.0
+ * @author CodeX <https://codex.so>
+ * 
+ * @uses html-janitor
+ * @licence Apache-2.0 (https://github.com/guardian/html-janitor/blob/master/LICENSE)
+ */
+
+/**
+       * If developer uses editor's API, then he can customize sanitize restrictions.
+       * Or, sanitizing config can be defined globally in editors initialization. That config will be used everywhere
+       * At least, if there is no config overrides, that API uses Default configuration
+       *
+       * @uses https://www.npmjs.com/package/html-janitor
+       * @license https://github.com/guardian/html-janitor/blob/master/LICENSE
+       *
+       * @param {SanitizerConfig} config - sanitizer extension
+       */
+
+/*!
+ * Codex JavaScript Notification module
+ * https://github.com/codex-team/js-notifier
+ */
+
+/*!
+ * Library for handling keyboard shortcuts
+ * @copyright CodeX (https://codex.so)
+ * @license MIT
+ * @author CodeX (https://codex.so)
+ * @version 1.1.1
+ */
+
+/**
+ * Base Paragraph Block for the Editor.js.
+ * Represents simple paragraph
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
+/**
+ * Header block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
+/**
+ * Image Tool for the Editor.js
+ * @author CodeX <team@ifmo.su>
+ * @license MIT
+ * @see {@link https://github.com/editor-js/image}
+ *
+ * To developers.
+ * To simplify Tool structure, we split it to 4 parts:
+ *  1) index.js — main Tool's interface, public API and methods for working with data
+ *  2) uploader.js — module that has methods for sending files via AJAX: from device, by URL or File pasting
+ *  3) ui.js — module for UI manipulations: render, showing preloader, etc
+ *  4) tunes.js — working with Block Tunes: render buttons, handle clicks
+ *
+ * For debug purposes there is a testing server
+ * that can save uploaded files and return a Response {@link UploadResponseFormat}
+ *
+ *       $ node dev/server.js
+ *
+ * It will expose 8008 port, so you can pass http://localhost:8008 with the Tools config:
+ *
+ * image: {
+ *   class: ImageTool,
+ *   config: {
+ *     endpoints: {
+ *       byFile: 'http://localhost:8008/uploadFile',
+ *       byUrl: 'http://localhost:8008/fetchUrl',
+ *     }
+ *   },
+ * },
+ */

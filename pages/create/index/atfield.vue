@@ -4,26 +4,26 @@
 <template>
   <div id="create-atfield">
     atfield
+    <editor />
   </div>
 </template>
 
 <script>
+import Editor from '~/components/editor'
+
 export default {
   name: 'CreateATField',
-  components: {},
+  components: {
+    Editor
+  },
   props: {
     tags: {
       type: Array,
       required: true
     }
   },
-  data() {
-    return {}
-  },
   computed: {},
   watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  created() {}
 }
 </script>
