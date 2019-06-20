@@ -195,8 +195,9 @@ export default {
         images: this.uploadImageList.map(_ => _.data),
         area: this.area[1]
       })
-        .then(slug => {
-          window.location = this.$alias.pin(slug)
+        .then(data => {
+          console.log(data)
+          this.loading = false
         })
         .catch(err => {
           this.$toast.error(err.message)

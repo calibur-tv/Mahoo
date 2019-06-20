@@ -1,7 +1,7 @@
 <template>
   <div v-if="show" class="json-content">
     <component
-      :is="`${item.type}-parser`"
+      :is="item.type"
       v-for="(item, index) in content"
       :key="index"
       :item="item"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TxtParser from './parser/TxtParser'
+import Paragraph from './parser/Paragraph'
 import ImgParser from './parser/ImgParser'
 import UseParser from './parser/UseParser'
 import TitleParser from './parser/TitleParser'
@@ -20,7 +20,7 @@ export default {
   name: 'JsonContent',
   components: {
     TitleParser,
-    TxtParser,
+    Paragraph,
     ImgParser,
     UseParser,
     ListParser

@@ -82,7 +82,6 @@ export default {
         import('@editorjs/header'),
         import('@editorjs/list'),
         import('@editorjs/delimiter'),
-        import('@editorjs/marker'),
         import('@editorjs/link'),
         import('@editorjs/image')
       ])
@@ -94,7 +93,7 @@ export default {
           } else if (self.$cache.has('editor_local_draft')) {
             data = self.$cache.get('editor_local_draft')
           }
-          const [EditorJS, Header, List, Delimiter, Marker, LinkTool, ImageTool] = modules.map(_ => _.default)
+          const [EditorJS, Header, List, Delimiter, LinkTool, ImageTool] = modules.map(_ => _.default)
           const editor = new EditorJS({
             data,
             holder: 'codex-editor',
@@ -143,11 +142,10 @@ export default {
                 class: List,
                 shortcut: 'CMD+SHIFT+U',
                 inlineToolbar: true
-              },
-              marker: {
-                class: Marker,
-                shortcut: 'CMD+SHIFT+M'
               }
+            },
+            onChange: () => {
+              self.handleSave()
             }
           })
 

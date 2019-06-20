@@ -72,13 +72,3 @@
   background-color: $color-main;
   color: #fff;
 }
-
-mark {
-  background-color: $color-main;
-  color: $color-main;
-
-  &::selection {
-    background-color: $color-main;
-    color: #fff;
-  }
-}

@@ -346,8 +346,10 @@ export default {
       }
       const jsonContent = [
         {
-          type: 'txt',
-          content: this.message.trim()
+          type: 'paragraph',
+          data: {
+            text: this.message.trim()
+          }
         }
       ]
       const randomId = Math.random().toString(10).substring(3, 6)
