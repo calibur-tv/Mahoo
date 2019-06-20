@@ -67,3 +67,18 @@
 [class^="el-icon-"], [class*=" el-icon-"] {
   vertical-align: middle !important;
 }
+
+::selection {
+  background-color: $color-main;
+  color: #fff;
+}
+
+mark {
+  background-color: $color-main;
+  color: $color-main;
+
+  &::selection {
+    background-color: $color-main;
+    color: #fff;
+  }
+}
