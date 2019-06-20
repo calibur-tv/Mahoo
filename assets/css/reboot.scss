@@ -50,6 +50,17 @@ ul {
   color: #fff;
 }
 
+mark {
+  background-color: $color-main !important;
+  color: $color-main;
+}
+
+mark::selection,
+mark::-moz-selection {
+  background-color: $color-main;
+  color: #fff !important;
+}
+
 @media (max-width: 768px) {
   body {
     padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left);

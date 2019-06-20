@@ -1,3 +1,49 @@
+<style lang="scss">
+.editor-wrap {
+  .ce-inline-toolbar--showed {
+    display: none !important;
+  }
+
+  .image-tool {
+    &__image-picture {
+      margin: 0 auto !important;
+    }
+
+    &__caption {
+      display: inline-block;
+      position: relative;
+      width: auto !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      text-align: center !important;
+      box-shadow: none !important;
+      border-top-width: 0 !important;
+      border-left-width: 0 !important;
+      border-right-width: 0 !important;
+      border-radius: 0 !important;
+      min-width: 100px !important;
+
+      &:before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  .ce-delimiter {
+    background-image: url(~assets/img/divider.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    height: 100px;
+
+    &:before {
+      content: none !important;
+    }
+  }
+}
+</style>
+
 <template>
   <div class="editor-wrap">
     <div id="codex-editor" class="mousetrap" />
@@ -15,6 +61,10 @@ export default {
     source: {
       type: Object,
       default: null
+    },
+    autofocus: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -32,7 +82,6 @@ export default {
         import('@editorjs/header'),
         import('@editorjs/list'),
         import('@editorjs/delimiter'),
-        import('@editorjs/table'),
         import('@editorjs/marker'),
         import('@editorjs/link'),
         import('@editorjs/image')
@@ -45,11 +94,12 @@ export default {
           } else if (self.$cache.has('editor_local_draft')) {
             data = self.$cache.get('editor_local_draft')
           }
-          const [EditorJS, Header, List, Delimiter, Table, Marker, LinkTool, ImageTool] = modules.map(_ => _.default)
+          const [EditorJS, Header, List, Delimiter, Marker, LinkTool, ImageTool] = modules.map(_ => _.default)
           const editor = new EditorJS({
             data,
             holder: 'codex-editor',
-            autofocus: true,
+            placeholder: '请输入内容',
+            autofocus: self.autofocus,
             tools: {
               header: {
                 class: Header,
@@ -93,15 +143,6 @@ export default {
                 class: List,
                 shortcut: 'CMD+SHIFT+U',
                 inlineToolbar: true
-              },
-              table: {
-                class: Table,
-                inlineToolbar: true,
-                shortcut: 'CMD+SHIFT+T',
-                config: {
-                  rows: 2,
-                  cols: 3
-                }
               },
               marker: {
                 class: Marker,
