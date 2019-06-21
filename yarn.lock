@@ -751,6 +751,11 @@
   dependencies:
     codex-notifier "^1.1.2"
 
+"@editorjs/embed@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@editorjs/embed/-/embed-2.2.1.tgz#90dbcac6e163d20c665fcc1a218d4ba1db80e2f1"
+  integrity sha512-jjhgJf+LkYr8UfsQPavfukCq0+SIkz1MD8vmWkN29uU2zItWsScmfRis3YoLZJ7Rrz+yDeS8GyUjxTg2iQa0Vg==
+
 "@editorjs/header@^2.2.4":
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/@editorjs/header/-/header-2.2.4.tgz#3bc25154f385eb7df0682e1743a31be9347af285"
