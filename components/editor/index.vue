@@ -102,6 +102,19 @@ export default {
             placeholder: '请输入内容',
             autofocus: self.autofocus,
             tools: {
+              embed: {
+                class: Embed,
+                inlineToolbar: true,
+                config: {
+                  services: {
+                    bilibili: {
+                      regex: /https?:\/\/www\.bilibili\.com\/video\/av([^\\?\\&]*)/,
+                      embedUrl: '//player.bilibili.com/player.html?aid=<%= remote_id %>',
+                      html: "<iframe scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>"
+                    }
+                  }
+                }
+              },
               header: {
                 class: Header,
                 shortcut: 'CMD+SHIFT+H',
@@ -144,19 +157,6 @@ export default {
                 class: List,
                 shortcut: 'CMD+SHIFT+U',
                 inlineToolbar: true
-              },
-              embed: {
-                class: Embed,
-                inlineToolbar: true,
-                config: {
-                  services: {
-                    bilibili: {
-                      regex: /https:\/\/www.bilibili.com\/video\/av(\d+)/,
-                      embedUrl: '//player.bilibili.com/player.html?aid=<%= remote_id %>',
-                      html: "<iframe scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>"
-                    }
-                  }
-                }
               },
               checklist: {
                 class: Checklist,
