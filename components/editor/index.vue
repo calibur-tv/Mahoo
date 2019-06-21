@@ -9,6 +9,14 @@
       margin: 0 auto !important;
     }
 
+    &--withBackground .image-tool__image {
+      background-color: $color-gray-bg;
+    }
+
+    &--withBorder .image-tool__image {
+      border-color: $color-gray-border;
+    }
+
     &__caption {
       display: inline-block;
       position: relative;
@@ -21,7 +29,12 @@
       border-left-width: 0 !important;
       border-right-width: 0 !important;
       border-radius: 0 !important;
-      min-width: 100px !important;
+      min-width: 115px !important;
+      border-color: $color-gray-line;
+
+      &[contentEditable=true][data-placeholder]::before {
+        content: '图片描述';
+      }
 
       &:before {
         left: 50%;
@@ -39,6 +52,39 @@
 
     &:before {
       content: none !important;
+    }
+  }
+
+  .ce-block {
+    font-weight: normal;
+    font-style: normal;
+
+    h1,
+    h2 {
+      border-bottom: 1px solid $color-gray-line;
+      padding-bottom: 10px;
+      padding-top: 1.5em;
+      margin-bottom: 1px;
+    }
+
+    h3 {
+      padding-top: 1.5em;
+    }
+
+    a {
+      display: none;
+    }
+  }
+
+  .cdx-checklist__item--checked {
+    .cdx-checklist__item-checkbox {
+      background-color: $color-main;
+      border-color: $color-main;
+
+      &:hover {
+        border-color: $color-main-dark;
+        background-color: $color-main-dark;
+      }
     }
   }
 }
