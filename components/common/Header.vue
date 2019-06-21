@@ -285,21 +285,20 @@ export default {
       this.$channel.$emit('sign-in')
     },
     getUnreadMessageCount() {
-      this.$channel.socketConnect()
-      setTimeout(() => {
-        if (this.$store.state.socket.reconnectErr) {
-          this.$store.dispatch('refreshMailbox')
-        }
-      }, 1000)
+      this.$store.dispatch('refreshMailbox')
       let lastMoveAt = Date.now()
+      let isVisible = true
       window.addEventListener('mousemove', throttle(3000, () => {
         lastMoveAt = Date.now()
       }))
+      document.addEventListener('visibilitychange', () => {
+        isVisible = document.visibilityState === 'visible'
+      })
       setInterval(() => {
-        if (Date.now() - lastMoveAt < 60000) {
+        if (isVisible && Date.now() - lastMoveAt < 30000) {
           this.$store.dispatch('refreshMailbox')
         }
-      }, 30000)
+      }, 10000)
     }
   }
 }
