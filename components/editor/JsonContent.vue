@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import Copyright from '~/assets/js/copyright'
 import header from './parser/header'
 import image from './parser/image'
 import paragraph from './parser/paragraph'
@@ -36,6 +37,10 @@ export default {
       required: true,
       type: Array
     }
+  },
+  mounted() {
+    const copyright = new Copyright()
+    copyright.bind(this.$el)
   }
 }
 </script>

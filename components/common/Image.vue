@@ -15,6 +15,20 @@
       top: 0;
       width: 100%;
       height: 100%;
+      will-change: filter, opacify;
+      animation: blur 500ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    @keyframes blur {
+      from {
+        opacity: 0.32;
+        filter: blur(16px);
+      }
+
+      to {
+        opacity: 1;
+        filter: none;
+      }
     }
   }
 }

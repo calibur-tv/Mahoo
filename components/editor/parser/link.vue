@@ -7,6 +7,10 @@
   border-radius: 6px;
   padding: 25px;
 
+  &:hover {
+    box-shadow: 0 0 3px rgba(0,0,0, .16);
+  }
+
   .content {
     overflow: hidden;
 
