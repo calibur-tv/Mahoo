@@ -32,9 +32,6 @@
         >
           <div slot-scope="{ node, data }" class="tag">
             <a :href="`/tag/${data.slug}`" target="_blank">
-              <!--
-              <img :src="data.avatar" width="30" height="30">
-              -->
               <span>{{ data.name }}</span>
             </a>
           </div>

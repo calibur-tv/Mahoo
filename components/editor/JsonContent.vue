@@ -1,7 +1,7 @@
 <template>
-  <div v-if="show" class="json-content">
+  <div class="json-content">
     <component
-      :is="item.type"
+      :is="`v-${item.type}`"
       v-for="(item, index) in content"
       :key="index"
       :item="item"
@@ -10,29 +10,31 @@
 </template>
 
 <script>
-import Paragraph from './parser/Paragraph'
-import ImgParser from './parser/ImgParser'
-import UseParser from './parser/UseParser'
-import TitleParser from './parser/TitleParser'
-import ListParser from './parser/ListParser'
+import header from './parser/header'
+import image from './parser/image'
+import paragraph from './parser/paragraph'
+import list from './parser/list'
+import delimiter from './parser/delimiter'
+import checklist from './parser/checklist'
+import link from './parser/link'
+import embed from './parser/embed'
 
 export default {
   name: 'JsonContent',
   components: {
-    TitleParser,
-    Paragraph,
-    ImgParser,
-    UseParser,
-    ListParser
+    'v-header': header,
+    'v-image': image,
+    'v-paragraph': paragraph,
+    'v-list': list,
+    'v-delimiter': delimiter,
+    'v-checklist': checklist,
+    'v-link': link,
+    'v-embed': embed
   },
   props: {
     content: {
       required: true,
       type: Array
-    },
-    show: {
-      type: Boolean,
-      default: true
     }
   }
 }

@@ -41,10 +41,7 @@
       background-color: #f4f4f4;
     }
 
-    .avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
+    .img {
       float: left;
       margin-right: 8px;
     }
@@ -108,7 +105,14 @@
         :to="$alias.user($route.params.slug, `message/?mailto=${item.channel}`)"
         class="room-item clearfix"
       >
-        <img class="avatar" :src="$resize(item.user.avatar, { width: 42 })" :alt="item.user.nickname">
+        <v-img
+          v-if="item.user.avatar"
+          :src="item.user.avatar"
+          width="42"
+          height="42"
+          radius="50%"
+          :alt="item.user.nickname"
+        />
         <div class="content">
           <p class="nickname oneline" v-text="item.user.nickname" />
           <div class="footer">

@@ -27,12 +27,6 @@
           margin-left: 10px;
           margin-right: 10px;
           font-size: 0;
-
-          img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-          }
         }
 
         .v-switcher {
@@ -103,10 +97,7 @@
             transition: .3s;
             z-index: 1;
 
-            img {
-              width: 33px;
-              height: 33px;
-              border-radius: 50%;
+            .img {
               border: 1px solid $color-gray-1;
             }
           }
@@ -162,7 +153,7 @@
       <div class="container nav">
         <nav class="left">
           <nuxt-link class="logo" to="/">
-            <img :src="$resize('default-poster', { width: 32 })" alt="calibur">
+            <v-img src="default-poster" width="32" height="32" radius="50%" alt="calibur" />
           </nuxt-link>
           <v-switcher :headers="headers" :routable="true" align="start">
             <nuxt-link
@@ -182,7 +173,14 @@
                 :to="$alias.user(user.slug)"
                 class="avatar"
               >
-                <img :src="$resize(user.avatar, { width: 64 })" :alt="user.nickname">
+                <v-img
+                  :src="user.avatar"
+                  def="default-avatar"
+                  width="33"
+                  height="33"
+                  radius="50%"
+                  :alt="user.nickname"
+                />
               </nuxt-link>
               <div class="user-popover">
                 <div class="bottom">

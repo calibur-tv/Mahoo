@@ -188,7 +188,7 @@
           :key="item.slug"
         >
           <nuxt-link class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <img :src="$resize(item.avatar, { width: 110, height: 144 })" :alt="item.name">
+            <v-img :src="item.avatar" width="110" height="114" :alt="item.name" />
           </nuxt-link>
           <div class="content">
             <div class="oneline">
@@ -222,7 +222,7 @@
           :key="item.slug"
         >
           <nuxt-link target="_blank" :to="$alias.tag(item.slug)">
-            <img :src="$resize(item.avatar, { width: 150, height: 150 })" :alt="item.name">
+            <v-img :src="item.avatar" width="150" height="150" :alt="item.name" />
             <p class="oneline fade-link" v-text="item.name" />
           </nuxt-link>
         </li>
@@ -251,7 +251,7 @@
           :key="item.slug"
         >
           <nuxt-link class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <img :src="$resize(item.avatar, { width: 40, height: 40 })" :alt="item.name">
+            <v-img :src="item.avatar" width="40" height="40" :alt="item.name" />
           </nuxt-link>
           <div class="name oneline">
             <nuxt-link class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />

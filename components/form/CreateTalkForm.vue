@@ -196,7 +196,6 @@ export default {
         area: this.area[1]
       })
         .then(data => {
-          console.log(data)
           this.loading = false
         })
         .catch(err => {

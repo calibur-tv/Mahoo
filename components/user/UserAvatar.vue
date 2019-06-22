@@ -2,11 +2,7 @@
 .user-avatar {
   display: block;
 
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+  .img {
     box-shadow: 0 0 0 1px #edf2f9;
   }
 }
@@ -18,7 +14,13 @@
     :style="{ width: `${size}px`, height: `${size}px` }"
     class="user-avatar"
   >
-    <img class="avatar" :src="$resize(avatar || user.avatar, { width: size })" :alt="user.nickname">
+    <v-img
+      radius="50%"
+      :src="avatar || user.avatar"
+      :width="size"
+      :height="size"
+      :alt="user.nickname"
+    />
   </div>
   <nuxt-link
     v-else
@@ -27,7 +29,13 @@
     target="_blank"
     class="user-avatar"
   >
-    <img class="avatar" :src="$resize(avatar || user.avatar, { width: size })" :alt="user.nickname">
+    <v-img
+      radius="50%"
+      :src="avatar || user.avatar"
+      :width="size"
+      :height="size"
+      :alt="user.nickname"
+    />
   </nuxt-link>
 </template>
 

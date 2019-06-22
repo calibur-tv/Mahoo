@@ -4,9 +4,64 @@
     display: none !important;
   }
 
+  .ce-delimiter {
+    background-image: url(~assets/img/divider.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    height: 100px;
+
+    &:before {
+      content: none !important;
+    }
+  }
+
+  .ce-block {
+    font-weight: normal;
+    font-style: normal;
+
+    h1,
+    h2 {
+      border-bottom: 1px solid $color-gray-line;
+      padding-bottom: 10px;
+      padding-top: 1.5em;
+      margin-bottom: 1px;
+    }
+
+    h3 {
+      padding-top: 1.5em;
+    }
+
+    a {
+      display: none;
+    }
+  }
+
+  .ce-paragraph {
+    @extend %breakWord;
+  }
+
+  .cdx-list {
+    margin-left: 19px;
+    padding: .7em 0;
+    font-size: 14px;
+
+    li {
+      line-height: 25px;
+      margin-bottom: 2px;
+      padding: 0;
+      @extend %breakWord;
+    }
+  }
+
   .image-tool {
-    &__image-picture {
-      margin: 0 auto !important;
+    &__image {
+      border-radius: 0;
+      margin-bottom: 0;
+
+      &-picture {
+        margin: 0 auto !important;
+      }
     }
 
     &--withBackground .image-tool__image {
@@ -43,47 +98,23 @@
     }
   }
 
-  .ce-delimiter {
-    background-image: url(~assets/img/divider.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 50%;
-    height: 100px;
-
-    &:before {
-      content: none !important;
-    }
+  .link-tool__content {
+    display: block !important;
   }
 
-  .ce-block {
-    font-weight: normal;
-    font-style: normal;
+  .cdx-checklist__item {
+    padding-left: 0;
+    padding-right: 0;
 
-    h1,
-    h2 {
-      border-bottom: 1px solid $color-gray-line;
-      padding-bottom: 10px;
-      padding-top: 1.5em;
-      margin-bottom: 1px;
-    }
+    &--checked {
+      .cdx-checklist__item-checkbox {
+        background-color: $color-main;
+        border-color: $color-main;
 
-    h3 {
-      padding-top: 1.5em;
-    }
-
-    a {
-      display: none;
-    }
-  }
-
-  .cdx-checklist__item--checked {
-    .cdx-checklist__item-checkbox {
-      background-color: $color-main;
-      border-color: $color-main;
-
-      &:hover {
-        border-color: $color-main-dark;
-        background-color: $color-main-dark;
+        &:hover {
+          border-color: $color-main-dark;
+          background-color: $color-main-dark;
+        }
       }
     }
   }
@@ -191,7 +222,7 @@ export default {
                   }
                 }
               },
-              linkTool: {
+              link: {
                 class: LinkTool,
                 shortcut: 'CMD+SHIFT+L',
                 config: {

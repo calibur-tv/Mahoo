@@ -22,10 +22,7 @@
       margin-right: 10px;
       font-size: 0;
 
-      img {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
+      .img {
         user-select: none;
       }
     }
@@ -79,7 +76,7 @@
   <div id="page-index">
     <div class="header">
       <div class="logo">
-        <img :src="$resize('default-poster', { width: 32 })" alt="calibur">
+        <v-img src="default-poster" width="32" height="32" alt="calibur" radius="50%" />
       </div>
       <h1 class="title">
         calibur.tv is never gone.

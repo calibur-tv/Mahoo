@@ -14,9 +14,8 @@
         }
       }
 
-      img {
-        width: 32px;
-        height: 32px;
+      .img {
+        display: inline-block;
         border-radius: 5px;
         margin-right: 5px;
       }
@@ -62,7 +61,7 @@
           >
             <li class="node">
               <nuxt-link :to="`/tag/${parent.slug}`">
-                <img :src="$resize(parent.avatar, { width: 32 })" :alt="parent.name">
+                <v-img :src="parent.avatar" width="32" height="32" :alt="parent.name" />
                 <span v-text="parent.name" />
               </nuxt-link>
             </li>
@@ -77,7 +76,7 @@
               class="node"
             >
               <nuxt-link :to="`/tag/${item.slug}`">
-                <img :src="$resize(item.avatar, { width: 32 })" :alt="item.name">
+                <v-img :src="item.avatar" width="32" height="32" :alt="item.name" />
                 <span v-text="item.name" />
               </nuxt-link>
             </li>
