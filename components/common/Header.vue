@@ -11,6 +11,7 @@
     background-color: #fff;
 
     .nav {
+      height: $page-header-hgt;
       display: flex;
       flex-direction: row;
       justify-content: space-between;

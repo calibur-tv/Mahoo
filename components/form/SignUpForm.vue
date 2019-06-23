@@ -1,8 +1,6 @@
 <style lang="scss">
 .sign-up-form {
-  input {
-    padding-left: 0 !important;
-  }
+  margin: 0 15px;
 
   .submit-btn {
     width: 100%;
@@ -40,7 +38,7 @@
       font-size: 20px;
       vertical-align: middle;
       margin-left: 10px;
-      color: $color-text-1;
+      color: $color-icon-1;
       cursor: pointer;
     }
 
@@ -57,15 +55,7 @@
 
 <template>
   <div class="sign-up-form">
-    <el-form ref="form" :model="form" :rules="rule" status-icon>
-      <el-form-item prop="nickname">
-        <el-input
-          v-model.trim="form.nickname"
-          type="text"
-          placeholder="昵称（2-14个字符组成，1个汉字占2个字符）"
-          auto-complete="off"
-        />
-      </el-form-item>
+    <el-form ref="form" :model="form" :rules="rule">
       <el-form-item prop="access">
         <el-input
           v-model.trim="form.access"
@@ -77,18 +67,11 @@
       <el-form-item prop="secret">
         <el-input
           v-model.trim="form.secret"
-          :type="watchPwd ? 'text' : 'password'"
+          type="password"
+          show-password
           placeholder="密码（6-16个字符组成，区分大小写）"
           auto-complete="off"
         />
-        <button
-          v-if="form.secret.length > 5"
-          class="watch-pwd"
-          type="button"
-          @click="watchPwd = !watchPwd"
-        >
-          <i class="iconfont ic-ai-eye" />
-        </button>
       </el-form-item>
       <el-form-item v-if="!inviteCode">
         <el-input
@@ -104,6 +87,7 @@
           :disabled="submitBtnDisabled"
           class="submit-btn"
           type="primary"
+          round
           @click="submitForm"
         >
           {{ submitBtnText }}
@@ -140,22 +124,6 @@ export default {
     }
   },
   data() {
-    const validateNickname = (rule, value, callback) => {
-      if (value === '') {
-        return callback(new Error('请先给自己起个名字'))
-      }
-      const length = value.replace(/([\u4e00-\u9fa5])/g, 'aa').trim().length
-      if (length < 2) {
-        return callback(new Error('昵称至少是2个字符'))
-      }
-      if (length > 14) {
-        return callback(new Error('昵称不能超过14个字符，1个汉字占2个字符'))
-      }
-      if (!/^([\u4e00-\u9fa5]|[a-z0-9])+$/i.test(value)) {
-        return callback(new Error('昵称只能包含：中文、数字、字母'))
-      }
-      callback()
-    }
     const validateAccess = (rule, value, callback) => {
       if (!value) {
         return callback(new Error('请填写手机号'))
@@ -181,16 +149,13 @@ export default {
       callback()
     }
     return {
-      watchPwd: false,
       form: {
         access: '',
         secret: '',
-        nickname: '',
         authCode: '',
         inviteCode: this.inviteCode
       },
       rule: {
-        nickname: [{ validator: validateNickname, trigger: 'blur' }],
         access: [{ validator: validateAccess, trigger: 'blur' }],
         secret: [{ validator: validateSecret, trigger: 'blur' }]
       },
@@ -338,7 +303,6 @@ export default {
       register(this, {
         access: this.form.access,
         secret: this.form.secret,
-        nickname: this.form.nickname,
         authCode: this.form.authCode,
         inviteCode: this.form.inviteCode
       })
@@ -346,7 +310,11 @@ export default {
           this.$cookie.set('JWT-TOKEN', token)
           this.$toast.success('注册成功！')
             .then(() => {
-              window.location.reload()
+              if (this.$route.query.redirect) {
+                window.location = decodeURIComponent(this.$route.query.redirect)
+              } else {
+                window.location.reload()
+              }
             })
         })
         .catch(err => {

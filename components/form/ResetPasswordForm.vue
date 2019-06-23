@@ -1,5 +1,7 @@
 <style lang="scss">
 .reset-password-form {
+  margin: 0 15px;
+
   .submit-btn {
     width: 100%;
   }
@@ -39,6 +41,7 @@
           :disabled="submitBtnDisabled"
           class="submit-btn"
           type="primary"
+          round
           @click="submitForm"
         >
           {{ submitBtnText }}

@@ -30,7 +30,7 @@ $input-height: 40px;
     z-index: 12;
 
     .sign-modal {
-      padding: 50px 60px;
+      padding: 50px 45px;
       background-color: #fff;
       border-radius: 4px;
       position: fixed;
@@ -46,57 +46,6 @@ $input-height: 40px;
       display: flex;
       flex-direction: column;
       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-
-      button {
-        user-select: none;
-      }
-
-      input[type='text'],
-      input[type='password'],
-      input[type='number'] {
-        width: 100%;
-        height: $input-height;
-        font-size: 12px;
-        padding: 8px 12px;
-        color: $color-text-1;
-      }
-
-      .captcha {
-        cursor: pointer;
-        position: relative;
-        height: 44px;
-        width: 100%;
-        border-radius: 3px;
-        background-color: $color-blue;
-        font-weight: bold;
-        margin-top: 15px;
-
-        &:hover {
-          background-color: $color-blue;
-        }
-
-        &:before {
-          content: attr(data-text);
-          position: absolute;
-          left: 0;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          text-align: center;
-          line-height: 44px;
-          color: #fff;
-        }
-      }
-
-      .form-container {
-        > span {
-          margin-top: 15px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          flex-grow: 1;
-        }
-      }
 
       &.sign-up-show,
       &.sign-in-show {
@@ -125,70 +74,6 @@ $input-height: 40px;
       &.sign-up-turn {
         transform: rotateY(180deg) translateY(-200px);
       }
-
-      .watch {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: $input-height;
-        height: $input-height;
-        color: $color-gray-1;
-      }
-    }
-
-    .sign-in-modal {
-      .form-container {
-        > div {
-          position: relative;
-        }
-
-        input[type='text'],
-        input[type='password'],
-        input[type='number'] {
-          border-radius: 4px;
-          border: 1px solid $color-gray-1;
-        }
-
-        input[type='checkbox'] {
-          margin-left: 5px;
-        }
-      }
-    }
-
-    .sign-up-modal {
-      .slogan {
-        height: 54px;
-      }
-
-      .form {
-        border-radius: 4px;
-        border: 1px solid $color-gray-1;
-        overflow: hidden;
-
-        > div {
-          position: relative;
-        }
-      }
-
-      input {
-        width: 100%;
-        border: 0;
-        border-bottom: 1px solid $color-gray-2;
-
-        &.last-input {
-          border-bottom: 0;
-        }
-      }
-    }
-
-    .checkAndSend {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: $input-height;
-      padding: 0 10px;
-      font-size: 12px;
-      color: $color-text-1;
     }
   }
 }

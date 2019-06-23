@@ -28,11 +28,10 @@ export const sendMessage = (ctx, { phone_number, type, geetest }) => ctx.$axios.
 
 export const register = (
   ctx,
-  { access, secret, nickname, authCode, inviteCode }
+  { access, secret, authCode, inviteCode }
 ) => ctx.$axios.$post('v1/door/register', {
   access,
   secret,
-  nickname,
   authCode,
   inviteCode
 })

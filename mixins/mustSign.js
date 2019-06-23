@@ -10,7 +10,7 @@ export default {
         } else {
           this.$toast.error('继续操作前请先登录')
             .then(() => {
-              window.location.href = '/'
+              window.location.href = this.$alias.sign()
             })
         }
       })
@@ -23,7 +23,7 @@ export default {
       } else {
         this.$toast.error('继续操作前请先登录')
           .then(() => {
-            window.location.href = '/'
+            window.location.href = this.$alias.sign()
           })
       }
     }

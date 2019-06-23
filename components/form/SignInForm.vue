@@ -1,5 +1,7 @@
 <style lang="scss">
 .sign-in-form {
+  margin: 0 15px;
+
   .sign-in-opt {
     margin-bottom: 10px;
 
@@ -23,14 +25,6 @@
     margin-top: 15px;
   }
 
-  .watch-pwd {
-    position: absolute;
-    right: 16px;
-    top: 11px;
-    font-size: 18px;
-    color: $color-gray-1;
-  }
-
   .provider {
     height: 40px;
 
@@ -42,7 +36,7 @@
     i {
       font-size: 20px;
       vertical-align: middle;
-      color: $color-text-1;
+      color: $color-icon-1;
       cursor: pointer;
     }
 
@@ -70,18 +64,11 @@
       <el-form-item prop="secret">
         <el-input
           v-model.trim="form.secret"
-          :type="watchPwd ? 'text' : 'password'"
+          type="password"
+          show-password
           placeholder="密码（6-16个字符组成，区分大小写）"
           @keydown.enter.native="submitForm"
         />
-        <button
-          v-if="form.secret.length > 5"
-          class="watch-pwd"
-          type="button"
-          @click="watchPwd = !watchPwd"
-        >
-          <i class="iconfont ic-ai-eye" />
-        </button>
       </el-form-item>
       <el-form-item class="sign-in-opt">
         <div class="opt-container">
@@ -106,6 +93,7 @@
           :loading="loading"
           class="submit-btn"
           type="primary"
+          round
           @click="submitForm"
         >
           登录
@@ -157,7 +145,6 @@ export default {
         secret: [{ validator: validateSecret, trigger: 'blur' }]
       },
       loading: false,
-      watchPwd: false,
       showOAuth: true
     }
   },
@@ -196,7 +183,11 @@ export default {
               this.$cookie.set('JWT-TOKEN', token, {
                 expires: this.form.remember ? 365 : 1
               })
-              window.location.reload()
+              if (this.$route.query.redirect) {
+                window.location = decodeURIComponent(this.$route.query.redirect)
+              } else {
+                window.location.reload()
+              }
             })
             .catch(err => {
               this.$toast.error(err.message)
