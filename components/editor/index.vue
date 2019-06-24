@@ -38,6 +38,7 @@
   }
 
   .ce-paragraph {
+    text-indent: 2em;
     @extend %breakWord;
   }
 

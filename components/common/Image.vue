@@ -113,7 +113,7 @@ export default {
       const mode = isLarge ? 2 : 1
       let { width, height } = this
       if (isFull) {
-        const maxWidth = $h5 ? 420 : 740
+        const maxWidth = $h5 ? 420 : 660
         if (width > maxWidth) {
           height = parseInt(maxWidth / width * height, 10)
           width = maxWidth

@@ -82,7 +82,7 @@
           />
         </template>
         <template slot="1">
-          <sign-up-form @to-login="prev"/>
+          <sign-up-form @to-login="prev" />
         </template>
       </v-switcher>
     </el-col>

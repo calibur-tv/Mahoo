@@ -1,5 +1,6 @@
 <style lang="scss" module>
 .paragraph {
+  text-indent: 2em;
   font-weight: 400;
   line-height: 1.6;
   padding: .7em 0;
