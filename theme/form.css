@@ -114,6 +114,8 @@
 --------------------------*/
 /* Calendar
 --------------------------*/
+/* Avatar
+--------------------------*/
 /* Break-point
 --------------------------*/
 /* Break-points
@@ -238,6 +240,8 @@
 --------------------------*/
 /* Calendar
 --------------------------*/
+/* Avatar
+--------------------------*/
 /* Break-point
 --------------------------*/
 .el-form--label-left .el-form-item__label {
@@ -352,14 +356,5 @@
     border-color: transparent; }
   .el-form-item.is-error .el-input__validateIcon {
     color: #ff6b6b; }
-  .el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus,
-  .el-form-item.is-success .el-textarea__inner,
-  .el-form-item.is-success .el-textarea__inner:focus {
-    border-color: #20c997; }
-  .el-form-item.is-success .el-input-group__append .el-input__inner,
-  .el-form-item.is-success .el-input-group__prepend .el-input__inner {
-    border-color: transparent; }
-  .el-form-item.is-success .el-input__validateIcon {
-    color: #20c997; }
   .el-form-item--feedback .el-input__validateIcon {
     display: inline-block; }

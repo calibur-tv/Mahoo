@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import Copyright from '~/assets/js/copyright'
 import header from './parser/header'
 import image from './parser/image'
 import paragraph from './parser/paragraph'
@@ -19,6 +18,7 @@ import delimiter from './parser/delimiter'
 import checklist from './parser/checklist'
 import link from './parser/link'
 import embed from './parser/embed'
+import Copyright from '~/assets/js/copyright'
 
 export default {
   name: 'JsonContent',

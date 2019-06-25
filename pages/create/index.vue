@@ -84,7 +84,7 @@
         </affix>
       </el-col>
       <el-col :span="15">
-        <nuxt-child class="main-section" :tags="tags" />
+        <nuxt-child class="main-section" />
       </el-col>
       <el-col :span="5">
         &nbsp;
@@ -95,7 +95,6 @@
 
 <script>
 import mustSign from '~/mixins/mustSign'
-import { bookmarkTags } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 
 export default {
@@ -105,27 +104,6 @@ export default {
     Affix
   },
   mixins: [mustSign],
-  data() {
-    return {
-      tags: [
-        {
-          label: '动漫',
-          value: 'bangumi',
-          children: []
-        },
-        {
-          label: '游戏',
-          value: 'game',
-          children: []
-        },
-        {
-          label: '话题',
-          value: 'topic',
-          children: []
-        }
-      ]
-    }
-  },
   computed: {
     headers() {
       return [
@@ -150,29 +128,6 @@ export default {
           icon: 'el-icon-document'
         }
       ]
-    }
-  },
-  methods: {
-    userSigned() {
-      this.getUserBookmarkTags()
-    },
-    getUserBookmarkTags() {
-      bookmarkTags(this, {
-        slug: this.$store.state.user.slug
-      })
-        .then(data => {
-          Object.keys(data).forEach(type => {
-            this.tags.forEach(item => {
-              if (item.value === type) {
-                item.children = data[type].map(_ => Object.assign(_, {
-                  value: _.slug,
-                  label: _.name
-                }))
-              }
-            })
-          })
-        })
-        .catch(() => {})
     }
   }
 }

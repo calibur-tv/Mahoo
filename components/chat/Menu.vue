@@ -128,8 +128,8 @@
 </template>
 
 <script>
-import { getUserRelation } from '~/api/flowApi'
 import { Loading } from 'element-ui'
+import { getUserRelation } from '~/api/flowApi'
 
 export default {
   name: 'MessageMenu',

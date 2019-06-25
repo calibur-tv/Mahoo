@@ -161,8 +161,8 @@
 </template>
 
 <script>
-import { settingProfile } from '~/api/userApi'
 import { Switch, Radio, RadioGroup, DatePicker, Upload } from 'element-ui'
+import { settingProfile } from '~/api/userApi'
 import upload from '~/mixins/upload'
 
 export default {

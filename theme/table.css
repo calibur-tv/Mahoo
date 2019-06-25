@@ -115,6 +115,8 @@
 --------------------------*/
 /* Calendar
 --------------------------*/
+/* Avatar
+--------------------------*/
 /* Break-point
 --------------------------*/
 /* Break-points
@@ -238,6 +240,8 @@
 /* Link
 --------------------------*/
 /* Calendar
+--------------------------*/
+/* Avatar
 --------------------------*/
 /* Break-point
 --------------------------*/
@@ -357,6 +361,8 @@
 --------------------------*/
 /* Calendar
 --------------------------*/
+/* Avatar
+--------------------------*/
 /* Break-point
 --------------------------*/
 /* Break-points
@@ -480,6 +486,8 @@
 /* Link
 --------------------------*/
 /* Calendar
+--------------------------*/
+/* Avatar
 --------------------------*/
 /* Break-point
 --------------------------*/
@@ -865,6 +873,8 @@
 --------------------------*/
 /* Calendar
 --------------------------*/
+/* Avatar
+--------------------------*/
 /* Break-point
 --------------------------*/
 /* Break-points
@@ -988,6 +998,8 @@
 /* Link
 --------------------------*/
 /* Calendar
+--------------------------*/
+/* Avatar
 --------------------------*/
 /* Break-point
 --------------------------*/
@@ -1320,6 +1332,8 @@
 --------------------------*/
 /* Calendar
 --------------------------*/
+/* Avatar
+--------------------------*/
 /* Break-point
 --------------------------*/
 /* Break-points
@@ -1443,6 +1457,8 @@
 /* Link
 --------------------------*/
 /* Calendar
+--------------------------*/
+/* Avatar
 --------------------------*/
 /* Break-point
 --------------------------*/
@@ -1652,6 +1668,8 @@
 /* Link
 --------------------------*/
 /* Calendar
+--------------------------*/
+/* Avatar
 --------------------------*/
 /* Break-point
 --------------------------*/
@@ -1983,7 +2001,7 @@
   .el-table--striped .el-table__body tr.el-table__row--striped.current-row td {
     background-color: #fff0f2; }
   .el-table__body tr.hover-row > td, .el-table__body tr.hover-row.current-row > td, .el-table__body tr.hover-row.el-table__row--striped > td, .el-table__body tr.hover-row.el-table__row--striped.current-row > td {
-    background-color: #fff0f2; }
+    background-color: #f4f4f4; }
   .el-table__body tr.current-row > td {
     background-color: #fff0f2; }
   .el-table__column-resize-proxy {

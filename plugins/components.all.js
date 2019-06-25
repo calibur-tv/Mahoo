@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Switcher from 'v-switcher'
 import 'v-switcher/dist/v-switcher.css'
-import VDialog from '~/components/common/Dialog'
 import VueMixinStore from 'vue-mixin-store'
 import {
   Button,
@@ -14,6 +13,7 @@ import {
   Checkbox,
   Tag
 } from 'element-ui'
+import VDialog from '~/components/common/Dialog'
 import lazyload from '~/directives/lazyload'
 import Image from '~/components/common/Image'
 

@@ -76,17 +76,7 @@
         <p class="form-tip">
           提示：只能选择你通过了考验的分区
         </p>
-        <el-cascader v-model="area" placeholder="选择分区，如约会大作战" :options="options" filterable>
-          <template slot-scope="{ node, data }">
-            <template v-if="node.isLeaf">
-              <span>{{ data.label }}</span>
-            </template>
-            <template v-else>
-              <span>{{ data.label }}</span>
-              <span> ({{ data.children.length }}) </span>
-            </template>
-          </template>
-        </el-cascader>
+        <area-picker v-model="area" />
       </el-form-item>
     </template>
     <el-form-item :label="tag ? '' : '正文'">
@@ -139,14 +129,15 @@
 </template>
 
 <script>
-import { Upload, Cascader } from 'element-ui'
+import { Upload } from 'element-ui'
 import upload from '~/mixins/upload'
+import AreaPicker from '~/components/form/AreaPicker'
 
 export default {
   name: 'CreateTalkForm',
   components: {
-    'el-upload': Upload,
-    'el-cascader': Cascader
+    AreaPicker,
+    'el-upload': Upload
   },
   mixins: [upload],
   props: {

@@ -137,7 +137,7 @@
       </div>
       <el-form-item label="分区" required>
         <el-col :span="16">
-          <el-cascader v-model="formItem.area" placeholder="添加作品分区，如约会大作战" :options="areaOptions" filterable />
+          <area-picker v-model="formItem.area" />
         </el-col>
       </el-form-item>
       <el-form-item label="标题" required>
@@ -243,28 +243,23 @@
 </template>
 
 <script>
+import { Upload, Radio, RadioGroup, Select, Option, Divider } from 'element-ui'
 import upload from '~/mixins/upload'
-import { Upload, Radio, RadioGroup, Cascader, Select, Option, Divider } from 'element-ui'
+import AreaPicker from '~/components/form/AreaPicker'
 
 export default {
   name: 'CreateCosplay',
   layout: 'web',
   components: {
+    AreaPicker,
     'el-upload': Upload,
     'el-radio': Radio,
     'el-radio-group': RadioGroup,
-    'el-cascader': Cascader,
     'el-select': Select,
     'el-option': Option,
     'el-divider': Divider
   },
   mixins: [upload],
-  props: {
-    tags: {
-      type: Array,
-      required: true
-    }
-  },
   data() {
     return {
       contentType: 1,
@@ -309,16 +304,6 @@ export default {
         }
       ]
     }
-  },
-  computed: {
-    areaOptions() {
-      return this.tags.filter(_ => _.value !== 'topic')
-    }
-  },
-  watch: {},
-  created() {
-  },
-  mounted() {
   },
   methods: {
     handleSubmit() {

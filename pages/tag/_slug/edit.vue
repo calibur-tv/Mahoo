@@ -106,8 +106,8 @@
 </template>
 
 <script>
-import { showTag, updateTag } from '~/api/tagApi'
 import { Upload, Select } from 'element-ui'
+import { showTag, updateTag } from '~/api/tagApi'
 import upload from '~/mixins/upload'
 import mustSign from '~/mixins/mustSign'
 

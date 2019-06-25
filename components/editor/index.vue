@@ -35,6 +35,10 @@
     a {
       display: none;
     }
+
+    &__content {
+      max-width: 100%;
+    }
   }
 
   .ce-paragraph {
@@ -294,6 +298,7 @@ export default {
         if (this.value) {
           this.$emit('input', outputData.blocks)
         }
+        this.$emit('save')
       }).catch(() => {
         this.$toast.error('保存失败')
       })

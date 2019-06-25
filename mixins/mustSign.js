@@ -5,7 +5,7 @@ export default {
     if (this.$store.state.logging) {
       const canceler = this.$watch('$store.state.logging', () => {
         if (this.$store.state.isAuth) {
-          this.userSigned && this.userSigned()
+          this.$channel.$emit('user-signed')
           canceler()
         } else {
           this.$toast.error('继续操作前请先登录')
@@ -19,7 +19,7 @@ export default {
       this.$store.commit('SET_USER_TOKEN', token)
       const user = await this.$store.dispatch('initAuth')
       if (user) {
-        this.userSigned && this.userSigned()
+        this.$channel.$emit('user-signed')
       } else {
         this.$toast.error('继续操作前请先登录')
           .then(() => {

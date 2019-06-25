@@ -225,9 +225,9 @@
 </template>
 
 <script>
-import { logout } from '~/api/userApi'
 import { Badge } from 'element-ui'
 import { throttle } from 'throttle-debounce'
+import { logout } from '~/api/userApi'
 
 export default {
   components: {
