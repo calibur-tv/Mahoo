@@ -38,7 +38,6 @@
   }
 
   .ce-paragraph {
-    text-indent: 2em;
     @extend %breakWord;
   }
 
@@ -136,9 +135,17 @@ export default {
   name: 'JsonEditor',
   mixins: [upload],
   props: {
-    source: {
-      type: Object,
-      default: null
+    value: {
+      required: true,
+      type: Array
+    },
+    slug: {
+      type: String,
+      default: ''
+    },
+    time: {
+      type: String,
+      default: ''
     },
     autofocus: {
       type: Boolean,
@@ -168,8 +175,19 @@ export default {
         .then(modules => {
           const self = this
           let data = {}
-          if (self.source) {
-            data = self.source
+          if (self.slug) {
+            // 编辑模式
+            const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
+            if (cache && cache.time > new Date(self.time).getTime()) {
+              // 如果有缓存，并且缓存的版本更高，就使用缓存
+              data = cache
+            } else {
+              data = {
+                blocks: self.value,
+                time: Date.now(),
+                version: self.$cache.get('editor_version', '2.14.0')
+              }
+            }
           } else if (self.$cache.has('editor_local_draft')) {
             data = self.$cache.get('editor_local_draft')
           }
@@ -270,7 +288,12 @@ export default {
         return
       }
       this.editor.save().then(outputData => {
-        this.$cache.set('editor_local_draft', outputData)
+        const cacheKey = this.slug ? `editor_local_draft-${this.slug}` : 'editor_local_draft'
+        this.$cache.set(cacheKey, outputData)
+        this.$cache.set('editor_version', outputData.version)
+        if (this.value) {
+          this.$emit('input', outputData.blocks)
+        }
       }).catch(() => {
         this.$toast.error('保存失败')
       })

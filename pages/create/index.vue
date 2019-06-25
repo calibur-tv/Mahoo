@@ -30,6 +30,10 @@
           .ic-cosplay {
             font-size: 16px;
           }
+
+          .el-icon-document {
+            font-size: 18px;
+          }
         }
 
         &.is-active {
@@ -73,7 +77,7 @@
               :slot="`tab-${index}`"
               :to="item.route"
             >
-              <i class="iconfont" :class="`ic-${item.icon}`" />
+              <i class="iconfont" :class="item.icon" />
               <span v-text="item.name" />
             </nuxt-link>
           </v-switcher>
@@ -128,17 +132,22 @@ export default {
         {
           route: '/create/daily',
           name: '图文帖',
-          icon: 'tee'
+          icon: 'ic-tee'
         },
         {
           route: '/create/cosplay',
           name: 'cosplay',
-          icon: 'cosplay'
+          icon: 'ic-cosplay'
         },
         {
           route: '/create/atfield',
           name: 'A.T.Field',
-          icon: 'timu'
+          icon: 'ic-timu'
+        },
+        {
+          route: '/create/story',
+          name: '专栏',
+          icon: 'el-icon-document'
         }
       ]
     }

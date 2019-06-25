@@ -3,18 +3,13 @@
 
 <template>
   <div id="create-atfield">
-    <editor />
+    A.T.Field
   </div>
 </template>
 
 <script>
-import Editor from '~/components/editor'
-
 export default {
   name: 'CreateATField',
-  components: {
-    Editor
-  },
   props: {
     tags: {
       type: Array,

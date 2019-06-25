@@ -6,6 +6,7 @@ const _503382da = () => interopDefault(import('../pages/create/index.vue' /* web
 const _1ddbfdaa = () => interopDefault(import('../pages/create/index/atfield.vue' /* webpackChunkName: "pages/create/index/atfield" */))
 const _14bc4bbf = () => interopDefault(import('../pages/create/index/cosplay.vue' /* webpackChunkName: "pages/create/index/cosplay" */))
 const _1b0bf6c6 = () => interopDefault(import('../pages/create/index/daily.vue' /* webpackChunkName: "pages/create/index/daily" */))
+const _c0555d0e = () => interopDefault(import('../pages/create/index/story.vue' /* webpackChunkName: "pages/create/index/story" */))
 const _0377315e = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
 const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
 const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
@@ -127,6 +128,11 @@ export function createRouter() {
         component: _1b0bf6c6,
         props: false,
         name: "create-index-daily"
+      }, {
+        path: "story",
+        component: _c0555d0e,
+        props: false,
+        name: "create-index-story"
       }]
     }, {
       path: "/sign",
