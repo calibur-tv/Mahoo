@@ -880,6 +880,7 @@ function createTextureAsync () {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
   };
   image.src = 'https://file.calibur.tv/LDR_RGB1_0.png';
+  image.crossOrigin = 'Anonymous';
 
   return obj;
 }

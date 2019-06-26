@@ -1,0 +1,2 @@
+exports.ids=[17],exports.modules={206:function(e,t,r){"use strict";r.r(t);var l={asyncData({redirect:e,route:t}){e(`${t.path.replace(/\/$/,"")}/timeline`,t.query)}},n=r(2),component=Object(n.a)(l,function(){var e=this.$createElement;return(this._self._c||e)("div",[])},[],!1,null,null,"42f6570d");t.default=component.exports}};
+//# sourceMappingURL=3679ab1795db127e2c6d.js.map

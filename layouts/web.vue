@@ -1,18 +1,5 @@
-<style lang="scss">
-#layout-web {
-  overflow-x: hidden;
-
-  #share-img {
-    position: fixed;
-    left: -200px;
-    top: 0;
-  }
-}
-</style>
-
 <template>
   <div id="layout-web">
-    <img id="share-img" src="https://m1.calibur.tv/default-poster-sharejpg200" alt="logo">
     <v-header />
     <nuxt />
     <sign-dialog />

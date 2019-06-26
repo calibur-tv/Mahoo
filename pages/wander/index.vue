@@ -289,6 +289,8 @@ export default {
         ].concat(this.content)
       })
         .then(slug => {
+          this.$cache.remove('editor_local_draft_title')
+          this.$cache.remove('editor_local_draft')
           window.location = this.$alias.pin(slug)
         })
         .catch(err => {
