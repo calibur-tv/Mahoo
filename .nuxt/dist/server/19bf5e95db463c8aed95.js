@@ -1,2 +1,0 @@
-exports.ids=[21],exports.modules={201:function(t,e,r){"use strict";r.r(e);var o={name:"UserTopic",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},c=r(2);var component=Object(c.a)(o,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"user-topic"}},[this._ssrNode("\n  UserTopic\n")])},[],!1,function(t){},null,"6cb6bd94");e.default=component.exports}};
-//# sourceMappingURL=19bf5e95db463c8aed95.js.map

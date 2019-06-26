@@ -1,20 +1,34 @@
+<style lang="scss">
+.area-picker {
+  .tip {
+    font-size: 12px;
+    color: $color-orange;
+  }
+}
+</style>
+
 <template>
-  <el-cascader
-    v-model="selected"
-    :placeholder="placeholder"
-    :options="options"
-    filterable
-  >
-    <template slot-scope="{ node, data }">
-      <template v-if="node.isLeaf">
-        <span>{{ data.label }}</span>
+  <div class="area-picker">
+    <p class="tip">
+      提示：只能选择你通过了考试的分区
+    </p>
+    <el-cascader
+      v-model="selected"
+      :placeholder="placeholder"
+      :options="options"
+      filterable
+    >
+      <template slot-scope="{ node, data }">
+        <template v-if="node.isLeaf">
+          <span>{{ data.label }}</span>
+        </template>
+        <template v-else>
+          <span>{{ data.label }}</span>
+          <span> ({{ data.children.length }}) </span>
+        </template>
       </template>
-      <template v-else>
-        <span>{{ data.label }}</span>
-        <span> ({{ data.children.length }}) </span>
-      </template>
-    </template>
-  </el-cascader>
+    </el-cascader>
+  </div>
 </template>
 
 <script>
@@ -33,6 +47,10 @@ export default {
     placeholder: {
       type: String,
       default: '添加作品分区，如约会大作战'
+    },
+    blocked: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -42,7 +60,11 @@ export default {
   },
   computed: {
     options() {
-      return this.$store.state.global.myTags
+      let result = this.$store.state.global.myTags
+      if (this.blocked) {
+        result = result.filter(_ => _.value !== this.blocked)
+      }
+      return result
     }
   },
   watch: {

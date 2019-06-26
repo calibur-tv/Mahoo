@@ -8,7 +8,7 @@ const title = `${name}${slogan}`
 
 module.exports = {
   author: npmCfg.author,
-  description: npmCfg.dependencies,
+  description: npmCfg.description,
   keywords: npmCfg.keywords.join(','),
   title,
   name,

@@ -44,7 +44,7 @@
  */
 
 /*!
- * v-switcher v1.0.31
+ * @bilibili/v-switcher v1.0.33
  * (c) 2019 falstack <icesilt@outlook.com>
  * https://github.com/falstack/v-switcher
  */
@@ -60,6 +60,14 @@
  * (c) 2019 falstack <icesilt@outlook.com>
  * https://github.com/falstack/geetest
  */
+
+/**
+	 * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
+	 *
+	 * @codingstandard ftlabs-jsv2
+	 * @copyright The Financial Times Limited [All Rights Reserved]
+	 * @license MIT License (see LICENSE.txt)
+	 */
 
 /*!
  * oh-my-chat v1.0.10

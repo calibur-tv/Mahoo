@@ -2,16 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
-const _503382da = () => interopDefault(import('../pages/create/index.vue' /* webpackChunkName: "pages/create/index" */))
-const _1ddbfdaa = () => interopDefault(import('../pages/create/index/atfield.vue' /* webpackChunkName: "pages/create/index/atfield" */))
-const _14bc4bbf = () => interopDefault(import('../pages/create/index/cosplay.vue' /* webpackChunkName: "pages/create/index/cosplay" */))
-const _1b0bf6c6 = () => interopDefault(import('../pages/create/index/daily.vue' /* webpackChunkName: "pages/create/index/daily" */))
-const _c0555d0e = () => interopDefault(import('../pages/create/index/story.vue' /* webpackChunkName: "pages/create/index/story" */))
 const _0377315e = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
+const _58431304 = () => interopDefault(import('../pages/wander/index.vue' /* webpackChunkName: "pages/wander/index" */))
 const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
 const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
 const _527cab04 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
 const _48a59587 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
+const _64a47f26 = () => interopDefault(import('../pages/wander/cosplay.vue' /* webpackChunkName: "pages/wander/cosplay" */))
 const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
 const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
 const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
@@ -109,36 +106,15 @@ export function createRouter() {
     scrollBehavior,
 
     routes: [{
-      path: "/create",
-      component: _503382da,
-      props: false,
-      name: "create",
-      children: [{
-        path: "atfield",
-        component: _1ddbfdaa,
-        props: false,
-        name: "create-index-atfield"
-      }, {
-        path: "cosplay",
-        component: _14bc4bbf,
-        props: false,
-        name: "create-index-cosplay"
-      }, {
-        path: "daily",
-        component: _1b0bf6c6,
-        props: false,
-        name: "create-index-daily"
-      }, {
-        path: "story",
-        component: _c0555d0e,
-        props: false,
-        name: "create-index-story"
-      }]
-    }, {
       path: "/sign",
       component: _0377315e,
       props: false,
       name: "sign"
+    }, {
+      path: "/wander",
+      component: _58431304,
+      props: false,
+      name: "wander"
     }, {
       path: "/callback/auth-error",
       component: _314f18c9,
@@ -159,6 +135,11 @@ export function createRouter() {
       component: _48a59587,
       props: false,
       name: "tag-tree"
+    }, {
+      path: "/wander/cosplay",
+      component: _64a47f26,
+      props: false,
+      name: "wander-cosplay"
     }, {
       path: "/pin/:slug?",
       component: _30aed12c,

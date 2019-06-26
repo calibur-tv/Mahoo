@@ -194,6 +194,7 @@ export default {
             }
           } else if (self.$cache.has('editor_local_draft')) {
             data = self.$cache.get('editor_local_draft')
+            self.$emit('input', data.blocks)
           }
           const [EditorJS, Header, List, Delimiter, LinkTool, ImageTool, Checklist, Embed] = modules.map(_ => _.default)
           const editor = new EditorJS({

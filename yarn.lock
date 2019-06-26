@@ -4010,6 +4010,11 @@ fast-levenshtein@~2.0.4:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fastclick@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/fastclick/-/fastclick-1.0.6.tgz#161625b27b1a5806405936bda9a2c1926d06be6a"
+  integrity sha1-FhYlsnsaWAZAWTa9qaLBkm0Gvmo=
+
 figgy-pudding@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/figgy-pudding/-/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
@@ -9168,10 +9173,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.31:
-  version "1.0.31"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.31.tgz#269d748e729ee8eeaea7d7d08d0e4685dc46c360"
-  integrity sha512-Vsx+jO60Y3SjQdU8kntz6DVOc3YXFSoeUS8pFGlqp789zPAcyPtgoQoIfiJBTYZy7x25eabwm/c2cNdBNhZOrQ==
+v-switcher@^1.0.33:
+  version "1.0.33"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.33.tgz#a721e4a72e76f450cde9335308ac2f57324dda7a"
+  integrity sha512-ixo2R340bjaQjc8KPG4kzlUYt/at5kDNmjtcW4n1b9S5/Z7DrHs2sOyThG0WT6KnlgpD/BjcJEE43+bH9I6KkQ==
   dependencies:
     vue "^2.6.6"
 

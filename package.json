@@ -44,6 +44,7 @@
     "cross-env": "^5.2.0",
     "dayjs": "^1.8.14",
     "element-ui": "^2.10.0",
+    "fastclick": "^1.0.6",
     "geetest-captcha": "^1.1.1",
     "js-cookie": "^2.2.0",
     "koa": "^2.6.2",
@@ -53,7 +54,7 @@
     "oh-my-chat": "^1.0.10",
     "redis": "^2.8.0",
     "throttle-debounce": "^2.1.0",
-    "v-switcher": "^1.0.31",
+    "v-switcher": "^1.0.33",
     "vue-mixin-store": "1.1.21",
     "vue-native-websocket": "^2.0.13"
   },

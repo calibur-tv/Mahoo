@@ -31,7 +31,7 @@
       user-select: none;
       font: bold 200% Consolas, Monaco, monospace;
       border-right: 0.1em solid;
-      width: 15em;
+      width: 215px;
       white-space: nowrap;
       overflow: hidden;
       animation: typing 3s steps(24, end),

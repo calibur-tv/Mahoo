@@ -2,11 +2,6 @@
 .create-talk-form {
   $base-hgt: 75px;
 
-  .form-tip {
-    font-size: 12px;
-    color: $color-orange;
-  }
-
   .item-title {
     margin-bottom: 10px;
     margin-top: 10px;
@@ -73,9 +68,6 @@
         />
       </el-form-item>
       <el-form-item label="分区">
-        <p class="form-tip">
-          提示：只能选择你通过了考验的分区
-        </p>
         <area-picker v-model="area" />
       </el-form-item>
     </template>
@@ -155,7 +147,7 @@ export default {
       uploadImageLimit: 9,
       title: '',
       content: '',
-      area: this.tag ? this.tag.split('-') : ['topic', 'ugf6'],
+      area: this.tag ? this.tag.split('-') : process.env.TAGS.newbie,
       loading: false
     }
   },
