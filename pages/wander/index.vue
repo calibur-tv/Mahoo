@@ -141,10 +141,13 @@
     padding-top: 30px;
     padding-bottom: 30px;
 
-    button {
-      display: block;
-      width: 200px;
-      margin: 0 auto;
+    .button-wrap {
+      text-align: center;
+
+      button {
+        width: 150px;
+        margin: 0 10px;
+      }
     }
   }
 }
@@ -190,20 +193,40 @@
       </div>
       <editor
         v-model="content"
+        :slug="slug"
+        :time="last_edit_at"
         @save="onEditorSave"
       />
       <el-form class="footer" label-position="top" label-width="80px">
         <el-form-item label="投稿板块">
           <area-picker v-model="area" />
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="button-wrap">
           <el-button
+            v-if="slug"
+            :loading="loading"
+            type="primary"
+            round
+            @click="actionUpdate"
+          >
+            发布更新
+          </el-button>
+          <el-button
+            v-else
             :loading="loading"
             type="primary"
             round
             @click="actionPublish"
           >
-            发表
+            发表文章
+          </el-button>
+          <el-button
+            :loading="loading"
+            round
+            type="warning"
+            @click="actionDraft"
+          >
+            存草稿
           </el-button>
         </el-form-item>
       </el-form>
@@ -229,17 +252,32 @@ export default {
   mixins: [mustSign, upload],
   data() {
     return {
+      slug: '',
       title: {
         banner: null,
         text: ''
       },
       content: [],
       area: process.env.TAGS.newbie,
-      loading: false
+      loading: false,
+      last_edit_at: ''
     }
   },
+  asyncData({ app, error, query }) {
+    const slug = query.slug
+    if (!slug) {
+      return
+    }
+    return app.$axios.$get('v1/pin/update/content', {
+      params: { slug }
+    })
+      .then(data => {
+        return { ...data }
+      })
+      .catch(error)
+  },
   mounted() {
-    if (this.$cache.has('editor_local_draft_title')) {
+    if (!this.slug && this.$cache.has('editor_local_draft_title')) {
       this.title = this.$cache.get('editor_local_draft_title')
     }
   },
@@ -264,16 +302,22 @@ export default {
       this.title.banner = null
       this.saveTitle()
     },
-    actionPublish() {
+    preValidate() {
       if (this.loading) {
-        return
+        return true
       }
       if (!this.title.text) {
         this.$toast.info('标题不能为空')
-        return
+        return true
       }
       if (!this.content.length) {
         this.$toast.info('内容不能为空')
+        return true
+      }
+      return false
+    },
+    actionPublish() {
+      if (this.preValidate()) {
         return
       }
 
@@ -297,6 +341,18 @@ export default {
           this.$toast.error(err.message)
           this.loading = false
         })
+    },
+    actionUpdate() {
+      if (this.preValidate()) {
+        return
+      }
+      console.log('actionUpdate')
+    },
+    actionDraft() {
+      if (this.preValidate()) {
+        return
+      }
+      console.log('actionDraft')
     }
   }
 }

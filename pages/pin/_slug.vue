@@ -54,9 +54,11 @@
           <span v-text="$utils.time.from(created_at)" />
         </template>
         <template v-slot:mine>
-          <el-button round type="info">
-            编辑
-          </el-button>
+          <nuxt-link target="_blank" :to="$alias.create(slug)">
+            <el-button round type="info">
+              编辑
+            </el-button>
+          </nuxt-link>
         </template>
       </content-author>
       <json-content :content="content" />

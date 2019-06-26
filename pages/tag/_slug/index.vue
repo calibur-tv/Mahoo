@@ -252,9 +252,7 @@ export default {
   computed: {},
   watch: {},
   asyncData({ app, error, params }) {
-    return API.showTag(app, {
-      slug: params.slug
-    })
+    return API.showTag(app, { params })
       .then(data => {
         return { ...data }
       })

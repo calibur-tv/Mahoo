@@ -1,14 +1,18 @@
 <style lang="scss" module>
 .link {
-  display: block;
-  background-color: #fff;
-  border: 1px solid rgba(201, 201, 204, 0.48);
-  box-shadow: 0 1px 3px rgba(0,0,0, .1);
-  border-radius: 6px;
-  padding: 25px;
+  padding: 0.7em 0;
 
-  &:hover {
-    box-shadow: 0 0 3px rgba(0,0,0, .16);
+  a {
+    display: block;
+    background-color: #fff;
+    border: 1px solid rgba(201, 201, 204, 0.48);
+    box-shadow: 0 1px 3px rgba(0,0,0, .1);
+    border-radius: 6px;
+    padding: 25px;
+
+    &:hover {
+      box-shadow: 0 0 3px rgba(0,0,0, .16);
+    }
   }
 
   .content {
@@ -46,14 +50,16 @@
 </style>
 
 <template>
-  <a :class="$style.link" target="_blank" :href="item.data.link">
-    <img v-if="item.data.meta.image && item.data.meta.image.url" :class="$style.logo" :src="item.data.meta.image.url" width="65" height="65">
-    <div :class="$style.content">
-      <h3 v-text="item.data.meta.title" />
-      <p class="oneline" v-text="item.data.meta.description" />
-      <span v-text="item.data.link.replace(/https?:\/\//, '')" />
-    </div>
-  </a>
+  <div :class="$style.link">
+    <a target="_blank" :href="item.data.link">
+      <img v-if="item.data.meta.image && item.data.meta.image.url" :class="$style.logo" :src="item.data.meta.image.url" width="65" height="65">
+      <div :class="$style.content">
+        <h3 v-text="item.data.meta.title" />
+        <p class="oneline" v-text="item.data.meta.description" />
+        <span v-text="item.data.link.replace(/https?:\/\//, '')" />
+      </div>
+    </a>
+  </div>
 </template>
 
 <script>

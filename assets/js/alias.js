@@ -13,5 +13,9 @@ export default {
 
   pin(slug) {
     return `/pin/${slug}`
+  },
+
+  create(slug) {
+    return slug ? `/wander?slug=${slug}` : '/wander'
   }
 }

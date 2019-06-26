@@ -211,7 +211,7 @@
             </el-button>
           </template>
           <div class="creator-wrap">
-            <nuxt-link to="/wander">
+            <nuxt-link target="_blank" :to="$alias.create()">
               <el-button size="small" type="primary" icon="el-icon-s-promotion">
                 投稿
               </el-button>

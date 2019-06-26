@@ -413,9 +413,7 @@ export default {
     }
   },
   asyncData({ app, error, params }) {
-    return getUserInfo(app, {
-      slug: params.slug
-    })
+    return getUserInfo(app, { params })
       .then(user => {
         return { user }
       })
