@@ -332,7 +332,8 @@ export default {
     return {
       title: user.nickname,
       meta: [
-        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature},${process.env.META_DESC}` }
+        { hid: 'keywords', name: 'keywords', content: user.nickname },
+        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` }
       ]
     }
   },

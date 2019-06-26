@@ -10,8 +10,7 @@ module.exports = {
   env: {
     API_URL: ENV.BASE_URL.API_URL[nodeEnv],
     API_URL_BROWSER: ENV.BASE_URL.API_URL_BROWSER[nodeEnv],
-    META_KEYS: injectScript.keywords,
-    META_DESC: injectScript.description,
+    INJECT: injectScript,
     SOCKET_HOST: ENV.SOCKET_HOST[nodeEnv]
   },
   buildDir: isDev ? '.nuxt-dev' : '.nuxt',
@@ -19,8 +18,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: '咔哩吧',
-    titleTemplate: val => val === '咔哩吧' ? val : `${val} - 咔哩吧`,
+    titleTemplate: val => val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.title}`,
     meta: [
       { charset: 'utf-8' },
       {
@@ -45,12 +43,14 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: injectScript.description
+        content: '',
+        template: val => val ? `${val},${process.env.INJECT.description}` : `${process.env.INJECT.description}`
       },
       {
         hid: 'keywords',
         name: 'keywords',
-        content: injectScript.keywords
+        content: '',
+        template: val => val ? `${val},${process.env.INJECT.keywords}` : `${process.env.INJECT.keywords}`
       }
     ],
     link: [
@@ -132,8 +132,8 @@ module.exports = {
         meta: {
           mobileApp: false,
           lang: 'zh-CN',
-          name: '咔哩吧',
-          author: '冰淤',
+          author: injectScript.author,
+          name: injectScript.title,
           description: injectScript.description
         },
         icon: false
@@ -144,8 +144,8 @@ module.exports = {
   })(),
 
   manifest: {
-    name: '咔哩吧',
-    short_name: '咔哩吧',
+    name: injectScript.name,
+    short_name: injectScript.title,
     description: injectScript.description,
     start_url: 'https://www.calibur.tv/?utm_source=pwa',
     lang: 'zh-CN'

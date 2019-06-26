@@ -231,8 +231,8 @@ export default {
     return {
       title: tag.name,
       meta: [
-        { hid: 'keywords', name: 'keywords', content: `${tag.alias},${process.env.META_KEYS}` },
-        { hid: 'description', name: 'description', content: `${tag.name},${tag.intro},${process.env.META_DESC}` }
+        { hid: 'keywords', name: 'keywords', content: tag.alias },
+        { hid: 'description', name: 'description', content: `${tag.name},${tag.intro}` }
       ]
     }
   },
