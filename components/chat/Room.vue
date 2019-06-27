@@ -44,6 +44,12 @@
       padding: 10px;
     }
 
+    .chat-message {
+      p {
+        padding: 0 !important;
+      }
+    }
+
     .msg-status {
       width: 14px;
       height: 14px;
