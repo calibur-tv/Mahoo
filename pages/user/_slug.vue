@@ -280,8 +280,8 @@
               钱包
             </h3>
             <template>
-              <p>团子：{{ user.balance.coin }}</p>
-              <p>光玉：{{ user.balance.money }}</p>
+              <p>团子：{{ parseFloat(user.balance.coin).toFixed(2) }}</p>
+              <p>光玉：{{ parseFloat(user.balance.money).toFixed(2) }}</p>
             </template>
           </aside>
           <aside class="user-section">

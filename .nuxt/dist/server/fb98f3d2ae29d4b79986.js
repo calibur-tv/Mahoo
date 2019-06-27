@@ -1,2 +1,0 @@
-exports.ids=[13],exports.modules={199:function(e,t,n){"use strict";n.r(t);var r={name:"UserBangumi",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},o=n(1);var component=Object(o.a)(r,function(){var e=this.$createElement;return(this._self._c||e)("div",{attrs:{id:"user-bangumi"}},[this._ssrNode("\n  UserBangumi\n")])},[],!1,function(e){},null,"497782e0");t.default=component.exports}};
-//# sourceMappingURL=fb98f3d2ae29d4b79986.js.map

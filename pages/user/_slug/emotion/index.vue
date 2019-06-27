@@ -146,7 +146,7 @@
       margin-bottom: 10px;
     }
 
-    img {
+    .img {
       width: 40px;
       height: 40px;
       border-radius: 4px;
@@ -177,7 +177,7 @@
         </nuxt-link>
         <template v-else-if="!tags.bangumi.length">
           <p class="empty">
-            TA还不是一个动漫迷~
+            {{ TA }}还不是一个动漫迷~
           </p>
           <span />
         </template>
@@ -211,7 +211,7 @@
         </nuxt-link>
         <template v-else-if="!tags.game.length">
           <p class="empty">
-            TA从来不玩游戏~
+            {{ TA }}从来不玩游戏~
           </p>
           <span />
         </template>
@@ -240,7 +240,7 @@
         </nuxt-link>
         <template v-else-if="!tags.topic.length">
           <p class="empty">
-            TA不喜欢参与任何话题~
+            {{ TA }}不喜欢参与任何话题~
           </p>
           <span />
         </template>
@@ -259,6 +259,24 @@
         </li>
       </ul>
     </div>
+    <div class="block">
+      <div class="block-title">
+        <nuxt-link class="text" to="notebook" append>
+          <span class="fade-link">发表的专栏</span>
+          <i v-if="tags.notebook.length" class="count" v-text="tags.notebook.length" />
+        </nuxt-link>
+        <nuxt-link v-if="tags.notebook.length > 4" class="more fade-link" to="notebook" append>
+          <span>更多</span>
+          <i class="el-icon-arrow-right" />
+        </nuxt-link>
+        <template v-else-if="!tags.notebook.length">
+          <p class="empty">
+            {{ TA }}还没写过文章~
+          </p>
+          <span />
+        </template>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -267,24 +285,28 @@ import { bookmarkTags } from '~/api/tagApi'
 
 export default {
   name: 'UserEmotion',
-  components: {},
-  props: {},
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       tags: null
     }
   },
-  computed: {},
-  watch: {},
+  computed: {
+    TA() {
+      return this.$utils.convertTA(this.user.sex, this.$store.getters.isMine(this.slug))
+    }
+  },
   asyncData({ app, error, params }) {
     return bookmarkTags(app, params)
       .then(tags => {
         return { tags }
       })
       .catch(error)
-  },
-  created() {},
-  mounted() {},
-  methods: {}
+  }
 }
 </script>
