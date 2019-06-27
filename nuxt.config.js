@@ -192,9 +192,6 @@ module.exports = {
       commons: true
     },
     extractCSS: true,
-    /*
-    ** You can extend webpack config here
-    */
     extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
@@ -229,13 +226,6 @@ module.exports = {
           }
         ]
       ]
-    },
-    postcss: {
-      preset: {
-        autoprefixer: {
-          remove: false
-        }
-      }
     }
   }
 }

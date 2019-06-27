@@ -1,8 +1,8 @@
 <style lang="scss">
 #tag-show {
   .left-aside {
-    .parent-node,
     .child-node {
+      margin-top: 20px;
       margin-right: 10px;
 
       li {
@@ -28,13 +28,6 @@
         display: block;
       }
     }
-
-    .parent-node {
-      margin-top: 20px;
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #f6f6f6;
-    }
   }
 
   .main-wrap {
@@ -56,17 +49,6 @@
       >
         <affix :top="50">
           <ul
-            v-if="parent"
-            class="parent-node"
-          >
-            <li class="node">
-              <nuxt-link :to="`/tag/${parent.slug}`">
-                <v-img :src="parent.avatar" width="32" height="32" :alt="parent.name" />
-                <span v-text="parent.name" />
-              </nuxt-link>
-            </li>
-          </ul>
-          <ul
             v-if="children.length"
             class="child-node"
           >
@@ -81,6 +63,7 @@
               </nuxt-link>
             </li>
           </ul>
+          &nbsp;
         </affix>
       </el-col>
       <el-col :span="14" class="main-wrap">
