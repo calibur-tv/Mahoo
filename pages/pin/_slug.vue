@@ -1,19 +1,19 @@
 <style lang="scss">
 #pin-show {
+  position: relative;
   margin-top: 30px;
 
   .banner {
+    width: 100%;
+    height: auto;
+
     &.full-size {
       width: 100%;
+      padding-top: $page-header-hgt;
       padding-bottom: 33.3%;
       background-size: cover;
       background-position: center;
       margin-top: -30px;
-      margin-bottom: 24px;
-    }
-
-    &.normal-size {
-      margin-bottom: 24px;
     }
   }
 
@@ -23,11 +23,13 @@
     padding: 0 10px;
 
     .title {
-      font-size: 28px;
       color: $color-text-1;
-      margin-bottom: 14px;
-      font-weight: 700;
-      line-height: 1.4;
+      font-weight: 600;
+      font-synthesis: style;
+      font-size: 24px;
+      line-height: 1.22;
+      margin: 24px 0;
+      @extend %breakWord;
     }
 
     .content-author {
@@ -40,14 +42,19 @@
 <template>
   <div id="pin-show">
     <div
-      v-if="title.banner"
+      v-if="title.banner && title.banner.width >= 1400"
       :style="{
         backgroundImage: `url(${$resize(title.banner.url, { width: 2000 })})`
       }"
-      :class="{ 'full-size': title.banner.width > 1400 }"
-      class="banner"
+      class="banner full-size"
     />
     <div class="content">
+      <img
+        v-if="title.banner && title.banner.width < 1400"
+        :src="$resize(title.banner.url, { width: 660 })"
+        :alt="title.text"
+        class="banner"
+      >
       <h1 class="title" v-text="title.text" />
       <content-author :user="author">
         <template v-slot:intro>

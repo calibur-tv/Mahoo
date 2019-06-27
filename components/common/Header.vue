@@ -168,47 +168,49 @@
           </v-switcher>
         </nav>
         <div class="right">
-          <template v-if="isAuth">
-            <div class="user-panel icon-link">
-              <nuxt-link
-                :to="$alias.user(user.slug)"
-                class="avatar"
-              >
-                <v-img
-                  :src="user.avatar"
-                  def="default-avatar"
-                  width="33"
-                  height="33"
-                  radius="50%"
-                  :alt="user.nickname"
-                />
-              </nuxt-link>
-              <div class="user-popover">
-                <div class="bottom">
-                  <button @click="handleLogout">
-                    退出
-                  </button>
+          <template v-if="showUser">
+            <template v-if="isAuth">
+              <div class="user-panel icon-link">
+                <nuxt-link
+                  :to="$alias.user(user.slug)"
+                  class="avatar"
+                >
+                  <v-img
+                    :src="user.avatar"
+                    def="default-avatar"
+                    width="33"
+                    height="33"
+                    radius="50%"
+                    :alt="user.nickname"
+                  />
+                </nuxt-link>
+                <div class="user-popover">
+                  <div class="bottom">
+                    <button @click="handleLogout">
+                      退出
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
-              <el-badge :value="mailbox.unread_message_total" :hidden="!mailbox.unread_message_total">
-                <i class="iconfont ic-message" />
-              </el-badge>
-            </nuxt-link>
-            <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
-              <el-badge :value="mailbox.unread_notice_total" :hidden="!mailbox.unread_notice_total">
-                <i class="iconfont ic-remind" />
-              </el-badge>
-            </nuxt-link>
-          </template>
-          <template v-else>
-            <el-button
-              type="text"
-              @click="handleSignIn"
-            >
-              登录
-            </el-button>
+              <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
+                <el-badge :value="mailbox.unread_message_total" :hidden="!mailbox.unread_message_total">
+                  <i class="iconfont ic-message" />
+                </el-badge>
+              </nuxt-link>
+              <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
+                <el-badge :value="mailbox.unread_notice_total" :hidden="!mailbox.unread_notice_total">
+                  <i class="iconfont ic-remind" />
+                </el-badge>
+              </nuxt-link>
+            </template>
+            <template v-else>
+              <el-button
+                type="text"
+                @click="handleSignIn"
+              >
+                登录
+              </el-button>
+            </template>
           </template>
           <div class="creator-wrap">
             <nuxt-link target="_blank" :to="$alias.create()">
@@ -232,6 +234,12 @@ import { logout } from '~/api/userApi'
 export default {
   components: {
     'el-badge': Badge
+  },
+  props: {
+    showUser: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {

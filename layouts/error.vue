@@ -31,6 +31,7 @@
 
 <template>
   <div id="error-page">
+    <v-header :show-user="false"/>
     <div class="error-main">
       <div v-if="statusCode === 401" id="error-401">
         <img
@@ -81,6 +82,8 @@
 </template>
 
 <script>
+import VHeader from '~/components/common/Header'
+
 export default {
   name: 'nuxt-error', // eslint-disable-line
   props: {
@@ -91,6 +94,9 @@ export default {
   },
   head: {
     title: '出错了'
+  },
+  components: {
+    VHeader
   },
   computed: {
     statusCode() {

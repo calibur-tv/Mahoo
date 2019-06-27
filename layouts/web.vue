@@ -17,15 +17,6 @@ export default {
     VHeader,
     SignDialog
   },
-  mixins: [useSignMixin],
-  props: {},
-  data() {
-    return {}
-  },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  mixins: [useSignMixin]
 }
 </script>

@@ -277,7 +277,7 @@ export default {
   computed: {},
   watch: {},
   asyncData({ app, error, params }) {
-    return bookmarkTags(app, { params })
+    return bookmarkTags(app, params)
       .then(tags => {
         return { tags }
       })

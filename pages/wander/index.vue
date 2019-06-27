@@ -77,7 +77,7 @@
       }
     }
 
-    .img {
+    .banner {
       position: absolute;
       left: 0;
       top: 0;
@@ -122,7 +122,7 @@
     margin-bottom: 20px;
 
     .el-textarea {
-      font-size: 28px;
+      font-size: 24px;
 
       &__inner {
         border-width: 0 !important;
@@ -174,7 +174,7 @@
           </div>
         </el-upload>
         <template v-if="title.banner">
-          <v-img :src="title.banner.url" width="100%" height="240" />
+          <img class="banner" :src="$resize(title.banner.url, { width: 660 })">
           <div class="tool">
             <i class="el-icon-delete" @click="deleteBanner" />
           </div>
@@ -202,32 +202,61 @@
           <area-picker v-model="area" />
         </el-form-item>
         <el-form-item class="button-wrap">
-          <el-button
-            v-if="slug"
-            :loading="loading"
-            type="primary"
-            round
-            @click="actionUpdate"
-          >
-            发布更新
-          </el-button>
-          <el-button
-            v-else
-            :loading="loading"
-            type="primary"
-            round
-            @click="actionPublish"
-          >
-            发表文章
-          </el-button>
-          <el-button
-            :loading="loading"
-            round
-            type="warning"
-            @click="actionDraft"
-          >
-            存草稿
-          </el-button>
+          <template v-if="slug">
+            <el-button
+              :loading="loading"
+              type="primary"
+              round
+              @click="actionUpdate"
+            >
+              发布更新
+            </el-button>
+            <el-button
+              v-if="visit_type === 1"
+              :loading="loading"
+              round
+              type="warning"
+              @click="actionDraft"
+            >
+              存草稿
+            </el-button>
+            <el-button
+              :loading="loading"
+              type="primary"
+              round
+              plain
+              @click="actionDelete"
+            >
+              删除文章
+            </el-button>
+          </template>
+          <template v-else>
+            <el-button
+              :loading="loading"
+              type="primary"
+              round
+              @click="actionPublish"
+            >
+              发表文章
+            </el-button>
+            <el-button
+              :loading="loading"
+              round
+              type="warning"
+              @click="actionDraft"
+            >
+              存草稿
+            </el-button>
+            <el-button
+              :loading="loading"
+              type="primary"
+              round
+              plain
+              @click="actionDelete"
+            >
+              删除文章
+            </el-button>
+          </template>
         </el-form-item>
       </el-form>
     </div>
@@ -260,7 +289,8 @@ export default {
       content: [],
       area: process.env.TAGS.newbie,
       loading: false,
-      last_edit_at: ''
+      last_edit_at: '',
+      visit_type: 0
     }
   },
   asyncData({ app, error, query }) {
@@ -277,8 +307,8 @@ export default {
       .catch(error)
   },
   mounted() {
-    if (!this.slug && this.$cache.has('editor_local_draft_title')) {
-      this.title = this.$cache.get('editor_local_draft_title')
+    if (this.$cache.has(`editor_local_draft_title-${this.slug}`)) {
+      this.title = this.$cache.get(`editor_local_draft_title-${this.slug}`)
     }
   },
   methods: {
@@ -296,7 +326,7 @@ export default {
       this.saveTitle()
     },
     saveTitle() {
-      this.$cache.set('editor_local_draft_title', this.title)
+      this.$cache.set(`editor_local_draft_title-${this.slug}`, this.title)
     },
     deleteBanner() {
       this.title.banner = null
@@ -314,14 +344,13 @@ export default {
         this.$toast.info('内容不能为空')
         return true
       }
+      this.loading = true
       return false
     },
     actionPublish() {
       if (this.preValidate()) {
         return
       }
-
-      this.loading = true
 
       this.$axios.$post('v1/pin/create/story', {
         area: this.area[1],
@@ -333,7 +362,7 @@ export default {
         ].concat(this.content)
       })
         .then(slug => {
-          this.$cache.remove('editor_local_draft_title')
+          this.$cache.remove(`editor_local_draft_title-${this.slug}`)
           this.$cache.remove('editor_local_draft')
           window.location = this.$alias.pin(slug)
         })
@@ -346,13 +375,66 @@ export default {
       if (this.preValidate()) {
         return
       }
-      console.log('actionUpdate')
+
+      const { slug } = this
+      this.$axios.$post('v1/pin/update/story', {
+        slug,
+        area: this.area[1],
+        content: [
+          {
+            type: 'title',
+            data: this.title
+          }
+        ].concat(this.content)
+      })
+        .then(() => {
+          this.$cache.remove(`editor_local_draft_title-${slug}`)
+          this.$cache.remove(`editor_local_draft-${slug}`)
+          window.location = this.$alias.pin(slug)
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+          this.loading = false
+        })
     },
     actionDraft() {
       if (this.preValidate()) {
         return
       }
       console.log('actionDraft')
+    },
+    actionDelete() {
+      if (!this.slug) {
+        this.$cache.remove(`editor_local_draft_title-${this.slug}`)
+        this.$cache.remove('editor_local_draft')
+        this.$toast.success('删除成功')
+          .then(() => {
+            window.location.reload()
+          })
+        return
+      }
+
+      this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
+        .then(() => {
+          if (this.loading) {
+            return
+          }
+          this.loading = true
+          this.$axios.$post('v1/pin/delete', {
+            slug: this.slug
+          })
+            .then(() => {
+              this.$toast.success('删除成功')
+                .then(() => {
+                  window.location = '/'
+                })
+                .catch(err => {
+                  this.$toast.error(err.message)
+                  this.loading = false
+                })
+            })
+        })
+        .catch(() => {})
     }
   }
 }

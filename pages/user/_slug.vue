@@ -413,7 +413,7 @@ export default {
     }
   },
   asyncData({ app, error, params }) {
-    return getUserInfo(app, { params })
+    return getUserInfo(app, params)
       .then(user => {
         return { user }
       })
