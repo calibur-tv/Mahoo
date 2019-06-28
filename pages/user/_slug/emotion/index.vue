@@ -123,7 +123,7 @@
     li {
       float: left;
       width: 20%;
-      margin-bottom: 28px;
+      margin-bottom: 25px;
       padding-right: 20px;
     }
 
@@ -146,7 +146,7 @@
       float: left;
       width: 25%;
       padding-right: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 25px;
     }
 
     .img {
