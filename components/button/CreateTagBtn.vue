@@ -1,6 +1,6 @@
 <template>
-  <button @click="actionCreate">
-    <i class="el-icon-folder-add"/>
+  <button type="button" @click="actionCreate">
+    <i class="el-icon-folder-add" />
     <span>新建{{ text }}</span>
   </button>
 </template>

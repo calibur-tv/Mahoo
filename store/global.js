@@ -4,38 +4,37 @@ export const state = () => ({
   myTagsFetched: false,
   myTags: [
     {
-      label: '动漫',
-      value: 'bangumi',
+      name: '动漫',
+      slug: 'bangumi',
       children: []
     },
     {
-      label: '游戏',
-      value: 'game',
+      name: '游戏',
+      slug: 'game',
       children: []
     },
     {
-      label: '话题',
-      value: 'topic',
+      name: '话题',
+      slug: 'topic',
       children: []
     },
     {
-      label: '专栏',
-      value: 'notebook',
+      name: '专栏',
+      slug: 'notebook',
       children: []
     }
   ]
 })
 
 export const mutations = {
-  SET_MY_TAGS(state, data) {
+  SET_MY_TAGS_STATE(state) {
     state.myTagsFetched = true
+  },
+  SET_MY_TAGS(state, data) {
     Object.keys(data).forEach(type => {
       state.myTags.forEach(item => {
-        if (item.value === type) {
-          item.children = data[type].map(_ => Object.assign(_, {
-            value: _.slug,
-            label: _.name
-          }))
+        if (item.slug === type) {
+          item.children = data[type]
         }
       })
     })
@@ -47,6 +46,7 @@ export const actions = {
     if (state.myTagsFetched || !rootState.isAuth) {
       return
     }
+    commit('SET_MY_TAGS_STATE')
     bookmarkTags(this, {
       slug: rootState.user.slug
     })

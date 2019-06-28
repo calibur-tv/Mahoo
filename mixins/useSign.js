@@ -5,7 +5,7 @@ export default {
     if (this.$store.state.logging) {
       const canceler = this.$watch('$store.state.logging', () => {
         if (this.$store.state.isAuth) {
-          this.$channel.$emit('user-signed')
+          this.$channel.$fire('user-signed')
           canceler()
         } else {
           this.$cookie.remove('JWT-TOKEN')
@@ -16,7 +16,7 @@ export default {
       this.$store.commit('SET_USER_TOKEN', token)
       const user = await this.$store.dispatch('initAuth')
       if (user) {
-        this.$channel.$emit('user-signed')
+        this.$channel.$fire('user-signed')
       } else {
         this.$cookie.remove('JWT-TOKEN')
       }

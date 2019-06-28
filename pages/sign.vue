@@ -68,7 +68,14 @@
       <div class="bg">
         <img src="~/assets/img/login_bg.png" alt="calibur">
       </div>
-      <v-switcher ref="switcher" :headers="headers" :swipe="true" align="center" :anchor-padding="10">
+      <v-switcher
+        ref="switcher"
+        :headers="headers"
+        :swipe="true"
+        :anchor-padding="10"
+        :disabled-swipe="true"
+        align="center"
+      >
         <template slot="0">
           <reset-password-form
             v-if="showReset"

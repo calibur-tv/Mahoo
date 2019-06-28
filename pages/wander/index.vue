@@ -143,6 +143,9 @@
 
     .button-wrap {
       text-align: center;
+      padding-top: 45px;
+      margin-top: 45px;
+      border-top: 1px solid $color-gray-line;
 
       button {
         width: 150px;
@@ -198,8 +201,11 @@
         @save="onEditorSave"
       />
       <el-form class="footer" label-position="top" label-width="80px">
-        <el-form-item label="投稿分区">
+        <el-form-item label="选择分区">
           <area-picker v-model="area" />
+        </el-form-item>
+        <el-form-item label="选择专栏">
+          <notebook-picker v-model="notebook" />
         </el-form-item>
         <el-form-item class="button-wrap">
           <template v-if="slug">
@@ -271,6 +277,7 @@ import mustSign from '~/mixins/mustSign'
 import upload from '~/mixins/upload'
 import Editor from '~/components/editor'
 import AreaPicker from '~/components/form/AreaPicker'
+import NotebookPicker from '~/components/form/NotebookPicker'
 
 export default {
   name: 'Wander',
@@ -278,6 +285,7 @@ export default {
   components: {
     Editor,
     AreaPicker,
+    NotebookPicker,
     'el-upload': Upload
   },
   mixins: [mustSign, upload],
@@ -289,6 +297,8 @@ export default {
         text: ''
       },
       content: [],
+      notebook: [],
+      tags: [],
       area: process.env.TAGS.newbie,
       loading: false,
       last_edit_at: '',
@@ -346,6 +356,14 @@ export default {
         this.$toast.info('内容不能为空')
         return true
       }
+      if (this.area.length < 2) {
+        this.$toast.info('请选择分区')
+        return true
+      }
+      if (!this.notebook.length) {
+        this.$toast.info('请选择专栏')
+        return true
+      }
       this.loading = true
       return false
     },
@@ -356,6 +374,7 @@ export default {
 
       this.$axios.$post('v1/pin/create/story', {
         area: this.area[1],
+        notebook: this.notebook[0],
         content: [
           {
             type: 'title',
@@ -382,6 +401,7 @@ export default {
       this.$axios.$post('v1/pin/update/story', {
         slug,
         area: this.area[1],
+        notebook: this.notebook[0],
         content: [
           {
             type: 'title',

@@ -348,14 +348,14 @@ import CreateTagBtn from '~/components/button/CreateTagBtn'
 
 export default {
   name: 'UserEmotion',
+  components: {
+    CreateTagBtn
+  },
   props: {
     user: {
       type: Object,
       required: true
     }
-  },
-  components: {
-    CreateTagBtn
   },
   data() {
     return {

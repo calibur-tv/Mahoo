@@ -9173,10 +9173,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.35:
-  version "1.0.35"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.35.tgz#1124d77b3e23b2d2221755d8c066cfbfb83bbde4"
-  integrity sha512-3CrvAtHcMPq1ckw2+Bga+py+4TFF4Up10fk6hgiOpIuwHx7uRf5QyDv5CzG/WGZHF0fsLjrZ87gC1FYPW+dXfA==
+v-switcher@^1.0.37:
+  version "1.0.37"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.37.tgz#ab08a7d4c2779a5cc5b3f7af0fad44fa6730ff16"
+  integrity sha512-LzqLbYeZiygZP2ZXQS9MgQQb9yu3Zvz2k+5ZC5l2IgmIHVuz3YNi12b3j+tpbkDf1UOIYO56omFx1sD0QknpnA==
   dependencies:
     vue "^2.6.6"
 

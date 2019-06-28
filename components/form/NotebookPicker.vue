@@ -1,0 +1,80 @@
+<style lang="scss">
+.notebook-picker {
+  .new-btn {
+    float: right;
+    margin-left: 15px;
+  }
+
+  .selection {
+    overflow: hidden;
+  }
+}
+</style>
+
+<template>
+  <div class="notebook-picker">
+    <div class="new-btn">
+      <create-tag-btn text="专栏" parent="uh4f" @create="handleCreate" />
+    </div>
+    <div class="selection">
+      <el-select v-model="selected[0]" placeholder="请选择">
+        <el-option
+          v-for="item in options"
+          :key="item.slug"
+          :label="item.name"
+          :value="item.slug"
+        />
+      </el-select>
+    </div>
+  </div>
+</template>
+
+<script>
+import { Select, Option } from 'element-ui'
+import CreateTagBtn from '~/components/button/CreateTagBtn'
+
+export default {
+  name: 'NotebookPicker',
+  components: {
+    'el-select': Select,
+    'el-option': Option,
+    CreateTagBtn
+  },
+  props: {
+    value: {
+      type: Array,
+      required: true
+    }
+  },
+  data() {
+    return {
+      selected: this.value,
+      newTags: []
+    }
+  },
+  computed: {
+    options() {
+      return this.newTags.concat(this.$store.state.global.myTags.filter(_ => _.slug === 'notebook')[0].children)
+    }
+  },
+  watch: {
+    selected(val) {
+      this.$emit('input', val)
+    },
+    value(val) {
+      this.selected = val
+    }
+  },
+  mounted() {
+    this.$channel.$when('user-signed', () => {
+      this.$store.dispatch('global/getMyTags')
+    })
+  },
+  methods: {
+    handleCreate(data) {
+      this.newTags.unshift(data)
+      this.selected = data
+    }
+  }
+}
+</script>

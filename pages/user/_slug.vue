@@ -330,7 +330,7 @@ export default {
   head() {
     const { user } = this
     return {
-      title: user.nickname,
+      title: `${user.nickname}的个人空间`,
       meta: [
         { hid: 'keywords', name: 'keywords', content: user.nickname },
         { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` }

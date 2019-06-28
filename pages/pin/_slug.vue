@@ -42,20 +42,22 @@
 <template>
   <div id="pin-show">
     <div
-      v-if="title.banner && title.banner.width >= 1400"
+      v-if="title && title.banner && title.banner.width >= 1400"
       :style="{
         backgroundImage: `url(${$resize(title.banner.url, { width: 2000 })})`
       }"
       class="banner full-size"
     />
     <div class="content">
-      <img
-        v-if="title.banner && title.banner.width < 1400"
-        :src="$resize(title.banner.url, { width: 660 })"
-        :alt="title.text"
-        class="banner"
-      >
-      <h1 class="title" v-text="title.text" />
+      <template v-if="title">
+        <img
+          v-if="title.banner && title.banner.width < 1400"
+          :src="$resize(title.banner.url, { width: 660 })"
+          :alt="title.text"
+          class="banner"
+        >
+        <h1 class="title" v-text="title.text" />
+      </template>
       <content-author :user="author">
         <template v-slot:intro>
           <span v-text="$utils.time.from(created_at)" />
