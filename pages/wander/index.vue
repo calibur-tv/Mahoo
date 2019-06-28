@@ -198,14 +198,14 @@
         @save="onEditorSave"
       />
       <el-form class="footer" label-position="top" label-width="80px">
-        <el-form-item label="投稿板块">
+        <el-form-item label="投稿分区">
           <area-picker v-model="area" />
         </el-form-item>
         <el-form-item class="button-wrap">
           <template v-if="slug">
             <el-button
               :loading="loading"
-              type="primary"
+              type="success"
               round
               @click="actionUpdate"
             >
@@ -215,6 +215,7 @@
               v-if="visit_type === 1"
               :loading="loading"
               round
+              plain
               type="warning"
               @click="actionDraft"
             >
@@ -233,7 +234,7 @@
           <template v-else>
             <el-button
               :loading="loading"
-              type="primary"
+              type="success"
               round
               @click="actionPublish"
             >
@@ -242,6 +243,7 @@
             <el-button
               :loading="loading"
               round
+              plain
               type="warning"
               @click="actionDraft"
             >
@@ -405,12 +407,14 @@ export default {
     },
     actionDelete() {
       if (!this.slug) {
-        this.$cache.remove(`editor_local_draft_title-${this.slug}`)
-        this.$cache.remove('editor_local_draft')
-        this.$toast.success('删除成功')
-          .then(() => {
-            window.location.reload()
-          })
+        if (this.content.length || this.title.text.length || this.title.banner) {
+          this.$cache.remove(`editor_local_draft_title-${this.slug}`)
+          this.$cache.remove('editor_local_draft')
+          this.$toast.success('删除成功')
+            .then(() => {
+              window.location.reload()
+            })
+        }
         return
       }
 

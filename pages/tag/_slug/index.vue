@@ -176,9 +176,7 @@
             当前标签活跃用户
           </div>
           <div>
-            <button @click="createTag">
-              添加子标签
-            </button>
+            <create-tag-btn :parent="slug" text="子分区" @create="handleCreate" />
             <button @click="combineTag">
               合并标签
             </button>
@@ -203,11 +201,13 @@
 <script>
 import * as API from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
+import CreateTagBtn from '~/components/button/CreateTagBtn'
 
 export default {
   name: 'TagShow',
   components: {
-    Affix
+    Affix,
+    CreateTagBtn
   },
   head() {
     const { tag } = this
@@ -245,29 +245,9 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    createTag() {
-      this.$prompt('请输入标签名', '创建标签', {
-        confirmButtonText: '提交',
-        cancelButtonText: '取消'
-      })
-        .then(({ value }) => {
-          const name = value.trim()
-          if (name.length > 32) {
-            return this.$toast.error('名字不能超过32个字')
-          }
-          API.createTag(this, {
-            name,
-            parent_slug: this.slug
-          })
-            .then(data => {
-              this.children.push(data)
-              this.$toast.success('标签创建成功')
-            })
-            .catch(err => {
-              this.$toast.error(err.message)
-            })
-        })
-        .catch(() => {})
+    handleCreate(data) {
+      this.children.push(data)
+      this.$toast.success('标签创建成功')
     },
     combineTag() {
       console.log('combineTag') // eslint-disable-line

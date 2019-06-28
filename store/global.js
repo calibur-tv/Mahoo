@@ -17,6 +17,11 @@ export const state = () => ({
       label: '话题',
       value: 'topic',
       children: []
+    },
+    {
+      label: '专栏',
+      value: 'notebook',
+      children: []
     }
   ]
 })

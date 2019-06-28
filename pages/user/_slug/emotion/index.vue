@@ -70,13 +70,16 @@
         color: #6d757a;
       }
 
-      .more {
+      .more,
+      .create-btn {
+        display: inline-block;
         font-size: 12px;
         line-height: 22px;
         border: 1px solid #b8c0cc;
         border-radius: 4px;
         padding-left: 10px;
         padding-right: 5px;
+        margin-left: 5px;
       }
     }
   }
@@ -160,6 +163,43 @@
       line-height: 40px;
     }
   }
+
+  .notebooks {
+    .avatar {
+      float: right;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .content {
+      overflow: hidden;
+      padding-bottom: 23px;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #f4f5f7;
+      }
+
+      .note-title a {
+        color: $color-text-1;
+        font-size: 18px;
+        line-height: 26px;
+      }
+
+      .desc {
+        font-size: 12px;
+        color: #6d757a;
+        line-height: 20px;
+        margin-top: 5px;
+      }
+
+      .meta {
+        margin-top: 15px;
+        color: #999;
+        height: 14px;
+        line-height: 14px;
+      }
+    }
+  }
 }
 </style>
 
@@ -182,7 +222,7 @@
           <span />
         </template>
       </div>
-      <ul v-if="tags.bangumi" class="bangumis clearfix">
+      <ul v-if="tags.bangumi.length" class="bangumis clearfix">
         <li
           v-for="item in tags.bangumi.slice(0, 4)"
           :key="item.slug"
@@ -216,7 +256,7 @@
           <span />
         </template>
       </div>
-      <ul v-if="tags.game" class="games clearfix">
+      <ul v-if="tags.game.length" class="games clearfix">
         <li
           v-for="item in tags.game.slice(0, 5)"
           :key="item.slug"
@@ -245,7 +285,7 @@
           <span />
         </template>
       </div>
-      <ul v-if="tags.topic" class="topics clearfix">
+      <ul v-if="tags.topic.length" class="topics clearfix">
         <li
           v-for="item in tags.topic.slice(0, 12)"
           :key="item.slug"
@@ -265,23 +305,46 @@
           <span class="fade-link">发表的专栏</span>
           <i v-if="tags.notebook.length" class="count" v-text="tags.notebook.length" />
         </nuxt-link>
-        <nuxt-link v-if="tags.notebook.length > 4" class="more fade-link" to="notebook" append>
-          <span>更多</span>
-          <i class="el-icon-arrow-right" />
-        </nuxt-link>
-        <template v-else-if="!tags.notebook.length">
+        <div v-if="tags.notebook.length">
+          <create-tag-btn class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <nuxt-link v-if="tags.notebook.length > 4" class="more fade-link" to="notebook" append>
+            <span>更多</span>
+            <i class="el-icon-arrow-right" />
+          </nuxt-link>
+        </div>
+        <template v-else>
           <p class="empty">
             {{ TA }}还没写过文章~
           </p>
-          <span />
+          <create-tag-btn class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
         </template>
       </div>
+      <ul v-if="tags.notebook.length" class="notebooks clearfix">
+        <li
+          v-for="item in tags.notebook.slice(0, 4)"
+          :key="item.slug"
+        >
+          <nuxt-link class="avatar" target="_blank" :to="$alias.tag(item.slug)">
+            <v-img :src="item.avatar" width="117" height="88" :alt="item.name" />
+          </nuxt-link>
+          <div class="content clearfix">
+            <div class="note-title oneline">
+              <nuxt-link class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+            </div>
+            <p class="desc oneline" :title="item.extra.intro" v-text="item.extra.intro || '暂无简介'" />
+            <div class="meta oneline">
+              -
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
 import { bookmarkTags } from '~/api/tagApi'
+import CreateTagBtn from '~/components/button/CreateTagBtn'
 
 export default {
   name: 'UserEmotion',
@@ -290,6 +353,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  components: {
+    CreateTagBtn
   },
   data() {
     return {
@@ -307,6 +373,11 @@ export default {
         return { tags }
       })
       .catch(error)
+  },
+  methods: {
+    handleCreateNotebook(data) {
+      this.tags.notebook.unshift(data)
+    }
   }
 }
 </script>

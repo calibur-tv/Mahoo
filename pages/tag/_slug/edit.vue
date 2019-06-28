@@ -55,7 +55,7 @@
                   round
                   size="mini"
                 >
-                  {{ uploadPending ? '图片上传中...' : '上传标签封面' }}
+                  {{ uploadPending ? '图片上传中...' : '点击上传封面' }}
                 </el-button>
               </el-upload>
             </div>

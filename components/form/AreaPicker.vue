@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     options() {
-      let result = this.$store.state.global.myTags
+      let result = this.$store.state.global.myTags.filter(_ => _.value !== 'notebook')
       if (this.blocked) {
         result = result.filter(_ => _.value !== this.blocked)
       }
