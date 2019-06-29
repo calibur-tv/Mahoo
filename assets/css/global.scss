@@ -72,3 +72,15 @@
   background-color: $color-main;
   color: #fff;
 }
+
+.only-h5 {
+  @media (min-width: 769px) {
+    display: none !important;
+  }
+}
+
+.only-pc {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
