@@ -26,28 +26,70 @@
         .logo {
           line-height: $page-header-hgt;
           margin-left: 10px;
-          margin-right: 10px;
+          margin-right: 20px;
           font-size: 0;
         }
 
         .v-switcher {
+          &-header {
+            &-anchor {
+              bottom: 0;
+              height: 2px;
+              background-color: $color-main;
+            }
+          }
+
           a {
             display: block;
-            padding: 0 12px;
+            padding: 0 20px;
             font-size: 15px;
-            line-height: 40px;
-            background-color: transparent;
-            border-radius: 4px;
             color: #222;
-            border-bottom-width: 0;
             height: 100%;
-
-            &:hover {
-              background-color: #F3F3F3;
-            }
 
             &.nuxt-link-exact-active {
               color: $color-main;
+            }
+
+            &:hover {
+              color: $color-main;
+            }
+
+            .iconfont {
+              &.bangumi:before {
+                content: "\e603";
+              }
+              &.game:before {
+                content: "\e600";
+              }
+              &.topic:before {
+                content: "\e73a";
+              }
+            }
+          }
+
+          .game {
+            font-weight: bold;
+            font-size: 20px;
+          }
+
+          .topic {
+            font-size: 20px;
+          }
+
+          .is-active .iconfont {
+            &.bangumi:before {
+              content: "\e612";
+            }
+            &.game {
+              font-weight: normal;
+              font-size: 21px;
+
+              &:before {
+                content: "\e631";
+              }
+            }
+            &.topic:before {
+              content: "\e619";
             }
           }
         }
@@ -156,14 +198,14 @@
           <nuxt-link class="logo" to="/">
             <v-img src="default-poster" width="32" height="32" radius="50%" alt="calibur" />
           </nuxt-link>
-          <v-switcher :headers="headers" :routable="true" align="start">
+          <v-switcher :headers="headers" :routable="true" :header-height="50" align="start">
             <nuxt-link
               v-for="(item, index) in headers"
               :key="index"
               :slot="`tab-${index}`"
               :to="item.route"
             >
-              <span v-text="item.name" />
+              <i class="iconfont" :class="item.icon"/>
             </nuxt-link>
           </v-switcher>
         </nav>
@@ -245,20 +287,22 @@ export default {
     return {
       headers: [
         {
-          route: '/',
-          name: '首页'
-        },
-        {
           route: '/tag/2he',
-          name: '动漫'
+          name: '动漫',
+          icon: 'bangumi',
+          'icon-active': 'bangumi_fill'
         },
         {
           route: '/tag/285',
-          name: '游戏'
+          name: '游戏',
+          icon: 'game',
+          'icon-active': 'game_fill'
         },
         {
           route: '/tag/3p6',
-          name: '话题'
+          name: '话题',
+          icon: 'topic',
+          'icon-active': 'topic_fill'
         }
       ]
     }
