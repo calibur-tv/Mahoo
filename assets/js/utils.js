@@ -22,7 +22,9 @@ export const randomStr = () => {
   return `${Date.now()}-${Math.random().toString(36).substring(3, 6)}`
 }
 
-export const time = dayjs()
+export const timeFormat = (time, format) => dayjs(time).format(format)
+
+export const timeAgo = time => dayjs().from(time)
 
 export const checkInView = (dom, preload = 1) => {
   if (!dom) {

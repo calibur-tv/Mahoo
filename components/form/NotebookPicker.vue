@@ -17,7 +17,7 @@
       <create-tag-btn text="专栏" parent="uh4f" @create="handleCreate" />
     </div>
     <div class="selection">
-      <el-select v-model="selected[0]" placeholder="请选择">
+      <el-select v-model="selected" placeholder="请选择">
         <el-option
           v-for="item in options"
           :key="item.slug"
@@ -42,7 +42,7 @@ export default {
   },
   props: {
     value: {
-      type: Array,
+      type: String,
       required: true
     }
   },

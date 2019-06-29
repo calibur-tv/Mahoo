@@ -297,8 +297,7 @@ export default {
         text: ''
       },
       content: [],
-      notebook: [],
-      tags: [],
+      notebook: '',
       area: process.env.TAGS.newbie,
       loading: false,
       last_edit_at: '',
@@ -314,6 +313,8 @@ export default {
       params: { slug }
     })
       .then(data => {
+        data.area = data.area.slug
+        data.notebook = data.notebook.slug
         return { ...data }
       })
       .catch(error)
@@ -356,11 +357,11 @@ export default {
         this.$toast.info('内容不能为空')
         return true
       }
-      if (this.area.length < 2) {
+      if (!this.area) {
         this.$toast.info('请选择分区')
         return true
       }
-      if (!this.notebook.length) {
+      if (!this.notebook) {
         this.$toast.info('请选择专栏')
         return true
       }
@@ -373,8 +374,8 @@ export default {
       }
 
       this.$axios.$post('v1/pin/create/story', {
-        area: this.area[1],
-        notebook: this.notebook[0],
+        area: this.area,
+        notebook: this.notebook,
         content: [
           {
             type: 'title',
@@ -400,8 +401,8 @@ export default {
       const { slug } = this
       this.$axios.$post('v1/pin/update/story', {
         slug,
-        area: this.area[1],
-        notebook: this.notebook[0],
+        area: this.area,
+        notebook: this.notebook,
         content: [
           {
             type: 'title',

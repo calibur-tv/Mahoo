@@ -14,11 +14,16 @@
   }
 
   .tail-area {
-    margin-left: 10px;
+    margin-left: 14px;
   }
 
   .content-meta {
     color: $color-text-3;
+    font-size: 12px;
+
+    span {
+      margin-right: 18px;
+    }
   }
 }
 </style>

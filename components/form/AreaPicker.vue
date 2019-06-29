@@ -18,7 +18,8 @@
       :options="options"
       :props="{
         'value': 'slug',
-        'label': 'name'
+        'label': 'name',
+        'emitPath': false
       }"
       filterable
     >
@@ -45,7 +46,7 @@ export default {
   },
   props: {
     value: {
-      type: Array,
+      type: String,
       required: true
     },
     placeholder: {
