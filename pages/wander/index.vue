@@ -412,10 +412,10 @@ export default {
         ].concat(this.content),
         publish
       })
-        .then(() => {
+        .then(result => {
           this.$cache.remove(`editor_local_draft_title-${slug}`)
           this.$cache.remove(`editor_local_draft-${slug}`)
-          window.location = this.$alias.pin(slug)
+          window.location = this.$alias.pin(result)
         })
         .catch(err => {
           this.$toast.error(err.message)
