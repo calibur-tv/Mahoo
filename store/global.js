@@ -42,17 +42,14 @@ export const mutations = {
 }
 
 export const actions = {
-  getMyTags({ rootState, state, commit }) {
+  async getMyTags({ rootState, state, commit }) {
     if (state.myTagsFetched || !rootState.isAuth) {
       return
     }
     commit('SET_MY_TAGS_STATE')
-    bookmarkTags(this, {
+    const data = await bookmarkTags(this, {
       slug: rootState.user.slug
     })
-      .then(data => {
-        commit('SET_MY_TAGS', data)
-      })
-      .catch(() => {})
+    commit('SET_MY_TAGS', data)
   }
 }

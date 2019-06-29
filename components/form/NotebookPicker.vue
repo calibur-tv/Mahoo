@@ -63,6 +63,11 @@ export default {
     },
     value(val) {
       this.selected = val
+    },
+    'options.length'() {
+      if (!this.selected) {
+        this.selected = this.options[0].slug
+      }
     }
   },
   mounted() {

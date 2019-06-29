@@ -10,7 +10,7 @@
 <template>
   <div class="area-picker">
     <p class="tip">
-      提示：只能选择你通过了考试的分区
+      提示：只能选择已解禁的分区
     </p>
     <el-cascader
       v-model="selected"

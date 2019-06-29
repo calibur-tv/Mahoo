@@ -213,7 +213,7 @@
               :loading="loading"
               type="success"
               round
-              @click="actionUpdate"
+              @click="actionUpdate(true)"
             >
               发布更新
             </el-button>
@@ -223,7 +223,7 @@
               round
               plain
               type="warning"
-              @click="actionDraft"
+              @click="actionUpdate(false)"
             >
               存草稿
             </el-button>
@@ -242,7 +242,7 @@
               :loading="loading"
               type="success"
               round
-              @click="actionPublish"
+              @click="actionCreate(true)"
             >
               发表文章
             </el-button>
@@ -251,7 +251,7 @@
               round
               plain
               type="warning"
-              @click="actionDraft"
+              @click="actionCreate(false)"
             >
               存草稿
             </el-button>
@@ -368,7 +368,7 @@ export default {
       this.loading = true
       return false
     },
-    actionPublish() {
+    actionCreate(publish) {
       if (this.preValidate()) {
         return
       }
@@ -381,7 +381,8 @@ export default {
             type: 'title',
             data: this.title
           }
-        ].concat(this.content)
+        ].concat(this.content),
+        publish
       })
         .then(slug => {
           this.$cache.remove(`editor_local_draft_title-${this.slug}`)
@@ -393,7 +394,7 @@ export default {
           this.loading = false
         })
     },
-    actionUpdate() {
+    actionUpdate(publish) {
       if (this.preValidate()) {
         return
       }
@@ -408,7 +409,8 @@ export default {
             type: 'title',
             data: this.title
           }
-        ].concat(this.content)
+        ].concat(this.content),
+        publish
       })
         .then(() => {
           this.$cache.remove(`editor_local_draft_title-${slug}`)
@@ -419,12 +421,6 @@ export default {
           this.$toast.error(err.message)
           this.loading = false
         })
-    },
-    actionDraft() {
-      if (this.preValidate()) {
-        return
-      }
-      console.log('actionDraft')
     },
     actionDelete() {
       if (!this.slug) {

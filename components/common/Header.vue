@@ -205,7 +205,7 @@
               :slot="`tab-${index}`"
               :to="item.route"
             >
-              <i class="iconfont" :class="item.icon"/>
+              <i class="iconfont" :class="item.icon" />
             </nuxt-link>
           </v-switcher>
         </nav>

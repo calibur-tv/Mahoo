@@ -176,7 +176,7 @@
             当前标签活跃用户
           </div>
           <div>
-            <create-tag-btn :parent="slug" text="子分区" @create="handleCreate" />
+            <create-tag-btn :parent="slug" text="分区" @create="handleCreate" />
             <button @click="combineTag">
               合并标签
             </button>

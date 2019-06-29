@@ -154,17 +154,14 @@ export default {
       deleted_at: null
     }
   },
-  computed: {},
-  watch: {},
-  asyncData({ app, error, params }) {
-    return app.$axios.$get('v1/pin/show_info', { params })
+  asyncData({ app, error, params, query }) {
+    return app.$axios.$get('v1/pin/show_info', {
+      params: Object.assign({}, params, query)
+    })
       .then(data => {
         return { ...data }
       })
       .catch(error)
-  },
-  created() {},
-  mounted() {},
-  methods: {}
+  }
 }
 </script>
