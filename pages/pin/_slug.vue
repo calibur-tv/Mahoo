@@ -99,12 +99,12 @@
       </template>
       <content-author :user="author">
         <template v-slot:intro>
-          <span><nuxt-link target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" /></span>
+          <span v-if="area"><nuxt-link target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" /></span>
           <span v-text="$utils.timeFormat(created_at, 'MM-DD')" />
         </template>
         <template v-slot:mine>
           <nuxt-link target="_blank" :to="$alias.create(slug)">
-            <el-button round type="info">
+            <el-button round plain type="info">
               编辑
             </el-button>
           </nuxt-link>
@@ -112,7 +112,7 @@
       </content-author>
       <json-content :content="content" />
       <div class="footer">
-        <div class="notebook">
+        <div v-if="notebook" class="notebook">
           <p>文章被以下专栏收录</p>
           <nuxt-link target="_blank" :to="$alias.tag(notebook.slug)">
             <v-img :src="notebook.avatar" width="32" height="32" />

@@ -9,3 +9,9 @@ export const getUserRelation = ({ $axios, seen_ids, slug, relation }) => {
     params: { seen_ids, slug, relation }
   })
 }
+
+export const getUserDrafts = ({ $axios, page, count }) => {
+  return $axios.$get('v1/pin/drafts', {
+    params: { page, count }
+  })
+}

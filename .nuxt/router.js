@@ -13,6 +13,7 @@ const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpac
 const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
 const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
 const _1ef87b5d = () => interopDefault(import('../pages/user/_slug/index.vue' /* webpackChunkName: "pages/user/_slug/index" */))
+const _3bf0ccac = () => interopDefault(import('../pages/user/_slug/draft.vue' /* webpackChunkName: "pages/user/_slug/draft" */))
 const _315d47a9 = () => interopDefault(import('../pages/user/_slug/emotion/index.vue' /* webpackChunkName: "pages/user/_slug/emotion/index" */))
 const _04c5815c = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
 const _2a5f011b = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
@@ -160,6 +161,11 @@ export function createRouter() {
         component: _1ef87b5d,
         props: true,
         name: "user-slug"
+      }, {
+        path: "draft",
+        component: _3bf0ccac,
+        props: true,
+        name: "user-slug-draft"
       }, {
         path: "emotion",
         component: _315d47a9,

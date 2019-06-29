@@ -396,6 +396,12 @@ export default {
       if (this.isMine) {
         result = result.concat([
           {
+            name: '草稿',
+            icon: 'document_fill',
+            color: '#f3a034',
+            route: `/user/${this.slug}/draft`
+          },
+          {
             name: '消息',
             icon: 'remind_fill',
             color: '#ff5d47',

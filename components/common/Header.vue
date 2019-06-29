@@ -177,7 +177,7 @@
         }
 
         .creator-wrap {
-          margin-left: 8px;
+          margin-left: 15px;
         }
       }
     }
@@ -235,12 +235,7 @@
                 </div>
               </div>
               <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
-                <el-badge :value="mailbox.unread_message_total" :hidden="!mailbox.unread_message_total">
-                  <i class="iconfont ic-message" />
-                </el-badge>
-              </nuxt-link>
-              <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
-                <el-badge :value="mailbox.unread_notice_total" :hidden="!mailbox.unread_notice_total">
+                <el-badge :value="mailbox.unread_notice_total + mailbox.unread_message_total" :hidden="!mailbox.unread_message_total && !mailbox.unread_notice_total">
                   <i class="iconfont ic-remind" />
                 </el-badge>
               </nuxt-link>

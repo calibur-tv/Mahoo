@@ -9255,12 +9255,12 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.21:
-  version "1.1.21"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.21.tgz#d940d1d027747b845aa4547ef3f79a4907b00e0e"
-  integrity sha512-9pGyiHkmj0qCcgwjxduneOQKTNxcNxaQPpwdIIUu3lLCJi8GPCqXVJazBTlvCNM/9cLpla7escKVD63LU94YHQ==
+vue-mixin-store@1.1.24:
+  version "1.1.24"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.24.tgz#bb67ff356dd801943279a3ea4c4ad2f190da4bc7"
+  integrity sha512-/0t/yEQsfPljJgdylgqZdmJ9fVaZeFayi3zIDFefv+X5KyLMbI/u5HSujXnMkSbMg7jtUopw1llMmVUcO2VsiA==
   dependencies:
-    throttle-debounce "^2.1.0"
+    vue "^2.6.6"
 
 vue-native-websocket@^2.0.13:
   version "2.0.13"
