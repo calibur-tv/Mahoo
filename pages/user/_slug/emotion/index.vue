@@ -234,7 +234,7 @@
             <div class="oneline">
               <nuxt-link class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
             </div>
-            <p class="desc" v-text="item.extra.intro" />
+            <p class="desc" v-text="item.intro" />
           </div>
         </li>
       </ul>
@@ -333,10 +333,7 @@
             <div class="note-title oneline">
               <nuxt-link class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
             </div>
-            <p v-if="item.extra" class="desc oneline" :title="item.extra.intro" v-text="item.extra.intro || '暂无简介'" />
-            <p v-else class="desc oneline">
-              暂无简介
-            </p>
+            <p class="desc oneline" :title="item.intro" v-text="item.intro || '暂无简介'" />
             <div class="meta oneline">
               -
             </div>
