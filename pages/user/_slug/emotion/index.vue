@@ -114,7 +114,7 @@
       .desc {
         margin-top: 10px;
         font-size: 12px;
-        @include multi-line(20px ,3)
+        @include multi-line(20px)
       }
     }
   }
@@ -333,7 +333,10 @@
             <div class="note-title oneline">
               <nuxt-link class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
             </div>
-            <p class="desc oneline" :title="item.extra.intro" v-text="item.extra.intro || '暂无简介'" />
+            <p v-if="item.extra" class="desc oneline" :title="item.extra.intro" v-text="item.extra.intro || '暂无简介'" />
+            <p v-else class="desc oneline">
+              暂无简介
+            </p>
             <div class="meta oneline">
               -
             </div>
