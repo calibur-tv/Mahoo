@@ -155,7 +155,7 @@ export default {
     }
   },
   asyncData({ app, error, params, query }) {
-    return app.$axios.$get('v1/pin/show_info', {
+    return app.$axios.$get('v1/pin/show', {
       params: Object.assign({}, params, query)
     })
       .then(data => {

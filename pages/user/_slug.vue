@@ -230,7 +230,7 @@
           v-if="user"
           class="actions"
         >
-          <user-follow-btn v-model="user.social.relation" :slug="slug" @change="handleFollowAction" />
+          <user-follow-btn v-model="user.relation" :slug="slug" @change="handleFollowAction" />
           <send-mail-btn :slug="slug" />
         </div>
       </div>
@@ -254,15 +254,33 @@
         <ul slot="header-after" class="user-meta">
           <li>
             <div class="label">
+              访问数
+            </div>
+            <span class="value" v-text="user.visit_count" />
+          </li>
+          <li>
+            <div class="label">
               关注数
             </div>
-            <span class="value" v-text="user.social.following_count" />
+            <span class="value" v-text="user.following_count" />
           </li>
           <li>
             <div class="label">
               粉丝数
             </div>
-            <span class="value" v-text="user.social.followers_count" />
+            <span class="value" v-text="user.followers_count" />
+          </li>
+          <li>
+            <div class="label">
+              活跃度
+            </div>
+            <span class="value" v-text="user.stat.activity" />
+          </li>
+          <li>
+            <div class="label">
+              曝光度
+            </div>
+            <span class="value" v-text="user.stat.exposure" />
           </li>
         </ul>
       </v-switcher>
@@ -442,12 +460,12 @@ export default {
         }
       })
         .then(data => {
-          this.user.social = data
+          this.user = Object.assign(this.user, data)
         })
         .catch(() => {})
     },
     handleFollowAction({ change }) {
-      this.user.social.followers_count += change
+      this.user.followers_count += change
     },
     connectSocket() {
       if (this.isMine && !this.$store.state.socket.isConnected) {

@@ -306,7 +306,8 @@
           <i v-if="tags.notebook.length" class="count" v-text="tags.notebook.length" />
         </nuxt-link>
         <div v-if="tags.notebook.length">
-          <create-tag-btn class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <create-tag-btn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <span v-else />
           <nuxt-link v-if="tags.notebook.length > 4" class="more fade-link" to="notebook" append>
             <span>更多</span>
             <i class="el-icon-arrow-right" />
@@ -316,7 +317,8 @@
           <p class="empty">
             {{ TA }}还没写过文章~
           </p>
-          <create-tag-btn class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <create-tag-btn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <span v-else />
         </template>
       </div>
       <ul v-if="tags.notebook.length" class="notebooks clearfix">
@@ -363,8 +365,11 @@ export default {
     }
   },
   computed: {
+    isMine() {
+      return this.$store.getters.isMine(this.slug)
+    },
     TA() {
-      return this.$utils.convertTA(this.user.sex, this.$store.getters.isMine(this.slug))
+      return this.$utils.convertTA(this.user.sex, this.isMine)
     }
   },
   asyncData({ app, error, params }) {
