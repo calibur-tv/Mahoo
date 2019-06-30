@@ -103,7 +103,11 @@
           <span v-text="$utils.timeFormat(created_at, 'MM-DD')" />
         </template>
         <template v-slot:mine>
-          <nuxt-link target="_blank" :to="$alias.create(slug)">
+          <el-button round plain type="danger" @click="deletePin">
+            删除
+          </el-button>
+          &nbsp;
+          <nuxt-link :to="$alias.create(slug)">
             <el-button round plain type="info">
               编辑
             </el-button>
@@ -151,7 +155,8 @@ export default {
       recommended_at: 0,
       created_at: '',
       updated_at: '',
-      deleted_at: null
+      deleted_at: null,
+      deleting: false
     }
   },
   asyncData({ app, error, params, query }) {
@@ -162,6 +167,31 @@ export default {
         return { ...data }
       })
       .catch(error)
+  },
+  methods: {
+    deletePin() {
+      this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
+        .then(() => {
+          if (this.deleting) {
+            return
+          }
+          this.deleting = true
+          this.$axios.$post('v1/pin/delete', {
+            slug: this.slug
+          })
+            .then(() => {
+              this.$toast.success('删除成功')
+                .then(() => {
+                  window.location = '/'
+                })
+                .catch(err => {
+                  this.$toast.error(err.message)
+                  this.deleting = false
+                })
+            })
+        })
+        .catch(() => {})
+    }
   }
 }
 </script>
