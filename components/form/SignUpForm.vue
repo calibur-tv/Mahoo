@@ -76,7 +76,6 @@
       <el-form-item v-if="!inviteCode">
         <el-input
           v-model.trim="form.inviteCode"
-          type="number"
           placeholder="邀请码（可为空）"
           auto-complete="off"
         />

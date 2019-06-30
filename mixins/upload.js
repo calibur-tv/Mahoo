@@ -32,15 +32,10 @@ export default {
       return this.$store.state.isAuth
     }
   },
-  watch: {
-    isAuth(val) {
-      val && this.initUpToken()
-    }
-  },
   mounted() {
-    if (this.isAuth) {
+    this.$channel.$when('user-signed', () => {
       this.initUpToken()
-    }
+    })
   },
   beforeDestroy() {
     this.getUpTokenTimer && clearInterval(this.getUpTokenTimer)

@@ -313,11 +313,9 @@ export default {
       return this.$store.state.mailbox
     }
   },
-  beforeMount() {
-    this.$watch('isAuth', val => {
-      if (val) {
-        this.getUnreadMessageCount()
-      }
+  mounted() {
+    this.$channel.$when('user-signed', () => {
+      this.getUnreadMessageCount()
     })
   },
   methods: {

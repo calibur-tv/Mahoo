@@ -361,14 +361,8 @@ export default {
     }
   },
   computed: {
-    isAuth() {
-      return this.$store.state.isAuth
-    },
     isMine() {
-      if (!this.isAuth) {
-        return false
-      }
-      return this.self.slug === this.slug
+      return this.$store.getters.isMine(this.slug)
     },
     self() {
       return this.$store.state.user
