@@ -366,7 +366,7 @@ export default {
   },
   computed: {
     isMine() {
-      return this.$store.getters.isMine(this.slug)
+      return this.$store.getters.isMine(this.user.slug)
     },
     TA() {
       return this.$utils.convertTA(this.user.sex, this.isMine)
