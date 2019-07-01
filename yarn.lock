@@ -710,24 +710,24 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@better-scroll/core@^2.0.0-alpha.15":
-  version "2.0.0-alpha.15"
-  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.0.0-alpha.15.tgz#a6e04f8e4529b747844cf6b9ea2257f7552debc1"
-  integrity sha512-CpYJLxw1GWMOlzRCWKXDlcNkpB04FSyMNkryrKVdrdSlaa+hkTkjUxK/hFsVZyzKorgnGfCB9gj8WeDNlSk2Ug==
+"@better-scroll/core@^2.0.0-alpha.16":
+  version "2.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.0.0-alpha.16.tgz#9dd82617ed7849bee1a94c06db923c58d902ba24"
+  integrity sha512-GbYPPwGvca9ODIGHQt5a9GKY+PdFkDhW8sEW0+CNY/BMs3Qb+ynOLedLXH94aoHeGeFAfltSEE7IUIbE5MMrTw==
   dependencies:
-    "@better-scroll/shared-utils" "^2.0.0-alpha.15"
+    "@better-scroll/shared-utils" "^2.0.0-alpha.16"
 
-"@better-scroll/mouse-wheel@^2.0.0-alpha.15":
-  version "2.0.0-alpha.15"
-  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.0.0-alpha.15.tgz#4f0555168089445f3a5a4fcdbc476aa5b4dfd595"
-  integrity sha512-971ytQvTCzdWSRxYBml8+EjZyIp8uUgXwH2M2Q2r+YqxTU+RdrIzZ3nC6r2uWDhNfFgyztG36bmc8Dyas+iTEg==
+"@better-scroll/mouse-wheel@^2.0.0-alpha.16":
+  version "2.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.0.0-alpha.16.tgz#af6870b4205d4c0ffff5887310fa3f12d26d81eb"
+  integrity sha512-w5kXv6KO2XPaQ0IBBWko9/42YY/GnD7IlyS5rbWaKtJFN+6dbsBvSDp4j8ugrMHE1rk+ONccZG3icTwFeDSA1g==
   dependencies:
-    "@better-scroll/core" "^2.0.0-alpha.15"
+    "@better-scroll/core" "^2.0.0-alpha.16"
 
-"@better-scroll/shared-utils@^2.0.0-alpha.15":
-  version "2.0.0-alpha.15"
-  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.0-alpha.15.tgz#687c65762d789245124718be2cdf28c5b9bbda5d"
-  integrity sha512-NAsPb+2VgsuWOLTb+EeUxys/gCkTA4sOxbi57WDo8XzB7jTjfW3f04cfOKZ0K4pXB+FHdpislUF0ntwm7FGXhg==
+"@better-scroll/shared-utils@^2.0.0-alpha.16":
+  version "2.0.0-alpha.16"
+  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.0-alpha.16.tgz#1242a702b741996f33c1a3769482c2bbce02dddf"
+  integrity sha512-2dqgoJp1oGtqSHOe3wdb/424ZA9y0EX1mqRxmmK4XRlwH4OCgm/JLDA111aXblYxHTKuqbF8OMUwgGJMdJiSBg==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -744,10 +744,10 @@
   resolved "https://registry.yarnpkg.com/@editorjs/delimiter/-/delimiter-1.1.0.tgz#f61808ea92e4e289607d54441964f1cb8605410a"
   integrity sha512-0G36vEvvb94g6nu/qs2rVjC/qjxLnY20OfOgxROKSOOXzS7xnkTij5raeIxRiYueeLL5fMrzrvtFH7wclfxF+g==
 
-"@editorjs/editorjs@^2.14.0":
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.14.0.tgz#5f2783b92c675cb2afb223920dc3fdbc6ce96cfb"
-  integrity sha512-pVqKk86D98xA91GvSJSyOXLVB0V9bT+vgYF2kT3Ls5EDzrh44uh+JRKZF4wqR6XobOMOvRMZI3GyK1QRK4Yvlw==
+"@editorjs/editorjs@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.15.0.tgz#7bb1cd38863e613be904a7e3d048a99590c9f5d9"
+  integrity sha512-qMuoihMgqlS6HAOQM+rAusmsByYW83kEL+PKn75DLTQh6BD5GbXt21rAotaMRuGOKl+pXoruq1etz/QNgIBCFA==
   dependencies:
     codex-notifier "^1.1.2"
 
@@ -756,10 +756,10 @@
   resolved "https://registry.yarnpkg.com/@editorjs/embed/-/embed-2.2.1.tgz#90dbcac6e163d20c665fcc1a218d4ba1db80e2f1"
   integrity sha512-jjhgJf+LkYr8UfsQPavfukCq0+SIkz1MD8vmWkN29uU2zItWsScmfRis3YoLZJ7Rrz+yDeS8GyUjxTg2iQa0Vg==
 
-"@editorjs/header@^2.2.4":
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/@editorjs/header/-/header-2.2.4.tgz#3bc25154f385eb7df0682e1743a31be9347af285"
-  integrity sha512-S9Icx2DIrLFw/0P3wUme/40/lJvdJjexcOoJCCThU86Dg9vrFcdvt5ImMWcbvjCRr2uauZbMQRNdf5/Uce2pBQ==
+"@editorjs/header@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/header/-/header-2.3.0.tgz#ce48414e3d8b39b1ed5633d35e3684b158fb9e98"
+  integrity sha512-H3ILtnw3nVYrjj7CkgGAh1UovmRx/AAAzypLbzW7ElUVAbyL4Tx/iIE/SAp4sNbARXmVGin0mgzYqlRQr3hg5w==
 
 "@editorjs/image@^2.3.1":
   version "2.3.1"
@@ -773,10 +773,10 @@
   dependencies:
     "@babel/runtime" "^7.3.1"
 
-"@editorjs/list@^1.3.4":
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/@editorjs/list/-/list-1.3.4.tgz#3fee58c0bec7979adfffe71f4d91fea3b4751941"
-  integrity sha512-hj/yJXUjpAsh946js4zK0eHTnKJOiXXg6wpvTisQbQ3sjtKmUdS/KAyvihKhkKMa1y8SDR3L4K/3raPryyLC1A==
+"@editorjs/list@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/list/-/list-1.4.0.tgz#e92459a8ac2305bc4385245e329c8b5c8437456a"
+  integrity sha512-iYDXGbVXvsAJbSxbjFMP4p7kS1zhQyNDqVNzkfMRhItulzKYlOMlFjTIGHqu5SxPy6NrcckhVFaWdfGDn5/gEA==
 
 "@jimp/bmp@^0.6.4":
   version "0.6.4"
@@ -9173,10 +9173,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.37:
-  version "1.0.37"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.37.tgz#ab08a7d4c2779a5cc5b3f7af0fad44fa6730ff16"
-  integrity sha512-LzqLbYeZiygZP2ZXQS9MgQQb9yu3Zvz2k+5ZC5l2IgmIHVuz3YNi12b3j+tpbkDf1UOIYO56omFx1sD0QknpnA==
+v-switcher@^1.0.43:
+  version "1.0.43"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.43.tgz#6df8e44ea0b9d837335bd4d94ed71853fef78368"
+  integrity sha512-Bp2HvHtu8kzmZWRWCHHL3ZOg08m8L1TwCaX1DCTfij0CoFrbUDr3fuvXKobVx04ZY4EvwmYhImsz4rBmQf7+tQ==
   dependencies:
     vue "^2.6.6"
 

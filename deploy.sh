@@ -12,7 +12,7 @@ npm run build
 npm run upload
 
 git add -A
-git commit -m 'deploy'
+git commit -m '$0'
 git push origin master
 
 # 切回分支
