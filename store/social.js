@@ -3,24 +3,20 @@ import * as API from '~/api/toggleApi'
 
 export const state = () => ({})
 
-const generateField = (type, id) => `${type}-${id}`
+const generateField = (type, slug) => `${type}-${slug}`
 
 export const mutations = {
-  SET_STATE(state, { type, data, id }) {
+  set(state, { type, data, slug }) {
     if (Array.isArray(data)) {
       data.forEach(item => {
         Object.keys(item).forEach(key => {
           item[`${key}_loading`] = false
         })
-        const namespace = generateField(type, item.id)
-        Vue.set(state, namespace, item)
+        Vue.set(state, generateField(type, item.slug), item)
       })
     } else {
-      const checkIsListObj = data => {
-        return typeof data === 'object'
-      }
       Object.keys(data).forEach(key => {
-        if (checkIsListObj(data[key])) {
+        if (typeof data[key] === 'object') {
           data[key] = Object.assign(data[key], {
             loading: false,
             error: false,
@@ -30,23 +26,23 @@ export const mutations = {
           data[`${key}_loading`] = false
         }
       })
-      Vue.set(state, `${type}-${id || data.id}`, data)
+      Vue.set(state, `${type}-${slug || data.slug}`, data)
     }
   },
-  PUSH_STATE(state, { type, id, key, data }) {
-    const namespace = generateField(type, id)
+  PUSH_USERS(state, { type, slug, key, data }) {
+    const namespace = generateField(type, slug)
     const prefix = `${key}_users`
     const oldList = state[namespace][prefix].list
-    const newIds = data.list.map(_ => _.id)
+    const newIds = data.list.map(_ => _.slug)
     state[namespace][prefix].list = oldList
-      .filter(_ => newIds.indexOf(_.id) === -1)
+      .filter(_ => newIds.indexOf(_.slug) === -1)
       .concat(data.list)
     state[namespace][prefix].total = data.total
-    state[namespace][prefix].noMore = data.noMore
+    state[namespace][prefix].no_more = data.no_more
     state[namespace][prefix].loading = false
   },
-  TOGGLE_STATE(state, { type, id, key, result, user }) {
-    const namespace = generateField(type, id)
+  SET_STATE(state, { type, slug, key, result, user }) {
+    const namespace = generateField(type, slug)
     const prefix = `${key}_users`
     state[namespace][key] = result
     state[namespace][`${key}_loading`] = false
@@ -55,91 +51,87 @@ export const mutations = {
     }
     if (result) {
       state[namespace][prefix].total++
-      state[namespace][prefix].noMore = false
+      state[namespace][prefix].no_more = false
       state[namespace][prefix].list.unshift(user)
     } else {
       state[namespace][prefix].total--
       state[namespace][prefix].list.forEach((item, index) => {
-        if (item.id === user.id) {
+        if (item.slug === user.slug) {
           state[namespace][prefix].list.splice(index, 1)
         }
       })
     }
   },
-  SET_PUSH_RUNNING(state, { type, id, key, value }) {
-    const namespace = generateField(type, id)
-    const prefix = `${key}_users`
-    state[namespace][prefix][value] = true
+  SET_STATUS(state, { type, slug, key, value }) {
+    state[generateField(type, slug)][`${key}_users`][value] = true
   },
-  SET_TOGGLE_LOADING(state, { type, id, action, result }) {
-    const namespace = generateField(type, id)
-    state[namespace][`${action}_loading`] = result
+  SET_LOADING(state, { type, slug, action, result }) {
+    state[generateField(type, slug)][`${action}_loading`] = result
   }
 }
 
 export const actions = {
-  async getUsers({ state, commit }, { type, id, key }) {
-    const namespace = generateField(type, id)
-    const store = state[namespace][`${key}_users`]
-    if (store.loading || store.noMore) {
+  async users({ state, commit }, { type, slug, key }) {
+    const store = state[generateField(type, slug)][`${key}_users`]
+    if (store.loading || store.no_more) {
       return
     }
-    commit('SET_PUSH_RUNNING', {
+    commit('SET_STATUS', {
       type,
       key,
-      id,
+      slug,
       value: 'loading'
     })
     try {
       const listObj = await API.users({
         ctx: this,
         type: key,
-        id,
-        last_id: store.list.length ? store.list[store.list.length - 1].id : 0,
+        slug,
+        last_slug: store.list.length ? store.list[store.list.length - 1].slug : 0,
         model: type,
         take: 15
       })
-      commit('PUSH_STATE', {
+      commit('PUSH_USERS', {
         type,
-        id,
+        slug,
         key,
         data: listObj
       })
     } catch (e) {
-      commit('SET_PUSH_RUNNING', {
+      commit('SET_STATUS', {
         type,
         key,
-        id,
+        slug,
         value: 'error'
       })
     }
   },
-  async toggleAction({ state, commit, rootState }, { type, id, action }) {
-    const namespace = generateField(type, id)
+  async toggle({ state, commit, rootState }, { type, slug, action }) {
+    const namespace = generateField(type, slug)
     const store = state[namespace]
     if (store[`${action}_loading`]) {
       return
     }
-    commit('SET_TOGGLE_LOADING', {
+    commit('SET_LOADING', {
       action,
       type,
-      id,
+      slug,
       result: true
     })
     try {
       const result = await API[action]({
         ctx: this,
-        id,
+        slug,
         type
       })
       const { user } = rootState
-      commit('TOGGLE_STATE', {
+      commit('SET_STATE', {
         type,
         key: action,
-        id,
+        slug,
         result,
         user: {
-          id: user.id,
+          slug: user.slug,
           nickname: user.nickname,
           avatar: user.avatar,
           created_at: parseInt(Date.now() / 1000)
@@ -150,10 +142,10 @@ export const actions = {
         result
       }
     } catch (e) {
-      commit('SET_TOGGLE_LOADING', {
+      commit('SET_LOADING', {
         action,
         type,
-        id,
+        slug,
         result: false
       })
       return {
@@ -164,8 +156,7 @@ export const actions = {
 }
 
 export const getters = {
-  getState: state => (type, id) => {
-    const namespace = generateField(type, id)
-    return state[namespace]
+  get: state => (type, slug) => {
+    return state[generateField(type, slug)]
   }
 }
