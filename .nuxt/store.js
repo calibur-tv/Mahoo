@@ -16,6 +16,7 @@ void (function updateModules() {
 
   resolveStoreModules(require('../store/flow.js'), 'flow.js')
   resolveStoreModules(require('../store/global.js'), 'global.js')
+  resolveStoreModules(require('../store/social.js'), 'social.js')
 
   // If the environment supports hot reloading...
 })()

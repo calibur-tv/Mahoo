@@ -39,14 +39,14 @@
           alt="error-401"
           @click="toastMessage"
         >
-        <h3>请登录后重新访问</h3>
+        <h3>{{ message || '请登录后重新访问' }}</h3>
         <button class="back" @click="handleLogin">
           登录
         </button>
       </div>
       <div v-else-if="statusCode === 403" id="error-403">
         <img src="~assets/img/error/500.jpeg" alt="error-403">
-        <h3>您没有权限访问该页面</h3>
+        <h3>{{ message || '您没有权限访问该页面' }}</h3>
         <a href="/" class="back">回到首页</a>
       </div>
       <div v-else-if="statusCode === 404" id="error-404">
@@ -55,9 +55,9 @@
           alt="error-404"
           @click="toastMessage"
         >
-        <h3>您要找的页面不存在</h3>
+        <h3>{{ message || '您要找的页面不存在' }}</h3>
         <div class="subtitle">
-          不存在的，或者正在审核中。
+          不存在的内容，或者正在审核中。
         </div>
         <nuxt-link class="back" to="/">
           返回首页
@@ -109,7 +109,7 @@ export default {
       return (this.error && this.error.statusCode) || 404
     },
     message() {
-      return (this.error && this.error.message) || '您要找的页面不存在'
+      return this.error && this.error.message
     }
   },
   methods: {

@@ -326,7 +326,6 @@ import UserNickname from '~/components/user/UserNickname'
 import DailySignBtn from '~/components/button/DailySignBtn'
 import UserFollowBtn from '~/components/button/UserFollowBtn'
 import SendMailBtn from '~/components/button/SendMailBtn'
-import onUserSign from '~/mixins/onUserSign'
 
 export default {
   name: 'UserLayout',
@@ -338,7 +337,6 @@ export default {
     UserFollowBtn,
     SendMailBtn
   },
-  mixins: [onUserSign],
   props: {
     slug: {
       type: String,
@@ -437,9 +435,11 @@ export default {
       })
       .catch(error)
   },
-  mounted() {
+  beforeMount() {
     this.patchUser()
-    this.onUserSign(this.connectSocket)
+    this.$channel.$when('user-signed', () => {
+      this.connectSocket()
+    })
   },
   beforeDestroy() {
     if (this.isMine && this.$store.state.socket.isConnected) {

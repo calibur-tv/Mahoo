@@ -116,6 +116,7 @@
       </content-author>
       <json-content :content="content" />
       <div class="footer">
+        <div class="social-panel" />
         <div v-if="notebook" class="notebook">
           <p>文章被以下专栏收录</p>
           <nuxt-link target="_blank" :to="$alias.tag(notebook.slug)">
@@ -168,6 +169,9 @@ export default {
       })
       .catch(error)
   },
+  beforeMount() {
+    this.patchPin()
+  },
   methods: {
     deletePin() {
       this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
@@ -189,6 +193,17 @@ export default {
                   this.deleting = false
                 })
             })
+        })
+        .catch(() => {})
+    },
+    patchPin() {
+      this.$axios.$get('v1/pin/patch', {
+        params: {
+          slug: this.slug
+        }
+      })
+        .then(data => {
+          this.pin = Object.assign(this.pin, data)
         })
         .catch(() => {})
     }
