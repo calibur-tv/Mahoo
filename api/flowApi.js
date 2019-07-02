@@ -17,17 +17,7 @@ export const getUserDrafts = ({ $axios, page, count }) => {
 }
 
 export const getUserTimeline = ({ $axios, page, count, slug }) => {
-  return new Promise((resolve, reject) => {
-    $axios.$get('v1/user/timeline', {
-      params: { page, count, slug }
-    })
-      .then(data => {
-        resolve({
-          result: data,
-          total: 0,
-          no_more: data.length < count
-        })
-      })
-      .catch(reject)
+  return $axios.$get('v1/user/timeline', {
+    params: { page, count, slug }
   })
 }

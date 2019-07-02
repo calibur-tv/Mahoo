@@ -16,11 +16,11 @@
       <el-timeline slot-scope="{ flow }">
         <el-timeline-item
           v-for="item in flow"
-          :key="`${item.event_type}-${item.event_slug}`"
+          :key="`${item.type}-${item.slug}`"
           :timestamp="$utils.timeFormat(item.created_at, 'MM-DD')"
           placement="top"
         >
-          <component :is="`type-${item.event_type}`" :item="item.data" />
+          <component :is="`type-${item.type}`" :item="item.data" />
         </el-timeline-item>
       </el-timeline>
     </flow-loader>
