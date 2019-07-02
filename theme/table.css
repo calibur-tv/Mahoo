@@ -1735,6 +1735,8 @@
   .el-table__placeholder {
     display: inline-block;
     width: 20px; }
+  .el-table__append-wrapper {
+    overflow: hidden; }
   .el-table--fit {
     border-right: 0;
     border-bottom: 0; }

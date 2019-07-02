@@ -13,6 +13,7 @@
           v-for="(item, index) in flow"
           :key="item.slug"
           :item="item"
+          :show-user="false"
           :secret-link="extra[index]"
         />
       </ul>

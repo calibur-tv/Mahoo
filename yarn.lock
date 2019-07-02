@@ -3462,15 +3462,15 @@ electron-to-chromium@^1.3.164:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.173.tgz#275b9ba235447b95fc3204d32ca2c5a8bf2ca599"
   integrity sha512-weH16m8as+4Fy4XJxrn/nFXsIqB7zkxERhvj/5YX2HE4HB8MCu98Wsef4E3mu0krIT27ic0bGsr+TvqYrUn6Qg==
 
-element-theme-chalk@2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/element-theme-chalk/-/element-theme-chalk-2.10.0.tgz#5b5a67c68e6bfc8952398a2abae89d114f487a05"
-  integrity sha512-cE+vRZP+e2/itz3kUV3FSZJf/ujm/dHt8p0IVmNUmX8F7ocShTwBMa/Ck6LHcMT8QYyj+wek/Bwh8WtNfvfBeQ==
+element-theme-chalk@2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/element-theme-chalk/-/element-theme-chalk-2.10.1.tgz#8f9387d5676e583b330cfaa63da174362bd572ff"
+  integrity sha512-n8INieheBfm5MsPJKeuYDzetB7LcSrYQnfkQAlKfT2MuDBuJ2RZLsuFekXYF+SS+j/NDpL058BbF2CSDJhH0VA==
 
-element-ui@^2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/element-ui/-/element-ui-2.10.0.tgz#e6129f6b6d6ffe0dbad125a4a8d17d447a5f639c"
-  integrity sha512-uthsnJ1CIdQvLWphr67uwFSfSYoRBjxFcEhXhy+2/EwKNsqO7MRN+mYqroNLz5WJuLqVy1aOpJ8Lv4B32qKthQ==
+element-ui@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/element-ui/-/element-ui-2.10.1.tgz#1011016e50e76f5dae6fbf9c86e53b6e53fcb9eb"
+  integrity sha512-V3WMDoVd1rOT+UI4xasvS8hmUkmc0ezXRuLzlTznBD0bN6jXAiGOeCtmYjj8GFN3lpGNeKyQ/8LCAFuAbxaEww==
   dependencies:
     async-validator "~1.8.1"
     babel-helper-vue-jsx-merge-props "^2.0.0"
@@ -9173,10 +9173,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.43:
-  version "1.0.43"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.43.tgz#6df8e44ea0b9d837335bd4d94ed71853fef78368"
-  integrity sha512-Bp2HvHtu8kzmZWRWCHHL3ZOg08m8L1TwCaX1DCTfij0CoFrbUDr3fuvXKobVx04ZY4EvwmYhImsz4rBmQf7+tQ==
+v-switcher@^1.0.47:
+  version "1.0.47"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.47.tgz#b5480bf3dcbb2b226a6ade95b6b62327eb41e963"
+  integrity sha512-ZBJOOa+HHRb69yJTZNSeE618xyhim34kwa0kNpU8B/gKKJuXTShE54DJgH046Uoxw+tiampab+KUi1WhCZ2fOA==
   dependencies:
     vue "^2.6.6"
 

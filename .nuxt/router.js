@@ -25,7 +25,7 @@ const _37df99f5 = () => interopDefault(import('../pages/user/_slug/social/index.
 const _1c793e38 = () => interopDefault(import('../pages/user/_slug/social/followers.vue' /* webpackChunkName: "pages/user/_slug/social/followers" */))
 const _2ed4a298 = () => interopDefault(import('../pages/user/_slug/social/following.vue' /* webpackChunkName: "pages/user/_slug/social/following" */))
 const _010bea78 = () => interopDefault(import('../pages/user/_slug/social/friends.vue' /* webpackChunkName: "pages/user/_slug/social/friends" */))
-const _2b682689 = () => interopDefault(import('../pages/user/_slug/timeline/index.vue' /* webpackChunkName: "pages/user/_slug/timeline/index" */))
+const _5cbd9c86 = () => interopDefault(import('../pages/user/_slug/timeline.vue' /* webpackChunkName: "pages/user/_slug/timeline" */))
 const _3b948330 = () => interopDefault(import('../pages/user/_slug/emotion/bangumi.vue' /* webpackChunkName: "pages/user/_slug/emotion/bangumi" */))
 const _1dc26c6b = () => interopDefault(import('../pages/user/_slug/emotion/game.vue' /* webpackChunkName: "pages/user/_slug/emotion/game" */))
 const _0a8f4d54 = () => interopDefault(import('../pages/user/_slug/emotion/notebook.vue' /* webpackChunkName: "pages/user/_slug/emotion/notebook" */))
@@ -216,7 +216,7 @@ export function createRouter() {
         }]
       }, {
         path: "timeline",
-        component: _2b682689,
+        component: _5cbd9c86,
         props: true,
         name: "user-slug-timeline"
       }, {
