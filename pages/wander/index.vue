@@ -123,6 +123,7 @@
 
     .el-textarea {
       font-size: 24px;
+      border-bottom: 1px solid $color-gray-3;
 
       &__inner {
         border-width: 0 !important;

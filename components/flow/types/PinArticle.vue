@@ -26,14 +26,14 @@
       }
 
       .music {
-        background-color: #d33a31;
+        background-color: #d43c33;
         width: 105px;
         height: 105px;
         text-align: center;
 
         i {
           color: #fff;
-          font-size: 40px;
+          font-size: 50px;
           line-height: 105px;
         }
       }
@@ -46,7 +46,7 @@
 
         i {
           color: #fff;
-          font-size: 40px;
+          font-size: 50px;
           line-height: 105px;
         }
       }
@@ -87,10 +87,10 @@
             <v-img :src="item.media.data.url" width="190" height="105" />
           </nuxt-link>
           <div v-else-if="item.media.type === 'video'" :class="$style.video">
-            <i class="iconfont ic-video_fill" />
+            <i class="iconfont ic-video" />
           </div>
           <div v-else-if="item.media.type === 'music'" :class="$style.music">
-            <i class="iconfont ic-music_fill" />
+            <i class="iconfont ic-music" />
           </div>
         </div>
         <div :class="$style.desc">
