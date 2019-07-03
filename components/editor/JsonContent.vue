@@ -17,7 +17,7 @@ import list from './parser/list'
 import delimiter from './parser/delimiter'
 import checklist from './parser/checklist'
 import link from './parser/link'
-import embed from './parser/embed'
+import video from './parser/video'
 import Copyright from '~/assets/js/copyright'
 
 export default {
@@ -30,7 +30,7 @@ export default {
     'v-delimiter': delimiter,
     'v-checklist': checklist,
     'v-link': link,
-    'v-embed': embed
+    'v-video': video
   },
   props: {
     content: {

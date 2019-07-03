@@ -102,6 +102,33 @@
     }
   }
 
+  .embed-tool {
+    &__caption {
+      display: inline-block;
+      position: relative;
+      width: auto !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      text-align: center !important;
+      box-shadow: none !important;
+      border-top-width: 0 !important;
+      border-left-width: 0 !important;
+      border-right-width: 0 !important;
+      border-radius: 0 !important;
+      min-width: 115px !important;
+      border-color: $color-gray-line;
+
+      &[contentEditable=true][data-placeholder]::before {
+        content: '视频描述';
+      }
+
+      &:before {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
   .link-tool__content {
     display: block !important;
   }
@@ -203,7 +230,7 @@ export default {
             placeholder: '请输入内容',
             autofocus: self.autofocus,
             tools: {
-              embed: {
+              video: {
                 class: Embed,
                 inlineToolbar: true,
                 config: {
@@ -211,7 +238,8 @@ export default {
                     bilibili: {
                       regex: /https?:\/\/www\.bilibili\.com\/video\/av([^\\?\\&]*)/,
                       embedUrl: '//player.bilibili.com/player.html?aid=<%= remote_id %>',
-                      html: "<iframe scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>"
+                      html: "<iframe width='100%' height='350' scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>",
+                      id: val => val[0].replace('/', '')
                     }
                   }
                 }
