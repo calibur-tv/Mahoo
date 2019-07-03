@@ -75,33 +75,16 @@
     &--withBorder .image-tool__image {
       border-color: $color-gray-border;
     }
+  }
 
-    &__caption {
-      display: inline-block;
-      position: relative;
-      width: auto !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      text-align: center !important;
-      box-shadow: none !important;
-      border-top-width: 0 !important;
-      border-left-width: 0 !important;
-      border-right-width: 0 !important;
-      border-radius: 0 !important;
-      min-width: 115px !important;
-      border-color: $color-gray-line;
-
-      &[contentEditable=true][data-placeholder]::before {
-        content: '图片描述';
-      }
-
-      &:before {
-        left: 50%;
-        transform: translateX(-50%);
-      }
+  .embed-tool {
+    iframe {
+      margin: 0 auto;
+      display: block;
     }
   }
 
+  .image-tool,
   .embed-tool {
     &__caption {
       display: inline-block;
@@ -119,7 +102,7 @@
       border-color: $color-gray-line;
 
       &[contentEditable=true][data-placeholder]::before {
-        content: '视频描述';
+        content: '文字描述';
       }
 
       &:before {
@@ -225,7 +208,7 @@ export default {
           }
           const [EditorJS, Header, List, Delimiter, LinkTool, ImageTool, Checklist, Embed] = modules.map(_ => _.default)
           const editor = new EditorJS({
-            data,
+            data: self.decodeData(data || {}),
             holder: 'codex-editor',
             placeholder: '请输入内容',
             autofocus: self.autofocus,
@@ -236,10 +219,22 @@ export default {
                 config: {
                   services: {
                     bilibili: {
-                      regex: /https?:\/\/www\.bilibili\.com\/video\/av([^\\?\\&]*)/,
+                      regex: /https?:\/\/www\.bilibili\.com\/video\/av([\w\W]*)/,
                       embedUrl: '//player.bilibili.com/player.html?aid=<%= remote_id %>',
                       html: "<iframe width='100%' height='350' scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>",
-                      id: val => val[0].replace('/', '')
+                      id: val => val[0].split('/')[0]
+                    },
+                    bilih5: {
+                      regex: /https?:\/\/m\.bilibili\.com\/video\/av([\w\W]*)/,
+                      embedUrl: '//player.bilibili.com/player.html?aid=<%= remote_id %>',
+                      html: "<iframe width='100%' height='350' scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>",
+                      id: val => val[0].split('.')[0]
+                    },
+                    netease: {
+                      regex: /https?:\/\/music\.163\.com\/#\/song\?id=([^\\?\\&\\/]*)/,
+                      embedUrl: '//music.163.com/outchain/player?type=2&height=66&id=<%= remote_id %>',
+                      html: "<iframe frameborder='no' border='0' marginwidth='0' marginheight='0' width='330' height='86'></iframe>",
+                      id: val => val[0].split('/')[0]
                     }
                   }
                 }
@@ -321,16 +316,45 @@ export default {
         return
       }
       this.editor.save().then(outputData => {
+        const value = this.encodeData(outputData)
         const cacheKey = this.slug ? `editor_local_draft-${this.slug}` : 'editor_local_draft'
-        this.$cache.set(cacheKey, outputData)
-        this.$cache.set('editor_version', outputData.version)
+        this.$cache.set(cacheKey, value)
+        this.$cache.set('editor_version', value.version)
         if (this.value) {
-          this.$emit('input', outputData.blocks)
+          this.$emit('input', value.blocks)
         }
         this.$emit('save')
       }).catch(() => {
         this.$toast.error('保存失败')
       })
+    },
+    decodeData({ version, blocks, time }) {
+      if (!blocks) {
+        return null
+      }
+      blocks.forEach((item, index) => {
+        if (item.type === 'music') {
+          blocks[index].type = 'video'
+        }
+      })
+      return {
+        version,
+        blocks,
+        time
+      }
+    },
+    encodeData({ version, blocks, time }) {
+      blocks.forEach((item, index) => {
+        if (item.type === 'video' && item.data.service === 'netease') {
+          blocks[index].type = 'music'
+          blocks[index].data.embed = blocks[index].data.embed.replace(/&amp;/g, '&')
+        }
+      })
+      return {
+        version,
+        blocks,
+        time
+      }
     }
   }
 }

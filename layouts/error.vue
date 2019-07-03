@@ -112,6 +112,11 @@ export default {
       return this.error && this.error.message
     }
   },
+  mounted() {
+    if (this.statusCode === 401) {
+      window.location = this.$alias.sign()
+    }
+  },
   methods: {
     handleLogin() {
       this.$channel.$emit('sign-in')

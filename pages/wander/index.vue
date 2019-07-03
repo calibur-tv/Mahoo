@@ -423,7 +423,7 @@ export default {
         })
     },
     actionDelete() {
-      if (!this.slug) {
+      const deleteCache = () => {
         if (this.content.length || this.title.text.length || this.title.banner) {
           this.$cache.remove(`editor_local_draft_title-${this.slug}`)
           this.$cache.remove('editor_local_draft')
@@ -432,6 +432,9 @@ export default {
               window.location.reload()
             })
         }
+      }
+      if (!this.slug) {
+        deleteCache()
         return
       }
 
@@ -447,12 +450,13 @@ export default {
             .then(() => {
               this.$toast.success('删除成功')
                 .then(() => {
+                  deleteCache()
                   window.location = '/'
                 })
-                .catch(err => {
-                  this.$toast.error(err.message)
-                  this.loading = false
-                })
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+              this.loading = false
             })
         })
         .catch(() => {})
