@@ -18,10 +18,37 @@
 
     .media {
       float: left;
+      border-radius: 4px;
+      overflow: hidden;
 
       :global(.img) {
-        border-radius: 4px;
         margin-right: 18px;
+      }
+
+      .music {
+        background-color: #d33a31;
+        width: 105px;
+        height: 105px;
+        text-align: center;
+
+        i {
+          color: #fff;
+          font-size: 40px;
+          line-height: 105px;
+        }
+      }
+
+      .video {
+        background-color: #00a1d6;
+        width: 190px;
+        height: 105px;
+        text-align: center;
+
+        i {
+          color: #fff;
+          font-size: 40px;
+          line-height: 105px;
+        }
       }
     }
 
@@ -53,11 +80,18 @@
       <div :class="$style.content" class="clearfix">
         <div v-if="item.media" :class="$style.media">
           <nuxt-link
+            v-if="item.media.type === 'image'"
             target="_blank"
             :to="$alias.pin(secretLink || item.slug)"
           >
             <v-img :src="item.media.data.url" width="190" height="105" />
           </nuxt-link>
+          <div v-else-if="item.media.type === 'video'" :class="$style.video">
+            <i class="iconfont ic-video_fill" />
+          </div>
+          <div v-else-if="item.media.type === 'music'" :class="$style.music">
+            <i class="iconfont ic-music_fill" />
+          </div>
         </div>
         <div :class="$style.desc">
           {{ item.intro }}

@@ -231,7 +231,13 @@ export default {
                       id: val => val[0].split('.')[0]
                     },
                     netease: {
-                      regex: /https?:\/\/music\.163\.com\/#\/song\?id=([^\\?\\&\\/]*)/,
+                      regex: /https?:\/\/music\.163\.com\/#\/song\?id=([\w\W]*)/,
+                      embedUrl: '//music.163.com/outchain/player?type=2&height=66&id=<%= remote_id %>',
+                      html: "<iframe frameborder='no' border='0' marginwidth='0' marginheight='0' width='330' height='86'></iframe>",
+                      id: val => val[0].split('/')[0]
+                    },
+                    neteaseh5: {
+                      regex: /https?:\/\/music\.163\.com\/m\/song\?id=([\w\W]*)/,
                       embedUrl: '//music.163.com/outchain/player?type=2&height=66&id=<%= remote_id %>',
                       html: "<iframe frameborder='no' border='0' marginwidth='0' marginheight='0' width='330' height='86'></iframe>",
                       id: val => val[0].split('/')[0]
@@ -345,7 +351,7 @@ export default {
     },
     encodeData({ version, blocks, time }) {
       blocks.forEach((item, index) => {
-        if (item.type === 'video' && item.data.service === 'netease') {
+        if (item.type === 'video' && item.data.service.startsWith('netease')) {
           blocks[index].type = 'music'
           blocks[index].data.embed = blocks[index].data.embed.replace(/&amp;/g, '&')
         }
