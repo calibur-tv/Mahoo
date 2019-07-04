@@ -66,6 +66,10 @@ module.exports = {
     },
     script: [
       {
+        src: 'https://polyfill.alicdn.com/polyfill.min.js',
+        type: 'text/javascript'
+      },
+      {
         innerHTML: injectScript.baiduStat,
         type: 'text/javascript',
         async: true
