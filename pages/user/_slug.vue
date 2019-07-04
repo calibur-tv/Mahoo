@@ -230,7 +230,7 @@
           v-if="user"
           class="actions"
         >
-          <user-follow-btn v-model="user.relation" :slug="slug" @change="handleFollowAction" />
+          <user-follow-btn :slug="slug" @change="handleFollowAction" />
           <send-mail-btn :slug="slug" />
         </div>
       </div>
@@ -455,11 +455,19 @@ export default {
       })
         .then(data => {
           this.user = Object.assign(this.user, data)
+          this.$store.commit('social/set', {
+            type: 'user-follow',
+            slug: this.slug,
+            data: {
+              is_following: data.is_following,
+              is_followed_by: data.is_followed_by
+            }
+          })
         })
         .catch(() => {})
     },
-    handleFollowAction({ change }) {
-      this.user.followers_count += change
+    handleFollowAction(result) {
+      this.user.followers_count -= result ? -1 : 1
     },
     connectSocket() {
       if (this.isMine && !this.$store.state.socket.isConnected) {

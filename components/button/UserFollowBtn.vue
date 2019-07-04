@@ -1,10 +1,11 @@
 <template>
   <el-button
-    :loading="loading"
+    v-if="state"
+    :loading="state.is_following_loading"
     class="user-fff-btn"
     round
     type="primary"
-    :plain="action !== 'stranger'"
+    :plain="btnText !== '关注'"
     @click="handleFollowClick"
   >
     <span v-text="btnText" />
@@ -18,63 +19,49 @@ export default {
     slug: {
       type: String,
       required: true
-    },
-    value: {
-      type: String,
-      default: 'unknown',
-      validator: val => ~['unknown', 'self', 'friend', 'follower', 'following', 'stranger'].indexOf(val)
-    }
-  },
-  data() {
-    return {
-      loading: false,
-      action: this.value
     }
   },
   computed: {
+    state() {
+      return this.$store.getters['social/get']('user-follow', this.slug)
+    },
+    isAuth() {
+      return this.$store.state.isAuth
+    },
+    isMine() {
+      return this.$store.getters.isMine(this.slug)
+    },
     btnText() {
-      switch (this.action) {
-        case 'unknown':
-          return '关注'
-        case 'self':
-          return '自己'
-        case 'friend':
-          return '互相关注'
-        case 'follower':
-          return '关注了我'
-        case 'following':
-          return '已关注'
-        case 'stranger':
-          return '关注'
-        default:
-          return '关注'
+      if (!this.isAuth || !this.state) {
+        return '关注'
       }
+      if (this.isMine) {
+        return '自己'
+      }
+      if (this.state.is_following && this.state.is_followed_by) {
+        return '互相关注'
+      } else if (this.state.is_following) {
+        return '已关注'
+      } else if (this.state.is_followed_by) {
+        return '关注了我'
+      }
+      return '关注'
     }
-  },
-  watch: {
-    value(val) {
-      this.action = val
-    }
-  },
-  mounted() {
-    this.$channel.$on(`user-follow-${this.slug}`, result => {
-      this.action = result
-    })
   },
   methods: {
     handleFollowClick() {
-      if (!this.$store.state.isAuth) {
+      if (!this.isAuth) {
         this.$channel.$emit('sign-in')
         return
       }
-      if (this.action === 'unknown' || this.loading) {
-        return
-      }
-      if (this.action === 'self') {
+      if (this.isMine) {
         this.$toast.info('不能关注自己')
         return
       }
-      if (this.action === 'follower' || this.action === 'stranger') {
+      if (!this.state || this.state.is_following_loading) {
+        return
+      }
+      if (this.btnText === '关注了我' || this.btnText === '关注') {
         this.submit()
         return
       }
@@ -82,23 +69,22 @@ export default {
         .then(() => this.submit())
         .catch(() => {})
     },
-    submit() {
-      this.loading = true
-      this.$axios.$post('v1/user/toggle_follow', {
-        slug: this.slug
+    async submit() {
+      const data = await this.$store.dispatch('social/toggle', {
+        type: 'user-follow',
+        slug: this.slug,
+        action: 'is_following',
+        params: {
+          target_slug: this.slug,
+          action_slug: this.$store.state.user.slug,
+          target_type: 'user',
+          action_type: 'user',
+          method_type: 'follow'
+        }
       })
-        .then(relation => {
-          this.$channel.$emit(`user-follow-${this.slug}`, relation)
-          this.$emit('change', {
-            relation,
-            change: (relation === 'friend' || relation === 'following') ? 1 : -1
-          })
-          this.loading = false
-        })
-        .catch(err => {
-          this.$toast.error(err.message)
-          this.loading = false
-        })
+      if (data.success) {
+        this.$emit('change', data.result)
+      }
     }
   }
 }

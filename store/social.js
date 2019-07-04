@@ -106,9 +106,8 @@ export const actions = {
       })
     }
   },
-  async toggle({ state, commit, rootState }, { type, slug, action }) {
-    const namespace = generateField(type, slug)
-    const store = state[namespace]
+  async toggle({ state, commit, rootState }, { type, slug, action, params }) {
+    const store = state[generateField(type, slug)]
     if (store[`${action}_loading`]) {
       return
     }
@@ -119,11 +118,7 @@ export const actions = {
       result: true
     })
     try {
-      const result = await API[action]({
-        ctx: this,
-        slug,
-        type
-      })
+      const result = await this.$axios.$post('v1/social/toggle', params)
       const { user } = rootState
       commit('SET_STATE', {
         type,
