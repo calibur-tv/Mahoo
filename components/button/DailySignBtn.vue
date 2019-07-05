@@ -7,7 +7,7 @@
     :loading="loading"
     @click="handleSign"
   >
-    {{ value.sign.daily_signed ? '已签到' : '未签到' }}
+    {{ value.daily_signed ? '已签到' : '未签到' }}
   </el-button>
 </template>
 
@@ -43,14 +43,14 @@ export default {
       if (this.loading) {
         return
       }
-      if (this.value.sign.daily_signed) {
+      if (this.value.daily_signed) {
         this.$toast.info('今天已签过到')
         return
       }
       this.loading = true
       this.$axios.$post('v1/user/daily_sign')
         .then(data => {
-          this.value.sign.daily_signed = true
+          this.value.daily_signed = true
           this.value.sign.continuous_sign_count = data.continuous_sign_count
           this.value.sign.latest_signed_at = data.sign_at
           this.value.sign.total_sign_count++
