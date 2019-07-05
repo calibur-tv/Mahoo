@@ -81,26 +81,50 @@ export default {
     }
   },
   mounted() {
-    this.$utils.on(window, 'scroll', this.handleScroll)
-    this.$utils.on(window, 'resize', this.handleScroll)
+    const target = this._getScrollTarget()
+    this.$utils.on(target, 'scroll', this.handleScroll)
+    this.$utils.on(target, 'resize', this.handleScroll)
     this.$nextTick(() => {
-      this.handleScroll()
+      this.handleScroll({ type: 'scroll' })
     })
   },
   beforeDestroy() {
-    this.$utils.off(window, 'scroll', this.handleScroll)
-    this.$utils.off(window, 'resize', this.handleScroll)
+    const target = this._getScrollTarget()
+    this.$utils.off(target, 'scroll', this.handleScroll)
+    this.$utils.off(target, 'resize', this.handleScroll)
   },
   methods: {
-    handleScroll() {
+    _getScrollTarget() {
+      let el = this.$el
+      if (!el) {
+        return null
+      }
+      while (
+        el &&
+        el.tagName !== 'HTML' &&
+        el.tagName !== 'BOYD' &&
+        el.nodeType === 1
+      ) {
+        const overflowY = window.getComputedStyle(el).overflowY
+        if (overflowY === 'scroll' || overflowY === 'auto') {
+          if (el.tagName === 'HTML' || el.tagName === 'BODY') {
+            return document
+          }
+          return el
+        }
+        el = el.parentNode
+      }
+      return document
+    },
+    handleScroll(evt) {
       const affix = this.affix
       const scrollTop = getScroll(window, true)
       const elOffset = getOffset(this.$el)
       const windowHeight = window.innerHeight
       const elHeight = this.$el.getElementsByTagName('div')[0].offsetHeight
-
+      const condition = !affix || evt.type === 'resize'
       // Fixed Top
-      if ((elOffset.top - this.top) < scrollTop && this.offsetType === 'top' && !affix) {
+      if ((elOffset.top - this.top) < scrollTop && this.offsetType === 'top' && condition) {
         this.affix = true
         this.slotStyle = {
           width: this.$refs.point.clientWidth + 'px',
@@ -124,7 +148,7 @@ export default {
       }
 
       // Fixed Bottom
-      if ((elOffset.top + this.bottom + elHeight) > (scrollTop + windowHeight) && this.offsetType === 'bottom' && !affix) {
+      if ((elOffset.top + this.bottom + elHeight) > (scrollTop + windowHeight) && this.offsetType === 'bottom' && condition) {
         this.affix = true
         this.styles = {
           bottom: `${this.bottom}px`,
