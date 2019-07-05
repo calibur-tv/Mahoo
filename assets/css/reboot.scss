@@ -37,12 +37,20 @@ img {
   max-width: 100%;
 }
 
-img, span, i {
+img, span, i, a {
   vertical-align: middle;
 }
 
 ul {
   list-style-type: none;
+}
+
+main,
+aside,
+header,
+footer,
+section {
+  display: block;
 }
 
 @media (max-width: 768px) {

@@ -125,6 +125,7 @@
           </nuxt-link>
         </div>
       </div>
+      <comment-main />
     </div>
   </div>
 </template>
@@ -132,13 +133,15 @@
 <script>
 import JsonContent from '~/components/editor/JsonContent'
 import ContentAuthor from '~/components/user/ContentAuthor'
+import CommentMain from '~/components/comment/CommentMain'
 
 export default {
   name: 'PinShow',
   layout: 'web',
   components: {
     JsonContent,
-    ContentAuthor
+    ContentAuthor,
+    CommentMain
   },
   head() {
     return {
