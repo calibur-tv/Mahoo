@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         name: 'format-detection',
-        content: 'telephone=no'
+        content: 'telephone=no,email=no,address=no'
       },
       {
         name: 'applicable-device',

@@ -140,9 +140,18 @@ export default {
     JsonContent,
     ContentAuthor
   },
+  head() {
+    return {
+      title: this.title.text,
+      meta: [
+        { hid: 'description', name: 'description', content: this.intro }
+      ]
+    }
+  },
   data() {
     return {
       slug: '',
+      intro: '',
       title: null,
       author: null,
       content: [],

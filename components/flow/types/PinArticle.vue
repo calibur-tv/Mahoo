@@ -17,38 +17,48 @@
     }
 
     .media {
+      display: block;
+      position: relative;
       float: left;
       border-radius: 4px;
       overflow: hidden;
+      width: 190px;
+      height: 105px;
+      margin-right: 18px;
 
-      :global(.img) {
-        margin-right: 18px;
+      .text {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 33px;
+        background-image: linear-gradient(-180deg,transparent,rgba(0,0,0,.2) 49%);
+        font-size: 12px;
+        color: #fff;
+        padding: 8px 10px;
+
+        span {
+          margin-right: 10px;
+        }
+      }
+
+      .badge {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 35px;
       }
 
       .music {
+        height: 100%;
         background-color: #d43c33;
-        width: 105px;
-        height: 105px;
-        text-align: center;
-
-        i {
-          color: #fff;
-          font-size: 50px;
-          line-height: 105px;
-        }
       }
 
       .video {
+        height: 100%;
         background-color: #00a1d6;
-        width: 190px;
-        height: 105px;
-        text-align: center;
-
-        i {
-          color: #fff;
-          font-size: 50px;
-          line-height: 105px;
-        }
       }
     }
 
@@ -78,21 +88,30 @@
         />
       </h2>
       <div :class="$style.content" class="clearfix">
-        <div v-if="item.media" :class="$style.media">
-          <nuxt-link
-            v-if="item.media.type === 'image'"
-            target="_blank"
-            :to="$alias.pin(secretLink || item.slug)"
-          >
-            <v-img :src="item.media.data.url" width="190" height="105" />
-          </nuxt-link>
-          <div v-else-if="item.media.type === 'video'" :class="$style.video">
+        <nuxt-link
+          v-if="item.media"
+          :to="$alias.pin(secretLink || item.slug)"
+          :class="$style.media"
+          target="_blank"
+        >
+          <div v-if="item.media.first_video" :class="$style.video">
+            <v-img v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
+            <i :class="$style.badge" class="iconfont ic-bilibili" />
+          </div>
+          <div v-else-if="item.media.first_music" :class="$style.music">
+            <v-img v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
+            <i :class="$style.badge" class="iconfont ic-netease" />
+          </div>
+          <v-img v-else :src="item.media.banner.url" width="190" height="105" />
+          <div :class="$style.text">
             <i class="iconfont ic-video" />
+            <span v-text="item.media.video_count" />
+            <i class="iconfont ic-systemprompt" />
+            <span v-text="item.media.music_count" />
+            <i class="iconfont ic-camera" />
+            <span v-text="item.media.image_count" />
           </div>
-          <div v-else-if="item.media.type === 'music'" :class="$style.music">
-            <i class="iconfont ic-music" />
-          </div>
-        </div>
+        </nuxt-link>
         <div :class="$style.desc">
           {{ item.intro }}
         </div>
