@@ -59,7 +59,12 @@ export default {
           Object.keys(data).forEach(slug => {
             arr.push({
               slug,
-              relation: data[slug]
+              ...data[slug]
+            })
+            this.$store.commit('social/set', {
+              type: 'user-follow',
+              slug,
+              data: data[slug]
             })
           })
           this.$refs.loader.patch(arr)

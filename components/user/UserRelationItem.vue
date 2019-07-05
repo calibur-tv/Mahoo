@@ -50,10 +50,7 @@
       <p class="oneline intro" v-text="user.signature" />
     </div>
     <div class="control">
-      <user-follow-btn
-        v-model="user.relation"
-        :slug="user.slug"
-      />
+      <user-follow-btn :slug="user.slug" />
       <send-mail-btn :slug="user.slug" />
     </div>
   </li>
