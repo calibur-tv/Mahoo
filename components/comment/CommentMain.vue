@@ -3,7 +3,7 @@
 
 <template>
   <div class="comment-main">
-    <create-comment-form/>
+    <create-comment-form />
   </div>
 </template>
 

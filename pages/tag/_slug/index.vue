@@ -244,7 +244,22 @@ export default {
   layout: 'web',
   created() {},
   mounted() {},
+  beforeMount() {
+    this.patchTag()
+  },
   methods: {
+    patchTag() {
+      this.$axios.$get('v1/tag/patch', {
+        params: {
+          slug: this.slug
+        }
+      })
+        .then(data => {
+          this.tag = Object.assign(this.tag, data)
+        })
+        .catch(() => {
+        })
+    },
     handleCreate(data) {
       this.children.push(data)
       this.$toast.success('标签创建成功')
