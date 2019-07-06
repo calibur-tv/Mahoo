@@ -100,7 +100,7 @@
       <content-author :user="author">
         <template v-slot:intro>
           <span v-if="area"><nuxt-link target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" /></span>
-          <span v-text="$utils.timeFormat(created_at, 'MM-DD')" />
+          <span v-text="$utils.timeAgo(created_at)" />
         </template>
         <template v-slot:mine>
           <el-button round plain type="danger" @click="deletePin">

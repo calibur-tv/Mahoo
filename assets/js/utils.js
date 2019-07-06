@@ -1,9 +1,7 @@
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
-import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.locale('zh-cn')
-dayjs.extend(relativeTime)
 
 export const convertTA = (sex = -1, isMine = false) => {
   if (isMine) {
@@ -22,9 +20,29 @@ export const randomStr = () => {
   return `${Date.now()}-${Math.random().toString(36).substring(3, 6)}`
 }
 
-export const timeFormat = (time, format) => dayjs(time).format(format)
-
-export const timeAgo = time => dayjs().from(time)
+export const timeAgo = time => {
+  let date = time
+  if (typeof time === 'number' && time.toString().length === 10) {
+    date = time * 1000
+  } else {
+    date = new Date(time).getTime()
+  }
+  const delta = Date.now() - new Date(date).getTime()
+  if (delta > 365 * 86400000) {
+    return dayjs(time).format('YYYY-MM-DD')
+  }
+  const today = new Date().setHours(0, 0, 0, 0)
+  if (today < date) {
+    return `今天${dayjs(time).format('HH:mm')}`
+  }
+  if (today - 86400000 < date) {
+    return `昨天${dayjs(time).format('HH:mm')}`
+  }
+  if (today - 172800000 < date) {
+    return `前天${dayjs(time).format('HH:mm')}`
+  }
+  return dayjs(time).format('MM-DD HH:mm')
+}
 
 export const checkInView = (dom, preload = 1) => {
   if (!dom) {

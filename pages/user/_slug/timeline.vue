@@ -17,7 +17,7 @@
         <el-timeline-item
           v-for="item in flow"
           :key="`${item.type}-${item.slug}`"
-          :timestamp="$utils.timeFormat(item.created_at, 'MM-DD')"
+          :timestamp="$utils.timeAgo(item.created_at)"
           placement="top"
         >
           <component :is="`type-${item.type}`" :item="item.data" />
