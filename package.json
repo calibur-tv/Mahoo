@@ -55,7 +55,7 @@
     "redis": "^2.8.0",
     "throttle-debounce": "^2.1.0",
     "v-switcher": "^1.0.49",
-    "vue-mixin-store": "1.1.33",
+    "vue-mixin-store": "1.1.34",
     "vue-native-websocket": "^2.0.13"
   },
   "devDependencies": {

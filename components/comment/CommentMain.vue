@@ -110,6 +110,7 @@
       func="getPinComments"
       type="jump"
       :query="query"
+      :callback="handlePatch"
     >
       <header slot="header" slot-scope="{ source }" class="comment-header">
         <h2 class="total">
@@ -146,6 +147,7 @@
           :item="item"
           @create="createInner"
           @delete="handleDelete"
+          @agree="handleAgree"
         />
       </ul>
       <template slot="nothing">
@@ -231,6 +233,18 @@ export default {
     createInner(data) {
       this.$refs.loader.insertAfter(data)
     },
+    handleAgree({ id, result, count }) {
+      this.$refs.loader.update({
+        id,
+        value: result,
+        key: 'up_vote_status'
+      })
+      this.$refs.loader.update({
+        id,
+        value: count,
+        key: 'like_count'
+      })
+    },
     changeCommentSort(sort) {
       this.sort = sort
       this.currentPage = 1
@@ -244,6 +258,21 @@ export default {
     handleJump(page) {
       this.$refs.loader.jump(page)
       this.currentPage = page
+    },
+    handlePatch({ data }) {
+      const { result } = data
+      if (!result.length) {
+        return
+      }
+      this.$axios.$get('v1/comment/patch', {
+        params: {
+          comment_ids: result.map(_ => _.id).join(',')
+        }
+      })
+        .then(data => {
+          this.$refs.loader.patch(data)
+        })
+        .catch(() => {})
     }
   }
 }

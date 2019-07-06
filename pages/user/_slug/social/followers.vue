@@ -55,19 +55,11 @@ export default {
         }
       })
         .then(data => {
-          const arr = []
-          Object.keys(data).forEach(slug => {
-            arr.push({
-              slug,
-              ...data[slug]
-            })
-            this.$store.commit('social/set', {
-              type: 'user-follow',
-              slug,
-              data: data[slug]
-            })
+          this.$store.commit('social/set', {
+            type: 'user-follow',
+            data: data
           })
-          this.$refs.loader.patch(arr)
+          this.$refs.loader.patch(data)
         })
         .catch(() => {})
     }

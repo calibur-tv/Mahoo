@@ -6,27 +6,22 @@ export const state = () => ({})
 const generateField = (type, slug) => `${type}-${slug}`
 
 export const mutations = {
-  set(state, { type, data, slug }) {
-    if (Array.isArray(data)) {
-      data.forEach(item => {
-        Object.keys(item).forEach(key => {
-          item[`${key}_loading`] = false
+  set(state, { type, data, slug } = {}) {
+    let isSingle = false
+    Object.keys(data).forEach(key => {
+      if (typeof data[key] === 'object') {
+        const subData = data[key]
+        Object.keys(subData).forEach(subKey => {
+          subData[`${subKey}_loading`] = false
         })
-        Vue.set(state, generateField(type, item.slug), item)
-      })
-    } else {
-      Object.keys(data).forEach(key => {
-        if (typeof data[key] === 'object') {
-          data[key] = Object.assign(data[key], {
-            loading: false,
-            error: false,
-            nothing: !data[key].total
-          })
-        } else {
-          data[`${key}_loading`] = false
-        }
-      })
-      Vue.set(state, `${type}-${slug || data.slug}`, data)
+        Vue.set(state, `${type}-${key}`, subData)
+      } else {
+        isSingle = true
+        data[`${key}_loading`] = false
+      }
+    })
+    if (isSingle) {
+      Vue.set(state, `${type}-${slug}`, data)
     }
   },
   PUSH_USERS(state, { type, slug, key, data }) {

@@ -24,6 +24,10 @@
           color: $color-main;
         }
       }
+
+      .ic-good_fill {
+        color: $color-main;
+      }
     }
 
     .create-comment-form {
@@ -56,6 +60,10 @@
         </button>
         <button v-if="isMine" @click="deleteComment">
           <i class="iconfont ic-trash" />
+        </button>
+        <button @click="clickAgree">
+          <i class="iconfont" :class="[ item.up_vote_status ? 'ic-good_fill' : 'ic-good' ]" />
+          <span v-if="item.like_count" v-text="item.like_count" />
         </button>
       </footer>
       <CreateCommentForm
@@ -94,7 +102,8 @@ export default {
   data() {
     return {
       showCreate: false,
-      deleting: false
+      deleting: false,
+      loading: false
     }
   },
   computed: {
@@ -109,6 +118,38 @@ export default {
         value
       })
       this.showCreate = false
+    },
+    clickAgree() {
+      if (!this.$store.state.isAuth) {
+        this.$channel.$emit('sign-in')
+      }
+      if (this.isMine) {
+        this.$toast.info('不能给自己点赞')
+        return
+      }
+      if (this.loading) {
+        return
+      }
+      this.loading = true
+      this.$axios.$post('v1/social/toggle', {
+        target_slug: this.item.id.toString(),
+        target_type: 'comment',
+        action_slug: this.$store.state.user.slug,
+        action_type: 'user',
+        method_type: 'up_vote'
+      })
+        .then(result => {
+          this.loading = false
+          this.$emit('agree', {
+            id: this.item.id,
+            count: result ? this.item.like_count - -1 : this.item.like_count - 1,
+            result
+          })
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+          this.loading = false
+        })
     },
     deleteComment() {
       this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
