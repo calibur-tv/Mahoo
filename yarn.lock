@@ -9255,10 +9255,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.26:
-  version "1.1.26"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.26.tgz#4720e29f2eb588cec3812b9826801188a1d63c9d"
-  integrity sha512-KxcUOYrHVuMTXY/Et8WVFQYVla6LdXGs/r8whaSLhUwFC5FrtXSq10fEIAscT25rfggnbcV00dUnqRqVD+npAg==
+vue-mixin-store@1.1.31:
+  version "1.1.31"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.31.tgz#35237d8a8d3d5c8a3e011b60125a25b9d80146f2"
+  integrity sha512-jtY1IYBYMtbgI8srFmH6oAawHi6PLOEfctoRvdSllTw/n80Ee/uatOIzIaZfB0kDEFo516Bh7Amgv2I34HoJZA==
   dependencies:
     vue "^2.6.6"
 

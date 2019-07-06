@@ -191,12 +191,12 @@
   }
 
   .column-wrap {
-    .ElCol:first-child {
+    .el-col:first-child {
       margin-left: -20px;
       margin-top: -5px;
     }
 
-    .ElCol:last-child {
+    .el-col:last-child {
       position: relative;
       box-sizing: content-box;
       padding-left: 20px;

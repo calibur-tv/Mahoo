@@ -8,6 +8,7 @@
       line-height: 24px;
       color: #222;
       margin-bottom: 20px;
+      font-weight: normal;
     }
 
     .sort-jump {
@@ -15,6 +16,8 @@
       margin-bottom: 24px;
 
       .sortable {
+        display: inline-block;
+
         li {
           position: relative;
           display: inline-block;
@@ -63,6 +66,38 @@
           }
         }
       }
+
+      .el-pagination {
+        float: right;
+        padding: 0;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .comment-footer {
+    .el-pagination {
+      margin: 20px 0;
+      padding: 0;
+
+      .btn-prev,
+      .btn-next {
+        padding: 0 10px;
+      }
+
+      &__jump {
+        float: right;
+      }
+    }
+  }
+
+  .flow-loader-state {
+    &-nothing {
+      p {
+        font-size: 12px;
+        margin-top: 10px;
+        color: $color-text-3;
+      }
     }
   }
 }
@@ -73,7 +108,7 @@
     <FlowLoader
       ref="loader"
       func="getPinComments"
-      :type="sort === 'hottest' ? 'seenIds' : 'lastId'"
+      type="jump"
       :query="query"
     >
       <header slot="header" slot-scope="{ source }" class="comment-header">
@@ -82,8 +117,25 @@
         </h2>
         <div class="sort-jump">
           <ul class="sortable">
-            <li v-for="(item, index) in sorts" :key="index" :class="{ 'is-selected': item.value === sort }" @click="changeCommentSort(item.value)" v-text="item.label" />
+            <li
+              v-for="(item, index) in sorts"
+              :key="index"
+              :class="{ 'is-selected': item.value === sort }"
+              @click="changeCommentSort(item.value)"
+              v-text="item.label"
+            />
           </ul>
+          <ElPagination
+            layout="prev, pager, next"
+            :total="source.total"
+            :page-size="10"
+            :small="true"
+            :hide-on-single-page="true"
+            :current-page="currentPage"
+            prev-text="上一页"
+            next-text="下一页"
+            @current-change="handleJump"
+          />
         </div>
         <CreateCommentForm :pin-slug="slug" @submit="createTop" />
       </header>
@@ -96,14 +148,30 @@
           @delete="handleDelete"
         />
       </ul>
-      <footer slot="footer" slot-scope="{ source }" class="footer-create-comment">
-        <CreateCommentForm v-if="source.total" :pin-slug="slug" @submit="createBottom" />
+      <template slot="nothing">
+        <img src="~assets/img/error/no-comment.png">
+        <p>还没有评论，快来抢沙发吧！</p>
+      </template>
+      <footer v-if="source.total >= 10" slot="footer" slot-scope="{ source }" class="comment-footer">
+        <ElPagination
+          layout="prev, pager, next, jumper"
+          :total="source.total"
+          :page-size="10"
+          :background="true"
+          :hide-on-single-page="true"
+          :current-page="currentPage"
+          prev-text="上一页"
+          next-text="下一页"
+          @current-change="handleJump"
+        />
+        <CreateCommentForm :pin-slug="slug" @submit="createBottom" />
       </footer>
     </FlowLoader>
   </div>
 </template>
 
 <script>
+import { Pagination } from 'element-ui'
 import CreateCommentForm from '~/components/form/CreateCommentForm'
 import CommentItem from '~/components/comment/CommentItem'
 
@@ -111,7 +179,8 @@ export default {
   name: 'CommentMain',
   components: {
     CreateCommentForm,
-    CommentItem
+    CommentItem,
+    ElPagination: Pagination
   },
   props: {
     slug: {
@@ -121,7 +190,8 @@ export default {
   },
   data() {
     return {
-      sort: 'time_asc'
+      sort: 'time_asc',
+      currentPage: 1
     }
   },
   computed: {
@@ -130,7 +200,8 @@ export default {
         $axios: this.$axios,
         slug: this.slug,
         sort: this.sort,
-        count: 10
+        count: 10,
+        mode: 'jump'
       }
     },
     sorts() {
@@ -162,9 +233,17 @@ export default {
     },
     changeCommentSort(sort) {
       this.sort = sort
+      this.currentPage = 1
+      this.$nextTick(() => {
+        this.$refs.loader.refresh()
+      })
     },
     handleDelete(id) {
       this.$refs.loader.delete(id)
+    },
+    handleJump(page) {
+      this.$refs.loader.jump(page)
+      this.currentPage = page
     }
   }
 }
