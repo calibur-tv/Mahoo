@@ -230,6 +230,11 @@ export default {
       return '按下Cmd+Enter换行'
     }
   },
+  watch: {
+    '$route'() {
+      this.initRoom()
+    }
+  },
   beforeMount() {
     if (!this.$store.state.messageRoom[this.mailto]) {
       this.$store.commit('INIT_MESSAGE_ROOM', this.mailto)
@@ -261,11 +266,8 @@ export default {
         count: menu.count
       })
     },
-    switchRoom() {
-      this.stopWatcher()
-      this.initRoom()
-    },
     watchMessageLoop() {
+      this.stopWatcher && this.stopWatcher()
       const self = this
       const roomId = self.mailto
       this.stopWatcher = this.$watch(
@@ -274,7 +276,7 @@ export default {
         },
         function () {
           if (roomId !== self.mailto) {
-            this.switchRoom()
+            this.stopWatcher()
             return
           }
           const message = self.$store.state.messageRoom[self.mailto].data

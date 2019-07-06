@@ -37,7 +37,7 @@
     padding: 10px 10px 10px 24px;
     border-bottom: 1px solid #fff;
 
-    &.NLink-exact-active {
+    &.nuxt-link-exact-active {
       background-color: #f4f4f4;
     }
 
