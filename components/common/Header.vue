@@ -46,7 +46,7 @@
             color: #222;
             height: 100%;
 
-            &.nuxt-link-exact-active {
+            &.NLink-exact-active {
               color: $color-main;
             }
 
@@ -195,29 +195,29 @@
     <div class="header-fixed">
       <div class="container nav">
         <nav class="left">
-          <nuxt-link class="logo" to="/">
-            <v-img src="default-poster" width="32" height="32" radius="50%" alt="calibur" />
-          </nuxt-link>
-          <v-switcher :headers="headers" :routable="true" :header-height="50" align="start">
-            <nuxt-link
+          <NLink class="logo" to="/">
+            <VImg src="default-poster" width="32" height="32" radius="50%" alt="calibur" />
+          </NLink>
+          <VSwitcher :headers="headers" :routable="true" :header-height="50" align="start">
+            <NLink
               v-for="(item, index) in headers"
               :key="index"
               :slot="`tab-${index}`"
               :to="item.route"
             >
               <i class="iconfont" :class="item.icon" />
-            </nuxt-link>
-          </v-switcher>
+            </NLink>
+          </VSwitcher>
         </nav>
         <div class="right">
           <template v-if="showUser">
             <template v-if="isAuth">
               <div class="user-panel icon-link">
-                <nuxt-link
+                <NLink
                   :to="$alias.user(user.slug)"
                   class="avatar"
                 >
-                  <v-img
+                  <VImg
                     :src="user.avatar"
                     def="default-avatar"
                     width="33"
@@ -225,7 +225,7 @@
                     radius="50%"
                     :alt="user.nickname"
                   />
-                </nuxt-link>
+                </NLink>
                 <div class="user-popover">
                   <div class="bottom">
                     <button @click="handleLogout">
@@ -234,11 +234,11 @@
                   </div>
                 </div>
               </div>
-              <nuxt-link class="icon-link" :to="$alias.user(user.slug, 'message')">
-                <el-badge :value="mailbox.unread_notice_total + mailbox.unread_message_total" :hidden="!mailbox.unread_message_total && !mailbox.unread_notice_total">
+              <NLink class="icon-link" :to="$alias.user(user.slug, 'message')">
+                <ElBadge :value="mailbox.unread_notice_total + mailbox.unread_message_total" :hidden="!mailbox.unread_message_total && !mailbox.unread_notice_total">
                   <i class="iconfont ic-remind" />
-                </el-badge>
-              </nuxt-link>
+                </ElBadge>
+              </NLink>
             </template>
             <template v-else>
               <el-button
@@ -250,11 +250,11 @@
             </template>
           </template>
           <div class="creator-wrap">
-            <nuxt-link target="_blank" :to="$alias.create()">
+            <NLink target="_blank" :to="$alias.create()">
               <el-button size="small" type="primary" icon="el-icon-s-promotion">
                 投稿
               </el-button>
-            </nuxt-link>
+            </NLink>
           </div>
         </div>
       </div>
@@ -270,7 +270,7 @@ import { logout } from '~/api/userApi'
 
 export default {
   components: {
-    'el-badge': Badge
+    ElBadge: Badge
   },
   props: {
     showUser: {

@@ -64,11 +64,11 @@
 
 <template>
   <div id="sign">
-    <el-col class="sign-wrap" :span="6" :xs="24">
+    <ElCol class="sign-wrap" :span="6" :xs="24">
       <div class="bg">
         <img src="~/assets/img/login_bg.png" alt="calibur">
       </div>
-      <v-switcher
+      <VSwitcher
         ref="switcher"
         :headers="headers"
         :swipe="true"
@@ -77,22 +77,22 @@
         align="center"
       >
         <template slot="0">
-          <reset-password-form
+          <ResetPasswordForm
             v-if="showReset"
             @to-login="showReset = false"
             @to-register="next"
           />
-          <sign-in-form
+          <SignInForm
             v-else
             @to-register="next"
             @to-reset="showReset = true"
           />
         </template>
         <template slot="1">
-          <sign-up-form @to-login="prev" />
+          <SignUpForm @to-login="prev" />
         </template>
-      </v-switcher>
-    </el-col>
+      </VSwitcher>
+    </ElCol>
   </div>
 </template>
 

@@ -42,12 +42,12 @@
 
 <template>
   <div id="tag-show">
-    <el-row class="container">
-      <el-col
+    <ElRow class="container">
+      <ElCol
         class="left-aside"
         :span="5"
       >
-        <affix :top="50">
+        <Affix :top="50">
           <ul
             v-if="children.length"
             class="child-node"
@@ -57,16 +57,16 @@
               :key="item.slug"
               class="node"
             >
-              <nuxt-link :to="`/tag/${item.slug}`">
-                <v-img :src="item.avatar" width="32" height="32" :alt="item.name" />
+              <NLink :to="`/tag/${item.slug}`">
+                <VImg :src="item.avatar" width="32" height="32" :alt="item.name" />
                 <span v-text="item.name" />
-              </nuxt-link>
+              </NLink>
             </li>
           </ul>
           &nbsp;
-        </affix>
-      </el-col>
-      <el-col :span="14" class="main-wrap">
+        </Affix>
+      </ElCol>
+      <ElCol :span="14" class="main-wrap">
         <p>当前标签</p>
         {{ tag.name }}
         <p>123</p>
@@ -169,14 +169,14 @@
         <p>123</p>
         <p>123</p>
         <p>123</p>
-      </el-col>
-      <el-col :span="5">
-        <affix :top="50">
+      </ElCol>
+      <ElCol :span="5">
+        <Affix :top="50">
           <div>
             当前标签活跃用户
           </div>
           <div>
-            <create-tag-btn :parent="slug" text="分区" @create="handleCreate" />
+            <CreateTagBtn :parent="slug" text="分区" @create="handleCreate" />
             <button @click="combineTag">
               合并标签
             </button>
@@ -186,15 +186,15 @@
             <button @click="relinkTag">
               修改父节点
             </button>
-            <nuxt-link :to="$alias.tag(slug, 'edit')">
+            <NLink :to="$alias.tag(slug, 'edit')">
               <button>
                 更新标签
               </button>
-            </nuxt-link>
+            </NLink>
           </div>
-        </affix>
-      </el-col>
-    </el-row>
+        </Affix>
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 

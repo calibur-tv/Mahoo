@@ -41,8 +41,6 @@
     padding-top: 30px;
 
     .notebook {
-      margin-bottom: 24px;
-
       p {
         font-weight: 600;
         font-synthesis: style;
@@ -97,35 +95,35 @@
         >
         <h1 class="title" v-text="title.text" />
       </template>
-      <content-author :user="author">
+      <ContentAuthor :user="author">
         <template v-slot:intro>
-          <span v-if="area"><nuxt-link target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" /></span>
+          <span v-if="area"><NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" /></span>
           <span v-text="$utils.timeAgo(created_at)" />
         </template>
         <template v-slot:mine>
-          <el-button round plain type="danger" @click="deletePin">
+          <ElButton round plain type="danger" @click="deletePin">
             删除
-          </el-button>
+          </ElButton>
           &nbsp;
-          <nuxt-link :to="$alias.create(slug)">
-            <el-button round plain type="info">
+          <NLink :to="$alias.create(slug)">
+            <ElButton round plain type="info">
               编辑
-            </el-button>
-          </nuxt-link>
+            </ElButton>
+          </NLink>
         </template>
-      </content-author>
-      <json-content :content="content" />
+      </ContentAuthor>
+      <JsonContent :content="content" />
       <div class="footer">
         <div class="social-panel" />
         <div v-if="notebook" class="notebook">
           <p>文章被以下专栏收录</p>
-          <nuxt-link target="_blank" :to="$alias.tag(notebook.slug)">
-            <v-img :src="notebook.avatar" width="32" height="32" />
+          <NLink target="_blank" :to="$alias.tag(notebook.slug)">
+            <VImg :src="notebook.avatar" width="32" height="32" />
             <span class="name" v-text="notebook.name" />
-          </nuxt-link>
+          </NLink>
         </div>
       </div>
-      <comment-main />
+      <CommentMain :slug="slug" />
     </div>
   </div>
 </template>

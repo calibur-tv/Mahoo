@@ -13,7 +13,7 @@
 
 <template>
   <div class="chat-avatar" :class="[ isMine ? 'chat-avatar-mine' : 'chat-avatar-other' ]">
-    <user-avatar :user="item" :size="36" />
+    <UserAvatar :user="item" :size="36" />
   </div>
 </template>
 

@@ -191,12 +191,12 @@
   }
 
   .column-wrap {
-    .el-col:first-child {
+    .ElCol:first-child {
       margin-left: -20px;
       margin-top: -5px;
     }
 
-    .el-col:last-child {
+    .ElCol:last-child {
       position: relative;
       box-sizing: content-box;
       padding-left: 20px;
@@ -220,9 +220,9 @@
     <div id="user-panel" class="container">
       <div class="banner" :style="{ backgroundImage: `url(${$resize(banner, { height: 200, mode: 2 })})`}">
         <div class="user">
-          <user-avatar :user="user" :avatar="avatar" :size="68" />
+          <UserAvatar :user="user" :avatar="avatar" :size="68" />
           <div class="content">
-            <user-nickname :user="user" :nickname="nickname" :sex="sex" />
+            <UserNickname :user="user" :nickname="nickname" :sex="sex" />
             <p class="signature oneline" v-text="signature" />
           </div>
         </div>
@@ -230,11 +230,11 @@
           v-if="user"
           class="actions"
         >
-          <user-follow-btn :slug="slug" @change="handleFollowAction" />
-          <send-mail-btn :slug="slug" />
+          <UserFollowBtn :slug="slug" @change="handleFollowAction" />
+          <SendMailBtn :slug="slug" />
         </div>
       </div>
-      <v-switcher
+      <VSwitcher
         :headers="headers"
         :routable="true"
         :header-height="66"
@@ -242,7 +242,7 @@
         anchor-trigger="hover"
         align="start"
       >
-        <nuxt-link
+        <NLink
           v-for="(item, index) in headers"
           :key="index"
           :slot="`tab-${index}`"
@@ -250,7 +250,7 @@
         >
           <i class="iconfont" :class="`ic-${item.icon}`" :style="{ color: item.color }" />
           <span v-text="item.name" />
-        </nuxt-link>
+        </NLink>
         <ul slot="header-after" class="user-meta">
           <li>
             <div class="label">
@@ -283,16 +283,16 @@
             <span class="value" v-text="user.stat.exposure" />
           </li>
         </ul>
-      </v-switcher>
+      </VSwitcher>
     </div>
     <div class="container">
-      <el-row :gutter="10">
-        <el-col :span="17">
+      <ElRow :gutter="10">
+        <ElCol :span="17">
           <section class="user-section">
-            <nuxt-child :user="user" />
+            <NuxtChild :user="user" />
           </section>
-        </el-col>
-        <el-col v-if="user" :span="7">
+        </ElCol>
+        <ElCol v-if="user" :span="7">
           <aside class="user-section">
             <h3 class="title">
               钱包
@@ -306,15 +306,15 @@
             <h3 class="title">
               签到
             </h3>
-            <daily-sign-btn v-model="user" />
+            <DailySignBtn v-model="user" />
             <template>
               <p>总签到次数：{{ user.sign.total_sign_count }}次</p>
               <p>连续签到数：{{ user.sign.continuous_sign_count }}次</p>
               <p>最后签到于：{{ user.sign.latest_signed_at ? $utils.timeAgo(user.sign.latest_signed_at) : '未签到' }}</p>
             </template>
           </aside>
-        </el-col>
-      </el-row>
+        </ElCol>
+      </ElRow>
     </div>
   </div>
 </template>

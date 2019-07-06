@@ -31,7 +31,7 @@
 
 <template>
   <div id="error-page">
-    <v-header :show-user="false" />
+    <VHeader :show-user="false" />
     <div class="error-main">
       <div v-if="statusCode === 401" id="error-401">
         <img

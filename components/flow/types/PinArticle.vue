@@ -71,16 +71,16 @@
 
 <template>
   <div :class="$style['pin-1']">
-    <nuxt-link
+    <NLink
       :to="$alias.pin(secretLink || item.slug)"
       :class="$style['pin-1-h5']"
       class="only-h5"
     >
       {{ item.title.text }}
-    </nuxt-link>
+    </NLink>
     <div :class="$style['pin-1-pc']" class="only-pc">
       <h2 :class="$style.title">
-        <nuxt-link
+        <NLink
           target="_blank"
           :to="$alias.pin(secretLink || item.slug)"
           class="fade-link"
@@ -88,21 +88,21 @@
         />
       </h2>
       <div :class="$style.content" class="clearfix">
-        <nuxt-link
+        <NLink
           v-if="item.media"
           :to="$alias.pin(secretLink || item.slug)"
           :class="$style.media"
           target="_blank"
         >
           <div v-if="item.media.first_video" :class="$style.video">
-            <v-img v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
+            <VImg v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
             <i :class="$style.badge" class="iconfont ic-bilibili" />
           </div>
           <div v-else-if="item.media.first_music" :class="$style.music">
-            <v-img v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
+            <VImg v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
             <i :class="$style.badge" class="iconfont ic-netease" />
           </div>
-          <v-img v-else :src="item.media.banner.url" width="190" height="105" />
+          <VImg v-else :src="item.media.banner.url" width="190" height="105" />
           <div :class="$style.text">
             <i class="iconfont ic-video" />
             <span v-text="item.media.video_count" />
@@ -111,7 +111,7 @@
             <i class="iconfont ic-camera" />
             <span v-text="item.media.image_count" />
           </div>
-        </nuxt-link>
+        </NLink>
         <div :class="$style.desc">
           {{ item.intro }}
         </div>

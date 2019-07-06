@@ -87,7 +87,7 @@
         v-text="item"
       />
     </div>
-    <nuxt-link
+    <NLink
       v-else
       :to="$alias.user(user.slug)"
       target="_blank"
@@ -113,7 +113,7 @@
         :class="[$style.title, $style['ic-title']]"
         v-text="item"
       />
-    </nuxt-link>
+    </NLink>
   </div>
 </template>
 

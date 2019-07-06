@@ -12,7 +12,7 @@
 
 <template>
   <div class="chat-message">
-    <json-content :content="item.content" />
+    <JsonContent :content="item.content" />
   </div>
 </template>
 

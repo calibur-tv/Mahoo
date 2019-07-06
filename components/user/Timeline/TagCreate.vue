@@ -9,7 +9,7 @@
 <template>
   <div class="user-timeline-2">
     <span>{{ item.parent_slug === notebookSlug ? '新建专栏' : '创建专区' }}</span>
-    <nuxt-link target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+    <NLink target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
   </div>
 </template>
 

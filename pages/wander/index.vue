@@ -161,7 +161,7 @@
   <div id="wander">
     <div class="wrap">
       <div class="banner">
-        <el-upload
+        <ElUpload
           class="uploader"
           drag
           :action="imageUploadAction"
@@ -176,7 +176,7 @@
             <div>请添加封面图（选填）</div>
             <p>支持8MB内的JPG／JPEG／PNG格式的高清图片<br>（建议大于960*540像素）</p>
           </div>
-        </el-upload>
+        </ElUpload>
         <template v-if="title.banner">
           <img class="banner" :src="$resize(title.banner.url, { width: 660 })">
           <div class="tool">
@@ -185,7 +185,7 @@
         </template>
       </div>
       <div class="title">
-        <el-input
+        <ElInput
           v-model="title.text"
           :show-word-limit="true"
           :autosize="{ minRows: 1 }"
@@ -195,30 +195,30 @@
           maxlength="40"
         />
       </div>
-      <editor
+      <Editor
         v-model="content"
         :slug="slug"
         :time="last_edit_at"
         @save="onEditorSave"
       />
-      <el-form class="footer" label-position="top" label-width="80px">
-        <el-form-item label="选择分区">
-          <area-picker v-model="area" />
-        </el-form-item>
-        <el-form-item label="选择专栏">
-          <notebook-picker v-model="notebook" />
-        </el-form-item>
-        <el-form-item class="button-wrap">
+      <ElForm class="footer" label-position="top" label-width="80px">
+        <ElFormItem label="选择分区">
+          <AreaPicker v-model="area" />
+        </ElFormItem>
+        <ElFormItem label="选择专栏">
+          <NotebookPicker v-model="notebook" />
+        </ElFormItem>
+        <ElFormItem class="button-wrap">
           <template v-if="slug">
-            <el-button
+            <ElButton
               :loading="loading"
               type="success"
               round
               @click="actionUpdate(true)"
             >
               发布更新
-            </el-button>
-            <el-button
+            </ElButton>
+            <ElButton
               v-if="visit_type === 1"
               :loading="loading"
               round
@@ -227,8 +227,8 @@
               @click="actionUpdate(false)"
             >
               存草稿
-            </el-button>
-            <el-button
+            </ElButton>
+            <ElButton
               :loading="loading"
               type="primary"
               round
@@ -236,18 +236,18 @@
               @click="actionRedo"
             >
               撤销修改
-            </el-button>
+            </ElButton>
           </template>
           <template v-else>
-            <el-button
+            <ElButton
               :loading="loading"
               type="success"
               round
               @click="actionCreate(true)"
             >
               发表文章
-            </el-button>
-            <el-button
+            </ElButton>
+            <ElButton
               :loading="loading"
               round
               plain
@@ -255,8 +255,8 @@
               @click="actionCreate(false)"
             >
               存草稿
-            </el-button>
-            <el-button
+            </ElButton>
+            <ElButton
               :loading="loading"
               type="primary"
               round
@@ -264,10 +264,10 @@
               @click="actionRedo"
             >
               删除文章
-            </el-button>
+            </ElButton>
           </template>
-        </el-form-item>
-      </el-form>
+        </ElFormItem>
+      </ElForm>
     </div>
   </div>
 </template>
@@ -287,7 +287,7 @@ export default {
     Editor,
     AreaPicker,
     NotebookPicker,
-    'el-upload': Upload
+    ElUpload: Upload
   },
   mixins: [mustSign, upload],
   data() {

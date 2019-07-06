@@ -12,7 +12,7 @@
     <p class="tip">
       提示：只能选择已解禁的分区
     </p>
-    <el-cascader
+    <ElCascader
       v-model="selected"
       :placeholder="placeholder"
       :options="options"
@@ -32,7 +32,7 @@
           <span> ({{ data.children.length }}) </span>
         </template>
       </template>
-    </el-cascader>
+    </ElCascader>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ import { Cascader } from 'element-ui'
 export default {
   name: 'AreaPicker',
   components: {
-    'el-cascader': Cascader
+    ElCascader: Cascader
   },
   props: {
     value: {

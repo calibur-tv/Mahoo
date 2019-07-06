@@ -24,6 +24,7 @@ module.exports = {
     'camelcase': 'off',
     'vue/no-unused-components': 'warn',
     'vue/no-v-html': 'off',
+    'vue/component-name-in-template-casing': [1, 'PascalCase'],
     'arrow-parens': [1, 'as-needed']
   },
   globals: {

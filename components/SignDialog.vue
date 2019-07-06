@@ -101,13 +101,13 @@ $input-height: 40px;
           @click.stop
         >
           <div v-show="showReset" class="form-container">
-            <reset-password-form
+            <ResetPasswordForm
               @to-login="showReset = false"
               @to-register="showRegister"
             />
           </div>
           <div v-show="!showReset" class="form-container">
-            <sign-in-form
+            <SignInForm
               @to-reset="showReset = true"
               @to-register="showRegister"
             />
@@ -124,7 +124,7 @@ $input-height: 40px;
         >
           <div class="slogan" />
           <div class="form-container">
-            <sign-up-form @to-login="showLogin" />
+            <SignUpForm @to-login="showLogin" />
           </div>
         </div>
       </div>

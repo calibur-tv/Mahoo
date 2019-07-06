@@ -40,7 +40,7 @@
 
 <template>
   <div id="user-basic-setting">
-    <el-form
+    <ElForm
       v-if="isAuth"
       ref="form"
       :disabled="submitting"
@@ -48,13 +48,13 @@
       :rules="rule"
       label-position="top"
     >
-      <el-form-item label="头像">
+      <ElFormItem label="头像">
         <div class="avatar-field">
           <img
             :src="$resize(user.avatar, { width: 100 })"
             class="avatar"
           >
-          <el-upload
+          <ElUpload
             :show-file-list="false"
             :action="imageUploadAction"
             :limit="uploadImageLimit"
@@ -64,7 +64,7 @@
             :on-success="avatarUploadSuccess"
             :on-error="handleImageUploadError"
           >
-            <el-button
+            <ElButton
               :loading="!!uploadPending"
               type="success"
               plain
@@ -72,11 +72,11 @@
               size="mini"
             >
               {{ uploadPending ? '图片上传中...' : '点击更换头像' }}
-            </el-button>
-          </el-upload>
+            </ElButton>
+          </ElUpload>
         </div>
-      </el-form-item>
-      <el-form-item label="背景">
+      </ElFormItem>
+      <ElFormItem label="背景">
         <div class="banner-field">
           <div class="banner-wrap">
             <img
@@ -84,7 +84,7 @@
               class="banner"
             >
           </div>
-          <el-upload
+          <ElUpload
             :show-file-list="false"
             :action="imageUploadAction"
             :limit="uploadImageLimit"
@@ -94,7 +94,7 @@
             :on-success="bannerUploadSuccess"
             :on-error="handleImageUploadError"
           >
-            <el-button
+            <ElButton
               :loading="!!uploadPending"
               type="success"
               plain
@@ -102,15 +102,15 @@
               size="mini"
             >
               {{ uploadPending ? '图片上传中...' : '点击更换背景' }}
-            </el-button>
-          </el-upload>
+            </ElButton>
+          </ElUpload>
         </div>
-      </el-form-item>
-      <el-form-item label="昵称" prop="nickname">
-        <el-input v-model.trim="nickname" />
-      </el-form-item>
-      <el-form-item label="生日" prop="birthday">
-        <el-date-picker
+      </ElFormItem>
+      <ElFormItem label="昵称" prop="nickname">
+        <ElInput v-model.trim="nickname" />
+      </ElFormItem>
+      <ElFormItem label="生日" prop="birthday">
+        <ElDatePicker
           v-model="birthday"
           :editable="false"
           :clearable="false"
@@ -119,29 +119,29 @@
           value-format="yyyy-MM-dd"
           placeholder="选择生日"
         />
-        <el-switch
+        <ElSwitch
           v-model="birthSecret"
           active-text="私密"
           inactive-text="公开"
         />
-      </el-form-item>
-      <el-form-item label="性别">
-        <el-radio-group v-model="sex">
-          <el-radio :label="1">
+      </ElFormItem>
+      <ElFormItem label="性别">
+        <ElRadioGroup v-model="sex">
+          <ElRadio :label="1">
             男
-          </el-radio>
-          <el-radio :label="2">
+          </ElRadio>
+          <ElRadio :label="2">
             女
-          </el-radio>
-        </el-radio-group>
-        <el-switch
+          </ElRadio>
+        </ElRadioGroup>
+        <ElSwitch
           v-model="sexSecret"
           active-text="私密"
           inactive-text="公开"
         />
-      </el-form-item>
-      <el-form-item label="签名" prop="signature">
-        <el-input
+      </ElFormItem>
+      <ElFormItem label="签名" prop="signature">
+        <ElInput
           v-model="signature"
           :rows="5"
           type="textarea"
@@ -150,13 +150,13 @@
           show-word-limit
           resize="none"
         />
-      </el-form-item>
-      <el-form-item>
-        <el-button :loading="submitting" type="primary" @click="submit">
+      </ElFormItem>
+      <ElFormItem>
+        <ElButton :loading="submitting" type="primary" @click="submit">
           提交
-        </el-button>
-      </el-form-item>
-    </el-form>
+        </ElButton>
+      </ElFormItem>
+    </ElForm>
   </div>
 </template>
 
@@ -168,11 +168,11 @@ import upload from '~/mixins/upload'
 export default {
   name: 'UserBasicSetting',
   components: {
-    'el-switch': Switch,
-    'el-radio': Radio,
-    'el-radio-group': RadioGroup,
-    'el-date-picker': DatePicker,
-    'el-upload': Upload
+    ElSwitch: Switch,
+    ElRadio: Radio,
+    ElRadioGroup: RadioGroup,
+    ElDatePicker: DatePicker,
+    ElUpload: Upload
   },
   mixins: [upload],
   data() {

@@ -14,7 +14,7 @@
     :style="{ width: `${size}px`, height: `${size}px` }"
     class="user-avatar"
   >
-    <v-img
+    <VImg
       radius="50%"
       :src="avatar || user.avatar"
       :width="size"
@@ -22,21 +22,21 @@
       :alt="user.nickname"
     />
   </div>
-  <nuxt-link
+  <NLink
     v-else
     :style="{ width: `${size}px`, height: `${size}px` }"
     :to="$alias.user(user.slug)"
     target="_blank"
     class="user-avatar"
   >
-    <v-img
+    <VImg
       radius="50%"
       :src="avatar || user.avatar"
       :width="size"
       :height="size"
       :alt="user.nickname"
     />
-  </nuxt-link>
+  </NLink>
 </template>
 
 <script>

@@ -124,11 +124,11 @@
 <template>
   <div class="room">
     <div class="room-header">
-      <user-avatar v-if="target" :user="target" :size="36" />
-      <user-nickname v-if="target" :user="target" class="nickname-wrap" />
+      <UserAvatar v-if="target" :user="target" :size="36" />
+      <UserNickname v-if="target" :user="target" class="nickname-wrap" />
     </div>
     <no-ssr>
-      <flow-loader
+      <FlowLoader
         ref="loader"
         func="getUserMessage"
         type="sinceId"
@@ -140,15 +140,15 @@
         class="room-body"
       >
         <div ref="wrap" slot-scope="{ flow }" class="room-chats">
-          <scroll ref="scroll" :data="flow" @top="handleScrollUp">
-            <chat-room
+          <Scroll ref="scroll" :data="flow" @top="handleScrollUp">
+            <ChatRoom
               ref="room"
               :avatar-component="avatarComp"
               :message-components="messageComps"
             />
-          </scroll>
+          </Scroll>
         </div>
-      </flow-loader>
+      </FlowLoader>
     </no-ssr>
     <div class="room-footer">
       <textarea

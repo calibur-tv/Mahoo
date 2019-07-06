@@ -37,7 +37,7 @@
     padding: 10px 10px 10px 24px;
     border-bottom: 1px solid #fff;
 
-    &.nuxt-link-exact-active {
+    &.NLink-exact-active {
       background-color: #f4f4f4;
     }
 
@@ -101,11 +101,11 @@
       v-for="item in menu"
       :key="item.channel"
     >
-      <nuxt-link
+      <NLink
         :to="$alias.user($route.params.slug, `message/?mailto=${item.channel}`)"
         class="room-item clearfix"
       >
-        <v-img
+        <VImg
           v-if="item.user.avatar"
           :src="item.user.avatar"
           width="42"
@@ -119,7 +119,7 @@
             <div v-if="item.count" class="read-badge" v-text="item.count" />
           </div>
         </div>
-      </nuxt-link>
+      </NLink>
       <div class="close" @click="deleteChannel(item)">
         &times;
       </div>

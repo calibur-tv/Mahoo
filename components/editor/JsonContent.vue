@@ -1,12 +1,12 @@
 <template>
-  <div class="json-content">
+  <section class="json-content">
     <component
       :is="`v-${item.type}`"
       v-for="(item, index) in content"
       :key="index"
       :item="item"
     />
-  </div>
+  </section>
 </template>
 
 <script>

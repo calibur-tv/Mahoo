@@ -41,7 +41,7 @@
   <div :class="$style.image">
     <div :class="[{ [$style.border]: item.data.withBorder }, { [$style.bg]: item.data.withBackground }]">
       <div>
-        <v-img :src="item.data.file.url" :stretched="item.data.stretched" :width="item.data.file.width" :height="item.data.file.height" />
+        <VImg :src="item.data.file.url" :stretched="item.data.stretched" :width="item.data.file.width" :height="item.data.file.height" />
       </div>
     </div>
     <p v-if="item.data.caption" v-text="item.data.caption" />

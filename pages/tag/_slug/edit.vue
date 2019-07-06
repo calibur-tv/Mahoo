@@ -23,22 +23,22 @@
 
 <template>
   <div id="tag-edit">
-    <el-row>
-      <el-col :span="12" :offset="6">
-        <el-form
+    <ElRow>
+      <ElCol :span="12" :offset="6">
+        <ElForm
           ref="form"
           :model="tag"
           :rules="rules"
           :disabled="submitting"
           label-position="top"
         >
-          <el-form-item label="头像">
+          <ElFormItem label="头像">
             <div class="avatar-field">
               <img
                 :src="$resize(tag.avatar, { width: 100 })"
                 class="avatar"
               >
-              <el-upload
+              <ElUpload
                 :show-file-list="false"
                 :action="imageUploadAction"
                 :limit="uploadImageLimit"
@@ -48,7 +48,7 @@
                 :on-success="avatarUploadSuccess"
                 :on-error="handleImageUploadError"
               >
-                <el-button
+                <ElButton
                   :loading="!!uploadPending"
                   type="success"
                   plain
@@ -56,18 +56,18 @@
                   size="mini"
                 >
                   {{ uploadPending ? '图片上传中...' : '点击上传封面' }}
-                </el-button>
-              </el-upload>
+                </ElButton>
+              </ElUpload>
             </div>
-          </el-form-item>
-          <el-form-item label="名称">
-            <el-input v-model="tag.name" />
-          </el-form-item>
-          <el-form-item label="别名" prop="alias">
+          </ElFormItem>
+          <ElFormItem label="名称">
+            <ElInput v-model="tag.name" />
+          </ElFormItem>
+          <ElFormItem label="别名" prop="alias">
             <p class="form-tip">
               提示：按回车键生效
             </p>
-            <el-select
+            <ElSelect
               v-model="tag.alias"
               multiple
               filterable
@@ -77,9 +77,9 @@
               popper-class="hidden-select-options"
               class="hidden-select-input"
             />
-          </el-form-item>
-          <el-form-item label="简介">
-            <el-input
+          </ElFormItem>
+          <ElFormItem label="简介">
+            <ElInput
               v-model="tag.intro"
               type="textarea"
               :show-word-limit="true"
@@ -88,20 +88,20 @@
               resize="none"
               placeholder="请输入板块介绍"
             />
-          </el-form-item>
-          <el-form-item>
-            <el-button
+          </ElFormItem>
+          <ElFormItem>
+            <ElButton
               :loading="submitting"
               type="success"
               round
               @click="submit"
             >
               保存更改
-            </el-button>
-          </el-form-item>
-        </el-form>
-      </el-col>
-    </el-row>
+            </ElButton>
+          </ElFormItem>
+        </ElForm>
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 
@@ -115,8 +115,8 @@ export default {
   name: 'TagEdit',
   layout: 'web',
   components: {
-    'el-upload': Upload,
-    'el-select': Select
+    ElUpload: Upload,
+    ElSelect: Select
   },
   mixins: [upload, mustSign],
   props: {

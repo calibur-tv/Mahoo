@@ -4,28 +4,28 @@
 
 <template>
   <div id="user-setting-layout">
-    <el-row class="column-wrap">
-      <el-col :span="6">
-        <v-switcher
+    <ElRow class="column-wrap">
+      <ElCol :span="6">
+        <VSwitcher
           :headers="headers"
           :routable="true"
           :header-height="44"
           align="vertical"
         >
-          <nuxt-link
+          <NLink
             v-for="(item, index) in headers"
             :key="index"
             :slot="`tab-${index}`"
             :to="item.route"
           >
             <span v-text="item.name" />
-          </nuxt-link>
-        </v-switcher>
-      </el-col>
-      <el-col :span="18">
-        <nuxt-child />
-      </el-col>
-    </el-row>
+          </NLink>
+        </VSwitcher>
+      </ElCol>
+      <ElCol :span="18">
+        <NuxtChild />
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 

@@ -31,17 +31,17 @@
 <template>
   <div class="content-author clearfix">
     <div class="avatar-area">
-      <user-avatar :user="user" :size="size" />
+      <UserAvatar :user="user" :size="size" />
     </div>
     <div class="content-area">
-      <user-nickname :user="user" />
+      <UserNickname :user="user" />
       <div class="content-meta oneline">
         <slot name="intro" />
       </div>
     </div>
     <div class="tail-area">
       <slot v-if="isMine" name="mine" />
-      <user-follow-btn v-else v-model="relation" :slug="user.slug" />
+      <UserFollowBtn v-else v-model="relation" :slug="user.slug" />
     </div>
   </div>
 </template>

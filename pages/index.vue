@@ -76,7 +76,7 @@
   <div id="page-index">
     <div class="header">
       <div class="logo">
-        <v-img src="default-poster" width="32" height="32" alt="calibur" radius="50%" />
+        <VImg src="default-poster" width="32" height="32" alt="calibur" radius="50%" />
       </div>
       <h1 class="title">
         calibur.tv is never gone.

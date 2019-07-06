@@ -110,13 +110,13 @@
 
 <template>
   <div id="create-cosplay">
-    <el-form ref="form" :model="formItem" label-position="right" label-width="80px">
+    <ElForm ref="form" :model="formItem" label-position="right" label-width="80px">
       <p class="form-tip">
         提示：标记&nbsp;<span>*</span>&nbsp;为必填项，否则无法发布哦
       </p>
-      <el-form-item label="上传图片" required />
+      <ElFormItem label="上传图片" required />
       <div class="uploader" :class="`uploader-count-${uploadImageTotal + uploadPending}`">
-        <el-upload
+        <ElUpload
           multiple
           drag
           list-type="picture-card"
@@ -135,18 +135,18 @@
           最多可上传20张哦 (支持格式 jpg、png，宽高尺寸须大于420像素)
         </p>
       </div>
-      <el-form-item label="分区" required>
-        <el-col :span="16">
-          <area-picker v-model="formItem.area" blocked="topic" />
-        </el-col>
-      </el-form-item>
-      <el-form-item label="标题" required>
-        <el-col :span="16">
-          <el-input v-model="formItem.title" placeholder="请输入标题" :show-word-limit="true" maxlength="20" />
-        </el-col>
-      </el-form-item>
-      <el-form-item label="简介">
-        <el-input
+      <ElFormItem label="分区" required>
+        <ElCol :span="16">
+          <AreaPicker v-model="formItem.area" blocked="topic" />
+        </ElCol>
+      </ElFormItem>
+      <ElFormItem label="标题" required>
+        <ElCol :span="16">
+          <ElInput v-model="formItem.title" placeholder="请输入标题" :show-word-limit="true" maxlength="20" />
+        </ElCol>
+      </ElFormItem>
+      <ElFormItem label="简介">
+        <ElInput
           v-model="formItem.textarea"
           type="textarea"
           :show-word-limit="true"
@@ -155,80 +155,80 @@
           resize="none"
           placeholder="请输入作品介绍，临摹作品请一定要注明作品的出处来源"
         />
-      </el-form-item>
-      <el-form-item label="标签">
-        <el-col :span="16">
-          <el-select v-model="formItem.tags" placeholder="添加标签，方便分享" filterable multiple allow-create>
-            <el-option v-for="item in cityList" :key="item.value" :value="item.value">
+      </ElFormItem>
+      <ElFormItem label="标签">
+        <ElCol :span="16">
+          <ElSelect v-model="formItem.tags" placeholder="添加标签，方便分享" filterable multiple allow-create>
+            <ElOption v-for="item in cityList" :key="item.value" :value="item.value">
               {{ item.label }}
-            </el-option>
-          </el-select>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="访问权限">
-        <el-radio-group v-model="formItem.is_secret">
-          <el-radio :label="0">
+            </ElOption>
+          </ElSelect>
+        </ElCol>
+      </ElFormItem>
+      <ElFormItem label="访问权限">
+        <ElRadioGroup v-model="formItem.is_secret">
+          <ElRadio :label="0">
             公开
-          </el-radio>
-          <el-radio :label="1">
+          </ElRadio>
+          <ElRadio :label="1">
             私密
-          </el-radio>
-        </el-radio-group>
-      </el-form-item>
+          </ElRadio>
+        </ElRadioGroup>
+      </ElFormItem>
       <br>
-      <el-divider>创作者信息</el-divider>
+      <ElDivider>创作者信息</ElDivider>
       <br>
       <br>
-      <el-form-item label="出镜">
-        <el-col :span="16">
-          <el-select v-model="users.coser" placeholder="coser的昵称" filterable multiple allow-create>
-            <el-option v-for="item in cityList" :key="item.value" :value="item.value">
+      <ElFormItem label="出镜">
+        <ElCol :span="16">
+          <ElSelect v-model="users.coser" placeholder="coser的昵称" filterable multiple allow-create>
+            <ElOption v-for="item in cityList" :key="item.value" :value="item.value">
               {{ item.label }}
-            </el-option>
-          </el-select>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="化妆">
-        <el-col :span="16">
-          <el-select v-model="users.dresser" placeholder="化妆师的昵称" filterable multiple allow-create>
-            <el-option v-for="item in cityList" :key="item.value" :value="item.value">
+            </ElOption>
+          </ElSelect>
+        </ElCol>
+      </ElFormItem>
+      <ElFormItem label="化妆">
+        <ElCol :span="16">
+          <ElSelect v-model="users.dresser" placeholder="化妆师的昵称" filterable multiple allow-create>
+            <ElOption v-for="item in cityList" :key="item.value" :value="item.value">
               {{ item.label }}
-            </el-option>
-          </el-select>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="道具">
-        <el-col :span="16">
-          <el-select v-model="users.weapon" placeholder="道具师的昵称" filterable multiple allow-create>
-            <el-option v-for="item in cityList" :key="item.value" :value="item.value">
+            </ElOption>
+          </ElSelect>
+        </ElCol>
+      </ElFormItem>
+      <ElFormItem label="道具">
+        <ElCol :span="16">
+          <ElSelect v-model="users.weapon" placeholder="道具师的昵称" filterable multiple allow-create>
+            <ElOption v-for="item in cityList" :key="item.value" :value="item.value">
               {{ item.label }}
-            </el-option>
-          </el-select>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="摄影">
-        <el-col :span="16">
-          <el-select v-model="users.worker" placeholder="摄影师的昵称" filterable multiple allow-create>
-            <el-option v-for="item in cityList" :key="item.value" :value="item.value">
+            </ElOption>
+          </ElSelect>
+        </ElCol>
+      </ElFormItem>
+      <ElFormItem label="摄影">
+        <ElCol :span="16">
+          <ElSelect v-model="users.worker" placeholder="摄影师的昵称" filterable multiple allow-create>
+            <ElOption v-for="item in cityList" :key="item.value" :value="item.value">
               {{ item.label }}
-            </el-option>
-          </el-select>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="后期">
-        <el-col :span="16">
-          <el-select v-model="users.ender" placeholder="后期君的昵称" filterable multiple allow-create>
-            <el-option v-for="item in cityList" :key="item.value" :value="item.value">
+            </ElOption>
+          </ElSelect>
+        </ElCol>
+      </ElFormItem>
+      <ElFormItem label="后期">
+        <ElCol :span="16">
+          <ElSelect v-model="users.ender" placeholder="后期君的昵称" filterable multiple allow-create>
+            <ElOption v-for="item in cityList" :key="item.value" :value="item.value">
               {{ item.label }}
-            </el-option>
-          </el-select>
-        </el-col>
-      </el-form-item>
-    </el-form>
-    <el-row>
-      <el-col :span="10" :push="7">
+            </ElOption>
+          </ElSelect>
+        </ElCol>
+      </ElFormItem>
+    </ElForm>
+    <ElRow>
+      <ElCol :span="10" :push="7">
         <br>
-        <el-button
+        <ElButton
           type="primary"
           shape="circle"
           style="width:100%"
@@ -236,9 +236,9 @@
           @click="handleSubmit"
         >
           提交发布
-        </el-button>
-      </el-col>
-    </el-row>
+        </ElButton>
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 
@@ -252,12 +252,12 @@ export default {
   layout: 'web',
   components: {
     AreaPicker,
-    'el-upload': Upload,
-    'el-radio': Radio,
-    'el-radio-group': RadioGroup,
-    'el-select': Select,
-    'el-option': Option,
-    'el-divider': Divider
+    ElUpload: Upload,
+    ElRadio: Radio,
+    ElRadioGroup: RadioGroup,
+    ElSelect: Select,
+    ElOption: Option,
+    ElDivider: Divider
   },
   mixins: [upload],
   data() {

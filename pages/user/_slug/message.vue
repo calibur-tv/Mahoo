@@ -24,14 +24,14 @@
 
 <template>
   <div id="user-message">
-    <el-row class="column-wrap">
-      <el-col :span="6">
-        <message-menu :slug="slug" />
+    <ElRow class="column-wrap">
+      <ElCol :span="6">
+        <MessageMenu :slug="slug" />
         &nbsp;
-      </el-col>
-      <el-col :span="18">
+      </ElCol>
+      <ElCol :span="18">
         <div class="room-adjust">
-          <message-room
+          <MessageRoom
             v-if="mailto"
             :mailto="mailto"
             :slug="slug"
@@ -41,8 +41,8 @@
             <p>未选择聊天</p>
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 

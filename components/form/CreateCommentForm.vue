@@ -50,7 +50,7 @@
     }
 
     &--picture-card {
-      line-height: 45px;
+      line-height: 47px;
     }
 
     &-list__item-status-label {
@@ -74,32 +74,32 @@
         点击<br>发送
       </button>
       <div class="input-wrap">
-        <el-input
+        <ElInput
           v-model="content"
           type="textarea"
           :autosize="{ minRows: 3 }"
           :show-word-limit="true"
           :maxlength="1000"
-          placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论"
+          :placeholder="placeholder"
         />
       </div>
     </div>
-    <el-upload
+    <ElUpload
       multiple
       list-type="picture-card"
       :action="imageUploadAction"
-      :limit="uploadImageLimit"
+      :limit="9"
       :data="uploadHeaders"
       :file-list="uploadImageList"
       :accept="imageUploadAccept"
       :before-upload="handleImageUploadBefore"
-      :on-success="customImageUploadSuccess"
+      :on-success="handleImageUploadSuccess"
       :on-error="handleImageUploadError"
       :on-remove="handleImageUploadRemove"
       :on-exceed="handleImageUploadExceed"
     >
       <i class="el-icon-plus" />
-    </el-upload>
+    </ElUpload>
   </div>
 </template>
 
@@ -110,32 +110,30 @@ import upload from '~/mixins/upload'
 export default {
   name: 'CreateCommentForm',
   components: {
-    'el-upload': Upload
+    ElUpload: Upload
   },
   mixins: [upload],
   props: {
-    tag: {
+    pinSlug: {
+      type: String,
+      required: true
+    },
+    commentId: {
       type: String,
       default: ''
     },
-    options: {
-      type: Array,
-      default: () => []
+    placeholder: {
+      type: String,
+      default: '请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论'
     }
   },
   data() {
     return {
-      uploadImageLimit: 9,
       content: '',
       loading: false
     }
   },
   methods: {
-    customImageUploadSuccess(res, file) {
-      this.handleImageUploadSuccess(res, file)
-      this.uploadImageList = this.uploadImageList.filter(_ => (_.status === 'success' && _.data.width >= 420 && _.data.height >= 420) || _.status !== 'success')
-      this.uploadImageTotal = this.uploadImageList.length
-    },
     submit() {
       if (!this.$store.state.isAuth) {
         this.$channel.$emit('sign-in')
@@ -150,10 +148,14 @@ export default {
       this.loading = true
       this.$axios.$post('v1/comment/create', {
         content: this.content.trim(),
-        images: this.uploadImageList.map(_ => _.data)
+        images: this.uploadImageList.map(_ => _.data),
+        pin_slug: this.pinSlug,
+        comment_id: this.commentId
       })
         .then(data => {
           this.$emit('submit', data)
+          this.content = ''
+          this.resetUploaderStatus()
           this.loading = false
         })
         .catch(err => {

@@ -1,6 +1,6 @@
 <template>
   <div id="user-draft">
-    <flow-loader
+    <FlowLoader
       func="getUserDrafts"
       type="page"
       :query="{
@@ -9,7 +9,7 @@
       }"
     >
       <ul slot-scope="{ flow, extra }">
-        <pin-flow-item
+        <PinFlowItem
           v-for="(item, index) in flow"
           :key="item.slug"
           :item="item"
@@ -17,7 +17,7 @@
           :secret-link="extra[index]"
         />
       </ul>
-    </flow-loader>
+    </FlowLoader>
   </div>
 </template>
 

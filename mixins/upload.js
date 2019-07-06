@@ -137,6 +137,11 @@ export default {
       this.uploadPending++
 
       return true
+    },
+    resetUploaderStatus() {
+      this.uploadImageList = []
+      this.uploadImageTotal = 0
+      this.uploadPending = 0
     }
   }
 }

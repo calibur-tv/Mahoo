@@ -207,14 +207,14 @@
   <div v-if="tags" id="user-emotion">
     <div class="block">
       <div class="block-title">
-        <nuxt-link class="text" to="bangumi" append>
+        <NLink class="text" to="bangumi" append>
           <span class="fade-link">看过的动漫</span>
           <i v-if="tags.bangumi.length" class="count" v-text="tags.bangumi.length" />
-        </nuxt-link>
-        <nuxt-link v-if="tags.bangumi.length > 4" class="more fade-link" to="bangumi" append>
+        </NLink>
+        <NLink v-if="tags.bangumi.length > 4" class="more fade-link" to="bangumi" append>
           <span>更多</span>
           <i class="el-icon-arrow-right" />
-        </nuxt-link>
+        </NLink>
         <template v-else-if="!tags.bangumi.length">
           <p class="empty">
             {{ TA }}还不是一个动漫迷~
@@ -227,12 +227,12 @@
           v-for="item in tags.bangumi.slice(0, 4)"
           :key="item.slug"
         >
-          <nuxt-link class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <v-img :src="item.avatar" width="110" height="114" :alt="item.name" />
-          </nuxt-link>
+          <NLink class="avatar" target="_blank" :to="$alias.tag(item.slug)">
+            <VImg :src="item.avatar" width="110" height="114" :alt="item.name" />
+          </NLink>
           <div class="content">
             <div class="oneline">
-              <nuxt-link class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+              <NLink class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
             </div>
             <p class="desc" v-text="item.intro" />
           </div>
@@ -241,14 +241,14 @@
     </div>
     <div class="block">
       <div class="block-title">
-        <nuxt-link class="text" to="game" append>
+        <NLink class="text" to="game" append>
           <span class="fade-link">玩过的游戏</span>
           <i v-if="tags.game.length" class="count" v-text="tags.game.length" />
-        </nuxt-link>
-        <nuxt-link v-if="tags.game.length > 5" class="more fade-link" to="game" append>
+        </NLink>
+        <NLink v-if="tags.game.length > 5" class="more fade-link" to="game" append>
           <span>更多</span>
           <i class="el-icon-arrow-right" />
-        </nuxt-link>
+        </NLink>
         <template v-else-if="!tags.game.length">
           <p class="empty">
             {{ TA }}从来不玩游戏~
@@ -261,23 +261,23 @@
           v-for="item in tags.game.slice(0, 5)"
           :key="item.slug"
         >
-          <nuxt-link target="_blank" :to="$alias.tag(item.slug)">
-            <v-img :src="item.avatar" width="150" height="150" :alt="item.name" />
+          <NLink target="_blank" :to="$alias.tag(item.slug)">
+            <VImg :src="item.avatar" width="150" height="150" :alt="item.name" />
             <p class="oneline fade-link" v-text="item.name" />
-          </nuxt-link>
+          </NLink>
         </li>
       </ul>
     </div>
     <div class="block">
       <div class="block-title">
-        <nuxt-link class="text" to="topic" append>
+        <NLink class="text" to="topic" append>
           <span class="fade-link">参与的话题</span>
           <i v-if="tags.topic.length" class="count" v-text="tags.topic.length" />
-        </nuxt-link>
-        <nuxt-link v-if="tags.topic.length > 12" class="more fade-link" to="topic" append>
+        </NLink>
+        <NLink v-if="tags.topic.length > 12" class="more fade-link" to="topic" append>
           <span>更多</span>
           <i class="el-icon-arrow-right" />
-        </nuxt-link>
+        </NLink>
         <template v-else-if="!tags.topic.length">
           <p class="empty">
             {{ TA }}不喜欢参与任何话题~
@@ -290,34 +290,34 @@
           v-for="item in tags.topic.slice(0, 12)"
           :key="item.slug"
         >
-          <nuxt-link class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <v-img :src="item.avatar" width="40" height="40" :alt="item.name" />
-          </nuxt-link>
+          <NLink class="avatar" target="_blank" :to="$alias.tag(item.slug)">
+            <VImg :src="item.avatar" width="40" height="40" :alt="item.name" />
+          </NLink>
           <div class="name oneline">
-            <nuxt-link class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+            <NLink class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
           </div>
         </li>
       </ul>
     </div>
     <div class="block">
       <div class="block-title">
-        <nuxt-link class="text" to="notebook" append>
+        <NLink class="text" to="notebook" append>
           <span class="fade-link">发表的专栏</span>
           <i v-if="tags.notebook.length" class="count" v-text="tags.notebook.length" />
-        </nuxt-link>
+        </NLink>
         <div v-if="tags.notebook.length">
-          <create-tag-btn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <CreateTagBtn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
           <span v-else />
-          <nuxt-link v-if="tags.notebook.length > 4" class="more fade-link" to="notebook" append>
+          <NLink v-if="tags.notebook.length > 4" class="more fade-link" to="notebook" append>
             <span>更多</span>
             <i class="el-icon-arrow-right" />
-          </nuxt-link>
+          </NLink>
         </div>
         <template v-else>
           <p class="empty">
             {{ TA }}还没写过文章~
           </p>
-          <create-tag-btn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <CreateTagBtn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
           <span v-else />
         </template>
       </div>
@@ -326,12 +326,12 @@
           v-for="item in tags.notebook.slice(0, 4)"
           :key="item.slug"
         >
-          <nuxt-link class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <v-img :src="item.avatar" width="117" height="88" :alt="item.name" />
-          </nuxt-link>
+          <NLink class="avatar" target="_blank" :to="$alias.tag(item.slug)">
+            <VImg :src="item.avatar" width="117" height="88" :alt="item.name" />
+          </NLink>
           <div class="content clearfix">
             <div class="note-title oneline">
-              <nuxt-link class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+              <NLink class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
             </div>
             <p class="desc oneline" :title="item.intro" v-text="item.intro || '暂无简介'" />
             <div class="meta oneline">

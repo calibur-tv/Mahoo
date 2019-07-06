@@ -1,8 +1,8 @@
 <template>
   <div id="layout-web">
-    <v-header />
+    <VHeader />
     <nuxt />
-    <sign-dialog />
+    <SignDialog />
   </div>
 </template>
 

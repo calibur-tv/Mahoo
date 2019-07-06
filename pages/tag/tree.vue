@@ -18,12 +18,12 @@
 
 <template>
   <div id="tag-tree">
-    <el-row class="container">
-      <el-col :span="4">
+    <ElRow class="container">
+      <ElCol :span="4">
         &nbsp;
-      </el-col>
-      <el-col :span="15">
-        <el-tree
+      </ElCol>
+      <ElCol :span="15">
+        <ElTree
           v-if="root"
           :props="props"
           :load="loadTags"
@@ -35,9 +35,9 @@
               <span>{{ data.name }}</span>
             </a>
           </div>
-        </el-tree>
-      </el-col>
-    </el-row>
+        </ElTree>
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 
@@ -49,7 +49,7 @@ export default {
   name: 'TagTree',
   layout: 'web',
   components: {
-    'el-tree': Tree
+    ElTree: Tree
   },
   props: {},
   data() {

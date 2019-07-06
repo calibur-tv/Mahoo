@@ -1,6 +1,6 @@
 <template>
   <div id="user-social-followers">
-    <flow-loader
+    <FlowLoader
       ref="loader"
       func="getUserRelation"
       type="seenIds"
@@ -8,13 +8,13 @@
       :callback="detectUserRelation"
     >
       <ul slot-scope="{ flow }">
-        <user-relation-item
+        <UserRelationItem
           v-for="user in flow"
           :key="user.slug"
           :user="user"
         />
       </ul>
-    </flow-loader>
+    </FlowLoader>
   </div>
 </template>
 

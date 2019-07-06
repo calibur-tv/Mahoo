@@ -43,15 +43,15 @@
 <template>
   <li class="user-rel-item clearfix">
     <div class="avatar">
-      <user-avatar :user="user" :size="60" />
+      <UserAvatar :user="user" :size="60" />
     </div>
     <div class="intro">
-      <user-nickname :user="user" />
+      <UserNickname :user="user" />
       <p class="oneline intro" v-text="user.signature" />
     </div>
     <div class="control">
-      <user-follow-btn :slug="user.slug" />
-      <send-mail-btn :slug="user.slug" />
+      <UserFollowBtn :slug="user.slug" />
+      <SendMailBtn :slug="user.slug" />
     </div>
   </li>
 </template>

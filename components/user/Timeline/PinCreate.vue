@@ -2,7 +2,7 @@
   <div class="user-timeline-3">
     <p>发表文章</p>
     <div>
-      <pin-flow-item :item="item" :show-user="false" />
+      <PinFlowItem :item="item" :show-user="false" />
     </div>
   </div>
 </template>

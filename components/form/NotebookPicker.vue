@@ -14,17 +14,17 @@
 <template>
   <div class="notebook-picker">
     <div class="new-btn">
-      <create-tag-btn text="专栏" parent="uh4f" @create="handleCreate" />
+      <CreateTagBtn text="专栏" parent="uh4f" @create="handleCreate" />
     </div>
     <div class="selection">
-      <el-select v-model="selected" placeholder="请选择">
-        <el-option
+      <ElSelect v-model="selected" placeholder="请选择">
+        <ElOption
           v-for="item in options"
           :key="item.slug"
           :label="item.name"
           :value="item.slug"
         />
-      </el-select>
+      </ElSelect>
     </div>
   </div>
 </template>
@@ -36,8 +36,8 @@ import CreateTagBtn from '~/components/button/CreateTagBtn'
 export default {
   name: 'NotebookPicker',
   components: {
-    'el-select': Select,
-    'el-option': Option,
+    ElSelect: Select,
+    ElOption: Option,
     CreateTagBtn
   },
   props: {

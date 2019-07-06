@@ -60,7 +60,7 @@
       title="填写信息"
       @submit="submitBindPhone"
     >
-      <el-input
+      <ElInput
         v-model.trim="authCode"
         type="number"
         placeholder="短信验证码"
@@ -68,7 +68,7 @@
       />
       <br>
       <br>
-      <el-input
+      <ElInput
         v-model.trim="password"
         type="text"
         placeholder="密码（6-16个字符组成，区分大小写）"
