@@ -100,6 +100,7 @@
 import SignInForm from '~/components/form/SignInForm'
 import SignUpForm from '~/components/form/SignUpForm'
 import ResetPasswordForm from '~/components/form/ResetPasswordForm'
+import useSignMixin from '~/mixins/useSign'
 
 export default {
   name: 'Sign',
@@ -108,7 +109,7 @@ export default {
     SignInForm,
     ResetPasswordForm
   },
-  props: {},
+  mixins: [useSignMixin],
   data() {
     return {
       showReset: false
@@ -119,9 +120,15 @@ export default {
       return ['登录', '注册']
     }
   },
-  watch: {},
-  created() {},
-  mounted() {},
+  beforeMount() {
+    this.$channel.$when('user-signed', () => {
+      if (this.$route.query.redirect) {
+        window.location = encodeURIComponent(window.location.href)
+      } else {
+        window.location = '/'
+      }
+    })
+  },
   methods: {
     prev() {
       this.$refs.switcher.prev()

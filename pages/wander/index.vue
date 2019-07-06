@@ -233,9 +233,9 @@
               type="primary"
               round
               plain
-              @click="actionDelete"
+              @click="actionRedo"
             >
-              删除文章
+              撤销修改
             </el-button>
           </template>
           <template v-else>
@@ -261,7 +261,7 @@
               type="primary"
               round
               plain
-              @click="actionDelete"
+              @click="actionRedo"
             >
               删除文章
             </el-button>
@@ -423,44 +423,15 @@ export default {
           this.loading = false
         })
     },
-    actionDelete() {
-      const deleteCache = () => {
-        if (this.content.length || this.title.text.length || this.title.banner) {
-          this.$cache.remove(`editor_local_draft_title-${this.slug}`)
-          this.$cache.remove('editor_local_draft')
-          this.$toast.success('删除成功')
-            .then(() => {
-              window.location.reload()
-            })
-        }
-      }
-      if (!this.slug) {
-        deleteCache()
-        return
-      }
-
-      this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
-        .then(() => {
-          if (this.loading) {
-            return
-          }
-          this.loading = true
-          this.$axios.$post('v1/pin/delete', {
-            slug: this.slug
+    actionRedo() {
+      if (this.content.length || this.title.text.length || this.title.banner) {
+        this.$cache.remove(`editor_local_draft_title-${this.slug}`)
+        this.$cache.remove(`editor_local_draft-${this.slug}`)
+        this.$toast.success('删除成功')
+          .then(() => {
+            window.location.reload()
           })
-            .then(() => {
-              this.$toast.success('删除成功')
-                .then(() => {
-                  deleteCache()
-                  window.location = '/'
-                })
-            })
-            .catch(err => {
-              this.$toast.error(err.message)
-              this.loading = false
-            })
-        })
-        .catch(() => {})
+      }
     }
   }
 }

@@ -115,10 +115,10 @@ module.exports = {
         'style-src': [
           "'self'",
           "'unsafe-inline'",
-          '*.calibur.tv'
+          '*.calibur.tv',
+          'static.geetest.com'
         ],
         'script-src': [
-          "'self'",
           "'unsafe-inline'",
           '*.calibur.tv',
           'hm.baidu.com',

@@ -231,7 +231,8 @@ export default {
       window.location.href = `${link}&redirect=${redirect}`
     },
     wechatRegisterLink() {
-      let link = 'https://api.calibur.tv/callback/oauth2/wechat?from=sign'
+      const method = this.$h5 ? 'weixin' : 'wechat'
+      let link = `https://api.calibur.tv/callback/oauth2/${method}?from=sign`
       if (this.paramsIsOK) {
         link = `${link}&invite=${this.query.uid}`
       } else if (this.$route.name === 'about-invite-id') {

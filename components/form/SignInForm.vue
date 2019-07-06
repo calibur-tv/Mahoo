@@ -155,7 +155,8 @@ export default {
     },
     authWechat() {
       const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
-      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=sign&redirect=${redirect}`
+      const method = this.$h5 ? 'weixin' : 'wechat'
+      window.location.href = `https://api.calibur.tv/callback/oauth2/${method}?from=sign&redirect=${redirect}`
     },
     submitForm() {
       this.$refs.form.validate(valid => {
