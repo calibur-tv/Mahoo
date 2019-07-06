@@ -29,19 +29,19 @@ export const timeAgo = time => {
   }
   const delta = Date.now() - new Date(date).getTime()
   if (delta > 365 * 86400000) {
-    return dayjs(time).format('YYYY-MM-DD')
+    return dayjs(date).format('YYYY-MM-DD')
   }
   const today = new Date().setHours(0, 0, 0, 0)
   if (today < date) {
-    return `今天${dayjs(time).format('HH:mm')}`
+    return `今天${dayjs(date).format('HH:mm')}`
   }
   if (today - 86400000 < date) {
-    return `昨天${dayjs(time).format('HH:mm')}`
+    return `昨天${dayjs(date).format('HH:mm')}`
   }
   if (today - 172800000 < date) {
-    return `前天${dayjs(time).format('HH:mm')}`
+    return `前天${dayjs(date).format('HH:mm')}`
   }
-  return dayjs(time).format('MM-DD HH:mm')
+  return dayjs(date).format('MM-DD HH:mm')
 }
 
 export const checkInView = (dom, preload = 1) => {

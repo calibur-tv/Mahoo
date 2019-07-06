@@ -50,7 +50,7 @@
     }
 
     &--picture-card {
-      line-height: 50px;
+      line-height: 45px;
     }
 
     &-list__item-status-label {
