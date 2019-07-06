@@ -22,8 +22,8 @@ export const getUserTimeline = ({ $axios, page, count, slug }) => {
   })
 }
 
-export const getPinComments = ({ $axios, sort, slug, count, last_id }) => {
+export const getPinComments = ({ $axios, sort, slug, count, last_id, seen_ids }) => {
   return $axios.$get('v1/comment/list', {
-    params: { sort, slug, count, last_id }
+    params: { sort, slug, count, last_id, seen_ids }
   })
 }

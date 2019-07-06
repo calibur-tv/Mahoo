@@ -34,6 +34,18 @@
 
     .content-author {
       margin-bottom: 10px;
+
+      .metas {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: -3px;
+
+        >div {
+          margin-right: 20px;
+        }
+      }
     }
   }
 
@@ -96,10 +108,20 @@
         <h1 class="title" v-text="title.text" />
       </template>
       <ContentAuthor :user="author">
-        <template v-slot:intro>
-          <span v-if="area"><NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" /></span>
-          <span v-text="$utils.timeAgo(created_at)" />
-        </template>
+        <div slot="intro" class="metas">
+          <div v-if="area">
+            <i class="iconfont ic-coordinates" />
+            <NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" />
+          </div>
+          <div>
+            <i class="iconfont ic-time" />
+            <time v-text="$utils.timeAgo(created_at)" />
+          </div>
+          <div>
+            <i class="iconfont ic-browse" />
+            <span v-text="visit_count" />
+          </div>
+        </div>
         <template v-slot:mine>
           <ElButton round plain type="danger" @click="deletePin">
             删除
@@ -167,7 +189,12 @@ export default {
       created_at: '',
       updated_at: '',
       deleted_at: null,
-      deleting: false
+      deleting: false,
+      like_count: 0,
+      visit_count: 0,
+      mark_count: 0,
+      comment_count: 0,
+      reward_count: 0
     }
   },
   asyncData({ app, error, params, query }) {
@@ -194,14 +221,13 @@ export default {
             slug: this.slug
           })
             .then(() => {
-              this.$toast.success('删除成功')
-                .then(() => {
-                  window.location = '/'
-                })
-                .catch(err => {
-                  this.$toast.error(err.message)
-                  this.deleting = false
-                })
+              this.$toast.success('删除成功').then(() => {
+                window.location = '/'
+              })
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+              this.deleting = false
             })
         })
         .catch(() => {})
@@ -213,7 +239,9 @@ export default {
         }
       })
         .then(data => {
-          this.pin = Object.assign(this.pin, data)
+          Object.keys(data).forEach(key => {
+            this[key] = data[key]
+          })
         })
         .catch(() => {})
     }

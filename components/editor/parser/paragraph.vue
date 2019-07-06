@@ -10,7 +10,7 @@
 </style>
 
 <template>
-  <p :class="$style.paragraph" v-html="item.data.text" />
+  <p :class="$style.paragraph" v-html="item.data.text.replace(/\n/g, '<br>')" />
 </template>
 
 <script>

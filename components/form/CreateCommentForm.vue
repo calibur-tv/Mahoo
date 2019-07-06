@@ -1,33 +1,22 @@
 <style lang="scss">
 .create-comment-form {
-  .content-wrap {
-    margin-bottom: 8px;
+  .avatar {
+    float: left;
+    margin: 17px 24px 0 5px;
+  }
 
-    .submit-btn {
-      float: right;
-      margin-left: 8px;
-      height: 75px;
-      width: 75px;
-      color: #fff;
-      background-color: $color-main;
-      border-radius: 4px;
-      line-height: 1.4;
-      letter-spacing: 2px;
+  .input-wrap {
+    overflow: hidden;
 
-      &:hover {
-        background-color: $color-main-light;
-      }
-    }
+    .el-textarea {
+      margin-bottom: 8px;
 
-    .input-wrap {
-      overflow: hidden;
-    }
+      &__inner {
+        background-color: #f4f5f7;
 
-    .el-textarea__inner {
-      background-color: #f4f5f7;
-
-      &:hover {
-        background-color: transparent;
+        &:hover {
+          background-color: transparent;
+        }
       }
     }
 
@@ -36,29 +25,45 @@
       user-select: none;
       pointer-events: none;
     }
+
+    .el-upload {
+      &-list__item,
+      &--picture-card {
+        width: 50px;
+        height: 50px;
+      }
+
+      &-list__item {
+        transition-duration: 0s;
+      }
+
+      &--picture-card {
+        line-height: 47px;
+      }
+
+      &-list__item-status-label {
+        display: none !important;
+      }
+
+      .el-icon-picture-outline-round {
+        font-size: 18px;
+      }
+    }
   }
 
-  .el-upload {
-    &-list__item,
-    &--picture-card {
-      width: 50px;
-      height: 50px;
-    }
+  .submit-btn {
+    float: right;
+    margin-left: 8px;
+    height: 75px;
+    width: 75px;
+    color: #fff;
+    background-color: $color-main;
+    border-radius: 4px;
+    line-height: 1.4;
+    letter-spacing: 2px;
 
-    &-list__item {
-      transition-duration: 0s;
-    }
-
-    &--picture-card {
-      line-height: 47px;
-    }
-
-    &-list__item-status-label {
-      display: none !important;
-    }
-
-    .el-icon-plus {
-      font-size: 14px;
+    &:hover {
+      background-color: $color-main-light;
     }
   }
 }
@@ -66,40 +71,43 @@
 
 <template>
   <div class="create-comment-form">
-    <div class="content-wrap">
-      <button
-        class="submit-btn"
-        @click="submit"
-      >
-        点击<br>发送
-      </button>
-      <div class="input-wrap">
-        <ElInput
-          v-model="content"
-          type="textarea"
-          :autosize="{ minRows: 3 }"
-          :show-word-limit="true"
-          :maxlength="1000"
-          :placeholder="placeholder"
-        />
-      </div>
+    <div v-if="showAvatar" class="avatar">
+      <VImg :src="avatar" radius="50%" width="40" height="40" />
     </div>
-    <ElUpload
-      multiple
-      list-type="picture-card"
-      :action="imageUploadAction"
-      :limit="9"
-      :data="uploadHeaders"
-      :file-list="uploadImageList"
-      :accept="imageUploadAccept"
-      :before-upload="handleImageUploadBefore"
-      :on-success="handleImageUploadSuccess"
-      :on-error="handleImageUploadError"
-      :on-remove="handleImageUploadRemove"
-      :on-exceed="handleImageUploadExceed"
+    <button
+      class="submit-btn"
+      @click="submit"
     >
-      <i class="el-icon-plus" />
-    </ElUpload>
+      点击<br>发送
+    </button>
+    <div class="input-wrap">
+      <ElInput
+        v-model="content"
+        type="textarea"
+        :autosize="{ minRows: 3 }"
+        :autofocus="autofocus"
+        :show-word-limit="true"
+        :maxlength="1000"
+        :placeholder="placeholder"
+        @keydown.meta.enter.prevent.native="submit"
+      />
+      <ElUpload
+        multiple
+        list-type="picture-card"
+        :action="imageUploadAction"
+        :limit="9"
+        :data="uploadHeaders"
+        :file-list="uploadImageList"
+        :accept="imageUploadAccept"
+        :before-upload="handleImageUploadBefore"
+        :on-success="handleImageUploadSuccess"
+        :on-error="handleImageUploadError"
+        :on-remove="handleImageUploadRemove"
+        :on-exceed="handleImageUploadExceed"
+      >
+        <i class="el-icon-picture-outline-round" />
+      </ElUpload>
+    </div>
   </div>
 </template>
 
@@ -119,8 +127,16 @@ export default {
       required: true
     },
     commentId: {
-      type: String,
+      type: [String, Number],
       default: ''
+    },
+    showAvatar: {
+      type: Boolean,
+      default: true
+    },
+    autofocus: {
+      type: Boolean,
+      default: false
     },
     placeholder: {
       type: String,
@@ -131,6 +147,11 @@ export default {
     return {
       content: '',
       loading: false
+    }
+  },
+  computed: {
+    avatar() {
+      return this.$store.state.user.avatar || 'default-avatar'
     }
   },
   methods: {
@@ -156,6 +177,7 @@ export default {
           this.$emit('submit', data)
           this.content = ''
           this.resetUploaderStatus()
+          this.$toast.success('评论成功')
           this.loading = false
         })
         .catch(err => {

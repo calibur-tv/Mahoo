@@ -15,6 +15,20 @@
       margin-top: 1px;
       color: $color-text-3;
     }
+
+    footer {
+      button {
+        margin-right: 18px;
+
+        &:hover {
+          color: $color-main;
+        }
+      }
+    }
+
+    .create-comment-form {
+      margin-top: 14px;
+    }
   }
 }
 </style>
@@ -37,8 +51,22 @@
       </header>
       <JsonContent :content="item.content" />
       <footer>
-        footer
+        <button @click="showCreate = !showCreate">
+          <i class="iconfont ic-talk" />
+        </button>
+        <button v-if="isMine" @click="deleteComment">
+          <i class="iconfont ic-trash" />
+        </button>
       </footer>
+      <CreateCommentForm
+        v-if="showCreate"
+        :show-avatar="false"
+        :pin-slug="item.pin_slug"
+        :comment-id="item.id"
+        :autofocus="true"
+        :placeholder="`回复 @${item.author.nickname}：`"
+        @submit="handleCreate"
+      />
     </main>
   </li>
 </template>
@@ -47,13 +75,15 @@
 import UserAvatar from '~/components/user/UserAvatar'
 import UserNickname from '~/components/user/UserNickname'
 import JsonContent from '~/components/editor/JsonContent'
+import CreateCommentForm from '~/components/form/CreateCommentForm'
 
 export default {
   name: 'CommentItem',
   components: {
     UserAvatar,
     UserNickname,
-    JsonContent
+    JsonContent,
+    CreateCommentForm
   },
   props: {
     item: {
@@ -62,12 +92,45 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      showCreate: false,
+      deleting: false
+    }
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  computed: {
+    isMine() {
+      return this.$store.getters.isMine(this.item.author.slug)
+    }
+  },
+  methods: {
+    handleCreate(value) {
+      this.$emit('create', {
+        id: this.item.id,
+        value
+      })
+      this.showCreate = false
+    },
+    deleteComment() {
+      this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
+        .then(() => {
+          if (this.deleting) {
+            return
+          }
+          this.deleting = true
+          this.$axios.$post('v1/comment/delete', {
+            comment_id: this.item.id
+          })
+            .then(() => {
+              this.$toast.success('删除成功')
+              this.$emit('delete', this.item.id)
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+              this.deleting = false
+            })
+        })
+        .catch(() => {})
+    }
+  }
 }
 </script>
