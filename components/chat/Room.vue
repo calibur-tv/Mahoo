@@ -9,22 +9,10 @@
   &-header {
     width: 100%;
     height: 50px;
+    line-height: 50px;
     padding: 0 10px;
     border-bottom: 1px solid #e9eaec;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-shrink: 0;
-
-    .user-avatar {
-      float: left;
-      margin-right: 5px;
-    }
-
-    .nickname-wrap {
-      overflow: hidden;
-    }
+    text-align: center
   }
 
   &-body {
@@ -124,8 +112,7 @@
 <template>
   <div class="room">
     <div class="room-header">
-      <UserAvatar v-if="target" :user="target" :size="36" />
-      <UserNickname v-if="target" :user="target" class="nickname-wrap" />
+      {{ name }}
     </div>
     <no-ssr>
       <FlowLoader
@@ -174,20 +161,20 @@ import ChatRoom from 'oh-my-chat'
 import 'oh-my-chat/dist/oh-my-chat.css'
 import ChatAvatar from '~/components/chat/Avatar'
 import Message from '~/components/chat/Message'
-import UserAvatar from '~/components/user/UserAvatar'
-import UserNickname from '~/components/user/UserNickname'
 import Scroll from '~/components/common/Scroll'
 
 export default {
   name: 'MessageRoom',
   components: {
     Scroll,
-    ChatRoom,
-    UserAvatar,
-    UserNickname
+    ChatRoom
   },
   props: {
     mailto: {
+      type: String,
+      required: true
+    },
+    name: {
       type: String,
       required: true
     },

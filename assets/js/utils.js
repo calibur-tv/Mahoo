@@ -22,7 +22,7 @@ export const randomStr = () => {
 
 export const timeAgo = time => {
   let date = time
-  if (typeof time === 'number' && time.toString().length === 10) {
+  if (/^\d+$/.test(time) && time.toString().length === 10) {
     date = time * 1000
   } else {
     date = new Date(time).getTime()

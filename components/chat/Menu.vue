@@ -102,7 +102,7 @@
       :key="item.channel"
     >
       <NLink
-        :to="$alias.user($route.params.slug, `message/?mailto=${item.channel}`)"
+        :to="$alias.user($route.params.slug, `message/?mailto=${item.channel}&name=${item.user.nickname}`)"
         class="room-item clearfix"
       >
         <VImg

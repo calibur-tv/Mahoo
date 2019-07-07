@@ -34,6 +34,7 @@
           <MessageRoom
             v-if="mailto"
             :mailto="mailto"
+            :name="name"
             :slug="slug"
           />
           <div v-else class="need-pick">
@@ -68,6 +69,9 @@ export default {
   computed: {
     mailto() {
       return this.$route.query.mailto
+    },
+    name() {
+      return this.$route.query.name
     }
   }
 }
