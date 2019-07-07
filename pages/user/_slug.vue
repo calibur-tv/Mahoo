@@ -309,8 +309,8 @@
               钱包
             </h3>
             <template>
-              <p>团子：{{ parseFloat(self.wallet.coin).toFixed(2) }}</p>
-              <p>光玉：{{ parseFloat(self.wallet.money).toFixed(2) }}</p>
+              <p>团子：{{ parseFloat(self.wallet_coin).toFixed(2) }}</p>
+              <p>光玉：{{ parseFloat(self.wallet_money).toFixed(2) }}</p>
             </template>
           </aside>
         </ElCol>
@@ -454,7 +454,7 @@ export default {
         }
       })
         .then(data => {
-          this.user = Object.assign(this.user, data)
+          this.user = this.$set(this, 'user', Object.assign(this.user, data))
           this.$store.commit('social/set', {
             type: 'user-follow',
             slug: this.slug,

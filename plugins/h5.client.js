@@ -6,7 +6,7 @@ const isMobile = window.screen.width <= 768 || /^\/app/.test(window.location.pat
 
 if (isMobile) {
   if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
       FastClick.attach(document.body)
     }, false)
   }

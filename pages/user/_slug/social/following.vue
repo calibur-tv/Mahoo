@@ -57,7 +57,7 @@ export default {
         .then(data => {
           this.$store.commit('social/set', {
             type: 'user-follow',
-            data: data
+            data
           })
           this.$refs.loader.patch(data)
         })

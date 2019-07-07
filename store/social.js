@@ -30,7 +30,7 @@ export const mutations = {
     const oldList = state[namespace][prefix].list
     const newIds = data.list.map(_ => _.slug)
     state[namespace][prefix].list = oldList
-      .filter(_ => newIds.indexOf(_.slug) === -1)
+      .filter(_ => !newIds.includes(_.slug))
       .concat(data.list)
     state[namespace][prefix].total = data.total
     state[namespace][prefix].no_more = data.no_more

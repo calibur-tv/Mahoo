@@ -15,7 +15,7 @@ function redisCache(config) {
   client.quit()
   return cacheManager.caching({
     store: require('cache-manager-redis'),
-    retry_strategy: function (options) {
+    retry_strategy(options) {
       if (options.attempt > 10) {
         // Stop retrying afer 10 attempts.
         return undefined

@@ -232,7 +232,7 @@ export default {
   },
   methods: {
     initRoom() {
-      this.$nextTick(async () => {
+      this.$nextTick(async() => {
         this.$refs.room && this.$refs.room.clearMessage()
         await this.$refs.loader.initData()
         await this.$refs.loader.loadMore({ force: true })
@@ -258,10 +258,10 @@ export default {
       const self = this
       const roomId = self.mailto
       this.stopWatcher = this.$watch(
-        function () {
+        function() {
           return self.$store.state.messageRoom[self.mailto].time
         },
-        function () {
+        function() {
           if (roomId !== self.mailto) {
             this.stopWatcher()
             return

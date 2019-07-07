@@ -22,6 +22,7 @@ module.exports = {
     'no-control-regex': 'warn',
     'no-empty': 'off',
     'camelcase': 'off',
+    'space-before-function-paren': [1, 'never'],
     'vue/no-unused-components': 'warn',
     'vue/no-v-html': 'off',
     'vue/component-name-in-template-casing': [1, 'PascalCase'],

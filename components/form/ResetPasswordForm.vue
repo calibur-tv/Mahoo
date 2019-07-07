@@ -137,7 +137,7 @@ export default {
     getResetAuthCode() {
       this.step = 1
       this.$captcha({
-        success: async ({ data }) => {
+        success: async({ data }) => {
           try {
             await sendMessage(this, {
               type: 'forgot_password',

@@ -44,14 +44,14 @@ module.exports = function cacheRenderer(nuxt) {
 
   const renderer = nuxt.renderer
   const renderRoute = renderer.renderRoute.bind(renderer)
-  renderer.renderRoute = function (route, context) {
+  renderer.renderRoute = function(route, context) {
     const cacheKey = isCacheFriendly(route, 'page-', currentVersion)
     if (!cacheKey) {
       return renderRoute(route, context)
     }
 
     function renderSetCache() {
-      return renderRoute(route, context).then(function (result) {
+      return renderRoute(route, context).then(function(result) {
         if (!result.error) {
           cache.set(cacheKey, serialize(result), { ttl: getCacheExpiredAt() })
         }
@@ -61,7 +61,7 @@ module.exports = function cacheRenderer(nuxt) {
 
     return cache
       .get(cacheKey)
-      .then(function (cachedResult) {
+      .then(function(cachedResult) {
         if (cachedResult) {
           return deserialize(cachedResult)
         }

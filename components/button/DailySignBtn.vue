@@ -54,9 +54,12 @@ export default {
           this.value.sign.continuous_sign_count = data.continuous_sign_count
           this.value.sign.latest_signed_at = data.sign_at
           this.value.sign.total_sign_count++
-          this.value.wallet.coin += data.add_coin_count
           this.$toast.success(data.message)
           this.loading = false
+          this.$store.commit('UPDATE_USER_INFO', {
+            key: 'wallet_coin',
+            value: this.$store.state.user.wallet_coin + 1
+          })
         })
         .catch(err => {
           this.$toast.error(err.message)

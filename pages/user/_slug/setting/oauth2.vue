@@ -136,7 +136,7 @@ export default {
         .then(({ value }) => {
           this.phone = value
           this.$captcha({
-            success: async ({ data }) => {
+            success: async({ data }) => {
               try {
                 await sendMessage(this, {
                   type: 'bind_phone',

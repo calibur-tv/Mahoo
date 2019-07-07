@@ -7,7 +7,7 @@ export default (url, options = {}) => {
     return url
   }
 
-  const link = /^http/.test(url) ? url : `https://m1.calibur.tv/${url}`
+  const link = url.startsWith('http') ? url : `https://m1.calibur.tv/${url}`
   const canUseWebP = () => {
     if (typeof window === 'undefined') {
       return false

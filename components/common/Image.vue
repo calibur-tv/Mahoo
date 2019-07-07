@@ -77,7 +77,7 @@ export default {
   data() {
     const { def, width } = this
     const src = def
-      ? /^http/.test(def) ? def : `https://m1.calibur.tv/${def}`
+      ? def.startsWith('http') ? def : `https://m1.calibur.tv/${def}`
       : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
     return {
       show: src,

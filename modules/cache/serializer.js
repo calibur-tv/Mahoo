@@ -1,6 +1,6 @@
 module.exports = {
   serialize(result) {
-    return JSON.stringify(result, function (key, value) {
+    return JSON.stringify(result, function(key, value) {
       if (typeof value === 'object' && value instanceof Set) {
         return { _t: 'set', _v: [...value] }
       }
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   deserialize(jsoned) {
-    return JSON.parse(jsoned, function (key, value) {
+    return JSON.parse(jsoned, function(key, value) {
       if (value && value._v) {
         if (value._t === 'set') {
           return new Set(value._v)
@@ -22,7 +22,7 @@ module.exports = {
 
         if (value._t === 'func') {
           const result = value._v
-          return function () {
+          return function() {
             return result
           }
         }

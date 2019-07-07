@@ -30,7 +30,7 @@ export default {
       required: true
     }
   },
-  render: function (h) {
+  render(h) {
     const level = this.item.data.level
     return h(
       'h' + this.item.data.level,

@@ -82,18 +82,19 @@ export default {
         this.$toast.info('已经投过食了')
         return
       }
-      if (!this.user.wallet.coin && !this.user.wallet.money) {
+      if (!this.user.wallet_coin && !this.user.wallet_money) {
         this.$toast.info('没有足够的团子')
         return
       }
       if (this.state.reward_status_loading) {
         return
       }
-      const title = this.user.wallet.coin
+      const hasVirtualCoin = !!this.user.wallet_coin
+      const title = hasVirtualCoin
         ? '向TA投食需要消耗你一个团子，是否继续?'
         : '向TA投食需要消耗你一个光玉，是否继续?'
       this.$confirm(title, '提示')
-        .then(async () => {
+        .then(async() => {
           const data = await this.$store.dispatch('social/toggle', {
             type: 'pin',
             slug: this.pinSlug,
@@ -106,6 +107,17 @@ export default {
           })
           if (data.success) {
             this.count += data.result
+            if (hasVirtualCoin) {
+              this.$store.commit('UPDATE_USER_INFO', {
+                key: 'wallet_coin',
+                value: this.$store.state.user.wallet_coin - 1
+              })
+            } else {
+              this.$store.commit('UPDATE_USER_INFO', {
+                key: 'wallet_money',
+                value: this.$store.state.user.wallet_money - 1
+              })
+            }
           } else {
             this.$toast.error('服务器休息中')
           }

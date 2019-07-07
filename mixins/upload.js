@@ -101,7 +101,7 @@ export default {
         return false
       }
 
-      if (this.imageUploadAccept.split(', ').indexOf(file.type) === -1) {
+      if (!this.imageUploadAccept.split(', ').includes(file.type)) {
         this.$toast.error(
           `仅支持上传${this.imageUploadAccept
             .replace(/image\//g, '')

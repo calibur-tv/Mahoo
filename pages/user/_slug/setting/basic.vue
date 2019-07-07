@@ -177,7 +177,7 @@ export default {
   mixins: [upload],
   data() {
     const validateNickname = (rule, value, callback) => {
-      const length = value.replace(/([\u4e00-\u9fa5])/g, 'aa').trim().length
+      const length = value.replace(/([\u4E00-\u9FA5])/g, 'aa').trim().length
       if (!length) {
         callback(new Error('昵称不能为空'))
       } else if (length < 2) {

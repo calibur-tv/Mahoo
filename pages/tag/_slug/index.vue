@@ -255,10 +255,9 @@ export default {
         }
       })
         .then(data => {
-          this.tag = Object.assign(this.tag, data)
+          this.tag = this.$set(this, 'tag', Object.assign(this.tag, data))
         })
-        .catch(() => {
-        })
+        .catch(() => {})
     },
     handleCreate(data) {
       this.children.push(data)
