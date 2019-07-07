@@ -22,7 +22,7 @@
       float: left;
       border-radius: 4px;
       overflow: hidden;
-      width: 190px;
+      width: 187px;
       height: 105px;
       margin-right: 18px;
 
@@ -95,14 +95,14 @@
           target="_blank"
         >
           <div v-if="item.media.first_video" :class="$style.video">
-            <VImg v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
+            <VImg v-if="item.media.banner" :src="item.media.banner.url" width="187" height="105" />
             <i :class="$style.badge" class="iconfont ic-bilibili" />
           </div>
           <div v-else-if="item.media.first_music" :class="$style.music">
-            <VImg v-if="item.media.banner" :src="item.media.banner.url" width="190" height="105" />
+            <VImg v-if="item.media.banner" :src="item.media.banner.url" width="187" height="105" />
             <i :class="$style.badge" class="iconfont ic-netease" />
           </div>
-          <VImg v-else :src="item.media.banner.url" width="190" height="105" />
+          <VImg v-else :src="item.media.banner.url" width="187" height="105" />
           <div :class="$style.text">
             <i class="iconfont ic-video" />
             <span v-text="item.media.video_count" />

@@ -5,14 +5,15 @@
 
   .banner {
     width: 100%;
-    height: auto;
+    height: 0;
+    padding-top: 56%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     &.full-size {
-      width: 100%;
       padding-top: $page-header-hgt;
       padding-bottom: 33.3%;
-      background-size: cover;
-      background-position: center;
       margin-top: -30px;
     }
   }
@@ -102,7 +103,7 @@
 <template>
   <div id="pin-show">
     <div
-      v-if="title && title.banner && title.banner.width >= 1400"
+      v-if="title && title.banner && title.banner.width >= 2000"
       :style="{
         backgroundImage: `url(${$resize(title.banner.url, { width: 2000 })})`
       }"
@@ -110,12 +111,13 @@
     />
     <div class="content">
       <template v-if="title">
-        <img
-          v-if="title.banner && title.banner.width < 1400"
-          :src="$resize(title.banner.url, { width: 660 })"
-          :alt="title.text"
+        <div
+          v-if="title.banner && title.banner.width < 2000"
+          :style="{
+            backgroundImage: `url(${$resize(title.banner.url, { width: 660 })})`
+          }"
           class="banner"
-        >
+        />
         <h1 class="title" v-text="title.text" />
       </template>
       <ContentAuthor :user="author">

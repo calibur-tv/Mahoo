@@ -9,12 +9,17 @@
   .banner {
     position: relative;
     width: 100%;
-    height: 240px;
+    height: 0;
+    padding-top: 56%;
 
     .uploader {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
       background-color: #fafbfd;
+      z-index: 0;
 
       &:hover {
         background-color: #ebeef2;
@@ -77,12 +82,13 @@
       }
     }
 
-    .banner {
+    .image {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
+      z-index: 1;
     }
 
     .tool {
@@ -92,6 +98,7 @@
       width: 50px;
       height: 50px;
       opacity: 0;
+      z-index: 2;
 
       i {
         display: block;
@@ -178,7 +185,7 @@
           </div>
         </ElUpload>
         <template v-if="title.banner">
-          <img class="banner" :src="$resize(title.banner.url, { width: 660 })">
+          <img class="image" :src="$resize(title.banner.url, { width: 660 })">
           <div class="tool">
             <i class="el-icon-delete" @click="deleteBanner" />
           </div>
@@ -188,7 +195,7 @@
         <ElInput
           v-model="title.text"
           :show-word-limit="true"
-          :autosize="{ minRows: 1 }"
+          :autosize="{ minRows: 1, maxRows: 2 }"
           type="textarea"
           resize="none"
           placeholder="请输入标题（建议30字以内）"
@@ -290,6 +297,9 @@ export default {
     ElUpload: Upload
   },
   mixins: [mustSign, upload],
+  head: {
+    title: '创作中心'
+  },
   data() {
     return {
       slug: '',
@@ -331,6 +341,7 @@ export default {
       const banner = res.data
       if (banner.width < 960 || banner.height < 540) {
         this.handleImageUploadRemove(file)
+        this.$toast.info('图片尺寸不符合要求')
         return
       }
       this.title.banner = banner
