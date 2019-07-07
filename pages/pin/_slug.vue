@@ -52,37 +52,48 @@
   .footer {
     padding-top: 30px;
 
-    .notebook {
-      p {
-        font-weight: 600;
-        font-synthesis: style;
-        line-height: 1.375;
-        font-size: 16px;
-        color: #1a1a1a;
-        border-bottom: 1px solid #ebebeb;
-        padding-bottom: 12px;
-        margin-bottom: 24px;
-      }
+    .social-panel {
+      font-size: 14px;
+      color: #505050;
+      border-bottom: 1px solid #e5e9ef;
+      padding-bottom: 12px;
+      margin-top: 30px;
+      margin-bottom: 60px;
+    }
+  }
 
-      a {
-        display: inline-block;
-        height: 34px;
-        background-color: #f7f7f7;
-        border: 1px solid #dcdcdc;
-        font-size: 0;
-        border-radius: 4px;
-        margin: 0 18px 18px 0;
-        vertical-align: middle;
-      }
+  .notebook {
+    margin-top: 24px;
 
-      .img {
-        display: inline-block;
-      }
+    p {
+      font-weight: 600;
+      font-synthesis: style;
+      line-height: 1.375;
+      font-size: 16px;
+      color: #1a1a1a;
+      border-bottom: 1px solid #ebebeb;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
 
-      .name {
-        font-size: 14px;
-        margin: 0 10px;
-      }
+    a {
+      display: inline-block;
+      height: 34px;
+      background-color: #f7f7f7;
+      border: 1px solid #dcdcdc;
+      font-size: 0;
+      border-radius: 4px;
+      margin: 0 18px 18px 0;
+      vertical-align: middle;
+    }
+
+    .img {
+      display: inline-block;
+    }
+
+    .name {
+      font-size: 14px;
+      margin: 0 10px;
     }
   }
 }
@@ -115,7 +126,14 @@
           </div>
           <div>
             <i class="iconfont ic-time" />
-            <time v-text="$utils.timeAgo(created_at)" />
+            <ElTooltip
+              effect="dark"
+              placement="bottom"
+              :content="'发表于：' + $utils.timeAgo(created_at)"
+              :disabled="created_at === last_edit_at"
+            >
+              <time v-text="$utils.timeAgo(last_edit_at)" />
+            </ElTooltip>
           </div>
           <div>
             <i class="iconfont ic-browse" />
@@ -136,24 +154,28 @@
       </ContentAuthor>
       <JsonContent :content="content" />
       <div class="footer">
-        <div class="social-panel" />
-        <div v-if="notebook" class="notebook">
-          <p>文章被以下专栏收录</p>
-          <NLink target="_blank" :to="$alias.tag(notebook.slug)">
-            <VImg :src="notebook.avatar" width="32" height="32" />
-            <span class="name" v-text="notebook.name" />
-          </NLink>
+        <div class="social-panel">
+          <PinVoteBtn v-model="like_count" :pin-slug="slug" :user-slug="author.slug" />
         </div>
       </div>
       <CommentMain :slug="slug" />
+      <div v-if="notebook" class="notebook">
+        <p>文章被以下专栏收录</p>
+        <NLink target="_blank" :to="$alias.tag(notebook.slug)">
+          <VImg :src="notebook.avatar" width="32" height="32" />
+          <span class="name" v-text="notebook.name" />
+        </NLink>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { tooltip } from 'element-ui'
 import JsonContent from '~/components/editor/JsonContent'
 import ContentAuthor from '~/components/user/ContentAuthor'
 import CommentMain from '~/components/comment/CommentMain'
+import PinVoteBtn from '~/components/button/PinVoteBtn'
 
 export default {
   name: 'PinShow',
@@ -161,7 +183,9 @@ export default {
   components: {
     JsonContent,
     ContentAuthor,
-    CommentMain
+    CommentMain,
+    ElTooltip: tooltip,
+    PinVoteBtn
   },
   head() {
     return {
@@ -188,6 +212,7 @@ export default {
       recommended_at: 0,
       created_at: '',
       updated_at: '',
+      last_edit_at: '',
       deleted_at: null,
       deleting: false,
       like_count: 0,
@@ -241,6 +266,16 @@ export default {
         .then(data => {
           Object.keys(data).forEach(key => {
             this[key] = data[key]
+          })
+          this.$store.commit('social/set', {
+            type: 'pin',
+            slug: this.slug,
+            data: {
+              down_vote_status: data.down_vote_status,
+              up_vote_status: data.up_vote_status,
+              mark_status: data.mark_status,
+              reward_status: data.reward_status
+            }
           })
         })
         .catch(() => {})
