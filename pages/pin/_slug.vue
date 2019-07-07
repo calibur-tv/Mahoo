@@ -233,6 +233,7 @@ export default {
   },
   beforeMount() {
     this.patchPin()
+    this.patchUser()
   },
   methods: {
     deletePin() {
@@ -275,6 +276,25 @@ export default {
               up_vote_status: data.up_vote_status,
               mark_status: data.mark_status,
               reward_status: data.reward_status
+            }
+          })
+        })
+        .catch(() => {})
+    },
+    patchUser() {
+      this.$axios.$get('v1/user/patch', {
+        params: {
+          slug: this.author.slug
+        }
+      })
+        .then(data => {
+          this.$set(this, 'author', Object.assign(this.author, data))
+          this.$store.commit('social/set', {
+            type: 'user-follow',
+            slug: this.author.slug,
+            data: {
+              is_following: data.is_following,
+              is_followed_by: data.is_followed_by
             }
           })
         })
