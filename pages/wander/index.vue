@@ -383,10 +383,6 @@ export default {
         this.$toast.info('内容不能为空')
         return true
       }
-      if (!this.area) {
-        this.$toast.info('请选择分区')
-        return true
-      }
       if (!this.topic) {
         this.$toast.info('请选择话题')
         return true
