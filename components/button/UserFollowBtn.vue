@@ -76,9 +76,7 @@ export default {
         action: 'is_following',
         params: {
           target_slug: this.slug,
-          action_slug: this.$store.state.user.slug,
           target_type: 'user',
-          action_type: 'user',
           method_type: 'follow'
         }
       })

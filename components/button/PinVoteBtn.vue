@@ -27,7 +27,7 @@
   <div v-if="state" class="pin-vote-btn">
     <button class="up-vote-btn" :class="{ 'is-active': state.up_vote_status }" @click="upvote">
       <i class="iconfont ic-good_fill" />
-      <span v-text="count" />
+      <span v-text="count || '点赞'" />
     </button>
   </div>
 </template>
@@ -90,13 +90,11 @@ export default {
         params: {
           target_type: 'pin',
           target_slug: this.pinSlug,
-          action_type: 'user',
-          action_slug: this.$store.state.user.slug,
           method_type: 'up_vote'
         }
       })
       if (data.success) {
-        data.result ? this.count++ : this.count--
+        this.count += data.result
       } else {
         this.$toast.error('服务器休息中')
       }

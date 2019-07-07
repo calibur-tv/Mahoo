@@ -135,7 +135,6 @@ export default {
         target_slug: this.item.id.toString(),
         target_type: 'comment',
         action_slug: this.$store.state.user.slug,
-        action_type: 'user',
         method_type: 'up_vote'
       })
         .then(result => {

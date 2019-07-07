@@ -467,7 +467,7 @@ export default {
         .catch(() => {})
     },
     handleFollowAction(result) {
-      this.user.followers_count -= result ? -1 : 1
+      this.user.followers_count -= -result
     },
     connectSocket() {
       if (this.isMine && !this.$store.state.socket.isConnected) {

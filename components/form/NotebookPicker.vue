@@ -78,7 +78,7 @@ export default {
   methods: {
     handleCreate(data) {
       this.newTags.unshift(data)
-      this.selected = data
+      this.selected = data.slug
     }
   }
 }

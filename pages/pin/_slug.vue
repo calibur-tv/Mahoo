@@ -128,8 +128,8 @@
       <ContentAuthor :user="author">
         <div slot="intro" class="metas">
           <div class="oneline">
-            <i class="iconfont ic-coordinates" />
-            <NLink target="_blank" :to="$alias.tag(topic.slug)" v-text="topic.name" />
+            <i v-if="topic || area" class="iconfont ic-coordinates" />
+            <NLink v-if="topic" target="_blank" :to="$alias.tag(topic.slug)" v-text="topic.name" />
             <template v-if="area">
               <span>·</span>
               <NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" />
@@ -168,6 +168,7 @@
         <div class="sss-panel">
           <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinRewardBtn v-model="reward_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
+          <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
         </div>
       </div>
       <CommentMain :slug="slug" />
@@ -189,6 +190,7 @@ import ContentAuthor from '~/components/user/ContentAuthor'
 import CommentMain from '~/components/comment/CommentMain'
 import PinVoteBtn from '~/components/button/PinVoteBtn'
 import PinRewardBtn from '~/components/button/PinRewardBtn'
+import PinMarkBtn from '~/components/button/PinMarkBtn'
 
 export default {
   name: 'PinShow',
@@ -199,7 +201,8 @@ export default {
     CommentMain,
     ElTooltip: tooltip,
     PinVoteBtn,
-    PinRewardBtn
+    PinRewardBtn,
+    PinMarkBtn
   },
   head() {
     return {

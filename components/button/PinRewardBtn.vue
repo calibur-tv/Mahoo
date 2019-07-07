@@ -23,7 +23,7 @@
 <template>
   <button v-if="state" class="pin-reward-btn" :class="{ 'is-active': state.reward_status }" @click="reward">
     <i class="iconfont ic-reward_fill" />
-    <span v-text="count" />
+    <span v-text="count || '投食'" />
   </button>
 </template>
 
@@ -101,13 +101,11 @@ export default {
             params: {
               target_type: 'pin',
               target_slug: this.pinSlug,
-              action_type: 'user',
-              action_slug: this.$store.state.user.slug,
               method_type: 'favorite'
             }
           })
           if (data.success) {
-            data.result ? this.count++ : this.count--
+            this.count += data.result
           } else {
             this.$toast.error('服务器休息中')
           }

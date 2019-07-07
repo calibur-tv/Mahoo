@@ -79,16 +79,18 @@
 </style>
 
 <template>
-  <el-dialog
+  <ElDialog
     :width="width"
     :custom-class="customClass"
-    :append-to-body="true"
     :show-close="false"
     :visible.sync="dialogVisible"
     :before-close="beforeClose"
     :fullscreen="fullscreen"
+    :modal-append-to-body="false"
+    :append-to-body="false"
     :close-on-click-modal="clickClose"
     :close-on-press-escape="clickClose"
+    class="v-dialog"
   >
     <section :class="$style.container">
       <header
@@ -156,12 +158,17 @@
         </slot>
       </footer>
     </section>
-  </el-dialog>
+  </ElDialog>
 </template>
 
 <script>
+import { Dialog } from 'element-ui'
+
 export default {
   name: 'VDialog',
+  components: {
+    ElDialog: Dialog
+  },
   props: {
     value: {
       type: Boolean,

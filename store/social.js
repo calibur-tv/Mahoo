@@ -37,14 +37,17 @@ export const mutations = {
     state[namespace][prefix].loading = false
   },
   SET_STATE(state, { type, slug, key, result, user }) {
+    if (result === 0) {
+      return
+    }
     const namespace = generateField(type, slug)
     const prefix = `${key}_users`
-    state[namespace][key] = result
+    state[namespace][key] = result > 0
     state[namespace][`${key}_loading`] = false
     if (!state[namespace][prefix]) {
       return
     }
-    if (result) {
+    if (result > 0) {
       state[namespace][prefix].total++
       state[namespace][prefix].no_more = false
       state[namespace][prefix].list.unshift(user)

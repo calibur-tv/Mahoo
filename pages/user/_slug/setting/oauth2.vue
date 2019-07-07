@@ -54,7 +54,7 @@
         />
       </li>
     </ul>
-    <v-dialog
+    <VDialog
       v-model="showInfoForm"
       width="400px"
       title="填写信息"
@@ -74,16 +74,20 @@
         placeholder="密码（6-16个字符组成，区分大小写）"
         auto-complete="off"
       />
-    </v-dialog>
+    </VDialog>
   </div>
 </template>
 
 <script>
 import { sendMessage, bindPhone } from '~/api/userApi'
 import parseToken from '~/assets/js/parseToken'
+import VDialog from '~/components/common/Dialog'
 
 export default {
   name: 'UserAuthSetting',
+  components: {
+    VDialog
+  },
   data() {
     return {
       phone: '',

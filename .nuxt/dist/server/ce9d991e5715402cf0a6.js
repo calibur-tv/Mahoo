@@ -1,2 +1,0 @@
-exports.ids=[17],exports.modules={238:function(e,t,o){"use strict";o.r(t);var r={name:"UserNotebook",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=o(1);var component=Object(n.a)(r,function(){var e=this.$createElement;return(this._self._c||e)("div",{attrs:{id:"user-notebook"}},[this._ssrNode("\n  UserNotebook\n")])},[],!1,function(e){},null,"8de778b8");t.default=component.exports}};
-//# sourceMappingURL=ce9d991e5715402cf0a6.js.map
