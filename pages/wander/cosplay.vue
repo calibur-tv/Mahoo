@@ -137,7 +137,7 @@
       </div>
       <ElFormItem label="分区" required>
         <ElCol :span="16">
-          <AreaPicker v-model="formItem.area" blocked="topic" />
+          <AreaPicker v-model="formItem.area" />
         </ElCol>
       </ElFormItem>
       <ElFormItem label="标题" required>

@@ -20,6 +20,7 @@
       height: 100%;
       background-color: #fafbfd;
       z-index: 0;
+      border-radius: 4px;
 
       &:hover {
         background-color: #ebeef2;
@@ -89,6 +90,10 @@
       width: 100%;
       height: 100%;
       z-index: 1;
+      border-radius: 4px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     .tool {
@@ -99,6 +104,8 @@
       height: 50px;
       opacity: 0;
       z-index: 2;
+      border-radius: 0 0 4px;
+      overflow: hidden;
 
       i {
         display: block;
@@ -184,8 +191,8 @@
             <p>支持8MB内的JPG／JPEG／PNG格式的高清图片<br>（建议大于960*540像素）</p>
           </div>
         </ElUpload>
-        <template v-if="title.banner">
-          <img class="image" :src="$resize(title.banner.url, { width: 660 })">
+        <template v-if="title && title.banner">
+          <div class="image" :style="{ backgroundImage: `url(${$resize(title.banner.url, { width: 660 })}`}" />
           <div class="tool">
             <i class="el-icon-delete" @click="deleteBanner" />
           </div>
@@ -211,6 +218,9 @@
       <ElForm class="footer" label-position="top" label-width="80px">
         <ElFormItem label="选择分区">
           <AreaPicker v-model="area" />
+        </ElFormItem>
+        <ElFormItem label="选择话题">
+          <TopicPicker v-model="topic" />
         </ElFormItem>
         <ElFormItem label="选择专栏">
           <NotebookPicker v-model="notebook" />
@@ -285,6 +295,7 @@ import mustSign from '~/mixins/mustSign'
 import upload from '~/mixins/upload'
 import Editor from '~/components/editor'
 import AreaPicker from '~/components/form/AreaPicker'
+import TopicPicker from '~/components/form/TopicPicker'
 import NotebookPicker from '~/components/form/NotebookPicker'
 
 export default {
@@ -293,6 +304,7 @@ export default {
   components: {
     Editor,
     AreaPicker,
+    TopicPicker,
     NotebookPicker,
     ElUpload: Upload
   },
@@ -309,7 +321,8 @@ export default {
       },
       content: [],
       notebook: '',
-      area: process.env.TAGS.newbie,
+      area: '',
+      topic: process.env.TAGS.newbie,
       loading: false,
       last_edit_at: '',
       visit_type: 0
@@ -324,8 +337,9 @@ export default {
       params: { slug }
     })
       .then(data => {
-        data.area = data.area.slug
-        data.notebook = data.notebook.slug
+        data.area = data.area ? data.area.slug : ''
+        data.topic = data.topic ? data.topic.slug : ''
+        data.notebook = data.notebook ? data.notebook.slug : ''
         return { ...data }
       })
       .catch(error)
@@ -373,6 +387,10 @@ export default {
         this.$toast.info('请选择分区')
         return true
       }
+      if (!this.topic) {
+        this.$toast.info('请选择话题')
+        return true
+      }
       if (!this.notebook) {
         this.$toast.info('请选择专栏')
         return true
@@ -387,6 +405,7 @@ export default {
 
       this.$axios.$post('v1/pin/create/story', {
         area: this.area,
+        topic: this.topic,
         notebook: this.notebook,
         content: [
           {
@@ -415,6 +434,7 @@ export default {
       this.$axios.$post('v1/pin/update/story', {
         slug,
         area: this.area,
+        topic: this.topic,
         notebook: this.notebook,
         content: [
           {

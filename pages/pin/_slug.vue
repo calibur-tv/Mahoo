@@ -10,11 +10,13 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-radius: 4px;
 
     &.full-size {
       padding-top: $page-header-hgt;
       padding-bottom: 33.3%;
       margin-top: -30px;
+      border-radius: 0;
     }
   }
 
@@ -125,9 +127,13 @@
       </template>
       <ContentAuthor :user="author">
         <div slot="intro" class="metas">
-          <div v-if="area">
+          <div class="oneline">
             <i class="iconfont ic-coordinates" />
-            <NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" />
+            <NLink target="_blank" :to="$alias.tag(topic.slug)" v-text="topic.name" />
+            <template v-if="area">
+              <span>·</span>
+              <NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" />
+            </template>
           </div>
           <div>
             <i class="iconfont ic-time" />
@@ -211,6 +217,7 @@ export default {
       author: null,
       content: [],
       area: null,
+      topic: null,
       notebook: null,
       visit_type: 0,
       trial_type: 0,

@@ -10,7 +10,7 @@
 <template>
   <div class="area-picker">
     <p class="tip">
-      提示：只能选择已解禁的分区
+      提示：只展示已解禁的分区（必选项，填写后不可修改）
     </p>
     <ElCascader
       v-model="selected"
@@ -51,11 +51,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '添加作品分区，如约会大作战'
-    },
-    blocked: {
-      type: String,
-      default: ''
+      default: '选择作品分区，如约会大作战'
     }
   },
   data() {
@@ -65,11 +61,8 @@ export default {
   },
   computed: {
     options() {
-      let result = this.$store.state.global.myTags.filter(_ => _.slug !== 'notebook')
-      if (this.blocked) {
-        result = result.filter(_ => _.slug !== this.blocked)
-      }
-      return result
+      return this.$store.state.global.myTags
+        .filter(_ => !~['notebook', 'topic'].indexOf(_.slug))
     }
   },
   watch: {

@@ -20,13 +20,15 @@ export const randomStr = () => {
   return `${Date.now()}-${Math.random().toString(36).substring(3, 6)}`
 }
 
-export const timeAgo = time => {
-  let date = time
+export const adjustTime = time => {
   if (/^\d+$/.test(time) && time.toString().length === 10) {
-    date = time * 1000
-  } else {
-    date = new Date(time).getTime()
+    return time * 1000
   }
+  return new Date(time).getTime()
+}
+
+export const timeAgo = time => {
+  const date = adjustTime(time)
   const delta = Date.now() - new Date(date).getTime()
   if (delta > 365 * 86400000) {
     return dayjs(date).format('YYYY-MM-DD')

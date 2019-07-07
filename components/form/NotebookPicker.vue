@@ -17,7 +17,7 @@
       <CreateTagBtn text="专栏" parent="uh4f" @create="handleCreate" />
     </div>
     <div class="selection">
-      <ElSelect v-model="selected" placeholder="请选择">
+      <ElSelect v-model="selected" filterable default-first-option placeholder="请选择">
         <ElOption
           v-for="item in options"
           :key="item.slug"

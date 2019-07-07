@@ -11,10 +11,12 @@
 
   .content-area {
     flex-grow: 1;
+    overflow: hidden;
   }
 
   .tail-area {
     margin-left: 14px;
+    flex-shrink: 0;
   }
 
   .content-meta {
