@@ -53,13 +53,16 @@
   .footer {
     padding-top: 30px;
 
-    .social-panel {
+    .sss-panel {
       font-size: 14px;
-      color: #505050;
       border-bottom: 1px solid #e5e9ef;
       padding-bottom: 12px;
       margin-top: 30px;
       margin-bottom: 60px;
+
+      .btn {
+        margin-right: 30px;
+      }
     }
   }
 
@@ -156,8 +159,9 @@
       </ContentAuthor>
       <JsonContent :content="content" />
       <div class="footer">
-        <div class="social-panel">
-          <PinVoteBtn v-model="like_count" :pin-slug="slug" :user-slug="author.slug" />
+        <div class="sss-panel">
+          <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
+          <PinRewardBtn v-model="reward_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
         </div>
       </div>
       <CommentMain :slug="slug" />
@@ -178,6 +182,7 @@ import JsonContent from '~/components/editor/JsonContent'
 import ContentAuthor from '~/components/user/ContentAuthor'
 import CommentMain from '~/components/comment/CommentMain'
 import PinVoteBtn from '~/components/button/PinVoteBtn'
+import PinRewardBtn from '~/components/button/PinRewardBtn'
 
 export default {
   name: 'PinShow',
@@ -187,7 +192,8 @@ export default {
     ContentAuthor,
     CommentMain,
     ElTooltip: tooltip,
-    PinVoteBtn
+    PinVoteBtn,
+    PinRewardBtn
   },
   head() {
     return {

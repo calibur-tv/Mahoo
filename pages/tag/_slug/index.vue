@@ -268,11 +268,7 @@ export default {
       console.log('combineTag') // eslint-disable-line
     },
     deleteTag() {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '删除标签', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '删除标签')
         .then(() => {
           API.deleteTag(this, {
             slug: this.slug

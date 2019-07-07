@@ -1,11 +1,16 @@
 <style lang="scss">
 .pin-vote-btn {
+  display: inline-block;
+
   .is-active {
     color: $color-main;
   }
 
-  button:hover {
-    color: $color-main;
+  button {
+    color: $color-icon-1;
+    &:hover {
+      color: $color-main;
+    }
   }
 
   i {
@@ -92,6 +97,8 @@ export default {
       })
       if (data.success) {
         data.result ? this.count++ : this.count--
+      } else {
+        this.$toast.error('服务器休息中')
       }
     }
   }

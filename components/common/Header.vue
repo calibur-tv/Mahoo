@@ -26,14 +26,14 @@
         .logo {
           line-height: $page-header-hgt;
           margin-left: 10px;
-          margin-right: 20px;
+          margin-right: 15px;
           font-size: 0;
         }
 
         .v-switcher {
           &-header {
             &-anchor {
-              bottom: 0;
+              top: $page-header-hgt - 2px;
               height: 2px;
               background-color: $color-main;
             }
@@ -41,55 +41,28 @@
 
           a {
             display: block;
-            padding: 0 20px;
             font-size: 15px;
             color: #222;
             height: 100%;
 
-            &.NLink-exact-active {
+            &.nuxt-link-exact-active {
               color: $color-main;
+            }
+
+            span {
+              display: inline-block;
+              padding: 0 15px;
+              height: 30px;
+              line-height: 30px;
+              border-radius: 4px;
             }
 
             &:hover {
               color: $color-main;
-            }
 
-            .iconfont {
-              &.bangumi:before {
-                content: "\e603";
+              span {
+                background-color: #F3F3F3;
               }
-              &.game:before {
-                content: "\e600";
-              }
-              &.topic:before {
-                content: "\e73a";
-              }
-            }
-          }
-
-          .game {
-            font-weight: bold;
-            font-size: 20px;
-          }
-
-          .topic {
-            font-size: 20px;
-          }
-
-          .is-active .iconfont {
-            &.bangumi:before {
-              content: "\e612";
-            }
-            &.game {
-              font-weight: normal;
-              font-size: 21px;
-
-              &:before {
-                content: "\e631";
-              }
-            }
-            &.topic:before {
-              content: "\e619";
             }
           }
         }
@@ -198,14 +171,14 @@
           <NLink class="logo" to="/">
             <VImg src="default-poster" width="32" height="32" radius="50%" alt="calibur" />
           </NLink>
-          <VSwitcher :headers="headers" :routable="true" :header-height="50" align="start">
+          <VSwitcher :headers="headers" :routable="true" :anchor-padding="15" :header-height="50" align="start">
             <NLink
               v-for="(item, index) in headers"
               :key="index"
               :slot="`tab-${index}`"
               :to="item.route"
             >
-              <i class="iconfont" :class="item.icon" />
+              <span v-text="item.name" />
             </NLink>
           </VSwitcher>
         </nav>
@@ -283,21 +256,15 @@ export default {
       headers: [
         {
           route: '/tag/2he',
-          name: '动漫',
-          icon: 'bangumi',
-          'icon-active': 'bangumi_fill'
+          name: '动漫'
         },
         {
           route: '/tag/285',
-          name: '游戏',
-          icon: 'game',
-          'icon-active': 'game_fill'
+          name: '游戏'
         },
         {
           route: '/tag/3p6',
-          name: '话题',
-          icon: 'topic',
-          'icon-active': 'topic_fill'
+          name: '话题'
         }
       ]
     }

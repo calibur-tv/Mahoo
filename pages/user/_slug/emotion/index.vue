@@ -95,13 +95,14 @@
     img {
       width: 110px;
       height: 144px;
-      border-radius: 4px;
-      box-shadow: 0 0 0 1px #e5e9ef;
     }
 
     .avatar {
       float: left;
       margin-right: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 0 1px #e5e9ef;
+      overflow: hidden;
     }
 
     .content {
@@ -228,7 +229,7 @@
           :key="item.slug"
         >
           <NLink class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <VImg :src="item.avatar" width="110" height="114" :alt="item.name" />
+            <VImg :src="item.avatar" width="110" height="144" :alt="item.name" />
           </NLink>
           <div class="content">
             <div class="oneline">

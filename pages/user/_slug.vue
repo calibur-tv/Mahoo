@@ -295,15 +295,6 @@
         <ElCol v-if="user" :span="7">
           <aside class="user-section">
             <h3 class="title">
-              钱包
-            </h3>
-            <template>
-              <p>团子：{{ parseFloat(user.balance.coin).toFixed(2) }}</p>
-              <p>光玉：{{ parseFloat(user.balance.money).toFixed(2) }}</p>
-            </template>
-          </aside>
-          <aside class="user-section">
-            <h3 class="title">
               签到
             </h3>
             <DailySignBtn v-model="user" />
@@ -311,6 +302,15 @@
               <p>总签到次数：{{ user.sign.total_sign_count }}次</p>
               <p>连续签到数：{{ user.sign.continuous_sign_count }}次</p>
               <p>最后签到于：{{ user.sign.latest_signed_at ? $utils.timeAgo(user.sign.latest_signed_at) : '未签到' }}</p>
+            </template>
+          </aside>
+          <aside v-if="isMine" class="user-section">
+            <h3 class="title">
+              钱包
+            </h3>
+            <template>
+              <p>团子：{{ parseFloat(self.wallet.coin).toFixed(2) }}</p>
+              <p>光玉：{{ parseFloat(self.wallet.money).toFixed(2) }}</p>
             </template>
           </aside>
         </ElCol>

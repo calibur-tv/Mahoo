@@ -1,7 +1,7 @@
 <style lang="scss">
 #user-auth-setting {
   .providers {
-    margin-top: 30px;
+    margin-top: 20px;
 
     li {
       display: inline-block;

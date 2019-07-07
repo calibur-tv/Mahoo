@@ -54,7 +54,7 @@ export default {
           this.value.sign.continuous_sign_count = data.continuous_sign_count
           this.value.sign.latest_signed_at = data.sign_at
           this.value.sign.total_sign_count++
-          this.value.balance.coin += data.add_coin_count
+          this.value.wallet.coin += data.add_coin_count
           this.$toast.success(data.message)
           this.loading = false
         })
