@@ -44,7 +44,7 @@ export default (url, options = {}) => {
     if (window.computedRadio !== undefined) {
       return window.computedRadio
     }
-    const result = Math.max(window.devicePixelRatio, 2)
+    const result = window.devicePixelRatio
     window.computedRadio = result
     return result
   }

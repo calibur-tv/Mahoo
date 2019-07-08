@@ -7,11 +7,22 @@
   }
 
   &-pc {
+    &-media {
+      .desc {
+        margin-top: -4px;
+        height: 110px;
+
+        main {
+          height: 72px;
+        }
+      }
+    }
+
     .title {
       font-size: 18px;
       font-weight: 600;
       font-synthesis: style;
-      line-height: 1.6;
+      line-height: 30px;
       color: #1a1a1a;
       margin-bottom: 10px;
     }
@@ -64,11 +75,8 @@
 
     .desc {
       overflow: hidden;
-      margin-top: -5px;
-      height: 110px;
 
       main {
-        height: 72px;
         overflow: hidden;
         @include multi-line(24px, 3);
       }
@@ -108,7 +116,7 @@
     >
       {{ item.title.text }}
     </NLink>
-    <div :class="$style['pin-1-pc']" class="only-pc">
+    <div :class="[$style['pin-1-pc'], { [$style['pin-1-pc-media']]: item.media }]" class="only-pc">
       <h2 :class="$style.title">
         <NLink
           target="_blank"
@@ -144,7 +152,7 @@
         </NLink>
         <div :class="$style.desc">
           <main>
-            <span v-text="item.intro" />
+            <p v-text="item.intro" />
           </main>
           <footer>
             <NLink v-if="showUser" :to="$alias.user(item.author.slug)" target="_blank" class="oneline">

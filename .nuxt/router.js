@@ -28,10 +28,11 @@ const _1c793e38 = () => interopDefault(import('../pages/user/_slug/social/follow
 const _2ed4a298 = () => interopDefault(import('../pages/user/_slug/social/following.vue' /* webpackChunkName: "pages/user/_slug/social/following" */))
 const _010bea78 = () => interopDefault(import('../pages/user/_slug/social/friends.vue' /* webpackChunkName: "pages/user/_slug/social/friends" */))
 const _5cbd9c86 = () => interopDefault(import('../pages/user/_slug/timeline.vue' /* webpackChunkName: "pages/user/_slug/timeline" */))
-const _3b948330 = () => interopDefault(import('../pages/user/_slug/emotion/bangumi.vue' /* webpackChunkName: "pages/user/_slug/emotion/bangumi" */))
-const _1dc26c6b = () => interopDefault(import('../pages/user/_slug/emotion/game.vue' /* webpackChunkName: "pages/user/_slug/emotion/game" */))
-const _0a8f4d54 = () => interopDefault(import('../pages/user/_slug/emotion/notebook.vue' /* webpackChunkName: "pages/user/_slug/emotion/notebook" */))
-const _78a57586 = () => interopDefault(import('../pages/user/_slug/emotion/topic.vue' /* webpackChunkName: "pages/user/_slug/emotion/topic" */))
+const _c295c212 = () => interopDefault(import('../pages/user/_slug/emotion/category.vue' /* webpackChunkName: "pages/user/_slug/emotion/category" */))
+const _6bedab81 = () => interopDefault(import('../pages/user/_slug/emotion/category/bangumi.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/bangumi" */))
+const _dea4e48c = () => interopDefault(import('../pages/user/_slug/emotion/category/game.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/game" */))
+const _3549a1ba = () => interopDefault(import('../pages/user/_slug/emotion/category/notebook.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/notebook" */))
+const _631e7e17 = () => interopDefault(import('../pages/user/_slug/emotion/category/topic.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/topic" */))
 const _d3605bd0 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
 const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -233,25 +234,27 @@ export function createRouter() {
         props: true,
         name: "user-slug-timeline"
       }, {
-        path: "emotion/bangumi",
-        component: _3b948330,
+        path: "emotion/category",
+        component: _c295c212,
         props: true,
-        name: "user-slug-emotion-bangumi"
-      }, {
-        path: "emotion/game",
-        component: _1dc26c6b,
-        props: true,
-        name: "user-slug-emotion-game"
-      }, {
-        path: "emotion/notebook",
-        component: _0a8f4d54,
-        props: true,
-        name: "user-slug-emotion-notebook"
-      }, {
-        path: "emotion/topic",
-        component: _78a57586,
-        props: true,
-        name: "user-slug-emotion-topic"
+        name: "user-slug-emotion-category",
+        children: [{
+          path: "bangumi",
+          component: _6bedab81,
+          name: "user-slug-emotion-category-bangumi"
+        }, {
+          path: "game",
+          component: _dea4e48c,
+          name: "user-slug-emotion-category-game"
+        }, {
+          path: "notebook",
+          component: _3549a1ba,
+          name: "user-slug-emotion-category-notebook"
+        }, {
+          path: "topic",
+          component: _631e7e17,
+          name: "user-slug-emotion-category-topic"
+        }]
       }]
     }, {
       path: "/tag/:slug?/edit",

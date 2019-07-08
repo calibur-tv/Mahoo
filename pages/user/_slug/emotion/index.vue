@@ -91,33 +91,6 @@
       padding-right: 20px;
       float: left;
     }
-
-    img {
-      width: 110px;
-      height: 144px;
-    }
-
-    .avatar {
-      float: left;
-      margin-right: 20px;
-      border-radius: 4px;
-      box-shadow: 0 0 0 1px #e5e9ef;
-      overflow: hidden;
-    }
-
-    .content {
-      overflow: hidden;
-
-      .name {
-        font-size: 18px;
-      }
-
-      .desc {
-        margin-top: 10px;
-        font-size: 12px;
-        @include multi-line(20px)
-      }
-    }
   }
 
   .games {
@@ -126,19 +99,6 @@
       width: 20%;
       margin-bottom: 25px;
       padding-right: 20px;
-    }
-
-    img {
-      border: 1px solid #ccd0d7;
-      border-radius: 4px;
-      margin-bottom: 11px;
-      width: 100%;
-      height: auto;
-    }
-
-    p {
-      font-size: 18px;
-      line-height: 24px;
     }
   }
 
@@ -149,57 +109,6 @@
       padding-right: 10px;
       margin-bottom: 25px;
     }
-
-    .img {
-      width: 40px;
-      height: 40px;
-      border-radius: 4px;
-      box-shadow: 0 0 0 1px #e5e9ef;
-      margin-right: 12px;
-      float: left;
-    }
-
-    div {
-      overflow: hidden;
-      line-height: 40px;
-    }
-  }
-
-  .notebooks {
-    .avatar {
-      float: right;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .content {
-      overflow: hidden;
-      padding-bottom: 23px;
-
-      &:not(:last-child) {
-        border-bottom: 1px solid #f4f5f7;
-      }
-
-      .note-title a {
-        color: $color-text-1;
-        font-size: 18px;
-        line-height: 26px;
-      }
-
-      .desc {
-        font-size: 12px;
-        color: #6d757a;
-        line-height: 20px;
-        margin-top: 5px;
-      }
-
-      .meta {
-        margin-top: 15px;
-        color: #999;
-        height: 14px;
-        line-height: 14px;
-      }
-    }
   }
 }
 </style>
@@ -208,11 +117,11 @@
   <div v-if="tags" id="user-emotion">
     <div class="block">
       <div class="block-title">
-        <NLink class="text" to="bangumi" append>
+        <NLink class="text" to="category/bangumi" append>
           <span class="fade-link">看过的动漫</span>
           <i v-if="tags.bangumi.length" class="count" v-text="tags.bangumi.length" />
         </NLink>
-        <NLink v-if="tags.bangumi.length > 4" class="more fade-link" to="bangumi" append>
+        <NLink v-if="tags.bangumi.length > 4" class="more fade-link" to="category/bangumi" append>
           <span>更多</span>
           <i class="el-icon-arrow-right" />
         </NLink>
@@ -224,29 +133,21 @@
         </template>
       </div>
       <ul v-if="tags.bangumi.length" class="bangumis clearfix">
-        <li
+        <BangumiItem
           v-for="item in tags.bangumi.slice(0, 4)"
+          ref="bangumi"
           :key="item.slug"
-        >
-          <NLink class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <VImg :src="item.avatar" width="110" height="144" :alt="item.name" />
-          </NLink>
-          <div class="content">
-            <div class="oneline">
-              <NLink class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
-            </div>
-            <p class="desc" v-text="item.intro" />
-          </div>
-        </li>
+          :item="item"
+        />
       </ul>
     </div>
     <div class="block">
       <div class="block-title">
-        <NLink class="text" to="game" append>
+        <NLink class="text" to="category/game" append>
           <span class="fade-link">玩过的游戏</span>
           <i v-if="tags.game.length" class="count" v-text="tags.game.length" />
         </NLink>
-        <NLink v-if="tags.game.length > 5" class="more fade-link" to="game" append>
+        <NLink v-if="tags.game.length > 5" class="more fade-link" to="category/game" append>
           <span>更多</span>
           <i class="el-icon-arrow-right" />
         </NLink>
@@ -258,24 +159,21 @@
         </template>
       </div>
       <ul v-if="tags.game.length" class="games clearfix">
-        <li
+        <GameItem
           v-for="item in tags.game.slice(0, 5)"
+          ref="game"
           :key="item.slug"
-        >
-          <NLink target="_blank" :to="$alias.tag(item.slug)">
-            <VImg :src="item.avatar" width="150" height="150" :alt="item.name" />
-            <p class="oneline fade-link" v-text="item.name" />
-          </NLink>
-        </li>
+          :item="item"
+        />
       </ul>
     </div>
     <div class="block">
       <div class="block-title">
-        <NLink class="text" to="topic" append>
+        <NLink class="text" to="category/topic" append>
           <span class="fade-link">参与的话题</span>
           <i v-if="tags.topic.length" class="count" v-text="tags.topic.length" />
         </NLink>
-        <NLink v-if="tags.topic.length > 12" class="more fade-link" to="topic" append>
+        <NLink v-if="tags.topic.length > 12" class="more fade-link" to="category/topic" append>
           <span>更多</span>
           <i class="el-icon-arrow-right" />
         </NLink>
@@ -287,29 +185,24 @@
         </template>
       </div>
       <ul v-if="tags.topic.length" class="topics clearfix">
-        <li
+        <TopicItem
           v-for="item in tags.topic.slice(0, 12)"
+          ref="topic"
           :key="item.slug"
-        >
-          <NLink class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <VImg :src="item.avatar" width="40" height="40" :alt="item.name" />
-          </NLink>
-          <div class="name oneline">
-            <NLink class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
-          </div>
-        </li>
+          :item="item"
+        />
       </ul>
     </div>
     <div class="block">
       <div class="block-title">
-        <NLink class="text" to="notebook" append>
+        <NLink class="text" to="category/notebook" append>
           <span class="fade-link">发表的专栏</span>
           <i v-if="tags.notebook.length" class="count" v-text="tags.notebook.length" />
         </NLink>
         <div v-if="tags.notebook.length">
           <CreateTagBtn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
           <span v-else />
-          <NLink v-if="tags.notebook.length > 4" class="more fade-link" to="notebook" append>
+          <NLink v-if="tags.notebook.length > 4" class="more fade-link" to="category/notebook" append>
             <span>更多</span>
             <i class="el-icon-arrow-right" />
           </NLink>
@@ -322,24 +215,13 @@
           <span v-else />
         </template>
       </div>
-      <ul v-if="tags.notebook.length" class="notebooks clearfix">
-        <li
+      <ul v-if="tags.notebook.length" class="notebooks">
+        <NotebookItem
           v-for="item in tags.notebook.slice(0, 4)"
+          ref="notebook"
           :key="item.slug"
-        >
-          <NLink class="avatar" target="_blank" :to="$alias.tag(item.slug)">
-            <VImg :src="item.avatar" width="117" height="88" :alt="item.name" />
-          </NLink>
-          <div class="content clearfix">
-            <div class="note-title oneline">
-              <NLink class="name fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
-            </div>
-            <p class="desc oneline" :title="item.intro" v-text="item.intro || '暂无简介'" />
-            <div class="meta oneline">
-              -
-            </div>
-          </div>
-        </li>
+          :item="item"
+        />
       </ul>
     </div>
   </div>
@@ -348,11 +230,19 @@
 <script>
 import { bookmarkTags } from '~/api/tagApi'
 import CreateTagBtn from '~/components/button/CreateTagBtn'
+import NotebookItem from '~/components/flow/NotebookItem'
+import BangumiItem from '~/components/flow/BangumiItem'
+import GameItem from '~/components/flow/GameItem'
+import TopicItem from '~/components/flow/TopicItem'
 
 export default {
   name: 'UserEmotion',
   components: {
-    CreateTagBtn
+    CreateTagBtn,
+    NotebookItem,
+    BangumiItem,
+    GameItem,
+    TopicItem
   },
   props: {
     user: {
@@ -380,9 +270,37 @@ export default {
       })
       .catch(error)
   },
+  beforeMount() {
+    this.batchPatch()
+  },
   methods: {
     handleCreateNotebook(data) {
       this.tags.notebook.unshift(data)
+    },
+    batchPatch() {
+      let slug = []
+      const lengths = [4, 5, 12, 4]
+      Object.keys(this.tags).forEach((category, index) => {
+        slug = slug.concat(this.tags[category].map(_ => _.slug).slice(0, lengths[index]))
+      })
+      this.$axios.$get('v1/tag/batch_patch', {
+        params: {
+          slug: slug.join(',')
+        }
+      })
+        .then(data => {
+          Object.keys(this.tags).forEach(category => {
+            this.tags[category].forEach((tag, index) => {
+              Object.keys(data).forEach(slug => {
+                if (tag.slug === slug) {
+                  this.$set(this.tags[category], index, Object.assign(tag, data[slug]))
+                  this.$refs[category][index].$forceUpdate()
+                }
+              })
+            })
+          })
+        })
+        .catch(() => {})
     }
   }
 }
