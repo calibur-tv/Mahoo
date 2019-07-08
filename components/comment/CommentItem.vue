@@ -56,7 +56,7 @@
       <JsonContent :content="item.content" />
       <footer>
         <button @click="showCreate = !showCreate">
-          <i class="iconfont ic-talk" />
+          <i class="iconfont ic-message" />
         </button>
         <button v-if="isMine" @click="deleteComment">
           <i class="iconfont ic-trash" />

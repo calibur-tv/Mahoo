@@ -2,6 +2,9 @@
   <component
     :is="`type-${item.content_type}`"
     :item="item"
+    :show-user="showUser"
+    :show-area="showArea"
+    :secret-link="secretLink"
   />
 </template>
 

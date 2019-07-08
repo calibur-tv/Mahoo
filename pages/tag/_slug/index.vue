@@ -15,7 +15,6 @@
       }
 
       .img {
-        display: inline-block;
         border-radius: 5px;
         margin-right: 5px;
       }

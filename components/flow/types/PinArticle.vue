@@ -64,6 +64,36 @@
 
     .desc {
       overflow: hidden;
+      margin-top: -5px;
+      height: 110px;
+
+      main {
+        height: 72px;
+        overflow: hidden;
+        @include multi-line(24px, 3);
+      }
+
+      footer {
+        height: 33px;
+        line-height: 33px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 9px;
+
+        >* {
+          display: inline-block;
+          margin-right: 30px;
+          color: #99a2aa;
+          font-size: 12px;
+          flex-shrink: 0;
+        }
+
+        a {
+          flex-shrink: 1;
+        }
+      }
     }
   }
 }
@@ -113,7 +143,32 @@
           </div>
         </NLink>
         <div :class="$style.desc">
-          {{ item.intro }}
+          <main>
+            <span v-text="item.intro" />
+          </main>
+          <footer>
+            <NLink v-if="showUser" :to="$alias.user(item.author.slug)" target="_blank" class="oneline">
+              <VImg :src="item.author.avatar" radius="50%" width="24" height="24" />
+              &nbsp;
+              <span v-text="item.author.nickname" />
+            </NLink>
+            <div>
+              <i class="iconfont ic-message_fill" />
+              <span v-text="item.comment_count" />
+            </div>
+            <div>
+              <i class="iconfont ic-good_fill" />
+              <span v-text="item.like_count" />
+            </div>
+            <div>
+              <i class="iconfont ic-mark_fill" />
+              <span v-text="item.mark_count" />
+            </div>
+            <div>
+              <i class="iconfont ic-browse_fill" />
+              <span v-text="item.visit_count" />
+            </div>
+          </footer>
         </div>
       </div>
     </div>

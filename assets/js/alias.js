@@ -7,7 +7,7 @@ export default {
     return `/tag/${slug}/${path}`
   },
 
-  user(slug, path = '') {
+  user(slug, path = 'timeline') {
     return `/user/${slug}/${path}`
   },
 

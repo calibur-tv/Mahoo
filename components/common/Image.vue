@@ -1,6 +1,6 @@
 <style lang="scss">
 .img {
-  display: block;
+  display: inline-block;
   overflow: hidden;
   line-height: 1;
   max-width: 100%;
@@ -8,6 +8,7 @@
 
   &.is-full {
     position: relative;
+    display: block;
 
     img {
       position: absolute;

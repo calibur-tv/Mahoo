@@ -10,7 +10,7 @@ module.exports = {
   env: {
     API_URL: ENV.BASE_URL.API_URL[nodeEnv],
     API_URL_BROWSER: ENV.BASE_URL.API_URL_BROWSER[nodeEnv],
-    TAGS: ENV.TAGS,
+    TAGS: injectScript.tags,
     INJECT: injectScript,
     SOCKET_HOST: ENV.SOCKET_HOST[nodeEnv]
   },

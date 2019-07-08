@@ -93,10 +93,6 @@
       vertical-align: middle;
     }
 
-    .img {
-      display: inline-block;
-    }
-
     .name {
       font-size: 14px;
       margin: 0 10px;

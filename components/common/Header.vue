@@ -255,15 +255,15 @@ export default {
     return {
       headers: [
         {
-          route: '/tag/2he',
+          route: '/zone/bangumi',
           name: '动漫'
         },
         {
-          route: '/tag/285',
+          route: '/zone/game',
           name: '游戏'
         },
         {
-          route: '/tag/3p6',
+          route: '/zone/topic',
           name: '话题'
         }
       ]

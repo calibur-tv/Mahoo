@@ -6,7 +6,16 @@ const name = '咔哩吧'
 const slogan = ' (｡･∀･)ﾉﾞ 你开心就好~~calibur'
 const title = `${name}${slogan}`
 
+const tags = {
+  newbie: 'ugf6',
+  notebook: 'uh4f',
+  bangumi: '2he',
+  topic: '3p6',
+  game: '285'
+}
+
 module.exports = {
+  tags,
   author: npmCfg.author,
   description: npmCfg.description,
   keywords: npmCfg.keywords.join(','),

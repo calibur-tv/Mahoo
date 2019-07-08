@@ -182,7 +182,7 @@ export default {
         return
       }
       if (this.isMine) {
-        this.$toast.info('不能给收藏自己的文章')
+        this.$toast.info('不能收藏自己的文章')
         return
       }
       if (this.state.mark_status_loading) {

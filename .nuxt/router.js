@@ -9,10 +9,12 @@ const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.v
 const _527cab04 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
 const _48a59587 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
 const _64a47f26 = () => interopDefault(import('../pages/wander/cosplay.vue' /* webpackChunkName: "pages/wander/cosplay" */))
+const _3c5ad14a = () => interopDefault(import('../pages/zone/bangumi.vue' /* webpackChunkName: "pages/zone/bangumi" */))
+const _386a6491 = () => interopDefault(import('../pages/zone/game.vue' /* webpackChunkName: "pages/zone/game" */))
+const _9a06fbc0 = () => interopDefault(import('../pages/zone/topic.vue' /* webpackChunkName: "pages/zone/topic" */))
 const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
 const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
 const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
-const _1ef87b5d = () => interopDefault(import('../pages/user/_slug/index.vue' /* webpackChunkName: "pages/user/_slug/index" */))
 const _3bf0ccac = () => interopDefault(import('../pages/user/_slug/draft.vue' /* webpackChunkName: "pages/user/_slug/draft" */))
 const _315d47a9 = () => interopDefault(import('../pages/user/_slug/emotion/index.vue' /* webpackChunkName: "pages/user/_slug/emotion/index" */))
 const _04c5815c = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
@@ -143,6 +145,21 @@ export function createRouter() {
       props: false,
       name: "wander-cosplay"
     }, {
+      path: "/zone/bangumi",
+      component: _3c5ad14a,
+      props: false,
+      name: "zone-bangumi"
+    }, {
+      path: "/zone/game",
+      component: _386a6491,
+      props: false,
+      name: "zone-game"
+    }, {
+      path: "/zone/topic",
+      component: _9a06fbc0,
+      props: false,
+      name: "zone-topic"
+    }, {
       path: "/pin/:slug?",
       component: _30aed12c,
       props: true,
@@ -156,12 +173,8 @@ export function createRouter() {
       path: "/user/:slug?",
       component: _0513205a,
       props: true,
+      name: "user-slug",
       children: [{
-        path: "",
-        component: _1ef87b5d,
-        props: true,
-        name: "user-slug"
-      }, {
         path: "draft",
         component: _3bf0ccac,
         props: true,

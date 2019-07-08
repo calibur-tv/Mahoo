@@ -132,7 +132,6 @@
 
         .value {
           line-height: 16px;
-          margin-top: 5px;
           color: #222;
           font-size: 12px;
         }
@@ -259,16 +258,20 @@
             <span class="value" v-text="user.visit_count" />
           </li>
           <li>
-            <div class="label">
-              关注数
-            </div>
-            <span class="value" v-text="user.following_count" />
+            <nuxt-link :to="$alias.user(slug, 'social/following')">
+              <div class="label">
+                关注数
+              </div>
+              <span class="value" v-text="user.following_count" />
+            </nuxt-link>
           </li>
           <li>
-            <div class="label">
-              粉丝数
-            </div>
-            <span class="value" v-text="user.followers_count" />
+            <nuxt-link :to="$alias.user(slug, 'social/followers')">
+              <div class="label">
+                粉丝数
+              </div>
+              <span class="value" v-text="user.followers_count" />
+            </nuxt-link>
           </li>
           <li>
             <div class="label">
