@@ -51,7 +51,7 @@
     </div>
     <div class="control">
       <UserFollowBtn :slug="user.slug" />
-      <SendMailBtn :slug="user.slug" />
+      <SendMailBtn :slug="user.slug" :nickname="user.nickname" />
     </div>
   </li>
 </template>

@@ -1,6 +1,7 @@
 <template>
   <component
     :is="`type-${item.content_type}`"
+    v-if="item"
     :item="item"
     :show-user="showUser"
     :show-area="showArea"

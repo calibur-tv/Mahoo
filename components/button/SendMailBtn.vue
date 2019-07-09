@@ -20,6 +20,10 @@ export default {
     slug: {
       type: String,
       required: true
+    },
+    nickname: {
+      type: String,
+      required: true
     }
   },
   computed: {
@@ -48,7 +52,7 @@ export default {
         }
       })
         .then(channel => {
-          redirectWindow.location = this.$alias.user(this.$store.state.user.slug, `message?mailto=${channel}`)
+          redirectWindow.location = this.$alias.user(this.$store.state.user.slug, `message?mailto=${channel}&name=${this.nickname}`)
         })
         .catch(err => {
           this.$toast.error(err.message)

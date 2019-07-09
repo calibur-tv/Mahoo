@@ -230,7 +230,7 @@
           class="actions"
         >
           <UserFollowBtn :slug="slug" @change="handleFollowAction" />
-          <SendMailBtn :slug="slug" />
+          <SendMailBtn :slug="slug" :nickname="nickname" />
         </div>
       </div>
       <VSwitcher
