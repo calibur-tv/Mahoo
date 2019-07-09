@@ -27,8 +27,8 @@
     "test": "echo 1"
   },
   "dependencies": {
-    "@better-scroll/core": "^2.0.0-alpha.18",
-    "@better-scroll/mouse-wheel": "^2.0.0-alpha.18",
+    "@better-scroll/core": "^2.0.0-alpha.19",
+    "@better-scroll/mouse-wheel": "^2.0.0-alpha.19",
     "@editorjs/checklist": "^1.1.0",
     "@editorjs/delimiter": "^1.1.0",
     "@editorjs/editorjs": "^2.15.0",
@@ -42,7 +42,7 @@
     "cache-manager": "^2.9.1",
     "cache-manager-redis": "^0.6.0",
     "cross-env": "^5.2.0",
-    "dayjs": "^1.8.14",
+    "dayjs": "^1.8.15",
     "element-ui": "^2.10.1",
     "fastclick": "^1.0.6",
     "geetest-captcha": "^1.1.1",

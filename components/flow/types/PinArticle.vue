@@ -1,11 +1,5 @@
 <style lang="scss" module>
 .pin-1 {
-  &:not(:first-child) {
-    border-top: 1px solid #f0f2f7;
-    padding-top: 20px;
-    margin-top: 20px;
-  }
-
   &-pc {
     &-media {
       .desc {
@@ -25,6 +19,10 @@
       line-height: 30px;
       color: #1a1a1a;
       margin-bottom: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-self: center;
     }
 
     .media {
@@ -108,7 +106,7 @@
 </style>
 
 <template>
-  <div :class="$style['pin-1']">
+  <li :class="$style['pin-1']">
     <NLink
       :to="$alias.pin(secretLink || item.slug)"
       :class="$style['pin-1-h5']"
@@ -124,6 +122,22 @@
           class="fade-link"
           v-text="item.title.text"
         />
+        <template v-if="showArea">
+          <NLink
+            v-if="item.area"
+            :to="$alias.tag(item.area.slug)"
+            target="_blank"
+          >
+            <VImg :src="item.area.avatar" width="24" height="24" radius="5px" />
+          </NLink>
+          <NLink
+            v-else-if="item.topic"
+            :to="$alias.tag(item.topic.slug)"
+            target="_blank"
+          >
+            <VImg :src="item.topic.avatar" width="24" height="24" radius="5px" />
+          </NLink>
+        </template>
       </h2>
       <div :class="$style.content" class="clearfix">
         <NLink
@@ -180,7 +194,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </li>
 </template>
 
 <script>

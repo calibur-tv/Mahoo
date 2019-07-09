@@ -710,24 +710,24 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@better-scroll/core@^2.0.0-alpha.18":
-  version "2.0.0-alpha.18"
-  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.0.0-alpha.18.tgz#80fcc5701149f1fddf38faf3e80f1deed4a143c4"
-  integrity sha512-qkKByZm8ok0cbAigNQ0AKZEM0q4ds30aDpa2/dEbSBcU3UBZpNmU8y0G9tLZPSa40CN1WUZhsh4r7efEhSNePQ==
+"@better-scroll/core@^2.0.0-alpha.19":
+  version "2.0.0-alpha.19"
+  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.0.0-alpha.19.tgz#ebb0ef6877efac1868d864cbe8d946169f5c484d"
+  integrity sha512-Pj868fcB4Vtk+ax4VTWM7z3nfmPl/TiwiEIp5Ze+fg0T42gaEfJDfTVZizN+ql+WZAMS491Um9psfl/AjMB61w==
   dependencies:
-    "@better-scroll/shared-utils" "^2.0.0-alpha.18"
+    "@better-scroll/shared-utils" "^2.0.0-alpha.19"
 
-"@better-scroll/mouse-wheel@^2.0.0-alpha.18":
-  version "2.0.0-alpha.18"
-  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.0.0-alpha.18.tgz#0c541d1403a1223ed48818b48f8eb126c190ce6f"
-  integrity sha512-R2Bg1K01afPktL19RC0s3RI4utBRbNdtZsK7i7IL5IWJpMoa64rJ9X2X6ltMZFTGXtRn3uOeb26aHYg98GaIJQ==
+"@better-scroll/mouse-wheel@^2.0.0-alpha.19":
+  version "2.0.0-alpha.19"
+  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.0.0-alpha.19.tgz#8aba1379593226ebc2ef132eba275994075095e6"
+  integrity sha512-qZaqEneXK6Dj8pktuETyWRBKcMIEt0ZQcLoTL+iG5sV81LYcAUcbNmGglHPT0WeDWieypuToMX3H106g168p2g==
   dependencies:
-    "@better-scroll/core" "^2.0.0-alpha.18"
+    "@better-scroll/core" "^2.0.0-alpha.19"
 
-"@better-scroll/shared-utils@^2.0.0-alpha.18":
-  version "2.0.0-alpha.18"
-  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.0-alpha.18.tgz#e779606addc541196571920f912e0391ba67f2ad"
-  integrity sha512-zAQB5eJ2K+AJbJ9+Kmds5EM0HnHBE2k8f69ZxOyPmnbQ/WQlHnXIAJEd3XvXB6dWgHUFBLihUfQ52wmeX3OZQA==
+"@better-scroll/shared-utils@^2.0.0-alpha.19":
+  version "2.0.0-alpha.19"
+  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.0-alpha.19.tgz#44f92e7aceacadb909bac11722c1127b4dee7e25"
+  integrity sha512-jidzdvrBPdK7gTY0LvEmZq5jwHgvKg06VVtTEAJq89YOMxW/kKvcProqGZMizpPH5UStjdUxNog9reSHLHOSKg==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -3201,10 +3201,10 @@ date-now@^0.1.4:
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
 
-dayjs@^1.8.14:
-  version "1.8.14"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.14.tgz#43e4f62830c2c3342c3fcd25934dc9162dbe6f38"
-  integrity sha512-AVhDmRTe541iWirnoeFSSDDGvCT6HWaNQ4z2WmmzXMGZj6ph6ydao2teKq/eUtR43GPJXlYFD+C/SotG1P9wUQ==
+dayjs@^1.8.15:
+  version "1.8.15"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.15.tgz#7121bc04e6a7f2621ed6db566be4a8aaf8c3913e"
+  integrity sha512-HYHCI1nohG52B45vCQg8Re3hNDZbMroWPkhz50yaX7Lu0ATyjGsTdoYZBpjED9ar6chqTx2dmSmM8A51mojnAg==
 
 de-indent@^1.0.2:
   version "1.0.2"

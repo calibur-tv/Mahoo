@@ -1,3 +1,19 @@
+<style lang="scss">
+#user-draft {
+  li {
+    border-top: 1px solid #f0f2f7;
+    padding-top: 20px;
+    margin-top: 20px;
+
+    &:first-child {
+      padding-top: 0;
+      margin-top: 0;
+      border-top-width: 0;
+    }
+  }
+}
+</style>
+
 <template>
   <div id="user-draft">
     <FlowLoader

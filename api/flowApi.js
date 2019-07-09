@@ -27,3 +27,11 @@ export const getPinComments = ({ $axios, sort, slug, count, last_id, seen_ids, m
     params: { sort, slug, count, last_id, seen_ids, mode, page }
   })
 }
+
+export const getTagFlows = ({ $axios, slug, sort, loop, time, take, is_up, seen_ids, last_id }) => {
+  return $axios.$get('v1/flow/pins', {
+    params: {
+      slug, sort, loop, time, take, is_up, spec_id: sort === 'newest' ? last_id : seen_ids
+    }
+  })
+}
