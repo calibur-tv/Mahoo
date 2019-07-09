@@ -1,1 +1,0 @@
-{"version":3,"file":"cc9a0ac677d87725944e.js","sources":["webpack:///./components/flow/BangumiItem.vue"],"sourcesContent":["module.exports = {\n\t\"bangumi\": \"bangumi_27LZB\",\n\t\"avatar\": \"avatar_1pux0\",\n\t\"content\": \"content_3LQoH\",\n\t\"name\": \"name_1kYyu\",\n\t\"desc\": \"desc_ygyPf\"\n};"],"mappings":"AAAA","sourceRoot":""}

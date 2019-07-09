@@ -86,7 +86,7 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        margin-top: 9px;
+        margin-top: 8px;
 
         >* {
           display: inline-block;

@@ -22,7 +22,7 @@
         <PinFlowItem
           v-for="item in flow"
           :key="item.slug"
-          :show-area="loop !== 1"
+          :show-area="!!loop"
           :item="item"
         />
       </ul>
@@ -45,7 +45,7 @@ export default {
     },
     loop: {
       type: Number,
-      default: 1
+      default: 0
     }
   },
   data() {

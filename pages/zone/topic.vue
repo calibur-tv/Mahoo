@@ -35,6 +35,7 @@
     box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
     margin-top: -$page-header-hgt;
     padding-top: $page-header-hgt + 20;
+    min-height: 100vh;
   }
 }
 </style>
@@ -66,115 +67,16 @@
         </Affix>
       </ElCol>
       <ElCol :span="14" class="main-wrap">
-        <p>当前标签</p>
-        {{ tag.name }}
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
-        <p>123</p>
+        <PinFlowList :slug="slug" :loop="2" />
       </ElCol>
       <ElCol :span="5">
+        <!--
         <Affix :top="50">
           <div>
             当前标签活跃用户
           </div>
         </Affix>
+        -->
       </ElCol>
     </ElRow>
   </div>
@@ -184,10 +86,12 @@
 import ZoneMixin from '~/mixins/zone'
 import { showTag } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
+import PinFlowList from '~/components/flow/PinFlowList'
 
 export default {
   name: 'ZoneTopic',
   components: {
+    PinFlowList,
     Affix
   },
   mixins: [ZoneMixin],
