@@ -323,9 +323,9 @@ export default {
       notebook: '',
       area: '',
       topic: process.env.TAGS.newbie,
-      loading: false,
       last_edit_at: '',
-      visit_type: 0
+      visit_type: 0,
+      loading: false
     }
   },
   asyncData({ app, error, query }) {

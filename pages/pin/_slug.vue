@@ -136,8 +136,8 @@
             <ElTooltip
               effect="dark"
               placement="bottom"
-              :content="'发表于：' + $utils.timeAgo(created_at)"
-              :disabled="created_at === last_edit_at"
+              :content="'发表于：' + $utils.timeAgo(published_at)"
+              :disabled="!published_at || published_at === last_edit_at"
             >
               <time v-text="$utils.timeAgo(last_edit_at)" />
             </ElTooltip>
@@ -224,8 +224,8 @@ export default {
       comment_type: 0,
       last_top_at: 0,
       recommended_at: 0,
+      published_at: '',
       created_at: '',
-      updated_at: '',
       last_edit_at: '',
       deleted_at: null,
       deleting: false,
