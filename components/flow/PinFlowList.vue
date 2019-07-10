@@ -14,9 +14,11 @@
 <template>
   <div class="pin-flow-list">
     <FlowLoader
+      ref="loader"
       func="getTagFlows"
       :type="sort === 'newest' ? 'lastId' : 'seenIds'"
       :query="query"
+      :callback="patchPin"
     >
       <ul slot-scope="{ flow }" class="flows">
         <PinFlowItem
@@ -67,9 +69,18 @@ export default {
       }
     }
   },
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  methods: {
+    patchPin({ data }) {
+      this.$axios.$get('v1/pin/batch_patch', {
+        params: {
+          slug: data.result.map(_ => _.slug).join(',')
+        }
+      })
+        .then(result => {
+          this.$refs.loader.patch(result)
+        })
+        .catch(() => {})
+    }
+  }
 }
 </script>
