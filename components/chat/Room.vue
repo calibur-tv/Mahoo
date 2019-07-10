@@ -122,7 +122,7 @@
         sort="asc"
         :query="query"
         :callback="handleMessageLoad"
-        :cache-timeout="86400000"
+        :cache-timeout="86400"
         :auto="0"
         class="room-body"
       >
