@@ -20,3 +20,53 @@
   -webkit-line-clamp: $line;
   -webkit-box-orient: vertical;
 }
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content
+  }
+
+  @-webkit-keyframes #{$name} {
+    @content
+  }
+
+  @-moz-keyframes #{$name} {
+    @content
+  }
+}
+
+@include keyframes(skeleton-loading) {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@include keyframes(skeleton) {
+  0% {
+    width: 60%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 60%;
+  }
+}
+
+%skeleton-quick {
+  animation: skeleton 1s ease-in-out infinite;
+}
+
+%skeleton-slowly {
+  animation: skeleton 1s ease-in-out -0.5s infinite;
+}
+
+%skeleton-block {
+  background: linear-gradient(90deg,#f2f2f2 25%,#e6e6e6 37%,#f2f2f2 63%);
+  animation: skeleton-loading 1.4s ease infinite;
+  background-size: 400% 100%;
+}

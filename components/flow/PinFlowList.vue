@@ -47,11 +47,12 @@
       background-color: #fff;
       padding: 15px 20px 20px;
       border-radius: 5px;
-      margin-bottom: 20px;
+      margin-top: 20px;
 
       &:first-child {
         border-radius: 0 0 5px 5px;
         border-top: 1px solid $color-gray-3;
+        margin-top: 0;
       }
     }
   }
@@ -92,6 +93,7 @@
           :item="item"
         />
       </ul>
+      <SkeletonArticle slot="loading" />
     </FlowLoader>
   </div>
 </template>
@@ -99,13 +101,15 @@
 <script>
 import { Select, Option } from 'element-ui'
 import PinFlowItem from '~/components/flow/PinFlowItem'
+import SkeletonArticle from '~/components/skeleton/SkeletonArticle'
 
 export default {
   name: 'PinFlowList',
   components: {
     ElSelect: Select,
     ElOption: Option,
-    PinFlowItem
+    PinFlowItem,
+    SkeletonArticle
   },
   props: {
     slug: {
