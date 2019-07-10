@@ -182,10 +182,14 @@ export default {
         return
       }
       this.sort = sort
-      this.$refs.loader.refresh()
+      this.$nextTick(() => {
+        this.$refs.loader.refresh()
+      })
     },
     changeTime() {
-      this.$refs.loader.refresh()
+      this.$nextTick(() => {
+        this.$refs.loader.refresh()
+      })
     },
     patchPin({ data }) {
       this.$axios.$get('v1/pin/batch_patch', {
