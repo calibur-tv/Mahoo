@@ -57,7 +57,7 @@
               :key="item.slug"
               class="node"
             >
-              <NLink :to="`/tag/${item.slug}`" target="_blank">
+              <NLink :to="`/tag/${item.slug}`">
                 <VImg :src="item.avatar" width="32" height="32" :alt="item.name" />
                 <span v-text="item.name" />
               </NLink>
