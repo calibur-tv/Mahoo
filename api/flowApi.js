@@ -28,11 +28,11 @@ export const getPinComments = ({ $axios, sort, slug, count, last_id, seen_ids, m
   })
 }
 
-export const getTagFlows = ({ $axios, slug, sort, loop, time, take, seen_ids, last_id }) => {
+export const getTagFlows = ({ $axios, slug, sort, time, take, seen_ids, last_id }) => {
   const timeout = () => new Promise(resolve => setTimeout(resolve, 400))
   const request = () => $axios.$get('v1/flow/pins', {
     params: {
-      slug, sort, loop, time, take, is_up: 0, spec_id: sort === 'newest' ? last_id : seen_ids
+      slug, sort, time, take, is_up: 0, spec_id: sort === 'newest' ? last_id : seen_ids
     }
   })
   return new Promise((resolve, reject) => {

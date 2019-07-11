@@ -89,7 +89,7 @@
         <PinFlowItem
           v-for="item in flow"
           :key="item.slug"
-          :show-area="!!loop"
+          :show-area="showArea"
           :item="item"
         />
       </ul>
@@ -116,9 +116,9 @@ export default {
       type: String,
       required: true
     },
-    loop: {
-      type: Number,
-      default: 0
+    showArea: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -169,7 +169,6 @@ export default {
         $axios: this.$axios,
         slug: this.slug,
         sort: this.sort,
-        loop: this.loop,
         time: this.time,
         take: 10,
         changing: 'slug'

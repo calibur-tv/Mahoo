@@ -57,7 +57,7 @@
               :key="item.slug"
               class="node"
             >
-              <NLink :to="`/tag/${item.slug}`">
+              <NLink :to="`/tag/${item.slug}`" target="_blank">
                 <VImg :src="item.avatar" width="32" height="32" :alt="item.name" />
                 <span v-text="item.name" />
               </NLink>
@@ -67,7 +67,7 @@
         </Affix>
       </ElCol>
       <ElCol :span="14" class="main-wrap">
-        <PinFlowList :slug="slug" :loop="2" />
+        <PinFlowList :slug="slug" />
       </ElCol>
       <ElCol :span="5">
         <!--
