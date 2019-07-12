@@ -33,14 +33,14 @@ export default class Baidu {
 
     const urlInput = document.createElement('input')
     urlInput.classList.add('baidu-resource-url')
-    urlInput.placeholder = '粘贴资源链接到这里'
+    urlInput.placeholder = '粘贴资源链接到这里（仅支持百度云盘：pan.baidu.com）'
     urlInput.type = 'text'
     urlInput.value = this.data && this.data.url ? this.data.url : ''
     wrapper.appendChild(urlInput)
 
     const pwdInput = document.createElement('input')
     pwdInput.classList.add('baidu-resource-password')
-    pwdInput.placeholder = '填写资源的密码'
+    pwdInput.placeholder = '填写资源的密码（4~6位）'
     pwdInput.type = 'text'
     pwdInput.value = this.data && this.data.password ? this.data.password : ''
     wrapper.appendChild(pwdInput)
