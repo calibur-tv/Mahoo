@@ -1,0 +1,49 @@
+$size: 135px;
+.baidu-resource {
+  padding: 0.7em 0;
+
+  &-icon {
+    float: left;
+    text-align: center;
+    width: $size;
+    height: $size;
+    line-height: $size;
+    font-style: normal !important;
+    font-size: 40px;
+    font-weight: bold;
+    margin-right: 20px;
+    background-color: #09AAFF;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  &-wrap {
+    height: $size;
+    overflow: hidden;
+    padding-right: 5px;
+  }
+
+  &-url,
+  &-password {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border: 1px solid rgba(201,201,204,.48);
+    box-shadow: inset 0 1px 2px 0 rgba(35,44,72,.06);
+    border-radius: 3px;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+  }
+
+  &-role-wrap {
+    color: #99a2aa;
+  }
+
+  &-label {
+    margin-right: 20px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}

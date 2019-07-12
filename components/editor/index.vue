@@ -144,6 +144,7 @@
 <script>
 import upload from '~/mixins/upload'
 import { uploadToQiniu } from '~/api/imageApi'
+import BaiduPlugin from '~/components/editor/plugin/baidu'
 
 export default {
   name: 'JsonEditor',
@@ -191,16 +192,21 @@ export default {
           let data = {}
           if (self.slug) {
             // 编辑模式
-            const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
-            if (cache && cache.time > self.$utils.adjustTime(self.time)) {
-              // 如果有缓存，并且缓存的版本更高，就使用缓存
-              data = cache
-            } else {
-              data = {
-                blocks: self.value,
-                time: Date.now(),
-                version: self.$cache.get('editor_version', '2.14.0')
-              }
+            // const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
+            // if (cache && cache.time > self.$utils.adjustTime(self.time)) {
+            //   // 如果有缓存，并且缓存的版本更高，就使用缓存
+            //   data = cache
+            // } else {
+            //   data = {
+            //     blocks: self.value,
+            //     time: Date.now(),
+            //     version: self.$cache.get('editor_version', '2.15.0')
+            //   }
+            // }
+            data = {
+              blocks: self.value,
+              time: Date.now(),
+              version: self.$cache.get('editor_version', '2.15.0')
             }
           } else if (self.$cache.has('editor_local_draft')) {
             data = self.$cache.get('editor_local_draft')
@@ -219,25 +225,25 @@ export default {
                 config: {
                   services: {
                     bilibili: {
-                      regex: /https?:\/\/www\.bilibili\.com\/video\/av([\w\W]*)/,
+                      regex: /https?:\/\/www\.bilibili\.com\/video\/av([\w\W]+)/,
                       embedUrl: '//player.bilibili.com/player.html?aid=<%= remote_id %>',
                       html: "<iframe width='100%' height='350' scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>",
                       id: val => val[0].split('/')[0].split('?')[0]
                     },
                     bilih5: {
-                      regex: /https?:\/\/m\.bilibili\.com\/video\/av([\w\W]*)/,
+                      regex: /https?:\/\/m\.bilibili\.com\/video\/av([\w\W]+)/,
                       embedUrl: '//player.bilibili.com/player.html?aid=<%= remote_id %>',
                       html: "<iframe width='100%' height='350' scrolling='no' border='0' frameborder='no' framespacing='0' allowtransparency='true' allowfullscreen='true'></iframe>",
                       id: val => val[0].split('.')[0].split('?')[0]
                     },
                     netease: {
-                      regex: /https?:\/\/music\.163\.com\/#\/song\?id=([\w\W]*)/,
+                      regex: /https?:\/\/music\.163\.com\/#\/song\?id=([\w\W]+)/,
                       embedUrl: '//music.163.com/outchain/player?type=2&height=66&id=<%= remote_id %>',
                       html: "<iframe frameborder='no' border='0' marginwidth='0' marginheight='0' width='330' height='86'></iframe>",
                       id: val => val[0].split('/')[0].split('?')[0]
                     },
                     neteaseh5: {
-                      regex: /https?:\/\/music\.163\.com\/m\/song\?id=([\w\W]*)/,
+                      regex: /https?:\/\/music\.163\.com\/m\/song\?id=([\w\W]+)/,
                       embedUrl: '//music.163.com/outchain/player?type=2&height=66&id=<%= remote_id %>',
                       html: "<iframe frameborder='no' border='0' marginwidth='0' marginheight='0' width='330' height='86'></iframe>",
                       id: val => val[0].split('/')[0].split('?')[0]
@@ -291,7 +297,8 @@ export default {
               checklist: {
                 class: Checklist,
                 inlineToolbar: true
-              }
+              },
+              baidu: BaiduPlugin
             },
             onChange: () => {
               self.handleSave()

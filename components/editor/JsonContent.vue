@@ -5,6 +5,7 @@
       v-for="(item, index) in content"
       :key="index"
       :item="item"
+      :reward="reward"
     />
   </section>
 </template>
@@ -19,6 +20,7 @@ import checklist from './parser/checklist'
 import link from './parser/link'
 import video from './parser/video'
 import music from './parser/music'
+import baidu from './parser/baidu'
 import Copyright from '~/assets/js/copyright'
 
 export default {
@@ -32,12 +34,17 @@ export default {
     'v-checklist': checklist,
     'v-link': link,
     'v-video': video,
-    'v-music': music
+    'v-music': music,
+    'v-baidu': baidu
   },
   props: {
     content: {
       required: true,
       type: Array
+    },
+    reward: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {

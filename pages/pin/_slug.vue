@@ -159,7 +159,7 @@
           </NLink>
         </template>
       </ContentAuthor>
-      <JsonContent :content="content" />
+      <JsonContent :content="content" :reward="reward_status" />
       <div class="footer">
         <div class="sss-panel">
           <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
@@ -229,6 +229,7 @@ export default {
       last_edit_at: '',
       deleted_at: null,
       deleting: false,
+      reward_status: false,
       like_count: 0,
       visit_count: 0,
       mark_count: 0,
