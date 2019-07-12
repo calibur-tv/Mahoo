@@ -168,7 +168,7 @@
     <div class="header-fixed">
       <div class="container nav">
         <nav class="left">
-          <NLink class="logo" to="/">
+          <NLink class="logo" to="/homepage">
             <VImg src="default-poster" width="32" height="32" radius="50%" alt="calibur" />
           </NLink>
           <VSwitcher :headers="headers" :routable="true" :anchor-padding="15" :header-height="50" align="start">

@@ -142,8 +142,8 @@
         v-model="message"
         maxlength="500"
         placeholder="say it..."
-        @keydown.enter.exact.prevent="handleAddBubble"
-        @keydown.ctrl.exact.prevent="handleAddBubble"
+        @keyup.enter.exact.prevent="handleAddBubble"
+        @keyup.ctrl.exact.prevent="handleAddBubble"
         @keydown.meta.enter.prevent="handleNewLine"
       />
       <div class="helper">
