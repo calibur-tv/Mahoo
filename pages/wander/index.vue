@@ -452,8 +452,13 @@ export default {
     },
     actionRedo() {
       if (this.content.length || this.title.text.length || this.title.banner) {
-        this.$cache.remove(`editor_local_draft_title-${this.slug}`)
-        this.$cache.remove(`editor_local_draft-${this.slug}`)
+        if (this.slug) {
+          this.$cache.remove(`editor_local_draft_title-${this.slug}`)
+          this.$cache.remove(`editor_local_draft-${this.slug}`)
+        } else {
+          this.$cache.remove('editor_local_draft_title')
+          this.$cache.remove('editor_local_draft')
+        }
         this.$toast.success('删除成功')
           .then(() => {
             window.location.reload()
