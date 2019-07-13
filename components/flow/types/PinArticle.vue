@@ -166,7 +166,7 @@
         </NLink>
         <div :class="$style.desc">
           <main>
-            <p v-text="item.intro" />
+            <p v-html="item.intro" />
           </main>
           <footer>
             <NLink v-if="showUser" :to="$alias.user(item.author.slug)" target="_blank" class="oneline">

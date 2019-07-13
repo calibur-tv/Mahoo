@@ -1,0 +1,29 @@
+.cdx-list {
+  margin: 0;
+  outline: none;
+  margin-left: 19px;
+  padding: .7em 0;
+  font-size: 14px;
+
+  &__item {
+    line-height: 25px;
+    margin-bottom: 2px;
+    @extend %breakWord;
+  }
+
+  &--unordered {
+    list-style: disc;
+  }
+
+  &--ordered {
+    list-style: decimal;
+  }
+
+  &-settings {
+    display: flex;
+
+    .cdx-settings-button {
+      width: 50%;
+    }
+  }
+}

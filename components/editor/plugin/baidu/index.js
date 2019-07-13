@@ -94,8 +94,13 @@ export default class Baidu {
     const pwdInput = blockContent.querySelector('.baidu-resource-password')
     const publicInput = blockContent.querySelector('.baidu-resource-role-public')
 
+    let url = urlInput.value.trim()
+    if (!/^https?:\/\//.test(url)) {
+      url = 'https://' + url
+    }
+
     return {
-      url: urlInput.value.trim(),
+      url,
       password: pwdInput.value.trim(),
       visit_type: publicInput.checked ? 0 : 1
     }

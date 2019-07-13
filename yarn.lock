@@ -729,6 +729,11 @@
   resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.0.0-alpha.19.tgz#44f92e7aceacadb909bac11722c1127b4dee7e25"
   integrity sha512-jidzdvrBPdK7gTY0LvEmZq5jwHgvKg06VVtTEAJq89YOMxW/kKvcProqGZMizpPH5UStjdUxNog9reSHLHOSKg==
 
+"@codexteam/ajax@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@codexteam/ajax/-/ajax-4.1.0.tgz#472703b7c1e0843eec1f047b849835e0554c34a5"
+  integrity sha512-OAHJtMJxU8SSPF8MzOOq2GJ+NW4zKgqhc+JlLHiqw2ALIBPXft08ud3FWj6Otqq5ophbpsWHpiJGKjwYQGp6rg==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -777,6 +782,11 @@
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@editorjs/list/-/list-1.4.0.tgz#e92459a8ac2305bc4385245e329c8b5c8437456a"
   integrity sha512-iYDXGbVXvsAJbSxbjFMP4p7kS1zhQyNDqVNzkfMRhItulzKYlOMlFjTIGHqu5SxPy6NrcckhVFaWdfGDn5/gEA==
+
+"@editorjs/marker@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@editorjs/marker/-/marker-1.2.1.tgz#c0d8ebcc7a421e659b5d01c1e59c8aec911c7818"
+  integrity sha512-rfrQru68xFs/7/cwWnzZaAy+IlHafFfYOU8zo+uoAHaex3zNo6oIvDRAfuz8/cYoMWQOkEErmUjkxswKpnG4iQ==
 
 "@jimp/bmp@^0.6.4":
   version "0.6.4"
@@ -2349,7 +2359,15 @@ cache-manager-redis@^0.6.0:
     redis-url "^1.2.1"
     sol-redis-pool "^0.3.2"
 
-cache-manager@^2.2.0, cache-manager@^2.9.1:
+cache-manager@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-2.10.0.tgz#278e9f8784e5d7e6617bfe350358c8ccd17387bf"
+  integrity sha512-IuPx05r5L0uZyBDYicB2Llld1o+/1WYjoHUnrC0TNQejMAnkoYxYS9Y8Uwr+lIBytDiyu7dwwmBCup2M9KugwQ==
+  dependencies:
+    async "1.5.2"
+    lru-cache "4.0.0"
+
+cache-manager@^2.2.0:
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-2.9.1.tgz#1b487252a77e63ccf46be5e41438282bcbc528fb"
   integrity sha512-xHSL/neqi9HmaJJmPetbVoIp2C+vXXr2FgfVK6ZcS9H2nXQJVvf3DPm+yD2FG4g7cQSF8l3wOzQ8eHbWcqmOaQ==
@@ -3624,10 +3642,10 @@ eslint-ast-utils@^1.0.0:
     lodash.get "^4.4.2"
     lodash.zip "^4.2.0"
 
-eslint-config-standard@>=13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-13.0.0.tgz#8032d6fe954f651399763ba4607294aa3c201a23"
-  integrity sha512-GRvEpe2lnML3qPqNryLPjgbU0nDeGBEWOC/IMfn/DjDLyO7DoASyDtGtPhN+Z+XDGUzrHWF8dKDLdDx2bO6CGw==
+eslint-config-standard@>=13.0.1:
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-13.0.1.tgz#c9c6ffe0cfb8a51535bc5c7ec9f70eafb8c6b2c0"
+  integrity sha512-zLKp4QOgq6JFgRm1dDCVv1Iu0P5uZ4v5Wa4DTOkg2RFMxdCX/9Qf7lz9ezRj2dBRa955cWQF/O/LWEiYWAHbTw==
 
 eslint-config-standard@^12.0.0:
   version "12.0.0"
@@ -9214,6 +9232,11 @@ url-parse-lax@^1.0.0:
   integrity sha1-evjzA2Rem9eaJy56FKxovAYJ2nM=
   dependencies:
     prepend-http "^1.0.1"
+
+url-polyfill@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/url-polyfill/-/url-polyfill-1.1.6.tgz#ec186280992adbe59b63f0a33e2a312be1bc14b4"
+  integrity sha512-HquaE7fhLz3U26KfjwWecxUMBxbeQtflhKVpituElJHVwzY4MqxUhH4t2/fKwbQebfvAk8ti+Sd7bjIdzqoRMA==
 
 url@^0.11.0:
   version "0.11.0"

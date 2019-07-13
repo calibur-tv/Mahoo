@@ -73,6 +73,16 @@
   color: #fff;
 }
 
+mark {
+  background-color: $color-main;
+  color: $color-main;
+
+  &::selection {
+    background-color: transparent;
+    color: #fff;
+  }
+}
+
 .only-h5 {
   @media (min-width: 769px) {
     display: none !important;

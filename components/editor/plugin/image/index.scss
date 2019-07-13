@@ -1,0 +1,143 @@
+.image-tool {
+  --bg-color: #CDD1E0;
+  --border-color: #E8E8EB;
+}
+
+.image-tool__image {
+  overflow: hidden;
+}
+
+.image-tool__image-picture {
+  max-width: 100%;
+  vertical-align: bottom;
+  display: block;
+  margin: 0 auto !important;
+}
+
+.image-tool__image-preloader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: cover;
+  margin: auto;
+  position: relative;
+  background-color: var(--bg-color);
+  background-position: center center;
+}
+
+.image-tool__image-preloader::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  border-top-color: var($color-main);
+  left: 50%;
+  top: 50%;
+  margin-top: -30px;
+  margin-left: -30px;
+  animation: image-preloader-spin 2s infinite linear;
+  box-sizing: border-box;
+}
+
+.image-tool__caption {
+  display: inline-block;
+  position: relative;
+  width: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  text-align: center !important;
+  box-shadow: none !important;
+  border-top-width: 0 !important;
+  border-left-width: 0 !important;
+  border-right-width: 0 !important;
+  border-radius: 0 !important;
+  min-width: 115px !important;
+  border-color: $color-gray-line;
+
+  &:before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.image-tool__caption[contentEditable=true][data-placeholder]::before{
+  position: absolute;
+  content: '图片描述';
+  color: #707684;
+  font-weight: normal;
+  opacity: 0;
+}
+
+.image-tool__caption[contentEditable=true][data-placeholder]:empty::before {
+  opacity: 1;
+}
+
+.image-tool__caption[contentEditable=true][data-placeholder]:empty:focus::before {
+  opacity: 0;
+}
+
+.image-tool--empty .image-tool__image {
+  display: none;
+}
+
+.image-tool--empty .image-tool__caption, .image-tool--loading .image-tool__caption {
+  display: none;
+}
+
+.image-tool--filled .cdx-button {
+  display: none;
+}
+
+.image-tool--filled .image-tool__image-preloader {
+  display: none;
+}
+
+.image-tool--loading .image-tool__image {
+  min-height: 200px;
+  display: flex;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+}
+
+.image-tool--loading .image-tool__image-picture {
+  display: none;
+}
+
+.image-tool--loading .cdx-button {
+  display: none;
+}
+
+/**
+ * Tunes
+ * ----------------
+ */
+
+.image-tool--withBorder .image-tool__image {
+  border: 1px solid var($color-gray-border);
+}
+
+.image-tool--withBackground .image-tool__image {
+  padding: 15px;
+  background: var($color-gray-bg);
+}
+
+.image-tool--withBackground .image-tool__image-picture {
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.image-tool--stretched .image-tool__image-picture {
+  width: 100%;
+}
+
+@keyframes image-preloader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

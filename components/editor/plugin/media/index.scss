@@ -1,3 +1,10 @@
+.embed-tool {
+  iframe {
+    margin: 0 auto;
+    display: block;
+  }
+}
+
 .embed-tool--loading .embed-tool__caption {
   display: none;
 }
@@ -29,7 +36,7 @@
   margin-left: -15px;
   border-radius: 50%;
   border: 2px solid #cdd1e0;
-  border-top-color: #388ae5;
+  border-top-color: $color-main;
   box-sizing: border-box;
   animation: embed-preloader-spin 2s infinite linear;
 }
@@ -47,10 +54,28 @@
 }
 .embed-tool__caption {
   margin-top: 7px;
+  display: inline-block;
+  position: relative;
+  width: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  text-align: center !important;
+  box-shadow: none !important;
+  border-top-width: 0 !important;
+  border-left-width: 0 !important;
+  border-right-width: 0 !important;
+  border-radius: 0 !important;
+  min-width: 115px !important;
+  border-color: $color-gray-line;
+
+  &:before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 .embed-tool__caption[contentEditable=true][data-placeholder]::before{
   position: absolute;
-  content: attr(data-placeholder);
+  content: '文字描述';
   color: #707684;
   font-weight: normal;
   opacity: 0;

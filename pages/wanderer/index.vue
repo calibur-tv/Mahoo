@@ -412,8 +412,7 @@ export default {
         publish
       })
         .then(slug => {
-          this.$cache.remove(`editor_local_draft_title-${this.slug}`)
-          this.$cache.remove('editor_local_draft')
+          this.removeCache()
           window.location = this.$alias.pin(slug)
         })
         .catch(err => {
@@ -441,8 +440,7 @@ export default {
         publish
       })
         .then(result => {
-          this.$cache.remove(`editor_local_draft_title-${slug}`)
-          this.$cache.remove(`editor_local_draft-${slug}`)
+          this.removeCache()
           window.location = this.$alias.pin(result)
         })
         .catch(err => {
@@ -452,18 +450,16 @@ export default {
     },
     actionRedo() {
       if (this.content.length || this.title.text.length || this.title.banner) {
-        if (this.slug) {
-          this.$cache.remove(`editor_local_draft_title-${this.slug}`)
-          this.$cache.remove(`editor_local_draft-${this.slug}`)
-        } else {
-          this.$cache.remove('editor_local_draft_title')
-          this.$cache.remove('editor_local_draft')
-        }
-        this.$toast.success('删除成功')
+        this.removeCache()
+        this.$toast.success(this.slug ? '撤销成功' : '删除成功')
           .then(() => {
             window.location.reload()
           })
       }
+    },
+    removeCache() {
+      this.$cache.remove(`editor_local_draft_title-${this.slug}`)
+      this.$cache.remove(`editor_local_draft-${this.slug}`)
     }
   }
 }

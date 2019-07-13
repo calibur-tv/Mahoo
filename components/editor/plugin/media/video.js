@@ -1,4 +1,4 @@
-import { video } from './services'
+import video from './services'
 import Embed from './embed'
 
 export default class Video extends Embed {

@@ -4,18 +4,6 @@
     display: none !important;
   }
 
-  .ce-delimiter {
-    background-image: url(~assets/img/divider.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 50%;
-    height: 100px;
-
-    &:before {
-      content: none !important;
-    }
-  }
-
   .ce-block {
     font-weight: normal;
     font-style: normal;
@@ -44,94 +32,6 @@
   .ce-paragraph {
     @extend %breakWord;
   }
-
-  .cdx-list {
-    margin-left: 19px;
-    padding: .7em 0;
-    font-size: 14px;
-
-    li {
-      line-height: 25px;
-      margin-bottom: 2px;
-      padding: 0;
-      @extend %breakWord;
-    }
-  }
-
-  .image-tool {
-    &__image {
-      border-radius: 0;
-      margin-bottom: 0;
-
-      &-picture {
-        margin: 0 auto !important;
-      }
-    }
-
-    &--withBackground .image-tool__image {
-      background-color: $color-gray-bg;
-    }
-
-    &--withBorder .image-tool__image {
-      border-color: $color-gray-border;
-    }
-  }
-
-  .embed-tool {
-    iframe {
-      margin: 0 auto;
-      display: block;
-    }
-  }
-
-  .image-tool,
-  .embed-tool {
-    &__caption {
-      display: inline-block;
-      position: relative;
-      width: auto !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      text-align: center !important;
-      box-shadow: none !important;
-      border-top-width: 0 !important;
-      border-left-width: 0 !important;
-      border-right-width: 0 !important;
-      border-radius: 0 !important;
-      min-width: 115px !important;
-      border-color: $color-gray-line;
-
-      &[contentEditable=true][data-placeholder]::before {
-        content: '文字描述';
-      }
-
-      &:before {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-  }
-
-  .link-tool__content {
-    display: block !important;
-  }
-
-  .cdx-checklist__item {
-    padding-left: 0;
-    padding-right: 0;
-
-    &--checked {
-      .cdx-checklist__item-checkbox {
-        background-color: $color-main;
-        border-color: $color-main;
-
-        &:hover {
-          border-color: $color-main-dark;
-          background-color: $color-main-dark;
-        }
-      }
-    }
-  }
 }
 </style>
 
@@ -144,8 +44,13 @@
 <script>
 import upload from '~/mixins/upload'
 import { uploadToQiniu } from '~/api/imageApi'
+import HeaderPlugin from '~/components/editor/plugin/header'
 import BaiduPlugin from '~/components/editor/plugin/baidu'
 import EmbedPlugin from '~/components/editor/plugin/media/embed'
+import DelimiterPlugin from '~/components/editor/plugin/delimiter'
+import ListPlugin from '~/components/editor/plugin/list'
+import ChecklistPlugin from '~/components/editor/plugin/checklist'
+import MarkPlugin from '~/components/editor/plugin/mark'
 
 export default {
   name: 'JsonEditor',
@@ -180,39 +85,30 @@ export default {
     initEditor() {
       Promise.all([
         import('@editorjs/editorjs'),
-        import('@editorjs/header'),
-        import('@editorjs/list'),
-        import('@editorjs/delimiter'),
-        import('@editorjs/link'),
-        import('@editorjs/image'),
-        import('@editorjs/checklist')
+        import('~/components/editor/plugin/image'),
+        import('~/components/editor/plugin/link')
       ])
         .then(modules => {
           const self = this
           let data = {}
           if (self.slug) {
             // 编辑模式
-            // const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
-            // if (cache && cache.time > self.$utils.adjustTime(self.time)) {
-            //   // 如果有缓存，并且缓存的版本更高，就使用缓存
-            //   data = cache
-            // } else {
-            //   data = {
-            //     blocks: self.value,
-            //     time: Date.now(),
-            //     version: self.$cache.get('editor_version', '2.15.0')
-            //   }
-            // }
-            data = {
-              blocks: self.value,
-              time: Date.now(),
-              version: self.$cache.get('editor_version', '2.15.0')
+            const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
+            if (cache && cache.time > self.$utils.adjustTime(self.time)) {
+              // 如果有缓存，并且缓存的版本更高，就使用缓存
+              data = cache
+            } else {
+              data = {
+                blocks: self.value,
+                time: Date.now(),
+                version: self.$cache.get('editor_version', '2.15.0')
+              }
             }
-          } else if (self.$cache.has('editor_local_draft')) {
-            data = self.$cache.get('editor_local_draft')
+          } else if (self.$cache.has('editor_local_draft-')) {
+            data = self.$cache.get('editor_local_draft-')
             self.$emit('input', data.blocks)
           }
-          const [EditorJS, Header, List, Delimiter, LinkTool, ImageTool, Checklist] = modules.map(_ => _.default)
+          const [EditorJS, ImagePlugin, LinkPlugin] = modules.map(_ => _.default)
           const editor = new EditorJS({
             data: self.decodeData(data || {}),
             holder: 'codex-editor',
@@ -223,14 +119,16 @@ export default {
                 class: EmbedPlugin,
                 inlineToolbar: true
               },
+              marker: {
+                class: MarkPlugin,
+                shortcut: 'CMD+SHIFT+M'
+              },
               header: {
-                class: Header,
-                shortcut: 'CMD+SHIFT+H',
+                class: HeaderPlugin,
                 inlineToolbar: true
               },
               image: {
-                class: ImageTool,
-                shortcut: 'CMD+SHIFT+P',
+                class: ImagePlugin,
                 types: 'image/jpeg, image/png, image/jpg',
                 config: {
                   uploader: {
@@ -254,23 +152,25 @@ export default {
                 }
               },
               link: {
-                class: LinkTool,
-                shortcut: 'CMD+SHIFT+L',
+                class: LinkPlugin,
                 config: {
                   endpoint: `${process.env.API_URL_BROWSER}v1/pin/editor/fetch_site`
                 }
               },
-              delimiter: Delimiter,
+              delimiter: {
+                class: DelimiterPlugin
+              },
               list: {
-                class: List,
-                shortcut: 'CMD+SHIFT+U',
+                class: ListPlugin,
                 inlineToolbar: true
               },
               checklist: {
-                class: Checklist,
+                class: ChecklistPlugin,
                 inlineToolbar: true
               },
-              baidu: BaiduPlugin
+              baidu: {
+                class: BaiduPlugin
+              }
             },
             onChange: () => {
               self.handleSave()
@@ -303,7 +203,7 @@ export default {
       }
       this.editor.save().then(outputData => {
         const value = this.encodeData(outputData)
-        const cacheKey = this.slug ? `editor_local_draft-${this.slug}` : 'editor_local_draft'
+        const cacheKey = `editor_local_draft-${this.slug || ''}`
         this.$cache.set(cacheKey, value)
         this.$cache.set('editor_version', value.version)
         if (this.value) {
