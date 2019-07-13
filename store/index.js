@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { getLoginUser, getMailboxTotal } from '~/api/userApi'
-import { getUserFromSessionStore } from '~/assets/js/cache'
+import { getUserFromSessionStore, set as setCache } from '~/assets/js/cache'
 import { randomStr } from '~/assets/js/utils'
 
 export const state = () => ({
@@ -19,7 +19,8 @@ export const state = () => ({
   messageRoom: {},
   socket: {
     isConnected: false,
-    reconnectErr: false
+    reconnectErr: false,
+    isMaster: false
   }
 })
 
@@ -40,9 +41,14 @@ export const mutations = {
   UPDATE_USER_INFO(state, { key, value }) {
     Vue.set(state.user, key, value)
   },
+  SOCKET_AUTO_CONNECT(state) {
+    state.socket.isConnected = true
+    state.socket.reconnectErr = false
+  },
   SOCKET_ONOPEN(state, event) {
     state.socket.isConnected = true
     state.socket.reconnectErr = false
+    state.socket.isMaster = true
   },
   SOCKET_ONCLOSE(state, event) {
     state.socket.isConnected = false
@@ -72,6 +78,10 @@ export const mutations = {
     } else {
       state.messageRoom[message.channel].data = message
       state.messageRoom[message.channel].time = randomStr()
+    }
+    if (state.socket.isMaster) {
+      setCache('socket-on-message-data', message)
+      setCache('socket-on-message-time', Date.now())
     }
   },
   SOCKET_RECONNECT(state, count) {

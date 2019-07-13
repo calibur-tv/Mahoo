@@ -10,6 +10,7 @@
 import VHeader from '~/components/common/Header'
 import SignDialog from '~/components/SignDialog'
 import useSignMixin from '~/mixins/useSign'
+import socketMixin from '~/mixins/socket'
 
 export default {
   name: 'WebLayout',
@@ -17,6 +18,6 @@ export default {
     VHeader,
     SignDialog
   },
-  mixins: [useSignMixin]
+  mixins: [useSignMixin, socketMixin]
 }
 </script>

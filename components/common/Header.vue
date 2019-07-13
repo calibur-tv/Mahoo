@@ -298,15 +298,15 @@ export default {
     getUnreadMessageCount() {
       this.$store.dispatch('refreshMailbox')
       let lastMoveAt = Date.now()
-      let isVisible = true
       window.addEventListener('mousemove', throttle(3000, () => {
         lastMoveAt = Date.now()
       }))
-      document.addEventListener('visibilitychange', () => {
-        isVisible = document.visibilityState === 'visible'
-      })
       setInterval(() => {
-        if (isVisible && Date.now() - lastMoveAt < 30000) {
+        if (
+          document.visibilityState === 'visible' &&
+          !this.$store.state.socket.isConnected &&
+          Date.now() - lastMoveAt < 30000
+        ) {
           this.$store.dispatch('refreshMailbox')
         }
       }, 10000)

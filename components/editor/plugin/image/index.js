@@ -325,6 +325,7 @@ export default class ImageTool {
    * @param {string} errorText
    */
   uploadingFailed(errorText) {
+    // eslint-disable-next-line
     console.log('Image Tool: uploading failed because of', errorText)
 
     this.api.notifier.show({

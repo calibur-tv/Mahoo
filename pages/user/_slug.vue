@@ -440,14 +440,6 @@ export default {
   },
   beforeMount() {
     this.patchUser()
-    this.$channel.$when('user-signed', () => {
-      this.connectSocket()
-    })
-  },
-  beforeDestroy() {
-    if (this.isMine && this.$store.state.socket.isConnected) {
-      this.$channel.socketDisconnect()
-    }
   },
   methods: {
     patchUser() {
@@ -471,11 +463,6 @@ export default {
     },
     handleFollowAction(result) {
       this.user.followers_count -= -result
-    },
-    connectSocket() {
-      if (this.isMine && !this.$store.state.socket.isConnected) {
-        this.$channel.socketConnect()
-      }
     }
   }
 }
