@@ -1,6 +1,6 @@
 import './index.scss'
 import { debounce } from 'throttle-debounce'
-
+import SERVICES from './services'
 /**
  * @typedef {Object} EmbedData
  * @description Embed Tool data
@@ -43,12 +43,10 @@ export default class Embed {
    *   config - user config for Tool
    *   api - Editor.js API
    */
-  constructor({ data, api, services }) {
+  constructor({ data, api }) {
     this.api = api
     this._data = {}
-    this.services = services
     this.element = null
-    console.log(data, api, services)
     this.data = data
   }
 
@@ -220,7 +218,7 @@ export default class Embed {
   static prepare({ config = {} }) {
     const { services = {} } = config
 
-    let entries = Object.entries(this.services)
+    let entries = Object.entries(SERVICES)
 
     const enabledServices = Object
       .entries(services)

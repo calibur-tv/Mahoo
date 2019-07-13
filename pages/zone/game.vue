@@ -1,13 +1,17 @@
 <style lang="scss">
 #zone-game {
   .left-aside {
-    .child-node {
-      margin-top: 20px;
-      margin-right: 10px;
+    margin-right: 10px;
 
+    .title {
+      margin: 20px 0 10px 10px;
+    }
+
+    .child-node {
       li {
         padding: 10px;
         border-radius: 5px;
+        cursor: pointer;
 
         &:hover {
           background-color: #f6f6f6;
@@ -43,11 +47,11 @@
 <template>
   <div id="zone-game">
     <ElRow class="container">
-      <ElCol
-        class="left-aside"
-        :span="5"
-      >
-        <Affix :top="50">
+      <ElCol :span="5">
+        <Affix class="left-aside" :top="50">
+          <h3 class="title">
+            热门游戏
+          </h3>
           <ul
             v-if="children.length"
             class="child-node"
@@ -63,7 +67,6 @@
               </NLink>
             </li>
           </ul>
-          &nbsp;
         </Affix>
       </ElCol>
       <ElCol :span="14" class="main-wrap">

@@ -56,6 +56,21 @@
       }
     }
   }
+
+  .flow-loader-state {
+    &-nothing {
+      img {
+        height: 175px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 12px;
+        color: $color-text-3;
+      }
+    }
+  }
 }
 </style>
 
@@ -94,6 +109,10 @@
         />
       </ul>
       <SkeletonArticle slot="loading" />
+      <template slot="nothing">
+        <img src="~assets/img/error/no-content.png">
+        <p>这里什么都没有</p>
+      </template>
     </FlowLoader>
   </div>
 </template>

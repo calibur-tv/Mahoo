@@ -1,6 +1,10 @@
 <style lang="scss">
 #tag-show {
   .left-aside {
+    .join-card {
+      margin: 20px 15px 20px 10px;
+    }
+
     .child-node {
       margin-top: 20px;
       margin-right: 10px;
@@ -43,11 +47,9 @@
 <template>
   <div id="tag-show">
     <ElRow class="container">
-      <ElCol
-        class="left-aside"
-        :span="5"
-      >
-        <Affix :top="50">
+      <ElCol :span="5">
+        <Affix class="left-aside" :top="50">
+          <joinCard :tag="tag" />
           <ul
             v-if="children.length"
             class="child-node"
@@ -63,12 +65,10 @@
               </NLink>
             </li>
           </ul>
-          &nbsp;
         </Affix>
       </ElCol>
       <ElCol :span="14" class="main-wrap">
         <PinFlowList :slug="slug" :show-area="false" />
-        &nbsp;
       </ElCol>
       <ElCol :span="5">
         <!--
@@ -105,11 +105,13 @@ import * as API from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 import CreateTagBtn from '~/components/button/CreateTagBtn'
 import PinFlowList from '~/components/flow/PinFlowList'
+import joinCard from '~/components/tag/joinCard'
 
 export default {
   name: 'TagShow',
   components: {
     Affix,
+    joinCard,
     CreateTagBtn,
     PinFlowList
   },
