@@ -127,10 +127,10 @@
             left: 50%;
             transform: translate(-50%);
             background-color: #fff;
-            width: 260px;
-            padding: 50px 0 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,.16);
-            border-radius: 0 0 4px 4px;
+            width: 295px;
+            padding: 30px 12px 12px;
+            box-shadow: 0 8px 20px 0 rgba(158,179,193,.3);
+            border-radius: 0 0 10px 10px;
             transition: .3s;
 
             &:hover {
@@ -138,13 +138,53 @@
               visibility: visible;
             }
 
-            .bottom {
-              padding: 0 20px;
+            .nickname {
+              margin: 10px 0;
+              text-align: center;
+              font-size: 16px;
+              color: #666;
+            }
+
+            .field {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+              padding: 5px;
+              margin-left: -5px;
+              margin-right: -5px;
+              border-radius: 5px;
+
+              &:hover {
+                background-color: #f4f5f7;
+              }
+
+              .label {
+                margin-left: 5px;
+                cursor: default;
+                color: $color-text-2;
+
+                .iconfont {
+                  font-size: 16px;
+                  color: $color-icon-2;
+                }
+              }
+            }
+
+            .sign-out {
+              display: block;
+              width: 100%;
               height: 30px;
               line-height: 30px;
               background-color: #f4f5f7;
-              text-align: right;
+              text-align: center;
               font-size: 12px;
+              border-radius: 5px;
+              margin-top: 10px;
+
+              &:hover {
+                color: $color-main;
+              }
             }
           }
         }
@@ -200,11 +240,24 @@
                   />
                 </NLink>
                 <div class="user-popover">
-                  <div class="bottom">
-                    <button @click="handleLogout">
-                      退出
-                    </button>
+                  <p class="nickname oneline" v-text="user.nickname" />
+                  <div class="field">
+                    <div class="label">
+                      <i class="iconfont ic-night" />
+                      <span>夜间模式</span>
+                    </div>
+                    <div class="value">
+                      <ElSwitch
+                        v-model="night_mode"
+                        active-color="#ff6881"
+                        inactive-color="#c0c0c0"
+                        @change="handleNightModeSwitch"
+                      />
+                    </div>
                   </div>
+                  <button class="sign-out" @click="handleLogout">
+                    退出
+                  </button>
                 </div>
               </div>
               <NLink class="icon-link" :to="$alias.user(user.slug, 'message')">
@@ -237,13 +290,14 @@
 </template>
 
 <script>
-import { Badge } from 'element-ui'
+import { Badge, Switch } from 'element-ui'
 import { throttle } from 'throttle-debounce'
 import { logout } from '~/api/userApi'
 
 export default {
   components: {
-    ElBadge: Badge
+    ElBadge: Badge,
+    ElSwitch: Switch
   },
   props: {
     showUser: {
@@ -253,6 +307,7 @@ export default {
   },
   data() {
     return {
+      night_mode: false,
       headers: [
         {
           route: '/zone/bangumi',
@@ -310,6 +365,9 @@ export default {
           this.$store.dispatch('refreshMailbox')
         }
       }, 10000)
+    },
+    handleNightModeSwitch() {
+      this.$toast.success('开个玩笑，还没支持~')
     }
   }
 }
