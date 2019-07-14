@@ -71,7 +71,6 @@
       width: 100%;
       resize: none;
       background-color: transparent;
-      outline-width: 0;
       border-width: 0;
       padding: 5px 20px;
       font-size: 14px;
@@ -136,23 +135,23 @@
           </Scroll>
         </div>
       </FlowLoader>
-    </no-ssr>
-    <div class="room-footer">
-      <textarea
-        v-model="message"
-        maxlength="500"
-        placeholder="say it..."
-        @keyup.enter.exact.prevent="handleAddBubble"
-        @keyup.ctrl.exact.prevent="handleAddBubble"
-        @keydown.meta.enter.prevent="handleNewLine"
-      />
-      <div class="helper">
-        <span v-text="computeHelperTxt" />
-        <button @click="handleAddBubble">
-          发送
-        </button>
+      <div class="room-footer">
+        <textarea
+          v-model="message"
+          maxlength="500"
+          placeholder="say it..."
+          @keyup.enter.exact.prevent="handleAddBubble"
+          @keyup.ctrl.exact.prevent="handleAddBubble"
+          @keydown.meta.enter.prevent="handleNewLine"
+        />
+        <div class="helper">
+          <span v-text="computeHelperTxt" />
+          <button @click="handleAddBubble">
+            发送
+          </button>
+        </div>
       </div>
-    </div>
+    </no-ssr>
   </div>
 </template>
 

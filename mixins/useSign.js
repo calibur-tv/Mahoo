@@ -9,6 +9,7 @@ export default {
           canceler()
         } else {
           this.$cookie.remove('JWT-TOKEN')
+          this.$channel.$fire('user-not-sign')
         }
       })
     } else {
@@ -19,6 +20,7 @@ export default {
         this.$channel.$fire('user-signed')
       } else {
         this.$cookie.remove('JWT-TOKEN')
+        this.$channel.$fire('user-not-sign')
       }
     }
   }
