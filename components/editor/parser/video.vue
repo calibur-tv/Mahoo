@@ -4,17 +4,26 @@
   text-align: center;
 
   .wrap {
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 0;
     padding-top: 60%;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 
     iframe {
       position: absolute;
       left: 0;
-      top: 0;
+      top: -50px;
+      bottom: -39px;
       width: 100%;
-      height: 100%;
+      height: calc(100% + 89px);
+
+      @media (max-width: 768px) {
+        height: 100%;
+        top: 0;
+        bottom: 0;
+      }
     }
   }
 

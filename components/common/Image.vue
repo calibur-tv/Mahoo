@@ -14,8 +14,11 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 100%;
-      height: 100%;
+    }
+  }
+
+  &.is-blur {
+    img {
       will-change: filter, opacify;
       animation: blur 500ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
     }
@@ -41,7 +44,7 @@
 </style>
 
 <template>
-  <picture v-lazyload="handle" class="img" :style="[style, extraStyle]" :class="{ 'is-full': isFull }">
+  <picture v-lazyload="handle" class="img" :style="[style, extraStyle]" :class="{ 'is-full': isFull, 'is-blur': useBlur }">
     <source :srcset="source" type="image/webp">
     <img :src="show" :alt="alt">
   </picture>
@@ -78,6 +81,10 @@ export default {
     stretched: {
       type: Boolean,
       default: false
+    },
+    blur: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -85,10 +92,12 @@ export default {
     const src = def
       ? def.startsWith('http') ? def : `https://m1.calibur.tv/${def}`
       : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+    const isFull = typeof width === 'number' && typeof this.height === 'number' && !this.radius
     return {
       show: src,
       source: src,
-      isFull: typeof width === 'number' && typeof this.height === 'number' && !this.radius,
+      isFull,
+      useBlur: isFull ? true : this.blur,
       isLarge: width.toString().endsWith('%'),
       extraStyle: {}
     }

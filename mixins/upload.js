@@ -33,9 +33,13 @@ export default {
     }
   },
   mounted() {
-    this.$channel.$when('user-signed', () => {
+    if (this.isAuth) {
       this.initUpToken()
-    })
+    } else {
+      this.$channel.$when('user-signed', () => {
+        this.initUpToken()
+      })
+    }
   },
   beforeDestroy() {
     this.getUpTokenTimer && clearInterval(this.getUpTokenTimer)
