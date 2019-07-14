@@ -1,7 +1,7 @@
 export default {
   beforeMount() {
     this.$channel.$when('user-signed', () => {
-      const HEART_BEAT_TTL = 3000
+      const HEART_BEAT_TTL = 1000
       const detectSocketIsConnected = () => Date.now() - this.$cache.get('socket-connect-heartbeat', 0) <= HEART_BEAT_TTL
       const connectSocketIfNotExist = () => {
         /**
@@ -39,21 +39,21 @@ export default {
               connected()
               clearInterval(timer)
             }
-          }, HEART_BEAT_TTL)
+          }, HEART_BEAT_TTL * 2)
         }
         /**
          * 1. 检测 websocket 是否已经连接
          * 2. 如果已连接则修改 store 状态，并进行心跳检测，如果未连接则创建连接
          */
-        if (detectSocketIsConnected()) {
+        if (detectSocketIsConnected() || document.visibilityState !== 'visible') {
           this.$store.commit('SOCKET_AUTO_CONNECT')
           heartbeat()
         } else {
           connected()
         }
       }
-      // 用户登录 3000ms 后连接 websocket
-      setTimeout(connectSocketIfNotExist, HEART_BEAT_TTL)
+      // 用户登录后连接 websocket
+      setTimeout(connectSocketIfNotExist, HEART_BEAT_TTL * 2)
     })
   },
   beforeDestroy() {

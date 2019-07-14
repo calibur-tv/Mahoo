@@ -44,6 +44,7 @@ export const mutations = {
   SOCKET_AUTO_CONNECT(state) {
     state.socket.isConnected = true
     state.socket.reconnectErr = false
+    state.socket.isMaster = false
   },
   SOCKET_ONOPEN(state, event) {
     state.socket.isConnected = true
