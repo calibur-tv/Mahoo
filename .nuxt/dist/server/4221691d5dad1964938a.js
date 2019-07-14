@@ -1,2 +1,0 @@
-exports.ids=[6],exports.modules={275:function(e,t,o){"use strict";o.r(t);var n={name:"Homepage",layout:"web",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},r=o(2);var component=Object(r.a)(n,function(){var e=this.$createElement;return(this._self._c||e)("div",{attrs:{id:"homepage"}},[this._ssrNode('<div class="container">\n    homepage\n  </div>')])},[],!1,function(e){},null,"6a4346b2");t.default=component.exports}};
-//# sourceMappingURL=4221691d5dad1964938a.js.map
