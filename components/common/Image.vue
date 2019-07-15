@@ -15,13 +15,14 @@
       position: absolute;
       left: 0;
       top: 0;
+      animation-duration: 1500ms !important;
     }
   }
 
   &.is-blur {
     img {
       will-change: filter, opacify;
-      animation: blur 1s 1 ease-in;
+      animation: blur 500ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
     @keyframes blur {
