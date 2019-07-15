@@ -9,6 +9,7 @@
   &.is-full {
     position: relative;
     display: block;
+    background-color: #F1F3F4;
 
     img {
       position: absolute;
@@ -20,7 +21,7 @@
   &.is-blur {
     img {
       will-change: filter, opacify;
-      animation: blur 500ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation: blur 1s 1 ease-in;
     }
 
     @keyframes blur {
