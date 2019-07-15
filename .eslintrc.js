@@ -31,6 +31,8 @@ module.exports = {
   globals: {
     importScripts: true,
     workbox: true,
-    _hmt: true
+    _hmt: true,
+    wx: true,
+    setShareInfo: true
   }
 }

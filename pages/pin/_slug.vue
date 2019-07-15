@@ -165,6 +165,7 @@
           <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinRewardBtn v-model="reward_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
+          <PinShareBtn :pin="share" />
         </div>
       </div>
       <CommentMain :slug="slug" />
@@ -187,6 +188,7 @@ import CommentMain from '~/components/comment/CommentMain'
 import PinVoteBtn from '~/components/button/PinVoteBtn'
 import PinRewardBtn from '~/components/button/PinRewardBtn'
 import PinMarkBtn from '~/components/button/PinMarkBtn'
+import PinShareBtn from '~/components/button/PinShareBtn'
 
 export default {
   name: 'PinShow',
@@ -198,7 +200,8 @@ export default {
     ElTooltip: tooltip,
     PinVoteBtn,
     PinRewardBtn,
-    PinMarkBtn
+    PinMarkBtn,
+    PinShareBtn
   },
   head() {
     return {
@@ -235,6 +238,15 @@ export default {
       mark_count: 0,
       comment_count: 0,
       reward_count: 0
+    }
+  },
+  computed: {
+    share() {
+      return {
+        title: this.title,
+        intro: this.intro,
+        content: this.content
+      }
     }
   },
   asyncData({ app, error, params, query }) {

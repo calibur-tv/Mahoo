@@ -124,11 +124,11 @@ export default {
   },
   methods: {
     handle() {
-      const { src, isFull, isLarge, $h5 } = this
+      const { src, isFull, isLarge } = this
       const mode = isLarge ? 2 : 1
       let { width, height } = this
       if (isFull) {
-        const maxWidth = $h5 ? 420 : 660
+        const maxWidth = window.screen.width <= 768 ? 420 : 660
         if (width > maxWidth) {
           height = parseInt(maxWidth / width * height, 10)
           width = maxWidth

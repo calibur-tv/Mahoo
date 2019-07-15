@@ -79,7 +79,10 @@
             <li @click="authQQ">
               <i class="iconfont ic-qq" />
             </li>
-            <li @click="authWechat">
+            <li class="only-pc" @click="authWechat">
+              <i class="iconfont ic-v-chat" />
+            </li>
+            <li class="only-h5" @click="authWeixin">
               <i class="iconfont ic-v-chat" />
             </li>
           </ul>
@@ -150,13 +153,16 @@ export default {
   },
   methods: {
     authQQ() {
-      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
-      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=sign&redirect=${redirect}`
+      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=sign&redirect=${this.redirect}`
     },
     authWechat() {
-      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
-      const method = this.$h5 ? 'weixin' : 'wechat'
-      window.location.href = `https://api.calibur.tv/callback/oauth2/${method}?from=sign&redirect=${redirect}`
+      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=sign&redirect=${this.redirect}`
+    },
+    authWeixin() {
+      window.location.href = `https://api.calibur.tv/callback/oauth2/weixin?from=sign&redirect=${this.redirect}`
+    },
+    redirect() {
+      return this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
     },
     submitForm() {
       this.$refs.form.validate(valid => {

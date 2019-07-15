@@ -102,7 +102,10 @@
         <li @click="qqRegisterLink">
           <i class="iconfont ic-qq" />
         </li>
-        <li @click="wechatRegisterLink">
+        <li class="only-pc" @click="wechatRegisterLink">
+          <i class="iconfont ic-v-chat" />
+        </li>
+        <li class="only-h5" @click="weixinRegisterLink">
           <i class="iconfont ic-v-chat" />
         </li>
       </ul>
@@ -220,26 +223,26 @@ export default {
     }
   },
   methods: {
-    qqRegisterLink() {
-      let link = 'https://api.calibur.tv/callback/oauth2/qq?from=sign'
+    addInviteForLink(url) {
+      let result = url
       if (this.paramsIsOK) {
-        link = `${link}&invite=${this.query.uid}`
+        result = `${result}&invite=${this.query.uid}`
       } else if (this.$route.name === 'about-invite-id') {
-        link = `${link}&invite=${this.$route.params.id}`
+        result = `${result}&invite=${this.$route.params.id}`
       }
-      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
-      window.location.href = `${link}&redirect=${redirect}`
+      return result
+    },
+    qqRegisterLink() {
+      window.location.href = `${this.addInviteForLink('https://api.calibur.tv/callback/oauth2/qq?from=sign')}&redirect=${this.redirect}`
     },
     wechatRegisterLink() {
-      const method = this.$h5 ? 'weixin' : 'wechat'
-      let link = `https://api.calibur.tv/callback/oauth2/${method}?from=sign`
-      if (this.paramsIsOK) {
-        link = `${link}&invite=${this.query.uid}`
-      } else if (this.$route.name === 'about-invite-id') {
-        link = `${link}&invite=${this.$route.params.id}`
-      }
-      const redirect = this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
-      window.location.href = `${link}&redirect=${redirect}`
+      window.location.href = `${this.addInviteForLink('https://api.calibur.tv/callback/oauth2/wechat?from=sign')}&redirect=${this.redirect}`
+    },
+    weixinRegisterLink() {
+      window.location.href = `${this.addInviteForLink('https://api.calibur.tv/callback/oauth2/weixin?from=sign')}&redirect=${this.redirect}`
+    },
+    redirect() {
+      return this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)
     },
     submitForm() {
       this.$refs.form.validate(valid => {
