@@ -24,7 +24,11 @@ export const adjustTime = time => {
   if (/^\d+$/.test(time) && time.toString().length === 10) {
     return time * 1000
   }
-  return new Date(time).getTime()
+  return new Date(time.replace(/-/g, '/')).getTime()
+}
+
+export const shortenNumber = num => {
+  return num > 1000 ? `${Math.floor((num / 1000) * 10) / 10}k` : num
 }
 
 export const timeAgo = time => {
