@@ -59,7 +59,7 @@
     "url-polyfill": "^1.1.7",
     "v-switcher": "^1.0.55",
     "vue-clipboards": "^1.3.0",
-    "vue-mixin-store": "1.1.40",
+    "vue-mixin-store": "1.1.43",
     "vue-native-websocket": "^2.0.13"
   },
   "devDependencies": {

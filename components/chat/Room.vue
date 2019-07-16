@@ -118,7 +118,6 @@
         ref="loader"
         func="getUserMessage"
         type="sinceId"
-        sort="asc"
         :query="query"
         :callback="handleMessageLoad"
         :cache-timeout="86400"
@@ -233,7 +232,7 @@ export default {
     initRoom() {
       this.$nextTick(async() => {
         this.$refs.room && this.$refs.room.clearMessage()
-        await this.$refs.loader.initData()
+        await this.$refs.loader.initData({ is_up: 1 })
         await this.$refs.loader.loadMore({ force: true })
         this.clearUnreadCount()
         this.watchMessageLoop()
@@ -282,12 +281,12 @@ export default {
       }
       this.$refs.loader.loadBefore({ force: true })
     },
-    handleMessageLoad({ data, args }) {
-      if (args.is_up === 0 && !data.result.length) {
+    handleMessageLoad({ data, params }) {
+      if (params.is_up === 0 && !data.result.length) {
         this.noMore = true
       }
       this.$nextTick(() => {
-        if (args.is_up === 1) {
+        if (params.is_up === 1) {
           data.result.map(_ => _).reverse().map(msg => {
             this.appendMessage(msg, false)
           })
