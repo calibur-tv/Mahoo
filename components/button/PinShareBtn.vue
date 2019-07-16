@@ -20,6 +20,30 @@
       margin-left: -2px;
       font-size: 20px;
     }
+
+    .ic-accessory {
+      color: #9266f9;
+    }
+
+    .ic-weibo {
+      color: rgb(251, 102, 34);
+    }
+
+    .ic-qzone {
+      color: $color-yellow;
+    }
+
+    .ic-qq {
+      color: $color-blue;
+    }
+
+    .ic-tieba {
+      color: #38f;
+    }
+
+    .ic-wechat {
+      color: $color-green;
+    }
   }
 }
 
@@ -54,19 +78,19 @@
       <i class="iconfont ic-accessory" />
       <span>复制链接</span>
     </button>
-    <button>
+    <button v-share.weibo="opt">
       <i class="iconfont ic-weibo" />
       <span>微博</span>
     </button>
-    <button>
+    <button v-share.qq="opt">
       <i class="iconfont ic-qq" />
       <span>QQ</span>
     </button>
-    <button>
+    <button v-share.tieba="opt">
       <i class="iconfont ic-tieba" />
       <span>百度贴吧</span>
     </button>
-    <button>
+    <button v-share.qzone="opt">
       <i class="iconfont ic-qzone" />
       <span>QQ空间</span>
     </button>
@@ -93,6 +117,10 @@ export default {
     url: {
       type: String,
       default: ''
+    },
+    options: {
+      type: Object,
+      default: () => {}
     }
   },
   computed: {
@@ -106,6 +134,26 @@ export default {
     },
     query() {
       return ''
+    },
+    opt() {
+      if (this.option && this.option.url) {
+        return this.option
+      }
+      if (typeof window === 'undefined') {
+        return {}
+      }
+      const title = document.title
+      const content = document.querySelector('[name=description]').content
+      const image = document.querySelector('[name=share-image]')
+      return {
+        url: window.location.href,
+        title,
+        desc: content,
+        summary: content,
+        shortTitle: title,
+        pic: image ? image.content : 'http://m1.calibur.tv/default-poster-sharejpg200',
+        weiboTag: '#calibur#'
+      }
     }
   },
   methods: {

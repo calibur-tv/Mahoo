@@ -43,11 +43,12 @@ export default class {
   }
 
   shareData() {
+    const image = document.querySelector('[name=share-image]')
     return {
       link: window.location.href,
       title: document.title,
-      desc: document.querySelector('[name=description]').getAttribute('content'),
-      image: 'http://m1.calibur.tv/default-poster-sharejpg120'
+      desc: document.querySelector('[name=description]').content,
+      image: image ? image.content : 'http://m1.calibur.tv/default-poster-sharejpg120'
     }
   }
 }
