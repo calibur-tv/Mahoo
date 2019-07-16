@@ -200,7 +200,7 @@
           <i v-if="tags.notebook.length" class="count" v-text="tags.notebook.length" />
         </NLink>
         <div v-if="tags.notebook.length">
-          <CreateTagBtn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <CreateTagBtn v-if="isMine" class="create-btn fade-link" title="新建专栏" parent="uh4f" @create="handleCreateNotebook" />
           <span v-else />
           <NLink v-if="tags.notebook.length > 4" class="more fade-link" to="category/notebook" append>
             <span>更多</span>
@@ -211,7 +211,7 @@
           <p class="empty">
             {{ TA }}还没写过文章~
           </p>
-          <CreateTagBtn v-if="isMine" class="create-btn fade-link" text="专栏" parent="uh4f" @create="handleCreateNotebook" />
+          <CreateTagBtn v-if="isMine" class="create-btn fade-link" title="新建专栏" parent="uh4f" @create="handleCreateNotebook" />
           <span v-else />
         </template>
       </div>

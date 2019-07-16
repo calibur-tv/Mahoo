@@ -70,32 +70,7 @@
       <ElCol :span="14" class="main-wrap">
         <PinFlowList :slug="slug" :show-area="false" />
       </ElCol>
-      <ElCol :span="5">
-        <!--
-        <Affix :top="50">
-          <div>
-            当前标签活跃用户
-          </div>
-          <div>
-            <CreateTagBtn :parent="slug" text="分区" @create="handleCreate" />
-            <button @click="combineTag">
-              合并标签
-            </button>
-            <button @click="deleteTag">
-              删除标签
-            </button>
-            <button @click="relinkTag">
-              修改父节点
-            </button>
-            <NLink :to="$alias.tag(slug, 'edit')">
-              <button>
-                更新标签
-              </button>
-            </NLink>
-          </div>
-        </Affix>
-        -->
-      </ElCol>
+      <ElCol :span="5" />
     </ElRow>
   </div>
 </template>
@@ -103,7 +78,6 @@
 <script>
 import * as API from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
-import CreateTagBtn from '~/components/button/CreateTagBtn'
 import PinFlowList from '~/components/flow/PinFlowList'
 import joinCard from '~/components/tag/joinCard'
 
@@ -112,7 +86,6 @@ export default {
   components: {
     Affix,
     joinCard,
-    CreateTagBtn,
     PinFlowList
   },
   head() {

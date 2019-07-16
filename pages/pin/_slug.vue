@@ -165,7 +165,7 @@
           <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinRewardBtn v-model="reward_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
-          <PinShareBtn :pin="share" />
+          <PinShareBtn />
         </div>
       </div>
       <CommentMain :slug="slug" />

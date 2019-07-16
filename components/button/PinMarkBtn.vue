@@ -115,7 +115,7 @@
         </li>
       </ul>
       <div class="create-btn">
-        <CreateTagBtn text="专栏" parent="uh4f" @create="handleCreate" />
+        <CreateTagBtn title="新建专栏" parent="uh4f" @create="handleCreate" />
       </div>
     </VDialog>
   </div>

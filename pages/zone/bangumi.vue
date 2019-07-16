@@ -4,7 +4,15 @@
     margin-right: 10px;
 
     .title {
-      margin: 20px 0 10px 10px;
+      margin: 20px 5px 10px 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      i {
+        font-weight: bold;
+      }
     }
 
     .child-node {
@@ -50,7 +58,10 @@
       <ElCol :span="5">
         <Affix class="left-aside" :top="50">
           <h3 class="title">
-            热门动漫
+            <span>热门动漫</span>
+            <CreateTagBtn :parent="slug">
+              <i class="el-icon-plus fade-link" />
+            </CreateTagBtn>
           </h3>
           <ul
             v-if="children.length"
@@ -90,12 +101,14 @@ import ZoneMixin from '~/mixins/zone'
 import { showTag } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
+import CreateTagBtn from '~/components/button/CreateTagBtn'
 
 export default {
   name: 'ZoneBangumi',
   components: {
     Affix,
-    PinFlowList
+    PinFlowList,
+    CreateTagBtn
   },
   mixins: [ZoneMixin],
   data() {

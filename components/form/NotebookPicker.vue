@@ -14,7 +14,7 @@
 <template>
   <div class="notebook-picker">
     <div class="new-btn">
-      <CreateTagBtn text="专栏" parent="uh4f" @create="handleCreate" />
+      <CreateTagBtn title="新建专栏" parent="uh4f" @create="handleCreate" />
     </div>
     <div class="selection">
       <ElSelect v-model="selected" filterable default-first-option placeholder="请选择">

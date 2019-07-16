@@ -51,7 +51,6 @@ import DelimiterPlugin from '~/components/editor/plugin/delimiter'
 import ListPlugin from '~/components/editor/plugin/list'
 import ChecklistPlugin from '~/components/editor/plugin/checklist'
 import MarkPlugin from '~/components/editor/plugin/mark'
-import VotePlugin from '~/components/editor/plugin/vote'
 
 export default {
   name: 'JsonEditor',

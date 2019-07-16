@@ -110,14 +110,6 @@ export default {
     ElPopover: Popover
   },
   props: {
-    pin: {
-      type: Object,
-      required: true
-    },
-    url: {
-      type: String,
-      default: ''
-    },
     options: {
       type: Object,
       default: () => {}
@@ -128,8 +120,8 @@ export default {
       if (typeof window === 'undefined') {
         return ''
       }
-      return this.url
-        ? `${window.location.origin}${this.url}${this.query}`
+      return this.options && this.options.url
+        ? `${window.location.origin}${this.options.url}${this.query}`
         : `${window.location.origin}${this.$route.path}${this.query}`
     },
     query() {

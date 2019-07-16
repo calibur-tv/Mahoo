@@ -1,7 +1,9 @@
 <template>
   <button type="button" @click="actionCreate">
-    <i class="el-icon-folder-add" />
-    <span>新建{{ text }}</span>
+    <slot>
+      <i class="el-icon-folder-add" />
+      <span v-text="title" />
+    </slot>
   </button>
 </template>
 
@@ -11,9 +13,9 @@ import { createTag } from '~/api/tagApi'
 export default {
   name: 'CreateTagBtn',
   props: {
-    text: {
+    title: {
       type: String,
-      default: '分区'
+      default: '新建分区'
     },
     parent: {
       type: String,
@@ -22,7 +24,7 @@ export default {
   },
   methods: {
     actionCreate() {
-      this.$prompt(`请输入${this.text}名`, `新建${this.text}`, {
+      this.$prompt('请输入名称', this.title, {
         confirmButtonText: '提交',
         cancelButtonText: '取消'
       })
