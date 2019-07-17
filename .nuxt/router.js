@@ -8,7 +8,6 @@ const _4d54d59e = () => interopDefault(import('../pages/wanderer/index.vue' /* w
 const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
 const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
 const _527cab04 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
-const _48a59587 = () => interopDefault(import('../pages/tag/tree.vue' /* webpackChunkName: "pages/tag/tree" */))
 const _54286b5a = () => interopDefault(import('../pages/wanderer/cosplay.vue' /* webpackChunkName: "pages/wanderer/cosplay" */))
 const _3c5ad14a = () => interopDefault(import('../pages/zone/bangumi.vue' /* webpackChunkName: "pages/zone/bangumi" */))
 const _386a6491 = () => interopDefault(import('../pages/zone/game.vue' /* webpackChunkName: "pages/zone/game" */))
@@ -141,11 +140,6 @@ export function createRouter() {
       component: _527cab04,
       props: false,
       name: "callback-auth-success"
-    }, {
-      path: "/tag/tree",
-      component: _48a59587,
-      props: false,
-      name: "tag-tree"
     }, {
       path: "/wanderer/cosplay",
       component: _54286b5a,

@@ -1,35 +1,11 @@
 <style lang="scss">
 #tag-show {
   .left-aside {
+    margin-right: 10px;
+    margin-top: 20px;
+
     .join-card {
-      margin: 20px 15px 20px 10px;
-    }
-
-    .child-node {
-      margin-top: 20px;
-      margin-right: 10px;
-
-      li {
-        padding: 10px;
-        border-radius: 5px;
-
-        &:hover {
-          background-color: #f6f6f6;
-        }
-      }
-
-      .img {
-        border-radius: 5px;
-        margin-right: 5px;
-      }
-
-      span {
-        font-size: 14px;
-      }
-
-      a {
-        display: block;
-      }
+      margin: 0 5px 20px 10px;
     }
   }
 
@@ -41,6 +17,11 @@
     padding-top: $page-header-hgt + 20;
     min-height: 100vh;
   }
+
+  .right-aside {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
 }
 </style>
 
@@ -50,43 +31,38 @@
       <ElCol :span="5">
         <Affix class="left-aside" :top="50">
           <joinCard :tag="tag" />
-          <ul
-            v-if="children.length"
-            class="child-node"
-          >
-            <li
-              v-for="item in children.slice(0, 10)"
-              :key="item.slug"
-              class="node"
-            >
-              <NLink :to="`/tag/${item.slug}`">
-                <VImg :src="item.avatar" width="32" height="32" :alt="item.name" />
-                <span v-text="item.name" />
-              </NLink>
-            </li>
-          </ul>
+          <TagHotList :slug="slug" :list="children" />
         </Affix>
       </ElCol>
       <ElCol :span="14" class="main-wrap">
         <PinFlowList :slug="slug" :show-area="false" />
       </ElCol>
-      <ElCol :span="5" />
+      <ElCol :span="5">
+        <div class="right-aside">
+          <TagControlPanel :slug="slug" />
+        </div>
+      </ElCol>
     </ElRow>
   </div>
 </template>
 
 <script>
-import * as API from '~/api/tagApi'
+import { showTag } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
-import joinCard from '~/components/tag/joinCard'
+import joinCard from '~/components/tag/JoinCard'
+import TagHotList from '~/components/tag/HotList'
+import TagControlPanel from '~/components/tag/ControlPanel'
 
 export default {
   name: 'TagShow',
+  layout: 'web',
   components: {
     Affix,
     joinCard,
-    PinFlowList
+    PinFlowList,
+    TagHotList,
+    TagControlPanel
   },
   head() {
     const { tag } = this
@@ -111,18 +87,13 @@ export default {
       children: []
     }
   },
-  computed: {},
-  watch: {},
   asyncData({ app, error, params }) {
-    return API.showTag(app, params)
+    return showTag(app, params)
       .then(data => {
         return { ...data }
       })
       .catch(error)
   },
-  layout: 'web',
-  created() {},
-  mounted() {},
   beforeMount() {
     this.patchTag()
   },
@@ -135,76 +106,6 @@ export default {
       })
         .then(data => {
           this.tag = this.$set(this, 'tag', Object.assign(this.tag, data))
-        })
-        .catch(() => {})
-    },
-    handleCreate(data) {
-      this.children.push(data)
-      this.$toast.success('标签创建成功')
-    },
-    combineTag() {
-      console.log('combineTag') // eslint-disable-line
-    },
-    deleteTag() {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '删除标签')
-        .then(() => {
-          API.deleteTag(this, {
-            slug: this.slug
-          })
-            .then(() => {
-              this.$toast.success('标签删除成功')
-                .then(() => {
-                  window.location.reload()
-                })
-            })
-            .catch(err => {
-              this.$toast.error(err.message)
-            })
-        })
-        .catch(() => {})
-    },
-    relinkTag() {
-      this.$prompt('请输入目标父节点id', '移动标签', {
-        confirmButtonText: '提交',
-        cancelButtonText: '取消',
-        inputPattern: /^[a-z0-9]+$/i,
-        inputErrorMessage: '格式不正确'
-      })
-        .then(({ value }) => {
-          API.relinkTag(this, {
-            slug: this.slug,
-            target_slug: value
-          })
-            .then(() => {
-              this.$toast.success('标签移动成功')
-            })
-            .catch(err => {
-              this.$toast.error(err.message)
-            })
-        })
-        .catch(() => {})
-    },
-    updateTag() {
-      this.$prompt('请输入标签名', '更新标签', {
-        confirmButtonText: '提交',
-        cancelButtonText: '取消'
-      })
-        .then(({ value }) => {
-          const name = value.trim()
-          if (name.length > 32) {
-            return this.$toast.error('名字不能超过32个字')
-          }
-          API.updateTag(this, {
-            name,
-            slug: this.slug,
-            avatar: ''
-          })
-            .then(() => {
-              this.$toast.success('标签更新成功')
-            })
-            .catch(err => {
-              this.$toast.error(err.message)
-            })
         })
         .catch(() => {})
     }

@@ -2,43 +2,7 @@
 #zone-bangumi {
   .left-aside {
     margin-right: 10px;
-
-    .title {
-      margin: 20px 5px 10px 10px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-
-      i {
-        font-weight: bold;
-      }
-    }
-
-    .child-node {
-      li {
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #f6f6f6;
-        }
-      }
-
-      .img {
-        border-radius: 5px;
-        margin-right: 5px;
-      }
-
-      span {
-        font-size: 14px;
-      }
-
-      a {
-        display: block;
-      }
-    }
+    margin-top: 20px;
   }
 
   .main-wrap {
@@ -57,27 +21,7 @@
     <ElRow class="container">
       <ElCol :span="5">
         <Affix class="left-aside" :top="50">
-          <h3 class="title">
-            <span>热门动漫</span>
-            <CreateTagBtn :parent="slug">
-              <i class="el-icon-plus fade-link" />
-            </CreateTagBtn>
-          </h3>
-          <ul
-            v-if="children.length"
-            class="child-node"
-          >
-            <li
-              v-for="item in children.slice(0, 10)"
-              :key="item.slug"
-              class="node"
-            >
-              <NLink :to="`/tag/${item.slug}`">
-                <VImg :src="item.avatar" width="32" height="32" :alt="item.name" />
-                <span v-text="item.name" />
-              </NLink>
-            </li>
-          </ul>
+          <TagHotList :slug="slug" title="热门动漫" :list="children" />
         </Affix>
       </ElCol>
       <ElCol :span="14" class="main-wrap">
@@ -101,14 +45,14 @@ import ZoneMixin from '~/mixins/zone'
 import { showTag } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
-import CreateTagBtn from '~/components/button/CreateTagBtn'
+import TagHotList from '~/components/tag/HotList'
 
 export default {
   name: 'ZoneBangumi',
   components: {
     Affix,
     PinFlowList,
-    CreateTagBtn
+    TagHotList
   },
   mixins: [ZoneMixin],
   data() {
