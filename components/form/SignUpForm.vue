@@ -55,33 +55,33 @@
 
 <template>
   <div class="sign-up-form">
-    <el-form ref="form" :model="form" :rules="rule">
-      <el-form-item prop="access">
-        <el-input
+    <ElForm ref="form" :model="form" :rules="rule">
+      <ElFormItem prop="access">
+        <ElInput
           v-model.trim="form.access"
           type="text"
           placeholder="手机（填写常用手机号，用于登录）"
           auto-complete="off"
         />
-      </el-form-item>
-      <el-form-item prop="secret">
-        <el-input
+      </ElFormItem>
+      <ElFormItem prop="secret">
+        <ElInput
           v-model.trim="form.secret"
           type="password"
           show-password
           placeholder="密码（6-16个字符组成，区分大小写）"
           auto-complete="off"
         />
-      </el-form-item>
-      <el-form-item v-if="!inviteCode">
-        <el-input
+      </ElFormItem>
+      <ElFormItem v-if="!inviteCode">
+        <ElInput
           v-model.trim="form.inviteCode"
           placeholder="邀请码（可为空）"
           auto-complete="off"
         />
-      </el-form-item>
-      <el-form-item>
-        <el-button
+      </ElFormItem>
+      <ElFormItem>
+        <ElButton
           :loading="submitBtnLoading"
           :disabled="submitBtnDisabled"
           class="submit-btn"
@@ -93,9 +93,9 @@
           <template v-if="timeout">
             （{{ timeout }}s 后可重新获取）
           </template>
-        </el-button>
-      </el-form-item>
-    </el-form>
+        </ElButton>
+      </ElFormItem>
+    </ElForm>
     <div class="others">
       <ul class="provider">
         <span>社交账号注册</span>

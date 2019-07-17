@@ -3718,10 +3718,10 @@ eslint-plugin-import@>=2.18.0, eslint-plugin-import@^2.18.0:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jest@>=22.8.0:
-  version "22.8.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.8.0.tgz#242ef5459e8da25d2c41438e95eb546e03d7fae1"
-  integrity sha512-2VftZMfILmlhL3VMq5ptHRIuyyXb3ShDEDb1J1UjvWNzm4l+UK/YmwNuTuJcM0gv8pJuOfiR/8ZptJ8Ou68pFw==
+eslint-plugin-jest@>=22.9.0:
+  version "22.9.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.9.0.tgz#2573dbcb4f1066b96a6e6d3b9aa439c80b28975a"
+  integrity sha512-V89BUiwf76FHlhj1mlNhNyvpzTy8VbWCh2RZpKYz/XDSl/pcuwFiE/LMt7r3q1sRKygzEMjbYeDob8MMuvakXg==
 
 eslint-plugin-jest@^22.7.2:
   version "22.7.2"
@@ -9425,10 +9425,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.43:
-  version "1.1.43"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.43.tgz#6037607f2f0d4bff5bcae7002a49a4f63cf69324"
-  integrity sha512-gPRo51SeyUyRJyoOpkvpWlGuCf78n5pteOaRiZBoFaJtOma2c0UjQIiO4GK4d2vWlcO5vJNQ9qBol6JWkIlUiw==
+vue-mixin-store@1.1.44:
+  version "1.1.44"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.44.tgz#389f163de2705ced0b48df9f84c792513d423593"
+  integrity sha512-5R/JxajTzkiOu88I8LzTfolftDwCQOOfd8hZvviBgFiIk2IIsiDiqPhCU8Ne2AIsJhcqf6r6gdQtLaJk3Q5b/g==
   dependencies:
     throttle-debounce "^2.1.0"
     vue "^2.6.6"

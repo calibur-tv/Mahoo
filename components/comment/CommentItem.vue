@@ -122,6 +122,7 @@ export default {
     clickAgree() {
       if (!this.$store.state.isAuth) {
         this.$channel.$emit('sign-in')
+        return
       }
       if (this.isMine) {
         this.$toast.info('不能给自己点赞')

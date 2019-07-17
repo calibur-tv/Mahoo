@@ -10,7 +10,6 @@ import {
   Form,
   FormItem,
   Input,
-  Checkbox,
   Tag
 } from 'element-ui'
 import lazyload from '~/directives/lazyload'
@@ -30,4 +29,3 @@ Vue.component(Tag.name, Tag)
 Vue.component(Form.name, Form)
 Vue.component(FormItem.name, FormItem)
 Vue.component(Input.name, Input)
-Vue.component(Checkbox.name, Checkbox)

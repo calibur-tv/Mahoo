@@ -128,7 +128,7 @@
             transform: translate(-50%);
             background-color: #fff;
             width: 295px;
-            padding: 30px 12px 12px;
+            padding: 25px 12px 12px;
             box-shadow: 0 8px 20px 0 rgba(158,179,193,.3);
             border-radius: 0 0 10px 10px;
             transition: .3s;
@@ -255,6 +255,14 @@
                       />
                     </div>
                   </div>
+                  <NLink :to="$alias.user(user.slug, 'setting')">
+                    <div class="field">
+                      <div class="label">
+                        <i class="iconfont ic-setup_fill" />
+                        <span>设置</span>
+                      </div>
+                    </div>
+                  </NLink>
                   <button class="sign-out" @click="handleLogout">
                     退出
                   </button>

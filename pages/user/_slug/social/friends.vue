@@ -2,7 +2,7 @@
   <div id="user-social-friends">
     <ElAlert
       v-if="isMine"
-      title="朋友，就多主动联系"
+      title="朋友就要多主动联系"
       type="success"
     />
     <FlowLoader
@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import UserRelationItem from '~/components/user/UserRelationItem'
 import { Alert } from 'element-ui'
+import UserRelationItem from '~/components/user/UserRelationItem'
 
 export default {
   name: 'UserSocialFriends',

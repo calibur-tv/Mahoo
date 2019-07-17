@@ -13,7 +13,6 @@ export default {
   data() {
     return {
       tag: null,
-      parent: null,
       children: []
     }
   },

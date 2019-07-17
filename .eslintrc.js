@@ -25,6 +25,7 @@ module.exports = {
     'space-before-function-paren': [1, 'never'],
     'vue/no-unused-components': 'warn',
     'vue/no-v-html': 'off',
+    'import/order': 'off',
     'vue/component-name-in-template-casing': [1, 'PascalCase'],
     'arrow-parens': [1, 'as-needed']
   },

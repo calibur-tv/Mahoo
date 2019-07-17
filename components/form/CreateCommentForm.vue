@@ -158,6 +158,7 @@ export default {
     submit() {
       if (!this.$store.state.isAuth) {
         this.$channel.$emit('sign-in')
+        return
       }
       if (this.content.trim().length < 2) {
         this.$toast.error('内容至少要两个字')

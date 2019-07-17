@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import UserRelationItem from '~/components/user/UserRelationItem'
 import { Alert } from 'element-ui'
+import UserRelationItem from '~/components/user/UserRelationItem'
 
 export default {
   name: 'UserSocialFollowing',

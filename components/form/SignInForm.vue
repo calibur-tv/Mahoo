@@ -53,28 +53,28 @@
 
 <template>
   <div class="sign-in-form">
-    <el-form ref="form" :model="form" :rules="rule">
-      <el-form-item prop="access">
-        <el-input
+    <ElForm ref="form" :model="form" :rules="rule">
+      <ElFormItem prop="access">
+        <ElInput
           v-model.trim="form.access"
           type="text"
           placeholder="手机（填写常用手机号，用于登录）"
         />
-      </el-form-item>
-      <el-form-item prop="secret">
-        <el-input
+      </ElFormItem>
+      <ElFormItem prop="secret">
+        <ElInput
           v-model.trim="form.secret"
           type="password"
           show-password
           placeholder="密码（6-16个字符组成，区分大小写）"
           @keydown.enter.native="submitForm"
         />
-      </el-form-item>
-      <el-form-item class="sign-in-opt">
+      </ElFormItem>
+      <ElFormItem class="sign-in-opt">
         <div class="opt-container">
-          <el-checkbox v-model="form.remember">
+          <ElCheckbox v-model="form.remember">
             记住我
-          </el-checkbox>
+          </ElCheckbox>
           <ul v-if="showOAuth" class="provider">
             <li @click="authQQ">
               <i class="iconfont ic-qq" />
@@ -90,9 +90,9 @@
             社交账号登录
           </button>
         </div>
-      </el-form-item>
-      <el-form-item>
-        <el-button
+      </ElFormItem>
+      <ElFormItem>
+        <ElButton
           :loading="loading"
           class="submit-btn"
           type="primary"
@@ -100,9 +100,9 @@
           @click="submitForm"
         >
           登录
-        </el-button>
-      </el-form-item>
-    </el-form>
+        </ElButton>
+      </ElFormItem>
+    </ElForm>
     <div class="others">
       <a @click="showReset">忘记密码?></a>
       <a @click="showRegister">点击注册»</a>
@@ -112,9 +112,13 @@
 
 <script>
 import { login } from '~/api/userApi'
+import { Checkbox } from 'element-ui'
 
 export default {
   name: 'SignInForm',
+  components: {
+    ElCheckbox: Checkbox
+  },
   data() {
     const validateAccess = (rule, value, callback) => {
       if (!value) {
