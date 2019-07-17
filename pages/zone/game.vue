@@ -20,7 +20,7 @@
   <div id="zone-game">
     <ElRow class="container">
       <ElCol :span="5">
-        <Affix class="left-aside" :top="50">
+        <Affix class="left-aside" :top="70">
           <TagHotList :slug="slug" title="热门游戏" :list="children" />
         </Affix>
       </ElCol>
