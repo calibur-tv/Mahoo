@@ -1,5 +1,10 @@
 <template>
   <div id="user-social-followers">
+    <ElAlert
+      v-if="isMine"
+      title="不用在意粉丝的多少，做自己就好"
+      type="success"
+    />
     <FlowLoader
       ref="loader"
       func="getUserRelation"
@@ -20,11 +25,13 @@
 
 <script>
 import UserRelationItem from '~/components/user/UserRelationItem'
+import { Alert } from 'element-ui'
 
 export default {
   name: 'UserSocialFollowers',
   components: {
-    UserRelationItem
+    UserRelationItem,
+    ElAlert: Alert
   },
   props: {
     slug: {
@@ -40,6 +47,9 @@ export default {
         relation: 'follower',
         changing: 'slug'
       }
+    },
+    isMine() {
+      return this.$store.getters.isMine(this.slug)
     }
   },
   methods: {

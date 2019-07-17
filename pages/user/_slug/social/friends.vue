@@ -1,5 +1,10 @@
 <template>
   <div id="user-social-friends">
+    <ElAlert
+      v-if="isMine"
+      title="朋友，就多主动联系"
+      type="success"
+    />
     <FlowLoader
       ref="loader"
       func="getUserRelation"
@@ -20,11 +25,13 @@
 
 <script>
 import UserRelationItem from '~/components/user/UserRelationItem'
+import { Alert } from 'element-ui'
 
 export default {
   name: 'UserSocialFriends',
   components: {
-    UserRelationItem
+    UserRelationItem,
+    ElAlert: Alert
   },
   props: {
     slug: {
@@ -40,6 +47,9 @@ export default {
         relation: 'friend',
         changing: 'slug'
       }
+    },
+    isMine() {
+      return this.$store.getters.isMine(this.slug)
     }
   },
   methods: {
