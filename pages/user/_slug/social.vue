@@ -1,5 +1,13 @@
 <style lang="scss">
-#user-social-layout {}
+#user-social-layout {
+  .tab-item {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+  }
+}
 </style>
 
 <template>
@@ -17,8 +25,10 @@
             :key="index"
             :slot="`tab-${index}`"
             :to="item.route"
+            class="tab-item"
           >
             <span v-text="item.name" />
+            <span v-if="item.count" v-text="item.count" />
           </NLink>
         </VSwitcher>
       </ElCol>
@@ -44,19 +54,23 @@ export default {
   },
   computed: {
     headers() {
-      const TA = this.$utils.convertTA(this.user.sex, this.$store.getters.isMine(this.slug))
+      const { user, slug } = this
+      const TA = this.$utils.convertTA(user.sex, this.$store.getters.isMine(slug))
       return [
         {
           name: `${TA}的关注`,
-          route: `/user/${this.slug}/social/following`
+          route: `/user/${slug}/social/following`,
+          count: user.following_count
         },
         {
           name: `${TA}的粉丝`,
-          route: `/user/${this.slug}/social/followers`
+          route: `/user/${slug}/social/followers`,
+          count: user.followers_count
         },
         {
           name: `${TA}的朋友`,
-          route: `/user/${this.slug}/social/friends`
+          route: `/user/${slug}/social/friends`,
+          count: user.friends_count
         }
       ]
     }

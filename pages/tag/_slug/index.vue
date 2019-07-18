@@ -39,7 +39,7 @@
       </ElCol>
       <ElCol :span="5">
         <div class="right-aside">
-          <TagControlPanel :slug="slug" />
+          <TagControlPanel :slug="slug" :parent-slug="tag.parent_slug" />
         </div>
       </ElCol>
     </ElRow>

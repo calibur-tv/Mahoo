@@ -14,7 +14,7 @@
         编辑
       </ElButton>
     </NLink>
-    <NLink :to="$alias.tag(slug, 'qa')">
+    <NLink v-if="showQA" :to="$alias.tag(slug, 'qa')">
       <ElButton icon="el-icon-guide" size="mini" round>
         出题
       </ElButton>
@@ -34,6 +34,15 @@ export default {
     slug: {
       type: String,
       required: true
+    },
+    parentSlug: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    showQA() {
+      return this.parentSlug !== process.env.TAGS.notebook
     }
   },
   methods: {
