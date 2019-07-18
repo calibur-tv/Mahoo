@@ -14,6 +14,10 @@
       font-size: 12px;
       margin-top: 1px;
       color: $color-text-3;
+
+      .cc {
+        margin-right: 5px;
+      }
     }
 
     footer {
@@ -48,7 +52,7 @@
         <div class="desc">
           <time v-text="$utils.timeAgo(item.created_at)" />
           <template v-if="item.getter">
-            <span>回复&nbsp;</span>
+            <span class="cc">回复</span>
             <NLink :to="$alias.user(item.getter.slug)" target="_blank" class="fade-link" v-text="item.getter.nickname" />
           </template>
         </div>

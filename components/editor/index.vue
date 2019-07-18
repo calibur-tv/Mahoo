@@ -105,9 +105,11 @@ export default {
                 version: self.$cache.get('editor_version', '2.15.0')
               }
             }
-          } else if (self.$cache.has('editor_local_draft-')) {
+          } else {
             data = self.$cache.get('editor_local_draft-')
-            self.$emit('input', data.blocks)
+            if (data) {
+              self.$emit('input', data.blocks)
+            }
           }
           const [EditorJS, ImagePlugin, LinkPlugin] = modules.map(_ => _.default)
           const editor = new EditorJS({
