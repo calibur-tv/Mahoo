@@ -236,7 +236,7 @@
               发布更新
             </ElButton>
             <ElButton
-              v-if="visit_type === 1"
+              v-if="!(visit_type - 1)"
               :loading="loading"
               round
               plain
