@@ -2,6 +2,7 @@
 .message-menu {
   height: 100%;
   position: relative;
+  overflow-y: auto;
 
   .searcher {
     height: 40px;

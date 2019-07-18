@@ -1,5 +1,9 @@
 <style lang="scss">
 #user-message {
+  .message-menu {
+    max-height: 638px;
+  }
+
   .room-adjust {
     padding-left: 0;
     margin: -15px -20px;
