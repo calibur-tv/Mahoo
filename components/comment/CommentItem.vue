@@ -58,7 +58,7 @@
         <button @click="showCreate = !showCreate">
           <i class="iconfont ic-message" />
         </button>
-        <button v-if="isMine" @click="deleteComment">
+        <button v-if="isMine || isAdmin" @click="deleteComment">
           <i class="iconfont ic-trash" />
         </button>
         <button @click="clickAgree">
@@ -109,6 +109,9 @@ export default {
   computed: {
     isMine() {
       return this.$store.getters.isMine(this.item.author.slug)
+    },
+    isAdmin() {
+      return this.$store.getters.isAdmin
     }
   },
   methods: {

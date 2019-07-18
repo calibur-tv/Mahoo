@@ -43,7 +43,6 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        margin-left: -3px;
 
         >div {
           margin-right: 20px;
@@ -123,8 +122,7 @@
       </template>
       <ContentAuthor :user="author">
         <div slot="intro" class="metas">
-          <div class="oneline">
-            <i v-if="topic || area" class="iconfont ic-coordinates" />
+          <div v-if="topic || area" class="oneline">
             <NLink v-if="topic" target="_blank" :to="$alias.tag(topic.slug)" v-text="topic.name" />
             <template v-if="area">
               <span>·</span>
@@ -147,16 +145,24 @@
             <span v-text="visit_count" />
           </div>
         </div>
-        <template v-slot:mine>
-          <ElButton round plain type="danger" @click="deletePin">
-            删除
-          </ElButton>
-          &nbsp;
-          <NLink :to="$alias.create(slug)">
-            <ElButton round plain type="info">
-              编辑
+        <template v-slot:tail>
+          <template v-if="isMine">
+            <ElButton round plain type="danger" @click="deletePin">
+              删除
             </ElButton>
-          </NLink>
+            &nbsp;
+            <NLink :to="$alias.create(slug)">
+              <ElButton round plain type="info">
+                编辑
+              </ElButton>
+            </NLink>
+          </template>
+          <template v-else>
+            <ElButton v-if="isAdmin" round plain type="danger" @click="deletePin">
+              删除
+            </ElButton>
+            <UserFollowBtn :slug="author.slug" />
+          </template>
         </template>
       </ContentAuthor>
       <JsonContent :content="content" :reward="reward_status" />
@@ -189,6 +195,7 @@ import PinVoteBtn from '~/components/button/PinVoteBtn'
 import PinRewardBtn from '~/components/button/PinRewardBtn'
 import PinMarkBtn from '~/components/button/PinMarkBtn'
 import PinShareBtn from '~/components/button/PinShareBtn'
+import UserFollowBtn from '~/components/button/UserFollowBtn'
 
 export default {
   name: 'PinShow',
@@ -201,7 +208,8 @@ export default {
     PinVoteBtn,
     PinRewardBtn,
     PinMarkBtn,
-    PinShareBtn
+    PinShareBtn,
+    UserFollowBtn
   },
   head() {
     return {
@@ -247,6 +255,12 @@ export default {
         intro: this.intro,
         content: this.content
       }
+    },
+    isMine() {
+      return this.$store.getters.isMine(this.author.slug)
+    },
+    isAdmin() {
+      return this.$store.getters.isAdmin
     }
   },
   asyncData({ app, error, params, query }) {

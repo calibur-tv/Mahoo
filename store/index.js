@@ -189,5 +189,6 @@ export const actions = {
 export const getters = {
   isMine: state => slug => {
     return state.isAuth ? state.user.slug === slug : false
-  }
+  },
+  isAdmin: state => state.isAuth ? state.user.is_admin : false
 }

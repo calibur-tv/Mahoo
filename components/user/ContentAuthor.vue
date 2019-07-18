@@ -38,8 +38,7 @@
       </div>
     </div>
     <div class="tail-area">
-      <slot v-if="isMine" name="mine" />
-      <UserFollowBtn v-else v-model="relation" :slug="user.slug" />
+      <slot name="tail" />
     </div>
   </div>
 </template>
@@ -47,14 +46,12 @@
 <script>
 import UserAvatar from '~/components/user/UserAvatar'
 import UserNickname from '~/components/user/UserNickname'
-import UserFollowBtn from '~/components/button/UserFollowBtn'
 
 export default {
   name: 'ContentAuthor',
   components: {
     UserAvatar,
-    UserNickname,
-    UserFollowBtn
+    UserNickname
   },
   props: {
     user: {
@@ -64,10 +61,6 @@ export default {
     size: {
       type: Number,
       default: 40
-    },
-    relation: {
-      type: String,
-      default: 'unknown'
     }
   },
   computed: {
