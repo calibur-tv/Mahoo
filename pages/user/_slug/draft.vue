@@ -16,6 +16,12 @@
 
 <template>
   <div id="user-draft">
+    <ElAlert
+      :title="timeout ? `该页面文章链接 ${timeout} 秒后过期，过期后请刷新页面` : '该页面已过期，请刷新页面获取新的链接'"
+      :type="timeout ? 'success' : 'error'"
+      effect="dark"
+    />
+    <br>
     <FlowLoader
       func="getUserDrafts"
       type="page"
@@ -23,6 +29,7 @@
         count: 10,
         $axios: $axios
       }"
+      :callback="handleTimeout"
     >
       <ul slot-scope="{ flow, extra }">
         <PinFlowItem
@@ -41,10 +48,12 @@
 import mustSelf from '~/mixins/mustSelf'
 import mustSign from '~/mixins/mustSign'
 import PinFlowItem from '~/components/flow/PinFlowItem'
+import { Alert } from 'element-ui'
 
 export default {
   name: 'UserDraft',
   components: {
+    ElAlert: Alert,
     PinFlowItem
   },
   mixins: [mustSign, mustSelf],
@@ -52,6 +61,23 @@ export default {
     slug: {
       type: String,
       required: true
+    }
+  },
+  data() {
+    return {
+      timeout: 300,
+      timer: 0
+    }
+  },
+  methods: {
+    handleTimeout() {
+      this.timeout = 300
+      this.timer && clearInterval(this.timer)
+      this.timer = setInterval(() => {
+        if (this.timeout) {
+          this.timeout--
+        }
+      }, 1000)
     }
   }
 }

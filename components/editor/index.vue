@@ -51,6 +51,7 @@ import DelimiterPlugin from '~/components/editor/plugin/delimiter'
 import ListPlugin from '~/components/editor/plugin/list'
 import ChecklistPlugin from '~/components/editor/plugin/checklist'
 import MarkPlugin from '~/components/editor/plugin/mark'
+import ParagraphPlugin from '~/components/editor/plugin/paragraph'
 
 export default {
   name: 'JsonEditor',
@@ -170,6 +171,9 @@ export default {
               },
               baidu: {
                 class: BaiduPlugin
+              },
+              paragraph: {
+                class: ParagraphPlugin
               }
             },
             onChange: () => {

@@ -44,6 +44,9 @@ export const get = (key, def) => {
     if (val === null) {
       return def
     }
+    if (/vanced issues found/.test(val)) {
+      return def
+    }
     return JSON.parse(val)
   } catch (e) {
     return def
