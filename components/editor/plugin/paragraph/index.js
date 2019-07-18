@@ -121,11 +121,7 @@ export default class Paragraph {
    * @public
    */
   validate(savedData) {
-    if (savedData.text.trim() === '') {
-      return false
-    }
-
-    return true
+    return !(savedData.text.trim() === '' || /vanced issues found/.test(savedData.text))
   }
 
   /**

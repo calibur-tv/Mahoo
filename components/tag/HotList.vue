@@ -43,7 +43,7 @@
   <div class="tag-hot-list">
     <h3 v-if="title" class="title">
       <span v-text="title" />
-      <CreateTagBtn :parent="slug" @create="handleCreate">
+      <CreateTagBtn v-if="isAdmin" :parent="slug" @create="handleCreate">
         <i class="el-icon-plus fade-link" />
       </CreateTagBtn>
     </h3>
@@ -85,6 +85,11 @@ export default {
     list: {
       type: Array,
       required: true
+    }
+  },
+  computed: {
+    isAdmin() {
+      return this.$store.getters.isAdmin
     }
   },
   methods: {
