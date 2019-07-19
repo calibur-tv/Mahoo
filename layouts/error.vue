@@ -109,7 +109,7 @@ export default {
       return (this.error && this.error.statusCode) || 404
     },
     message() {
-      return this.error && this.error.message
+      return this.statusCode === 404 ? '您查找的页面不存在' : this.error && this.error.message
     }
   },
   mounted() {

@@ -1,13 +1,11 @@
 <style lang="scss">
 #page-header {
-  .header-fixed {
-    position: fixed;
+  .header-text {
     right: 0;
     left: 0;
     top: 0;
     height: $page-header-hgt;
     z-index: 11;
-    box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
     background-color: #fff;
 
     .nav {
@@ -202,6 +200,16 @@
         }
       }
     }
+
+    &.header-fixed {
+      position: fixed;
+      box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
+    }
+
+    &.header-static {
+      position: absolute;
+      box-shadow: rgba(0, 0, 0, 0.03) 0 5px 10px 0, rgba(0, 0, 0, 0.08) 0 10px 30px 0;
+    }
   }
 
   .header-shim {
@@ -213,7 +221,7 @@
 
 <template>
   <header id="page-header">
-    <div class="header-fixed">
+    <div class="header-text" :class="`header-${headerType}`">
       <div class="container nav">
         <nav class="left">
           <NLink class="logo" to="/homepage">
@@ -383,6 +391,13 @@ export default {
     },
     mailbox() {
       return this.$store.state.mailbox
+    },
+    headerType() {
+      const { name } = this.$route
+      if (name === 'homepage') {
+        return 'fixed' // static
+      }
+      return 'fixed'
     }
   },
   mounted() {

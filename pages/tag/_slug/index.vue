@@ -29,10 +29,12 @@
   <div id="tag-show">
     <ElRow class="container">
       <ElCol :span="5">
-        <Affix class="left-aside" :top="50">
+        <div class="left-aside">
           <joinCard :tag="tag" />
-          <TagHotList :slug="slug" :list="children" />
-        </Affix>
+          <Affix :top="60">
+            <TagHotList :slug="slug" :list="children" />
+          </Affix>
+        </div>
       </ElCol>
       <ElCol :span="14" class="main-wrap">
         <PinFlowList :slug="slug" :show-area="false" />
