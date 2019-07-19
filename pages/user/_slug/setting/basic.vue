@@ -194,6 +194,9 @@ export default {
       callback()
     }
     const validateBirthday = (rule, value, callback) => {
+      if (!value) {
+        return callback()
+      }
       const setTs = new Date(value).getTime()
       const curTs = Date.now()
       if (setTs >= curTs) {

@@ -23,6 +23,7 @@
     />
     <br>
     <FlowLoader
+      ref="loader"
       func="getUserDrafts"
       type="page"
       :query="{
@@ -69,10 +70,16 @@ export default {
       timer: 0
     }
   },
+  beforeDestroy() {
+    this.timer && clearInterval(this.timer)
+  },
+  mounted() {
+    this.$refs.loader && this.$refs.loader.refresh()
+  },
   methods: {
     handleTimeout() {
-      this.timeout = 300
       this.timer && clearInterval(this.timer)
+      this.timeout = 300
       this.timer = setInterval(() => {
         if (this.timeout) {
           this.timeout--
