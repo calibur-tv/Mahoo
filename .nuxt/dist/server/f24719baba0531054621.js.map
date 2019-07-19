@@ -1,0 +1,1 @@
+{"version":3,"file":"f24719baba0531054621.js","sources":["webpack:///./layouts/default.vue"],"sourcesContent":["var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('nuxt')}\nvar staticRenderFns = []\n\nexport { render, staticRenderFns }"],"mappings":"AAAA","sourceRoot":""}

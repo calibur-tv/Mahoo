@@ -1,124 +1,71 @@
 <style lang="scss">
 #tag-edit {
-  .avatar-field {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+  margin-top: 20px;
 
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 10%;
-      margin-right: 15px;
+  .v-switcher {
+    &-header {
+      margin-left: -10px;
+
+      &-item {
+        cursor: pointer;
+        padding: 0 10px;
+      }
+
+      &-anchor {
+        height: 1px;
+        bottom: 0;
+        background-color: $color-main;
+
+        &:after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          margin-left: -3px;
+          bottom: 1px;
+          width: 0;
+          height: 0;
+          border-bottom: 3px solid $color-main;
+          border-top: 0;
+          border-left: 3px dashed transparent;
+          border-right: 3px dashed transparent;
+        }
+      }
     }
-  }
-
-  .form-tip {
-    font-size: 12px;
-    color: $color-orange;
   }
 }
 </style>
 
 <template>
   <div id="tag-edit">
-    <ElRow>
+    <ElRow v-if="tag">
       <ElCol :span="12" :offset="6">
-        <ElForm
-          ref="form"
-          :model="tag"
-          :rules="rules"
-          :disabled="submitting"
-          label-position="top"
-        >
-          <ElFormItem label="头像">
-            <div class="avatar-field">
-              <img
-                :src="$resize(tag.avatar, { width: 100 })"
-                class="avatar"
-              >
-              <ElUpload
-                :show-file-list="false"
-                :action="imageUploadAction"
-                :limit="uploadImageLimit"
-                :data="uploadHeaders"
-                :accept="imageUploadAccept"
-                :before-upload="handleImageUploadBefore"
-                :on-success="avatarUploadSuccess"
-                :on-error="handleImageUploadError"
-              >
-                <ElButton
-                  :loading="!!uploadPending"
-                  type="success"
-                  plain
-                  round
-                  size="mini"
-                >
-                  {{ uploadPending ? '图片上传中...' : '点击上传封面' }}
-                </ElButton>
-              </ElUpload>
-            </div>
-          </ElFormItem>
-          <ElFormItem label="名称">
-            <ElInput v-model="tag.name" />
-          </ElFormItem>
-          <ElFormItem label="别名" prop="alias">
-            <p class="form-tip">
-              提示：按回车键生效
-            </p>
-            <ElSelect
-              v-model="tag.alias"
-              multiple
-              filterable
-              allow-create
-              default-first-option
-              placeholder="请输入标签别名"
-              popper-class="hidden-select-options"
-              class="hidden-select-input"
-            />
-          </ElFormItem>
-          <ElFormItem label="简介">
-            <ElInput
-              v-model="tag.intro"
-              type="textarea"
-              :show-word-limit="true"
-              :rows="8"
-              maxlength="233"
-              resize="none"
-              placeholder="请输入板块介绍"
-            />
-          </ElFormItem>
-          <ElFormItem>
-            <ElButton
-              :loading="submitting"
-              type="success"
-              round
-              @click="submit"
-            >
-              保存更改
-            </ElButton>
-          </ElFormItem>
-        </ElForm>
+        <VSwitcher :headers="headers" :swipe="true" :anchor-padding="10">
+          <template slot="0">
+            <EditTagInfoForm :tag="tag" />
+          </template>
+          <template slot="1">
+            <EditTagRuleForm :tag="tag" />
+          </template>
+        </VSwitcher>
       </ElCol>
     </ElRow>
   </div>
 </template>
 
 <script>
-import { Upload, Select } from 'element-ui'
-import { showTag, updateTag } from '~/api/tagApi'
-import upload from '~/mixins/upload'
+import { showTag } from '~/api/tagApi'
 import mustSign from '~/mixins/mustSign'
+import EditTagInfoForm from '~/components/form/EditTagInfoForm'
+import EditTagRuleForm from '~/components/form/EditTagRuleForm'
 
 export default {
   name: 'TagEdit',
   layout: 'web',
   components: {
-    ElUpload: Upload,
-    ElSelect: Select
+    EditTagInfoForm,
+    EditTagRuleForm
   },
-  mixins: [upload, mustSign],
+  mixins: [mustSign],
   props: {
     slug: {
       type: String,
@@ -126,29 +73,24 @@ export default {
     }
   },
   data() {
-    const validateAlias = (rule, value, callback) => {
-      if (!value || !value.length) {
-        callback(new Error('别名不能为空'))
-      }
-      if (!~value.indexOf(this.tag.name)) {
-        callback(new Error('别名中必须包含名称'))
-      }
-      if (value.some(_ => /,/.test(_))) {
-        callback(new Error('别名不能包含英文逗号'))
-      }
-      if (value.join('').length > 100) {
-        callback(new Error('别名最多100个字符'))
-      }
-      callback()
-    }
     return {
-      tag: null,
-      rules: {
-        alias: [
-          { validator: validateAlias, trigger: 'submit' }
-        ]
-      },
-      submitting: false
+      tag: null
+    }
+  },
+  computed: {
+    headers() {
+      if (!this.tag) {
+        return []
+      }
+      const result = ['基本信息']
+      const area = process.env.TAGS
+      if (
+        !~[area.bangumi, area.game, area.topic].indexOf(this.tag.slug) &&
+        this.tag.parent_slug !== area.notebook
+      ) {
+        result.push('加入规则')
+      }
+      return result
     }
   },
   asyncData({ app, error, params }) {
@@ -159,36 +101,6 @@ export default {
         return { tag }
       })
       .catch(error)
-  },
-  methods: {
-    avatarUploadSuccess(res, file) {
-      this.handleImageUploadSuccess(res, file)
-      this.tag.avatar = res.data.url
-    },
-    submit() {
-      this.$refs.form.validate(valid => {
-        if (valid) {
-          this.submitting = true
-          updateTag(this, {
-            slug: this.tag.slug,
-            name: this.tag.name,
-            avatar: this.tag.avatar,
-            alias: this.tag.alias.join(','),
-            intro: this.tag.intro
-          })
-            .then(() => {
-              this.$toast.success('修改成功')
-                .then(() => {
-                  window.location.reload()
-                })
-            })
-            .catch(err => {
-              this.$toast.error(err.message)
-              this.submitting = false
-            })
-        }
-      })
-    }
   }
 }
 </script>
