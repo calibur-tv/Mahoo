@@ -20,11 +20,11 @@
   >
     <ElFormItem label="出题数">
       <p class="form-tip">
-        如果题库数量不足，则有多少出多少，如果题库数量超过设定值，则随机出指定题目数
+        如果题库数量不足，则无法开始答题，如果题库数量超过设定值，则随机出指定题目数
       </p>
       <ElSlider
         v-model="rule.question_count"
-        :min="30"
+        :min="10"
         :max="100"
         :disabled="rule.rule_type !== 0"
         :format-tooltip="formatQuestionCount"
@@ -38,7 +38,7 @@
         v-model="rule.right_rate"
         :min="50"
         :max="100"
-        :disabled="rule.rule_type !== 0"
+        :disabled="rule.rule_type !== 0 || rule.result_type !== 0"
         :format-tooltip="formatRightRate"
       />
     </ElFormItem>
@@ -62,11 +62,26 @@
         <ElRadio :label="1">
           只能管理邀请
         </ElRadio>
+        <ElRadio :label="2">
+          只能答题加入
+        </ElRadio>
       </ElRadioGroup>
       <p class="form-tip">
-        提交更改之后不会影响「正在答题」和「已经加入」的人
+        加入方式更改之后不会影响「正在答题」和「已经加入」的人
       </p>
     </ElFormItem>
+    <!--
+    <ElFormItem label="考核方式">
+      <ElRadioGroup v-model="rule.result_type">
+        <ElRadio :label="0">
+          答完所有题目之后只告知是否通过
+        </ElRadio>
+        <ElRadio :label="1">
+          每答一道题就得知对错（该模式下正确率强制为100%）
+        </ElRadio>
+      </ElRadioGroup>
+    </ElFormItem>
+    -->
     <ElFormItem>
       <ElButton
         :loading="submitting"
@@ -102,7 +117,8 @@ export default {
         question_count: 30,
         right_rate: 100,
         qa_minutes: 30,
-        rule_type: 0
+        rule_type: 0,
+        result_type: 0
       },
       submitting: false
     }

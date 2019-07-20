@@ -119,7 +119,7 @@
         <NLink
           target="_blank"
           :to="$alias.pin(secretLink || item.slug)"
-          class="fade-link"
+          class="fade-link oneline"
           v-text="item.title.text"
         />
         <template v-if="showArea">

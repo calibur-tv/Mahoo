@@ -20,7 +20,7 @@
           :timestamp="$utils.timeAgo(item.created_at)"
           placement="top"
         >
-          <component :is="`type-${item.type}`" :item="item.data" />
+          <component :is="`type-${item.type}`" v-if="item.data" :item="item.data" />
         </ElTimelineItem>
       </ElTimeline>
     </FlowLoader>

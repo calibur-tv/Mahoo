@@ -325,6 +325,7 @@ export default {
       topic: process.env.TAGS.newbie,
       last_edit_at: '',
       visit_type: 0,
+      content_type: 0,
       loading: false
     }
   },
@@ -347,6 +348,12 @@ export default {
   mounted() {
     if (this.$cache.has(`editor_local_draft_title-${this.slug}`)) {
       this.title = this.$cache.get(`editor_local_draft_title-${this.slug}`)
+    }
+    if (this.content_type === 2) {
+      this.$toast.error('暂不支持修改答题')
+        .then(() => {
+          window.location = this.$alias.pin(this.slug)
+        })
     }
   },
   methods: {

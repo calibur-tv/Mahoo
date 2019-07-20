@@ -38,7 +38,7 @@ export const shortenNumber = num => {
 export const timeAgo = time => {
   const date = adjustTime(time)
   const delta = Date.now() - new Date(date).getTime()
-  if (delta > 365 * 86400000) {
+  if (delta > 365 * 86400000 || delta <= 0) {
     return dayjs(date).format('YYYY-MM-DD')
   }
   const today = new Date().setHours(0, 0, 0, 0)

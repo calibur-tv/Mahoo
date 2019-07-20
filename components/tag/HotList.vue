@@ -40,17 +40,17 @@
 </style>
 
 <template>
-  <div class="tag-hot-list">
+  <div
+    v-if="list.length"
+    class="tag-hot-list"
+  >
     <h3 class="title">
       <span v-text="title" />
       <CreateTagBtn v-if="isAdmin" :parent="slug" @create="handleCreate">
         <i class="el-icon-plus fade-link" />
       </CreateTagBtn>
     </h3>
-    <ul
-      v-if="list.length"
-      class="child-node"
-    >
+    <ul class="child-node">
       <li
         v-for="item in list.slice(0, 10)"
         :key="item.slug"

@@ -124,8 +124,8 @@
         <div slot="intro" class="metas">
           <div v-if="topic || area" class="oneline">
             <NLink v-if="topic" target="_blank" :to="$alias.tag(topic.slug)" v-text="topic.name" />
+            <span v-if="topic && area">·</span>
             <template v-if="area">
-              <span>·</span>
               <NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" />
             </template>
           </div>
@@ -151,7 +151,7 @@
               删除
             </ElButton>
             &nbsp;
-            <NLink :to="$alias.create(slug)">
+            <NLink v-if="content_type !== 2" :to="$alias.create(slug)">
               <ElButton round plain type="info">
                 编辑
               </ElButton>
