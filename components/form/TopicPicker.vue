@@ -12,7 +12,13 @@
     <p class="tip">
       提示：只展示已关注的话题（必选项，填写后不可修改）
     </p>
-    <ElSelect v-model="selected" filterable default-first-option placeholder="请选择">
+    <ElSelect
+      v-if="myTagsFetched"
+      v-model="selected"
+      filterable
+      default-first-option
+      placeholder="请选择"
+    >
       <ElOption
         v-for="item in options"
         :key="item.slug"
@@ -51,6 +57,9 @@ export default {
     options() {
       return this.$store.state.global.myTags
         .filter(_ => _.slug === 'topic')[0].children
+    },
+    myTagsFetched() {
+      return this.$store.state.global.myTagsFetched
     }
   },
   watch: {

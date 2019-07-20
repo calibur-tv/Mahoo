@@ -55,7 +55,7 @@
           alt="error-404"
           @click="toastMessage"
         >
-        <h3>{{ message || '您要找的页面不存在' }}</h3>
+        <h3>您要找的页面不存在</h3>
         <div class="subtitle">
           不存在的内容，或者正在审核中。
         </div>
@@ -85,10 +85,10 @@
 import VHeader from '~/components/common/Header'
 
 export default {
-  name: 'NuxtError',
+  name: 'nuxt-error', // eslint-disable-line
   components: {
     VHeader
-  }, // eslint-disable-line
+  },
   props: {
     error: {
       type: Object,
@@ -109,7 +109,7 @@ export default {
       return (this.error && this.error.statusCode) || 404
     },
     message() {
-      return this.statusCode === 404 ? '您查找的页面不存在' : this.error && this.error.message
+      return this.error && this.error.message
     }
   },
   mounted() {

@@ -13,6 +13,7 @@
       提示：只展示已解禁的分区（可选项，发表后不可修改）
     </p>
     <ElCascader
+      v-if="myTagsFetched"
       v-model="selected"
       :placeholder="placeholder"
       :options="options"
@@ -63,6 +64,9 @@ export default {
     options() {
       return this.$store.state.global.myTags
         .filter(_ => !~['notebook', 'topic'].indexOf(_.slug))
+    },
+    myTagsFetched() {
+      return this.$store.state.global.myTagsFetched
     }
   },
   watch: {

@@ -41,7 +41,7 @@
 
 <template>
   <div class="tag-hot-list">
-    <h3 v-if="title" class="title">
+    <h3 class="title">
       <span v-text="title" />
       <CreateTagBtn v-if="isAdmin" :parent="slug" @create="handleCreate">
         <i class="el-icon-plus fade-link" />
@@ -80,7 +80,7 @@ export default {
     },
     title: {
       type: String,
-      default: ''
+      default: '热门分区'
     },
     list: {
       type: Array,
