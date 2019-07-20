@@ -151,7 +151,7 @@
               删除
             </ElButton>
             &nbsp;
-            <NLink v-if="content_type !== 2" :to="$alias.create(slug)">
+            <NLink :to="$alias.create(slug)">
               <ElButton round plain type="info">
                 编辑
               </ElButton>
@@ -165,7 +165,12 @@
           </template>
         </template>
       </ContentAuthor>
-      <JsonContent :content="content" :reward="reward_status" />
+      <JsonContent
+        :slug="slug"
+        :content="content"
+        :reward="reward_status"
+        :vote="vote_hash"
+      />
       <div class="footer">
         <div class="sss-panel">
           <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
@@ -231,7 +236,6 @@ export default {
       notebook: null,
       visit_type: 0,
       trial_type: 0,
-      content_type: 0,
       comment_type: 0,
       last_top_at: 0,
       recommended_at: 0,
@@ -245,7 +249,8 @@ export default {
       visit_count: 0,
       mark_count: 0,
       comment_count: 0,
-      reward_count: 0
+      reward_count: 0,
+      vote_hash: []
     }
   },
   computed: {
@@ -319,6 +324,7 @@ export default {
               reward_status: data.reward_status
             }
           })
+          this.vote_hash = data.vote_hash
         })
         .catch(() => {})
     },

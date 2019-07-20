@@ -1,6 +1,3 @@
-<style lang="scss">
-</style>
-
 <template>
   <div id="homepage">
     <div class="container">

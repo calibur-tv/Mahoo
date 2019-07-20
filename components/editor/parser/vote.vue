@@ -51,6 +51,15 @@
           transform: rotate(-45deg);
         }
       }
+
+      .count {
+        position: absolute;
+        left: 0;
+        top: 10%;
+        height: 80%;
+        background-color: rgba($color-main, 0.5);
+        border-radius: 5px;
+      }
     }
 
     header {
@@ -74,6 +83,21 @@
       margin-top: 10px;
       font-size: 13px;
       color: $color-text-3;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      button {
+        padding: 5px 10px;
+        border-radius: 4px;
+        background-color: $color-gray-bg;
+
+        &.active {
+          background-color: $color-main;
+          color: #fff;
+        }
+      }
     }
   }
 }
@@ -91,12 +115,16 @@
           class="oneline"
           @click="handleSelect(option)"
         >
+          <span :class="$style.count" :style="{ width: computeItemWidth(option) }" />
           <span v-text="(index + 1) + '. ' + option.text" />
           <i />
         </li>
       </ul>
       <footer>
         <span>截止时间：{{ item.data.expired_at ? $utils.timeAgo(item.data.expired_at) : '无限期' }}</span>
+        <button :class="{ [$style.active]: selected.length && !voted }" @click="submit">
+          {{ submitting ? '提交中' : voted ? '已投过票' : '确认' }}
+        </button>
       </footer>
     </div>
   </div>
@@ -109,20 +137,52 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    vote: {
+      type: Array,
+      required: true
+    },
+    slug: {
+      type: String,
+      required: true
     }
   },
   data() {
     return {
-      selected: []
+      selected: [],
+      submitting: false,
+      voted: false,
+      stat: [],
+      maxCount: 0
     }
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
+  watch: {
+    vote(val) {
+      this.selected = val.map(_ => _)
+      if (val.length) {
+        this.voted = true
+        this.getVoteStat()
+      }
+    }
+  },
   methods: {
+    getVoteStat() {
+      this.$axios.$get('v1/pin/vote_stat', {
+        params: {
+          slug: this.slug
+        }
+      })
+        .then(data => {
+          this.stat = data
+          this.maxCount = Math.max(...Object.values(this.stat))
+        })
+        .catch(() => {})
+    },
     handleSelect(option) {
-      const { selected } = this
+      const { selected, voted } = this
+      if (voted) {
+        return
+      }
       const index = selected.indexOf(option.id)
       if (~index) {
         selected.splice(index, 1)
@@ -139,6 +199,39 @@ export default {
     },
     checkSelected(option) {
       return ~this.selected.indexOf(option.id)
+    },
+    submit() {
+      if (this.submitting || this.voted) {
+        return
+      }
+      if (!this.selected.length) {
+        this.$toast.info('至少选择一项')
+        return
+      }
+      if (this.item.data.expired_at && this.item.data.expired_at * 1000 < Date.now()) {
+        this.$toast.info('投票已截止')
+        return
+      }
+      this.submitting = true
+      this.$axios.$post('v1/social/vote', {
+        pin_slug: this.slug,
+        answer_hash: this.selected
+      })
+        .then(() => {
+          this.$toast.success('投票成功')
+          this.voted = true
+          this.getVoteStat()
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+        .finally(() => {
+          this.submitting = false
+        })
+    },
+    computeItemWidth(option) {
+      const count = this.stat[option.id] || 0
+      return count ? `${75 * count / this.maxCount}%` : '0%'
     }
   }
 }

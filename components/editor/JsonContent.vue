@@ -6,6 +6,8 @@
       :key="index"
       :item="item"
       :reward="reward"
+      :vote="vote"
+      :slug="slug"
     />
   </section>
 </template>
@@ -47,6 +49,14 @@ export default {
     reward: {
       type: Boolean,
       default: false
+    },
+    vote: {
+      type: Array,
+      default: () => []
+    },
+    slug: {
+      type: String,
+      required: true
     }
   },
   mounted() {

@@ -21,9 +21,6 @@ export default {
   },
   computed: {
     title() {
-      if (this.item.content_type === 2) {
-        return '出了一道题'
-      }
       return '发表文章'
     }
   }
