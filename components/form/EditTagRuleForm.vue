@@ -23,10 +23,10 @@
         如果题库数量不足，则有多少出多少，如果题库数量超过设定值，则随机出指定题目数
       </p>
       <ElSlider
-        v-model="question_count"
+        v-model="rule.question_count"
         :min="30"
         :max="100"
-        :disabled="rule_type !== 0"
+        :disabled="rule.rule_type !== 0"
         :format-tooltip="formatQuestionCount"
       />
     </ElFormItem>
@@ -35,10 +35,10 @@
         答题的正确率不低于该值才能通过
       </p>
       <ElSlider
-        v-model="right_rate"
+        v-model="rule.right_rate"
         :min="50"
         :max="100"
-        :disabled="rule_type !== 0"
+        :disabled="rule.rule_type !== 0"
         :format-tooltip="formatRightRate"
       />
     </ElFormItem>
@@ -47,15 +47,15 @@
         答题超过该时长之后就自动设为失败
       </p>
       <ElSlider
-        v-model="qa_minutes"
+        v-model="rule.qa_minutes"
         :min="30"
         :max="120"
-        :disabled="rule_type !== 0"
+        :disabled="rule.rule_type !== 0"
         :format-tooltip="formatQAMinutes"
       />
     </ElFormItem>
     <ElFormItem label="加入方式">
-      <ElRadioGroup v-model="rule_type">
+      <ElRadioGroup v-model="rule.rule_type">
         <ElRadio :label="0">
           需要答题或管理邀请
         </ElRadio>
@@ -72,7 +72,7 @@
         :loading="submitting"
         type="success"
         round
-        @click="submit"
+        @click="updateRule"
       >
         保存更改
       </ElButton>
@@ -98,12 +98,17 @@ export default {
   },
   data() {
     return {
-      question_count: 30,
-      right_rate: 100,
-      qa_minutes: 30,
-      rule_type: 0,
+      rule: {
+        question_count: 30,
+        right_rate: 100,
+        qa_minutes: 30,
+        rule_type: 0
+      },
       submitting: false
     }
+  },
+  mounted() {
+    this.getRule()
   },
   methods: {
     formatQuestionCount(val) {
@@ -115,8 +120,34 @@ export default {
     formatQAMinutes(val) {
       return `${val}分钟`
     },
-    submit() {
-      this.$toast.success('123')
+    updateRule() {
+      if (this.submitting) {
+        return
+      }
+      this.submitting = true
+      this.$axios.$post('v1/tag/rule/edit/update', this.rule)
+        .then(() => {
+          this.$toast.success('更新成功')
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+        .finally(() => {
+          this.submitting = false
+        })
+    },
+    getRule() {
+      this.$axios.$get('v1/tag/rule/show', {
+        params: {
+          slug: this.tag.slug
+        }
+      })
+        .then(data => {
+          this.$set(this, 'rule', data)
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
     }
   }
 }
