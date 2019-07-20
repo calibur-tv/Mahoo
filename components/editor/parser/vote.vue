@@ -59,6 +59,11 @@
         height: 80%;
         background-color: rgba($color-main, 0.5);
         border-radius: 5px;
+        text-align: right;
+        padding-right: 10px;
+        color: #fff;
+        line-height: 32px;
+        font-size: 12px;
       }
     }
 
@@ -115,7 +120,9 @@
           class="oneline"
           @click="handleSelect(option)"
         >
-          <span :class="$style.count" :style="{ width: computeItemWidth(option) }" />
+          <span v-if="stat[option.id]" :class="$style.count" :style="{ width: computeItemWidth(option) }">
+            {{ stat[option.id] }} 票
+          </span>
           <span v-text="(index + 1) + '. ' + option.text" />
           <i />
         </li>
