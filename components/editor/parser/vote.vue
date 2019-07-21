@@ -60,10 +60,10 @@
         background-color: rgba($color-main, 0.5);
         border-radius: 5px;
         text-align: right;
-        padding-right: 10px;
         color: #fff;
         line-height: 32px;
         font-size: 12px;
+        transition: width 500ms ease-in-out;
       }
     }
 
@@ -120,9 +120,11 @@
           class="oneline"
           @click="handleSelect(option)"
         >
-          <span v-if="stat[option.id]" :class="$style.count" :style="{ width: computeItemWidth(option) }">
-            {{ stat[option.id] }} 票
-          </span>
+          <span
+            :class="$style.count"
+            :style="{ width: computeItemWidth(option) }"
+            v-html="stat[option.id] ? `${stat[option.id]}票&nbsp;&nbsp;` : ''"
+          />
           <span v-text="(index + 1) + '. ' + option.text" />
           <i />
         </li>

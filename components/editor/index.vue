@@ -52,6 +52,7 @@ import ListPlugin from '~/components/editor/plugin/list'
 import ChecklistPlugin from '~/components/editor/plugin/checklist'
 import MarkPlugin from '~/components/editor/plugin/mark'
 import ParagraphPlugin from '~/components/editor/plugin/paragraph'
+import VotePlugin from '~/components/editor/plugin/vote'
 
 export default {
   name: 'JsonEditor',
@@ -176,6 +177,9 @@ export default {
               },
               paragraph: {
                 class: ParagraphPlugin
+              },
+              vote: {
+                class: VotePlugin
               }
             },
             onChange: () => {

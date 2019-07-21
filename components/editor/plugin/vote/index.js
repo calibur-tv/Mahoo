@@ -1,8 +1,10 @@
 import './index.scss'
 
-export default class Baidu {
-  constructor({ data }) {
+export default class Vote {
+  constructor({ data, api }) {
     this.data = data
+    this.api = api
+    this.i = 0
   }
 
   static get toolbox() {
@@ -17,90 +19,139 @@ export default class Baidu {
   }
 
   render() {
+    const votes = document.querySelectorAll('.vote-wrap')
+    if (votes.length > 0) {
+      this.api.notifier.show({
+        message: '一篇文章只能包含一个投票',
+        style: 'error'
+      })
+      return
+    }
     const wrapper = document.createElement('div')
     wrapper.classList.add('vote-wrap')
 
-    const urlInput = document.createElement('input')
-    urlInput.classList.add('vote-url')
-    urlInput.placeholder = '粘贴资源链接到这里（仅支持百度云盘：pan.baidu.com）'
-    urlInput.type = 'text'
-    urlInput.value = this.data && this.data.url ? this.data.url : ''
-    wrapper.appendChild(urlInput)
+    const tips = document.createElement('p')
+    tips.textContent = '投票（文章发表后无法再修改）'
 
-    const pwdInput = document.createElement('input')
-    pwdInput.classList.add('vote-password')
-    pwdInput.placeholder = '填写资源的密码（4~6位）'
-    pwdInput.type = 'text'
-    pwdInput.value = this.data && this.data.password ? this.data.password : ''
-    wrapper.appendChild(pwdInput)
+    const list = document.createElement('ul')
+    const append = document.createElement('button')
+    append.classList.add('vote-append', 'el-icon-plus')
 
-    const roleContainer = document.createElement('div')
-    roleContainer.classList.add('vote-role-wrap')
+    const createItem = text => {
+      const wrap = document.createElement('li')
+      const label = document.createElement('span')
+      label.textContent = `${++this.i}. `
+      const input = document.createElement('input')
+      input.type = 'text'
+      input.placeholder = '请输入选项（20字以内）'
+      if (text) {
+        input.value = (typeof text === 'string' ? text : text.text) || ''
+      }
+      input.maxLength = 20
+      input.classList.add('vote-answer')
+      wrap.classList.add('vote-wrap-item')
+      wrap.appendChild(label)
+      wrap.appendChild(input)
+      if (this.i > 2) {
+        const close = document.createElement('button')
+        close.classList.add('el-icon-circle-close')
+        close.addEventListener('click', () => {
+          list.removeChild(wrap)
+          this.i--
+          if (this.i < 100) {
+            append.style.display = 'block'
+          }
+          const maxCounter = wrapper.querySelector('.vote-wrap-select-count')
+          if (maxCounter) {
+            maxCounter.max = this.i
+            if (maxCounter.value - this.i > 0) {
+              maxCounter.value = this.i
+            }
+          }
+        })
+        wrap.appendChild(close)
+      }
+      list.appendChild(wrap)
+      input.focus()
+    }
 
-    const radioName = `${Math.random().toString(36).substring(3, 6)}`
-    const roleValue = this.data && this.data.visit_type ? this.data.visit_type : 0
-    const roleIntro = document.createElement('span')
-    roleIntro.textContent = '是否需要投食才能看到密码：'
-    roleContainer.appendChild(roleIntro)
+    append.addEventListener('click', () => {
+      createItem()
+      if (this.i >= 100) {
+        append.style.display = 'none'
+      }
+      const maxCounter = wrapper.querySelector('.vote-wrap-select-count')
+      if (maxCounter) {
+        maxCounter.max = this.i
+      }
+    })
 
-    const publicRole = document.createElement('input')
-    publicRole.classList.add('vote-role-public')
-    publicRole.id = `vote-role-public-${radioName}`
-    publicRole.name = radioName
-    publicRole.type = 'radio'
-    publicRole.value = 0
-    publicRole.checked = roleValue === 0
-    roleContainer.appendChild(publicRole)
+    const createFooter = () => {
+      const footer = document.createElement('footer')
+      const countLabel = document.createElement('span')
+      countLabel.textContent = '可选个数'
+      const countInput = document.createElement('input')
+      countInput.type = 'number'
+      countInput.classList.add('vote-wrap-select-count')
+      countInput.min = 1
+      if (this.data && this.data.max_select) {
+        countInput.value = this.data.max_select
+      } else {
+        countInput.value = 1
+      }
+      countInput.max = this.i
 
-    const publicLabel = document.createElement('label')
-    publicLabel.setAttribute('for', `vote-role-public-${radioName}`)
-    publicLabel.textContent = '否'
-    publicLabel.classList.add('vote-label')
-    roleContainer.appendChild(publicLabel)
+      footer.appendChild(countLabel)
+      footer.appendChild(countInput)
 
-    const privateRole = document.createElement('input')
-    privateRole.classList.add('vote-role-private')
-    privateRole.id = `vote-role-private-${radioName}`
-    privateRole.type = 'radio'
-    privateRole.name = radioName
-    privateRole.value = 1
-    privateRole.checked = roleValue === 1
-    roleContainer.appendChild(privateRole)
+      const expireLabel = document.createElement('span')
+      expireLabel.textContent = '截止时间（可选）'
+      const expireInput = document.createElement('input')
+      expireInput.type = 'date'
+      expireInput.min = new Date(Date.now() + 86400000).toISOString().split('T')[0]
+      expireInput.classList.add('vote-expire-input')
+      if (this.data && this.data.expired_at) {
+        expireInput.value = new Date(this.data.expired_at * 1000).toISOString().split('T')[0]
+      }
 
-    const privateLabel = document.createElement('label')
-    privateLabel.setAttribute('for', `vote-role-private-${radioName}`)
-    privateLabel.textContent = '是'
-    privateLabel.classList.add('vote-label')
-    roleContainer.appendChild(privateLabel)
+      footer.appendChild(expireLabel)
+      footer.appendChild(expireInput)
 
-    wrapper.appendChild(roleContainer)
+      wrapper.appendChild(footer)
+    }
+
+    wrapper.appendChild(tips)
+    wrapper.appendChild(list)
+    wrapper.appendChild(append)
+
+    if (this.data && this.data.items) {
+      this.data.items.forEach(createItem)
+    } else {
+      createItem()
+      createItem()
+    }
+
+    createFooter()
 
     return wrapper
   }
 
   save(blockContent) {
-    const urlInput = blockContent.querySelector('.vote-url')
-    const pwdInput = blockContent.querySelector('.vote-password')
-    const publicInput = blockContent.querySelector('.vote-role-public')
-
-    let url = urlInput.value.trim()
-    if (!/^https?:\/\//.test(url)) {
-      url = 'https://' + url
-    }
-
+    const answerInput = blockContent.querySelectorAll('.vote-answer')
+    const answers = [];
+    [].forEach.call(answerInput, function(item) {
+      answers.push(item.value)
+    })
+    const expireInput = blockContent.querySelector('.vote-expire-input')
     return {
-      url,
-      password: pwdInput.value.trim(),
-      visit_type: publicInput.checked ? 0 : 1
+      items: answers.map(_ => _.trim()).filter(_ => _),
+      right_ids: [],
+      max_select: +blockContent.querySelector('.vote-wrap-select-count').value,
+      expired_at: (expireInput && expireInput.value) ? parseInt(new Date(expireInput.value).getTime() / 1000) : 0
     }
   }
 
   validate(savedData) {
-    if (!savedData.url || !savedData.password) {
-      return false
-    }
-
-    return !(!/https?:\/\/pan\.baidu\.com\/s\/([\w\W]+)/.test(savedData.url) ||
-      !/^[\w|\W]{4,6}$/.test(savedData.password))
+    return savedData.items.length > 1
   }
 }
