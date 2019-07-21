@@ -49,7 +49,7 @@
     <li v-for="(option, index) in item.data.items" :key="index">
       <i v-if="option.checked" />
       <em v-else />
-      <div v-text="option.text" />
+      <div v-html="option.text" />
     </li>
   </ul>
 </template>

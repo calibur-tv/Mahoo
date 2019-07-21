@@ -26,10 +26,10 @@
 <template>
   <div :class="$style.list">
     <ol v-if="item.data.style === 'ordered'">
-      <li v-for="(li, index) in item.data.items" :key="index" v-text="li" />
+      <li v-for="(li, index) in item.data.items" :key="index" v-html="li" />
     </ol>
     <ul v-else>
-      <li v-for="(li, index) in item.data.items" :key="index" v-text="li" />
+      <li v-for="(li, index) in item.data.items" :key="index" v-html="li" />
     </ul>
   </div>
 </template>
