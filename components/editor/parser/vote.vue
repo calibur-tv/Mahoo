@@ -57,7 +57,6 @@
         left: 0;
         top: 10%;
         height: 80%;
-        background-color: rgba($color-main, 0.5);
         border-radius: 5px;
         text-align: right;
         color: #fff;
@@ -122,7 +121,7 @@
         >
           <span
             :class="$style.count"
-            :style="{ width: computeItemWidth(option) }"
+            :style="computeItemStyle(option)"
             v-html="stat[option.id] ? `${stat[option.id]}票&nbsp;&nbsp;` : ''"
           />
           <span v-text="(index + 1) + '. ' + option.text" />
@@ -238,9 +237,24 @@ export default {
           this.submitting = false
         })
     },
-    computeItemWidth(option) {
+    computeItemStyle(option) {
       const count = this.stat[option.id] || 0
-      return count ? `${75 * count / this.maxCount}%` : '0%'
+      const width = count ? `${75 * count / this.maxCount}%` : '0%'
+      return {
+        width,
+        backgroundColor: this.getRandomColor()
+      }
+    },
+    getRandomColor() {
+      const colors = [
+        'rgba(255,170,170,.5)',
+        'rgba(255,148,39,.5)',
+        'rgba(252,196,25,.5)',
+        'rgba(32,201,151,.5)',
+        'rgba(18,183,245,.5)',
+        'rgba(173,181,189,.5)'
+      ]
+      return colors[~~(Math.random() * colors.length)]
     }
   }
 }
