@@ -71,9 +71,13 @@ export default {
     }
   },
   mounted() {
-    this.$channel.$when('user-signed', () => {
+    if (this.$store.state.isAuth) {
       this.$store.dispatch('global/getMyTags')
-    })
+    } else {
+      this.$channel.$when('user-signed', () => {
+        this.$store.dispatch('global/getMyTags')
+      })
+    }
   }
 }
 </script>
