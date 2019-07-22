@@ -1,5 +1,5 @@
 <style lang="scss" module>
-.pin-1 {
+.pin-article {
   &-pc {
     &-media {
       .desc {
@@ -106,15 +106,15 @@
 </style>
 
 <template>
-  <li :class="$style['pin-1']">
+  <li :class="$style['pin-article']">
     <NLink
       :to="$alias.pin(secretLink || item.slug)"
-      :class="$style['pin-1-h5']"
+      :class="$style['pin-article-h5']"
       class="only-h5"
     >
       {{ item.title.text }}
     </NLink>
-    <div :class="[$style['pin-1-pc'], { [$style['pin-1-pc-media']]: item.media }]" class="only-pc">
+    <div :class="[$style['pin-article-pc'], { [$style['pin-article-pc-media']]: item.media }]" class="only-pc">
       <h2 :class="$style.title">
         <NLink
           target="_blank"

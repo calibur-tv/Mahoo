@@ -43,3 +43,9 @@ export const getTagFlows = ({ $axios, slug, sort, time, take, seen_ids, last_id 
       .catch(reject)
   })
 }
+
+export const getATField = ({ $axios, page, count, sort, slug }) => {
+  return $axios.$get('v1/atfield/flow', {
+    params: { page, count, sort, slug }
+  })
+}

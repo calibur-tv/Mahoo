@@ -85,9 +85,10 @@
 </template>
 
 <script>
-import { showTag, createQA } from '~/api/tagApi'
-import mustSign from '~/mixins/mustSign'
 import { Radio, RadioGroup } from 'element-ui'
+import { showTag } from '~/api/tagApi'
+import { createQA } from '~/api/atfieldApi'
+import mustSign from '~/mixins/mustSign'
 
 export default {
   name: 'TagQA',

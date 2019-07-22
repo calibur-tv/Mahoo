@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="`type-${item.content_type}`"
+    :is="`type-${item.badge}`"
     v-if="item"
     :item="item"
     :show-user="showUser"
@@ -11,14 +11,12 @@
 
 <script>
 import flowProps from '~/mixins/flowProps'
-import Type1 from '~/components/flow/types/PinArticle'
-import Type2 from '~/components/flow/types/TagQuestion'
+import TypeArticle from '~/components/flow/types/PinArticle'
 
 export default {
   name: 'PinFlowItem',
   components: {
-    Type1,
-    Type2
+    TypeArticle
   },
   mixins: [flowProps]
 }

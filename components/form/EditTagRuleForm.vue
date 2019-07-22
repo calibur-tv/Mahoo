@@ -141,7 +141,7 @@ export default {
         return
       }
       this.submitting = true
-      this.$axios.$post('v1/tag/rule/edit/update', this.rule)
+      this.$axios.$post('v1/atfield/rule/update', this.rule)
         .then(() => {
           this.$toast.success('更新成功')
         })
@@ -153,7 +153,7 @@ export default {
         })
     },
     getRule() {
-      this.$axios.$get('v1/tag/rule/show', {
+      this.$axios.$get('v1/atfield/rule/show', {
         params: {
           slug: this.tag.slug
         }

@@ -365,8 +365,12 @@ export default {
   },
   data() {
     return {
-      night_mode: false,
-      headers: [
+      night_mode: false
+    }
+  },
+  computed: {
+    headers() {
+      const result = [
         {
           route: '/zone/bangumi',
           name: '动漫'
@@ -380,9 +384,14 @@ export default {
           name: '话题'
         }
       ]
-    }
-  },
-  computed: {
+      if (this.user.is_admin) {
+        result.push({
+          route: '/zone/atfield',
+          name: '题库'
+        })
+      }
+      return result
+    },
     isAuth() {
       return this.$store.state.isAuth
     },
