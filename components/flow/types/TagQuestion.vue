@@ -54,10 +54,8 @@
   <li :class="$style['tag-question']">
     <div :class="$style.content">
       <h2 :class="$style.title">
-        <NLink
-          target="_blank"
-          :to="$alias.pin(secretLink || item.slug)"
-          class="fade-link oneline"
+        <p
+          class="oneline"
           v-text="item.title.text"
         />
         <template v-if="showArea">
@@ -79,9 +77,9 @@
       </h2>
       <main v-if="vote && vote.data">
         <p
-          v-for="item in vote.data.items"
+          v-for="(item, index) in vote.data.items"
           :key="item.id"
-          v-text="item.text"
+          v-text="`${index}. ${item.text}`"
         />
       </main>
       <footer>

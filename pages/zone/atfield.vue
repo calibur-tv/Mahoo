@@ -110,7 +110,7 @@
             <TagQuestion
               v-for="item in flow"
               :key="item.slug"
-              :show-area="showArea"
+              :show-area="!slug"
               :item="item"
               @remove="handleRemove(item.slug)"
             />
@@ -174,6 +174,9 @@ export default {
         count: 10,
         changing: 'slug'
       }
+    },
+    slug() {
+      return this.$route.query.slug
     }
   },
   methods: {
