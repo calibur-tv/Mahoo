@@ -9,19 +9,21 @@
 <template>
   <div class="tag-control-panel">
     <h3>控制台</h3>
-    <NLink :to="$alias.tag(slug, 'edit')">
-      <ElButton icon="el-icon-edit" size="mini" round>
-        编辑
+    <template v-if="isAdmin">
+      <NLink :to="$alias.tag(slug, 'edit')">
+        <ElButton icon="el-icon-edit" size="mini" round>
+          编辑
+        </ElButton>
+      </NLink>
+      <ElButton icon="el-icon-delete" size="mini" round @click="deleteTag">
+        删除
       </ElButton>
-    </NLink>
-    <NLink v-if="showQA" :to="$alias.tag(slug, 'qa')">
+    </template>
+    <NLink v-if="showQA && state && state.is_marked" :to="$alias.tag(slug, 'qa')">
       <ElButton icon="el-icon-guide" size="mini" round>
         出题
       </ElButton>
     </NLink>
-    <ElButton icon="el-icon-delete" size="mini" round @click="deleteTag">
-      删除
-    </ElButton>
   </div>
 </template>
 
@@ -43,6 +45,12 @@ export default {
   computed: {
     showQA() {
       return this.parentSlug !== process.env.TAGS.notebook
+    },
+    isAdmin() {
+      return this.$store.getters.isAdmin
+    },
+    state() {
+      return this.$store.getters['social/get']('tag', this.slug)
     }
   },
   methods: {

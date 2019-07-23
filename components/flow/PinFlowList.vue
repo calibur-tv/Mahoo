@@ -102,7 +102,7 @@
       :callback="patchPin"
     >
       <ul slot-scope="{ flow }" class="flows">
-        <PinFlowItem
+        <PinArticle
           v-for="item in flow"
           :key="item.slug"
           :show-area="showArea"
@@ -124,15 +124,15 @@
 
 <script>
 import { Select, Option } from 'element-ui'
-import PinFlowItem from '~/components/flow/PinFlowItem'
 import SkeletonArticle from '~/components/skeleton/SkeletonArticle'
+import PinArticle from '~/components/flow/types/PinArticle'
 
 export default {
   name: 'PinFlowList',
   components: {
     ElSelect: Select,
     ElOption: Option,
-    PinFlowItem,
+    PinArticle,
     SkeletonArticle
   },
   props: {

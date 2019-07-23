@@ -107,6 +107,13 @@ export default {
       })
         .then(data => {
           this.tag = this.$set(this, 'tag', Object.assign(this.tag, data))
+          this.$store.commit('social/set', {
+            type: 'tag',
+            slug: this.slug,
+            data: {
+              is_marked: data.is_marked
+            }
+          })
         })
         .catch(() => {})
     }

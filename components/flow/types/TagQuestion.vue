@@ -139,6 +139,11 @@ import flowProps from '~/mixins/flowProps'
 export default {
   name: 'TagQuestion',
   mixins: [flowProps],
+  data() {
+    return {
+      loading: false
+    }
+  },
   computed: {
     vote() {
       if (!this.item.content) {
