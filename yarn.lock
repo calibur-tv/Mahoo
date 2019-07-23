@@ -3757,10 +3757,10 @@ eslint-plugin-import@^2.18.0:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jest@>=22.13.5:
-  version "22.13.5"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.13.5.tgz#8495ba014376d6b9ed74601de85f9232f4653120"
-  integrity sha512-0SphCFkaHCW6PhTz7cCisuN/9ppBksSJgZVAnwJZ4OQAw8MOLY3DLjI+t4kkei6P3dZkefAfLT6ZPFKLlKbc1Q==
+eslint-plugin-jest@>=22.13.6:
+  version "22.13.6"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.13.6.tgz#85630e7709fe1ecbe0099956590af32d5e157448"
+  integrity sha512-wn3n9Djj+Dyi8AS1kvGOXpzUJfs9SJYhoZxIb49y4cwHRPaSgDHzSJPZX3sliZ3k8l6bYVeEGW76QvvqoOjSEw==
   dependencies:
     "@typescript-eslint/experimental-utils" "^1.13.0"
 
@@ -9411,10 +9411,10 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.55:
-  version "1.0.55"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.55.tgz#2618615883dd9d417396a31f9552e7c433cf6efd"
-  integrity sha512-WgzOhLmaaZySkXmZiisaSjnNDERt2YeQYz2LSAHaimlR5RTaVPUPbCfzrywAL0MLlXDphwx5Zdw/uFRly7hx6Q==
+v-switcher@^1.0.56:
+  version "1.0.56"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.56.tgz#29ffd6a6e816fa4cfb58ee659da3af4c52c944ab"
+  integrity sha512-QhfcO0fKZJyXELwzEpKF0I/A5Vs6vKVw3fhDZoyUZChlZVoOu4H2BNGAXe2cwRNlYyf7yFA3vMc6fQlg6vr1kw==
   dependencies:
     vue "^2.6.6"
 
@@ -9505,10 +9505,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.48:
-  version "1.1.48"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.48.tgz#e27d643b3b45e1bdea330f00115643e7bd3bcea1"
-  integrity sha512-DG9Zs/kWDfxMITDTEE9GEpb0MoFBNjApx89xg5jNM0fk0nw+CokHvsdwanuftBA+o/25Xx7ttSJF2G3ZpuljIA==
+vue-mixin-store@1.1.50:
+  version "1.1.50"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.50.tgz#c8de8e604b76920945a82898726cd19b9243b526"
+  integrity sha512-XJ5XvXNAyhLvDBD/WpkFZa7K25dWTQb0U+6h2XvazUcW0pXh7+MGLxebkaYEN8sJvjBgBOx3IVg7lDn25LiIuA==
   dependencies:
     throttle-debounce "^2.1.0"
     vue "^2.6.6"
