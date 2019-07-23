@@ -233,10 +233,10 @@
               round
               @click="actionUpdate(true)"
             >
-              发布更新
+              {{ published_at ? '发布更新' : '更新并发布' }}
             </ElButton>
             <ElButton
-              v-if="!(visit_type - 1)"
+              v-if="!published_at"
               :loading="loading"
               round
               plain
@@ -324,7 +324,7 @@ export default {
       area: '',
       topic: process.env.TAGS.newbie,
       last_edit_at: '',
-      visit_type: 0,
+      published_at: '',
       loading: false
     }
   },
