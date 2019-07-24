@@ -2,7 +2,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const RedisUrl = require('../../.env').REDIS_URL
 
 module.exports = {
-  version: Date.now(),
+  version: new Date().toISOString().split('T')[0],
   store: {
     type: 'redis',
     stores: [
@@ -21,5 +21,5 @@ module.exports = {
       }
     ]
   },
-  pages: isDev ? ['/about/hello'] : ['/about/hello']
+  pages: isDev ? [/^\/$/] : [/^\/$/]
 }

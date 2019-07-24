@@ -1,3 +1,16 @@
+const parseCookie = cookieStr => {
+  if (!cookieStr) {
+    return ''
+  }
+  let token = ''
+  cookieStr.split('; ').forEach(item => {
+    if (item.startsWith('JWT-TOKEN=')) {
+      token = item.split('JWT-TOKEN=')[1]
+    }
+  })
+  return token
+}
+
 export default app => {
   let token = ''
 
@@ -19,15 +32,12 @@ export default app => {
     }
 
     token = pageData.authToken
-  } else {
-    const cookies = app.context.req.headers.cookie
-    if (cookies) {
-      cookies.split('; ').forEach(item => {
-        if (item.startsWith('JWT-TOKEN=')) {
-          token = item.split('JWT-TOKEN=')[1]
-        }
-      })
+
+    if (!token) {
+      token = parseCookie(document.cookie)
     }
+  } else {
+    token = parseCookie(app.context.req.headers.cookie)
   }
 
   token = ~['undefined', 'null'].indexOf(token) ? '' : token

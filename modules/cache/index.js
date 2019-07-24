@@ -27,16 +27,10 @@ module.exports = function cacheRenderer(nuxt) {
 
   function isCacheFriendly(route, prefix, suffix) {
     const path = route.split('?')[0]
-    let result
-    if (path === '/') {
-      result = '/'
-    } else {
-      result = config.pages.some(pat => path.startsWith(pat)) ? path : ''
-    }
-    if (!result) {
+    if (config.pages.every(reg => !(new RegExp(reg).test(path)))) {
       return ''
     }
-    return `${prefix}-${result}-${suffix}`
+    return `${prefix}-${path}-${suffix}`
   }
 
   const currentVersion = config.version
@@ -45,7 +39,7 @@ module.exports = function cacheRenderer(nuxt) {
   const renderer = nuxt.renderer
   const renderRoute = renderer.renderRoute.bind(renderer)
   renderer.renderRoute = function(route, context) {
-    const cacheKey = isCacheFriendly(route, 'page-', currentVersion)
+    const cacheKey = isCacheFriendly(route, 'page', currentVersion)
     if (!cacheKey) {
       return renderRoute(route, context)
     }
