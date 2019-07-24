@@ -1,17 +1,17 @@
 <template>
   <div class="user-timeline-3">
     <p v-text="title" />
-    <PinFlowItem :item="item" :show-user="false" />
+    <PinArticle :item="item" :show-user="false" />
   </div>
 </template>
 
 <script>
-import PinFlowItem from '~/components/flow/PinFlowItem'
+import PinArticle from '~/components/flow/types/PinArticle'
 
 export default {
   name: 'PinCreate',
   components: {
-    PinFlowItem
+    PinArticle
   },
   props: {
     item: {

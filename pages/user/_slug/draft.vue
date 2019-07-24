@@ -33,7 +33,7 @@
       :callback="handleTimeout"
     >
       <ul slot-scope="{ flow, extra }">
-        <PinFlowItem
+        <PinArticle
           v-for="(item, index) in flow"
           :key="item.slug"
           :item="item"
@@ -48,14 +48,14 @@
 <script>
 import mustSelf from '~/mixins/mustSelf'
 import mustSign from '~/mixins/mustSign'
-import PinFlowItem from '~/components/flow/PinFlowItem'
+import PinArticle from '~/components/flow/types/PinArticle'
 import { Alert } from 'element-ui'
 
 export default {
   name: 'UserDraft',
   components: {
     ElAlert: Alert,
-    PinFlowItem
+    PinArticle
   },
   mixins: [mustSign, mustSelf],
   props: {
