@@ -43,22 +43,6 @@
       margin-bottom: 5px;
       @include multi-line(20px);
     }
-
-    .join-zone-btn {
-      background-color: #fff;
-      padding: 7px 20px;
-      border-radius: 15px;
-      font-size: 13px;
-      font-weight: bold;
-      line-height: 14px;
-      border: 1px solid #fff;
-
-      &.is-active {
-        background-color: rgba(0, 0, 0, .2);
-        color: #fff;
-        border: 1px solid #fff;
-      }
-    }
   }
 
   .footer {

@@ -7,23 +7,16 @@
 </style>
 
 <template>
-  <div class="tag-control-panel">
+  <div v-if="isAdmin" class="tag-control-panel">
     <h3>控制台</h3>
-    <template v-if="isAdmin">
-      <NLink :to="$alias.tag(slug, 'edit')">
-        <ElButton icon="el-icon-edit" size="mini" round>
-          编辑
-        </ElButton>
-      </NLink>
-      <ElButton icon="el-icon-delete" size="mini" round @click="deleteTag">
-        删除
-      </ElButton>
-    </template>
-    <NLink v-if="showQA && state && state.is_marked" :to="$alias.tag(slug, 'qa')">
-      <ElButton icon="el-icon-guide" size="mini" round>
-        出题
+    <NLink :to="$alias.tag(slug, 'edit')">
+      <ElButton icon="el-icon-edit" size="mini" round>
+        编辑
       </ElButton>
     </NLink>
+    <ElButton icon="el-icon-delete" size="mini" round @click="deleteTag">
+      删除
+    </ElButton>
   </div>
 </template>
 

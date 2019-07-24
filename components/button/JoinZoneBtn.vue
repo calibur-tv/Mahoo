@@ -1,12 +1,22 @@
 <template>
-  <button
-    v-if="state"
-    :class="{ 'is-active': state.is_marked }"
-    class="join-zone-btn"
-    @click="handleClick"
-  >
-    {{ state.is_marked ? '已加入' : '加入' }}
-  </button>
+  <div v-if="state" class="join-zone-wrap">
+    <ElButton
+      :loading="loading"
+      type="primary"
+      size="mini"
+      round
+      plain
+      @click="handleClick"
+    >
+      {{ state.is_marked ? '已加入' : '加入' }}
+    </ElButton>
+    &nbsp;
+    <NLink :to="$alias.tag(slug, 'qa')">
+      <ElButton type="success" size="mini" round plain>
+        出题
+      </ElButton>
+    </NLink>
+  </div>
 </template>
 
 <script>
@@ -50,6 +60,10 @@ export default {
             this.$toast.info('该分区还未开放')
           } else if (result === 'resolve') {
             this.$toast.info('你已加入该分区')
+          } else if (result === 'no_rule') {
+            this.$toast.info('还没有答题规则')
+          } else if (result === 'no_question') {
+            this.$toast.info('分区题目数量不足')
           } else {
             this.getQuestions()
           }
@@ -62,7 +76,9 @@ export default {
         })
     },
     getQuestions() {
-      this.$toast.info('开发中')
+      this.$router.push({
+        path: this.$alias.tag(this.slug, 'atfield')
+      })
     }
   }
 }

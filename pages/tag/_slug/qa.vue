@@ -2,9 +2,8 @@
 #tag-qa {
   margin-top: 30px;
 
-  h1 {
-    margin-left: 80px;
-    margin-bottom: 30px;
+  .el-alert {
+    line-height: 1.5;
   }
 
   .form-tip {
@@ -18,13 +17,30 @@
   <div id="tag-qa">
     <ElRow>
       <ElCol :span="12" :offset="6">
-        <h1>为《{{ tag.name }}》出题</h1>
         <ElForm
           ref="form"
           :disabled="submitting"
           label-position="right"
           label-width="80px"
         >
+          <ElFormItem>
+            <h1>为《{{ tag.name }}》出题</h1>
+            <br>
+            <ElAlert
+              v-if="rule"
+              :description="`当前分区需要有「${rule.question_count}道」题入库之后才能开放加入`"
+              title="当前分区答题规则"
+              type="success"
+            />
+          </ElFormItem>
+          <ElFormItem>
+            <ElAlert
+              v-if="info"
+              :description="`当前分区有「${info.trial}道」题正在审核中，「${info.pass}道」题已入库`"
+              title="当前分区题库信息"
+              type="success"
+            />
+          </ElFormItem>
           <ElFormItem label="题目">
             <ElInput
               v-model="title"
@@ -85,7 +101,7 @@
 </template>
 
 <script>
-import { Radio, RadioGroup } from 'element-ui'
+import { Radio, RadioGroup, Alert } from 'element-ui'
 import { showTag } from '~/api/tagApi'
 import { createQA } from '~/api/atfieldApi'
 import mustSign from '~/mixins/mustSign'
@@ -94,6 +110,7 @@ export default {
   name: 'TagQA',
   layout: 'web',
   components: {
+    ElAlert: Alert,
     ElRadio: Radio,
     ElRadioGroup: RadioGroup
   },
@@ -128,7 +145,9 @@ export default {
           key: 3
         }
       ],
-      rightOpt: -1
+      rightOpt: -1,
+      rule: null,
+      info: null
     }
   },
   asyncData({ app, error, params }) {
@@ -138,7 +157,33 @@ export default {
       })
       .catch(error)
   },
+  mounted() {
+    this.getRule()
+    this.getInfo()
+  },
   methods: {
+    getRule() {
+      this.$axios.$get('v1/atfield/rule/show', {
+        params: {
+          slug: this.tag.slug
+        }
+      })
+        .then(data => {
+          this.rule = data
+        })
+        .catch()
+    },
+    getInfo() {
+      this.$axios.$get('v1/tag/atfield', {
+        params: {
+          slug: this.tag.slug
+        }
+      })
+        .then(data => {
+          this.info = data
+        })
+        .catch()
+    },
     submit() {
       if (!this.title.trim()) {
         this.$toast.info('题目不能为空')

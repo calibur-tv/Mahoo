@@ -57,3 +57,9 @@ export const getATField = ({ $axios, page, count, sort, slug }) => {
       .catch(reject)
   })
 }
+
+export const getZoneQuestions = ({ $axios, slug }) => {
+  return $axios.$get('v1/atfield/list', {
+    params: { slug }
+  })
+}
