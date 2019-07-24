@@ -34,6 +34,7 @@ const _6bedab81 = () => interopDefault(import('../pages/user/_slug/emotion/categ
 const _dea4e48c = () => interopDefault(import('../pages/user/_slug/emotion/category/game.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/game" */))
 const _3549a1ba = () => interopDefault(import('../pages/user/_slug/emotion/category/notebook.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/notebook" */))
 const _631e7e17 = () => interopDefault(import('../pages/user/_slug/emotion/category/topic.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/topic" */))
+const _08893cee = () => interopDefault(import('../pages/tag/_slug/atfield.vue' /* webpackChunkName: "pages/tag/_slug/atfield" */))
 const _d3605bd0 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
 const _059fb6c4 = () => interopDefault(import('../pages/tag/_slug/qa.vue' /* webpackChunkName: "pages/tag/_slug/qa" */))
 const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -263,6 +264,11 @@ export function createRouter() {
           name: "user-slug-emotion-category-topic"
         }]
       }]
+    }, {
+      path: "/tag/:slug?/atfield",
+      component: _08893cee,
+      props: true,
+      name: "tag-slug-atfield"
     }, {
       path: "/tag/:slug?/edit",
       component: _d3605bd0,

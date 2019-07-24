@@ -179,7 +179,7 @@ export default {
         return
       }
       this.loading = true
-      this.$axios.$post('v1/atfield/recommended', {
+      this.$axios.$post('v1/atfield/recommend', {
         slug: this.item.slug
       })
         .then(() => {

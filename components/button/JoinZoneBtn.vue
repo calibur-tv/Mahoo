@@ -18,6 +18,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      loading: false
+    }
+  },
   computed: {
     state() {
       return this.$store.getters['social/get']('tag', this.slug)
@@ -33,7 +38,31 @@ export default {
         this.$toast.info('暂不支持退出')
         return
       }
-      this.$toast.info('施工中')
+      if (this.loading) {
+        return
+      }
+      this.loading = true
+      this.$axios.$post('v1/atfield/begin', {
+        slug: this.slug
+      })
+        .then(result => {
+          if (result === 'reject') {
+            this.$toast.info('该分区还未开放')
+          } else if (result === 'resolve') {
+            this.$toast.info('你已加入该分区')
+          } else {
+            this.getQuestions()
+          }
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
+    getQuestions() {
+      this.$toast.info('开发中')
     }
   }
 }

@@ -20,7 +20,7 @@
   >
     <ElFormItem label="出题数">
       <p class="form-tip">
-        如果题库数量不足，则无法开始答题，如果题库数量超过设定值，则随机出指定题目数
+        如果题库数量不足，则能出几题出几题，如果题库数量超过设定值，则随机出指定题目数
       </p>
       <ElSlider
         v-model="rule.question_count"
@@ -42,6 +42,7 @@
         :format-tooltip="formatRightRate"
       />
     </ElFormItem>
+    <!--
     <ElFormItem label="答题时长">
       <p class="form-tip">
         答题超过该时长之后就自动设为失败
@@ -54,8 +55,9 @@
         :format-tooltip="formatQAMinutes"
       />
     </ElFormItem>
+    -->
     <ElFormItem label="加入方式">
-      <ElRadioGroup v-model="rule.rule_type">
+      <ElRadioGroup v-model="rule.rule_type" :disabled="true">
         <ElRadio :label="0">
           需要答题或管理邀请
         </ElRadio>
