@@ -33,8 +33,9 @@ module.exports = function cacheRenderer(nuxt) {
     return `${prefix}-${path}-${suffix}`
   }
 
-  const currentVersion = config.version
+  const currentVersion = new Date(new Date().toISOString().split('T')[0]).getTime()
   const cache = makeCache(config.store)
+  cache.set('last-page-version', currentVersion)
 
   const renderer = nuxt.renderer
   const renderRoute = renderer.renderRoute.bind(renderer)

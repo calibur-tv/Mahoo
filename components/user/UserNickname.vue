@@ -9,7 +9,7 @@
     color: $color-main;
   }
 
-  @media (min-width: 768px) {
+  @include pc() {
     float: left;
   }
 

@@ -19,7 +19,7 @@
       width: 100%;
       height: calc(100% + 89px);
 
-      @media (max-width: 768px) {
+      @include phone() {
         height: 100%;
         top: 0;
         bottom: 0;

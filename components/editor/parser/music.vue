@@ -6,6 +6,7 @@
   iframe {
     display: block;
     margin: 0 auto;
+    max-width: 100%;
   }
 
   p {

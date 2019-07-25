@@ -12,6 +12,12 @@
     background-repeat: no-repeat;
     border-radius: 4px;
 
+    @include phone() {
+      margin: -30px -10px 0;
+      width: auto;
+      min-width: 100%;
+    }
+
     &.full-size {
       padding-top: $page-header-hgt;
       padding-bottom: 33.3%;
@@ -62,7 +68,10 @@
       margin-bottom: 60px;
 
       .btn {
-        margin-right: 30px;
+        padding-right: 30px;
+        max-width: 20%;
+        display: inline-block;
+        vertical-align: middle;
       }
     }
   }
@@ -138,7 +147,7 @@
             </template>
           </div>
           <div>
-            <i class="iconfont ic-time" />
+            <i class="iconfont ic-time only-pc" />
             <ElTooltip
               effect="dark"
               placement="bottom"
@@ -148,12 +157,12 @@
               <time v-text="$utils.timeAgo(last_edit_at)" />
             </ElTooltip>
           </div>
-          <div>
+          <div class="only-pc">
             <i class="iconfont ic-browse" />
             <span v-text="visit_count" />
           </div>
         </div>
-        <template v-slot:tail>
+        <div slot="tail" class="only-pc">
           <template v-if="isMine">
             <ElButton round plain type="danger" @click="deletePin">
               删除
@@ -171,7 +180,7 @@
             </ElButton>
             <UserFollowBtn :slug="author.slug" />
           </template>
-        </template>
+        </div>
       </ContentAuthor>
       <JsonContent
         :slug="slug"
@@ -184,7 +193,7 @@
           <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinRewardBtn v-model="reward_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
-          <PinShareBtn />
+          <PinShareBtn class="btn" />
         </div>
       </div>
       <CommentMain :slug="slug" />
@@ -316,7 +325,8 @@ export default {
     patchPin() {
       this.$axios.$get('v1/pin/patch', {
         params: {
-          slug: this.slug
+          slug: this.slug,
+          time: this.last_edit_at
         }
       })
         .then(data => {

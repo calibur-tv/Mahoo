@@ -56,7 +56,7 @@ export default {
     },
     slug: {
       type: String,
-      required: true
+      default: ''
     }
   },
   mounted() {

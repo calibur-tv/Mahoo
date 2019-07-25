@@ -23,6 +23,11 @@
       flex-direction: row;
       justify-content: space-between;
       align-self: center;
+
+      :global(.img) {
+        margin-top: -4px;
+        margin-left: 10px;
+      }
     }
 
     .media {

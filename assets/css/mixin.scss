@@ -21,6 +21,24 @@
   -webkit-box-orient: vertical;
 }
 
+@mixin night() {
+  :global(html.#{reader-night-mode}) & {
+    @content;
+  }
+}
+
+@mixin phone() {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin pc() {
+  @media (min-width: 769px) {
+    @content;
+  }
+}
+
 @mixin keyframes($name) {
   @keyframes #{$name} {
     @content
