@@ -187,7 +187,7 @@ export default {
           }
           this.loading = true
           this.$axios.$post('v1/atfield/delete', {
-            slug: this.slug
+            slug: this.item.slug
           })
             .then(() => {
               this.$toast.success('删除成功')
