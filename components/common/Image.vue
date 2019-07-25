@@ -18,19 +18,21 @@
     }
   }
 
-  &.show-animate img {
-    will-change: filter, opacify;
-    animation: blur 500ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
+  &.show-animate {
+    background-color: transparent;
+
+    img {
+      will-change: filter;
+      animation: blur 500ms 1 cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
   }
 
   @keyframes blur {
     from {
-      opacity: 0.32;
       filter: blur(16px);
     }
 
     to {
-      opacity: 1;
       filter: none;
     }
   }
@@ -50,7 +52,7 @@
     class="img"
   >
     <source :srcset="source" type="image/webp">
-    <img :src="show" :alt="alt">
+    <img :src="show" :alt="alt" @load="loaded">
   </picture>
 </template>
 
@@ -155,6 +157,8 @@ export default {
       }
       this.show = this.$resize(src, { width, height, mode, webP: false })
       this.source = this.$resize(src, { width, height, mode })
+    },
+    loaded() {
       if (this.useBlur) {
         this.animate = true
       }

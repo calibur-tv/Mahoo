@@ -1,5 +1,5 @@
 <style lang="scss">
-#a-t-field {
+#atfield {
   .main-wrap {
     background-color: $color-gray-bg;
     padding: 20px;
@@ -85,7 +85,7 @@
 </style>
 
 <template>
-  <div id="a-t-field">
+  <div id="atfield">
     <ElRow class="container">
       <ElCol :span="5">
         <br>
@@ -111,6 +111,7 @@
               v-for="item in flow"
               :key="item.slug"
               :show-area="!slug"
+              :show-control="true"
               :item="item"
               @remove="handleRemove(item.slug)"
             />

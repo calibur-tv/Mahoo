@@ -12,9 +12,30 @@
 
     main {
       p {
-        line-height: 1.8;
+        position: relative;
         font-size: 14px;
-        list-style-type: circle;
+        height: 30px;
+        line-height: 30px;
+
+        i {
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: $color-blue;
+          font-size: 30px;
+          font-weight: bold;
+        }
+      }
+
+      .selectable {
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: -10px;
+        padding-left: 10px;
+
+        &:hover {
+          background-color: $color-gray-3;
+        }
       }
     }
 
@@ -35,7 +56,6 @@
 
         >* {
           display: inline-block;
-          margin-right: 30px;
           color: #99a2aa;
           font-size: 12px;
           flex-shrink: 0;
@@ -56,7 +76,7 @@
       <h2 :class="$style.title">
         <p
           class="oneline"
-          v-text="item.title.text"
+          v-text="(number > -1 ? `${number}. ` : '') + item.title.text"
         />
         <template v-if="showArea">
           <NLink
@@ -77,36 +97,27 @@
       </h2>
       <main v-if="vote && vote.data">
         <p
-          v-for="(item, index) in vote.data.items"
-          :key="item.id"
-          v-text="`${index}. ${item.text}`"
-        />
+          v-for="(option, index) in vote.data.items"
+          :key="option.id"
+          :class="{ [$style['selectable']]: !showControl }"
+          @click="handleSelect(option)"
+        >
+          <i v-if="item.selected_id && item.selected_id === option.id" class="iconfont ic-right" />
+          {{ order(index) }}. {{ option.text }}
+        </p>
       </main>
       <footer>
         <div :class="$style.meta">
-          <NLink v-if="showUser" :to="$alias.user(item.author.slug)" target="_blank" class="oneline">
+          <span>出题人：</span>
+          <NLink :to="$alias.user(item.author.slug)" target="_blank" class="oneline">
             <VImg :src="item.author.avatar" radius="50%" width="24" height="24" />
             &nbsp;
             <span v-text="item.author.nickname" />
           </NLink>
-          <div>
-            <i class="iconfont ic-message_fill" />
-            <span v-text="item.comment_count" />
-          </div>
-          <div>
-            <i class="iconfont ic-good_fill" />
-            <span v-text="item.like_count" />
-          </div>
-          <div>
-            <i class="iconfont ic-mark_fill" />
-            <span v-text="item.mark_count" />
-          </div>
-          <div>
-            <i class="iconfont ic-browse_fill" />
-            <span v-text="item.visit_count" />
-          </div>
+          <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+          <time v-text="$utils.timeAgo(item.created_at)" />
         </div>
-        <div>
+        <div v-if="showControl">
           <ElButton
             :loading="loading"
             size="mini"
@@ -118,6 +129,7 @@
             删除
           </ElButton>
           <ElButton
+            v-if="!item.recommended_at"
             :loading="loading"
             size="mini"
             plain
@@ -139,9 +151,20 @@ import flowProps from '~/mixins/flowProps'
 export default {
   name: 'TagQuestion',
   mixins: [flowProps],
+  props: {
+    showControl: {
+      type: Boolean,
+      default: false
+    },
+    number: {
+      type: Number,
+      default: -1
+    }
+  },
   data() {
     return {
-      loading: false
+      loading: false,
+      submitting: false
     }
   },
   computed: {
@@ -153,6 +176,9 @@ export default {
     }
   },
   methods: {
+    order(index) {
+      return ['A', 'B', 'C', 'D'][index]
+    },
     handleDelete() {
       this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
         .then(() => {
@@ -189,6 +215,35 @@ export default {
         .catch(err => {
           this.$toast.error(err.message)
           this.loading = false
+        })
+    },
+    handleSelect(option) {
+      if (this.showControl) {
+        return
+      }
+      if (this.item.selected_id) {
+        this.$toast.info('暂不支持修改已选项')
+        return
+      }
+      if (this.submitting) {
+        return
+      }
+      this.submitting = true
+      this.$axios.$post('v1/social/vote', {
+        pin_slug: this.item.slug,
+        answer_hash: [option.id]
+      })
+        .then(() => {
+          this.$emit('select', {
+            id: this.item.slug,
+            result: option.id
+          })
+        })
+        .catch(err => {
+          this.$toast.error(err.message)
+        })
+        .finally(() => {
+          this.submitting = false
         })
     }
   }

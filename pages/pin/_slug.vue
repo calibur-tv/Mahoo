@@ -120,6 +120,14 @@
         />
         <h1 class="title" v-text="title.text" />
       </template>
+      <template v-if="!published_at">
+        <ElAlert
+          title="该文章还处于草稿阶段"
+          type="warning"
+          show-icon
+        />
+        <br>
+      </template>
       <ContentAuthor :user="author">
         <div slot="intro" class="metas">
           <div v-if="topic || area" class="oneline">
@@ -192,7 +200,7 @@
 </template>
 
 <script>
-import { tooltip } from 'element-ui'
+import { Tooltip, Alert } from 'element-ui'
 import JsonContent from '~/components/editor/JsonContent'
 import ContentAuthor from '~/components/user/ContentAuthor'
 import CommentMain from '~/components/comment/CommentMain'
@@ -209,7 +217,8 @@ export default {
     JsonContent,
     ContentAuthor,
     CommentMain,
-    ElTooltip: tooltip,
+    ElAlert: Alert,
+    ElTooltip: Tooltip,
     PinVoteBtn,
     PinRewardBtn,
     PinMarkBtn,

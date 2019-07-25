@@ -1,24 +1,35 @@
 <style lang="scss">
+#tag-atfield {
+  margin-top: 30px;
+}
 </style>
 
 <template>
-  <div id="tag-a-t-field">
-    TagATField
+  <div id="tag-atfield">
+    <ElRow>
+      <ElCol :span="12" :offset="6">
+        <SubmitATFieldForm :slug="slug" />
+      </ElCol>
+    </ElRow>
   </div>
 </template>
 
 <script>
+import mustSign from '~/mixins/mustSign'
+import SubmitATFieldForm from '~/components/form/SubmitATFieldForm'
+
 export default {
   name: 'TagATField',
-  components: {},
-  props: {},
-  data() {
-    return {}
+  layout: 'web',
+  components: {
+    SubmitATFieldForm
   },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  mixins: [mustSign],
+  props: {
+    slug: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
