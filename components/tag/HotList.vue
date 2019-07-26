@@ -52,7 +52,7 @@
       }
     }
 
-    .img {
+    img {
       border-radius: 5px;
       @include pc() {
         margin-right: 5px;
@@ -90,7 +90,7 @@
         class="node"
       >
         <NLink :to="`/tag/${item.slug}`">
-          <VImg :src="item.avatar" width="50" height="50" :alt="item.name" />
+          <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name" />
           <span class="only-pc" v-text="item.name" />
         </NLink>
       </li>
