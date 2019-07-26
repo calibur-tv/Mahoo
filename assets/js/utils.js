@@ -25,7 +25,7 @@ export const adjustTime = time => {
     return time * 1000
   }
   let result = new Date(time)
-  if (result === 'Invalid Date') {
+  if (result.toString() === 'Invalid Date') {
     result = new Date(time.replace(/-/g, '/'))
   }
   return result.getTime()
