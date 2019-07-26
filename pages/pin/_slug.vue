@@ -325,8 +325,7 @@ export default {
     patchPin() {
       this.$axios.$get('v1/pin/patch', {
         params: {
-          slug: this.slug,
-          time: this.last_edit_at
+          slug: this.slug
         }
       })
         .then(data => {
