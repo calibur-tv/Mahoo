@@ -61,13 +61,20 @@
               height: 30px;
               line-height: 30px;
               border-radius: 4px;
+
+              @include phone() {
+                padding: 0 10px;
+                font-size: 14px;
+              }
             }
 
-            &:hover {
-              color: $color-main;
+            @include pc() {
+              &:hover {
+                color: $color-main;
 
-              span {
-                background-color: #F3F3F3;
+                span {
+                  background-color: #F3F3F3;
+                }
               }
             }
           }
@@ -99,7 +106,9 @@
         .user-panel {
           position: relative;
           height: $page-header-hgt;
-          margin-right: 8px;
+          @include pc() {
+            margin-right: 8px;
+          }
 
           &:hover {
             background-color: transparent;
@@ -318,26 +327,35 @@ m492 -460 c226 -70 364 -302 283 -475 -59 -128 -211 -199 -426 -199 -160 0
                   </button>
                 </div>
               </div>
-              <NLink class="icon-link" :to="$alias.user(user.slug, 'message')">
+              <NLink class="icon-link only-pc" :to="$alias.user(user.slug, 'message')">
                 <ElBadge :value="mailbox.unread_notice_total + mailbox.unread_message_total" :hidden="!mailbox.unread_message_total && !mailbox.unread_notice_total">
                   <i class="iconfont ic-remind" />
                 </ElBadge>
               </NLink>
             </template>
             <template v-else>
-              <el-button
+              <ElButton
+                class="only-pc"
                 type="text"
                 @click="handleSignIn"
               >
                 登录
-              </el-button>
+              </ElButton>
+              <NLink :to="$alias.sign()">
+                <ElButton
+                  class="only-h5"
+                  type="text"
+                >
+                  登录&nbsp;&nbsp;
+                </ElButton>
+              </NLink>
             </template>
           </template>
-          <div class="creator-wrap">
+          <div class="creator-wrap only-pc">
             <NLink target="_blank" :to="$alias.create()">
-              <el-button size="small" type="primary" icon="el-icon-s-promotion">
+              <ElButton size="small" type="primary" icon="el-icon-s-promotion">
                 投稿
-              </el-button>
+              </ElButton>
             </NLink>
           </div>
         </div>

@@ -1,17 +1,21 @@
 <style lang="scss">
 #zone-game {
   .left-aside {
-    margin-right: 10px;
-    margin-top: 20px;
+    @include pc() {
+      margin-right: 10px;
+      margin-top: 20px;
+    }
   }
 
   .main-wrap {
-    background-color: $color-gray-bg;
-    padding: 20px;
-    box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
-    margin-top: -$page-header-hgt;
-    padding-top: $page-header-hgt + 20;
-    min-height: 100vh;
+    @include pc() {
+      background-color: $color-gray-bg;
+      padding: 20px;
+      box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
+      margin-top: -$page-header-hgt;
+      padding-top: $page-header-hgt + 20;
+      min-height: 100vh;
+    }
   }
 }
 </style>
@@ -19,22 +23,16 @@
 <template>
   <div id="zone-game">
     <ElRow class="container">
-      <ElCol :span="5">
+      <ElCol :xs="24" :span="5">
         <Affix class="left-aside" :top="70">
           <TagHotList :slug="slug" title="热门游戏" :list="children" />
         </Affix>
       </ElCol>
-      <ElCol :span="14" class="main-wrap">
+      <ElCol :xs="24" :span="14" class="main-wrap">
         <PinFlowList :slug="slug" />
       </ElCol>
-      <ElCol :span="5">
-        <!--
-        <Affix :top="50">
-          <div>
-            当前标签活跃用户
-          </div>
-        </Affix>
-        -->
+      <ElCol :xs="24" :span="5">
+        <br>
       </ElCol>
     </ElRow>
   </div>

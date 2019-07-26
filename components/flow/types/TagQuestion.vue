@@ -108,11 +108,11 @@
       </main>
       <footer>
         <div :class="$style.meta">
-          <span>出题人：</span>
+          <span class="only-pc">出题人：</span>
           <NLink :to="$alias.user(item.author.slug)" target="_blank" class="oneline">
             <VImg :src="item.author.avatar" radius="50%" width="24" height="24" />
             &nbsp;
-            <span v-text="item.author.nickname" />
+            <span class="only-pc" v-text="item.author.nickname" />
           </NLink>
           <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
           <time v-text="$utils.timeAgo(item.created_at)" />

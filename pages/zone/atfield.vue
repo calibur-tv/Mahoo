@@ -2,17 +2,28 @@
 #atfield {
   .main-wrap {
     background-color: $color-gray-bg;
-    padding: 20px;
-    box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
-    margin-top: -$page-header-hgt;
-    padding-top: $page-header-hgt + 20;
     min-height: 100vh;
+
+    @include pc() {
+      padding: 20px;
+      box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
+      margin-top: -$page-header-hgt;
+      padding-top: $page-header-hgt + 20;
+    }
+
+    @include phone() {
+      padding: 10px;
+    }
   }
 
   .sortable {
     background-color: #fff;
     padding: 15px 20px;
     border-radius: 5px 5px 0 0;
+
+    @include phone() {
+      padding: 10px;
+    }
 
     li {
       position: relative;
@@ -58,6 +69,11 @@
       border-radius: 5px;
       margin-top: 20px;
 
+      @include phone() {
+        padding: 15px 10px 10px;
+        margin-top: 10px;
+      }
+
       &:first-child {
         border-radius: 0 0 5px 5px;
         border-top: 1px solid $color-gray-3;
@@ -87,10 +103,10 @@
 <template>
   <div id="atfield">
     <ElRow class="container">
-      <ElCol :span="5">
+      <ElCol class="only-pc" :span="5">
         <br>
       </ElCol>
-      <ElCol :span="14" class="main-wrap">
+      <ElCol :xs="24" :span="14" class="main-wrap">
         <ul class="sortable">
           <li
             v-for="item in sortOpts"
@@ -127,7 +143,7 @@
           </template>
         </FlowLoader>
       </ElCol>
-      <ElCol :span="5">
+      <ElCol class="only-pc" :span="5">
         <br>
       </ElCol>
     </ElRow>

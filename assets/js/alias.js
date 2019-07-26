@@ -1,6 +1,6 @@
 export default {
   sign(redirect = '') {
-    return `/sign?redirect=${encodeURIComponent(redirect || window.location.href)}`
+    return `/sign?redirect=${encodeURIComponent(redirect || (typeof window === 'undefined' ? '/' : window.location.href))}`
   },
 
   tag(slug, path = '') {

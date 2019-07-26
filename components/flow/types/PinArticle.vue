@@ -107,6 +107,81 @@
       }
     }
   }
+
+  &-h5 {
+    header {
+      :global(.img) {
+        margin-right: 2px;
+      }
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    main {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      height: 90px;
+
+      .media {
+        display: block;
+        position: relative;
+        float: right;
+        border-radius: 4px;
+        overflow: hidden;
+        width: 130px;
+        height: 90px;
+        margin-left: 10px;
+
+        .badge {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          color: #fff;
+          font-size: 35px;
+        }
+
+        .music {
+          height: 100%;
+          background-color: #d43c33;
+        }
+
+        .video {
+          height: 100%;
+          background-color: #00a1d6;
+        }
+      }
+
+      p {
+        display: block;
+        overflow: hidden;
+        @include multi-line(22.5px, 4)
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: $color-text-2;
+
+      >* {
+        flex-grow: 1;
+      }
+
+      .zone {
+        max-width: 20%;
+      }
+
+      i {
+        color: $color-icon-2;
+      }
+    }
+  }
 }
 </style>
 
@@ -117,7 +192,45 @@
       :class="$style['pin-article-h5']"
       class="only-h5"
     >
-      {{ item.title.text }}
+      <header class="oneline">
+        <VImg v-if="showUser" :src="item.author.avatar" radius="50%" width="24" height="24" />
+        <span v-text="item.title.text" />
+      </header>
+      <main>
+        <div :class="$style.media" v-if="item.media">
+          <div v-if="item.media.first_video" :class="$style.video">
+            <VImg v-if="item.media.banner" :src="item.media.banner.url" :blur="true" width="130" height="90" />
+            <i :class="$style.badge" class="iconfont ic-bilibili" />
+          </div>
+          <div v-else-if="item.media.first_music" :class="$style.music">
+            <VImg v-if="item.media.banner" :src="item.media.banner.url" :blur="true" width="130" height="90" />
+            <i :class="$style.badge" class="iconfont ic-netease" />
+          </div>
+          <VImg v-else :src="item.media.banner.url" :blur="true" width="130" height="90" />
+        </div>
+        <p v-html="item.intro" />
+      </main>
+      <footer>
+        <span :class="$style.zone" class="oneline" v-if="showArea">
+          {{ item.area ? item.area.name : item.topic ? item.topic.name : '' }}
+        </span>
+        <div>
+          <i class="iconfont ic-message_fill" />
+          <span v-text="item.comment_count" />
+        </div>
+        <div>
+          <i class="iconfont ic-good_fill" />
+          <span v-text="item.like_count" />
+        </div>
+        <div>
+          <i class="iconfont ic-mark_fill" />
+          <span v-text="item.mark_count" />
+        </div>
+        <div>
+          <i class="iconfont ic-browse_fill" />
+          <span v-text="item.visit_count" />
+        </div>
+      </footer>
     </NLink>
     <div :class="[$style['pin-article-pc'], { [$style['pin-article-pc-media']]: item.media }]" class="only-pc">
       <h2 :class="$style.title">

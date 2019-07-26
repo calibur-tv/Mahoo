@@ -1,26 +1,32 @@
 <style lang="scss">
 #tag-show {
   .left-aside {
-    margin-right: 10px;
-    margin-top: 20px;
+    @include pc() {
+      margin-right: 10px;
+      margin-top: 20px;
 
-    .join-card {
-      margin: 0 5px 20px 10px;
+      .join-card {
+        margin: 0 5px 20px 10px;
+      }
     }
   }
 
   .main-wrap {
-    background-color: $color-gray-bg;
-    padding: 20px;
-    box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
-    margin-top: -$page-header-hgt;
-    padding-top: $page-header-hgt + 20;
-    min-height: 100vh;
+    @include pc() {
+      background-color: $color-gray-bg;
+      padding: 20px;
+      box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
+      margin-top: -$page-header-hgt;
+      padding-top: $page-header-hgt + 20;
+      min-height: 100vh;
+    }
   }
 
   .right-aside {
-    margin-top: 20px;
-    margin-left: 20px;
+    @include pc() {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
   }
 }
 </style>
@@ -28,21 +34,17 @@
 <template>
   <div id="tag-show">
     <ElRow class="container">
-      <ElCol :span="5">
-        <div class="left-aside">
-          <joinCard :tag="tag" />
-          <Affix :top="60">
-            <TagHotList :slug="slug" :list="children" />
-          </Affix>
-        </div>
+      <ElCol :xs="24" :span="5">
+        <joinCard :tag="tag" />
+        <Affix class="left-aside" :top="70">
+          <TagHotList :slug="slug" title="热门游戏" :list="children" />
+        </Affix>
       </ElCol>
-      <ElCol :span="14" class="main-wrap">
-        <PinFlowList :slug="slug" :show-area="false" />
+      <ElCol :xs="24" :span="14" class="main-wrap">
+        <PinFlowList :slug="slug" />
       </ElCol>
-      <ElCol :span="5">
-        <div class="right-aside">
-          <TagControlPanel :slug="slug" :parent-slug="tag.parent_slug" />
-        </div>
+      <ElCol :xs="24" :span="5">
+        <TagControlPanel :slug="slug" :parent-slug="tag.parent_slug" />
       </ElCol>
     </ElRow>
   </div>

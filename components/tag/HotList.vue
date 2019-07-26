@@ -1,5 +1,11 @@
 <style lang="scss">
 .tag-hot-list {
+  @include phone() {
+    height: 70px;
+    overflow: hidden;
+    background-color: $color-gray-bg;
+  }
+
   .title {
     margin: 0 5px 10px 10px;
     display: flex;
@@ -13,19 +19,46 @@
   }
 
   .child-node {
-    li {
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
+    @include phone() {
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      height: 110%;
+      padding-bottom: 10%;
+      box-sizing: content-box;
+    }
 
-      &:hover {
-        background-color: #f6f6f6;
+    li {
+      border-radius: 5px;
+
+      @include pc() {
+        cursor: pointer;
+        padding: 10px;
+
+        &:hover {
+          background-color: #f6f6f6;
+        }
+      }
+
+      @include phone() {
+        margin: 10px;
+        display: inline-block;
+        white-space: nowrap;
+
+        &:not(:first-child) {
+          margin-left: 0;
+        }
       }
     }
 
     .img {
       border-radius: 5px;
-      margin-right: 5px;
+      @include pc() {
+        margin-right: 5px;
+        width: 32px !important;
+        height: 32px !important;
+      }
     }
 
     span {
@@ -44,7 +77,7 @@
     v-if="list.length"
     class="tag-hot-list"
   >
-    <h3 class="title">
+    <h3 class="title only-pc">
       <span v-text="title" />
       <CreateTagBtn v-if="isAdmin" :parent="slug" @create="handleCreate">
         <i class="el-icon-plus fade-link" />
@@ -57,8 +90,8 @@
         class="node"
       >
         <NLink :to="`/tag/${item.slug}`">
-          <VImg :src="item.avatar" width="32" height="32" :alt="item.name" />
-          <span v-text="item.name" />
+          <VImg :src="item.avatar" width="50" height="50" :alt="item.name" />
+          <span class="only-pc" v-text="item.name" />
         </NLink>
       </li>
     </ul>

@@ -4,6 +4,9 @@
     background-color: #fff;
     padding: 15px 20px;
     border-radius: 5px 5px 0 0;
+    @include phone() {
+      padding: 5px 10px;
+    }
 
     li {
       position: relative;
@@ -12,6 +15,9 @@
       display: inline-block;
       padding: 0 14px;
       cursor: pointer;
+      @include phone() {
+        padding: 0 10px;
+      }
 
       &:before {
         content: '';
@@ -44,15 +50,22 @@
 
   .flows {
     li {
-      background-color: #fff;
-      padding: 15px 20px 20px;
-      border-radius: 5px;
-      margin-top: 20px;
+      @include pc() {
+        background-color: #fff;
+        padding: 15px 20px 20px;
+        border-radius: 5px;
+        margin-top: 20px;
 
-      &:first-child {
-        border-radius: 0 0 5px 5px;
-        border-top: 1px solid $color-gray-3;
-        margin-top: 0;
+        &:first-child {
+          border-radius: 0 0 5px 5px;
+          margin-top: 0;
+          border-top: 1px solid $color-gray-4;
+        }
+      }
+
+      @include phone() {
+        padding: 10px;
+        border-top: 1px solid $color-gray-4;
       }
     }
   }

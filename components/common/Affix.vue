@@ -81,6 +81,9 @@ export default {
     }
   },
   mounted() {
+    if (window.screen.width < 789) {
+      return
+    }
     const target = this._getScrollTarget()
     this.$utils.on(target, 'scroll', this.handleScroll)
     this.$utils.on(target, 'resize', this.handleScroll)

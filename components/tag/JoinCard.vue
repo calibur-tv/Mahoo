@@ -2,9 +2,12 @@
 .join-card {
   position: relative;
   min-height: 150px;
-  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+  @include pc() {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  }
 
   .bg {
     position: absolute;
@@ -13,6 +16,12 @@
     left: 0;
     top: 0;
     z-index: -1;
+
+    @include phone() {
+      .img {
+        width: 100% !important;
+      }
+    }
 
     .poster {
       &:after {
