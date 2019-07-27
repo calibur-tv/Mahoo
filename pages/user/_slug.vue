@@ -71,13 +71,11 @@
       }
 
       .actions {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        z-index: 1;
+        float: right;
+        margin-top: 22px;
 
         button {
-          margin: 0 20px 17px 0;
+          margin-right: 20px;
           box-shadow: 0 0 0 2px #fff;
         }
       }
@@ -87,9 +85,11 @@
       &-header {
         &-wrap {
           background-color: #fff;
-          padding: 0 20px;
           box-shadow: 0 0 0 1px #eee;
           border-radius: 0 0 4px 4px;
+          @include pc() {
+            padding: 0 20px;
+          }
         }
 
         &-anchor {
@@ -115,10 +115,27 @@
             }
           }
         }
+
+        @include phone() {
+          &-after {
+            width: 100%;
+          }
+        }
       }
     }
 
     .user-meta {
+      @include phone() {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-self: center;
+
+        li {
+          flex-grow: 1;
+        }
+      }
+
       li {
         display: inline-block;
         width: 58px;
@@ -220,17 +237,17 @@
       <div class="banner" :style="{ backgroundImage: `url(${$resize(banner, { height: 200, mode: 2 })})`}">
         <div class="user">
           <UserAvatar :user="user" :avatar="avatar" :size="68" />
+          <div
+            v-if="user"
+            class="actions only-pc"
+          >
+            <UserFollowBtn :slug="slug" @change="handleFollowAction" />
+            <SendMailBtn :slug="slug" :nickname="nickname" />
+          </div>
           <div class="content">
             <UserNickname :user="user" :nickname="nickname" :sex="sex" />
             <p class="signature oneline" v-text="signature" />
           </div>
-        </div>
-        <div
-          v-if="user"
-          class="actions"
-        >
-          <UserFollowBtn :slug="slug" @change="handleFollowAction" />
-          <SendMailBtn :slug="slug" :nickname="nickname" />
         </div>
       </div>
       <VSwitcher
@@ -246,6 +263,7 @@
           :key="index"
           :slot="`tab-${index}`"
           :to="item.route"
+          class="only-pc"
         >
           <i class="iconfont" :class="`ic-${item.icon}`" :style="{ color: item.color }" />
           <span v-text="item.name" />
@@ -258,20 +276,16 @@
             <span class="value" v-text="user.visit_count" />
           </li>
           <li>
-            <nuxt-link :to="$alias.user(slug, 'social/following')">
-              <div class="label">
-                关注数
-              </div>
-              <span class="value" v-text="user.following_count" />
-            </nuxt-link>
+            <div class="label">
+              关注数
+            </div>
+            <span class="value" v-text="user.following_count" />
           </li>
           <li>
-            <nuxt-link :to="$alias.user(slug, 'social/followers')">
-              <div class="label">
-                粉丝数
-              </div>
-              <span class="value" v-text="user.followers_count" />
-            </nuxt-link>
+            <div class="label">
+              粉丝数
+            </div>
+            <span class="value" v-text="user.followers_count" />
           </li>
           <li>
             <div class="label">
@@ -290,12 +304,12 @@
     </div>
     <div class="container">
       <ElRow :gutter="10">
-        <ElCol :span="17">
+        <ElCol :span="17" :xs="24">
           <section class="user-section">
             <NuxtChild :user="user" />
           </section>
         </ElCol>
-        <ElCol v-if="user" :span="7">
+        <ElCol v-if="user" :xs="0" :span="7">
           <aside class="user-section">
             <h3 class="title">
               签到

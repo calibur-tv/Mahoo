@@ -90,7 +90,7 @@
         class="node"
       >
         <NLink :to="`/tag/${item.slug}`">
-          <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name" />
+          <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name">
           <span class="only-pc" v-text="item.name" />
         </NLink>
       </li>

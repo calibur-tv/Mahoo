@@ -197,7 +197,7 @@
         <span v-text="item.title.text" />
       </header>
       <main>
-        <div :class="$style.media" v-if="item.media">
+        <div v-if="item.media" :class="$style.media">
           <div v-if="item.media.first_video" :class="$style.video">
             <VImg v-if="item.media.banner" :src="item.media.banner.url" :blur="true" width="130" height="90" />
             <i :class="$style.badge" class="iconfont ic-bilibili" />
@@ -211,7 +211,7 @@
         <p v-html="item.intro" />
       </main>
       <footer>
-        <span :class="$style.zone" class="oneline" v-if="showArea">
+        <span v-if="showArea" :class="$style.zone" class="oneline">
           {{ item.area ? item.area.name : item.topic ? item.topic.name : '' }}
         </span>
         <div>
