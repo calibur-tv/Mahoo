@@ -228,6 +228,13 @@
       }
     }
   }
+
+  .main-wrap {
+    @include phone() {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
 }
 </style>
 
@@ -303,7 +310,7 @@
       </VSwitcher>
     </div>
     <div class="container">
-      <ElRow :gutter="10">
+      <ElRow class="main-wrap" :gutter="10">
         <ElCol :span="17" :xs="24">
           <section class="user-section">
             <NuxtChild :user="user" />
