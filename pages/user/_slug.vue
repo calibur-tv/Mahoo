@@ -231,8 +231,8 @@
 
   .main-wrap {
     @include phone() {
-      margin-left: 0;
-      margin-right: 0;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
     }
   }
 }
