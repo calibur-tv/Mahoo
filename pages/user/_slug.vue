@@ -383,7 +383,8 @@ export default {
       title: `${user.nickname}的个人空间`,
       meta: [
         { hid: 'keywords', name: 'keywords', content: user.nickname },
-        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` }
+        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` },
+        { hid: 'share-image', name: 'share-image', content: user.avatar }
       ]
     }
   },

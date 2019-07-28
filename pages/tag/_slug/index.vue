@@ -74,7 +74,8 @@ export default {
       title: tag.name,
       meta: [
         { hid: 'keywords', name: 'keywords', content: tag.alias },
-        { hid: 'description', name: 'description', content: `${tag.name},${tag.intro}` }
+        { hid: 'description', name: 'description', content: `${tag.name},${tag.intro}` },
+        { hid: 'share-image', name: 'share-image', content: tag.avatar }
       ]
     }
   },

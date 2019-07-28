@@ -253,11 +253,18 @@ export default {
     UserFollowBtn
   },
   head() {
+    const { title, intro } = this
+    const meta = [
+      { hid: 'description', name: 'description', content: intro }
+    ]
+    if (title.banner) {
+      meta.push({
+        hid: 'share-image', name: 'share-image', content: title.banner.url
+      })
+    }
     return {
-      title: this.title.text,
-      meta: [
-        { hid: 'description', name: 'description', content: this.intro }
-      ]
+      title: title.text,
+      meta
     }
   },
   data() {
