@@ -34,9 +34,9 @@
 <template>
   <div id="tag-show">
     <ElRow class="container">
-      <ElCol :xs="24" :span="5">
+      <ElCol class="left-aside" :xs="24" :span="5">
         <joinCard :tag="tag" />
-        <Affix class="left-aside" :top="70">
+        <Affix :top="70">
           <TagHotList :slug="slug" title="热门游戏" :list="children" />
         </Affix>
       </ElCol>
