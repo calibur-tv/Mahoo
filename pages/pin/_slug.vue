@@ -12,7 +12,7 @@
     background-repeat: no-repeat;
     border-radius: 4px;
 
-    @include phone() {
+    @include h5() {
       margin: -30px -10px 0;
       width: auto;
       min-width: 100%;
@@ -64,14 +64,32 @@
       font-size: 14px;
       border-bottom: 1px solid #e5e9ef;
       padding-bottom: 12px;
-      margin-top: 30px;
-      margin-bottom: 60px;
+
+      @include pc() {
+        margin-top: 30px;
+        margin-bottom: 60px;
+      }
+
+      @include h5() {
+        margin-bottom: 30px;
+      }
 
       .btn {
-        padding-right: 30px;
         max-width: 20%;
         display: inline-block;
         vertical-align: middle;
+        padding-right: 30px;
+
+        @include h5() {
+          .up-vote-btn,
+          .pin-reward-btn,
+          .pin-mark-btn,
+          .sss-btn {
+            i {
+              display: block;
+            }
+          }
+        }
       }
     }
   }
@@ -197,7 +215,7 @@
         </div>
       </div>
       <CommentMain :slug="slug" />
-      <div v-if="notebook" class="notebook">
+      <div v-if="notebook" class="notebook only-pc">
         <p>文章被以下专栏收录</p>
         <NLink target="_blank" :to="$alias.tag(notebook.slug)">
           <VImg :src="notebook.avatar" width="32" height="32" />

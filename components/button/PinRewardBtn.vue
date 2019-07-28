@@ -21,10 +21,12 @@
 </style>
 
 <template>
-  <button v-if="state" class="pin-reward-btn" :class="{ 'is-active': state.reward_status }" @click="reward">
-    <i class="iconfont ic-reward_fill" />
-    <span v-text="count || '投食'" />
-  </button>
+  <div v-if="state">
+    <button class="pin-reward-btn" :class="{ 'is-active': state.reward_status }" @click="reward">
+      <i class="iconfont ic-reward_fill" />
+      <span v-text="count || '投食'" />
+    </button>
+  </div>
 </template>
 
 <script>

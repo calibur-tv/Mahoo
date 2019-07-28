@@ -4,13 +4,10 @@
   flex-direction: row;
   align-items: center;
   transition: color .2s ease,background-color .2s ease;
+  float: left;
 
   &:hover {
     color: $color-main;
-  }
-
-  @include pc() {
-    float: left;
   }
 
   .nickname {

@@ -11,7 +11,7 @@
       padding-top: $page-header-hgt + 20;
     }
 
-    @include phone() {
+    @include h5() {
       padding: 10px;
     }
   }
@@ -21,7 +21,7 @@
     padding: 15px 20px;
     border-radius: 5px 5px 0 0;
 
-    @include phone() {
+    @include h5() {
       padding: 10px;
     }
 
@@ -69,7 +69,7 @@
       border-radius: 5px;
       margin-top: 20px;
 
-      @include phone() {
+      @include h5() {
         padding: 15px 10px 10px;
         margin-top: 10px;
       }

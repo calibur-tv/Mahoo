@@ -2,7 +2,10 @@
 .create-comment-form {
   .avatar {
     float: left;
-    margin: 17px 24px 0 5px;
+
+    @include pc() {
+      margin: 17px 24px 0 5px;
+    }
   }
 
   .input-wrap {
@@ -71,7 +74,7 @@
 
 <template>
   <div class="create-comment-form">
-    <div v-if="showAvatar" class="avatar">
+    <div v-if="showAvatar" class="avatar only-pc">
       <VImg :src="avatar" radius="50%" width="40" height="40" />
     </div>
     <button
@@ -104,6 +107,7 @@
         :on-error="handleImageUploadError"
         :on-remove="handleImageUploadRemove"
         :on-exceed="handleImageUploadExceed"
+        class="only-pc"
       >
         <i class="el-icon-picture-outline-round" />
       </ElUpload>
@@ -140,7 +144,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论'
+      default: '和谐讨论，共建社区'
     }
   },
   data() {

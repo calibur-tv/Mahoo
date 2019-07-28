@@ -21,13 +21,23 @@
         li {
           position: relative;
           display: inline-block;
-          margin: 0 16px;
-          height: 37px;
-          line-height: 37px;
-          font-size: 14px;
-          font-weight: 700;
           color: #222;
-          cursor: pointer;
+
+          @include pc() {
+            margin: 0 16px;
+            height: 37px;
+            line-height: 37px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+
+          @include h5() {
+            margin: 0 10px;
+            font-size: 13px;
+            line-height: 30px;
+            height: 30px;
+          }
 
           &:first-child {
             margin-left: 0;
@@ -135,6 +145,7 @@
             :current-page="currentPage"
             prev-text="上一页"
             next-text="下一页"
+            class="only-pc"
             @current-change="handleJump"
           />
         </div>
@@ -166,7 +177,7 @@
           next-text="下一页"
           @current-change="handleJump"
         />
-        <CreateCommentForm :pin-slug="slug" @submit="createBottom" />
+        <CreateCommentForm class="only-pc" :pin-slug="slug" @submit="createBottom" />
       </footer>
     </FlowLoader>
   </div>

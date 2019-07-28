@@ -4,7 +4,7 @@
     background-color: #fff;
     padding: 15px 20px;
     border-radius: 5px 5px 0 0;
-    @include phone() {
+    @include h5() {
       padding: 5px 10px;
     }
 
@@ -15,7 +15,7 @@
       display: inline-block;
       padding: 0 14px;
       cursor: pointer;
-      @include phone() {
+      @include h5() {
         padding: 0 10px;
       }
 
@@ -63,7 +63,7 @@
         }
       }
 
-      @include phone() {
+      @include h5() {
         padding: 10px;
         border-top: 1px solid $color-gray-4;
       }

@@ -62,7 +62,7 @@
               line-height: 30px;
               border-radius: 4px;
 
-              @include phone() {
+              @include h5() {
                 padding: 0 10px;
                 font-size: 14px;
               }

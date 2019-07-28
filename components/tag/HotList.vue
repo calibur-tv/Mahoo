@@ -1,6 +1,6 @@
 <style lang="scss">
 .tag-hot-list {
-  @include phone() {
+  @include h5() {
     height: 70px;
     overflow: hidden;
     background-color: $color-gray-bg;
@@ -19,7 +19,7 @@
   }
 
   .child-node {
-    @include phone() {
+    @include h5() {
       white-space: nowrap;
       overflow-x: auto;
       overflow-y: hidden;
@@ -41,7 +41,7 @@
         }
       }
 
-      @include phone() {
+      @include h5() {
         margin: 10px;
         display: inline-block;
         white-space: nowrap;

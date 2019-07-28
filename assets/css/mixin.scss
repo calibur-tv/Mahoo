@@ -27,7 +27,7 @@
   }
 }
 
-@mixin phone() {
+@mixin h5() {
   @media (max-width: 768px) {
     @content;
   }

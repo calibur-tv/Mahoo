@@ -86,8 +86,9 @@
         &-wrap {
           background-color: #fff;
           box-shadow: 0 0 0 1px #eee;
-          border-radius: 0 0 4px 4px;
+
           @include pc() {
+            border-radius: 0 0 4px 4px;
             padding: 0 20px;
           }
         }
@@ -116,7 +117,7 @@
           }
         }
 
-        @include phone() {
+        @include h5() {
           &-after {
             width: 100%;
           }
@@ -125,7 +126,7 @@
     }
 
     .user-meta {
-      @include phone() {
+      @include h5() {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -158,11 +159,18 @@
 
   .user-section {
     background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    padding: 15px 20px;
     margin-bottom: 10px;
     overflow: hidden;
+
+    @include pc() {
+      padding: 15px 20px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+
+    @include h5() {
+      padding: 10px;
+    }
 
     .title {
       color: #000;
@@ -229,10 +237,12 @@
     }
   }
 
-  .main-wrap {
-    @include phone() {
+  .h5-no-margin {
+    @include h5() {
       margin-left: 0 !important;
       margin-right: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
 }
@@ -310,8 +320,8 @@
       </VSwitcher>
     </div>
     <div class="container">
-      <ElRow class="main-wrap" :gutter="10">
-        <ElCol :span="17" :xs="24">
+      <ElRow class="h5-no-margin" :gutter="10">
+        <ElCol class="h5-no-margin" :span="17" :xs="24">
           <section class="user-section">
             <NuxtChild :user="user" />
           </section>

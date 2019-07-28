@@ -19,7 +19,7 @@
       width: 100%;
       height: calc(100% + 89px);
 
-      @include phone() {
+      @include h5() {
         height: 100%;
         top: 0;
         bottom: 0;

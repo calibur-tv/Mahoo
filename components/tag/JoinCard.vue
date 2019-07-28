@@ -17,7 +17,7 @@
     top: 0;
     z-index: -1;
 
-    @include phone() {
+    @include h5() {
       .img {
         width: 100% !important;
       }

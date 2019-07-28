@@ -1,14 +1,32 @@
 <style lang="scss">
 .comment-item {
+  @include h5() {
+    border-top: 1px solid $color-gray-3;
+  }
+
   aside {
-    margin: 24px 24px 0 5px;
     float: left;
+
+    @include pc() {
+      margin: 24px 24px 0 5px;
+    }
+
+    @include h5() {
+      margin-right: 10px;
+      margin-top: 10px;
+    }
   }
 
   main {
-    padding: 22px 0 14px;
-    border-top: 1px solid #e5e9ef;
     overflow: hidden;
+    @include pc() {
+      padding: 22px 0 14px;
+      border-top: 1px solid $color-gray-3;
+    }
+
+    @include h5() {
+      padding: 10px 0;
+    }
 
     .desc {
       font-size: 12px;
