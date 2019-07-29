@@ -43,7 +43,7 @@
       <ElCol :xs="24" :span="14" class="main-wrap">
         <PinFlowList :slug="slug" />
       </ElCol>
-      <ElCol :xs="24" :span="5">
+      <ElCol class="only-pc" :xs="24" :span="5">
         <TagControlPanel :slug="slug" :parent-slug="tag.parent_slug" />
       </ElCol>
     </ElRow>
