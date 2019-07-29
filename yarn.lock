@@ -9505,10 +9505,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.54:
-  version "1.1.54"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.54.tgz#5ec32833e83e41e2069fd115d74dc6bcd30cb373"
-  integrity sha512-e4kZHcEmkx4VDHsxjLS7mY58kg3JvN3gez4wo0lBgf2wufsc3hyR4dGuPOOywuOvPifaw4MSMe5sQA51l3Wk9g==
+vue-mixin-store@1.1.56:
+  version "1.1.56"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.56.tgz#887153488bb3bf4195125419416529e26974c711"
+  integrity sha512-dTqFP1QPvFpxkyoBa/Y13GoafH0+VpwGRf6sCVprBOziaqsn4ZXCcUCFn+EUVdek0nzrj86Jn4uGmH9fXxzVfg==
   dependencies:
     throttle-debounce "^2.1.0"
     vue "^2.6.6"
