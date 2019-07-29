@@ -48,7 +48,7 @@ export default class {
       link: window.location.href,
       title: document.title,
       desc: document.querySelector('[name=description]').content,
-      image: image ? image.content : 'http://m1.calibur.tv/default-poster-sharejpg120'
+      image: image ? `${image.content}-sharejpg120` : 'http://m1.calibur.tv/default-poster-sharejpg120'
     }
   }
 }
