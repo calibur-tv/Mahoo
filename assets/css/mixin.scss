@@ -75,6 +75,26 @@
   }
 }
 
+@mixin input-placeholder($color: #fff) {
+  &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    $color;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    $color;
+    opacity:  1;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    $color;
+    opacity:  1;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    $color;
+  }
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color:    $color;
+  }
+}
+
 %skeleton-quick {
   animation: skeleton 1s ease-in-out infinite;
 }

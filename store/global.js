@@ -23,7 +23,8 @@ export const state = () => ({
       slug: 'notebook',
       children: []
     }
-  ]
+  ],
+  tags: []
 })
 
 export const mutations = {

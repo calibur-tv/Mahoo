@@ -1,5 +1,7 @@
 <style lang="scss">
 #page-header {
+  $search-height: 32px;
+
   .header-text {
     right: 0;
     left: 0;
@@ -219,6 +221,63 @@
       position: absolute;
       box-shadow: rgba(0, 0, 0, 0.03) 0 5px 10px 0, rgba(0, 0, 0, 0.08) 0 10px 30px 0;
     }
+
+    .search-container {
+      position: relative;
+      height: 100%;
+      float: left;
+      $transition: 0.2s;
+
+      .search-input-wrap {
+        height: $search-height;
+        border-radius: $search-height / 2;
+        margin-right: 20px;
+        transition: $transition;
+        width: 167px;
+        float: left;
+        background-color: #f1f2f4;
+
+        .search-input {
+          background-color: transparent;
+          padding: 4px 10px 4px 15px;
+          border-radius: 16px 0 0 16px;
+          border: 1px solid transparent;
+          line-height: 24px;
+          border-right: 0;
+          font-size: 12px;
+          color: $color-text-3;
+          @include input-placeholder($color-text-3);
+        }
+
+        .search-input-btn {
+          width: 32px;
+          height: 32px;
+          border-radius: 0 16px 16px 0;
+          background-color: transparent;
+          font-size: 18px;
+          border: 1px solid transparent;
+          border-left: 0;
+          line-height: 29px;
+          transition: $transition;
+          color: $color-text-3;
+        }
+
+        &.search-focus {
+          width: 267px;
+          background-color: #f1f2f4;
+
+          .search-input-btn {
+            &:hover {
+              color: $color-main;
+            }
+          }
+        }
+
+        &:hover {
+          background-color: $color-gray-bg;
+        }
+      }
+    }
   }
 
   .header-shim {
@@ -282,6 +341,9 @@ m492 -460 c226 -70 364 -302 283 -475 -59 -128 -211 -199 -426 -199 -160 0
           </VSwitcher>
         </nav>
         <div class="right">
+          <div class="search-container">
+            <VSearch :show-suggestion="false" />
+          </div>
           <template v-if="showUser">
             <template v-if="isAuth">
               <div class="user-panel icon-link">
@@ -369,11 +431,13 @@ m492 -460 c226 -70 364 -302 283 -475 -59 -128 -211 -199 -426 -199 -160 0
 import { Badge, Switch } from 'element-ui'
 import { throttle } from 'throttle-debounce'
 import { logout } from '~/api/userApi'
+import VSearch from '~/components/search/Input'
 
 export default {
   components: {
     ElBadge: Badge,
-    ElSwitch: Switch
+    ElSwitch: Switch,
+    VSearch
   },
   props: {
     showUser: {

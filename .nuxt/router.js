@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 
 const _1cd289fc = () => interopDefault(import('../pages/homepage.vue' /* webpackChunkName: "pages/homepage" */))
+const _28d8da88 = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
 const _0377315e = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
 const _4d54d59e = () => interopDefault(import('../pages/wanderer/index.vue' /* webpackChunkName: "pages/wanderer/index" */))
 const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
@@ -118,6 +119,11 @@ export function createRouter() {
       component: _1cd289fc,
       props: false,
       name: "homepage"
+    }, {
+      path: "/search",
+      component: _28d8da88,
+      props: false,
+      name: "search"
     }, {
       path: "/sign",
       component: _0377315e,

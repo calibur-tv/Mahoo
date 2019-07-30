@@ -63,3 +63,9 @@ export const getZoneQuestions = ({ $axios, slug }) => {
     params: { slug }
   })
 }
+
+export const getMixinSearch = ({ $axios, page, type, q }) => {
+  return $axios.$get('v1/search/mixin', {
+    params: { page, type, q }
+  })
+}
