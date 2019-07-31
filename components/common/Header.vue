@@ -29,12 +29,10 @@
           margin-right: 10px;
           font-size: 0;
 
-          svg {
+          embed {
             display: block;
-            width: 32px;
-            height: 32px;
             border-radius: 50%;
-            fill: $color-main;
+            pointer-events: none;
           }
         }
 
@@ -306,41 +304,7 @@
       <div class="container nav">
         <nav class="left">
           <NLink class="logo" to="/homepage">
-            <svg
-              version="1.0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="180.000000pt"
-              height="180.000000pt"
-              viewBox="0 0 180.000000 180.000000"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <g transform="translate(0.000000,180.000000) scale(0.100000,-0.100000)" stroke="none">
-                <path
-                  d="M0 900 l0 -900 900 0 900 0 0 900 0 900 -900 0 -900 0 0 -900z m821
-560 c81 -15 191 -73 249 -132 53 -54 103 -145 119 -215 l9 -43 -37 0 c-67 0
--170 -29 -240 -65 -134 -71 -233 -209 -247 -344 l-7 -63 -69 6 c-251 25 -404
-159 -416 364 -2 43 1 103 7 135 36 170 173 309 347 351 70 17 210 20 285 6z
-m492 -460 c226 -70 364 -302 283 -475 -59 -128 -211 -199 -426 -199 -160 0
--278 36 -360 110 -227 204 5 583 356 584 54 0 104 -7 147 -20z"
-                />
-                <path
-                  d="M430 1296 c0 -3 27 -13 60 -22 l60 -17 0 -93 c0 -94 5 -109 34 -98
-14 5 16 21 14 97 l-3 91 -56 17 c-82 24 -109 30 -109 25z"
-                />
-                <path
-                  d="M860 1276 l-75 -21 -3 -86 c-2 -68 1 -89 13 -99 12 -10 18 -10 30 0
-11 9 15 34 15 100 l0 88 63 20 c84 27 51 25 -43 -2z"
-                />
-                <path
-                  d="M964 827 c-3 -8 -4 -41 -2 -73 2 -44 7 -59 18 -59 12 0 15 14 15 69
-0 47 -4 71 -12 73 -7 3 -15 -2 -19 -10z"
-                />
-                <path
-                  d="M1177 834 c-4 -4 -7 -35 -7 -70 0 -46 4 -63 15 -68 21 -8 27 11 23
-79 -3 54 -14 75 -31 59z"
-                />
-              </g>
-            </svg>
+            <embed src="https://file.calibur.tv/logo.svg" width="32" height="32" type="image/svg+xml" alt="logo">
           </NLink>
           <VSwitcher :headers="headers" :routable="true" :anchor-padding="15" :header-height="50" align="start">
             <NLink
