@@ -79,20 +79,19 @@
         maxlength="50"
         @focus="handleInputFocus"
         @blur="handleInputBlur"
-        @keyup.up="handleKeyUp"
-        @keyup.down="handleKeyDown"
       >
     </div>
     <ul v-show="displaySuggestion" class="search-suggestions">
-      <li
+      <NLink
         v-for="(item, index) in filteredSelect"
         :key="item.id"
         :class="{ active: index === selectedIndex }"
-        @click="clickToSearch(index)"
+        :to="$alias.tag(item.slug)"
+        tag="li"
       >
         <img :src="$resize(item.avatar, { width: 60 })">
         <span v-text="item.name" />
-      </li>
+      </NLink>
     </ul>
   </form>
 </template>
@@ -129,13 +128,11 @@ export default {
       state: this.autofocus ? 'focus' : 'blur',
       typing: false,
       filteredSelect: [],
-      selectedIndex: -1
+      selectedIndex: -1,
+      tags: []
     }
   },
   computed: {
-    tags() {
-      return this.$store.state.global.tags
-    },
     displaySuggestion() {
       return (
         this.state === 'focus' &&
@@ -166,8 +163,34 @@ export default {
         }, 0)
       }
     })
+    this.getSearchTags()
   },
   methods: {
+    getSearchTags() {
+      if (!this.showSuggestion) {
+        return
+      }
+      this.$nextTick(() => {
+        const cacheKey = 'search-all-tags'
+        if (this.$cache.expired(cacheKey, 86400)) {
+          this.$axios.$get('v1/search/tags')
+            .then(tags => {
+              this.tags = tags
+              this.$cache.set(tags)
+              if (this.word) {
+                this.handleEnter(this.word)
+                if (this.filteredSelect.length) {
+                  this.handleInputFocus()
+                  this.typing = true
+                }
+              }
+            })
+            .catch(() => {})
+        } else {
+          this.tags = this.$cache.get(cacheKey)
+        }
+      })
+    },
     submit() {
       const q =
         this.selectedIndex !== -1
@@ -184,10 +207,6 @@ export default {
         name: 'search',
         query: { q, type: this.selectedType }
       })
-    },
-    clickToSearch(index) {
-      this.selectedIndex = index
-      this.submit()
     },
     handleEnter(query) {
       if (!query) {
@@ -207,24 +226,6 @@ export default {
     handleInputBlur() {
       this.state = 'blur'
       this.$emit('blur')
-    },
-    handleKeyUp() {
-      if (!this.displaySuggestion) {
-        return
-      }
-      if (this.selectedIndex < 1) {
-        return
-      }
-      this.selectedIndex--
-    },
-    handleKeyDown() {
-      if (!this.displaySuggestion) {
-        return
-      }
-      if (this.selectedIndex === this.filteredSelect - 1) {
-        return
-      }
-      this.selectedIndex++
     }
   }
 }

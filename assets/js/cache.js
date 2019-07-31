@@ -32,9 +32,19 @@ export const has = key => {
   }
 }
 
+export const expired = (key, timeout) => {
+  try {
+    const timeStr = localStorage.getItem(`${key}-created-at`)
+    return !timeStr || Date.now() - timeStr > timeout * 1000
+  } catch (e) {
+    return true
+  }
+}
+
 export const set = (key, val) => {
   try {
     localStorage.setItem(key, JSON.stringify(val))
+    localStorage.setItem(`${key}-created-at`, Date.now())
   } catch (e) {}
 }
 
