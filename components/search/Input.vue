@@ -176,7 +176,7 @@ export default {
           this.$axios.$get('v1/search/tags')
             .then(tags => {
               this.tags = tags
-              this.$cache.set(tags)
+              this.$cache.set(cacheKey, tags)
               if (this.word) {
                 this.handleEnter(this.word)
                 if (this.filteredSelect.length) {
