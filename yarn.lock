@@ -3757,10 +3757,10 @@ eslint-plugin-import@^2.18.0:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jest@>=22.14.0:
-  version "22.14.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.14.0.tgz#f9b09837f665cfe360b55c08866904255294cc16"
-  integrity sha512-Xtc9ZTtxdYFC7vu0PHxDeQ9lOMQ8gjwMmSQq/ni83TdflgL3eVh/qg3t99I7gcDxpeXfcp+lHu9C0vN3QAhATw==
+eslint-plugin-jest@>=22.14.1:
+  version "22.14.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.14.1.tgz#32287dade9bc0a1920c61e25a71cf11363d78015"
+  integrity sha512-mpLjhADl+HjagrlaGNx95HIji089S18DhnU/Ee8P8VP+dhEnuEzb43BXEaRmDgQ7BiSUPcSCvt1ydtgPkjOF/Q==
   dependencies:
     "@typescript-eslint/experimental-utils" "^1.13.0"
 
@@ -9411,12 +9411,11 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
-v-switcher@^1.0.62:
-  version "1.0.62"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.62.tgz#4c492c3de2e3962321044945c34fd5a293148561"
-  integrity sha512-dMS+Rq0NhPpkv3PT/YhbSvCVSTQjUE68fqeV7gSSAM8bqH7qaknFpXgclPotY+zMWR++S4ARVn/qIelV6/jTCw==
+v-switcher@^1.0.67:
+  version "1.0.67"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.67.tgz#3bdbb3fc0639b42f91e3e0f246ca5b56d4f5c108"
+  integrity sha512-mwokeXQw0xjEc6qRv0zydgG+0rv+pu46AQHruoe3+Bk8OaQYYR3Qpx4NcGzTO+Q16ZurKuJOlYWBmL4pvIZs8A==
   dependencies:
-    throttle-debounce "^2.1.0"
     vue "^2.6.6"
 
 v8-compile-cache@^2.0.3:
