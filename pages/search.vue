@@ -1,19 +1,37 @@
 <style lang="scss">
 #search {
-  margin-top: 30px;
+  @include pc() {
+    margin-top: 30px;
+  }
 
   .search-panel {
-    margin-top: 20px;
-    margin-bottom: 30px;
+    position: relative;
+
+    @include pc() {
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+    @include h5() {
+      margin: 10px;
+      background-color: #fff;
+      box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 12px;
+    }
 
     .search-input-wrap {
       width: 650px;
       height: 45px;
       margin: 0 auto;
+      max-width: 100%;
 
       .search-input-text {
-        border: 2px solid $color-gray-border;
-        border-radius: 4px;
+        @include pc() {
+          border: 2px solid $color-gray-border;
+          border-radius: 4px;
+        }
 
         input {
           padding: 11px 15px;
@@ -23,17 +41,24 @@
       .search-input-btn {
         background-color: $color-main;
         color: #fff;
-        font-size: 16px;
-        letter-spacing: 2px;
         line-height: 42px;
         text-align: center;
-        width: 90px;
-        border-radius: 4px;
-        font-weight: bold;
-        margin-left: 10px;
+        font-size: 16px;
 
-        &:hover {
-          background-color: $color-main-light;
+        @include pc() {
+          margin-left: 10px;
+          border-radius: 4px;
+          font-weight: bold;
+          letter-spacing: 2px;
+          width: 90px;
+
+          &:hover {
+            background-color: $color-main-light;
+          }
+        }
+
+        @include h5() {
+          width: 45px;
         }
       }
 
@@ -45,11 +70,28 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
         top: 110%;
         left: 0;
+        max-width: 100%;
 
         li:hover,
         li.active {
           background-color: $color-gray-bg;
         }
+      }
+    }
+  }
+
+  .flow-loader-state {
+    &-nothing,
+    &-error {
+      img {
+        height: 175px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 12px;
+        color: $color-text-3;
       }
     }
   }
@@ -66,7 +108,7 @@
         >
           <template slot="submit-btn">
             <i class="iconfont ic-search" />
-            搜索
+            <span class="only-pc">搜索</span>
           </template>
         </VSearch>
       </div>
@@ -81,9 +123,14 @@
           type="page"
           :query="query"
         >
-          <ul slot-scope="{ flow }">
-            {{ flow }}
-          </ul>
+          <template slot="nothing">
+            <img src="~assets/img/error/no-content.png">
+            <p>这里什么都没有</p>
+          </template>
+          <template slot="error">
+            <img src="~assets/img/error/no-network.png">
+            <p>遇到错误了，点击重试</p>
+          </template>
         </FlowLoader>
       </ElCol>
       <ElCol class="only-pc" :span="6">

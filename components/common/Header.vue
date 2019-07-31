@@ -277,6 +277,19 @@
           background-color: $color-gray-bg;
         }
       }
+
+      .h5-search-entry {
+        display: block;
+        height: $search-height;
+        width: $search-height;
+        line-height: $search-height;
+        text-align: center;
+
+        i {
+          font-size: 20px;
+          color: $color-icon-1;
+        }
+      }
     }
   }
 
@@ -342,7 +355,10 @@ m492 -460 c226 -70 364 -302 283 -475 -59 -128 -211 -199 -426 -199 -160 0
         </nav>
         <div class="right">
           <div class="search-container">
-            <VSearch :show-suggestion="false" />
+            <VSearch class="only-pc" :show-suggestion="false" />
+            <NLink to="/search" class="h5-search-entry only-h5">
+              <i class="iconfont ic-search" />
+            </NLink>
           </div>
           <template v-if="showUser">
             <template v-if="isAuth">
