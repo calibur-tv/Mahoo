@@ -48,7 +48,7 @@
 <script>
 import mustSelf from '~/mixins/mustSelf'
 import mustSign from '~/mixins/mustSign'
-import PinArticle from '~/components/flow/types/PinArticle'
+import PinArticle from '~/components/flow/PinArticle'
 import { Alert } from 'element-ui'
 
 export default {

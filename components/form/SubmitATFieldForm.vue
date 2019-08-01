@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import TagQuestion from '~/components/flow/types/TagQuestion'
+import TagQuestion from '~/components/flow/TagQuestion'
 import { Alert } from 'element-ui'
 
 export default {

@@ -152,7 +152,7 @@
 
 <script>
 import SkeletonArticle from '~/components/skeleton/SkeletonArticle'
-import TagQuestion from '~/components/flow/types/TagQuestion'
+import TagQuestion from '~/components/flow/TagQuestion'
 
 export default {
   name: 'ATField',

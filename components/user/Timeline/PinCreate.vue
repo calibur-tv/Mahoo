@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import PinArticle from '~/components/flow/types/PinArticle'
+import PinArticle from '~/components/flow/PinArticle'
 
 export default {
   name: 'PinCreate',

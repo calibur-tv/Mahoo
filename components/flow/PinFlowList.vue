@@ -138,7 +138,7 @@
 <script>
 import { Select, Option } from 'element-ui'
 import SkeletonArticle from '~/components/skeleton/SkeletonArticle'
-import PinArticle from '~/components/flow/types/PinArticle'
+import PinArticle from '~/components/flow/PinArticle'
 
 export default {
   name: 'PinFlowList',
