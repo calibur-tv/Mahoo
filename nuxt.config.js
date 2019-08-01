@@ -156,7 +156,7 @@ module.exports = {
     const result = [
       '@nuxtjs/style-resources',
       '@nuxtjs/axios',
-      '~/modules/cache',
+      // '~/modules/cache',
       '~/modules/auth'
     ]
 
