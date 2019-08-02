@@ -33,7 +33,7 @@ export default class {
           const image = imagePackage.querySelector('img')
 
           if (image) {
-            let imageSrc = image.getAttribute('src')
+            let imageSrc = image.getAttribute('origin-src')
 
             if (imageSrc.match(/^\/\//)) {
               imageSrc = `http:${imageSrc}`

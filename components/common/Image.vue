@@ -52,7 +52,7 @@
     class="img"
   >
     <source :srcset="source" type="image/webp">
-    <img :src="show" :alt="alt" @load="loaded">
+    <img :src="show" :alt="alt" :origin-src="src" @load="loaded">
   </picture>
 </template>
 
@@ -95,9 +95,7 @@ export default {
   },
   data() {
     const { def, width } = this
-    const src = def
-      ? def.startsWith('http') ? def : `https://m1.calibur.tv/${def}`
-      : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+    const src = def ? def.startsWith('http') ? def : `https://m1.calibur.tv/${def}` : ''
     const isFull = typeof width === 'number' && typeof this.height === 'number' && !this.radius
     return {
       show: src,
