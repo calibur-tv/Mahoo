@@ -52,7 +52,9 @@ export default class Paragraph {
     this._placeholder = config.placeholder ? config.placeholder : Paragraph.DEFAULT_PLACEHOLDER
     this._data = {}
     this._element = this.drawView()
-
+    if (/^<input /gi.test(data.text)) {
+      data = {}
+    }
     this.data = data
   }
 
