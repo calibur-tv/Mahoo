@@ -212,6 +212,7 @@
           <PinRewardBtn v-model="reward_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinShareBtn class="btn" />
+          <TimelineDrawerBtn class="btn only-pc" type="pin" :slug="slug" />
         </div>
       </div>
       <CommentMain :slug="slug" />
@@ -236,6 +237,7 @@ import PinRewardBtn from '~/components/button/PinRewardBtn'
 import PinMarkBtn from '~/components/button/PinMarkBtn'
 import PinShareBtn from '~/components/button/PinShareBtn'
 import UserFollowBtn from '~/components/button/UserFollowBtn'
+import TimelineDrawerBtn from '~/components/button/TimelineDrawerBtn'
 
 export default {
   name: 'PinShow',
@@ -250,7 +252,8 @@ export default {
     PinRewardBtn,
     PinMarkBtn,
     PinShareBtn,
-    UserFollowBtn
+    UserFollowBtn,
+    TimelineDrawerBtn
   },
   head() {
     const { title, intro } = this

@@ -136,14 +136,27 @@ export default {
       }
       const title = document.title
       const content = document.querySelector('[name=description]').content
-      const image = document.querySelector('[name=share-image]')
+      const allNoteImages = []
+      ;[].forEach.call(
+        document.querySelectorAll('.is-full'),
+        imagePackage => {
+          const image = imagePackage.querySelector('img')
+          if (image) {
+            let imageSrc = image.getAttribute('origin-src')
+            if (imageSrc.match(/^\/\//)) {
+              imageSrc = `http:${imageSrc}`
+            }
+            allNoteImages.push(imageSrc)
+          }
+        }
+      )
       return {
         url: window.location.href,
         title,
         desc: content,
         summary: content,
         shortTitle: title,
-        pic: image ? image.content : 'http://m1.calibur.tv/default-poster-sharejpg200',
+        pic: allNoteImages,
         weiboTag: '#calibur#'
       }
     }

@@ -94,3 +94,9 @@ mark {
     display: none !important;
   }
 }
+
+.el-drawer__body {
+  height: 100%;
+  overflow: auto;
+  padding: 0 20px 20px;
+}

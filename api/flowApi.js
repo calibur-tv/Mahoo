@@ -69,3 +69,9 @@ export const getMixinSearch = ({ $axios, page, type, q }) => {
     params: { page, type, q }
   })
 }
+
+export const getTimeline = ({ $axios, type, slug }) => {
+  return $axios.$get(`v1/${type}/timeline`, {
+    params: { slug }
+  })
+}

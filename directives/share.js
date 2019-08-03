@@ -22,7 +22,7 @@ const shareFactory = (type, params) => {
         /** 您申请的应用appkey,显示分享来源(可选) */
         title: params.title + params.weiboTag,
         /** 分享的文字内容(可选，默认为所在页面的title) */
-        pic: params.pic,
+        pic: params.pic[0],
         /** 分享图片的路径(可选) */
         searchPic: params.searchPic,
         ralateUid: '',
@@ -39,7 +39,7 @@ const shareFactory = (type, params) => {
         desc: params.desc,
         summary: params.summary,
         title: params.shortTitle,
-        site: '哔哩哔哩',
+        site: '咔哩吧',
         pics: params.pic,
         style: '203',
         width: 98,
@@ -75,7 +75,7 @@ const shareFactory = (type, params) => {
         to: 'tieba',
         type: 'text',
         relateUid: '',
-        pic: params.pic,
+        pic: params.pic[0],
         key: '',
         sign: 'on',
         desc: '',
