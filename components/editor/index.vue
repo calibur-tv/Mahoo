@@ -96,7 +96,7 @@ export default {
           if (self.slug) {
             // 编辑模式
             const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
-            if (cache && cache.time > self.$utils.adjustTime(self.time)) {
+            if (cache && cache.time > self.$utils.adjustDate(self.time).getTime()) {
               // 如果有缓存，并且缓存的版本更高，就使用缓存
               data = cache
             } else {

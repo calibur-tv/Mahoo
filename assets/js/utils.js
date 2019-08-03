@@ -1,8 +1,3 @@
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
-
-dayjs.locale('zh-cn')
-
 export const convertTA = (sex = -1, isMine = false) => {
   if (isMine) {
     return '我'
@@ -20,15 +15,15 @@ export const randomStr = () => {
   return `${Date.now()}-${Math.random().toString(36).substring(3, 6)}`
 }
 
-export const adjustTime = time => {
+export const adjustDate = time => {
   if (/^\d+$/.test(time) && time.toString().length === 10) {
-    return time * 1000
+    return new Date(time * 1000)
   }
   let result = new Date(time)
   if (result.toString() === 'Invalid Date') {
     result = new Date(time.replace(/-/g, '/'))
   }
-  return result.getTime()
+  return result
 }
 
 export const shortenNumber = num => {
@@ -36,22 +31,29 @@ export const shortenNumber = num => {
 }
 
 export const timeAgo = time => {
-  const date = adjustTime(time)
-  const delta = Date.now() - new Date(date).getTime()
+  const date = adjustDate(time)
+  const delta = Date.now() - date.getTime()
+  const format = [
+    date.getFullYear(),
+    `0${date.getMonth() + 1}`.substr(-2),
+    `0${date.getDate()}`.substr(-2),
+    `0${date.getHours()}`.substr(-2),
+    `0${date.getMinutes()}`.substr(-2)
+  ]
   if (delta > 365 * 86400000 || delta <= 0) {
-    return dayjs(date).format('YYYY-MM-DD')
+    return `${format[0]}-${format[1]}-${format[2]}`
   }
   const today = new Date().setHours(0, 0, 0, 0)
   if (today < date) {
-    return `今天${dayjs(date).format('HH:mm')}`
+    return `今天${format[3]}:${format[4]}`
   }
   if (today - 86400000 < date) {
-    return `昨天${dayjs(date).format('HH:mm')}`
+    return `昨天${format[3]}:${format[4]}`
   }
   if (today - 172800000 < date) {
-    return `前天${dayjs(date).format('HH:mm')}`
+    return `前天${format[3]}:${format[4]}`
   }
-  return dayjs(date).format('MM-DD HH:mm')
+  return `${format[1]}-${format[2]} ${format[3]}:${format[4]}`
 }
 
 export const checkInView = (dom, preload = 1) => {

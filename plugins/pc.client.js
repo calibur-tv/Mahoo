@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { MessageBox } from 'element-ui'
 
-const isMobile = window.screen.width <= 768 || /^\/app/.test(window.location.pathname)
+const isMobile = window.screen.width <= 768
 
 if (!isMobile) {
   Vue.use({

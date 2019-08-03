@@ -72,8 +72,8 @@
     popper-class="sss-popover"
   >
     <button
-      v-clipboard="shareUrl"
-      @click="handleCopySuccess"
+      v-copy="shareUrl"
+      v-copy:callback="handleCopySuccess"
     >
       <i class="iconfont ic-accessory" />
       <span>复制链接</span>
@@ -103,9 +103,13 @@
 
 <script>
 import { Popover } from 'element-ui'
+import { copy } from 'v-copy'
 
 export default {
   name: 'PinShareBtn',
+  directives: {
+    copy
+  },
   components: {
     ElPopover: Popover
   },

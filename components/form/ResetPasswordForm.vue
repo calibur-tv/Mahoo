@@ -134,35 +134,27 @@ export default {
         }
       })
     },
-    getResetAuthCode() {
+    async getResetAuthCode() {
       this.step = 1
-      this.$captcha({
-        success: async({ data }) => {
-          try {
-            await sendMessage(this, {
-              type: 'forgot_password',
-              phone_number: this.form.access,
-              geetest: data
-            })
-            this.step = 2
-            this.openConfirmModal()
-          } catch (err) {
-            this.$toast.error(err.message)
+      try {
+        await sendMessage(this, {
+          type: 'forgot_password',
+          phone_number: this.form.access
+        })
+        this.step = 2
+        this.openConfirmModal()
+      } catch (err) {
+        this.$toast.error(err.message)
+        this.step = 0
+      } finally {
+        this.timeout = 60
+        const timer = setInterval(() => {
+          if (!--this.timeout) {
             this.step = 0
-          } finally {
-            this.timeout = 60
-            const timer = setInterval(() => {
-              if (!--this.timeout) {
-                this.step = 0
-                clearInterval(timer)
-              }
-            }, 1000)
+            clearInterval(timer)
           }
-        },
-        close: () => {
-          this.step = 0
-        }
-      })
+        }, 1000)
+      }
     },
     openConfirmModal() {
       this.$prompt('请输入收到的验证码', '短信已发送', {

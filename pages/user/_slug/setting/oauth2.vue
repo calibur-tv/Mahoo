@@ -133,29 +133,24 @@ export default {
         inputPattern: /^(0|86|17951)?(1)[0-9]{10}$/,
         inputErrorMessage: '请输入正确的手机号码'
       })
-        .then(({ value }) => {
+        .then(async({ value }) => {
           this.phone = value
-          this.$captcha({
-            success: async({ data }) => {
-              try {
-                await sendMessage(this, {
-                  type: 'bind_phone',
-                  phone_number: value,
-                  geetest: data
-                })
-                this.showInfoForm = true
-              } catch (err) {
-                this.$toast.error(err.message)
-              } finally {
-                this.timeout = 60
-                const timer = setInterval(() => {
-                  if (!--this.timeout) {
-                    clearInterval(timer)
-                  }
-                }, 1000)
+          try {
+            await sendMessage(this, {
+              type: 'bind_phone',
+              phone_number: value
+            })
+            this.showInfoForm = true
+          } catch (err) {
+            this.$toast.error(err.message)
+          } finally {
+            this.timeout = 60
+            const timer = setInterval(() => {
+              if (!--this.timeout) {
+                clearInterval(timer)
               }
-            }
-          })
+            }, 1000)
+          }
         })
         .catch(() => {})
     },
