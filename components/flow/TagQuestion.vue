@@ -74,10 +74,7 @@
   <li :class="$style['tag-question']">
     <div :class="$style.content">
       <h2 :class="$style.title">
-        <p
-          class="oneline"
-          v-text="(number > -1 ? `${number}. ` : '') + item.title.text"
-        />
+        <p v-text="(number > -1 ? `${number}. ` : '') + item.title.text" />
         <template v-if="showArea">
           <NLink
             v-if="item.area"

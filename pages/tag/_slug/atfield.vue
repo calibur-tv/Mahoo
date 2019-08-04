@@ -7,7 +7,10 @@
 <template>
   <div id="tag-atfield">
     <ElRow>
-      <ElCol :span="12" :offset="6">
+      <ElCol :span="6" :xs="0">
+        <br>
+      </ElCol>
+      <ElCol :span="12" :xs="24">
         <SubmitATFieldForm :slug="slug" />
       </ElCol>
     </ElRow>
