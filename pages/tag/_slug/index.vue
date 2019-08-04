@@ -11,6 +11,13 @@
     }
   }
 
+  .right-aside {
+    @include pc() {
+      margin-left: 10px;
+      margin-top: 20px;
+    }
+  }
+
   .main-wrap {
     @include pc() {
       background-color: $color-gray-bg;
@@ -34,17 +41,21 @@
 <template>
   <div id="tag-show">
     <ElRow class="container">
-      <ElCol class="left-aside" :xs="24" :span="5">
-        <joinCard :tag="tag" />
-        <Affix :top="70">
-          <TagHotList :slug="slug" title="热门游戏" :list="children" />
-        </Affix>
+      <ElCol :xs="24" :span="5">
+        <div class="left-aside">
+          <joinCard :tag="tag" />
+          <Affix :top="70">
+            <TagHotList :slug="slug" title="热门游戏" :list="children" />
+          </Affix>
+        </div>
       </ElCol>
       <ElCol :xs="24" :span="14" class="main-wrap">
         <PinFlowList :slug="slug" />
       </ElCol>
       <ElCol class="only-pc" :xs="24" :span="5">
-        <TagControlPanel :slug="slug" :parent-slug="tag.parent_slug" />
+        <div class="right-aside">
+          <TagControlPanel :slug="slug" :parent-slug="tag.parent_slug" />
+        </div>
       </ElCol>
     </ElRow>
   </div>
