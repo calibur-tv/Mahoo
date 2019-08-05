@@ -3,7 +3,9 @@
   .wrap {
     width: 660px;
     max-width: 100%;
-    margin: 30px auto;
+    @include pc() {
+      margin: 30px auto;
+    }
   }
 
   .banner {
@@ -102,10 +104,12 @@
       bottom: 0;
       width: 50px;
       height: 50px;
-      opacity: 0;
       z-index: 2;
       border-radius: 0 0 4px;
       overflow: hidden;
+      @include pc() {
+        opacity: 0;
+      }
 
       i {
         display: block;
@@ -132,21 +136,43 @@
   }
 
   .title {
-    margin-top: 30px;
-    margin-bottom: 20px;
+    @include pc() {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
 
     .el-textarea {
-      font-size: 24px;
       border-bottom: 1px solid $color-gray-3;
+
+      @include pc() {
+        font-size: 24px;
+
+        .el-input__count {
+          top: 25px;
+          bottom: auto;
+        }
+
+        &__inner {
+          padding: 12px 50px 12px 0;
+        }
+      }
+
+      @include h5() {
+        font-size: 14px;
+        padding: 0 10px;
+
+        .el-input__count {
+          top: 13px;
+          bottom: auto;
+        }
+
+        &__inner {
+          padding: 12px 30px 12px 0;
+        }
+      }
 
       &__inner {
         border-width: 0 !important;
-        padding: 12px 50px 12px 0;
-      }
-
-      .el-input__count {
-        top: 25px;
-        bottom: auto;
       }
     }
   }
@@ -154,7 +180,14 @@
   .footer {
     border-top: 1px solid $color-gray-line;
     padding-top: 30px;
-    padding-bottom: 30px;
+    @include pc() {
+      padding-bottom: 30px;
+    }
+
+    @include h5() {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
 
     .button-wrap {
       text-align: center;
@@ -162,9 +195,31 @@
       margin-top: 45px;
       border-top: 1px solid $color-gray-line;
 
-      button {
-        width: 150px;
-        margin: 0 10px;
+      @include pc() {
+        button {
+          width: 150px;
+          margin: 0 10px;
+        }
+      }
+
+      @include h5() {
+        margin-bottom: -22px;
+
+        .el-form-item__content {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin-left: -10px;
+          margin-right: -10px;
+        }
+
+        button {
+          margin: 0;
+          flex-grow: 1;
+          display: block;
+          border-radius: 0;
+        }
       }
     }
   }

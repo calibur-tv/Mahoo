@@ -1,5 +1,9 @@
 <style lang="scss">
 .editor-wrap {
+  @include h5() {
+    padding: 0 10px;
+  }
+
   .ce-inline-toolbar--showed {
     display: none !important;
   }
