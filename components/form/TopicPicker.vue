@@ -10,7 +10,7 @@
 <template>
   <div class="topic-picker">
     <p class="tip">
-      提示：只展示已关注的话题（必选项，填写后不可修改）
+      提示：只展示已关注的话题（必选项，发表后不可修改）
     </p>
     <ElSelect
       v-if="myTagsFetched"
@@ -68,15 +68,36 @@ export default {
     },
     selected(val) {
       this.$emit('input', val)
+    },
+    options(newVal, oldVal) {
+      if (newVal.length && !oldVal.length) {
+        this.initDefault()
+      }
     }
   },
   mounted() {
-    if (this.$store.state.isAuth) {
-      this.$store.dispatch('global/getMyTags')
-    } else {
-      this.$channel.$when('user-signed', () => {
+    this.initData()
+  },
+  methods: {
+    initData() {
+      if (this.$store.state.isAuth) {
         this.$store.dispatch('global/getMyTags')
-      })
+      } else {
+        this.$channel.$when('user-signed', () => {
+          this.$store.dispatch('global/getMyTags')
+        })
+      }
+    },
+    initDefault() {
+      const slug = this.options.map(_ => _.slug)
+      if (!this.selected) {
+        if (slug.some(_ => _ === process.env.TAGS.newbie)) {
+          this.selected = process.env.TAGS.newbie
+        }
+      }
+      if (!this.selected) {
+        this.selected = slug[0]
+      }
     }
   }
 }

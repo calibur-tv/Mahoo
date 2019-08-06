@@ -377,7 +377,7 @@ export default {
       content: [],
       notebook: '',
       area: '',
-      topic: process.env.TAGS.newbie,
+      topic: '',
       last_edit_at: '',
       published_at: '',
       loading: false
