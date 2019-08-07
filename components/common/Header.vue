@@ -27,12 +27,16 @@
           line-height: $page-header-hgt;
           margin-left: 10px;
           margin-right: 10px;
-          font-size: 0;
+          border-radius: 50%;
+          overflow: hidden;
 
-          embed {
+          i {
             display: block;
-            border-radius: 50%;
-            pointer-events: none;
+            width: 32px;
+            height: 32px;
+            font-size: 32px;
+            line-height: 32px;
+            color: $color-main;
           }
         }
 
@@ -304,7 +308,7 @@
       <div class="container nav">
         <nav class="left">
           <NLink class="logo" to="/homepage">
-            <embed src="https://file.calibur.tv/logo.svg" width="32" height="32" type="image/svg+xml" alt="logo">
+            <i class="iconfont ic-calibur" />
           </NLink>
           <VSwitcher :headers="headers" :routable="true" :anchor-padding="15" :header-height="50" align="start">
             <NLink

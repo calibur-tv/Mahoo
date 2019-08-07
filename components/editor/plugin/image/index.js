@@ -388,4 +388,8 @@ export default class ImageTool {
     this.ui.showPreloader(url)
     this.uploader.uploadByUrl(url)
   }
+
+  validate(savedData) {
+    return !(!savedData.file || !savedData.file.url)
+  }
 }

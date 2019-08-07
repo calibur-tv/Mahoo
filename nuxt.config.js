@@ -111,9 +111,7 @@ module.exports = {
     csp: {
       reportOnly: false,
       policies: {
-        'object-src': [
-          'https://*.calibur.tv'
-        ],
+        'object-src': ["'none'"],
         'style-src': [
           "'self'",
           "'unsafe-inline'",
