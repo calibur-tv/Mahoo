@@ -56,7 +56,7 @@
     "throttle-debounce": "^2.1.0",
     "url-polyfill": "^1.1.7",
     "v-copy": "^0.1.0",
-    "v-switcher": "^1.0.72",
+    "v-switcher": "^1.0.73",
     "vue-mixin-store": "1.1.59",
     "vue-native-websocket": "^2.0.13"
   },
@@ -70,7 +70,7 @@
     "eslint-config-standard": ">=13.0.1",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": ">=2.18.2",
-    "eslint-plugin-jest": ">=22.14.1",
+    "eslint-plugin-jest": ">=22.15.0",
     "eslint-plugin-node": ">=9.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-promise": ">=4.0.1",
