@@ -56,7 +56,7 @@
     "throttle-debounce": "^2.1.0",
     "url-polyfill": "^1.1.7",
     "v-copy": "^0.1.0",
-    "v-switcher": "^1.0.73",
+    "v-switcher": "^1.0.76",
     "vue-mixin-store": "1.1.59",
     "vue-native-websocket": "^2.0.13"
   },
@@ -78,6 +78,6 @@
     "eslint-plugin-vue": "^5.2.3",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.2.0"
   }
 }
