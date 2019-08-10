@@ -97,7 +97,7 @@
       </div>
       <div class="text">
         <p v-text="item.title.text" />
-        <div>综合评分：{{ item.visit_count + item.comment_count * 2 + item.like_count * 2 + item.mark_count * 2 + item.reward_count * 5 }}</div>
+        <div>综合评分：{{ +item.visit_count + item.comment_count * 2 + item.like_count * 2 + item.mark_count * 2 + item.reward_count * 5 }}</div>
       </div>
     </NLink>
     <NLink
