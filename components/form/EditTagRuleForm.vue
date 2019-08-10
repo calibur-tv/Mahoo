@@ -24,7 +24,7 @@
       </p>
       <ElSlider
         v-model="rule.question_count"
-        :min="10"
+        :min="5"
         :max="100"
         :disabled="rule.rule_type !== 0"
         :format-tooltip="formatQuestionCount"
@@ -57,7 +57,7 @@
     </ElFormItem>
     -->
     <ElFormItem label="加入方式">
-      <ElRadioGroup v-model="rule.rule_type" :disabled="true">
+      <ElRadioGroup v-model="rule.rule_type">
         <ElRadio :label="0">
           需要答题或管理邀请
         </ElRadio>

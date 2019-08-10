@@ -54,7 +54,7 @@
       </ElCol>
       <ElCol class="only-pc" :xs="24" :span="5">
         <div class="right-aside">
-          <TagControlPanel :slug="slug" :parent-slug="tag.parent_slug" />
+          <TagControlPanel :show="is_master" :slug="slug" :parent-slug="tag.parent_slug" />
         </div>
       </ElCol>
     </ElRow>
@@ -99,7 +99,8 @@ export default {
   data() {
     return {
       tag: null,
-      children: []
+      children: [],
+      is_master: false
     }
   },
   asyncData({ app, error, params }) {
@@ -128,6 +129,7 @@ export default {
               is_marked: data.is_marked
             }
           })
+          this.is_master = data.is_master
         })
         .catch(() => {})
     }
