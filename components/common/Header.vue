@@ -25,10 +25,13 @@
 
         .logo {
           line-height: $page-header-hgt;
-          margin-left: 10px;
           margin-right: 10px;
           border-radius: 50%;
           overflow: hidden;
+
+          @include h5() {
+            margin-left: 10px;
+          }
 
           i {
             display: block;
@@ -307,7 +310,7 @@
     <div class="header-text" :class="`header-${headerType}`">
       <div class="container nav">
         <nav class="left">
-          <NLink class="logo" to="/homepage">
+          <NLink class="logo" to="/">
             <i class="iconfont ic-calibur" />
           </NLink>
           <VSwitcher :headers="headers" :routable="true" :anchor-padding="15" :header-height="50" align="start">

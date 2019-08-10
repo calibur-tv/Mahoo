@@ -1,99 +1,82 @@
 <style lang="scss">
-#page-index {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+#homepage {
+  margin-top: 30px;
 
-  .header {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-
-    .logo {
-      margin-right: 10px;
-      font-size: 0;
-
-      .img {
-        user-select: none;
-      }
-    }
-
-    .title {
-      user-select: none;
-      font: bold 200% Consolas, Monaco, monospace;
-      border-right: 0.1em solid;
-      width: 215px;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 3s steps(24, end),
-      cursor-blink 0.3s step-end infinite alternate;
-      font-size: 14px;
-    }
-
-    @keyframes typing {
-      from {
-        width: 0;
-      }
-    }
-
-    @keyframes cursor-blink {
-      50% {
-        border-color: transparent;
-      }
-    }
+  .only-pc.container {
+    min-width: 980px;
   }
 
-  canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
+  .area-wrap {
+    padding-bottom: 19px;
+
+    .area-left {
+      overflow: hidden;
+    }
+
+    .area-right {
+      float: right;
+      width: 260px;
+      margin-left: 20px;
+    }
   }
 
   .beian {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 20px;
+    margin-bottom: 20px;
+    text-align: center;
     color: $color-text-2;
     font-size: 12px;
-    width: 100%;
-    text-align: center;
-    user-select: none;
   }
 }
 </style>
 
 <template>
-  <div id="page-index">
-    <div class="header">
-      <div class="logo">
-        <VImg src="default-poster" width="32" height="32" alt="calibur" radius="50%" />
-      </div>
-      <h1 class="title">
-        calibur.tv is never gone.
-      </h1>
+  <div id="homepage">
+    <div class="only-pc container">
+      <component
+        :is="`${item.type}-area`"
+        v-for="item in category"
+        :key="item.slug"
+        :name="item.name"
+        :slug="item.slug"
+      />
+      <p class="beian">
+        互联网 ICP 备案：沪 ICP 备 17050785 号 - 1
+      </p>
     </div>
-    <canvas />
-    <p class="beian">
-      互联网 ICP 备案：沪 ICP 备 17050785 号 - 1
-    </p>
+    <div class="only-h5">
+      calibur.tv
+    </div>
   </div>
 </template>
 
 <script>
+import GridArea from '~/components/area/GridArea'
+
 export default {
   name: 'Homepage',
-  beforeMount() {
-    import('~/assets/js/webGL')
+  layout: 'web',
+  components: {
+    GridArea
+  },
+  data() {
+    return {
+      tags: []
+    }
+  },
+  computed: {
+    category() {
+      return this.tags.map(_ => {
+        _.type = 'grid'
+        return _
+      })
+    }
+  },
+  asyncData({ app, error }) {
+    return app.$axios.$get('v1/tag/hottest')
+      .then(tags => {
+        return { tags }
+      })
+      .catch(error)
   }
 }
 </script>

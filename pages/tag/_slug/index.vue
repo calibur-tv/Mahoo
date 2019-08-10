@@ -4,6 +4,7 @@
     @include pc() {
       margin-right: 10px;
       margin-top: 20px;
+      margin-left: -10px;
 
       .join-card {
         margin: 0 5px 20px 10px;
@@ -43,7 +44,7 @@
     <ElRow class="container">
       <ElCol :xs="24" :span="5">
         <div class="left-aside">
-          <joinCard :tag="tag" />
+          <JoinCard :tag="tag" />
           <Affix :top="70">
             <TagHotList :slug="slug" title="热门游戏" :list="children" />
           </Affix>
@@ -65,7 +66,7 @@
 import { showTag } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
-import joinCard from '~/components/tag/JoinCard'
+import JoinCard from '~/components/tag/JoinCard'
 import TagHotList from '~/components/tag/HotList'
 import TagControlPanel from '~/components/tag/ControlPanel'
 
@@ -74,7 +75,7 @@ export default {
   layout: 'web',
   components: {
     Affix,
-    joinCard,
+    JoinCard,
     PinFlowList,
     TagHotList,
     TagControlPanel

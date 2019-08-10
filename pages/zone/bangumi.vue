@@ -4,6 +4,7 @@
     @include pc() {
       margin-right: 10px;
       margin-top: 20px;
+      margin-left: -10px;
     }
   }
 
