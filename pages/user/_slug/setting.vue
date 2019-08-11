@@ -9,7 +9,6 @@
         <VSwitcher
           :headers="headers"
           :routable="true"
-          :header-height="44"
           align="vertical"
         >
           <NLink

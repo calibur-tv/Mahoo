@@ -194,6 +194,8 @@
         text-align: left;
         padding-left: 30px;
         transition: background-color .3s ease;
+        height: 44px;
+        line-height: 44px;
 
         a {
           display: block;
