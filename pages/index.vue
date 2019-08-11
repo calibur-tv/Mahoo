@@ -29,15 +29,6 @@
   }
 
   .only-h5 {
-    height: 100vh;
-    padding-top: $page-header-hgt;
-    margin-top: -$page-header-hgt;
-
-    >.main-content {
-      height: 100%;
-      box-sizing: border-box;
-    }
-
     .v-switcher {
       &-header {
         &-wrap {
@@ -90,6 +81,10 @@
           color: $color-text-3;
         }
       }
+
+      &-loading {
+        height: 180px;
+      }
     }
   }
 }
@@ -113,51 +108,44 @@
       <div class="main-content">
         <VSwitcher
           :headers="tags"
-          :swipe="true"
-          :sticky="true"
           :anchor-padding="16"
+          :fixed-top="50"
           @change="handleTabSwitch"
         >
-          <VScroller
+          <FlowLoader
             v-for="(item, index) in tags"
-            ref="scroller"
             :key="item.slug"
             :slot="`${index}`"
-            @bottom="handleLoadMore(index)"
+            ref="loader"
+            func="getTagFlows"
+            type="seenIds"
+            :query="{
+              $axios: $axios,
+              slug: item.slug,
+              take: 10,
+              changing: 'slug',
+              time: '3-day',
+              sort: 'active'
+            }"
+            :callback="handlePatch"
           >
-            <FlowLoader
-              ref="loader"
-              func="getTagFlows"
-              type="seenIds"
-              :auto="0"
-              :query="{
-                $axios: $axios,
-                slug: item.slug,
-                take: 10,
-                changing: 'slug',
-                time: '3-day',
-                sort: 'active'
-              }"
-              :callback="handlePatch"
-            >
-              <ul slot-scope="{ flow }" class="pin-list">
-                <PinArticle
-                  v-for="pin in flow"
-                  :key="pin.slug"
-                  :item="pin"
-                />
-              </ul>
-              <SkeletonArticle slot="loading" />
-              <template slot="nothing">
-                <img src="~assets/img/error/no-content.png">
-                <p>这里什么都没有</p>
-              </template>
-              <template slot="error">
-                <img src="~assets/img/error/no-network.png">
-                <p>遇到错误了，点击重试</p>
-              </template>
-            </FlowLoader>
-          </VScroller>
+            <ul slot-scope="{ flow }" class="pin-list">
+              <PinArticle
+                v-for="pin in flow"
+                :key="pin.slug"
+                :item="pin"
+              />
+            </ul>
+            <SkeletonArticle slot="loading" />
+            <template slot="nothing">
+              <img src="~assets/img/error/no-content.png">
+              <p>这里什么都没有</p>
+            </template>
+            <template slot="error">
+              <img src="~assets/img/error/no-network.png">
+              <p>遇到错误了，点击重试</p>
+            </template>
+          </FlowLoader>
         </VSwitcher>
       </div>
     </div>
@@ -202,9 +190,6 @@ export default {
   methods: {
     handleTabSwitch(index) {
       this.$refs.loader[index] && this.$refs.loader[index].initData()
-    },
-    handleLoadMore(index) {
-      this.$refs.loader[index] && this.$refs.loader[index].loadMore()
     },
     handlePatch({ data }) {
       this.$axios.$get('v1/pin/batch_patch', {

@@ -58,11 +58,11 @@
     "url-polyfill": "^1.1.7",
     "v-copy": "^0.1.0",
     "v-switcher": "^1.0.76",
-    "vue-mixin-store": "1.1.60",
+    "vue-mixin-store": "1.1.61",
     "vue-native-websocket": "^2.0.13"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-config": "^1.1.2",
     "@nuxtjs/style-resources": "^0.1.2",
     "babel-eslint": "^10.0.2",
     "babel-plugin-component": "^1.1.1",
