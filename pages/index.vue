@@ -1,30 +1,96 @@
 <style lang="scss">
 #homepage {
-  margin-top: 30px;
-
-  .only-pc.container {
-    min-width: 980px;
-  }
-
-  .area-wrap {
-    padding-bottom: 19px;
-
-    .area-left {
-      overflow: hidden;
+  .only-pc {
+    &.container {
+      min-width: 980px;
+      margin-top: 30px;
     }
 
-    .area-right {
-      float: right;
-      width: 260px;
-      margin-left: 20px;
+    .area-wrap {
+      padding-bottom: 19px;
+
+      .area-left {
+        overflow: hidden;
+      }
+
+      .area-right {
+        float: right;
+        width: 260px;
+        margin-left: 20px;
+      }
+    }
+
+    .beian {
+      margin-bottom: 20px;
+      text-align: center;
+      color: $color-text-2;
+      font-size: 12px;
     }
   }
 
-  .beian {
-    margin-bottom: 20px;
-    text-align: center;
-    color: $color-text-2;
-    font-size: 12px;
+  .only-h5 {
+    height: 100vh;
+    padding-top: $page-header-hgt;
+    margin-top: -$page-header-hgt;
+
+    >.main-content {
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .v-switcher {
+      &-header {
+        &-wrap {
+          border-bottom: 1px solid #f4f4f4;
+        }
+
+        &-anchor {
+          height: 2px;
+          bottom: 1px;
+          background-color: $color-main;
+        }
+
+        &-item {
+          padding: 0 16px;
+          font-size: 14px;
+          color: #505050;
+
+          &.is-active {
+            color: $color-main;
+          }
+        }
+      }
+    }
+
+    .v-scroller {
+      width: 110%;
+      padding-right: 10%;
+    }
+
+    .pin-list {
+      margin: 10px 0;
+
+      >li {
+        padding: 10px;
+        border-top: 1px solid $color-gray-4;
+      }
+    }
+
+    .flow-loader-state {
+      &-nothing,
+      &-error {
+        img {
+          height: 175px;
+          margin-top: 25px;
+          margin-bottom: 10px;
+        }
+
+        p {
+          font-size: 12px;
+          color: $color-text-3;
+        }
+      }
+    }
   }
 }
 </style>
@@ -44,19 +110,74 @@
       </p>
     </div>
     <div class="only-h5">
-      calibur.tv
+      <div class="main-content">
+        <VSwitcher
+          :headers="tags"
+          :swipe="true"
+          :sticky="true"
+          :anchor-padding="16"
+          @change="handleTabSwitch"
+        >
+          <VScroller
+            v-for="(item, index) in tags"
+            ref="scroller"
+            :key="item.slug"
+            :slot="`${index}`"
+            @bottom="handleLoadMore(index)"
+          >
+            <FlowLoader
+              ref="loader"
+              func="getTagFlows"
+              type="seenIds"
+              :auto="0"
+              :query="{
+                $axios: $axios,
+                slug: item.slug,
+                take: 10,
+                changing: 'slug',
+                time: '3-day',
+                sort: 'active'
+              }"
+              :callback="handlePatch"
+            >
+              <ul slot-scope="{ flow }" class="pin-list">
+                <PinArticle
+                  v-for="pin in flow"
+                  :key="pin.slug"
+                  :item="pin"
+                />
+              </ul>
+              <SkeletonArticle slot="loading" />
+              <template slot="nothing">
+                <img src="~assets/img/error/no-content.png">
+                <p>这里什么都没有</p>
+              </template>
+              <template slot="error">
+                <img src="~assets/img/error/no-network.png">
+                <p>遇到错误了，点击重试</p>
+              </template>
+            </FlowLoader>
+          </VScroller>
+        </VSwitcher>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import GridArea from '~/components/area/GridArea'
+import VScroller from 'h5-vue-scroller'
+import PinArticle from '~/components/flow/PinArticle'
+import SkeletonArticle from '~/components/skeleton/SkeletonArticle'
 
 export default {
   name: 'Homepage',
   layout: 'web',
   components: {
-    GridArea
+    GridArea,
+    VScroller,
+    PinArticle,
+    SkeletonArticle
   },
   data() {
     return {
@@ -77,6 +198,25 @@ export default {
         return { tags }
       })
       .catch(error)
+  },
+  methods: {
+    handleTabSwitch(index) {
+      this.$refs.loader[index] && this.$refs.loader[index].initData()
+    },
+    handleLoadMore(index) {
+      this.$refs.loader[index] && this.$refs.loader[index].loadMore()
+    },
+    handlePatch({ data }) {
+      this.$axios.$get('v1/pin/batch_patch', {
+        params: {
+          slug: data.result.map(_ => _.slug).join(',')
+        }
+      })
+        .then(result => {
+          this.$refs.loader.patch(result)
+        })
+        .catch(() => {})
+    }
   }
 }
 </script>

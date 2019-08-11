@@ -4,7 +4,7 @@ import Toast from '~/assets/js/toast'
 import channel from '~/assets/js/channel'
 import * as Cache from '~/assets/js/cache'
 
-const isMobile = window.screen.width <= 768 || /^\/app/.test(window.location.pathname)
+const isMobile = window.screen.width <= 768
 
 Vue.use({
   install(Vue) {

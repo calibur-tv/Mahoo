@@ -168,7 +168,7 @@
 </style>
 
 <template>
-  <div v-lazyload="handle" class="area-wrap grid-area">
+  <div v-lazyload:pc="handle" class="area-wrap grid-area">
     <div class="area-right">
       <VSwitcher :headers="['三日', '一周']" header-trigger="hover" :animated="true" @change="switchRank">
         <template slot="header-before">

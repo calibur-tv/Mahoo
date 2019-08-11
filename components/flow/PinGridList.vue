@@ -68,6 +68,7 @@
       time: '3-day',
       sort: sort
     }"
+    :callback="handlePatch"
     class="pin-grid-list"
   >
     <ul slot-scope="{ flow }">
@@ -109,6 +110,17 @@ export default {
   methods: {
     initData() {
       this.$refs.loader && this.$refs.loader.initData()
+    },
+    handlePatch({ data }) {
+      this.$axios.$get('v1/pin/batch_patch', {
+        params: {
+          slug: data.result.map(_ => _.slug).join(',')
+        }
+      })
+        .then(result => {
+          this.$refs.loader.patch(result)
+        })
+        .catch(() => {})
     }
   }
 }
