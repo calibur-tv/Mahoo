@@ -33,16 +33,17 @@
       height: 100%;
       background: rgba(0,0,0,.2);
       transition: opacity .3s;
-      padding: 6px;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
-      align-items: flex-end;
+      align-items: flex-start;
+      padding-left: 10px;
+      padding-top: 10px;
 
       >div {
         height: 12px;
         line-height: 12px;
-        margin-right: 15px;
+        margin-right: 20px;
         color: #fff;
       }
     }
@@ -54,6 +55,17 @@
     }
   }
 
+  .user {
+    display: block;
+    position: absolute;
+    top: 77px;
+    left: 5px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+    z-index: 1;
+  }
+
   .text {
     position: relative;
     padding-top: 8px;
@@ -62,6 +74,7 @@
       color: #222;
       height: 40px;
       display: block;
+      text-indent: 55px;
       @include multi-line(20px);
     }
 
@@ -104,6 +117,9 @@
           <span v-text="item.reward_count" />
         </div>
       </div>
+    </NLink>
+    <NLink class="user" :to="$alias.user(item.author.slug)" target="_blank">
+      <VImg :src="item.author.avatar" width="45" height="45" />
     </NLink>
     <div class="text">
       <NLink class="title fade-link" target="_blank" :to="$alias.pin(item.slug)" v-text="item.title.text" />

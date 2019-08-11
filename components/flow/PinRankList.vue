@@ -52,6 +52,7 @@
       time: time,
       sort: 'hottest'
     }"
+    :cache-timeout="3600"
     class="pin-rank-list"
   >
     <ul slot-scope="{ flow, count }">
