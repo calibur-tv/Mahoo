@@ -19,7 +19,7 @@
 
         i {
           position: absolute;
-          left: 0;
+          left: -10px;
           top: 0;
           color: $color-blue;
           font-size: 30px;
@@ -32,6 +32,10 @@
         border-radius: 5px;
         margin-left: -10px;
         padding-left: 10px;
+
+        i {
+          left: 0;
+        }
 
         &:hover {
           background-color: $color-gray-3;
@@ -100,7 +104,8 @@
           @click="handleSelect(option)"
         >
           <i v-if="item.selected_id && item.selected_id === option.id" class="iconfont ic-right" />
-          {{ order(index) }}. {{ option.text }}
+          <i v-else-if="vote.data.right_ids && ~vote.data.right_ids.indexOf(option.id)" class="iconfont ic-right" />
+          <span>{{ order(index) }}. {{ option.text }}</span>
         </p>
       </main>
       <footer>
