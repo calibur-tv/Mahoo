@@ -26,7 +26,7 @@
         border: 1px solid #979797;
         color: #979797;
         text-align: center;
-        line-height: 22px;
+        line-height: 20px;
         border-radius: 100px;
         font-size: 12px;
         margin-right: 10px;
@@ -143,11 +143,11 @@
       .badge {
         display: inline-block;
         height: 22px;
+        line-height: 20px;
         padding: 0 10px;
         border: 1px solid #979797;
         color: #979797;
         text-align: center;
-        line-height: 22px;
         border-radius: 100px;
         font-size: 12px;
         margin-right: 2px;

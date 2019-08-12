@@ -17,6 +17,16 @@
       justify-content: space-between;
       align-items: center;
 
+      @media (max-width: 992px) {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      @include h5() {
+        padding-right: 0;
+      }
+
       .left {
         display: flex;
         flex-direction: row;
@@ -28,10 +38,6 @@
           margin-right: 10px;
           border-radius: 50%;
           overflow: hidden;
-
-          @include h5() {
-            margin-left: 10px;
-          }
 
           i {
             display: block;
