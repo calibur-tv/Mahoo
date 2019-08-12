@@ -230,7 +230,7 @@
     >
       <header class="oneline">
         <VImg v-if="showUser" :src="item.author.avatar" radius="50%" width="24" height="24" />
-        <span :class="$style.badge" v-text="convertBadge(item.badge)" />
+        <span :class="$style.badge" v-text="item.badge" />
         <span v-text="item.title.text" />
       </header>
       <main>
@@ -271,7 +271,7 @@
     </NLink>
     <div :class="[$style['pin-article-pc'], { [$style['pin-article-pc-media']]: item.media }]" class="only-pc">
       <h2 :class="$style.title">
-        <span :class="$style.badge" v-text="convertBadge(item.badge)" />
+        <span :class="$style.badge" v-text="item.badge" />
         <div v-if="showArea" :class="$style.area">
           <NLink
             v-if="item.area"
@@ -359,14 +359,6 @@ import flowProps from '~/mixins/flowProps'
 
 export default {
   name: 'PinArticle',
-  mixins: [flowProps],
-  methods: {
-    convertBadge(type) {
-      if (type === 'vote') {
-        return '投票'
-      }
-      return '帖子'
-    }
-  }
+  mixins: [flowProps]
 }
 </script>
