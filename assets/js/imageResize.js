@@ -51,11 +51,11 @@ export default (url, options = {}) => {
   const radio = getRadio()
 
   if (mode === 1) {
-    width = `/w/${options.width * radio}`
-    height = options.height ? `/h/${options.height * radio}` : `/h/${options.width * radio}`
+    width = `/w/${options.width * radio | 0}`
+    height = options.height ? `/h/${options.height * radio | 0}` : `/h/${options.width * radio | 0}`
   } else {
-    width = options.width ? `/w/${options.width * radio}` : ''
-    height = options.height ? `/h/${options.height * radio}` : ''
+    width = options.width ? `/w/${options.width * radio | 0}` : ''
+    height = options.height ? `/h/${options.height * radio | 0}` : ''
   }
 
   return `${link}?imageMogr2/auto-orient/strip|imageView2/${mode}${width}${height}${format}`
