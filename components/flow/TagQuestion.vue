@@ -223,10 +223,6 @@ export default {
       if (this.showControl) {
         return
       }
-      if (this.item.selected_id) {
-        this.$toast.info('暂不支持修改已选项')
-        return
-      }
       if (this.submitting) {
         return
       }

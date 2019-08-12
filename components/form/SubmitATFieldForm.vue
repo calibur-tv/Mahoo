@@ -1,5 +1,9 @@
 <style lang="scss">
 .submit-atfield-form {
+  @include h5() {
+    padding: 0 10px;
+  }
+
   .qa-header {
     h1 {
       text-align: center;
