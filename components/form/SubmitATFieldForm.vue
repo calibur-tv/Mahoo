@@ -20,11 +20,28 @@
 
   .qa-footer {
     text-align: center;
-    margin-bottom: 30px;
     margin-top: 20px;
+    @include pc() {
+      margin-bottom: 30px;
 
-    .submit-btn {
-      width: 200px;
+      .submit-btn {
+        width: 200px;
+      }
+    }
+
+    @include h5() {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-left: -10px;
+      margin-right: -10px;
+
+      button {
+        flex-grow: 1;
+        margin: 0;
+        border-radius: 0;
+      }
     }
   }
 }
@@ -60,6 +77,16 @@
       />
     </ul>
     <footer slot="footer" class="qa-footer">
+      <ElButton
+        :loading="loading"
+        class="submit-btn"
+        type="danger"
+        plain
+        round
+        @click="restart"
+      >
+        更新试卷
+      </ElButton>
       <ElButton :loading="loading" class="submit-btn" type="success" round @click="submit">
         交卷
       </ElButton>
@@ -100,6 +127,42 @@ export default {
         key: 'selected_id',
         value: result
       })
+    },
+    restart() {
+      this.$confirm('你会获取一套新的试题，运气不好就得全部重做', '确定要刷新试卷吗？')
+        .then(() => {
+          if (this.loading) {
+            return
+          }
+          this.loading = true
+          this.$axios.$post('v1/atfield/begin', {
+            slug: this.slug,
+            retry: true
+          })
+            .then(result => {
+              if (result === 'reject') {
+                this.$toast.info('该分区还未开放')
+              } else if (result === 'resolve') {
+                this.$toast.info('你已加入该分区')
+              } else if (result === 'no_rule') {
+                this.$toast.info('还没有答题规则')
+              } else if (result === 'no_question') {
+                this.$toast.info('分区题目数量不足')
+              } else {
+                this.$toast.info('刷新成功')
+                  .then(() => {
+                    window.location.reload()
+                  })
+              }
+            })
+            .catch(err => {
+              this.$toast.error(err.message)
+            })
+            .finally(() => {
+              this.loading = false
+            })
+        })
+        .catch(() => {})
     },
     submit() {
       const result = this.$refs.loader.getResource('result')
