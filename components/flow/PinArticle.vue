@@ -231,7 +231,7 @@
       <header class="oneline">
         <VImg v-if="showUser" :src="item.author.avatar" radius="50%" width="24" height="24" />
         <span :class="$style.badge" v-text="item.badge" />
-        <span v-text="item.title.text" />
+        <span v-html="item.title.text" />
       </header>
       <main>
         <div v-if="item.media" :class="$style.media">
@@ -293,7 +293,7 @@
           :to="$alias.pin(secretLink || item.slug)"
           :class="$style.link"
           class="fade-link oneline"
-          v-text="item.title.text"
+          v-html="item.title.text"
         />
       </h2>
       <div :class="$style.content" class="clearfix">
