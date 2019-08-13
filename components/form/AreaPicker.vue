@@ -10,7 +10,7 @@
 <template>
   <div class="area-picker">
     <p class="tip">
-      提示：只展示已加入的分区（可选项，发表后不可修改）
+      提示：只展示已加入的分区（可选项）
     </p>
     <ElCascader
       v-if="myTagsFetched"

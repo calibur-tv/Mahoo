@@ -154,7 +154,6 @@
 
 <script>
 import GridArea from '~/components/area/GridArea'
-import VScroller from 'h5-vue-scroller'
 import PinArticle from '~/components/flow/PinArticle'
 import SkeletonArticle from '~/components/skeleton/SkeletonArticle'
 
@@ -163,7 +162,6 @@ export default {
   layout: 'web',
   components: {
     GridArea,
-    VScroller,
     PinArticle,
     SkeletonArticle
   },

@@ -212,7 +212,13 @@
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinShareBtn class="btn" />
           <TimelineDrawerBtn class="btn only-pc" type="pin" :slug="slug" />
-          <ToolDropdown class="btn" :slug="slug" :is-mine="isMine" />
+          <ToolDropdown
+            class="btn"
+            :slug="slug"
+            :is-mine="isMine"
+            :topic="topic && topic.slug || ''"
+            :area="area && area.slug || ''"
+          />
         </div>
       </div>
       <CommentMain :slug="slug" />

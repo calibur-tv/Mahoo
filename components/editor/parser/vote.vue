@@ -121,7 +121,7 @@
         >
           <span
             :class="$style.count"
-            :style="computeItemStyle(option)"
+            :style="computeItemStyle(option, index)"
             v-html="stat[option.id] ? `${stat[option.id]}票&nbsp;&nbsp;` : ''"
           />
           <span v-text="(index + 1) + '. ' + option.text" />
@@ -237,15 +237,15 @@ export default {
           this.submitting = false
         })
     },
-    computeItemStyle(option) {
+    computeItemStyle(option, index) {
       const count = this.stat[option.id] || 0
       const width = count ? `${75 * count / this.maxCount}%` : '0%'
       return {
         width,
-        backgroundColor: this.getRandomColor()
+        backgroundColor: this.getRandomColor(index)
       }
     },
-    getRandomColor() {
+    getRandomColor(index) {
       const colors = [
         'rgba(255,170,170,.5)',
         'rgba(255,148,39,.5)',
@@ -254,7 +254,7 @@ export default {
         'rgba(18,183,245,.5)',
         'rgba(173,181,189,.5)'
       ]
-      return colors[~~(Math.random() * colors.length)]
+      return colors[index % 6]
     }
   }
 }

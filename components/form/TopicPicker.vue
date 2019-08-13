@@ -10,7 +10,7 @@
 <template>
   <div class="topic-picker">
     <p class="tip">
-      提示：只展示已关注的话题（必选项，发表后不可修改）
+      提示：只展示已关注的话题（必选项）
     </p>
     <ElSelect
       v-if="myTagsFetched"
