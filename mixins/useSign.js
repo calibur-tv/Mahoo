@@ -18,6 +18,7 @@ export default {
       const user = await this.$store.dispatch('initAuth')
       if (user) {
         this.$channel.$fire('user-signed')
+        this.$store.dispatch('getUserRoles')
       } else {
         this.$cookie.remove('JWT-TOKEN')
         this.$channel.$fire('user-not-sign')

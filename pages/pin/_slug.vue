@@ -91,6 +91,12 @@
           }
         }
       }
+
+      .pin-tool-dropdown {
+        float: right;
+        padding-right: 15px;
+        padding-left: 15px;
+      }
     }
   }
 
@@ -182,10 +188,6 @@
         </div>
         <div slot="tail" class="only-pc">
           <template v-if="isMine">
-            <ElButton round plain type="danger" @click="deletePin">
-              删除
-            </ElButton>
-            &nbsp;
             <NLink :to="$alias.create(slug)">
               <ElButton round plain type="info">
                 编辑
@@ -193,9 +195,6 @@
             </NLink>
           </template>
           <template v-else>
-            <ElButton v-if="isAdmin" round plain type="danger" @click="deletePin">
-              删除
-            </ElButton>
             <UserFollowBtn :slug="author.slug" />
           </template>
         </div>
@@ -213,6 +212,7 @@
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinShareBtn class="btn" />
           <TimelineDrawerBtn class="btn only-pc" type="pin" :slug="slug" />
+          <ToolDropdown class="btn" :slug="slug" :is-mine="isMine" />
         </div>
       </div>
       <CommentMain :slug="slug" />
@@ -238,6 +238,7 @@ import PinMarkBtn from '~/components/button/PinMarkBtn'
 import PinShareBtn from '~/components/button/PinShareBtn'
 import UserFollowBtn from '~/components/button/UserFollowBtn'
 import TimelineDrawerBtn from '~/components/button/TimelineDrawerBtn'
+import ToolDropdown from '~/components/pin/ToolDropdown'
 
 export default {
   name: 'PinShow',
@@ -253,7 +254,8 @@ export default {
     PinMarkBtn,
     PinShareBtn,
     UserFollowBtn,
-    TimelineDrawerBtn
+    TimelineDrawerBtn,
+    ToolDropdown
   },
   head() {
     const { title, intro } = this
@@ -328,28 +330,6 @@ export default {
     this.patchUser()
   },
   methods: {
-    deletePin() {
-      this.$confirm('删除后不可恢复，确认要删除吗？', '提示')
-        .then(() => {
-          if (this.deleting) {
-            return
-          }
-          this.deleting = true
-          this.$axios.$post('v1/pin/delete', {
-            slug: this.slug
-          })
-            .then(() => {
-              this.$toast.success('删除成功').then(() => {
-                window.location = '/'
-              })
-            })
-            .catch(err => {
-              this.$toast.error(err.message)
-              this.deleting = false
-            })
-        })
-        .catch(() => {})
-    },
     patchPin() {
       this.$axios.$get('v1/pin/patch', {
         params: {

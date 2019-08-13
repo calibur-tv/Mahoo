@@ -6,6 +6,7 @@ import { randomStr } from '~/assets/js/utils'
 export const state = () => ({
   user: {},
   haveAuthToken: false,
+  roles: null,
   isAuth: false,
   logging: false,
   mailbox: {
@@ -138,6 +139,9 @@ export const mutations = {
         state.mailbox.unread_message_total -= count
       }
     })
+  },
+  SET_USER_ROLE(state, data) {
+    state.roles = data
   }
 }
 
@@ -183,12 +187,21 @@ export const actions = {
       const user = await getUserFromSessionStore(this, slug)
       commit('UPDATE_MESSAGE_MENU_USER', { channel: item.channel, user })
     })
+  },
+  getUserRoles({ state, commit }) {
+    if (state.roles || !state.user || !state.user.title.length) {
+      return
+    }
+    this.$axios.$get('v1/user/roles')
+      .then(data => {
+        commit('SET_USER_ROLE', data)
+      })
+      .catch(() => {})
   }
 }
 
 export const getters = {
-  isMine: state => slug => {
-    return state.isAuth ? state.user.slug === slug : false
-  },
-  isAdmin: state => state.isAuth ? state.user.is_admin : false
+  isMine: state => slug => state.isAuth ? state.user.slug === slug : false,
+  isAdmin: state => state.isAuth ? state.user.is_admin : false,
+  hasRole: state => role => state.user.is_admin ? true : state.roles ? ~state.roles.indexOf(role) : false
 }
