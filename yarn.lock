@@ -9355,10 +9355,10 @@ v-copy@^0.1.0:
   dependencies:
     modern-copy "^1.0.3"
 
-v-switcher@^1.0.76:
-  version "1.0.76"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.76.tgz#deea4611b5f284abdc4951aa4475bd47d11b58d3"
-  integrity sha512-isxq2Opa8HGvwBQARWGDF7t/pqLDkGZQJxMQZ/qRnEH5zcwEE32VGSzRlhPSu1fWSrOeMjuB3T6wUJ1pVgLh2w==
+v-switcher@^1.0.77:
+  version "1.0.77"
+  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.77.tgz#be7c214fcdb82ebfce24c8de17be39b042cd6301"
+  integrity sha512-ve5LBTeK3HaAhqBu0cCMDqWZjX2rsBp8L4kvZQaZiC4D9LvcLbcyRZze/q9QMn1eaKV48Boq8xeart05D2lQvA==
   dependencies:
     vue "^2.6.6"
 
@@ -9442,10 +9442,10 @@ vue-meta@^1.6.0:
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
 
-vue-mixin-store@1.1.61:
-  version "1.1.61"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.61.tgz#6c3988f397828f20ca4d05db88772b31060f23d5"
-  integrity sha512-5PQjH6HaP7SCYpyKVn5NgTKL3lcrsfCJh23XINYuBE9poYT7Zmf+ezqXbo6A7S8MJ9KC8ev+SRx/gUBSnsbIbA==
+vue-mixin-store@1.1.62:
+  version "1.1.62"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.62.tgz#5eeb7bc19019dbf1b619803a8fce85fea3a765bc"
+  integrity sha512-cXOOa2w7/D3+w/57gxw8yjCzCiIdrVAlb36Zk4qxO0OTsMCtqxKeW1LTk8bTie19VCCSSFZ90A12ZlzKB3mijg==
   dependencies:
     throttle-debounce "^2.1.0"
     vue "^2.6.6"
