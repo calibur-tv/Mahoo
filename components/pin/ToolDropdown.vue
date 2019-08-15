@@ -25,7 +25,7 @@
         >
           删除文章
         </ElDropdownItem>
-        <ElDropdownItem v-if="$hasRole('move-pin')" @click.native="showMoveDialog = true">
+        <ElDropdownItem v-if="$hasRole('move_pin')" @click.native="showMoveDialog = true">
           移动文章
         </ElDropdownItem>
       </ElDropdownMenu>

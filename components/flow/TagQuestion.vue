@@ -121,6 +121,7 @@
         </div>
         <div v-if="showControl">
           <ElButton
+            v-if="showRemove"
             :loading="loading"
             size="mini"
             plain
@@ -131,7 +132,7 @@
             删除
           </ElButton>
           <ElButton
-            v-if="!item.recommended_at"
+            v-if="!item.recommended_at && showPass"
             :loading="loading"
             size="mini"
             plain
@@ -175,6 +176,12 @@ export default {
         return null
       }
       return this.item.content.filter(_ => _.type === 'vote')[0]
+    },
+    showPass() {
+      return this.$hasRole('trial_qa')
+    },
+    showRemove() {
+      return this.$hasRole('delete_qa')
     }
   },
   methods: {
