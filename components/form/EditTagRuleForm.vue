@@ -26,7 +26,6 @@
         v-model="rule.question_count"
         :min="5"
         :max="100"
-        :disabled="rule.rule_type !== 0"
         :format-tooltip="formatQuestionCount"
       />
     </ElFormItem>
@@ -38,7 +37,6 @@
         v-model="rule.right_rate"
         :min="50"
         :max="100"
-        :disabled="rule.rule_type !== 0 || rule.result_type !== 0"
         :format-tooltip="formatRightRate"
       />
     </ElFormItem>
@@ -51,7 +49,6 @@
         v-model="rule.qa_minutes"
         :min="30"
         :max="120"
-        :disabled="rule.rule_type !== 0"
         :format-tooltip="formatQAMinutes"
       />
     </ElFormItem>

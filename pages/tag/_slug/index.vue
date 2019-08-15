@@ -55,7 +55,7 @@
       </ElCol>
       <ElCol class="only-pc" :xs="24" :span="5">
         <div class="right-aside">
-          <TagControlPanel :show="is_master" :slug="slug" :parent-slug="tag.parent_slug" />
+          <TagControlPanel :is-master="is_master" :slug="slug" :parent-slug="tag.parent_slug" />
         </div>
       </ElCol>
     </ElRow>
