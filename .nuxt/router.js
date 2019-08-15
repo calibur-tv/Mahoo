@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { interopDefault } from './utils'
 
+const _524e4528 = () => interopDefault(import('../pages/about/index.vue' /* webpackChunkName: "pages/about/index" */))
+const _1116eb59 = () => interopDefault(import('../pages/about/index/managers.vue' /* webpackChunkName: "pages/about/index/managers" */))
 const _28d8da88 = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
 const _0377315e = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
 const _4d54d59e = () => interopDefault(import('../pages/wanderer/index.vue' /* webpackChunkName: "pages/wanderer/index" */))
@@ -113,6 +115,17 @@ export function createRouter() {
     scrollBehavior,
 
     routes: [{
+      path: "/about",
+      component: _524e4528,
+      props: false,
+      name: "about",
+      children: [{
+        path: "managers",
+        component: _1116eb59,
+        props: false,
+        name: "about-index-managers"
+      }]
+    }, {
       path: "/search",
       component: _28d8da88,
       props: false,

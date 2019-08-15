@@ -457,9 +457,13 @@ export default {
         {
           route: '/zone/topic',
           name: '话题'
+        },
+        {
+          route: '/about/managers',
+          name: '学园'
         }
       ]
-      if (this.user.is_admin) {
+      if (this.$hasRole('visit_qa')) {
         result.push({
           route: '/zone/atfield',
           name: '题库'
