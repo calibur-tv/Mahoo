@@ -41,10 +41,12 @@
         font-size: 0;
 
         a {
+          display: inline-block;
           color: #1a1a1a;
           font-size: 18px;
           font-weight: 600;
           line-height: 30px;
+          max-width: 100%;
         }
       }
 
@@ -292,7 +294,7 @@
             <VImg :src="item.topic.avatar" width="24" height="24" radius="5px" />
           </NLink>
         </div>
-        <p :class="$style.link">
+        <p :class="$style.link" class="oneline">
           <NLink
             target="_blank"
             :to="$alias.pin(secretLink || item.slug)"

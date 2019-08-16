@@ -64,6 +64,7 @@
       @include pc() {
         font-size: 14px;
         line-height: 32px;
+        display: block;
       }
 
       @include h5() {
