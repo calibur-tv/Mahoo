@@ -46,6 +46,15 @@
         margin-right: 20px;
         color: #fff;
       }
+
+      .author {
+        position: absolute;
+        left: 56px;
+        bottom: 2px;
+        right: 10px;
+        color: #fff;
+        text-align: left;
+      }
     }
 
     &:hover {
@@ -116,6 +125,7 @@
           <i class="iconfont ic-reward_fill" />
           <span v-text="item.reward_count" />
         </div>
+        <p class="author oneline" v-text="item.author.nickname" />
       </div>
     </NLink>
     <NLink class="user" :to="$alias.user(item.author.slug)" target="_blank">

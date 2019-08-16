@@ -36,12 +36,16 @@
       }
 
       .link {
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 30px;
-        color: #1a1a1a;
         order: 2;
         flex-grow: 1;
+        font-size: 0;
+
+        a {
+          color: #1a1a1a;
+          font-size: 18px;
+          font-weight: 600;
+          line-height: 30px;
+        }
       }
 
       .area {
@@ -288,13 +292,14 @@
             <VImg :src="item.topic.avatar" width="24" height="24" radius="5px" />
           </NLink>
         </div>
-        <NLink
-          target="_blank"
-          :to="$alias.pin(secretLink || item.slug)"
-          :class="$style.link"
-          class="fade-link oneline"
-          v-html="item.title.text"
-        />
+        <p :class="$style.link">
+          <NLink
+            target="_blank"
+            :to="$alias.pin(secretLink || item.slug)"
+            class="fade-link oneline"
+            v-html="item.title.text"
+          />
+        </p>
       </h2>
       <div :class="$style.content" class="clearfix">
         <NLink
