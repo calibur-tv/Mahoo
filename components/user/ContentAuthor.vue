@@ -1,22 +1,17 @@
 <style lang="scss">
 .content-author {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-
   .avatar-area {
     margin-right: 10px;
+    float: left;
   }
 
   .content-area {
-    flex-grow: 1;
     overflow: hidden;
   }
 
   .tail-area {
     margin-left: 14px;
-    flex-shrink: 0;
+    float: right;
   }
 
   .content-meta {
@@ -31,14 +26,14 @@
     <div class="avatar-area">
       <UserAvatar :user="user" :size="size" />
     </div>
+    <div class="tail-area">
+      <slot name="tail" />
+    </div>
     <div class="content-area">
       <UserNickname :user="user" />
       <div class="content-meta oneline">
         <slot name="intro" />
       </div>
-    </div>
-    <div class="tail-area">
-      <slot name="tail" />
     </div>
   </div>
 </template>

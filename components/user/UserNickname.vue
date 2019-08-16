@@ -5,6 +5,7 @@
   align-items: center;
   transition: color .2s ease,background-color .2s ease;
   float: left;
+  max-width: 100%;
 
   &:hover {
     color: $color-main;

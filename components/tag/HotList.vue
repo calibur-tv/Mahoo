@@ -1,17 +1,13 @@
 <style lang="scss">
 .tag-hot-list {
   @include h5() {
-    height: 70px;
+    height: 85px;
     overflow: hidden;
     background-color: $color-gray-bg;
   }
 
   .title {
     margin: 0 5px 10px 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 
     i {
       font-weight: bold;
@@ -45,6 +41,7 @@
         margin: 10px;
         display: inline-block;
         white-space: nowrap;
+        width: 50px;
 
         &:not(:first-child) {
           margin-left: 0;
@@ -54,19 +51,45 @@
 
     img {
       border-radius: 5px;
+
       @include pc() {
-        margin-right: 5px;
+        margin-right: 8px;
         width: 32px !important;
         height: 32px !important;
+        float: left;
       }
     }
 
     span {
-      font-size: 14px;
+      @include pc() {
+        font-size: 14px;
+        line-height: 32px;
+      }
+
+      @include h5() {
+        display: block;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 2px;
+      }
     }
 
     a {
       display: block;
+    }
+  }
+
+  .roll-list {
+    position: relative;
+
+    &-btn {
+      position: absolute;
+      right: 5px;
+      top: -31px;
+
+      @include h5() {
+        display: none;
+      }
     }
   }
 }
@@ -74,7 +97,7 @@
 
 <template>
   <div
-    v-if="list.length"
+    v-if="allChildren.length"
     class="tag-hot-list"
   >
     <h3 class="title only-pc">
@@ -83,27 +106,40 @@
         <i class="el-icon-plus fade-link" />
       </CreateTagBtn>
     </h3>
-    <ul class="child-node">
-      <li
-        v-for="item in list.slice(0, 10)"
-        :key="item.slug"
-        class="node"
-      >
-        <NLink :to="`/tag/${item.slug}`">
-          <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name">
-          <span class="only-pc" v-text="item.name" />
-        </NLink>
-      </li>
-    </ul>
+    <RollList
+      :list="allChildren"
+      :fetch="getData"
+      :count="10"
+      :total="total"
+    >
+      <i slot="icon" class="el-icon-refresh" />
+      <template slot="text">
+        &nbsp;换一换
+      </template>
+      <ul slot-scope="{ list }" class="child-node">
+        <li
+          v-for="item in list"
+          :key="item.slug"
+          class="node clearfix"
+        >
+          <NLink :to="`/tag/${item.slug}`">
+            <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name">
+            <span class="oneline" v-text="item.name" />
+          </NLink>
+        </li>
+      </ul>
+    </RollList>
   </div>
 </template>
 
 <script>
 import CreateTagBtn from '~/components/button/CreateTagBtn'
+import RollList from 'vue-roll-list'
 
 export default {
   name: 'TagHotList',
   components: {
+    RollList,
     CreateTagBtn
   },
   props: {
@@ -115,9 +151,16 @@ export default {
       type: String,
       default: '热门分区'
     },
-    list: {
+    children: {
       type: Array,
       required: true
+    }
+  },
+  data() {
+    return {
+      allChildren: this.children,
+      page: 1,
+      total: 0
     }
   },
   computed: {
@@ -127,8 +170,22 @@ export default {
   },
   methods: {
     handleCreate(data) {
-      this.list.unshift(data)
+      this.allChildren.unshift(data)
       this.$toast.success('创建成功')
+    },
+    getData() {
+      this.$axios.$get('v1/tag/children', {
+        params: {
+          page: this.page,
+          slug: this.slug
+        }
+      })
+        .then(data => {
+          this.allChildren = this.allChildren.concat(data.result)
+          this.page++
+          this.total = data.total
+        })
+        .catch(() => {})
     }
   }
 }

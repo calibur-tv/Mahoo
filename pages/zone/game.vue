@@ -26,7 +26,7 @@
     <ElRow class="container">
       <ElCol :xs="24" :span="5">
         <Affix class="left-aside" :top="70">
-          <TagHotList :slug="slug" title="热门游戏" :list="children" />
+          <TagHotList :slug="slug" title="热门游戏" :children="children" />
         </Affix>
       </ElCol>
       <ElCol :xs="24" :span="14" class="main-wrap">

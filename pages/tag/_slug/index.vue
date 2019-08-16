@@ -46,7 +46,7 @@
         <div class="left-aside">
           <JoinCard :tag="tag" />
           <Affix :top="70">
-            <TagHotList :slug="slug" title="热门游戏" :list="children" />
+            <TagHotList :slug="slug" title="热门游戏" :children="children" />
           </Affix>
         </div>
       </ElCol>
