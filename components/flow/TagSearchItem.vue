@@ -115,9 +115,9 @@
 <template>
   <li :class="$style['tag-search-item']">
     <div class="only-pc" :class="$style['tag-search-item-pc']">
-      <NLink :to="$alias.tag(item.tag.slug)" target="_blank" :class="$style.poster">
+      <NLink :to="$alias.tag(item.slug)" target="_blank" :class="$style.poster">
         <VImg
-          :src="item.tag.avatar"
+          :src="item.avatar"
           :width="105"
           :height="105"
           radius="5px"
@@ -126,19 +126,19 @@
       <div :class="$style.content">
         <h3 :class="$style.title">
           <span>分区</span>
-          <NLink class="fade-link oneline" :to="$alias.tag(item.tag.slug)" target="_blank" v-text="item.tag.name" />
+          <NLink class="fade-link oneline" :to="$alias.tag(item.slug)" target="_blank" v-text="item.name" />
         </h3>
-        <p :class="$style.intro" v-text="item.tag.intro" />
+        <p :class="$style.intro" v-text="item.intro" />
         <footer>
-          <span>帖子数：{{ item.tag.pin_count || 0 }}</span>
-          <span>关注数：{{ item.tag.seen_user_count || 0 }}</span>
+          <span>帖子数：{{ item.pin_count || 0 }}</span>
+          <span>关注数：{{ item.seen_user_count || 0 }}</span>
         </footer>
       </div>
     </div>
-    <NLink :to="$alias.tag(item.tag.slug)" class="only-h5" :class="$style['tag-search-item-h5']">
+    <NLink :to="$alias.tag(item.slug)" class="only-h5" :class="$style['tag-search-item-h5']">
       <VImg
         :class="$style.poster"
-        :src="item.tag.avatar"
+        :src="item.avatar"
         :width="80"
         :height="80"
         radius="5px"
@@ -146,12 +146,12 @@
       <div :class="$style.content">
         <h3 :class="$style.title">
           <span>分区</span>
-          <p class="oneline" v-text="item.tag.name" />
+          <p class="oneline" v-text="item.name" />
         </h3>
-        <p :class="$style.intro" v-text="item.tag.intro" />
+        <p :class="$style.intro" v-text="item.intro" />
         <footer>
-          <span>帖子数：{{ item.tag.pin_count || 0 }}</span>
-          <span>关注数：{{ item.tag.seen_user_count || 0 }}</span>
+          <span>帖子数：{{ item.pin_count || 0 }}</span>
+          <span>关注数：{{ item.seen_user_count || 0 }}</span>
         </footer>
       </div>
     </NLink>

@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       tag: null,
-      children: []
+      children: null
     }
   },
   beforeMount() {

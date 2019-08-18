@@ -26,7 +26,7 @@
     <ElRow class="container">
       <ElCol :xs="24" :span="5">
         <Affix class="left-aside" :top="70">
-          <TagHotList :slug="slug" title="热门游戏" :children="children" />
+          <TagHotList v-if="children" :slug="slug" title="热门游戏" :children="children" />
         </Affix>
       </ElCol>
       <ElCol :xs="24" :span="14" class="main-wrap">
@@ -41,7 +41,7 @@
 
 <script>
 import ZoneMixin from '~/mixins/zone'
-import { showTag } from '~/api/tagApi'
+import { showTag, tagChildren } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
 import TagHotList from '~/components/tag/HotList'
@@ -60,16 +60,18 @@ export default {
     }
   },
   asyncData({ app, error }) {
-    return showTag(app, {
-      slug: process.env.TAGS.game
-    })
+    const slug = process.env.TAGS.game
+    return Promise.all([
+      showTag(app, { slug }),
+      tagChildren(app, { slug })
+    ])
       .then(data => {
-        return { ...data }
+        return {
+          tag: data[0],
+          children: data[1]
+        }
       })
       .catch(error)
-  },
-  created() {},
-  mounted() {},
-  methods: {}
+  }
 }
 </script>

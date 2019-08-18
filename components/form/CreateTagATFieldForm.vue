@@ -93,6 +93,7 @@
 <script>
 import { Radio, RadioGroup, Alert } from 'element-ui'
 import { createQA } from '~/api/atfieldApi'
+import { showTag } from '~/api/tagApi'
 
 export default {
   name: 'CreateTagATFieldForm',
@@ -142,13 +143,9 @@ export default {
   },
   methods: {
     getTag() {
-      this.$axios.$get('v1/tag/show', {
-        params: {
-          slug: this.slug
-        }
-      })
-        .then(data => {
-          this.tag = data.tag
+      showTag(this, { slug: this.slug })
+        .then(tag => {
+          this.tag = tag
         })
         .catch()
     },

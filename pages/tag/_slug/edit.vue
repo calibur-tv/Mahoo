@@ -95,8 +95,7 @@ export default {
   },
   asyncData({ app, error, params }) {
     return showTag(app, params)
-      .then(data => {
-        const { tag } = data
+      .then(tag => {
         tag.alias = tag.alias.split(',')
         return { tag }
       })

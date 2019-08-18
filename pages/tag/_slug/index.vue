@@ -46,7 +46,7 @@
         <div class="left-aside">
           <JoinCard :tag="tag" />
           <Affix :top="70">
-            <TagHotList :slug="slug" title="热门游戏" :children="children" />
+            <TagHotList v-if="children" :slug="slug" title="热门游戏" :children="children" />
           </Affix>
         </div>
       </ElCol>
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { showTag } from '~/api/tagApi'
+import { showTag, tagChildren } from '~/api/tagApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
 import JoinCard from '~/components/tag/JoinCard'
@@ -100,14 +100,21 @@ export default {
   data() {
     return {
       tag: null,
-      children: [],
+      children: null,
       is_master: false
     }
   },
   asyncData({ app, error, params }) {
-    return showTag(app, params)
+    const { slug } = params
+    return Promise.all([
+      showTag(app, { slug }),
+      tagChildren(app, { slug })
+    ])
       .then(data => {
-        return { ...data }
+        return {
+          tag: data[0],
+          children: data[1]
+        }
       })
       .catch(error)
   },

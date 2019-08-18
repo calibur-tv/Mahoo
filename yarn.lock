@@ -9460,10 +9460,10 @@ vue-no-ssr@^1.1.1:
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
 
-vue-roll-list@^0.1.18:
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/vue-roll-list/-/vue-roll-list-0.1.18.tgz#f74f14b633038b75fa38ac0ff76e8abf10a3434c"
-  integrity sha512-LbIqwDQLCDVJGmZIpfbIzmUsKNDtRmaEytQHp4JKyiIorlaO4rOfR9P5uIa58Nc2kX4efyXanoFy8KRaV9kmJg==
+vue-roll-list@^0.1.19:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/vue-roll-list/-/vue-roll-list-0.1.19.tgz#0fa6eb1b52b20aee35a6e539a381d0b265ecd341"
+  integrity sha512-Lt8uB8Q9EhvklsgTYLunb5BI2alDtMO8H67/aOJ20fbhMRcPl0jYQrW/zlNf6X3tbJmGBoFgwnXUJn6/IS4wKg==
   dependencies:
     vue "^2.6.6"
 

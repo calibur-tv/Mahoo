@@ -111,7 +111,6 @@
       :list="allChildren"
       :fetch="getData"
       :count="10"
-      :total="total"
     >
       <i slot="icon" class="el-icon-refresh" />
       <template slot="text">
@@ -136,6 +135,7 @@
 <script>
 import CreateTagBtn from '~/components/button/CreateTagBtn'
 import RollList from 'vue-roll-list'
+import { tagChildren } from '~/api/tagApi'
 
 export default {
   name: 'TagHotList',
@@ -153,15 +153,14 @@ export default {
       default: '热门分区'
     },
     children: {
-      type: Array,
+      type: Object,
       required: true
     }
   },
   data() {
     return {
-      allChildren: this.children,
-      page: 1,
-      total: 0
+      allChildren: this.children.result,
+      page: 1
     }
   },
   computed: {
@@ -175,16 +174,13 @@ export default {
       this.$toast.success('创建成功')
     },
     getData() {
-      this.$axios.$get('v1/tag/children', {
-        params: {
-          page: this.page,
-          slug: this.slug
-        }
+      return tagChildren(this, {
+        page: this.page,
+        slug: this.slug
       })
         .then(data => {
           this.allChildren = this.allChildren.concat(data.result)
           this.page++
-          this.total = data.total
         })
         .catch(() => {})
     }
