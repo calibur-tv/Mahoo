@@ -47,6 +47,7 @@
       footer {
         color: #99a2aa;
         font-size: 12px;
+        margin-top: 8px;
 
         span {
           margin-right: 30px;
@@ -63,7 +64,7 @@
 
     .content {
       overflow: hidden;
-      min-height: 80px;
+      height: 80px;
 
       .title {
         display: flex;
@@ -96,6 +97,7 @@
       .intro {
         height: 30px;
         font-size: 12px;
+        margin-top: 3px;
         @include multi-line(15px);
       }
 
