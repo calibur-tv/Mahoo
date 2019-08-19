@@ -124,7 +124,7 @@
             :style="computeItemStyle(option, index)"
             v-html="stat[option.id] ? `${stat[option.id]}票&nbsp;&nbsp;` : ''"
           />
-          <span v-text="(index + 1) + '. ' + option.text" />
+          <span v-html="(index + 1) + '. ' + option.text" />
           <i />
         </li>
       </ul>
