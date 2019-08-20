@@ -19,7 +19,7 @@
   <li :class="$style.game">
     <NLink target="_blank" :to="$alias.tag(item.slug)">
       <VImg :src="item.avatar" width="150" height="150" :alt="item.name" />
-      <p :class="$style.name" class="oneline fade-link" v-text="item.name" />
+      <p :class="$style.name" class="oneline fade-link" v-html="item.name" />
     </NLink>
   </li>
 </template>

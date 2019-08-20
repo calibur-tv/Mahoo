@@ -114,7 +114,7 @@
           <NLink :to="$alias.user(item.author.slug)" target="_blank" class="oneline">
             <VImg :src="item.author.avatar" radius="50%" width="24" height="24" />
             &nbsp;
-            <span class="only-pc" v-text="item.author.nickname" />
+            <span class="only-pc" v-html="item.author.nickname" />
           </NLink>
           <span>&nbsp;&nbsp;·&nbsp;&nbsp;</span>
           <time v-text="$utils.timeAgo(item.created_at)" />

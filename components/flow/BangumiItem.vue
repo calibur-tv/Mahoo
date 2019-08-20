@@ -36,7 +36,7 @@
     </NLink>
     <div :class="$style.content">
       <div class="oneline">
-        <NLink :class="$style.name" class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+        <NLink :class="$style.name" class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-html="item.name" />
       </div>
       <p :class="$style.desc" v-text="item.intro" />
     </div>

@@ -96,7 +96,7 @@
         <VImg :src="item.media && item.media.banner ? item.media.banner.url : 'default-poster'" width="80" height="50" />
       </div>
       <div class="text">
-        <p v-text="item.title.text" />
+        <p v-html="item.title.text" />
         <div>综合评分：{{ +item.visit_count + item.comment_count * 2 + item.like_count * 2 + item.mark_count * 2 + item.reward_count * 5 }}</div>
       </div>
     </NLink>
@@ -105,7 +105,7 @@
       class="content oneline"
       :to="$alias.pin(item.slug)"
       target="_blank"
-      v-text="item.title.text"
+      v-html="item.title.text"
     />
   </li>
 </template>

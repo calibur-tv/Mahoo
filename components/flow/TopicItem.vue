@@ -22,7 +22,7 @@
       <VImg :src="item.avatar" width="40" height="40" :alt="item.name" />
     </NLink>
     <p :class="$style.name" class="oneline">
-      <NLink class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+      <NLink class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-html="item.name" />
     </p>
   </li>
 </template>

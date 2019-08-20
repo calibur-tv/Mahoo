@@ -66,7 +66,7 @@
       <VImg class="poster" :src="tag.avatar" width="250" height="150" />
     </div>
     <div class="content">
-      <h1 class="name oneline" v-text="tag.name" />
+      <h1 class="name oneline" v-html="tag.name" />
       <p class="desc" v-text="tag.intro || '暂无简介'" />
       <JoinZoneBtn :slug="tag.slug" />
     </div>

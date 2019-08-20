@@ -65,7 +65,7 @@
       class="user-nickname"
     >
       <div class="nickname">
-        <p class="oneline" v-text="nickname || user.nickname" />
+        <p class="oneline" v-html="nickname || user.nickname" />
       </div>
       <span
         v-if="sex"
@@ -92,7 +92,7 @@
       class="user-nickname"
     >
       <div class="nickname">
-        <p class="oneline" v-text="nickname || user.nickname" />
+        <p class="oneline" v-html="nickname || user.nickname" />
       </div>
       <span
         v-if="sex"

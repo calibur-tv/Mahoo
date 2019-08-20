@@ -71,7 +71,7 @@
           <time v-text="$utils.timeAgo(item.created_at)" />
           <template v-if="item.getter">
             <span class="cc">回复</span>
-            <NLink :to="$alias.user(item.getter.slug)" target="_blank" class="fade-link" v-text="item.getter.nickname" />
+            <NLink :to="$alias.user(item.getter.slug)" target="_blank" class="fade-link" v-html="item.getter.nickname" />
           </template>
         </div>
       </header>

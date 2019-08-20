@@ -9,7 +9,7 @@
 <template>
   <div class="user-timeline-0">
     <template v-if="item">
-      由 <NLink target="_blank" :to="$alias.user(item.slug)" v-text="item.nickname" />邀请加入 calibur！
+      由 <NLink target="_blank" :to="$alias.user(item.slug)" v-html="item.nickname" />邀请加入 calibur！
     </template>
     <template v-else>
       加入 calibur！

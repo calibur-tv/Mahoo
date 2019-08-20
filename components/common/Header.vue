@@ -354,7 +354,7 @@
                   />
                 </NLink>
                 <div class="user-popover">
-                  <p class="nickname oneline" v-text="user.nickname" />
+                  <p class="nickname oneline" v-html="user.nickname" />
                   <div class="field">
                     <div class="label">
                       <i class="iconfont ic-night" />

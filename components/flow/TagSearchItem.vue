@@ -130,7 +130,7 @@
       <div :class="$style.content">
         <h3 :class="$style.title">
           <span>分区</span>
-          <NLink class="fade-link oneline" :to="$alias.tag(item.slug)" target="_blank" v-text="item.name" />
+          <NLink class="fade-link oneline" :to="$alias.tag(item.slug)" target="_blank" v-html="item.name" />
         </h3>
         <p :class="$style.intro" v-text="item.intro" />
         <footer>
@@ -150,7 +150,7 @@
       <div :class="$style.content">
         <h3 :class="$style.title">
           <span>分区</span>
-          <p class="oneline" v-text="item.name" />
+          <p class="oneline" v-html="item.name" />
         </h3>
         <p :class="$style.intro" v-text="item.intro" />
         <footer>

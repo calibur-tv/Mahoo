@@ -124,7 +124,7 @@
         >
           <NLink :to="`/tag/${item.slug}`">
             <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name">
-            <span class="oneline" v-text="item.name" />
+            <span class="oneline" v-html="item.name" />
           </NLink>
         </li>
       </ul>

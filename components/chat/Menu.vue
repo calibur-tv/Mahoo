@@ -115,7 +115,7 @@
           :alt="item.user.nickname"
         />
         <div class="content">
-          <p class="nickname oneline" v-text="item.user.nickname" />
+          <p class="nickname oneline" v-html="item.user.nickname" />
           <div class="footer">
             <div v-if="item.count" class="read-badge" v-text="item.count" />
           </div>

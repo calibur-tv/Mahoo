@@ -46,7 +46,7 @@
     </NLink>
     <div :class="$style.content">
       <div class="note-title oneline">
-        <NLink :class="$style.name" class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-text="item.name" />
+        <NLink :class="$style.name" class="fade-link" target="_blank" :to="$alias.tag(item.slug)" v-html="item.name" />
       </div>
       <p class="oneline" :class="$style.desc" :title="item.intro" v-text="item.intro || '暂无简介'" />
       <div :class="$style.meta">

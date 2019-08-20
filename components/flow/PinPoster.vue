@@ -125,14 +125,14 @@
           <i class="iconfont ic-reward_fill" />
           <span v-text="item.reward_count" />
         </div>
-        <p class="author oneline" v-text="item.author.nickname" />
+        <p class="author oneline" v-html="item.author.nickname" />
       </div>
     </NLink>
     <NLink class="user" :to="$alias.user(item.author.slug)" target="_blank">
       <VImg :src="item.author.avatar" width="45" height="45" />
     </NLink>
     <div class="text">
-      <NLink class="title fade-link" target="_blank" :to="$alias.pin(item.slug)" v-text="item.title.text" />
+      <NLink class="title fade-link" target="_blank" :to="$alias.pin(item.slug)" v-html="item.title.text" />
       <div class="mask">
         <div>
           <i class="iconfont ic-browse_fill" />
