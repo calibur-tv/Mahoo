@@ -55,7 +55,7 @@
     :cache-timeout="3600"
     class="pin-rank-list"
   >
-    <ul slot-scope="{ flow, count }">
+    <ul slot-scope="{ flow, count }" @mouseout="defaultActive = 0">
       <PinRanker
         v-for="(item, index) in flow"
         :key="item.slug"
