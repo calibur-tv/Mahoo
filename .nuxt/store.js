@@ -31,7 +31,7 @@ export const createStore = store instanceof Function ? store : () => {
 function resolveStoreModules(moduleData, filename) {
   moduleData = moduleData.default || moduleData
   // Remove store src + extension (./foo/index.js -> foo/index)
-  const namespace = filename.replace(/\.(js|mjs|ts)$/, '')
+  const namespace = filename.replace(/\.(js|mjs)$/, '')
   const namespaces = namespace.split('/')
   let moduleName = namespaces[namespaces.length - 1]
   const filePath = `store/${filename}`

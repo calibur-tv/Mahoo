@@ -11,7 +11,7 @@
  */
 
 /*!
-  * vue-router v3.0.6
+  * vue-router v3.0.7
   * (c) 2019 Evan You
   * @license MIT
   */
@@ -21,18 +21,6 @@
  * (c) 2019 Evan You
  * @license MIT
  */
-
-/**
- * vue-meta v1.6.0
- * (c) 2019 Declan de Wet & Sébastien Chopin (@Atinux)
- * @license MIT
- */
-
-/*
-	object-assign
-	(c) Sindre Sorhus
-	@license MIT
-	*/
 
 /*!
  * JavaScript Cookie v2.2.1
@@ -49,16 +37,50 @@
  * @license  MIT
  */
 
-/*!
- * v-switcher v1.0.78
- * (c) 2019 falstack <icesilt@outlook.com>
- * https://github.com/falstack/v-switcher
+/**
+ * Header block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
+/**
+ * Delimiter Block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
+/**
+ * Base Paragraph Block for the Editor.js.
+ * Represents simple paragraph
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
  */
 
 /*!
  * vue-no-ssr v1.1.1
  * (c) 2018-present egoist <0x142857@gmail.com>
  * Released under the MIT License.
+ */
+
+/*!
+ * vue-client-only v2.0.0
+ * (c) 2019-present egoist <0x142857@gmail.com>
+ * Released under the MIT License.
+ */
+
+/*!
+ * v-switcher v1.0.78
+ * (c) 2019 falstack <icesilt@outlook.com>
+ * https://github.com/falstack/v-switcher
  */
 
 /*!
@@ -159,14 +181,4 @@ and limitations under the License.
  * @license MIT
  * @author CodeX (https://codex.so)
  * @version 1.1.1
- */
-
-/**
- * Base Paragraph Block for the Editor.js.
- * Represents simple paragraph
- *
- * @author CodeX (team@ifmo.su)
- * @copyright CodeX 2018
- * @license The MIT License (MIT)
- * @version 2.0.0
  */

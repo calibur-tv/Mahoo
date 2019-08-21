@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Meta from 'vue-meta'
+import ClientOnly from 'vue-client-only'
+import NoSsr from 'vue-no-ssr'
 import { createRouter } from './router.js'
-import NoSsr from './components/no-ssr.js'
 import NuxtChild from './components/nuxt-child.js'
 import NuxtError from '../layouts/error.vue'
 import Nuxt from './components/nuxt.js'
@@ -11,8 +12,8 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_workbox_a71ddeec from 'nuxt_plugin_workbox_a71ddeec' // Source: ./workbox.js (mode: 'client')
-import nuxt_plugin_axios_6966c224 from 'nuxt_plugin_axios_6966c224' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_workbox_77f1c28c from 'nuxt_plugin_workbox_77f1c28c' // Source: ./workbox.js (mode: 'client')
+import nuxt_plugin_axios_1bf5e970 from 'nuxt_plugin_axios_1bf5e970' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_axiosall_6aea33a4 from 'nuxt_plugin_axiosall_6aea33a4' // Source: ../plugins/axios.all.js (mode: 'all')
 import nuxt_plugin_componentsall_f6b62450 from 'nuxt_plugin_componentsall_f6b62450' // Source: ../plugins/components.all.js (mode: 'all')
 import nuxt_plugin_prototypesall_f47dfe06 from 'nuxt_plugin_prototypesall_f47dfe06' // Source: ../plugins/prototypes.all.js (mode: 'all')
@@ -22,8 +23,19 @@ import nuxt_plugin_pcclient_6f6ed2f2 from 'nuxt_plugin_pcclient_6f6ed2f2' // Sou
 import nuxt_plugin_socketclient_03aac5f2 from 'nuxt_plugin_socketclient_03aac5f2' // Source: ../plugins/socket.client.js (mode: 'client')
 import nuxt_plugin_routerclient_3702c15d from 'nuxt_plugin_routerclient_3702c15d' // Source: ../plugins/router.client.js (mode: 'client')
 
-// Component: <NoSsr>
-Vue.component(NoSsr.name, NoSsr)
+// Component: <ClientOnly>
+Vue.component(ClientOnly.name, ClientOnly)
+// TODO: Remove in Nuxt 3: <NoSsr>
+Vue.component(NoSsr.name, {
+  ...NoSsr,
+  render(h, ctx) {
+    if (process.client && !NoSsr._warned) {
+      NoSsr._warned = true
+      console.warn(`<no-ssr> has been deprecated and will be removed in Nuxt 3, please use <client-only> instead`)
+    }
+    return NoSsr.render(h, ctx)
+  }
+})
 
 // Component: <NuxtChild>
 Vue.component(NuxtChild.name, NuxtChild)
@@ -160,12 +172,12 @@ async function createApp(ssrContext) {
 
   // Plugin execution
 
-  if (process.client && typeof nuxt_plugin_workbox_a71ddeec === 'function') {
-    await nuxt_plugin_workbox_a71ddeec(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_77f1c28c === 'function') {
+    await nuxt_plugin_workbox_77f1c28c(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_6966c224 === 'function') {
-    await nuxt_plugin_axios_6966c224(app.context, inject)
+  if (typeof nuxt_plugin_axios_1bf5e970 === 'function') {
+    await nuxt_plugin_axios_1bf5e970(app.context, inject)
   }
 
   if (typeof nuxt_plugin_axiosall_6aea33a4 === 'function') {

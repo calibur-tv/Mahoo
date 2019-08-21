@@ -1,6 +1,6 @@
 <template>
   <transition appear>
-    <div class="nuxt__build_indicator" v-if="building">
+    <div class="nuxt__build_indicator" :style="indicatorStyle" v-if="building">
       <svg viewBox="0 0 96 72" version="1" xmlns="http://www.w3.org/2000/svg">
         <g fill="none" fill-rule="evenodd">
           <path d="M6 66h23l1-3 21-37L40 6 6 66zM79 66h11L62 17l-5 9 22 37v3zM54 31L35 66h38z"/>
@@ -26,20 +26,25 @@ export default {
     }
   },
   mounted() {
-    if (WebSocket === undefined) {
+    if (typeof EventSource === undefined) {
       return // Unsupported
     }
-    this.wsConnect()
+    this.sseConnect()
   },
   beforeDestroy() {
-    this.wsClose()
+    this.sseClose()
     clearInterval(this._progressAnimation)
   },
   computed: {
-    wsURL() {
-      const _path = '/_loading/ws'
-      const _protocol = location.protocol === 'https:' ? 'wss' : 'ws'
-      return `${_protocol}://${location.hostname}:${location.port}${_path}`
+    options: () => (false),
+    indicatorStyle() {
+      const [ d1, d2 ] = this.options.position.split('-')
+      return {
+        [d1]: '20px',
+        [d2]: '20px',
+        'background-color': this.options.backgroundColor,
+        color: this.options.color,
+      }
     }
   },
   watch: {
@@ -67,37 +72,17 @@ export default {
     }
   },
   methods: {
-    wsConnect() {
+    sseConnect() {
       if (this._connecting) {
         return
       }
       this._connecting = true
-      this.wsClose()
-      this.ws = new WebSocket(this.wsURL)
-      this.ws.onmessage = this.onWSMessage.bind(this)
-      this.ws.onclose = this.wsReconnect.bind(this)
-      this.ws.onerror = this.wsReconnect.bind(this)
-      setTimeout(() => {
-        this._connecting = false
-        if (this.ws.readyState !== WebSocket.OPEN) {
-          this.wsReconnect()
-        }
-      }, 5000)
+      this.sse = new EventSource('/_loading/sse')
+      this.sse.addEventListener('message', (event) => this.onSseMessage(event))
     },
-
-    wsReconnect() {
-      if (this._reconnecting || this.reconnectAttempts++ > 10) {
-        return
-      }
-      this._reconnecting = true
-      setTimeout(() => {
-        this._reconnecting = false
-        this.wsConnect()
-      }, 1000)
-    },
-
-    onWSMessage(message) {
+    onSseMessage(message) {
       const data = JSON.parse(message.data)
+      if (!data.states) return
 
       this.progress = Math.round(data.states.reduce((p, s) => p + s.progress, 0) / data.states.length)
 
@@ -113,10 +98,10 @@ export default {
       }
     },
 
-    wsClose() {
-      if (this.ws) {
-        this.ws.close()
-        delete this.ws
+    sseClose() {
+      if (this.sse) {
+        this.sse.close()
+        delete this.sse
       }
     }
   }
@@ -126,17 +111,14 @@ export default {
 <style scoped>
 .nuxt__build_indicator {
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   font-family: monospace;
-  bottom: 20px;
-  right: 20px;
-  background-color: #2E495E;
   padding: 5px 10px;
   border-radius: 5px;
   box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.2);
-  color: #00C48D;
-  width: 84px;
+  width: 88px;
   z-index: 2147483647;
+  font-size: 16px;
 }
 .v-enter-active, .v-leave-active {
   transition-delay: 0.2s;

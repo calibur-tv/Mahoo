@@ -207,7 +207,7 @@ module.exports = {
   },
 
   styleResources: {
-    sass: [
+    scss: [
       './assets/css/var.scss',
       './assets/css/mixin.scss'
     ]
@@ -234,11 +234,14 @@ module.exports = {
     },
     loaders: {
       cssModules: {
-        camelCase: true
+        localsConvention: 'camelCase'
       }
     },
     publicPath: isDev ? '/_nuxt/' : `${qiniu.host}${qiniu.key_prefix}`,
     babel: {
+      presets({ isServer }, [preset, options]) {
+        options.useBuiltIns = isServer ? 'usage' : false
+      },
       plugins: [
         [
           'component',
