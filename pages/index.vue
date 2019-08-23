@@ -165,9 +165,9 @@ export default {
     PinArticle,
     SkeletonArticle
   },
-  data() {
-    return {
-      tags: []
+  computed: {
+    tags() {
+      return this.$store.state.global.hottest_tags
     }
   },
   async fetch({ store }) {
