@@ -170,12 +170,8 @@ export default {
       tags: []
     }
   },
-  asyncData({ app, error }) {
-    return app.$axios.$get('v1/tag/hottest')
-      .then(tags => {
-        return { tags }
-      })
-      .catch(error)
+  async fetch({ store }) {
+    await store.dispatch('global/getHottestTags')
   },
   methods: {
     handleTabSwitch(index) {
