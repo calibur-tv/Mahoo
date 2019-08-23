@@ -3709,10 +3709,10 @@ eslint-ast-utils@^1.0.0:
     lodash.get "^4.4.2"
     lodash.zip "^4.2.0"
 
-eslint-config-standard@>=14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-14.0.0.tgz#1de7bf5af37542dc6eef879ab7eb5e5e0f830747"
-  integrity sha512-bV6e2LFvJEetrLjVAy4KWPOUsIhPWr040c649MigTPR6yUtaGuOt6CEAyNeez2lRiC+2+vjGWa02byjs25EB3A==
+eslint-config-standard@>=14.0.1:
+  version "14.0.1"
+  resolved "https://registry.npm.taobao.org/eslint-config-standard/download/eslint-config-standard-14.0.1.tgz#375c3636fb4bd453cb95321d873de12e4eef790b"
+  integrity sha1-N1w2NvtL1FPLlTIdhz3hLk7veQs=
 
 eslint-config-standard@^12.0.0:
   version "12.0.0"
@@ -3771,7 +3771,14 @@ eslint-plugin-import@>=2.18.2, eslint-plugin-import@^2.18.0:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jest@>=22.15.1, eslint-plugin-jest@^22.10.0:
+eslint-plugin-jest@>=22.15.2:
+  version "22.15.2"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-jest/download/eslint-plugin-jest-22.15.2.tgz#e3c10d9391f787744e31566f69ebb70c3a98e398"
+  integrity sha1-48ENk5H3h3ROMVZvaeu3DDqY45g=
+  dependencies:
+    "@typescript-eslint/experimental-utils" "^1.13.0"
+
+eslint-plugin-jest@^22.10.0:
   version "22.15.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.15.1.tgz#54c4a752a44c4bc5a564ecc22b32e1cd16a2961a"
   integrity sha512-CWq/RR/3tLaKFB+FZcCJwU9hH5q/bKeO3rFP8G07+q7hcDCFNqpvdphVbEbGE6o6qo1UbciEev4ejUWv7brUhw==
@@ -9522,10 +9529,10 @@ v-copy@^0.1.0:
   dependencies:
     modern-copy "^1.0.3"
 
-v-switcher@^1.0.78:
-  version "1.0.78"
-  resolved "https://registry.yarnpkg.com/v-switcher/-/v-switcher-1.0.78.tgz#a87593d944f0b3a25c5c81b52eeb9e382a7a0bf2"
-  integrity sha512-p6QMk4LQ9NtN9iXZL+E5k/F/tbNL+UZXR8m2wGfPdgked5CHm1WQCiXLlPf8uDRP2elE8/KoH+I/D6dgacYKTw==
+v-switcher@^1.0.79:
+  version "1.0.79"
+  resolved "https://registry.npm.taobao.org/v-switcher/download/v-switcher-1.0.79.tgz#2fee2b8f2e03289b4a50972f438de4668d710375"
+  integrity sha1-L+4rjy4DKJtKUJcvQ43kZo1xA3U=
   dependencies:
     vue "^2.6.6"
 

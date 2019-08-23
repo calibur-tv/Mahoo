@@ -95,7 +95,7 @@
     <div class="only-pc container">
       <component
         :is="`${item.type}-area`"
-        v-for="item in category"
+        v-for="item in tags"
         :key="item.slug"
         :name="item.name"
         :slug="item.slug"
@@ -168,14 +168,6 @@ export default {
   data() {
     return {
       tags: []
-    }
-  },
-  computed: {
-    category() {
-      return this.tags.map(_ => {
-        _.type = 'grid'
-        return _
-      })
     }
   },
   asyncData({ app, error }) {
