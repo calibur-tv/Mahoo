@@ -226,6 +226,8 @@
     &.header-fixed {
       position: fixed;
       box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
+      backdrop-filter: saturate(180%) blur(20px);
+      background-color: rgba(255,255,255,0.7);
     }
 
     &.header-static {
