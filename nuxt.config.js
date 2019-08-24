@@ -239,9 +239,6 @@ module.exports = {
     },
     publicPath: isDev ? '/_nuxt/' : `${qiniu.host}${qiniu.key_prefix}`,
     babel: {
-      presets({ isServer }, [preset, options]) {
-        options.useBuiltIns = isServer ? 'usage' : false
-      },
       plugins: [
         [
           'component',
