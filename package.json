@@ -57,7 +57,7 @@
     "url-polyfill": "^1.1.7",
     "v-copy": "^0.1.0",
     "v-switcher": "^1.0.79",
-    "vue-mixin-store": "1.1.64",
+    "vue-mixin-store": "1.1.65",
     "vue-native-websocket": "^2.0.13",
     "vue-roll-list": "^0.1.19"
   },

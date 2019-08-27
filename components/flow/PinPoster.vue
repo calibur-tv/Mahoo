@@ -62,6 +62,11 @@
         opacity: 1;
       }
     }
+
+    .default-poster {
+      filter: grayscale(100%);
+      opacity: 0.3;
+    }
   }
 
   .user {
@@ -112,6 +117,7 @@
   <li class="pin-poster">
     <NLink class="poster" target="_blank" :to="$alias.pin(item.slug)">
       <VImg v-if="item.media && item.media.banner" :src="item.media.banner.url" width="160" height="100" />
+      <VImg v-else class="default-poster" src="default-poster" width="160" height="100" />
       <div class="mask">
         <div>
           <i class="iconfont ic-good_fill" />

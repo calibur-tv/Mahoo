@@ -170,7 +170,7 @@ export default {
       return this.$store.state.global.hottest_tags
     }
   },
-  async fetch({ store }) {
+  async asyncData({ store }) {
     await store.dispatch('global/getHottestTags')
   },
   methods: {
