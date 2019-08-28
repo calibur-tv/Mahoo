@@ -90,7 +90,7 @@ module.exports = {
         async: true
       }
     ],
-    __dangerouslyDisableSanitizers: 'script'
+    __dangerouslyDisableSanitizers: ['script']
   },
 
   /*

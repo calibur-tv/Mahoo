@@ -121,7 +121,9 @@ export default {
         tags: [
           this.newTopic,
           this.newArea
-        ]
+        ],
+        topic: this.newTopic,
+        area: this.newArea
       })
         .then(() => {
           this.$toast.success('移动成功')
