@@ -173,7 +173,7 @@ export default {
       this.loadingBindPhone = true
       try {
         await bindPhone(this, {
-          id: this.user.id,
+          slug: this.user.slug,
           phone: this.phone,
           password: this.password,
           authCode: this.authCode

@@ -8,8 +8,8 @@ export const settingImage = (ctx, { type, url }) => ctx.$axios.$post('user/setti
 
 export const getUserInfo = (ctx, { slug }) => ctx.$axios.$get(`v1/user/show`, { params: { slug } })
 
-export const bindPhone = (ctx, { id, phone, password, authCode }) => ctx.$axios.$post('v1/door/bind_phone', {
-  id,
+export const bindPhone = (ctx, { slug, phone, password, authCode }) => ctx.$axios.$post('v1/door/bind_phone', {
+  slug,
   phone,
   password,
   authCode
