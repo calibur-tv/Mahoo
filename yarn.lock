@@ -9616,12 +9616,11 @@ vue-meta@^2.2.1:
   dependencies:
     deepmerge "^4.0.0"
 
-vue-mixin-store@1.1.65:
-  version "1.1.65"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.65.tgz#9f58dbce5cecb505767f8c2e921366d0bcc07195"
-  integrity sha512-WeRqKUqAKVf4JNH+x9okTVNAnaaRnnQsYvWUQj3qkXO2Dwv12FOZIEmL4FKbYS5V+36xodo+Tw0o19vEEcte5A==
+vue-mixin-store@1.1.66:
+  version "1.1.66"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.66.tgz#855f861109b4e1b99d5bdff6d21d6246699585ca"
+  integrity sha512-KZZviVQpU0VN7AnDytiINK7+gn13t2wCOJ+FElgB3EXYlRrp6yRU52RbTx8sZGjvNVULvGTebYubQ7mPTl6d2Q==
   dependencies:
-    throttle-debounce "^2.1.0"
     vue "^2.6.6"
 
 vue-native-websocket@^2.0.13:

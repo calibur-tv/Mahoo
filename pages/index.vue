@@ -31,36 +31,28 @@
   .only-h5 {
     .v-switcher {
       &-header {
-        &-wrap {
-          border-bottom: 1px solid #f4f4f4;
-        }
-
         &-anchor {
-          height: 2px;
-          bottom: 1px;
+          height: 20px;
+          bottom: 10px;
           background-color: $color-main;
+          z-index: -1;
+          border-radius: 10px;
         }
 
         &-item {
-          padding: 0 16px;
-          font-size: 14px;
+          padding: 0 10px;
+          font-size: 13px;
           color: #505050;
+          transition: color .3s;
 
           &.is-active {
-            color: $color-main;
+            color: #fff;
           }
         }
       }
     }
 
-    .v-scroller {
-      width: 110%;
-      padding-right: 10%;
-    }
-
     .pin-list {
-      margin: 10px 0;
-
       >li {
         padding: 10px;
         border-top: 1px solid $color-gray-4;
@@ -108,8 +100,7 @@
       <div class="main-content">
         <VSwitcher
           :headers="tags"
-          :anchor-padding="16"
-          :fixed-top="50"
+          :anchor-padding="5"
           @change="handleTabSwitch"
         >
           <FlowLoader
