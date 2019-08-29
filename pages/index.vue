@@ -31,10 +31,6 @@
   .only-h5 {
     .v-switcher {
       &-header {
-        &-wrap {
-          background-color: #f4f4f4;
-        }
-
         &-anchor {
           height: 20px;
           bottom: 10px;
@@ -58,8 +54,11 @@
 
     .pin-list {
       >li {
-        padding: 10px;
-        border-top: 1px solid $color-gray-4;
+        margin: 24px 16px;
+
+        &:first-child {
+          margin-top: 10px;
+        }
       }
     }
 
@@ -76,10 +75,6 @@
           font-size: 12px;
           color: $color-text-3;
         }
-      }
-
-      &-loading {
-        height: 180px;
       }
     }
   }
@@ -131,7 +126,6 @@
                 :item="pin"
               />
             </ul>
-            <SkeletonArticle slot="loading" />
             <template slot="nothing">
               <img src="~assets/img/error/no-content.png">
               <p>这里什么都没有</p>
@@ -150,15 +144,13 @@
 <script>
 import GridArea from '~/components/area/GridArea'
 import PinArticle from '~/components/flow/PinArticle'
-import SkeletonArticle from '~/components/skeleton/SkeletonArticle'
 
 export default {
   name: 'Homepage',
   layout: 'web',
   components: {
     GridArea,
-    PinArticle,
-    SkeletonArticle
+    PinArticle
   },
   computed: {
     tags() {

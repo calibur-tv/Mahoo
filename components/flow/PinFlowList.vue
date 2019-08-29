@@ -63,8 +63,11 @@
       }
 
       @include h5() {
-        padding: 10px;
-        border-top: 1px solid $color-gray-4;
+        margin: 24px 16px;
+
+        &:first-child {
+          margin-top: 5px;
+        }
       }
     }
   }

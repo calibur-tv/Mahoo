@@ -137,90 +137,54 @@
   }
 
   &-h5 {
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+
     header {
-      :global(.img) {
-        margin-right: 2px;
-      }
+      position: relative;
+      width: 100%;
+      height: 0;
 
-      span {
-        font-weight: bold;
-      }
-
-      .badge {
-        display: inline-block;
-        height: 22px;
-        line-height: 20px;
-        padding: 0 10px;
-        border: 1px solid #979797;
-        color: #979797;
-        text-align: center;
-        border-radius: 100px;
-        font-size: 12px;
-        margin-right: 2px;
-        flex-shrink: 0;
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
     }
 
     main {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      height: 90px;
+      padding: 20px 20px 16px;
 
-      .media {
-        display: block;
-        position: relative;
-        float: right;
-        border-radius: 4px;
-        overflow: hidden;
-        width: 130px;
-        height: 90px;
-        margin-left: 10px;
+      .user {
+        color: rgb(102, 102, 102);
+        margin-bottom: 8px;
+        font-size: 12px;
 
-        .badge {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          color: #fff;
-          font-size: 35px;
-        }
-
-        .music {
-          height: 100%;
-          background-color: #d43c33;
-        }
-
-        .video {
-          height: 100%;
-          background-color: #00a1d6;
+        span {
+          margin-left: 3px;
         }
       }
 
-      p {
-        display: block;
-        overflow: hidden;
-        @include multi-line(22.5px, 4)
+      .title {
+        font-size: 28px;
+        color: #000;
+        font-weight: 700;
+        @include multi-line(33px)
       }
     }
 
     footer {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: $color-text-2;
+      padding: 20px;
 
-      >* {
-        flex-grow: 1;
-      }
-
-      .zone {
-        max-width: 20%;
-      }
-
-      i {
-        color: $color-icon-2;
+      .intro {
+        color: rgb(102, 102, 102);
+        font-size: 16px;
+        @include multi-line(22.4px, 3);
       }
     }
   }
@@ -234,6 +198,20 @@
       :class="$style['pin-article-h5']"
       class="only-h5"
     >
+      <header v-if="item.media && item.media.banner" :style="{ paddingTop: `${item.media.banner.height / item.media.banner.width * 100}%` }">
+        <img :src="$resize(item.media.banner.url, { width: 400, mode: 2 })">
+      </header>
+      <main>
+        <div :class="$style.user">
+          <VImg v-if="showUser" :src="item.author.avatar" radius="50%" width="24" height="24" />
+          <span v-html="item.author.nickname" />
+        </div>
+        <span :class="$style.title" v-html="item.title.text" />
+      </main>
+      <footer v-if="item.intro">
+        <p :class="$style.intro" v-html="item.intro" />
+      </footer>
+      <!--
       <header class="oneline">
         <VImg v-if="showUser" :src="item.author.avatar" radius="50%" width="24" height="24" />
         <span :class="$style.badge" v-text="item.badge" />
@@ -274,6 +252,7 @@
           <span v-text="item.visit_count" />
         </div>
       </footer>
+      -->
     </NLink>
     <div :class="[$style['pin-article-pc'], { [$style['pin-article-pc-media']]: item.media }]" class="only-pc">
       <h2 :class="$style.title">
