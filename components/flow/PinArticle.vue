@@ -211,48 +211,6 @@
       <footer v-if="item.intro">
         <p :class="$style.intro" v-html="item.intro" />
       </footer>
-      <!--
-      <header class="oneline">
-        <VImg v-if="showUser" :src="item.author.avatar" radius="50%" width="24" height="24" />
-        <span :class="$style.badge" v-text="item.badge" />
-        <span v-html="item.title.text" />
-      </header>
-      <main>
-        <div v-if="item.media" :class="$style.media">
-          <div v-if="item.media.first_video" :class="$style.video">
-            <VImg v-if="item.media.banner" :src="item.media.banner.url" :blur="true" width="130" height="90" />
-            <i :class="$style.badge" class="iconfont ic-bilibili" />
-          </div>
-          <div v-else-if="item.media.first_music" :class="$style.music">
-            <VImg v-if="item.media.banner" :src="item.media.banner.url" :blur="true" width="130" height="90" />
-            <i :class="$style.badge" class="iconfont ic-netease" />
-          </div>
-          <VImg v-else :src="item.media.banner.url" :blur="true" width="130" height="90" />
-        </div>
-        <p v-html="item.intro" />
-      </main>
-      <footer>
-        <span v-if="showArea" :class="$style.zone" class="oneline">
-          {{ item.area ? item.area.name : item.topic ? item.topic.name : '' }}
-        </span>
-        <div>
-          <i class="iconfont ic-message_fill" />
-          <span v-text="item.comment_count" />
-        </div>
-        <div>
-          <i class="iconfont ic-good_fill" />
-          <span v-text="item.like_count" />
-        </div>
-        <div>
-          <i class="iconfont ic-mark_fill" />
-          <span v-text="item.mark_count" />
-        </div>
-        <div>
-          <i class="iconfont ic-browse_fill" />
-          <span v-text="item.visit_count" />
-        </div>
-      </footer>
-      -->
     </NLink>
     <div :class="[$style['pin-article-pc'], { [$style['pin-article-pc-media']]: item.media }]" class="only-pc">
       <h2 :class="$style.title">

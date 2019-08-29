@@ -24,6 +24,8 @@ button {
 textarea,
 input,
 button {
+  -webkit-appearance: none;
+
   &:focus,
   &:active {
     outline: none;
