@@ -9616,10 +9616,10 @@ vue-meta@^2.2.1:
   dependencies:
     deepmerge "^4.0.0"
 
-vue-mixin-store@1.1.66:
-  version "1.1.66"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.66.tgz#855f861109b4e1b99d5bdff6d21d6246699585ca"
-  integrity sha512-KZZviVQpU0VN7AnDytiINK7+gn13t2wCOJ+FElgB3EXYlRrp6yRU52RbTx8sZGjvNVULvGTebYubQ7mPTl6d2Q==
+vue-mixin-store@1.1.67:
+  version "1.1.67"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.67.tgz#348bf1e93bd42bfacf1757a5077e20e94291dea2"
+  integrity sha512-vaaJwJlRhlM9e9S+BtgpmGVe2yerhU394D5AIsZPt1uwsFE+4cotbGECRSEgqdc7ogE5TFyx+uY8pWTNSw/Hlg==
   dependencies:
     vue "^2.6.6"
 

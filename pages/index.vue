@@ -31,6 +31,10 @@
   .only-h5 {
     .v-switcher {
       &-header {
+        &-wrap {
+          background-color: #f4f4f4;
+        }
+
         &-anchor {
           height: 20px;
           bottom: 10px;
@@ -41,7 +45,7 @@
 
         &-item {
           padding: 0 10px;
-          font-size: 13px;
+          font-size: 12px;
           color: #505050;
           transition: color .3s;
 
