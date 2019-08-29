@@ -54,11 +54,10 @@
         background-color: #fff;
         padding: 15px 20px 20px;
         border-radius: 5px;
-        margin-top: 20px;
+        margin-bottom: 20px;
 
         &:first-child {
           border-radius: 0 0 5px 5px;
-          margin-top: 0;
           border-top: 1px solid $color-gray-4;
         }
       }
