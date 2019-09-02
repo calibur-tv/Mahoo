@@ -15,7 +15,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
-    "build": "nuxt build",
+    "build": "nuxt build --modern",
     "start": "nuxt start",
     "generate": "cross-env BUILD_ENV=generate nuxt generate",
     "upload": "qshell qupload qiniu.json",
