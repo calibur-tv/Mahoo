@@ -273,7 +273,6 @@
         :headers="headers"
         :routable="true"
         :header-height="66"
-        :fixed-top="50"
         anchor-trigger="hover"
         align="start"
       >
