@@ -27,17 +27,7 @@
 
 <template>
   <div :class="$style.music">
-    <iframe
-      :src="item.data.embed"
-      scrolling="no"
-      border="0"
-      frameborder="no"
-      framespacing="0"
-      allowtransparency="true"
-      allowfullscreen="true"
-      width="330"
-      height="86"
-    />
+    <iframe :src="item.data.embed" scrolling="no" border="0" frameborder="no" framespacing="0" allowtransparency="true" allowfullscreen="true" width="330" height="86" />
     <p v-if="item.data.caption" v-text="item.data.caption" />
   </div>
 </template>

@@ -16,10 +16,10 @@ module.exports = {
   },
   buildDir: isDev ? '.nuxt-dev' : '.nuxt',
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
-    titleTemplate: val => val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.title}`,
+    titleTemplate: val => (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.title}`),
     meta: [
       { charset: 'utf-8' },
       {
@@ -45,13 +45,13 @@ module.exports = {
         hid: 'description',
         name: 'description',
         content: '',
-        template: val => val ? `${val},${process.env.INJECT.description}` : `${process.env.INJECT.description}`
+        template: val => (val ? `${val},${process.env.INJECT.description}` : `${process.env.INJECT.description}`)
       },
       {
         hid: 'keywords',
         name: 'keywords',
         content: '',
-        template: val => val ? `${val},${process.env.INJECT.keywords}` : `${process.env.INJECT.keywords}`
+        template: val => (val ? `${val},${process.env.INJECT.keywords}` : `${process.env.INJECT.keywords}`)
       }
     ],
     link: [
@@ -94,30 +94,21 @@ module.exports = {
   },
 
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#ff6881' },
 
   /*
-  ** Global CSS
-  */
-  css: [
-    'normalize.css',
-    '~/assets/css/global.scss',
-    '~/theme/index.css'
-  ],
+   ** Global CSS
+   */
+  css: ['normalize.css', '~/assets/css/global.scss', '~/theme/index.css'],
 
   render: {
     csp: {
       reportOnly: false,
       policies: {
         'object-src': ["'none'"],
-        'style-src': [
-          "'self'",
-          "'unsafe-inline'",
-          '*.calibur.tv',
-          'static.geetest.com'
-        ],
+        'style-src': ["'self'", "'unsafe-inline'", '*.calibur.tv', 'static.geetest.com'],
         'script-src': [
           "'unsafe-inline'",
           '*.calibur.tv',
@@ -134,8 +125,8 @@ module.exports = {
   },
 
   /*
-  ** Plugins to load before mounting the App
-  */
+   ** Plugins to load before mounting the App
+   */
   plugins: [
     '~/plugins/axios.all.js',
     '~/plugins/components.all.js',
@@ -148,8 +139,8 @@ module.exports = {
   ],
 
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: (() => {
     const result = [
       '@nuxtjs/style-resources',
@@ -159,16 +150,19 @@ module.exports = {
     ]
 
     if (!isDev) {
-      result.push(['@nuxtjs/pwa', {
-        meta: {
-          mobileApp: false,
-          lang: 'zh-CN',
-          author: injectScript.author,
-          name: injectScript.title,
-          description: injectScript.description
-        },
-        icon: false
-      }])
+      result.push([
+        '@nuxtjs/pwa',
+        {
+          meta: {
+            mobileApp: false,
+            lang: 'zh-CN',
+            author: injectScript.author,
+            name: injectScript.title,
+            description: injectScript.description
+          },
+          icon: false
+        }
+      ])
     }
 
     return result
@@ -207,14 +201,11 @@ module.exports = {
   },
 
   styleResources: {
-    scss: [
-      './assets/css/var.scss',
-      './assets/css/mixin.scss'
-    ]
+    scss: ['./assets/css/var.scss', './assets/css/mixin.scss']
   },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     splitChunks: {
       layouts: true,

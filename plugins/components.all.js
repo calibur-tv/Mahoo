@@ -2,15 +2,7 @@ import Vue from 'vue'
 import Switcher from 'v-switcher'
 import 'v-switcher/dist/v-switcher.css'
 import VueMixinStore from 'vue-mixin-store'
-import {
-  Button,
-  Row,
-  Col,
-  Form,
-  FormItem,
-  Input,
-  Tag
-} from 'element-ui'
+import { Button, Row, Col, Form, FormItem, Input, Tag } from 'element-ui'
 import lazyload from '~/directives/lazyload'
 import share from '~/directives/share'
 import Image from '~/components/common/Image'

@@ -1,2 +1,0 @@
-exports.ids=[1],exports.modules={362:function(t,e,r){"use strict";r.r(e);var n=r(1),component=Object(n.a)({},function(){var t=this.$createElement;return(this._self._c||t)("nuxt")},[],!1,null,null,"0f3aa19c");e.default=component.exports}};
-//# sourceMappingURL=53c1a3aa04a097f69a84.js.map

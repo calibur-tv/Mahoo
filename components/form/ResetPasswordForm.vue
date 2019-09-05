@@ -20,30 +20,13 @@
   <div class="reset-password-form">
     <el-form ref="form" :model="form" :rules="rule">
       <el-form-item prop="access">
-        <el-input
-          v-model.trim="form.access"
-          type="text"
-          placeholder="手机号"
-          auto-complete="off"
-        />
+        <el-input v-model.trim="form.access" type="text" placeholder="手机号" auto-complete="off" />
       </el-form-item>
       <el-form-item prop="secret">
-        <el-input
-          v-model.trim="form.secret"
-          type="text"
-          placeholder="新密码"
-          auto-complete="off"
-        />
+        <el-input v-model.trim="form.secret" type="text" placeholder="新密码" auto-complete="off" />
       </el-form-item>
       <el-form-item>
-        <el-button
-          :loading="submitBtnLoading"
-          :disabled="submitBtnDisabled"
-          class="submit-btn"
-          type="primary"
-          round
-          @click="submitForm"
-        >
+        <el-button :loading="submitBtnLoading" :disabled="submitBtnDisabled" class="submit-btn" type="primary" round @click="submitForm">
           {{ submitBtnText }}
           <template v-if="timeout">
             （{{ timeout }}s 后可重新获取）

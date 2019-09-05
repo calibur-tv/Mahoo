@@ -14,18 +14,8 @@
   <div id="user-social-layout">
     <ElRow class="column-wrap">
       <ElCol :span="6">
-        <VSwitcher
-          :headers="headers"
-          :routable="true"
-          align="vertical"
-        >
-          <NLink
-            v-for="(item, index) in headers"
-            :key="index"
-            :slot="`tab-${index}`"
-            :to="item.route"
-            class="tab-item"
-          >
+        <VSwitcher :headers="headers" :routable="true" align="vertical">
+          <NLink v-for="(item, index) in headers" :key="index" :slot="`tab-${index}`" :to="item.route" class="tab-item">
             <span v-text="item.name" />
             <span v-if="item.count" v-text="item.count" />
           </NLink>

@@ -19,8 +19,7 @@ export default (url, options = {}) => {
     const elem = document.createElement('canvas')
 
     if (elem.getContext && elem.getContext('2d')) {
-      const support =
-        elem.toDataURL('image/webp').indexOf('data:image/webp') === 0
+      const support = elem.toDataURL('image/webp').indexOf('data:image/webp') === 0
       window.supportWebP = support
       return support
     }
@@ -51,11 +50,11 @@ export default (url, options = {}) => {
   const radio = getRadio()
 
   if (mode === 1) {
-    width = `/w/${options.width * radio | 0}`
-    height = options.height ? `/h/${options.height * radio | 0}` : `/h/${options.width * radio | 0}`
+    width = `/w/${(options.width * radio) | 0}`
+    height = options.height ? `/h/${(options.height * radio) | 0}` : `/h/${(options.width * radio) | 0}`
   } else {
-    width = options.width ? `/w/${options.width * radio | 0}` : ''
-    height = options.height ? `/h/${options.height * radio | 0}` : ''
+    width = options.width ? `/w/${(options.width * radio) | 0}` : ''
+    height = options.height ? `/h/${(options.height * radio) | 0}` : ''
   }
 
   return `${link}?imageMogr2/auto-orient/strip|imageView2/${mode}${width}${height}${format}`

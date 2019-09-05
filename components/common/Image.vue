@@ -9,7 +9,7 @@
   &.is-full {
     position: relative;
     display: block;
-    background-color: #F1F3F4;
+    background-color: #f1f3f4;
 
     img {
       position: absolute;
@@ -45,14 +45,9 @@
 </style>
 
 <template>
-  <picture
-    v-lazyload="handle"
-    :style="[style, extraStyle]"
-    :class="{ 'is-full': isFull, 'is-blur': useBlur, 'show-animate': animate }"
-    class="img"
-  >
-    <source :srcset="source" type="image/webp">
-    <img :src="show" :alt="alt" :origin-src="src" @load="loaded">
+  <picture v-lazyload="handle" :style="[style, extraStyle]" :class="{ 'is-full': isFull, 'is-blur': useBlur, 'show-animate': animate }" class="img">
+    <source :srcset="source" type="image/webp" />
+    <img :src="show" :alt="alt" :origin-src="src" @load="loaded" />
   </picture>
 </template>
 
@@ -95,7 +90,7 @@ export default {
   },
   data() {
     const { def, width } = this
-    const src = def ? def.startsWith('http') ? def : `https://m1.calibur.tv/${def}` : ''
+    const src = def ? (def.startsWith('http') ? def : `https://m1.calibur.tv/${def}`) : ''
     const isFull = typeof width === 'number' && typeof this.height === 'number' && !this.radius
     return {
       show: src,
@@ -135,11 +130,11 @@ export default {
       if (isFull) {
         const maxWidth = window.screen.width <= 768 ? 420 : 660
         if (width > maxWidth) {
-          height = parseInt(maxWidth / width * height, 10)
+          height = parseInt((maxWidth / width) * height, 10)
           width = maxWidth
         }
         if (height > 9999) {
-          width = parseInt(9999 / height * width, 10)
+          width = parseInt((9999 / height) * width, 10)
           height = 9999
         }
         if (width < this.$el.clientWidth && !this.stretched) {

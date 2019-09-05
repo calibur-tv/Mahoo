@@ -1,13 +1,5 @@
 <template>
-  <el-button
-    v-if="state"
-    :loading="state.is_following_loading"
-    class="user-fff-btn"
-    round
-    type="primary"
-    :plain="btnText !== '关注'"
-    @click="handleFollowClick"
-  >
+  <el-button v-if="state" :loading="state.is_following_loading" class="user-fff-btn" round type="primary" :plain="btnText !== '关注'" @click="handleFollowClick">
     <span v-text="btnText" />
   </el-button>
 </template>

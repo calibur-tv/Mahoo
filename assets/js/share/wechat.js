@@ -14,42 +14,33 @@ export default class {
       nonceStr: this.config.nonceStr,
       timestamp: this.config.timestamp,
       signature: this.config.signature,
-      jsApiList: [
-        'previewImage',
-        'onMenuShareTimeline',
-        'onMenuShareAppMessage',
-        'updateTimelineShareData',
-        'updateAppMessageShareData'
-      ]
+      jsApiList: ['previewImage', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'updateTimelineShareData', 'updateAppMessageShareData']
     })
 
     // 初始化分享相关
     wx.ready(() => {
       // 初始化查看图片
       const allNoteImages = []
-      ;[].forEach.call(
-        document.querySelectorAll('.is-full'),
-        imagePackage => {
-          const image = imagePackage.querySelector('img')
+      ;[].forEach.call(document.querySelectorAll('.is-full'), imagePackage => {
+        const image = imagePackage.querySelector('img')
 
-          if (image) {
-            let imageSrc = image.getAttribute('origin-src')
+        if (image) {
+          let imageSrc = image.getAttribute('origin-src')
 
-            if (imageSrc.match(/^\/\//)) {
-              imageSrc = `http:${imageSrc}`
-            }
-
-            allNoteImages.push(imageSrc)
-
-            imagePackage.addEventListener('click', () => {
-              wx.previewImage({
-                current: imageSrc,
-                urls: allNoteImages
-              })
-            })
+          if (imageSrc.match(/^\/\//)) {
+            imageSrc = `http:${imageSrc}`
           }
+
+          allNoteImages.push(imageSrc)
+
+          imagePackage.addEventListener('click', () => {
+            wx.previewImage({
+              current: imageSrc,
+              urls: allNoteImages
+            })
+          })
         }
-      )
+      })
 
       wx.updateTimelineShareData({
         title: this.getShareTitle(),

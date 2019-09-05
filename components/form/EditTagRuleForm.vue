@@ -13,32 +13,18 @@
 </style>
 
 <template>
-  <ElForm
-    ref="form"
-    label-position="top"
-    class="edit-tag-rule-form"
-  >
+  <ElForm ref="form" label-position="top" class="edit-tag-rule-form">
     <ElFormItem label="出题数">
       <p class="form-tip">
         如果题库数量不足，则能出几题出几题，如果题库数量超过设定值，则随机出指定题目数
       </p>
-      <ElSlider
-        v-model="rule.question_count"
-        :min="5"
-        :max="100"
-        :format-tooltip="formatQuestionCount"
-      />
+      <ElSlider v-model="rule.question_count" :min="5" :max="100" :format-tooltip="formatQuestionCount" />
     </ElFormItem>
     <ElFormItem label="正确率">
       <p class="form-tip">
         答题的正确率不低于该值才能通过
       </p>
-      <ElSlider
-        v-model="rule.right_rate"
-        :min="50"
-        :max="100"
-        :format-tooltip="formatRightRate"
-      />
+      <ElSlider v-model="rule.right_rate" :min="50" :max="100" :format-tooltip="formatRightRate" />
     </ElFormItem>
     <!--
     <ElFormItem label="答题时长">
@@ -82,12 +68,7 @@
     </ElFormItem>
     -->
     <ElFormItem>
-      <ElButton
-        :loading="submitting"
-        type="success"
-        round
-        @click="updateRule"
-      >
+      <ElButton :loading="submitting" type="success" round @click="updateRule">
         保存更改
       </ElButton>
     </ElFormItem>
@@ -140,7 +121,8 @@ export default {
         return
       }
       this.submitting = true
-      this.$axios.$post('v1/atfield/rule/update', this.rule)
+      this.$axios
+        .$post('v1/atfield/rule/update', this.rule)
         .then(() => {
           this.$toast.success('更新成功')
         })
@@ -152,11 +134,12 @@ export default {
         })
     },
     getRule() {
-      this.$axios.$get('v1/atfield/rule/show', {
-        params: {
-          slug: this.tag.slug
-        }
-      })
+      this.$axios
+        .$get('v1/atfield/rule/show', {
+          params: {
+            slug: this.tag.slug
+          }
+        })
         .then(data => {
           this.$set(this, 'rule', data)
         })

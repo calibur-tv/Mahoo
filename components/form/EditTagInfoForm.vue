@@ -22,20 +22,10 @@
 </style>
 
 <template>
-  <ElForm
-    ref="form"
-    :model="tag"
-    :rules="rules"
-    :disabled="submitting"
-    label-position="top"
-    class="edit-tag-info-form"
-  >
+  <ElForm ref="form" :model="tag" :rules="rules" :disabled="submitting" label-position="top" class="edit-tag-info-form">
     <ElFormItem label="头像">
       <div class="avatar-field">
-        <img
-          :src="$resize(tag.avatar, { width: 100 })"
-          class="avatar"
-        >
+        <img :src="$resize(tag.avatar, { width: 100 })" class="avatar" />
         <ElUpload
           :show-file-list="false"
           :action="imageUploadAction"
@@ -46,13 +36,7 @@
           :on-success="avatarUploadSuccess"
           :on-error="handleImageUploadError"
         >
-          <ElButton
-            :loading="!!uploadPending"
-            type="success"
-            plain
-            round
-            size="mini"
-          >
+          <ElButton :loading="!!uploadPending" type="success" plain round size="mini">
             {{ uploadPending ? '图片上传中...' : '点击上传封面' }}
           </ElButton>
         </ElUpload>
@@ -65,35 +49,13 @@
       <p class="form-tip">
         提示：按回车键生效
       </p>
-      <ElSelect
-        v-model="tag.alias"
-        multiple
-        filterable
-        allow-create
-        default-first-option
-        placeholder="请输入标签别名"
-        popper-class="hidden-select-options"
-        class="hidden-select-input"
-      />
+      <ElSelect v-model="tag.alias" multiple filterable allow-create default-first-option placeholder="请输入标签别名" popper-class="hidden-select-options" class="hidden-select-input" />
     </ElFormItem>
     <ElFormItem label="简介">
-      <ElInput
-        v-model="tag.intro"
-        type="textarea"
-        :show-word-limit="true"
-        :rows="8"
-        maxlength="233"
-        resize="none"
-        placeholder="请输入板块介绍"
-      />
+      <ElInput v-model="tag.intro" type="textarea" :show-word-limit="true" :rows="8" maxlength="233" resize="none" placeholder="请输入板块介绍" />
     </ElFormItem>
     <ElFormItem>
-      <ElButton
-        :loading="submitting"
-        type="success"
-        round
-        @click="submit"
-      >
+      <ElButton :loading="submitting" type="success" round @click="submit">
         保存更改
       </ElButton>
     </ElFormItem>
@@ -136,9 +98,7 @@ export default {
     }
     return {
       rules: {
-        alias: [
-          { validator: validateAlias, trigger: 'submit' }
-        ]
+        alias: [{ validator: validateAlias, trigger: 'submit' }]
       },
       submitting: false
     }
@@ -160,10 +120,9 @@ export default {
             intro: this.tag.intro
           })
             .then(() => {
-              this.$toast.success('修改成功')
-                .then(() => {
-                  window.location.reload()
-                })
+              this.$toast.success('修改成功').then(() => {
+                window.location.reload()
+              })
             })
             .catch(err => {
               this.$toast.error(err.message)

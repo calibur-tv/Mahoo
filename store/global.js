@@ -61,7 +61,8 @@ export const actions = {
     if (state.hottest_tags.length) {
       return
     }
-    return this.$axios.$get('v1/tag/hottest')
+    return this.$axios
+      .$get('v1/tag/hottest')
       .then(tags => {
         commit('SET_HOTTEST_TAGS', tags)
       })

@@ -2,7 +2,7 @@
 .paragraph {
   font-weight: 400;
   line-height: 1.6;
-  padding: .7em 0;
+  padding: 0.7em 0;
   color: $color-text-1;
   font-size: 14px;
   @extend %breakWord;

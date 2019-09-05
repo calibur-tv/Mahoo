@@ -69,10 +69,9 @@ export default {
             slug: this.slug
           })
             .then(() => {
-              this.$toast.success('删除成功')
-                .then(() => {
-                  window.location.reload()
-                })
+              this.$toast.success('删除成功').then(() => {
+                window.location.reload()
+              })
             })
             .catch(err => {
               this.$toast.error(err.message)
@@ -90,10 +89,11 @@ export default {
           if (name.length > 16 || name.length < 2 || !/^([a-z0-9]|_|-)+$/i.test(name)) {
             return this.$toast.error('错误的cc号')
           }
-          this.$axios.$post('v1/atfield/invite', {
-            user_slug: name,
-            tag_slug: this.slug
-          })
+          this.$axios
+            .$post('v1/atfield/invite', {
+              user_slug: name,
+              tag_slug: this.slug
+            })
             .then(() => {
               this.$toast.success('邀请成功')
             })
@@ -113,15 +113,15 @@ export default {
           if (slug.length > 16 || slug.length < 2 || !/^([a-z0-9]|_|-)+$/i.test(slug)) {
             return this.$toast.error('错误的cc号')
           }
-          this.$axios.$post('v1/atfield/change_master', {
-            tag_slug: this.slug,
-            user_slug: slug
-          })
+          this.$axios
+            .$post('v1/atfield/change_master', {
+              tag_slug: this.slug,
+              user_slug: slug
+            })
             .then(() => {
-              this.$toast.success('任命成功')
-                .then(() => {
-                  window.location.reload()
-                })
+              this.$toast.success('任命成功').then(() => {
+                window.location.reload()
+              })
             })
             .catch(err => {
               this.$toast.error(err.message)

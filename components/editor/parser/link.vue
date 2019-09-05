@@ -6,12 +6,12 @@
     display: block;
     background-color: #fff;
     border: 1px solid rgba(201, 201, 204, 0.48);
-    box-shadow: 0 1px 3px rgba(0,0,0, .1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     padding: 25px;
 
     &:hover {
-      box-shadow: 0 0 3px rgba(0,0,0, .16);
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
     }
   }
 
@@ -28,7 +28,7 @@
     p {
       margin: 0 0 20px 0;
       font-size: 15px;
-      @include multi-line(23px, 3)
+      @include multi-line(23px, 3);
     }
 
     span {
@@ -52,7 +52,7 @@
 <template>
   <div :class="$style.link">
     <a target="_blank" :href="item.data.link">
-      <img v-if="item.data.meta.image && item.data.meta.image.url" :class="$style.logo" :src="item.data.meta.image.url" width="65" height="65">
+      <img v-if="item.data.meta.image && item.data.meta.image.url" :class="$style.logo" :src="item.data.meta.image.url" width="65" height="65" />
       <div :class="$style.content">
         <h3 v-text="item.data.meta.title" />
         <p v-text="item.data.meta.description" />

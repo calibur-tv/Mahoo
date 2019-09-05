@@ -1,23 +1,9 @@
 <template>
   <div id="user-social-followers">
-    <ElAlert
-      v-if="isMine"
-      title="不用在意粉丝的多少，做自己就好"
-      type="success"
-    />
-    <FlowLoader
-      ref="loader"
-      func="getUserRelation"
-      type="seenIds"
-      :query="query"
-      :callback="detectUserRelation"
-    >
+    <ElAlert v-if="isMine" title="不用在意粉丝的多少，做自己就好" type="success" />
+    <FlowLoader ref="loader" func="getUserRelation" type="seenIds" :query="query" :callback="detectUserRelation">
       <ul slot-scope="{ flow }">
-        <UserRelationItem
-          v-for="user in flow"
-          :key="user.slug"
-          :user="user"
-        />
+        <UserRelationItem v-for="user in flow" :key="user.slug" :user="user" />
       </ul>
     </FlowLoader>
   </div>
@@ -58,12 +44,13 @@ export default {
       if (!result.length) {
         return
       }
-      this.$axios.$get('v1/user/detect_relation', {
-        params: {
-          type: 'user',
-          targets: result.map(_ => _.slug).join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/user/detect_relation', {
+          params: {
+            type: 'user',
+            targets: result.map(_ => _.slug).join(',')
+          }
+        })
         .then(data => {
           this.$store.commit('social/set', {
             type: 'user-follow',

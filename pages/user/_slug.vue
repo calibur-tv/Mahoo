@@ -15,7 +15,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAIAAAACDbGyAAAAEElEQVR4AWP48vU7MqKUDwA7qkfh9iF73wAAAABJRU5ErkJggg==);
-      transition: background-image .2s ease,background-size 1s ease;
+      transition: background-image 0.2s ease, background-size 1s ease;
       height: 110px;
       padding-top: 24px;
       @media (min-width: 768px) {
@@ -45,7 +45,7 @@
           margin-right: 20px;
 
           .avatar {
-            border: 2px solid hsla(0,0%,100%,.4);
+            border: 2px solid hsla(0, 0%, 100%, 0.4);
           }
         }
 
@@ -193,7 +193,7 @@
       &-header-item {
         text-align: left;
         padding-left: 30px;
-        transition: background-color .3s ease;
+        transition: background-color 0.3s ease;
         height: 44px;
         line-height: 44px;
 
@@ -253,13 +253,10 @@
 <template>
   <div id="user-layout">
     <div id="user-panel" class="container">
-      <div class="banner" :style="{ backgroundImage: `url(${$resize(banner, { height: 200, mode: 2 })})`}">
+      <div class="banner" :style="{ backgroundImage: `url(${$resize(banner, { height: 200, mode: 2 })})` }">
         <div class="user">
           <UserAvatar :user="user" :avatar="avatar" :size="68" />
-          <div
-            v-if="user"
-            class="actions only-pc"
-          >
+          <div v-if="user" class="actions only-pc">
             <UserFollowBtn :slug="slug" @change="handleFollowAction" />
             <SendMailBtn :slug="slug" :nickname="nickname" />
           </div>
@@ -269,20 +266,8 @@
           </div>
         </div>
       </div>
-      <VSwitcher
-        :headers="headers"
-        :routable="true"
-        :header-height="66"
-        anchor-trigger="hover"
-        align="start"
-      >
-        <NLink
-          v-for="(item, index) in headers"
-          :key="index"
-          :slot="`tab-${index}`"
-          :to="item.route"
-          class="only-pc"
-        >
+      <VSwitcher :headers="headers" :routable="true" :header-height="66" anchor-trigger="hover" align="start">
+        <NLink v-for="(item, index) in headers" :key="index" :slot="`tab-${index}`" :to="item.route" class="only-pc">
           <i class="iconfont" :class="`ic-${item.icon}`" :style="{ color: item.color }" />
           <span v-text="item.name" />
         </NLink>
@@ -414,9 +399,7 @@ export default {
       return this.isMine ? this.self.signature : this.user.signature
     },
     sex() {
-      return this.isMine ? (
-        this.self.sex_secret ? -1 : this.self.sex
-      ) : this.user.sex
+      return this.isMine ? (this.self.sex_secret ? -1 : this.self.sex) : this.user.sex
     },
     headers() {
       let result = [
@@ -476,11 +459,12 @@ export default {
   },
   methods: {
     patchUser() {
-      this.$axios.$get('v1/user/patch', {
-        params: {
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/user/patch', {
+          params: {
+            slug: this.slug
+          }
+        })
         .then(data => {
           this.user = this.$set(this, 'user', Object.assign(this.user, data))
           this.$store.commit('social/set', {

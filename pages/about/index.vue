@@ -5,7 +5,7 @@
         <NuxtChild />
       </ElCol>
       <ElCol :span="8" :xs="0">
-        <br>
+        <br />
       </ElCol>
     </ElRow>
   </div>

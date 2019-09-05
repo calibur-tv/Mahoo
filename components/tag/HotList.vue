@@ -97,33 +97,22 @@
 </style>
 
 <template>
-  <div
-    v-if="allChildren.length"
-    class="tag-hot-list"
-  >
+  <div v-if="allChildren.length" class="tag-hot-list">
     <h3 class="title only-pc">
       <span v-text="title" />
       <CreateTagBtn v-if="isAdmin" :parent="slug" @create="handleCreate">
         <i class="el-icon-plus fade-link" />
       </CreateTagBtn>
     </h3>
-    <RollList
-      :list="allChildren"
-      :fetch="getData"
-      :count="10"
-    >
+    <RollList :list="allChildren" :fetch="getData" :count="10">
       <i slot="icon" class="el-icon-refresh" />
       <template slot="text">
         &nbsp;换一换
       </template>
       <ul slot-scope="{ list }" class="child-node">
-        <li
-          v-for="item in list"
-          :key="item.slug"
-          class="node clearfix"
-        >
+        <li v-for="item in list" :key="item.slug" class="node clearfix">
           <NLink :to="`/tag/${item.slug}`">
-            <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name">
+            <img :src="$resize(item.avatar, { width: 50 })" width="50" height="50" :alt="item.name" />
             <span class="oneline" v-html="item.name" />
           </NLink>
         </li>

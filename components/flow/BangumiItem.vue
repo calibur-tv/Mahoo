@@ -23,7 +23,7 @@
     .desc {
       margin-top: 10px;
       font-size: 12px;
-      @include multi-line(20px)
+      @include multi-line(20px);
     }
   }
 }

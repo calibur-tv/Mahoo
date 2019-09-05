@@ -1,32 +1,32 @@
 <style lang="scss">
-  #error-page {
-    position: relative;
-    height: 100vh;
+#error-page {
+  position: relative;
+  height: 100vh;
 
-    .error-main {
-      position: absolute;
-      text-align: center;
-      width: 100%;
-      padding: 0 10%;
-      top: 50%;
-      margin-top: -220px;
+  .error-main {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    padding: 0 10%;
+    top: 50%;
+    margin-top: -220px;
 
-      img {
-        width: 180px;
-        border-radius: 50%;
-      }
+    img {
+      width: 180px;
+      border-radius: 50%;
+    }
 
-      h3 {
-        margin: 20px 0;
-        font-weight: bold;
-      }
+    h3 {
+      margin: 20px 0;
+      font-weight: bold;
+    }
 
-      .subtitle {
-        margin-bottom: 20px;
-        font-size: 14px;
-      }
+    .subtitle {
+      margin-bottom: 20px;
+      font-size: 14px;
     }
   }
+}
 </style>
 
 <template>
@@ -34,27 +34,19 @@
     <VHeader :show-user="false" />
     <div class="error-main">
       <div v-if="statusCode === 401" id="error-401">
-        <img
-          src="~assets/img/error/503.jpeg"
-          alt="error-401"
-          @click="toastMessage"
-        >
+        <img src="~assets/img/error/503.jpeg" alt="error-401" @click="toastMessage" />
         <h3>{{ message || '请登录后重新访问' }}</h3>
         <button class="back" @click="handleLogin">
           登录
         </button>
       </div>
       <div v-else-if="statusCode === 403" id="error-403">
-        <img src="~assets/img/error/500.jpeg" alt="error-403">
+        <img src="~assets/img/error/500.jpeg" alt="error-403" />
         <h3>{{ message || '您没有权限访问该页面' }}</h3>
         <a href="/" class="back">回到首页</a>
       </div>
       <div v-else-if="statusCode === 404" id="error-404">
-        <img
-          src="~assets/img/error/404.jpeg"
-          alt="error-404"
-          @click="toastMessage"
-        >
+        <img src="~assets/img/error/404.jpeg" alt="error-404" @click="toastMessage" />
         <h3>您要找的页面不存在</h3>
         <div class="subtitle">
           不存在的内容，或者正在审核中。
@@ -64,11 +56,7 @@
         </nuxt-link>
       </div>
       <div v-else-if="statusCode >= 500" id="error-500">
-        <img
-          src="~assets/img/error/500.jpeg"
-          alt="error-500"
-          @click="toastMessage"
-        >
+        <img src="~assets/img/error/500.jpeg" alt="error-500" @click="toastMessage" />
         <h3>服务器出错了</h3>
         <div class="subtitle">
           服务器出了点问题，工程师正在加紧抢修ヽ( ° ▽°)ノ

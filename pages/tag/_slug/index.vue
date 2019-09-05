@@ -23,7 +23,7 @@
     @include pc() {
       background-color: $color-gray-bg;
       padding: 20px;
-      box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
+      box-shadow: 0 3px 3px rgba(26, 26, 26, 0.1) inset;
       margin-top: -$page-header-hgt;
       padding-top: $page-header-hgt + 20;
       min-height: 100vh;
@@ -106,10 +106,7 @@ export default {
   },
   asyncData({ app, error, params }) {
     const { slug } = params
-    return Promise.all([
-      showTag(app, { slug }),
-      tagChildren(app, { slug })
-    ])
+    return Promise.all([showTag(app, { slug }), tagChildren(app, { slug })])
       .then(data => {
         return {
           tag: data[0],
@@ -123,11 +120,12 @@ export default {
   },
   methods: {
     patchTag() {
-      this.$axios.$get('v1/tag/patch', {
-        params: {
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/tag/patch', {
+          params: {
+            slug: this.slug
+          }
+        })
         .then(data => {
           this.tag = this.$set(this, 'tag', Object.assign(this.tag, data))
           this.$store.commit('social/set', {

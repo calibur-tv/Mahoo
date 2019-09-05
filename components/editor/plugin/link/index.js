@@ -37,7 +37,8 @@ export default class LinkTool {
    */
   static get toolbox() {
     return {
-      icon: '<svg width="13" height="14" xmlns="http://www.w3.org/2000/svg">\n' +
+      icon:
+        '<svg width="13" height="14" xmlns="http://www.w3.org/2000/svg">\n' +
         '  <path d="M8.567 13.629c.728.464 1.581.65 2.41.558l-.873.873A3.722 3.722 0 1 1 4.84 9.794L6.694 7.94a3.722 3.722 0 0 1 5.256-.008L10.484 9.4a5.209 5.209 0 0 1-.017.016 1.625 1.625 0 0 0-2.29.009l-1.854 1.854a1.626 1.626 0 0 0 2.244 2.35zm2.766-7.358a3.722 3.722 0 0 0-2.41-.558l.873-.873a3.722 3.722 0 1 1 5.264 5.266l-1.854 1.854a3.722 3.722 0 0 1-5.256.008L9.416 10.5a5.2 5.2 0 0 1 .017-.016 1.625 1.625 0 0 0 2.29-.009l1.854-1.854a1.626 1.626 0 0 0-2.244-2.35z" transform="translate(-3.667 -2.7)"/>\n' +
         '</svg>',
       title: '超链接'
@@ -132,10 +133,13 @@ export default class LinkTool {
    * @param {LinkToolData} data
    */
   set data(data) {
-    this._data = Object.assign({}, {
-      link: data.link || this._data.link,
-      meta: data.meta || this._data.meta
-    })
+    this._data = Object.assign(
+      {},
+      {
+        link: data.link || this._data.link,
+        meta: data.meta || this._data.meta
+      }
+    )
   }
 
   /**
@@ -305,7 +309,7 @@ export default class LinkTool {
     this.nodes.linkContent.appendChild(this.nodes.linkText)
 
     try {
-      this.nodes.linkText.textContent = (new URL(this.data.link)).hostname
+      this.nodes.linkText.textContent = new URL(this.data.link).hostname
     } catch (e) {
       this.nodes.linkText.textContent = this.data.link
     }
@@ -358,12 +362,12 @@ export default class LinkTool {
     this.data = { link: url }
 
     try {
-      const response = await (ajax.get({
+      const response = await ajax.get({
         url: this.config.endpoint,
         data: {
           url
         }
-      }))
+      })
 
       this.onFetch(response.body)
     } catch (error) {

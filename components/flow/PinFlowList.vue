@@ -26,7 +26,7 @@
         height: 16px;
         width: 1px;
         left: 0;
-        background-color: hsla(0,0%,59.2%,.2);
+        background-color: hsla(0, 0%, 59.2%, 0.2);
       }
 
       &:first-child {
@@ -93,44 +93,22 @@
 <template>
   <div class="pin-flow-list">
     <ul class="sortable">
-      <li
-        v-for="item in sortOpts"
-        :key="item.value"
-        :class="{ 'is-active': item.value === sort }"
-        @click="changeSort(item.value)"
-        v-text="item.label"
-      />
+      <li v-for="item in sortOpts" :key="item.value" :class="{ 'is-active': item.value === sort }" @click="changeSort(item.value)" v-text="item.label" />
       <ElSelect v-if="sort === 'hottest'" v-model="time" size="mini" @change="changeTime">
-        <ElOption
-          v-for="item in timeOpts"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+        <ElOption v-for="item in timeOpts" :key="item.value" :label="item.label" :value="item.value" />
       </ElSelect>
     </ul>
-    <FlowLoader
-      ref="loader"
-      func="getTagFlows"
-      :type="sort === 'newest' ? 'lastId' : 'seenIds'"
-      :query="query"
-      :callback="patchPin"
-    >
+    <FlowLoader ref="loader" func="getTagFlows" :type="sort === 'newest' ? 'lastId' : 'seenIds'" :query="query" :callback="patchPin">
       <ul slot-scope="{ flow }" class="flows">
-        <PinArticle
-          v-for="item in flow"
-          :key="item.slug"
-          :show-area="showArea"
-          :item="item"
-        />
+        <PinArticle v-for="item in flow" :key="item.slug" :show-area="showArea" :item="item" />
       </ul>
       <SkeletonArticle slot="loading" />
       <template slot="nothing">
-        <img src="~assets/img/error/no-content.png">
+        <img src="~assets/img/error/no-content.png" />
         <p>这里什么都没有</p>
       </template>
       <template slot="error">
-        <img src="~assets/img/error/no-network.png">
+        <img src="~assets/img/error/no-network.png" />
         <p>遇到错误了，点击重试</p>
       </template>
     </FlowLoader>
@@ -230,11 +208,12 @@ export default {
       })
     },
     patchPin({ data }) {
-      this.$axios.$get('v1/pin/batch_patch', {
-        params: {
-          slug: data.result.map(_ => _.slug).join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/pin/batch_patch', {
+          params: {
+            slug: data.result.map(_ => _.slug).join(',')
+          }
+        })
         .then(result => {
           this.$refs.loader.patch(result)
         })

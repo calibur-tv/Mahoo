@@ -11,11 +11,7 @@ export default {
         max: 5
       },
       uploadImageLimit: 20,
-      imageUploadAccept: [
-        'image/jpeg',
-        'image/png',
-        'image/jpg'
-      ].join(', '),
+      imageUploadAccept: ['image/jpeg', 'image/png', 'image/jpg'].join(', '),
       imageUploadAction: 'https://upload.qiniup.com',
       imagePrefix: 'https://m1.calibur.tv/',
       getUpTokenTimer: 0,
@@ -106,11 +102,7 @@ export default {
       }
 
       if (!this.imageUploadAccept.split(', ').includes(file.type)) {
-        this.$toast.error(
-          `仅支持上传${this.imageUploadAccept
-            .replace(/image\//g, '')
-            .replace(/, /g, '、')}格式的图片`
-        )
+        this.$toast.error(`仅支持上传${this.imageUploadAccept.replace(/image\//g, '').replace(/, /g, '、')}格式的图片`)
         return false
       }
       if (this.uploadConfig.max && this.uploadConfig.max < file.size / 1024 / 1024) {

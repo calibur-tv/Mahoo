@@ -1,10 +1,12 @@
-export const showTag = (ctx, { slug }) => ctx.$axios.$get('v1/tag/show', {
-  params: { slug }
-})
+export const showTag = (ctx, { slug }) =>
+  ctx.$axios.$get('v1/tag/show', {
+    params: { slug }
+  })
 
-export const tagChildren = (ctx, { slug, page, take }) => ctx.$axios.$get('v1/tag/children', {
-  params: { slug, page, take }
-})
+export const tagChildren = (ctx, { slug, page, take }) =>
+  ctx.$axios.$get('v1/tag/children', {
+    params: { slug, page, take }
+  })
 
 export const createTag = (ctx, { name, parent_slug }) => ctx.$axios.$post('v1/tag/create', { name, parent_slug })
 

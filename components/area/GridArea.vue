@@ -14,8 +14,8 @@
         position: relative;
         font-size: 12px;
         padding: 1px 0 2px;
-        transition: .2s;
-        transition-property: border,color;
+        transition: 0.2s;
+        transition-property: border, color;
         border-bottom: 1px solid transparent;
         line-height: 20px !important;
         height: 24px !important;
@@ -65,8 +65,8 @@
           position: relative;
           font-size: 12px;
           padding: 1px 0 2px;
-          transition: .2s;
-          transition-property: border,color;
+          transition: 0.2s;
+          transition-property: border, color;
           border-bottom: 1px solid transparent;
           line-height: 20px !important;
           height: 24px !important;
@@ -122,14 +122,14 @@
             border-radius: 4px;
             text-align: center;
             margin: 0 0 0 10px;
-            transition: all .2s;
+            transition: all 0.2s;
             font-size: 12px;
 
             i {
               font-weight: bold;
               margin-left: -4px;
               margin-right: -4px;
-              transition: margin-left .2s;
+              transition: margin-left 0.2s;
             }
 
             &:hover {

@@ -93,68 +93,32 @@
     class="v-dialog"
   >
     <section :class="$style.container">
-      <header
-        v-if="header"
-        slot="header"
-        :class="$style.header"
-      >
+      <header v-if="header" slot="header" :class="$style.header">
         <slot name="title">
-          <h4
-            :class="$style.title"
-            v-text="title"
-          />
+          <h4 :class="$style.title" v-text="title" />
         </slot>
       </header>
-      <button
-        v-if="!clickClose || close"
-        :class="$style.close"
-        @click="cancel"
-      >
+      <button v-if="!clickClose || close" :class="$style.close" @click="cancel">
         &times;
       </button>
-      <main
-        :style="computeDialogHeight"
-        :class="$style.content"
-        @scroll="handleScroll"
-      >
+      <main :style="computeDialogHeight" :class="$style.content" @scroll="handleScroll">
         <template v-if="scroll">
           <ul ref="ul">
             <slot />
           </ul>
-          <slot
-            v-if="loading"
-            :class="$style.loading"
-            name="loading"
-          >
+          <slot v-if="loading" :class="$style.loading" name="loading">
             <p>加载中...</p>
           </slot>
-          <slot
-            v-else-if="noMore"
-            :class="$style.noMore"
-            name="nomore"
-          >
+          <slot v-else-if="noMore" :class="$style.noMore" name="nomore">
             <p>没有更多了</p>
           </slot>
         </template>
         <slot v-else />
       </main>
-      <footer
-        v-if="footer"
-        :class="$style.footer"
-      >
+      <footer v-if="footer" :class="$style.footer">
         <slot name="footer">
-          <button
-            v-if="cancelText"
-            :class="$style.cancel"
-            @click="cancel"
-            v-text="cancelText"
-          />
-          <button
-            :loading="loading"
-            :class="[$style.submit, `btn-${theme}`]"
-            @click="submit"
-            v-text="submitText"
-          />
+          <button v-if="cancelText" :class="$style.cancel" @click="cancel" v-text="cancelText" />
+          <button :loading="loading" :class="[$style.submit, `btn-${theme}`]" @click="submit" v-text="submitText" />
         </slot>
       </footer>
     </section>
@@ -291,10 +255,7 @@ export default {
         return
       }
       const main = evt.currentTarget || evt.target
-      if (
-        this.$refs.ul.clientHeight - main.clientHeight - main.scrollTop <
-        30
-      ) {
+      if (this.$refs.ul.clientHeight - main.clientHeight - main.scrollTop < 30) {
         this.scroll()
       }
     }

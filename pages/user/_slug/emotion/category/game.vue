@@ -12,12 +12,7 @@
 <template>
   <div id="user-game">
     <ul>
-      <GameItem
-        v-for="item in list"
-        ref="list"
-        :key="item.slug"
-        :item="item"
-      />
+      <GameItem v-for="item in list" ref="list" :key="item.slug" :item="item" />
     </ul>
   </div>
 </template>
@@ -48,11 +43,12 @@ export default {
   },
   methods: {
     batchPatch() {
-      this.$axios.$get('v1/tag/batch_patch', {
-        params: {
-          slug: this.list.map(_ => _.slug).join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/tag/batch_patch', {
+          params: {
+            slug: this.list.map(_ => _.slug).join(',')
+          }
+        })
         .then(data => {
           this.list.forEach((item, index) => {
             Object.keys(data).forEach(slug => {

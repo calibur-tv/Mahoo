@@ -89,144 +89,146 @@ export default {
   },
   methods: {
     initEditor() {
-      Promise.all([
-        import('@editorjs/editorjs'),
-        import('~/components/editor/plugin/image'),
-        import('~/components/editor/plugin/link')
-      ])
-        .then(modules => {
-          const self = this
-          let data = {}
-          if (self.slug) {
-            // 编辑模式
-            const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
-            if (cache && cache.time > self.$utils.adjustDate(self.time).getTime()) {
-              // 如果有缓存，并且缓存的版本更高，就使用缓存
-              data = cache
-            } else {
-              data = {
-                blocks: self.value,
-                time: Date.now(),
-                version: self.$cache.get('editor_version', '2.15.0')
-              }
-            }
+      Promise.all([import('@editorjs/editorjs'), import('~/components/editor/plugin/image'), import('~/components/editor/plugin/link')]).then(modules => {
+        const self = this
+        let data = {}
+        if (self.slug) {
+          // 编辑模式
+          const cache = self.$cache.get(`editor_local_draft-${self.slug}`)
+          if (cache && cache.time > self.$utils.adjustDate(self.time).getTime()) {
+            // 如果有缓存，并且缓存的版本更高，就使用缓存
+            data = cache
           } else {
-            data = self.$cache.get('editor_local_draft-')
-            if (data) {
-              self.$emit('input', data.blocks)
+            data = {
+              blocks: self.value,
+              time: Date.now(),
+              version: self.$cache.get('editor_version', '2.15.0')
             }
           }
-          const [EditorJS, ImagePlugin, LinkPlugin] = modules.map(_ => _.default)
-          const editor = new EditorJS({
-            data: self.decodeData(data || {}),
-            holder: 'codex-editor',
-            placeholder: '请输入内容',
-            autofocus: self.autofocus,
-            tools: {
-              video: {
-                class: EmbedPlugin,
-                inlineToolbar: true
-              },
-              marker: {
-                class: MarkPlugin,
-                shortcut: 'CMD+SHIFT+M'
-              },
-              header: {
-                class: HeaderPlugin,
-                inlineToolbar: true
-              },
-              image: {
-                class: ImagePlugin,
-                types: 'image/jpeg, image/png, image/jpg',
-                config: {
-                  uploader: {
-                    uploadByFile(file) {
-                      return new Promise((resolve, reject) => {
-                        const formData = new FormData()
-                        formData.append('file', file)
-                        formData.append('token', self.uploadHeaders.token)
-                        uploadToQiniu(self, formData)
-                          .then(data => {
-                            data.url = `https://m1.calibur.tv/${data.url}`
-                            resolve({
-                              success: 1,
-                              file: data
-                            })
+        } else {
+          data = self.$cache.get('editor_local_draft-')
+          if (data) {
+            self.$emit('input', data.blocks)
+          }
+        }
+        const [EditorJS, ImagePlugin, LinkPlugin] = modules.map(_ => _.default)
+        const editor = new EditorJS({
+          data: self.decodeData(data || {}),
+          holder: 'codex-editor',
+          placeholder: '请输入内容',
+          autofocus: self.autofocus,
+          tools: {
+            video: {
+              class: EmbedPlugin,
+              inlineToolbar: true
+            },
+            marker: {
+              class: MarkPlugin,
+              shortcut: 'CMD+SHIFT+M'
+            },
+            header: {
+              class: HeaderPlugin,
+              inlineToolbar: true
+            },
+            image: {
+              class: ImagePlugin,
+              types: 'image/jpeg, image/png, image/jpg',
+              config: {
+                uploader: {
+                  uploadByFile(file) {
+                    return new Promise((resolve, reject) => {
+                      const formData = new FormData()
+                      formData.append('file', file)
+                      formData.append('token', self.uploadHeaders.token)
+                      uploadToQiniu(self, formData)
+                        .then(data => {
+                          data.url = `https://m1.calibur.tv/${data.url}`
+                          resolve({
+                            success: 1,
+                            file: data
                           })
-                          .catch(reject)
-                      })
-                    }
+                        })
+                        .catch(reject)
+                    })
                   }
                 }
-              },
-              link: {
-                class: LinkPlugin,
-                config: {
-                  endpoint: `${process.env.API_URL_BROWSER}v1/pin/editor/fetch_site`
-                }
-              },
-              delimiter: {
-                class: DelimiterPlugin
-              },
-              list: {
-                class: ListPlugin,
-                inlineToolbar: true
-              },
-              checklist: {
-                class: ChecklistPlugin,
-                inlineToolbar: true
-              },
-              baidu: {
-                class: BaiduPlugin
-              },
-              paragraph: {
-                class: ParagraphPlugin
-              },
-              vote: {
-                class: VotePlugin
               }
             },
-            onChange: () => {
-              self.handleSave()
+            link: {
+              class: LinkPlugin,
+              config: {
+                endpoint: `${process.env.API_URL_BROWSER}v1/pin/editor/fetch_site`
+              }
+            },
+            delimiter: {
+              class: DelimiterPlugin
+            },
+            list: {
+              class: ListPlugin,
+              inlineToolbar: true
+            },
+            checklist: {
+              class: ChecklistPlugin,
+              inlineToolbar: true
+            },
+            baidu: {
+              class: BaiduPlugin
+            },
+            paragraph: {
+              class: ParagraphPlugin
+            },
+            vote: {
+              class: VotePlugin
             }
-          })
-
-          editor.isReady
-            .then(() => {
-              this.editor = editor
-              this.bindSaveEvent()
-              this.handleSave()
-            })
-            .catch(reason => {
-              this.$toast.error(`编辑器初始化失败：${reason}`)
-            })
+          },
+          onChange: () => {
+            self.handleSave()
+          }
         })
+
+        editor.isReady
+          .then(() => {
+            this.editor = editor
+            this.bindSaveEvent()
+            this.handleSave()
+          })
+          .catch(reason => {
+            this.$toast.error(`编辑器初始化失败：${reason}`)
+          })
+      })
     },
     bindSaveEvent() {
-      document.addEventListener('keydown', e => {
-        if (e.keyCode === 83 && (e.ctrlKey || e.metaKey)) {
-          e.stopPropagation()
-          e.preventDefault()
-          this.handleSave()
-        }
-      }, false)
+      document.addEventListener(
+        'keydown',
+        e => {
+          if (e.keyCode === 83 && (e.ctrlKey || e.metaKey)) {
+            e.stopPropagation()
+            e.preventDefault()
+            this.handleSave()
+          }
+        },
+        false
+      )
     },
     handleSave() {
       if (!this.editor) {
         return
       }
-      this.editor.save().then(outputData => {
-        const value = this.encodeData(outputData)
-        const cacheKey = `editor_local_draft-${this.slug || ''}`
-        this.$cache.set(cacheKey, value)
-        this.$cache.set('editor_version', value.version)
-        if (this.value) {
-          this.$emit('input', value.blocks)
-        }
-        this.$emit('save')
-      }).catch(() => {
-        this.$toast.error('保存失败')
-      })
+      this.editor
+        .save()
+        .then(outputData => {
+          const value = this.encodeData(outputData)
+          const cacheKey = `editor_local_draft-${this.slug || ''}`
+          this.$cache.set(cacheKey, value)
+          this.$cache.set('editor_version', value.version)
+          if (this.value) {
+            this.$emit('input', value.blocks)
+          }
+          this.$emit('save')
+        })
+        .catch(() => {
+          this.$toast.error('保存失败')
+        })
     },
     decodeData({ version, blocks, time }) {
       if (!blocks) {

@@ -18,11 +18,7 @@ const parseAuthToken = headers => {
 const appendPageData = (html, data) => {
   const index = html.indexOf('</head>')
 
-  return (
-    html.slice(0, index) +
-    `<script type="application/json" data-name="page-data">${data}</script>` +
-    html.slice(index)
-  )
+  return html.slice(0, index) + `<script type="application/json" data-name="page-data">${data}</script>` + html.slice(index)
 }
 
 export default function Auth() {

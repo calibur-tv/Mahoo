@@ -102,12 +102,7 @@ export default {
       if (!el) {
         return null
       }
-      while (
-        el &&
-        el.tagName !== 'HTML' &&
-        el.tagName !== 'BOYD' &&
-        el.nodeType === 1
-      ) {
+      while (el && el.tagName !== 'HTML' && el.tagName !== 'BOYD' && el.nodeType === 1) {
         const overflowY = window.getComputedStyle(el).overflowY
         if (overflowY === 'scroll' || overflowY === 'auto') {
           if (el.tagName === 'HTML' || el.tagName === 'BODY') {
@@ -127,7 +122,7 @@ export default {
       const elHeight = this.$el.getElementsByTagName('div')[0].offsetHeight
       const condition = !affix || evt.type === 'resize'
       // Fixed Top
-      if ((elOffset.top - this.top) < scrollTop && this.offsetType === 'top' && condition) {
+      if (elOffset.top - this.top < scrollTop && this.offsetType === 'top' && condition) {
         this.affix = true
         this.slotStyle = {
           width: this.$refs.point.clientWidth + 'px',
@@ -141,7 +136,7 @@ export default {
         }
 
         this.$emit('on-change', true)
-      } else if ((elOffset.top - this.top) > scrollTop && this.offsetType === 'top' && affix) {
+      } else if (elOffset.top - this.top > scrollTop && this.offsetType === 'top' && affix) {
         this.slot = false
         this.slotStyle = {}
         this.affix = false
@@ -151,7 +146,7 @@ export default {
       }
 
       // Fixed Bottom
-      if ((elOffset.top + this.bottom + elHeight) > (scrollTop + windowHeight) && this.offsetType === 'bottom' && condition) {
+      if (elOffset.top + this.bottom + elHeight > scrollTop + windowHeight && this.offsetType === 'bottom' && condition) {
         this.affix = true
         this.styles = {
           bottom: `${this.bottom}px`,
@@ -160,7 +155,7 @@ export default {
         }
 
         this.$emit('on-change', true)
-      } else if ((elOffset.top + this.bottom + elHeight) < (scrollTop + windowHeight) && this.offsetType === 'bottom' && affix) {
+      } else if (elOffset.top + this.bottom + elHeight < scrollTop + windowHeight && this.offsetType === 'bottom' && affix) {
         this.affix = false
         this.styles = null
 

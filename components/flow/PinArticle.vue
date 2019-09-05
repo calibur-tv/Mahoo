@@ -74,7 +74,7 @@
         bottom: 0;
         width: 100%;
         height: 33px;
-        background-image: linear-gradient(-180deg,transparent,rgba(0,0,0,.2) 49%);
+        background-image: linear-gradient(-180deg, transparent, rgba(0, 0, 0, 0.2) 49%);
         font-size: 12px;
         color: #fff;
         padding: 8px 10px;
@@ -121,7 +121,7 @@
         align-items: center;
         margin-top: 8px;
 
-        >* {
+        > * {
           display: inline-block;
           margin-right: 30px;
           color: #99a2aa;
@@ -174,7 +174,7 @@
         font-size: 28px;
         color: #000;
         font-weight: 700;
-        @include multi-line(33px)
+        @include multi-line(33px);
       }
     }
 
@@ -193,13 +193,9 @@
 
 <template>
   <li :class="$style['pin-article']">
-    <NLink
-      :to="$alias.pin(secretLink || item.slug)"
-      :class="$style['pin-article-h5']"
-      class="only-h5"
-    >
-      <header v-if="item.media && item.media.banner" :style="{ paddingTop: `${item.media.banner.height / item.media.banner.width * 100}%` }">
-        <img :src="$resize(item.media.banner.url, { width: 400, mode: 2 })">
+    <NLink :to="$alias.pin(secretLink || item.slug)" :class="$style['pin-article-h5']" class="only-h5">
+      <header v-if="item.media && item.media.banner" :style="{ paddingTop: `${(item.media.banner.height / item.media.banner.width) * 100}%` }">
+        <img :src="$resize(item.media.banner.url, { width: 400, mode: 2 })" />
       </header>
       <main>
         <div :class="$style.user">
@@ -216,37 +212,19 @@
       <h2 :class="$style.title">
         <span :class="$style.badge" v-text="item.badge" />
         <div v-if="showArea" :class="$style.area">
-          <NLink
-            v-if="item.area"
-            :to="$alias.tag(item.area.slug)"
-            target="_blank"
-          >
+          <NLink v-if="item.area" :to="$alias.tag(item.area.slug)" target="_blank">
             <VImg :src="item.area.avatar" width="24" height="24" radius="5px" />
           </NLink>
-          <NLink
-            v-else-if="item.topic"
-            :to="$alias.tag(item.topic.slug)"
-            target="_blank"
-          >
+          <NLink v-else-if="item.topic" :to="$alias.tag(item.topic.slug)" target="_blank">
             <VImg :src="item.topic.avatar" width="24" height="24" radius="5px" />
           </NLink>
         </div>
         <p :class="$style.link" class="oneline">
-          <NLink
-            target="_blank"
-            :to="$alias.pin(secretLink || item.slug)"
-            class="fade-link oneline"
-            v-html="item.title.text"
-          />
+          <NLink target="_blank" :to="$alias.pin(secretLink || item.slug)" class="fade-link oneline" v-html="item.title.text" />
         </p>
       </h2>
       <div :class="$style.content" class="clearfix">
-        <NLink
-          v-if="item.media"
-          :to="$alias.pin(secretLink || item.slug)"
-          :class="$style.media"
-          target="_blank"
-        >
+        <NLink v-if="item.media" :to="$alias.pin(secretLink || item.slug)" :class="$style.media" target="_blank">
           <div v-if="item.media.first_video" :class="$style.video">
             <VImg v-if="item.media.banner" :src="item.media.banner.url" :blur="true" width="187" height="105" />
             <i :class="$style.badge" class="iconfont ic-bilibili" />

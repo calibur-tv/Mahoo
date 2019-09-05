@@ -1,12 +1,7 @@
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 
 <template>
-  <el-button
-    class="daily-sign-btn"
-    :loading="loading"
-    @click="handleSign"
-  >
+  <el-button class="daily-sign-btn" :loading="loading" @click="handleSign">
     {{ value.daily_signed ? '已签到' : '未签到' }}
   </el-button>
 </template>
@@ -48,7 +43,8 @@ export default {
         return
       }
       this.loading = true
-      this.$axios.$post('v1/user/daily_sign')
+      this.$axios
+        .$post('v1/user/daily_sign')
         .then(data => {
           this.value.daily_signed = true
           this.value.sign.continuous_sign_count = data.continuous_sign_count

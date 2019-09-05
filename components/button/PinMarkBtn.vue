@@ -102,12 +102,7 @@
       <i class="iconfont ic-mark_fill" />
       <span v-text="count || '收藏'" />
     </button>
-    <VDialog
-      v-model="showDialog"
-      title="采集到专栏"
-      width="420px"
-      @submit="submit"
-    >
+    <VDialog v-model="showDialog" title="采集到专栏" width="420px" @submit="submit">
       <ul class="notebooks">
         <li v-for="item in options" :key="item.slug" class="oneline" @click="handleClick(item.slug)">
           <i :class="{ 'is-selected': selected === item.slug }" />
@@ -202,12 +197,13 @@ export default {
       this.selected = data.slug
     },
     getMarkedTag() {
-      this.$axios.$get('v1/pin/marked_tag', {
-        params: {
-          pin_slug: this.pinSlug,
-          user_slug: this.user.slug
-        }
-      })
+      this.$axios
+        .$get('v1/pin/marked_tag', {
+          params: {
+            pin_slug: this.pinSlug,
+            user_slug: this.user.slug
+          }
+        })
         .then(slug => {
           this.selected = slug
         })

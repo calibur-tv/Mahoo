@@ -117,11 +117,7 @@
 <template>
   <li :class="$style['user-search-item']">
     <div class="only-pc" :class="$style['user-search-item-pc']">
-      <UserAvatar
-        :class="$style.poster"
-        :size="105"
-        :user="item"
-      />
+      <UserAvatar :class="$style.poster" :size="105" :user="item" />
       <div :class="$style.content">
         <h3 :class="$style.title">
           <span :class="$style.badge">用户</span>
@@ -135,11 +131,7 @@
       </div>
     </div>
     <NLink :to="$alias.user(item.slug)" class="only-h5" :class="$style['user-search-item-h5']">
-      <UserAvatar
-        :class="$style.poster"
-        :size="80"
-        :user="item"
-      />
+      <UserAvatar :class="$style.poster" :size="80" :user="item" />
       <div :class="$style.content">
         <h3 :class="$style.title">
           <span :class="$style.badge">用户</span>

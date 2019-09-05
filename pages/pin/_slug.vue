@@ -50,7 +50,7 @@
         justify-content: flex-start;
         align-items: center;
 
-        >div {
+        > div {
           margin-right: 20px;
         }
       }
@@ -154,12 +154,8 @@
         <h1 class="title" v-text="title.text" />
       </template>
       <template v-if="!published_at">
-        <ElAlert
-          title="该文章还处于草稿阶段"
-          type="warning"
-          show-icon
-        />
-        <br>
+        <ElAlert title="该文章还处于草稿阶段" type="warning" show-icon />
+        <br />
       </template>
       <ContentAuthor :user="author">
         <div slot="intro" class="metas">
@@ -172,12 +168,7 @@
           </div>
           <div>
             <i class="iconfont ic-time only-pc" />
-            <ElTooltip
-              effect="dark"
-              placement="bottom"
-              :content="'发表于：' + $utils.timeAgo(published_at)"
-              :disabled="!published_at || published_at === last_edit_at"
-            >
+            <ElTooltip effect="dark" placement="bottom" :content="'发表于：' + $utils.timeAgo(published_at)" :disabled="!published_at || published_at === last_edit_at">
               <time v-text="$utils.timeAgo(last_edit_at)" />
             </ElTooltip>
           </div>
@@ -199,12 +190,7 @@
           </template>
         </div>
       </ContentAuthor>
-      <JsonContent
-        :slug="slug"
-        :content="content"
-        :reward="reward_status"
-        :vote="vote_hash"
-      />
+      <JsonContent :slug="slug" :content="content" :reward="reward_status" :vote="vote_hash" />
       <div class="footer">
         <div class="sss-panel">
           <PinVoteBtn v-model="like_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
@@ -212,13 +198,7 @@
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinShareBtn class="btn" />
           <TimelineDrawerBtn class="btn only-pc" type="pin" :slug="slug" />
-          <ToolDropdown
-            class="btn"
-            :slug="slug"
-            :is-mine="isMine"
-            :topic="topic && topic.slug || ''"
-            :area="area && area.slug || ''"
-          />
+          <ToolDropdown class="btn" :slug="slug" :is-mine="isMine" :topic="(topic && topic.slug) || ''" :area="(area && area.slug) || ''" />
         </div>
       </div>
       <CommentMain :slug="slug" />
@@ -265,12 +245,12 @@ export default {
   },
   head() {
     const { title, intro } = this
-    const meta = [
-      { hid: 'description', name: 'description', content: intro }
-    ]
+    const meta = [{ hid: 'description', name: 'description', content: intro }]
     if (title.banner) {
       meta.push({
-        hid: 'share-image', name: 'share-image', content: title.banner.url
+        hid: 'share-image',
+        name: 'share-image',
+        content: title.banner.url
       })
     }
     return {
@@ -323,9 +303,10 @@ export default {
     }
   },
   asyncData({ app, error, params, query }) {
-    return app.$axios.$get('v1/pin/show', {
-      params: Object.assign({}, params, query)
-    })
+    return app.$axios
+      .$get('v1/pin/show', {
+        params: Object.assign({}, params, query)
+      })
       .then(data => {
         return { ...data }
       })
@@ -337,11 +318,12 @@ export default {
   },
   methods: {
     patchPin() {
-      this.$axios.$get('v1/pin/patch', {
-        params: {
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/pin/patch', {
+          params: {
+            slug: this.slug
+          }
+        })
         .then(data => {
           Object.keys(data).forEach(key => {
             this[key] = data[key]
@@ -361,11 +343,12 @@ export default {
         .catch(() => {})
     },
     patchUser() {
-      this.$axios.$get('v1/user/patch', {
-        params: {
-          slug: this.author.slug
-        }
-      })
+      this.$axios
+        .$get('v1/user/patch', {
+          params: {
+            slug: this.author.slug
+          }
+        })
         .then(data => {
           this.$set(this, 'author', Object.assign(this.author, data))
           this.$store.commit('social/set', {

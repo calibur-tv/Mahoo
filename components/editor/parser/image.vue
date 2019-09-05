@@ -1,6 +1,6 @@
 <style lang="scss" module>
 .image {
-  padding: .7em 0;
+  padding: 0.7em 0;
   text-align: center;
 
   picture {
@@ -29,7 +29,7 @@
     padding: 15px;
     background-color: $color-gray-bg;
 
-    >div {
+    > div {
       width: 60%;
       margin: 0 auto;
     }

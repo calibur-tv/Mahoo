@@ -66,27 +66,12 @@
   <div id="sign">
     <ElCol class="sign-wrap" :span="6" :xs="24">
       <div class="bg">
-        <img src="~/assets/img/login_bg.png" alt="calibur">
+        <img src="~/assets/img/login_bg.png" alt="calibur" />
       </div>
-      <VSwitcher
-        ref="switcher"
-        :headers="headers"
-        :swipe="true"
-        :anchor-padding="10"
-        :disabled-swipe="true"
-        align="center"
-      >
+      <VSwitcher ref="switcher" :headers="headers" :swipe="true" :anchor-padding="10" :disabled-swipe="true" align="center">
         <template slot="0">
-          <ResetPasswordForm
-            v-if="showReset"
-            @to-login="showReset = false"
-            @to-register="next"
-          />
-          <SignInForm
-            v-else
-            @to-register="next"
-            @to-reset="showReset = true"
-          />
+          <ResetPasswordForm v-if="showReset" @to-login="showReset = false" @to-register="next" />
+          <SignInForm v-else @to-register="next" @to-reset="showReset = true" />
         </template>
         <template slot="1">
           <SignUpForm @to-login="prev" />

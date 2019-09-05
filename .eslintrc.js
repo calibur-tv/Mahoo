@@ -9,9 +9,14 @@ module.exports = {
   },
   extends: [
     '@nuxtjs',
-    'plugin:nuxt/recommended'
+    'plugin:nuxt/recommended',
+    'plugin:prettier/recommended',
+    'prettier',
+    'prettier/vue'
   ],
-  // add your custom rules here
+  plugins: [
+    'prettier'
+  ],
   rules: {
     'no-console': 'warn',
     'no-debugger': 'warn',
@@ -22,7 +27,6 @@ module.exports = {
     'no-control-regex': 'warn',
     'no-empty': 'off',
     'camelcase': 'off',
-    'space-before-function-paren': [1, 'never'],
     'vue/no-unused-components': 'warn',
     'vue/no-v-html': 'off',
     'import/order': 'off',

@@ -87,7 +87,7 @@
     height: 100%;
     line-height: 62px;
     text-align: center;
-    transition: left .3s;
+    transition: left 0.3s;
     color: #999;
     cursor: pointer;
     user-select: none;
@@ -98,22 +98,9 @@
 
 <template>
   <ul class="message-menu">
-    <li
-      v-for="item in menu"
-      :key="item.channel"
-    >
-      <NLink
-        :to="$alias.user($route.params.slug, `message/?mailto=${item.channel}&name=${item.user.nickname}`)"
-        class="room-item clearfix"
-      >
-        <VImg
-          v-if="item.user.avatar"
-          :src="item.user.avatar"
-          width="42"
-          height="42"
-          radius="50%"
-          :alt="item.user.nickname"
-        />
+    <li v-for="item in menu" :key="item.channel">
+      <NLink :to="$alias.user($route.params.slug, `message/?mailto=${item.channel}&name=${item.user.nickname}`)" class="room-item clearfix">
+        <VImg v-if="item.user.avatar" :src="item.user.avatar" width="42" height="42" radius="50%" :alt="item.user.nickname" />
         <div class="content">
           <p class="nickname oneline" v-html="item.user.nickname" />
           <div class="footer">
@@ -186,12 +173,11 @@ export default {
           $axios: this.$axios,
           slug: this.slug,
           relation: 'friend'
+        }).then(data => {
+          data.result.forEach(user => this.$cache.setUserSessionStore(user))
+          this.friends = data.result
+          sessionStorage.setItem('user-friends-list', JSON.stringify(data.result))
         })
-          .then(data => {
-            data.result.forEach(user => this.$cache.setUserSessionStore(user))
-            this.friends = data.result
-            sessionStorage.setItem('user-friends-list', JSON.stringify(data.result))
-          })
       }
       try {
         const cache = sessionStorage.getItem('user-friends-list')
@@ -207,9 +193,10 @@ export default {
       }
     },
     deleteChannel(item) {
-      this.$axios.$post('v1/message/delete_channel', {
-        channel: item.channel
-      })
+      this.$axios
+        .$post('v1/message/delete_channel', {
+          channel: item.channel
+        })
         .then(() => {
           this.$store.commit('DELETE_MESSAGE_MENU', item.channel)
         })

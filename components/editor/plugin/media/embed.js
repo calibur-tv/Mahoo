@@ -150,10 +150,9 @@ export default class Embed {
     container.appendChild(template.content.firstChild)
     container.appendChild(caption)
 
-    embedIsReady
-      .then(() => {
-        container.classList.remove(this.CSS.containerLoading)
-      })
+    embedIsReady.then(() => {
+      container.classList.remove(this.CSS.containerLoading)
+    })
 
     this.element = container
 
@@ -220,15 +219,13 @@ export default class Embed {
 
     let entries = Object.entries(SERVICES)
 
-    const enabledServices = Object
-      .entries(services)
+    const enabledServices = Object.entries(services)
       .filter(([key, value]) => {
         return typeof value === 'boolean' && value === true
       })
-      .map(([ key ]) => key)
+      .map(([key]) => key)
 
-    const userServices = Object
-      .entries(services)
+    const userServices = Object.entries(services)
       .filter(([key, value]) => {
         return typeof value === 'object'
       })
@@ -236,18 +233,21 @@ export default class Embed {
       .map(([key, service]) => {
         const { regex, embedUrl, html, height, width, id } = service
 
-        return [key, {
-          regex,
-          embedUrl,
-          html,
-          height,
-          width,
-          id
-        } ]
+        return [
+          key,
+          {
+            regex,
+            embedUrl,
+            html,
+            height,
+            width,
+            id
+          }
+        ]
       })
 
     if (enabledServices.length) {
-      entries = entries.filter(([ key ]) => enabledServices.includes(key))
+      entries = entries.filter(([key]) => enabledServices.includes(key))
     }
 
     entries = entries.concat(userServices)
@@ -262,12 +262,11 @@ export default class Embed {
       return result
     }, {})
 
-    Embed.patterns = entries
-      .reduce((result, [key, item]) => {
-        result[key] = item.regex
+    Embed.patterns = entries.reduce((result, [key, item]) => {
+      result[key] = item.regex
 
-        return result
-      }, {})
+      return result
+    }, {})
   }
 
   /**
@@ -279,9 +278,7 @@ export default class Embed {
   static checkServiceConfig(config) {
     const { regex, embedUrl, html, height, width, id } = config
 
-    let isValid = regex && regex instanceof RegExp &&
-      embedUrl && typeof embedUrl === 'string' &&
-      html && typeof html === 'string'
+    let isValid = regex && regex instanceof RegExp && embedUrl && typeof embedUrl === 'string' && html && typeof html === 'string'
 
     isValid = isValid && (id !== undefined ? id instanceof Function : true)
     isValid = isValid && (height !== undefined ? Number.isFinite(height) : true)

@@ -115,26 +115,12 @@
 
 <template>
   <div class="comment-main">
-    <FlowLoader
-      ref="loader"
-      func="getPinComments"
-      type="jump"
-      :query="query"
-      :callback="handlePatch"
-    >
+    <FlowLoader ref="loader" func="getPinComments" type="jump" :query="query" :callback="handlePatch">
       <header slot="header" slot-scope="{ source }" class="comment-header">
-        <h2 class="total">
-          {{ source.total }}&nbsp;评论
-        </h2>
+        <h2 class="total">{{ source.total }}&nbsp;评论</h2>
         <div class="sort-jump">
           <ul class="sortable">
-            <li
-              v-for="(item, index) in sorts"
-              :key="index"
-              :class="{ 'is-selected': item.value === sort }"
-              @click="changeCommentSort(item.value)"
-              v-text="item.label"
-            />
+            <li v-for="(item, index) in sorts" :key="index" :class="{ 'is-selected': item.value === sort }" @click="changeCommentSort(item.value)" v-text="item.label" />
           </ul>
           <ElPagination
             layout="prev, pager, next"
@@ -152,17 +138,10 @@
         <CreateCommentForm :pin-slug="slug" @submit="createTop" />
       </header>
       <ul slot-scope="{ flow }">
-        <CommentItem
-          v-for="item in flow"
-          :key="item.id"
-          :item="item"
-          @create="createInner"
-          @delete="handleDelete"
-          @agree="handleAgree"
-        />
+        <CommentItem v-for="item in flow" :key="item.id" :item="item" @create="createInner" @delete="handleDelete" @agree="handleAgree" />
       </ul>
       <template slot="nothing">
-        <img src="~assets/img/error/no-comment.png">
+        <img src="~assets/img/error/no-comment.png" />
         <p>还没有评论，快来抢沙发吧！</p>
       </template>
       <footer v-if="source.total >= 10" slot="footer" slot-scope="{ source }" class="comment-footer">
@@ -275,11 +254,12 @@ export default {
       if (!result.length) {
         return
       }
-      this.$axios.$get('v1/comment/patch', {
-        params: {
-          comment_ids: result.map(_ => _.id).join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/comment/patch', {
+          params: {
+            comment_ids: result.map(_ => _.id).join(',')
+          }
+        })
         .then(data => {
           this.$refs.loader.patch(data)
         })

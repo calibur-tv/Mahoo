@@ -29,9 +29,7 @@ export const mutations = {
     const prefix = `${key}_users`
     const oldList = state[namespace][prefix].list
     const newIds = data.list.map(_ => _.slug)
-    state[namespace][prefix].list = oldList
-      .filter(_ => !newIds.includes(_.slug))
-      .concat(data.list)
+    state[namespace][prefix].list = oldList.filter(_ => !newIds.includes(_.slug)).concat(data.list)
     state[namespace][prefix].total = data.total
     state[namespace][prefix].no_more = data.no_more
     state[namespace][prefix].loading = false

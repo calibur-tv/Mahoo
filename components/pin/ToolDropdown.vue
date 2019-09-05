@@ -18,11 +18,7 @@
         <ElDropdownItem @click.native="openFeedback">
           投诉或建议
         </ElDropdownItem>
-        <ElDropdownItem
-          v-if="isMine || $hasRole('delete-pin')"
-          divided
-          @click.native="deletePin"
-        >
+        <ElDropdownItem v-if="isMine || $hasRole('delete-pin')" divided @click.native="deletePin">
           删除文章
         </ElDropdownItem>
         <ElDropdownItem v-if="$hasRole('move_pin')" @click.native="showMoveDialog = true">
@@ -30,11 +26,7 @@
         </ElDropdownItem>
       </ElDropdownMenu>
     </ElDropdown>
-    <VDialog
-      v-model="showMoveDialog"
-      title="修改文章的分区/话题"
-      @submit="movePin"
-    >
+    <VDialog v-model="showMoveDialog" title="修改文章的分区/话题" @submit="movePin">
       <ElForm label-position="top" label-width="80px">
         <ElFormItem label="选择分区">
           <AreaPicker v-model="newArea" />
@@ -100,9 +92,10 @@ export default {
             return
           }
           this.deleting = true
-          this.$axios.$post('v1/pin/delete', {
-            slug: this.slug
-          })
+          this.$axios
+            .$post('v1/pin/delete', {
+              slug: this.slug
+            })
             .then(() => {
               this.$toast.success('删除成功').then(() => {
                 window.location = '/'
@@ -116,20 +109,17 @@ export default {
         .catch(() => {})
     },
     movePin() {
-      this.$axios.$post('v1/pin/move', {
-        slug: this.slug,
-        tags: [
-          this.newTopic,
-          this.newArea
-        ],
-        topic: this.newTopic,
-        area: this.newArea
-      })
+      this.$axios
+        .$post('v1/pin/move', {
+          slug: this.slug,
+          tags: [this.newTopic, this.newArea],
+          topic: this.newTopic,
+          area: this.newArea
+        })
         .then(() => {
-          this.$toast.success('移动成功')
-            .then(() => {
-              window.location.reload()
-            })
+          this.$toast.success('移动成功').then(() => {
+            window.location.reload()
+          })
         })
         .catch(err => {
           this.$toast.error(err.message)

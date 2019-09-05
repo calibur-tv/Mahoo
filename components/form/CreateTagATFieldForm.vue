@@ -8,58 +8,25 @@
 </style>
 
 <template>
-  <ElForm
-    v-if="tag"
-    ref="form"
-    :disabled="submitting"
-    label-position="right"
-    label-width="80px"
-    class="create-tag-atfield-form"
-  >
+  <ElForm v-if="tag" ref="form" :disabled="submitting" label-position="right" label-width="80px" class="create-tag-atfield-form">
     <ElFormItem>
       <h1>为《{{ tag.name }}》出题</h1>
-      <br>
-      <ElAlert
-        v-if="rule"
-        :description="`当前分区需要有「${rule.question_count}道」题入库之后才能开放加入`"
-        title="当前分区答题规则"
-        type="success"
-      />
+      <br />
+      <ElAlert v-if="rule" :description="`当前分区需要有「${rule.question_count}道」题入库之后才能开放加入`" title="当前分区答题规则" type="success" />
     </ElFormItem>
     <ElFormItem>
-      <ElAlert
-        v-if="info"
-        :description="`当前分区有「${info.trial}道」题正在审核中，「${info.pass}道」题已入库`"
-        title="当前分区题库信息"
-        type="success"
-      />
+      <ElAlert v-if="info" :description="`当前分区有「${info.trial}道」题正在审核中，「${info.pass}道」题已入库`" title="当前分区题库信息" type="success" />
     </ElFormItem>
     <ElFormItem label="题目">
-      <ElInput
-        v-model="title"
-        :rows="2"
-        type="textarea"
-        placeholder="请输入题目"
-        resize="none"
-        maxlength="50"
-        show-word-limit
-      />
+      <ElInput v-model="title" :rows="2" type="textarea" placeholder="请输入题目" resize="none" maxlength="50" show-word-limit />
     </ElFormItem>
     <ElFormItem>
       <p class="form-tip">
         提示：选项至少提供两个，至多四个
       </p>
     </ElFormItem>
-    <ElFormItem
-      v-for="(item, index) in answers"
-      :key="item.key"
-      :label="`选项${index + 1}`"
-    >
-      <ElInput
-        v-model="item.value"
-        placeholder="请输入答案（20字以内）"
-        maxlength="20"
-      />
+    <ElFormItem v-for="(item, index) in answers" :key="item.key" :label="`选项${index + 1}`">
+      <ElInput v-model="item.value" placeholder="请输入答案（20字以内）" maxlength="20" />
     </ElFormItem>
     <ElFormItem>
       <p class="form-tip">
@@ -68,22 +35,11 @@
     </ElFormItem>
     <ElFormItem label="答案">
       <ElRadioGroup v-model="rightOpt">
-        <ElRadio
-          v-for="(item, index) in answers"
-          :key="item.key"
-          :label="item.key"
-        >
-          答案{{ index + 1 }}
-        </ElRadio>
+        <ElRadio v-for="(item, index) in answers" :key="item.key" :label="item.key"> 答案{{ index + 1 }} </ElRadio>
       </ElRadioGroup>
     </ElFormItem>
     <ElFormItem>
-      <ElButton
-        :loading="submitting"
-        type="success"
-        round
-        @click="submit"
-      >
+      <ElButton :loading="submitting" type="success" round @click="submit">
         提交
       </ElButton>
     </ElFormItem>
@@ -150,22 +106,24 @@ export default {
         .catch()
     },
     getRule() {
-      this.$axios.$get('v1/atfield/rule/show', {
-        params: {
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/atfield/rule/show', {
+          params: {
+            slug: this.slug
+          }
+        })
         .then(data => {
           this.rule = data
         })
         .catch()
     },
     getInfo() {
-      this.$axios.$get('v1/tag/atfield', {
-        params: {
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/tag/atfield', {
+          params: {
+            slug: this.slug
+          }
+        })
         .then(data => {
           this.info = data
         })
@@ -196,10 +154,9 @@ export default {
         tag_slug: this.slug
       })
         .then(() => {
-          this.$toast.success('提交成功')
-            .then(() => {
-              window.location.reload()
-            })
+          this.$toast.success('提交成功').then(() => {
+            window.location.reload()
+          })
         })
         .catch(err => {
           this.$toast.error(err.message)

@@ -63,18 +63,9 @@
 <template>
   <div id="managers">
     <ElCollapse v-model="actives">
-      <ElCollapseItem
-        v-for="(users, role) in list"
-        :key="role"
-        :title="`${role}（${users.length}）`"
-        :name="role"
-      >
+      <ElCollapseItem v-for="(users, role) in list" :key="role" :title="`${role}（${users.length}）`" :name="role">
         <ul class="user-list clearfix">
-          <li
-            v-for="user in users"
-            :key="user.slug"
-            class="user-item"
-          >
+          <li v-for="user in users" :key="user.slug" class="user-item">
             <UserAvatar :size="80" :user="user" />
             <p class="nickname oneline" v-text="user.nickname" />
             <i v-if="showDelete" class="remove-btn el-icon-remove" @click="removeManager(role, user.slug)" />
@@ -114,7 +105,8 @@ export default {
     }
   },
   asyncData({ app, error }) {
-    return app.$axios.$get('v1/user/managers')
+    return app.$axios
+      .$get('v1/user/managers')
       .then(list => {
         const actives = Object.keys(list)
         return { list, actives }
@@ -125,15 +117,15 @@ export default {
     removeManager(role, slug) {
       this.$confirm('确认要执行该操作吗？', `移除${role}`)
         .then(() => {
-          this.$axios.$post('v1/user/remove_manager', {
-            role,
-            slug
-          })
+          this.$axios
+            .$post('v1/user/remove_manager', {
+              role,
+              slug
+            })
             .then(() => {
-              this.$toast.success('操作成功！')
-                .then(() => {
-                  window.location.reload()
-                })
+              this.$toast.success('操作成功！').then(() => {
+                window.location.reload()
+              })
             })
             .catch(err => {
               this.$toast.error(err.message)
@@ -148,15 +140,15 @@ export default {
           if (slug.length > 16 || slug.length < 2 || !/^([a-z0-9]|_|-)+$/i.test(slug)) {
             return this.$toast.error('错误的cc号')
           }
-          this.$axios.$post('v1/user/add_manager', {
-            role,
-            slug
-          })
+          this.$axios
+            .$post('v1/user/add_manager', {
+              role,
+              slug
+            })
             .then(() => {
-              this.$toast.success('操作成功！')
-                .then(() => {
-                  window.location.reload()
-                })
+              this.$toast.success('操作成功！').then(() => {
+                window.location.reload()
+              })
             })
             .catch(err => {
               this.$toast.error(err.message)

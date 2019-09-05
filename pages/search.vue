@@ -116,7 +116,7 @@
       padding-top: 20px;
     }
 
-    >li {
+    > li {
       margin-bottom: 10px;
 
       @include pc() {
@@ -170,14 +170,11 @@
     <ElRow class="container">
       <div class="search-panel">
         <div class="before only-pc">
-          <img src="https://file.calibur.tv/logo.png" alt="logo">
+          <img src="https://file.calibur.tv/logo.png" alt="logo" />
           <span>搜索</span>
         </div>
         <div class="v-search">
-          <VSearch
-            v-model="words"
-            :type="selectedType"
-          >
+          <VSearch v-model="words" :type="selectedType">
             <template slot="submit-btn">
               <i class="iconfont ic-search" />
               <span class="only-pc">搜索</span>
@@ -188,29 +185,19 @@
     </ElRow>
     <ElRow>
       <ElCol class="only-pc" :span="6">
-        <br>
+        <br />
       </ElCol>
       <ElCol :span="12" :xs="24">
-        <FlowLoader
-          ref="loader"
-          func="getMixinSearch"
-          type="page"
-          :query="query"
-        >
+        <FlowLoader ref="loader" func="getMixinSearch" type="page" :query="query">
           <ul slot-scope="{ flow }" class="flow-list">
-            <component
-              :is="`${item.type}-item`"
-              v-for="item in flow"
-              :key="item.data.slug"
-              :item="item.data"
-            />
+            <component :is="`${item.type}-item`" v-for="item in flow" :key="item.data.slug" :item="item.data" />
           </ul>
           <template slot="nothing">
-            <img src="~assets/img/error/no-content.png">
+            <img src="~assets/img/error/no-content.png" />
             <p>这里什么都没有</p>
           </template>
           <template slot="error">
-            <img src="~assets/img/error/no-network.png">
+            <img src="~assets/img/error/no-network.png" />
             <p>遇到错误了，点击重试</p>
           </template>
           <footer slot="footer" slot-scope="{ source }">
@@ -229,7 +216,7 @@
         </FlowLoader>
       </ElCol>
       <ElCol class="only-pc" :span="6">
-        <br>
+        <br />
       </ElCol>
     </ElRow>
   </div>
@@ -268,7 +255,7 @@ export default {
     }
   },
   watch: {
-    '$route'() {
+    $route() {
       this.$refs.loader && this.$refs.loader.initData()
     }
   },

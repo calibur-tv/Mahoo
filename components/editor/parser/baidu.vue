@@ -6,12 +6,12 @@
     display: block;
     background-color: #fff;
     border: 1px solid rgba(201, 201, 204, 0.48);
-    box-shadow: 0 1px 3px rgba(0,0,0, .1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     padding: 25px;
 
     &:hover {
-      box-shadow: 0 0 3px rgba(0,0,0, .16);
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
     }
   }
 
@@ -21,7 +21,7 @@
     height: 65px;
     line-height: 70px;
     border-radius: 3px;
-    background-color: #09AAFF;
+    background-color: #09aaff;
     color: #fff;
     font-weight: bold;
     font-style: normal;

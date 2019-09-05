@@ -22,9 +22,7 @@ export default app => {
     let pageData
 
     try {
-      pageData = JSON.parse(
-        document.querySelector('script[data-name="page-data"]').textContent
-      )
+      pageData = JSON.parse(document.querySelector('script[data-name="page-data"]').textContent)
     } catch (e) {
       pageData = {
         authToken: ''

@@ -6,7 +6,7 @@
 
     @include pc() {
       padding: 20px;
-      box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
+      box-shadow: 0 3px 3px rgba(26, 26, 26, 0.1) inset;
       margin-top: -$page-header-hgt;
       padding-top: $page-header-hgt + 20;
     }
@@ -40,7 +40,7 @@
         height: 16px;
         width: 1px;
         left: 0;
-        background-color: hsla(0,0%,59.2%,.2);
+        background-color: hsla(0, 0%, 59.2%, 0.2);
       }
 
       &:first-child {
@@ -104,47 +104,29 @@
   <div id="atfield">
     <ElRow class="container">
       <ElCol class="only-pc" :span="5">
-        <br>
+        <br />
       </ElCol>
       <ElCol :xs="24" :span="14" class="main-wrap">
         <ul class="sortable">
-          <li
-            v-for="item in sortOpts"
-            :key="item.value"
-            :class="{ 'is-active': item.value === sort }"
-            @click="changeSort(item.value)"
-            v-text="item.label"
-          />
+          <li v-for="item in sortOpts" :key="item.value" :class="{ 'is-active': item.value === sort }" @click="changeSort(item.value)" v-text="item.label" />
         </ul>
-        <FlowLoader
-          ref="loader"
-          func="getATField"
-          type="page"
-          :query="query"
-        >
+        <FlowLoader ref="loader" func="getATField" type="page" :query="query">
           <ul slot-scope="{ flow }" class="flows">
-            <TagQuestion
-              v-for="item in flow"
-              :key="item.slug"
-              :show-area="!slug"
-              :show-control="true"
-              :item="item"
-              @remove="handleRemove(item.slug)"
-            />
+            <TagQuestion v-for="item in flow" :key="item.slug" :show-area="!slug" :show-control="true" :item="item" @remove="handleRemove(item.slug)" />
           </ul>
           <SkeletonArticle slot="loading" />
           <template slot="nothing">
-            <img src="~assets/img/error/no-content.png">
+            <img src="~assets/img/error/no-content.png" />
             <p>这里什么都没有</p>
           </template>
           <template slot="error">
-            <img src="~assets/img/error/no-network.png">
+            <img src="~assets/img/error/no-network.png" />
             <p>遇到错误了，点击重试</p>
           </template>
         </FlowLoader>
       </ElCol>
       <ElCol class="only-pc" :span="5">
-        <br>
+        <br />
       </ElCol>
     </ElRow>
   </div>
