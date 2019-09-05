@@ -4,11 +4,7 @@ const config = require('./config')
 
 const getCacheExpiredAt = (expired = 'd') => {
   if (expired === 'd') {
-    return parseInt(
-      (new Date(new Date().setHours(26, 0, 0, 0)).getTime() - Date.now()) /
-        1000 +
-        Math.random() * 10800
-    )
+    return parseInt((new Date(new Date().setHours(26, 0, 0, 0)).getTime() - Date.now()) / 1000 + Math.random() * 10800)
   }
   if (expired === 'h') {
     return 3600
@@ -27,7 +23,7 @@ module.exports = function cacheRenderer(nuxt) {
 
   function isCacheFriendly(route, prefix, suffix) {
     const path = route.split('?')[0]
-    if (config.pages.every(reg => !(new RegExp(reg).test(path)))) {
+    if (config.pages.every(reg => !new RegExp(reg).test(path))) {
       return ''
     }
     return `${prefix}-${path}-${suffix}`

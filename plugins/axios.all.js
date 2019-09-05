@@ -7,9 +7,7 @@ export default ({ $axios, app }) => {
   $axios.setToken(parseToken(app), 'Bearer')
 
   $axios.onRequest(config => {
-    config.baseURL = isClient
-      ? process.env.API_URL_BROWSER
-      : process.env.API_URL
+    config.baseURL = isClient ? process.env.API_URL_BROWSER : process.env.API_URL
     config.timeout = 10000
 
     if (isClient) {

@@ -8,7 +8,7 @@
   <div id="tag-atfield">
     <ElRow>
       <ElCol :span="6" :xs="0">
-        <br>
+        <br />
       </ElCol>
       <ElCol :span="12" :xs="24">
         <SubmitATFieldForm :slug="slug" />

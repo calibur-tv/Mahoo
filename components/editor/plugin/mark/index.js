@@ -11,7 +11,7 @@ export default class Marker {
    */
   static get CSS() {
     return 'cdx-marker'
-  };
+  }
 
   /**
    * @param {{api: object}}  - Editor.js API

@@ -18,9 +18,9 @@
       :placeholder="placeholder"
       :options="options"
       :props="{
-        'value': 'slug',
-        'label': 'name',
-        'emitPath': false
+        value: 'slug',
+        label: 'name',
+        emitPath: false
       }"
       filterable
     >
@@ -62,8 +62,7 @@ export default {
   },
   computed: {
     options() {
-      return this.$store.state.global.myTags
-        .filter(_ => !~['notebook', 'topic'].indexOf(_.slug))
+      return this.$store.state.global.myTags.filter(_ => !~['notebook', 'topic'].indexOf(_.slug))
     },
     myTagsFetched() {
       return this.$store.state.global.myTagsFetched

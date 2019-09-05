@@ -20,7 +20,7 @@
     overflow: hidden;
     border-radius: 4px;
     text-align: center;
-    background-color: #F1F3F4;
+    background-color: #f1f3f4;
     width: 160px;
     height: 100px;
 
@@ -31,8 +31,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,.2);
-      transition: opacity .3s;
+      background: rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
@@ -40,7 +40,7 @@
       padding-left: 10px;
       padding-top: 10px;
 
-      >div {
+      > div {
         height: 12px;
         line-height: 12px;
         margin-right: 20px;
@@ -99,7 +99,7 @@
       left: 0;
       bottom: 0;
       background-color: #fff;
-      transition: bottom .3s;
+      transition: bottom 0.3s;
 
       > div {
         float: left;

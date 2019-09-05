@@ -1,5 +1,6 @@
 <style lang="scss">
-#user-timeline {}
+#user-timeline {
+}
 </style>
 
 <template>
@@ -14,12 +15,7 @@
       }"
     >
       <ElTimeline slot-scope="{ flow }">
-        <ElTimelineItem
-          v-for="item in flow"
-          :key="`${item.type}-${item.slug}`"
-          :timestamp="$utils.timeAgo(item.created_at)"
-          placement="top"
-        >
+        <ElTimelineItem v-for="item in flow" :key="`${item.type}-${item.slug}`" :timestamp="$utils.timeAgo(item.created_at)" placement="top">
           <component :is="`type-${item.type}`" :item="item.data" />
         </ElTimelineItem>
       </ElTimeline>

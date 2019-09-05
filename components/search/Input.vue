@@ -49,13 +49,7 @@
 </style>
 
 <template>
-  <form
-    :class="`search-${state}`"
-    action="#"
-    method="get"
-    class="search-input-wrap"
-    @submit.prevent="submit"
-  >
+  <form :class="`search-${state}`" action="#" method="get" class="search-input-wrap" @submit.prevent="submit">
     <button type="submit" class="search-input-btn">
       <slot name="submit-btn">
         <i class="iconfont ic-search" />
@@ -79,17 +73,11 @@
         maxlength="50"
         @focus="handleInputFocus"
         @blur="handleInputBlur"
-      >
+      />
     </div>
     <ul v-show="displaySuggestion" class="search-suggestions">
-      <NLink
-        v-for="(item, index) in filteredSelect"
-        :key="item.id"
-        :class="{ active: index === selectedIndex }"
-        :to="$alias.tag(item.slug)"
-        tag="li"
-      >
-        <img :src="$resize(item.avatar, { width: 60 })">
+      <NLink v-for="(item, index) in filteredSelect" :key="item.id" :class="{ active: index === selectedIndex }" :to="$alias.tag(item.slug)" tag="li">
+        <img :src="$resize(item.avatar, { width: 60 })" />
         <span v-text="item.name" />
       </NLink>
     </ul>
@@ -134,14 +122,7 @@ export default {
   },
   computed: {
     displaySuggestion() {
-      return (
-        this.state === 'focus' &&
-        this.showSuggestion &&
-        this.word &&
-        this.word.length &&
-        this.typing &&
-        this.filteredSelect.length
-      )
+      return this.state === 'focus' && this.showSuggestion && this.word && this.word.length && this.typing && this.filteredSelect.length
     }
   },
   mounted() {
@@ -173,7 +154,8 @@ export default {
       this.$nextTick(() => {
         const cacheKey = 'search-all-tags'
         if (this.$cache.expired(cacheKey, 86400)) {
-          this.$axios.$get('v1/search/tags')
+          this.$axios
+            .$get('v1/search/tags')
             .then(tags => {
               this.tags = tags
               this.$cache.set(cacheKey, tags)
@@ -192,10 +174,7 @@ export default {
       })
     },
     submit() {
-      const q =
-        this.selectedIndex !== -1
-          ? this.filteredSelect[this.selectedIndex].name.trim()
-          : this.word.trim()
+      const q = this.selectedIndex !== -1 ? this.filteredSelect[this.selectedIndex].name.trim() : this.word.trim()
       if (!q) {
         return
       }
@@ -214,9 +193,7 @@ export default {
         return
       }
       this.filteredSelect = this.tags.filter(option => {
-        return (
-          option.alias.includes(query) || option.name.includes(query)
-        )
+        return option.alias.includes(query) || option.name.includes(query)
       })
     },
     handleInputFocus() {

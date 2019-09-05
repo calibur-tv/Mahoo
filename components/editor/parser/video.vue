@@ -46,15 +46,7 @@
 <template>
   <div :class="$style.video">
     <div :class="$style.wrap">
-      <iframe
-        :src="item.data.embed"
-        scrolling="no"
-        border="0"
-        frameborder="no"
-        framespacing="0"
-        allowtransparency="true"
-        allowfullscreen="true"
-      />
+      <iframe :src="item.data.embed" scrolling="no" border="0" frameborder="no" framespacing="0" allowtransparency="true" allowfullscreen="true" />
     </div>
     <p v-if="item.data.caption" v-text="item.data.caption" />
   </div>

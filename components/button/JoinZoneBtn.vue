@@ -1,13 +1,6 @@
 <template>
   <div v-if="state" class="join-zone-wrap">
-    <ElButton
-      :loading="loading"
-      type="primary"
-      size="mini"
-      round
-      plain
-      @click="handleClick"
-    >
+    <ElButton :loading="loading" type="primary" size="mini" round plain @click="handleClick">
       {{ state.is_marked ? '已加入' : '加入' }}
     </ElButton>
     &nbsp;
@@ -52,9 +45,10 @@ export default {
         return
       }
       this.loading = true
-      this.$axios.$post('v1/atfield/begin', {
-        slug: this.slug
-      })
+      this.$axios
+        .$post('v1/atfield/begin', {
+          slug: this.slug
+        })
         .then(result => {
           if (result === 'reject') {
             this.$toast.info('该分区还未开放')

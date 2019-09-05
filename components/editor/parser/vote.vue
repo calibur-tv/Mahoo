@@ -4,7 +4,7 @@
 
   div {
     border: 1px solid rgba(201, 201, 204, 0.48);
-    box-shadow: 0 1px 3px rgba(0,0,0, .1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     padding: 15px 15px 15px 25px;
 
@@ -112,19 +112,9 @@
     <div>
       <header>投票（{{ item.data.max_select === 1 ? '单选' : `最多选${item.data.max_select}个` }}）</header>
       <ul>
-        <li
-          v-for="(option, index) in item.data.items"
-          :key="option.id"
-          :class="{ [$style.selected]: checkSelected(option) }"
-          class="oneline"
-          @click="handleSelect(option)"
-        >
-          <span
-            :class="$style.count"
-            :style="computeItemStyle(option, index)"
-            v-html="stat[option.id] ? `${stat[option.id]}票&nbsp;&nbsp;` : ''"
-          />
-          <span v-html="(index + 1) + '. ' + option.text" />
+        <li v-for="(option, index) in item.data.items" :key="option.id" :class="{ [$style.selected]: checkSelected(option) }" class="oneline" @click="handleSelect(option)">
+          <span :class="$style.count" :style="computeItemStyle(option, index)" v-html="stat[option.id] ? `${stat[option.id]}票&nbsp;&nbsp;` : ''" />
+          <span v-html="index + 1 + '. ' + option.text" />
           <i />
         </li>
       </ul>
@@ -175,11 +165,12 @@ export default {
   },
   methods: {
     getVoteStat() {
-      this.$axios.$get('v1/pin/vote_stat', {
-        params: {
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/pin/vote_stat', {
+          params: {
+            slug: this.slug
+          }
+        })
         .then(data => {
           this.stat = data
           this.maxCount = Math.max(...Object.values(this.stat))
@@ -221,10 +212,11 @@ export default {
         return
       }
       this.submitting = true
-      this.$axios.$post('v1/social/vote', {
-        pin_slug: this.slug,
-        answer_hash: this.selected
-      })
+      this.$axios
+        .$post('v1/social/vote', {
+          pin_slug: this.slug,
+          answer_hash: this.selected
+        })
         .then(() => {
           this.$toast.success('投票成功')
           this.voted = true
@@ -239,21 +231,14 @@ export default {
     },
     computeItemStyle(option, index) {
       const count = this.stat[option.id] || 0
-      const width = count ? `${75 * count / this.maxCount}%` : '0%'
+      const width = count ? `${(75 * count) / this.maxCount}%` : '0%'
       return {
         width,
         backgroundColor: this.getRandomColor(index)
       }
     },
     getRandomColor(index) {
-      const colors = [
-        'rgba(255,170,170,.5)',
-        'rgba(255,148,39,.5)',
-        'rgba(252,196,25,.5)',
-        'rgba(32,201,151,.5)',
-        'rgba(18,183,245,.5)',
-        'rgba(173,181,189,.5)'
-      ]
+      const colors = ['rgba(255,170,170,.5)', 'rgba(255,148,39,.5)', 'rgba(252,196,25,.5)', 'rgba(32,201,151,.5)', 'rgba(18,183,245,.5)', 'rgba(173,181,189,.5)']
       return colors[index % 6]
     }
   }

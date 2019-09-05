@@ -77,12 +77,7 @@
     <div v-if="showAvatar" class="avatar only-pc">
       <VImg :src="avatar" radius="50%" width="40" height="40" />
     </div>
-    <button
-      class="submit-btn"
-      @click="submit"
-    >
-      点击<br>发送
-    </button>
+    <button class="submit-btn" @click="submit">点击<br />发送</button>
     <div class="input-wrap">
       <ElInput
         v-model="content"
@@ -172,12 +167,13 @@ export default {
         return
       }
       this.loading = true
-      this.$axios.$post('v1/comment/create', {
-        content: this.content.trim(),
-        images: this.uploadImageList.map(_ => _.data),
-        pin_slug: this.pinSlug,
-        comment_id: this.commentId
-      })
+      this.$axios
+        .$post('v1/comment/create', {
+          content: this.content.trim(),
+          images: this.uploadImageList.map(_ => _.data),
+          pin_slug: this.pinSlug,
+          comment_id: this.commentId
+        })
         .then(data => {
           this.$emit('submit', data)
           this.content = ''

@@ -1,6 +1,6 @@
 <style lang="scss" module>
 .checklist {
-  padding: .7em 0;
+  padding: 0.7em 0;
 
   i,
   em {

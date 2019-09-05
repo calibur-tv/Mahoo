@@ -84,7 +84,7 @@
           <i class="iconfont ic-trash" />
         </button>
         <button @click="clickAgree">
-          <i class="iconfont" :class="[ item.up_vote_status ? 'ic-good_fill' : 'ic-good' ]" />
+          <i class="iconfont" :class="[item.up_vote_status ? 'ic-good_fill' : 'ic-good']" />
           <span v-if="item.like_count" v-text="item.like_count" />
         </button>
       </footer>
@@ -157,12 +157,13 @@ export default {
         return
       }
       this.loading = true
-      this.$axios.$post('v1/social/toggle', {
-        target_slug: this.item.id.toString(),
-        target_type: 'comment',
-        action_slug: this.$store.state.user.slug,
-        method_type: 'up_vote'
-      })
+      this.$axios
+        .$post('v1/social/toggle', {
+          target_slug: this.item.id.toString(),
+          target_type: 'comment',
+          action_slug: this.$store.state.user.slug,
+          method_type: 'up_vote'
+        })
         .then(result => {
           this.loading = false
           this.$emit('agree', {
@@ -183,9 +184,10 @@ export default {
             return
           }
           this.deleting = true
-          this.$axios.$post('v1/comment/delete', {
-            comment_id: this.item.id
-          })
+          this.$axios
+            .$post('v1/comment/delete', {
+              comment_id: this.item.id
+            })
             .then(() => {
               this.$toast.success('删除成功')
               this.$emit('delete', this.item.id)

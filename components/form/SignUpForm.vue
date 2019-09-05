@@ -57,38 +57,16 @@
   <div class="sign-up-form">
     <ElForm ref="form" :model="form" :rules="rule">
       <ElFormItem prop="access">
-        <ElInput
-          v-model.trim="form.access"
-          type="text"
-          placeholder="手机（填写常用手机号，用于登录）"
-          auto-complete="off"
-        />
+        <ElInput v-model.trim="form.access" type="text" placeholder="手机（填写常用手机号，用于登录）" auto-complete="off" />
       </ElFormItem>
       <ElFormItem prop="secret">
-        <ElInput
-          v-model.trim="form.secret"
-          type="password"
-          show-password
-          placeholder="密码（6-16个字符组成，区分大小写）"
-          auto-complete="off"
-        />
+        <ElInput v-model.trim="form.secret" type="password" show-password placeholder="密码（6-16个字符组成，区分大小写）" auto-complete="off" />
       </ElFormItem>
       <ElFormItem v-if="!inviteCode">
-        <ElInput
-          v-model.trim="form.inviteCode"
-          placeholder="邀请码（可为空）"
-          auto-complete="off"
-        />
+        <ElInput v-model.trim="form.inviteCode" placeholder="邀请码（可为空）" auto-complete="off" />
       </ElFormItem>
       <ElFormItem>
-        <ElButton
-          :loading="submitBtnLoading"
-          :disabled="submitBtnDisabled"
-          class="submit-btn"
-          type="primary"
-          round
-          @click="submitForm"
-        >
+        <ElButton :loading="submitBtnLoading" :disabled="submitBtnDisabled" class="submit-btn" type="primary" round @click="submitForm">
           {{ submitBtnText }}
           <template v-if="timeout">
             （{{ timeout }}s 后可重新获取）
@@ -217,8 +195,7 @@ export default {
         this.query.time &&
         /^\d+$/.test(this.query.time) &&
         Date.now() <= this.query.time * 1000 &&
-        this.query.key ===
-          this.$md5(`${this.query.uid}-the-world-${this.query.time}`)
+        this.query.key === this.$md5(`${this.query.uid}-the-world-${this.query.time}`)
       )
     }
   },
@@ -303,14 +280,13 @@ export default {
       })
         .then(token => {
           this.$cookie.set('JWT-TOKEN', token)
-          this.$toast.success('注册成功！')
-            .then(() => {
-              if (this.$route.query.redirect) {
-                window.location = decodeURIComponent(this.$route.query.redirect)
-              } else {
-                window.location.reload()
-              }
-            })
+          this.$toast.success('注册成功！').then(() => {
+            if (this.$route.query.redirect) {
+              window.location = decodeURIComponent(this.$route.query.redirect)
+            } else {
+              window.location.reload()
+            }
+          })
         })
         .catch(err => {
           this.step = 0

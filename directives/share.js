@@ -2,7 +2,9 @@
 const openShareWindow = (url, options) => {
   const temp = []
   for (const p in options) {
-    if (options[p] != null) { temp.push(p + '=' + encodeURIComponent(options[p])) }
+    if (options[p] != null) {
+      temp.push(p + '=' + encodeURIComponent(options[p]))
+    }
   }
   const _u = url + temp.join('&')
   window.open(_u, '', 'width=760, height=640, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no')
@@ -94,23 +96,33 @@ export default {
         el.vtype = Object.keys(binding.modifiers)[0]
         el.options = binding.value || {}
 
-        el.addEventListener('click', () => {
-          shareFactory(el.vtype, Object.assign({
-            title: document.title,
-            url: location.href,
-            desc: '',
-            pic: '',
-            summary: '',
-            shortTitle: '',
-            searchPic: false,
-            appkey: {
-              weibo: ''
-            },
-            weiboTag: '',
-            tp_id: 0,
-            aid: ''
-          }, el.options))
-        }, false)
+        el.addEventListener(
+          'click',
+          () => {
+            shareFactory(
+              el.vtype,
+              Object.assign(
+                {
+                  title: document.title,
+                  url: location.href,
+                  desc: '',
+                  pic: '',
+                  summary: '',
+                  shortTitle: '',
+                  searchPic: false,
+                  appkey: {
+                    weibo: ''
+                  },
+                  weiboTag: '',
+                  tp_id: 0,
+                  aid: ''
+                },
+                el.options
+              )
+            )
+          },
+          false
+        )
       },
       update(el, binding) {
         el.vtype = Object.keys(binding.modifiers)[0]

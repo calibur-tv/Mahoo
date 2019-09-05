@@ -12,7 +12,7 @@
 </style>
 
 <template>
-  <div class="chat-avatar" :class="[ isMine ? 'chat-avatar-mine' : 'chat-avatar-other' ]">
+  <div class="chat-avatar" :class="[isMine ? 'chat-avatar-mine' : 'chat-avatar-other']">
     <UserAvatar :user="item" :size="36" />
   </div>
 </template>

@@ -16,12 +16,8 @@
 
 <template>
   <div id="user-draft">
-    <ElAlert
-      :title="timeout ? `该页面文章链接 ${timeout} 秒后过期，过期后请刷新页面` : '该页面已过期，请刷新页面获取新的链接'"
-      :type="timeout ? 'success' : 'error'"
-      effect="dark"
-    />
-    <br>
+    <ElAlert :title="timeout ? `该页面文章链接 ${timeout} 秒后过期，过期后请刷新页面` : '该页面已过期，请刷新页面获取新的链接'" :type="timeout ? 'success' : 'error'" effect="dark" />
+    <br />
     <FlowLoader
       ref="loader"
       func="getUserDrafts"
@@ -33,13 +29,7 @@
       :callback="handleTimeout"
     >
       <ul slot-scope="{ flow, extra }">
-        <PinArticle
-          v-for="(item, index) in flow"
-          :key="item.slug"
-          :item="item"
-          :show-user="false"
-          :secret-link="extra[index]"
-        />
+        <PinArticle v-for="(item, index) in flow" :key="item.slug" :item="item" :show-user="false" :secret-link="extra[index]" />
       </ul>
     </FlowLoader>
   </div>

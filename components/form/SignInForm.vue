@@ -55,20 +55,10 @@
   <div class="sign-in-form">
     <ElForm ref="form" :model="form" :rules="rule">
       <ElFormItem prop="access">
-        <ElInput
-          v-model.trim="form.access"
-          type="text"
-          placeholder="手机（填写常用手机号，用于登录）"
-        />
+        <ElInput v-model.trim="form.access" type="text" placeholder="手机（填写常用手机号，用于登录）" />
       </ElFormItem>
       <ElFormItem prop="secret">
-        <ElInput
-          v-model.trim="form.secret"
-          type="password"
-          show-password
-          placeholder="密码（6-16个字符组成，区分大小写）"
-          @keydown.enter.native="submitForm"
-        />
+        <ElInput v-model.trim="form.secret" type="password" show-password placeholder="密码（6-16个字符组成，区分大小写）" @keydown.enter.native="submitForm" />
       </ElFormItem>
       <ElFormItem class="sign-in-opt">
         <div class="opt-container">
@@ -92,13 +82,7 @@
         </div>
       </ElFormItem>
       <ElFormItem>
-        <ElButton
-          :loading="loading"
-          class="submit-btn"
-          type="primary"
-          round
-          @click="submitForm"
-        >
+        <ElButton :loading="loading" class="submit-btn" type="primary" round @click="submitForm">
           登录
         </ElButton>
       </ElFormItem>

@@ -12,7 +12,7 @@
     @include pc() {
       background-color: $color-gray-bg;
       padding: 20px;
-      box-shadow: 0 3px 3px rgba(26,26,26,.1) inset;
+      box-shadow: 0 3px 3px rgba(26, 26, 26, 0.1) inset;
       margin-top: -$page-header-hgt;
       padding-top: $page-header-hgt + 20;
       min-height: 100vh;
@@ -33,7 +33,7 @@
         <PinFlowList :slug="slug" />
       </ElCol>
       <ElCol :xs="24" :span="5">
-        <br>
+        <br />
       </ElCol>
     </ElRow>
   </div>
@@ -61,10 +61,7 @@ export default {
   },
   asyncData({ app, error }) {
     const slug = process.env.TAGS.bangumi
-    return Promise.all([
-      showTag(app, { slug }),
-      tagChildren(app, { slug })
-    ])
+    return Promise.all([showTag(app, { slug }), tagChildren(app, { slug })])
       .then(data => {
         return {
           tag: data[0],

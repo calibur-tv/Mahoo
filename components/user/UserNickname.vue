@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  transition: color .2s ease,background-color .2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
   float: left;
   max-width: 100%;
 
@@ -60,57 +60,25 @@
 
 <template>
   <div class="clearfix">
-    <div
-      v-if="disabled"
-      class="user-nickname"
-    >
+    <div v-if="disabled" class="user-nickname">
       <div class="nickname">
         <p class="oneline" v-html="nickname || user.nickname" />
       </div>
-      <span
-        v-if="sex"
-        :class="$style.title"
-      >
+      <span v-if="sex" :class="$style.title">
         <i class="iconfont" :class="[$style['ic-sex'], `ic-${sexClass.name}`]" :style="{ backgroundColor: sexClass.color }" />
       </span>
-      <span
-        v-if="level"
-        :class="[$style.title, $style['ic-level']]"
-        v-text="`Lv${user.level}`"
-      />
-      <span
-        v-for="(item, index) in user.roles"
-        :key="index"
-        :class="[$style.title, $style['ic-title']]"
-        v-text="item"
-      />
+      <span v-if="level" :class="[$style.title, $style['ic-level']]" v-text="`Lv${user.level}`" />
+      <span v-for="(item, index) in user.roles" :key="index" :class="[$style.title, $style['ic-title']]" v-text="item" />
     </div>
-    <NLink
-      v-else
-      :to="$alias.user(user.slug)"
-      target="_blank"
-      class="user-nickname"
-    >
+    <NLink v-else :to="$alias.user(user.slug)" target="_blank" class="user-nickname">
       <div class="nickname">
         <p class="oneline" v-html="nickname || user.nickname" />
       </div>
-      <span
-        v-if="sex"
-        :class="$style.title"
-      >
+      <span v-if="sex" :class="$style.title">
         <i class="iconfont" :class="[$style['ic-sex'], `ic-${sexClass.name}`]" :style="{ backgroundColor: sexClass.color }" />
       </span>
-      <span
-        v-if="level"
-        :class="[$style.title, $style['ic-level']]"
-        v-text="`Lv${user.level}`"
-      />
-      <span
-        v-for="(item, index) in user.title"
-        :key="index"
-        :class="[$style.title, $style['ic-title']]"
-        v-text="item"
-      />
+      <span v-if="level" :class="[$style.title, $style['ic-level']]" v-text="`Lv${user.level}`" />
+      <span v-for="(item, index) in user.title" :key="index" :class="[$style.title, $style['ic-title']]" v-text="item" />
     </NLink>
   </div>
 </template>

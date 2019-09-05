@@ -3,7 +3,7 @@
   ul,
   ol {
     margin-left: 19px;
-    padding: .7em 0;
+    padding: 0.7em 0;
     font-size: 14px;
   }
 

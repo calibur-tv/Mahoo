@@ -50,18 +50,8 @@ export default class Copyright {
       div.innerHTML = outputHtml
 
       if (outputText.length >= lengthLimit) {
-        const formatHTML = this.getCopyHtml(
-          outputHtml,
-          location,
-          authorNickname,
-          str
-        )
-        const formatText = this.getCopyText(
-          outputText,
-          location,
-          authorNickname,
-          str
-        )
+        const formatHTML = this.getCopyHtml(outputHtml, location, authorNickname, str)
+        const formatText = this.getCopyText(outputText, location, authorNickname, str)
 
         if (typeof evt.clipboardData === 'undefined') {
           this.hack(formatHTML, range) // IE
@@ -175,7 +165,7 @@ export default class Copyright {
 
   getHTMLParser(e) {
     try {
-      return (new window.DOMParser()).parseFromString(e, 'text/html').body
+      return new window.DOMParser().parseFromString(e, 'text/html').body
     } catch (n) {
       const t = document.implementation.createHTMLDocument('')
       return t.body.innerHTML = e, t.body // eslint-disable-line

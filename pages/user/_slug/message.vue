@@ -35,14 +35,9 @@
       </ElCol>
       <ElCol :span="18">
         <div class="room-adjust">
-          <MessageRoom
-            v-if="mailto"
-            :mailto="mailto"
-            :name="name"
-            :slug="slug"
-          />
+          <MessageRoom v-if="mailto" :mailto="mailto" :name="name" :slug="slug" />
           <div v-else class="need-pick">
-            <img src="~assets/img/error/no-comment.png">
+            <img src="~assets/img/error/no-comment.png" />
             <p>未选择聊天</p>
           </div>
         </div>

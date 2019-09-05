@@ -65,16 +65,8 @@
 </style>
 
 <template>
-  <ElPopover
-    placement="bottom"
-    width="134"
-    trigger="click"
-    popper-class="sss-popover"
-  >
-    <button
-      v-copy="shareUrl"
-      v-copy:callback="handleCopySuccess"
-    >
+  <ElPopover placement="bottom" width="134" trigger="click" popper-class="sss-popover">
+    <button v-copy="shareUrl" v-copy:callback="handleCopySuccess">
       <i class="iconfont ic-accessory" />
       <span>复制链接</span>
     </button>
@@ -124,9 +116,7 @@ export default {
       if (typeof window === 'undefined') {
         return ''
       }
-      return this.options && this.options.url
-        ? `${window.location.origin}${this.options.url}${this.query}`
-        : `${window.location.origin}${this.$route.path}${this.query}`
+      return this.options && this.options.url ? `${window.location.origin}${this.options.url}${this.query}` : `${window.location.origin}${this.$route.path}${this.query}`
     },
     query() {
       return ''
@@ -141,19 +131,16 @@ export default {
       const title = document.title
       const content = document.querySelector('[name=description]').content
       const allNoteImages = []
-      ;[].forEach.call(
-        document.querySelectorAll('.is-full'),
-        imagePackage => {
-          const image = imagePackage.querySelector('img')
-          if (image) {
-            let imageSrc = image.getAttribute('origin-src')
-            if (imageSrc.match(/^\/\//)) {
-              imageSrc = `http:${imageSrc}`
-            }
-            allNoteImages.push(imageSrc)
+      ;[].forEach.call(document.querySelectorAll('.is-full'), imagePackage => {
+        const image = imagePackage.querySelector('img')
+        if (image) {
+          let imageSrc = image.getAttribute('origin-src')
+          if (imageSrc.match(/^\/\//)) {
+            imageSrc = `http:${imageSrc}`
           }
+          allNoteImages.push(imageSrc)
         }
-      )
+      })
       return {
         url: window.location.href,
         title,

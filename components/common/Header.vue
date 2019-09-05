@@ -86,7 +86,7 @@
                 color: $color-main;
 
                 span {
-                  background-color: #F3F3F3;
+                  background-color: #f3f3f3;
                 }
               }
             }
@@ -108,7 +108,7 @@
           align-items: center;
 
           &:hover {
-            background-color: #F3F3F3;
+            background-color: #f3f3f3;
           }
 
           i {
@@ -138,7 +138,7 @@
 
           .avatar {
             position: relative;
-            transition: .3s;
+            transition: 0.3s;
             z-index: 1;
 
             .img {
@@ -157,9 +157,9 @@
             background-color: #fff;
             width: 295px;
             padding: 25px 12px 12px;
-            box-shadow: 0 8px 20px 0 rgba(158,179,193,.3);
+            box-shadow: 0 8px 20px 0 rgba(158, 179, 193, 0.3);
             border-radius: 0 0 10px 10px;
-            transition: .3s;
+            transition: 0.3s;
 
             &:hover {
               opacity: 1;
@@ -225,9 +225,9 @@
 
     &.header-fixed {
       position: fixed;
-      box-shadow: 0 1px 2px rgba(0 ,0 ,0 , 0.1);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       backdrop-filter: saturate(180%) blur(20px);
-      background-color: rgba(255,255,255,0.7);
+      background-color: rgba(255, 255, 255, 0.7);
     }
 
     &.header-static {
@@ -322,12 +322,7 @@
             <i class="iconfont ic-calibur" />
           </NLink>
           <VSwitcher :headers="headers" :routable="true" :anchor-padding="15" :header-height="50" align="start">
-            <NLink
-              v-for="(item, index) in headers"
-              :key="index"
-              :slot="`tab-${index}`"
-              :to="item.route"
-            >
+            <NLink v-for="(item, index) in headers" :key="index" :slot="`tab-${index}`" :to="item.route">
               <span v-text="item.name" />
             </NLink>
           </VSwitcher>
@@ -342,18 +337,8 @@
           <template v-if="showUser">
             <template v-if="isAuth">
               <div class="user-panel icon-link">
-                <NLink
-                  :to="$alias.user(user.slug)"
-                  class="avatar"
-                >
-                  <VImg
-                    :src="user.avatar"
-                    def="default-avatar"
-                    width="33"
-                    height="33"
-                    radius="50%"
-                    :alt="user.nickname"
-                  />
+                <NLink :to="$alias.user(user.slug)" class="avatar">
+                  <VImg :src="user.avatar" def="default-avatar" width="33" height="33" radius="50%" :alt="user.nickname" />
                 </NLink>
                 <div class="user-popover">
                   <p class="nickname oneline" v-html="user.nickname" />
@@ -363,12 +348,7 @@
                       <span>夜间模式</span>
                     </div>
                     <div class="value">
-                      <ElSwitch
-                        v-model="night_mode"
-                        active-color="#ff6881"
-                        inactive-color="#c0c0c0"
-                        @change="handleNightModeSwitch"
-                      />
+                      <ElSwitch v-model="night_mode" active-color="#ff6881" inactive-color="#c0c0c0" @change="handleNightModeSwitch" />
                     </div>
                   </div>
                   <NLink :to="$alias.user(user.slug, 'setting')">
@@ -391,18 +371,11 @@
               </NLink>
             </template>
             <template v-else>
-              <ElButton
-                class="only-pc"
-                type="text"
-                @click="handleSignIn"
-              >
+              <ElButton class="only-pc" type="text" @click="handleSignIn">
                 登录
               </ElButton>
               <NLink :to="$alias.sign()">
-                <ElButton
-                  class="only-h5"
-                  type="text"
-                >
+                <ElButton class="only-h5" type="text">
                   登录&nbsp;&nbsp;
                 </ElButton>
               </NLink>
@@ -508,15 +481,14 @@ export default {
     getUnreadMessageCount() {
       this.$store.dispatch('refreshMailbox')
       let lastMoveAt = Date.now()
-      window.addEventListener('mousemove', throttle(3000, () => {
-        lastMoveAt = Date.now()
-      }))
+      window.addEventListener(
+        'mousemove',
+        throttle(3000, () => {
+          lastMoveAt = Date.now()
+        })
+      )
       setInterval(() => {
-        if (
-          document.visibilityState === 'visible' &&
-          !this.$store.state.socket.isConnected &&
-          Date.now() - lastMoveAt < 30000
-        ) {
+        if (document.visibilityState === 'visible' && !this.$store.state.socket.isConnected && Date.now() - lastMoveAt < 30000) {
           this.$store.dispatch('refreshMailbox')
         }
       }, 10000)

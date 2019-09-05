@@ -28,10 +28,7 @@
       <i class="iconfont ic-time_fill" />
       <span>时间轴</span>
     </button>
-    <ElDrawer
-      title="时间轴"
-      :visible.sync="showDrawer"
-    >
+    <ElDrawer title="时间轴" :visible.sync="showDrawer">
       <FlowLoader
         func="getTimeline"
         type="page"
@@ -42,12 +39,7 @@
         }"
       >
         <ElTimeline slot-scope="{ flow }">
-          <ElTimelineItem
-            v-for="(item, index) in flow"
-            :key="index"
-            :timestamp="$utils.timeAgo(item.time)"
-            placement="top"
-          >
+          <ElTimelineItem v-for="(item, index) in flow" :key="index" :timestamp="$utils.timeAgo(item.time)" placement="top">
             <p>操作：{{ item.type }}</p>
             <p>
               用户：<NLink :to="$alias.user(item.data.user.slug)" class="fade-link" target="_blank">

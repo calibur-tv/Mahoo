@@ -44,7 +44,7 @@
         border-radius: 4px;
         overflow: hidden;
         margin-right: 5px;
-        background-color: #F1F3F4;
+        background-color: #f1f3f4;
       }
 
       .text {
@@ -84,14 +84,9 @@
 </style>
 
 <template>
-  <li class="pin-ranker" :class="[ show ? 'show' : 'hide' ]">
-    <div class="rank" :class="{ 'highlight': index < 3 }" v-text="index + 1" />
-    <NLink
-      v-show="show"
-      class="content"
-      :to="$alias.pin(item.slug)"
-      target="_blank"
-    >
+  <li class="pin-ranker" :class="[show ? 'show' : 'hide']">
+    <div class="rank" :class="{ highlight: index < 3 }" v-text="index + 1" />
+    <NLink v-show="show" class="content" :to="$alias.pin(item.slug)" target="_blank">
       <div class="poster">
         <VImg :src="item.media && item.media.banner ? item.media.banner.url : 'default-poster'" width="80" height="50" />
       </div>
@@ -100,13 +95,7 @@
         <div>综合评分：{{ +item.visit_count + item.comment_count * 2 + item.like_count * 2 + item.mark_count * 2 + item.reward_count * 5 }}</div>
       </div>
     </NLink>
-    <NLink
-      v-show="!show"
-      class="content oneline"
-      :to="$alias.pin(item.slug)"
-      target="_blank"
-      v-html="item.title.text"
-    />
+    <NLink v-show="!show" class="content oneline" :to="$alias.pin(item.slug)" target="_blank" v-html="item.title.text" />
   </li>
 </template>
 

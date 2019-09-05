@@ -72,18 +72,14 @@
     class="pin-grid-list"
   >
     <ul slot-scope="{ flow }">
-      <PinPoster
-        v-for="item in flow"
-        :key="item.slug"
-        :item="item"
-      />
+      <PinPoster v-for="item in flow" :key="item.slug" :item="item" />
     </ul>
     <template slot="nothing">
-      <img src="~assets/img/error/no-content.png">
+      <img src="~assets/img/error/no-content.png" />
       <p>这里什么都没有</p>
     </template>
     <template slot="error">
-      <img src="~assets/img/error/no-network.png">
+      <img src="~assets/img/error/no-network.png" />
       <p>遇到错误了，点击重试</p>
     </template>
   </FlowLoader>
@@ -112,11 +108,12 @@ export default {
       this.$refs.loader && this.$refs.loader.initData()
     },
     handlePatch({ data }) {
-      this.$axios.$get('v1/pin/batch_patch', {
-        params: {
-          slug: data.result.map(_ => _.slug).join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/pin/batch_patch', {
+          params: {
+            slug: data.result.map(_ => _.slug).join(',')
+          }
+        })
         .then(result => {
           this.$refs.loader.patch(result)
         })

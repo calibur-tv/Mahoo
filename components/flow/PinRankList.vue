@@ -26,7 +26,7 @@
     border: 1px solid #e0e6ed;
     color: #222;
     border-radius: 4px;
-    transition: .2s;
+    transition: 0.2s;
     font-size: 12px;
     margin-top: 15px;
 
@@ -56,14 +56,7 @@
     class="pin-rank-list"
   >
     <ul slot-scope="{ flow, count }" @mouseleave="defaultActive = 0">
-      <PinRanker
-        v-for="(item, index) in flow"
-        :key="item.slug"
-        :index="index"
-        :item="item"
-        :show="defaultActive === index"
-        @mouseenter.native="handleMove(index)"
-      />
+      <PinRanker v-for="(item, index) in flow" :key="item.slug" :index="index" :item="item" :show="defaultActive === index" @mouseenter.native="handleMove(index)" />
       <NLink v-if="count" class="more" :to="$alias.tag(slug)" target="_blank">
         <span>查看更多</span>
         <i class="el-icon-arrow-right" />

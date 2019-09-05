@@ -7,9 +7,10 @@ export default url => {
     return
   }
 
-  axios.get(`${process.env.API_URL_BROWSER}v1/door/oauth2/ticket`, {
-    params: { url }
-  })
+  axios
+    .get(`${process.env.API_URL_BROWSER}v1/door/oauth2/ticket`, {
+      params: { url }
+    })
     .then(resp => {
       const config = resp.data.data
       const qqProvider = new QQ(config)

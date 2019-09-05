@@ -1,22 +1,14 @@
 <style lang="scss">
-#user-setting-layout {}
+#user-setting-layout {
+}
 </style>
 
 <template>
   <div id="user-setting-layout">
     <ElRow class="column-wrap">
       <ElCol :span="6">
-        <VSwitcher
-          :headers="headers"
-          :routable="true"
-          align="vertical"
-        >
-          <NLink
-            v-for="(item, index) in headers"
-            :key="index"
-            :slot="`tab-${index}`"
-            :to="item.route"
-          >
+        <VSwitcher :headers="headers" :routable="true" align="vertical">
+          <NLink v-for="(item, index) in headers" :key="index" :slot="`tab-${index}`" :to="item.route">
             <span v-text="item.name" />
           </NLink>
         </VSwitcher>

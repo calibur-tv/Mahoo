@@ -54,25 +54,29 @@ export default class Uploader {
         return customUpload
       })
 
-    // default uploading
+      // default uploading
     } else {
-      upload = ajax.transport({
-        url: this.config.endpoints.byFile,
-        data: this.config.additionalRequestData,
-        accept: this.config.types,
-        headers: this.config.additionalRequestHeaders,
-        beforeSend: files => {
-          preparePreview(files[0])
-        },
-        fieldName: this.config.field
-      }).then(response => response.body)
+      upload = ajax
+        .transport({
+          url: this.config.endpoints.byFile,
+          data: this.config.additionalRequestData,
+          accept: this.config.types,
+          headers: this.config.additionalRequestHeaders,
+          beforeSend: files => {
+            preparePreview(files[0])
+          },
+          fieldName: this.config.field
+        })
+        .then(response => response.body)
     }
 
-    upload.then(response => {
-      this.onUpload(response)
-    }).catch(error => {
-      this.onError(error)
-    })
+    upload
+      .then(response => {
+        this.onUpload(response)
+      })
+      .catch(error => {
+        this.onError(error)
+      })
   }
 
   /**
@@ -97,21 +101,28 @@ export default class Uploader {
       /**
        * Default uploading
        */
-      upload = ajax.post({
-        url: this.config.endpoints.byUrl,
-        data: Object.assign({
-          url
-        }, this.config.additionalRequestData),
-        type: ajax.contentType.JSON,
-        headers: this.config.additionalRequestHeaders
-      }).then(response => response.body)
+      upload = ajax
+        .post({
+          url: this.config.endpoints.byUrl,
+          data: Object.assign(
+            {
+              url
+            },
+            this.config.additionalRequestData
+          ),
+          type: ajax.contentType.JSON,
+          headers: this.config.additionalRequestHeaders
+        })
+        .then(response => response.body)
     }
 
-    upload.then(response => {
-      this.onUpload(response)
-    }).catch(error => {
-      this.onError(error)
-    })
+    upload
+      .then(response => {
+        this.onUpload(response)
+      })
+      .catch(error => {
+        this.onError(error)
+      })
   }
 
   /**
@@ -158,19 +169,23 @@ export default class Uploader {
         })
       }
 
-      upload = ajax.post({
-        url: this.config.endpoints.byFile,
-        data: formData,
-        type: ajax.contentType.JSON,
-        headers: this.config.additionalRequestHeaders
-      }).then(response => response.body)
+      upload = ajax
+        .post({
+          url: this.config.endpoints.byFile,
+          data: formData,
+          type: ajax.contentType.JSON,
+          headers: this.config.additionalRequestHeaders
+        })
+        .then(response => response.body)
     }
 
-    upload.then(response => {
-      this.onUpload(response)
-    }).catch(error => {
-      this.onError(error)
-    })
+    upload
+      .then(response => {
+        this.onUpload(response)
+      })
+      .catch(error => {
+        this.onError(error)
+      })
   }
 }
 

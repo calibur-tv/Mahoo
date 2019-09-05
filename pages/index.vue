@@ -43,7 +43,7 @@
           padding: 0 10px;
           font-size: 12px;
           color: #505050;
-          transition: color .3s;
+          transition: color 0.3s;
 
           &.is-active {
             color: #fff;
@@ -53,7 +53,7 @@
     }
 
     .pin-list {
-      >li {
+      > li {
         margin: 24px 16px;
 
         &:first-child {
@@ -84,24 +84,14 @@
 <template>
   <div id="homepage">
     <div class="only-pc container">
-      <component
-        :is="`${item.type}-area`"
-        v-for="item in tags"
-        :key="item.slug"
-        :name="item.name"
-        :slug="item.slug"
-      />
+      <component :is="`${item.type}-area`" v-for="item in tags" :key="item.slug" :name="item.name" :slug="item.slug" />
       <p class="beian">
         互联网 ICP 备案：沪 ICP 备 17050785 号 - 1
       </p>
     </div>
     <div class="only-h5">
       <div class="main-content">
-        <VSwitcher
-          :headers="tags"
-          :anchor-padding="5"
-          @change="handleTabSwitch"
-        >
+        <VSwitcher :headers="tags" :anchor-padding="5" @change="handleTabSwitch">
           <FlowLoader
             v-for="(item, index) in tags"
             :key="item.slug"
@@ -120,18 +110,14 @@
             :callback="handlePatch"
           >
             <ul slot-scope="{ flow }" class="pin-list">
-              <PinArticle
-                v-for="pin in flow"
-                :key="pin.slug"
-                :item="pin"
-              />
+              <PinArticle v-for="pin in flow" :key="pin.slug" :item="pin" />
             </ul>
             <template slot="nothing">
-              <img src="~assets/img/error/no-content.png">
+              <img src="~assets/img/error/no-content.png" />
               <p>这里什么都没有</p>
             </template>
             <template slot="error">
-              <img src="~assets/img/error/no-network.png">
+              <img src="~assets/img/error/no-network.png" />
               <p>遇到错误了，点击重试</p>
             </template>
           </FlowLoader>
@@ -165,11 +151,12 @@ export default {
       this.$refs.loader[index] && this.$refs.loader[index].initData()
     },
     handlePatch({ data }) {
-      this.$axios.$get('v1/pin/batch_patch', {
-        params: {
-          slug: data.result.map(_ => _.slug).join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/pin/batch_patch', {
+          params: {
+            slug: data.result.map(_ => _.slug).join(',')
+          }
+        })
         .then(result => {
           this.$refs.loader.patch(result)
         })

@@ -12,7 +12,7 @@
     line-height: 50px;
     padding: 0 10px;
     border-bottom: 1px solid #e9eaec;
-    text-align: center
+    text-align: center;
   }
 
   &-body {
@@ -43,7 +43,7 @@
       height: 14px;
       line-height: 14px;
       border-radius: 50%;
-      font-family: "iconfont" !important;
+      font-family: 'iconfont' !important;
       font-size: 12px;
       font-style: normal;
       -webkit-font-smoothing: antialiased;
@@ -55,7 +55,7 @@
         color: #fff;
 
         &:before {
-          content: "\e6e9";
+          content: '\e6e9';
         }
       }
     }
@@ -114,23 +114,10 @@
       {{ name }}
     </div>
     <no-ssr>
-      <FlowLoader
-        ref="loader"
-        func="getUserMessage"
-        type="sinceId"
-        :query="query"
-        :callback="handleMessageLoad"
-        :cache-timeout="86400"
-        :auto="0"
-        class="room-body"
-      >
+      <FlowLoader ref="loader" func="getUserMessage" type="sinceId" :query="query" :callback="handleMessageLoad" :cache-timeout="86400" :auto="0" class="room-body">
         <div ref="wrap" slot-scope="{ flow }" class="room-chats">
           <Scroll ref="scroll" :data="flow" @top="handleScrollUp">
-            <ChatRoom
-              ref="room"
-              :avatar-component="avatarComp"
-              :message-components="messageComps"
-            />
+            <ChatRoom ref="room" :avatar-component="avatarComp" :message-components="messageComps" />
           </Scroll>
         </div>
       </FlowLoader>
@@ -202,7 +189,7 @@ export default {
     },
     messageComps() {
       return {
-        'message': Message
+        message: Message
       }
     },
     computeHelperTxt() {
@@ -216,7 +203,7 @@ export default {
     }
   },
   watch: {
-    '$route'() {
+    $route() {
       this.initRoom()
     }
   },
@@ -230,7 +217,7 @@ export default {
   },
   methods: {
     initRoom() {
-      this.$nextTick(async() => {
+      this.$nextTick(async () => {
         this.$refs.room && this.$refs.room.clearMessage()
         await this.$refs.loader.initData({ is_up: 1 })
         await this.$refs.loader.loadMore({ force: true })
@@ -287,9 +274,12 @@ export default {
       }
       this.$nextTick(() => {
         if (params.is_up === 1) {
-          data.result.map(_ => _).reverse().map(msg => {
-            this.appendMessage(msg, false)
-          })
+          data.result
+            .map(_ => _)
+            .reverse()
+            .map(msg => {
+              this.appendMessage(msg, false)
+            })
           this.screenScroll(false)
         } else {
           data.result.map(msg => {
@@ -303,35 +293,40 @@ export default {
       if (!this.$refs.scroll) {
         return
       }
-      this.$refs.scroll.refresh()
-        .then(() => {
-          const newChatsHeight = this.$refs.room.$el.clientHeight
-          const wrapChatHeight = this.$refs.wrap.clientHeight
-          if (newChatsHeight < wrapChatHeight) {
-            return
-          }
-          if (this.lastChatsHeight && !forceBottom) {
-            this.$refs.scroll.scrollTo(0, this.lastChatsHeight - newChatsHeight)
-          } else {
-            this.$refs.scroll.scrollTo(0, wrapChatHeight - newChatsHeight)
-          }
-          this.lastChatsHeight = newChatsHeight
-        })
+      this.$refs.scroll.refresh().then(() => {
+        const newChatsHeight = this.$refs.room.$el.clientHeight
+        const wrapChatHeight = this.$refs.wrap.clientHeight
+        if (newChatsHeight < wrapChatHeight) {
+          return
+        }
+        if (this.lastChatsHeight && !forceBottom) {
+          this.$refs.scroll.scrollTo(0, this.lastChatsHeight - newChatsHeight)
+        } else {
+          this.$refs.scroll.scrollTo(0, wrapChatHeight - newChatsHeight)
+        }
+        this.lastChatsHeight = newChatsHeight
+      })
     },
     appendMessage(msg, insertToAfter = true) {
-      this.$refs.room.addMessage({
-        id: msg.id,
-        type: 'message',
-        float: msg.user.slug === this.slug ? 'right' : 'left',
-        color: msg.user.sex === 2 ? {
-          bg: '#ff6881',
-          text: '#fff'
-        } : {
-          bg: '#12b7f5',
-          text: '#fff'
+      this.$refs.room.addMessage(
+        {
+          id: msg.id,
+          type: 'message',
+          float: msg.user.slug === this.slug ? 'right' : 'left',
+          color:
+            msg.user.sex === 2
+              ? {
+                  bg: '#ff6881',
+                  text: '#fff'
+                }
+              : {
+                  bg: '#12b7f5',
+                  text: '#fff'
+                },
+          data: msg
         },
-        data: msg
-      }, insertToAfter)
+        insertToAfter
+      )
     },
     handleAddBubble() {
       if (!this.message.trim()) {
@@ -345,7 +340,9 @@ export default {
           }
         }
       ]
-      const randomId = Math.random().toString(10).substring(3, 6)
+      const randomId = Math.random()
+        .toString(10)
+        .substring(3, 6)
       this.appendMessage({
         id: randomId,
         user: this.$store.state.user,
@@ -354,10 +351,11 @@ export default {
       })
       this.screenScroll()
       this.message = ''
-      this.$axios.$post('v1/message/send', {
-        channel: this.mailto,
-        content: jsonContent
-      })
+      this.$axios
+        .$post('v1/message/send', {
+          channel: this.mailto,
+          content: jsonContent
+        })
         .then(msg => {
           this.$refs.room.updateMessage(randomId, {
             id: msg.id

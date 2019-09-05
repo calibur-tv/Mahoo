@@ -36,44 +36,20 @@
   <div id="user-auth-setting">
     <ul v-if="isAuth" class="providers">
       <li @click="bindUserQQ">
-        <i
-          :class="{ 'is-bind': user.providers.bind_qq }"
-          class="iconfont ic-qq"
-        />
+        <i :class="{ 'is-bind': user.providers.bind_qq }" class="iconfont ic-qq" />
       </li>
       <li @click="bindUserWechat">
-        <i
-          :class="{ 'is-bind': user.providers.bind_wechat }"
-          class="iconfont ic-v-chat"
-        />
+        <i :class="{ 'is-bind': user.providers.bind_wechat }" class="iconfont ic-v-chat" />
       </li>
       <li @click="bindUserPhone">
-        <i
-          :class="{ 'is-bind': user.providers.bind_phone }"
-          class="iconfont ic-phone"
-        />
+        <i :class="{ 'is-bind': user.providers.bind_phone }" class="iconfont ic-phone" />
       </li>
     </ul>
-    <VDialog
-      v-model="showInfoForm"
-      width="400px"
-      title="填写信息"
-      @submit="submitBindPhone"
-    >
-      <ElInput
-        v-model.trim="authCode"
-        type="number"
-        placeholder="短信验证码"
-        auto-complete="off"
-      />
-      <br>
-      <br>
-      <ElInput
-        v-model.trim="password"
-        type="text"
-        placeholder="密码（6-16个字符组成，区分大小写）"
-        auto-complete="off"
-      />
+    <VDialog v-model="showInfoForm" width="400px" title="填写信息" @submit="submitBindPhone">
+      <ElInput v-model.trim="authCode" type="number" placeholder="短信验证码" auto-complete="off" />
+      <br />
+      <br />
+      <ElInput v-model.trim="password" type="text" placeholder="密码（6-16个字符组成，区分大小写）" auto-complete="off" />
     </VDialog>
   </div>
 </template>
@@ -133,7 +109,7 @@ export default {
         inputPattern: /^(0|86|17951)?(1)[0-9]{10}$/,
         inputErrorMessage: '请输入正确的手机号码'
       })
-        .then(async({ value }) => {
+        .then(async ({ value }) => {
           this.phone = value
           try {
             await sendMessage(this, {

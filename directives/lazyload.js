@@ -47,9 +47,9 @@ export default {
 
     const running = () => list.filter(_ => _ && checkInView(_.el, opt.preload)).map(loadHandler)
 
-    const tProcess = throttle(200, running);
+    const tProcess = throttle(200, running)
 
-    ['scroll', 'resize', 'load'].forEach(evt => {
+    ;['scroll', 'resize', 'load'].forEach(evt => {
       window.addEventListener(evt, () => {
         tProcess()
       })

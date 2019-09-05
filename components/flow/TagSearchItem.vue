@@ -120,12 +120,7 @@
   <li :class="$style['tag-search-item']">
     <div class="only-pc" :class="$style['tag-search-item-pc']">
       <NLink :to="$alias.tag(item.slug)" target="_blank" :class="$style.poster">
-        <VImg
-          :src="item.avatar"
-          :width="105"
-          :height="105"
-          radius="5px"
-        />
+        <VImg :src="item.avatar" :width="105" :height="105" radius="5px" />
       </NLink>
       <div :class="$style.content">
         <h3 :class="$style.title">
@@ -140,13 +135,7 @@
       </div>
     </div>
     <NLink :to="$alias.tag(item.slug)" class="only-h5" :class="$style['tag-search-item-h5']">
-      <VImg
-        :class="$style.poster"
-        :src="item.avatar"
-        :width="80"
-        :height="80"
-        radius="5px"
-      />
+      <VImg :class="$style.poster" :src="item.avatar" :width="80" :height="80" radius="5px" />
       <div :class="$style.content">
         <h3 :class="$style.title">
           <span>分区</span>

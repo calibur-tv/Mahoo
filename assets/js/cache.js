@@ -1,7 +1,7 @@
 import { getUserInfo } from '~/api/userApi'
 
 export const getUserFromSessionStore = (ctx, slug) => {
-  const getUser = async() => {
+  const getUser = async () => {
     const user = await getUserInfo(ctx, { slug })
     user && setUserSessionStore(user)
     return user

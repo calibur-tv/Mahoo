@@ -12,7 +12,7 @@
   }
 
   .questions {
-    >li {
+    > li {
       padding: 20px 0;
       border-bottom: 1px solid $color-gray-line;
     }
@@ -48,43 +48,18 @@
 </style>
 
 <template>
-  <FlowLoader
-    ref="loader"
-    func="getZoneQuestions"
-    type="page"
-    :query="{ $axios, slug, changing: 'slug' }"
-    :callback="handleCallback"
-    class="submit-atfield-form"
-  >
+  <FlowLoader ref="loader" func="getZoneQuestions" type="page" :query="{ $axios, slug, changing: 'slug' }" :callback="handleCallback" class="submit-atfield-form">
     <header slot="header" slot-scope="{ source }" class="qa-header">
-      <h1><span v-if="tag">《{{ tag.name }}》</span><span>共{{ source.total }}道题</span></h1>
-      <ElAlert
-        title="题目都是单选，答完所有题之后只要满足「分区规则」即可加入分区"
-        type="info"
-        center
-        show-icon
-        :closable="false"
-      />
+      <h1>
+        <span v-if="tag">《{{ tag.name }}》</span><span>共{{ source.total }}道题</span>
+      </h1>
+      <ElAlert title="题目都是单选，答完所有题之后只要满足「分区规则」即可加入分区" type="info" center show-icon :closable="false" />
     </header>
     <ul slot-scope="{ flow }" class="questions">
-      <TagQuestion
-        v-for="(item, index) in flow"
-        :key="item.slug"
-        :item="item"
-        :number="index + 1"
-        :show-area="false"
-        @select="handleSelect"
-      />
+      <TagQuestion v-for="(item, index) in flow" :key="item.slug" :item="item" :number="index + 1" :show-zone="false" @select="handleSelect" />
     </ul>
     <footer slot="footer" class="qa-footer">
-      <ElButton
-        :loading="loading"
-        class="submit-btn"
-        type="danger"
-        plain
-        round
-        @click="restart"
-      >
+      <ElButton :loading="loading" class="submit-btn" type="danger" plain round @click="restart">
         更新试卷
       </ElButton>
       <ElButton :loading="loading" class="submit-btn" type="success" round @click="submit">
@@ -135,10 +110,11 @@ export default {
             return
           }
           this.loading = true
-          this.$axios.$post('v1/atfield/begin', {
-            slug: this.slug,
-            retry: true
-          })
+          this.$axios
+            .$post('v1/atfield/begin', {
+              slug: this.slug,
+              retry: true
+            })
             .then(result => {
               if (result === 'reject') {
                 this.$toast.info('该分区还未开放')
@@ -149,10 +125,9 @@ export default {
               } else if (result === 'no_question') {
                 this.$toast.info('分区题目数量不足')
               } else {
-                this.$toast.info('刷新成功')
-                  .then(() => {
-                    window.location.reload()
-                  })
+                this.$toast.info('刷新成功').then(() => {
+                  window.location.reload()
+                })
               }
             })
             .catch(err => {
@@ -175,9 +150,10 @@ export default {
         return
       }
       this.loading = true
-      this.$axios.$post('v1/atfield/submit', {
-        slug: this.slug
-      })
+      this.$axios
+        .$post('v1/atfield/submit', {
+          slug: this.slug
+        })
         .then(result => {
           if (result === 'pass') {
             this.$toast.success('挑战成功！')

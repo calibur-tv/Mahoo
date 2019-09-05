@@ -22,11 +22,12 @@ export default {
   },
   methods: {
     patchTag() {
-      this.$axios.$get('v1/tag/patch', {
-        params: {
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/tag/patch', {
+          params: {
+            slug: this.slug
+          }
+        })
         .then(data => {
           this.tag = this.$set(this, 'tag', Object.assign(this.tag, data))
         })

@@ -1,14 +1,7 @@
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 
 <template>
-  <el-button
-    class="send-mail-btn"
-    type="info"
-    round
-    plain
-    @click="toMessage"
-  >
+  <el-button class="send-mail-btn" type="info" round plain @click="toMessage">
     发消息
   </el-button>
 </template>
@@ -45,12 +38,13 @@ export default {
         return
       }
       const redirectWindow = window.open()
-      this.$axios.$get('v1/message/get_channel', {
-        params: {
-          type: 1,
-          slug: this.slug
-        }
-      })
+      this.$axios
+        .$get('v1/message/get_channel', {
+          params: {
+            type: 1,
+            slug: this.slug
+          }
+        })
         .then(channel => {
           redirectWindow.location = this.$alias.user(this.$store.state.user.slug, `message?mailto=${channel}&name=${this.nickname}`)
         })

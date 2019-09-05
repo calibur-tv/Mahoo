@@ -126,19 +126,12 @@
           <i class="el-icon-arrow-right" />
         </NLink>
         <template v-else-if="!tags.bangumi.length">
-          <p class="empty">
-            {{ TA }}还不是一个动漫迷~
-          </p>
+          <p class="empty">{{ TA }}还不是一个动漫迷~</p>
           <span />
         </template>
       </div>
       <ul v-if="tags.bangumi.length" class="bangumis clearfix">
-        <BangumiItem
-          v-for="item in tags.bangumi.slice(0, 4)"
-          ref="bangumi"
-          :key="item.slug"
-          :item="item"
-        />
+        <BangumiItem v-for="item in tags.bangumi.slice(0, 4)" ref="bangumi" :key="item.slug" :item="item" />
       </ul>
     </div>
     <div class="block">
@@ -152,19 +145,12 @@
           <i class="el-icon-arrow-right" />
         </NLink>
         <template v-else-if="!tags.game.length">
-          <p class="empty">
-            {{ TA }}从来不玩游戏~
-          </p>
+          <p class="empty">{{ TA }}从来不玩游戏~</p>
           <span />
         </template>
       </div>
       <ul v-if="tags.game.length" class="games clearfix">
-        <GameItem
-          v-for="item in tags.game.slice(0, 5)"
-          ref="game"
-          :key="item.slug"
-          :item="item"
-        />
+        <GameItem v-for="item in tags.game.slice(0, 5)" ref="game" :key="item.slug" :item="item" />
       </ul>
     </div>
     <div class="block">
@@ -178,19 +164,12 @@
           <i class="el-icon-arrow-right" />
         </NLink>
         <template v-else-if="!tags.topic.length">
-          <p class="empty">
-            {{ TA }}不喜欢参与任何话题~
-          </p>
+          <p class="empty">{{ TA }}不喜欢参与任何话题~</p>
           <span />
         </template>
       </div>
       <ul v-if="tags.topic.length" class="topics clearfix">
-        <TopicItem
-          v-for="item in tags.topic.slice(0, 12)"
-          ref="topic"
-          :key="item.slug"
-          :item="item"
-        />
+        <TopicItem v-for="item in tags.topic.slice(0, 12)" ref="topic" :key="item.slug" :item="item" />
       </ul>
     </div>
     <div class="block">
@@ -208,20 +187,13 @@
           </NLink>
         </div>
         <template v-else>
-          <p class="empty">
-            {{ TA }}还没写过文章~
-          </p>
+          <p class="empty">{{ TA }}还没写过文章~</p>
           <CreateTagBtn v-if="isMine" class="create-btn fade-link" title="新建专栏" parent="uh4f" @create="handleCreateNotebook" />
           <span v-else />
         </template>
       </div>
       <ul v-if="tags.notebook.length" class="notebooks">
-        <NotebookItem
-          v-for="item in tags.notebook.slice(0, 4)"
-          ref="notebook"
-          :key="item.slug"
-          :item="item"
-        />
+        <NotebookItem v-for="item in tags.notebook.slice(0, 4)" ref="notebook" :key="item.slug" :item="item" />
       </ul>
     </div>
   </div>
@@ -283,11 +255,12 @@ export default {
       Object.keys(this.tags).forEach((category, index) => {
         slug = slug.concat(this.tags[category].map(_ => _.slug).slice(0, lengths[index]))
       })
-      this.$axios.$get('v1/tag/batch_patch', {
-        params: {
-          slug: slug.join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/tag/batch_patch', {
+          params: {
+            slug: slug.join(',')
+          }
+        })
         .then(data => {
           Object.keys(this.tags).forEach(category => {
             this.tags[category].forEach((tag, index) => {

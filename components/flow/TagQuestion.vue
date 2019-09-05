@@ -58,7 +58,7 @@
         justify-content: flex-start;
         align-items: center;
 
-        >* {
+        > * {
           display: inline-block;
           color: #99a2aa;
           font-size: 12px;
@@ -79,30 +79,17 @@
     <div :class="$style.content">
       <h2 :class="$style.title">
         <p v-html="(number > -1 ? `${number}. ` : '') + item.title.text" />
-        <template v-if="showArea">
-          <NLink
-            v-if="item.area"
-            :to="$alias.tag(item.area.slug)"
-            target="_blank"
-          >
+        <template v-if="showZone">
+          <NLink v-if="item.area" :to="$alias.tag(item.area.slug)" target="_blank">
             <VImg :src="item.area.avatar" width="24" height="24" radius="5px" />
           </NLink>
-          <NLink
-            v-else-if="item.topic"
-            :to="$alias.tag(item.topic.slug)"
-            target="_blank"
-          >
+          <NLink v-else-if="item.topic" :to="$alias.tag(item.topic.slug)" target="_blank">
             <VImg :src="item.topic.avatar" width="24" height="24" radius="5px" />
           </NLink>
         </template>
       </h2>
       <main v-if="vote && vote.data">
-        <p
-          v-for="(option, index) in vote.data.items"
-          :key="option.id"
-          :class="{ [$style['selectable']]: !showControl }"
-          @click="handleSelect(option)"
-        >
+        <p v-for="(option, index) in vote.data.items" :key="option.id" :class="{ [$style['selectable']]: !showControl }" @click="handleSelect(option)">
           <i v-if="item.selected_id && item.selected_id === option.id" class="iconfont ic-right" />
           <i v-else-if="vote.data.right_ids && ~vote.data.right_ids.indexOf(option.id)" class="iconfont ic-right" />
           <span>{{ order(index) }}. {{ option.text }}</span>
@@ -120,26 +107,10 @@
           <time v-text="$utils.timeAgo(item.created_at)" />
         </div>
         <div v-if="showControl">
-          <ElButton
-            v-if="showRemove"
-            :loading="loading"
-            size="mini"
-            plain
-            round
-            type="primary"
-            @click="handleDelete"
-          >
+          <ElButton v-if="showRemove" :loading="loading" size="mini" plain round type="primary" @click="handleDelete">
             删除
           </ElButton>
-          <ElButton
-            v-if="!item.recommended_at && showPass"
-            :loading="loading"
-            size="mini"
-            plain
-            round
-            type="success"
-            @click="handlePass"
-          >
+          <ElButton v-if="!item.recommended_at && showPass" :loading="loading" size="mini" plain round type="success" @click="handlePass">
             通过
           </ElButton>
         </div>
@@ -195,9 +166,10 @@ export default {
             return
           }
           this.loading = true
-          this.$axios.$post('v1/atfield/delete', {
-            slug: this.item.slug
-          })
+          this.$axios
+            .$post('v1/atfield/delete', {
+              slug: this.item.slug
+            })
             .then(() => {
               this.$toast.success('删除成功')
               this.$emit('remove')
@@ -214,9 +186,10 @@ export default {
         return
       }
       this.loading = true
-      this.$axios.$post('v1/atfield/recommend', {
-        slug: this.item.slug
-      })
+      this.$axios
+        .$post('v1/atfield/recommend', {
+          slug: this.item.slug
+        })
         .then(() => {
           this.$toast.success('入库成功')
           this.$emit('remove')
@@ -234,10 +207,11 @@ export default {
         return
       }
       this.submitting = true
-      this.$axios.$post('v1/social/vote', {
-        pin_slug: this.item.slug,
-        answer_hash: [option.id]
-      })
+      this.$axios
+        .$post('v1/social/vote', {
+          pin_slug: this.item.slug,
+          answer_hash: [option.id]
+        })
         .then(() => {
           this.$emit('select', {
             id: this.item.slug,

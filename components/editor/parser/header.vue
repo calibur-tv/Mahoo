@@ -32,15 +32,12 @@ export default {
   },
   render(h) {
     const level = this.item.data.level
-    return h(
-      'h' + this.item.data.level,
-      {
-        'class': this.$style[`h${level}`],
-        domProps: {
-          innerHTML: this.item.data.text
-        }
+    return h('h' + this.item.data.level, {
+      class: this.$style[`h${level}`],
+      domProps: {
+        innerHTML: this.item.data.text
       }
-    )
+    })
   }
 }
 </script>

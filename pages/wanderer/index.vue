@@ -243,33 +243,20 @@
           <div slot="tip" class="el-upload-tip">
             <i class="el-icon-picture" />
             <div>请添加封面图（选填）</div>
-            <p>支持8MB内的JPG／JPEG／PNG格式的高清图片<br>（建议大于960*540像素）</p>
+            <p>支持8MB内的JPG／JPEG／PNG格式的高清图片<br />（建议大于960*540像素）</p>
           </div>
         </ElUpload>
         <template v-if="title && title.banner">
-          <div class="image" :style="{ backgroundImage: `url(${$resize(title.banner.url, { width: 660 })}`}" />
+          <div class="image" :style="{ backgroundImage: `url(${$resize(title.banner.url, { width: 660 })}` }" />
           <div class="tool">
             <i class="el-icon-delete" @click="deleteBanner" />
           </div>
         </template>
       </div>
       <div class="title">
-        <ElInput
-          v-model="title.text"
-          :show-word-limit="true"
-          :autosize="{ minRows: 1, maxRows: 2 }"
-          type="textarea"
-          resize="none"
-          placeholder="请输入标题（建议30字以内）"
-          maxlength="40"
-        />
+        <ElInput v-model="title.text" :show-word-limit="true" :autosize="{ minRows: 1, maxRows: 2 }" type="textarea" resize="none" placeholder="请输入标题（建议30字以内）" maxlength="40" />
       </div>
-      <Editor
-        v-model="content"
-        :slug="slug"
-        :time="last_edit_at"
-        @save="onEditorSave"
-      />
+      <Editor v-model="content" :slug="slug" :time="last_edit_at" @save="onEditorSave" />
       <ElForm class="footer" label-position="top" label-width="80px">
         <ElFormItem label="选择分区">
           <AreaPicker v-model="area" />
@@ -282,59 +269,24 @@
         </ElFormItem>
         <ElFormItem class="button-wrap">
           <template v-if="slug">
-            <ElButton
-              :loading="loading"
-              type="success"
-              round
-              @click="actionUpdate(true)"
-            >
+            <ElButton :loading="loading" type="success" round @click="actionUpdate(true)">
               {{ published_at ? '发布更新' : '更新并发布' }}
             </ElButton>
-            <ElButton
-              v-if="!published_at"
-              :loading="loading"
-              round
-              plain
-              type="warning"
-              @click="actionUpdate(false)"
-            >
+            <ElButton v-if="!published_at" :loading="loading" round plain type="warning" @click="actionUpdate(false)">
               存草稿
             </ElButton>
-            <ElButton
-              :loading="loading"
-              type="primary"
-              round
-              plain
-              @click="actionRedo"
-            >
+            <ElButton :loading="loading" type="primary" round plain @click="actionRedo">
               撤销修改
             </ElButton>
           </template>
           <template v-else>
-            <ElButton
-              :loading="loading"
-              type="success"
-              round
-              @click="actionCreate(true)"
-            >
+            <ElButton :loading="loading" type="success" round @click="actionCreate(true)">
               发表文章
             </ElButton>
-            <ElButton
-              :loading="loading"
-              round
-              plain
-              type="warning"
-              @click="actionCreate(false)"
-            >
+            <ElButton :loading="loading" round plain type="warning" @click="actionCreate(false)">
               存草稿
             </ElButton>
-            <ElButton
-              :loading="loading"
-              type="primary"
-              round
-              plain
-              @click="actionRedo"
-            >
+            <ElButton :loading="loading" type="primary" round plain @click="actionRedo">
               删除文章
             </ElButton>
           </template>
@@ -388,9 +340,10 @@ export default {
     if (!slug) {
       return
     }
-    return app.$axios.$get('v1/pin/update/content', {
-      params: { slug }
-    })
+    return app.$axios
+      .$get('v1/pin/update/content', {
+        params: { slug }
+      })
       .then(data => {
         data.area = data.area ? data.area.slug : ''
         data.topic = data.topic ? data.topic.slug : ''
@@ -454,18 +407,19 @@ export default {
         return
       }
 
-      this.$axios.$post('v1/pin/create/story', {
-        area: this.area,
-        topic: this.topic,
-        notebook: this.notebook,
-        content: [
-          {
-            type: 'title',
-            data: this.title
-          }
-        ].concat(this.content),
-        publish
-      })
+      this.$axios
+        .$post('v1/pin/create/story', {
+          area: this.area,
+          topic: this.topic,
+          notebook: this.notebook,
+          content: [
+            {
+              type: 'title',
+              data: this.title
+            }
+          ].concat(this.content),
+          publish
+        })
         .then(slug => {
           this.removeCache()
           window.location = this.$alias.pin(slug)
@@ -481,19 +435,20 @@ export default {
       }
 
       const { slug } = this
-      this.$axios.$post('v1/pin/update/story', {
-        slug,
-        area: this.area,
-        topic: this.topic,
-        notebook: this.notebook,
-        content: [
-          {
-            type: 'title',
-            data: this.title
-          }
-        ].concat(this.content),
-        publish
-      })
+      this.$axios
+        .$post('v1/pin/update/story', {
+          slug,
+          area: this.area,
+          topic: this.topic,
+          notebook: this.notebook,
+          content: [
+            {
+              type: 'title',
+              data: this.title
+            }
+          ].concat(this.content),
+          publish
+        })
         .then(result => {
           this.removeCache()
           window.location = this.$alias.pin(result)
@@ -506,10 +461,9 @@ export default {
     actionRedo() {
       if (this.content.length || this.title.text.length || this.title.banner) {
         this.removeCache()
-        this.$toast.success(this.slug ? '撤销成功' : '删除成功')
-          .then(() => {
-            window.location.reload()
-          })
+        this.$toast.success(this.slug ? '撤销成功' : '删除成功').then(() => {
+          window.location.reload()
+        })
       }
     },
     removeCache() {

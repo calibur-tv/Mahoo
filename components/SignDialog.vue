@@ -89,16 +89,8 @@ $input-height: 40px;
 </style>
 
 <template>
-  <div
-    v-if="canRender"
-    class="sign-container"
-  >
-    <div
-      v-if="isGuest"
-      id="space3D"
-      :class="[showModal ? 'space-enter' : 'space-leave']"
-      @click="hiddenSign"
-    >
+  <div v-if="canRender" class="sign-container">
+    <div v-if="isGuest" id="space3D" :class="[showModal ? 'space-enter' : 'space-leave']" @click="hiddenSign">
       <div ref="wrap" class="sign-modal-wrap">
         <div
           :class="{
@@ -110,19 +102,13 @@ $input-height: 40px;
           @click.stop
         >
           <div class="logo">
-            <img src="https://file.calibur.tv/logo.png" alt="logo">
+            <img src="https://file.calibur.tv/logo.png" alt="logo" />
           </div>
           <div v-show="showReset" class="form-container">
-            <ResetPasswordForm
-              @to-login="showReset = false"
-              @to-register="showRegister"
-            />
+            <ResetPasswordForm @to-login="showReset = false" @to-register="showRegister" />
           </div>
           <div v-show="!showReset" class="form-container">
-            <SignInForm
-              @to-reset="showReset = true"
-              @to-register="showRegister"
-            />
+            <SignInForm @to-reset="showReset = true" @to-register="showRegister" />
           </div>
         </div>
         <div
@@ -135,7 +121,7 @@ $input-height: 40px;
           @click.stop
         >
           <div class="logo">
-            <img src="https://file.calibur.tv/logo.png" alt="logo">
+            <img src="https://file.calibur.tv/logo.png" alt="logo" />
           </div>
           <div class="form-container">
             <SignUpForm @to-login="showLogin" />

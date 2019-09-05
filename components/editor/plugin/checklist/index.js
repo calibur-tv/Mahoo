@@ -34,7 +34,8 @@ export default class Checklist {
    */
   static get toolbox() {
     return {
-      icon: '<svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-2.394a5.106 5.106 0 1 0 0-10.212 5.106 5.106 0 0 0 0 10.212zm-.675-4.665l2.708-2.708 1.392 1.392-2.708 2.708-1.392 1.391-2.971-2.971L5.245 6.36l1.58 1.58z"/></svg>',
+      icon:
+        '<svg width="15" height="15" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15zm0-2.394a5.106 5.106 0 1 0 0-10.212 5.106 5.106 0 0 0 0 10.212zm-.675-4.665l2.708-2.708 1.392 1.392-2.708 2.708-1.392 1.391-2.971-2.971L5.245 6.36l1.58 1.58z"/></svg>',
       title: '进度表'
     }
   }
@@ -91,18 +92,22 @@ export default class Checklist {
     }
 
     // add event-listeners
-    this._elements.wrapper.addEventListener('keydown', event => {
-      const [ENTER, BACKSPACE] = [13, 8] // key codes
+    this._elements.wrapper.addEventListener(
+      'keydown',
+      event => {
+        const [ENTER, BACKSPACE] = [13, 8] // key codes
 
-      switch (event.keyCode) {
-        case ENTER:
-          this.appendNewElement(event)
-          break
-        case BACKSPACE:
-          this.backspace(event)
-          break
-      }
-    }, false)
+        switch (event.keyCode) {
+          case ENTER:
+            this.appendNewElement(event)
+            break
+          case BACKSPACE:
+            this.backspace(event)
+            break
+        }
+      },
+      false
+    )
 
     this._elements.wrapper.addEventListener('click', event => {
       this.toggleCheckbox(event)
@@ -218,9 +223,15 @@ export default class Checklist {
   backspace(event) {
     const currentItem = event.target.closest(`.${this.CSS.item}`)
     const currentIndex = this._elements.items.indexOf(currentItem)
-    const currentItemText = currentItem.querySelector(`.${this.CSS.textField}`).innerHTML.replace('<br>', ' ').trim()
+    const currentItemText = currentItem
+      .querySelector(`.${this.CSS.textField}`)
+      .innerHTML.replace('<br>', ' ')
+      .trim()
     const firstItem = this._elements.items[0]
-    const firstItemText = firstItem.querySelector(`.${this.CSS.textField}`).innerHTML.replace('<br>', ' ').trim()
+    const firstItemText = firstItem
+      .querySelector(`.${this.CSS.textField}`)
+      .innerHTML.replace('<br>', ' ')
+      .trim()
 
     if (!firstItemText) {
       return
@@ -292,7 +303,10 @@ export default class Checklist {
     this._data.items = []
 
     for (let i = 0; i < this._elements.items.length; i++) {
-      const value = this._elements.items[i].querySelector(`.${this.CSS.textField}`).innerHTML.replace('<br>', ' ').trim()
+      const value = this._elements.items[i]
+        .querySelector(`.${this.CSS.textField}`)
+        .innerHTML.replace('<br>', ' ')
+        .trim()
 
       if (value) {
         this._data.items.push({

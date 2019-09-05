@@ -37,6 +37,34 @@
  * @license  MIT
  */
 
+/**
+ * Header block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
+/**
+ * Delimiter Block for the Editor.js.
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
+/**
+ * Base Paragraph Block for the Editor.js.
+ * Represents simple paragraph
+ *
+ * @author CodeX (team@ifmo.su)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ * @version 2.0.0
+ */
+
 /*!
  * vue-client-only v2.0.0
  * (c) 2019-present egoist <0x142857@gmail.com>
@@ -153,14 +181,4 @@ and limitations under the License.
  * @license MIT
  * @author CodeX (https://codex.so)
  * @version 1.1.1
- */
-
-/**
- * Base Paragraph Block for the Editor.js.
- * Represents simple paragraph
- *
- * @author CodeX (team@ifmo.su)
- * @copyright CodeX 2018
- * @license The MIT License (MIT)
- * @version 2.0.0
  */

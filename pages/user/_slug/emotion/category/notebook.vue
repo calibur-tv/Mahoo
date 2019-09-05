@@ -1,12 +1,7 @@
 <template>
   <div id="user-notebook">
     <ul>
-      <NotebookItem
-        v-for="item in list"
-        ref="list"
-        :key="item.slug"
-        :item="item"
-      />
+      <NotebookItem v-for="item in list" ref="list" :key="item.slug" :item="item" />
     </ul>
   </div>
 </template>
@@ -37,11 +32,12 @@ export default {
   },
   methods: {
     batchPatch() {
-      this.$axios.$get('v1/tag/batch_patch', {
-        params: {
-          slug: this.list.map(_ => _.slug).join(',')
-        }
-      })
+      this.$axios
+        .$get('v1/tag/batch_patch', {
+          params: {
+            slug: this.list.map(_ => _.slug).join(',')
+          }
+        })
         .then(data => {
           this.list.forEach((item, index) => {
             Object.keys(data).forEach(slug => {

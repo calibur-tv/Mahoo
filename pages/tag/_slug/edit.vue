@@ -84,10 +84,7 @@ export default {
       }
       const result = ['基本信息']
       const area = process.env.TAGS
-      if (
-        !~[area.bangumi, area.game, area.topic].indexOf(this.tag.slug) &&
-        this.tag.parent_slug !== area.notebook
-      ) {
+      if (!~[area.bangumi, area.game, area.topic].indexOf(this.tag.slug) && this.tag.parent_slug !== area.notebook) {
         result.push('加入规则')
       }
       return result

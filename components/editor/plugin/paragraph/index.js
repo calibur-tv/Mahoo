@@ -203,7 +203,7 @@ export default class Paragraph {
    */
   static get pasteConfig() {
     return {
-      tags: [ 'P' ]
+      tags: ['P']
     }
   }
 }

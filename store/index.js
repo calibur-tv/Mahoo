@@ -71,9 +71,11 @@ export const mutations = {
             data: null
           })
         }
-        result.push(Object.assign(item, {
-          user: {}
-        }))
+        result.push(
+          Object.assign(item, {
+            user: {}
+          })
+        )
       })
       state.messageMenu.list = result
       state.messageMenu.time = randomStr()
@@ -192,7 +194,8 @@ export const actions = {
     if (state.roles || !state.user || !state.user.title.length) {
       return
     }
-    this.$axios.$get('v1/user/roles')
+    this.$axios
+      .$get('v1/user/roles')
       .then(data => {
         commit('SET_USER_ROLE', data)
       })
@@ -201,7 +204,7 @@ export const actions = {
 }
 
 export const getters = {
-  isMine: state => slug => state.isAuth ? state.user.slug === slug : false,
-  isAdmin: state => state.isAuth ? state.user.is_admin : false,
-  hasRole: state => role => state.user.is_admin ? true : state.roles ? ~state.roles.indexOf(role) : false
+  isMine: state => slug => (state.isAuth ? state.user.slug === slug : false),
+  isAdmin: state => (state.isAuth ? state.user.is_admin : false),
+  hasRole: state => role => (state.user.is_admin ? true : state.roles ? ~state.roles.indexOf(role) : false)
 }

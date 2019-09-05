@@ -1,14 +1,6 @@
 <template>
   <section class="json-content">
-    <component
-      :is="`v-${item.type}`"
-      v-for="(item, index) in content"
-      :key="index"
-      :item="item"
-      :reward="reward"
-      :vote="vote"
-      :slug="slug"
-    />
+    <component :is="`v-${item.type}`" v-for="(item, index) in content" :key="index" :item="item" :reward="reward" :vote="vote" :slug="slug" />
   </section>
 </template>
 

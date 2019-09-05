@@ -18,12 +18,7 @@
     </div>
     <div class="selection">
       <ElSelect v-if="myTagsFetched" v-model="selected" filterable default-first-option placeholder="请选择">
-        <ElOption
-          v-for="item in options"
-          :key="item.slug"
-          :label="item.name"
-          :value="item.slug"
-        />
+        <ElOption v-for="item in options" :key="item.slug" :label="item.name" :value="item.slug" />
       </ElSelect>
     </div>
   </div>

@@ -51,19 +51,8 @@
 
 <template>
   <section id="category-layout">
-    <VSwitcher
-      :headers="headers"
-      :routable="true"
-      :anchor-padding="15"
-      align="start"
-    >
-      <NLink
-        v-for="(item, index) in headers"
-        :key="index"
-        :slot="`tab-${index}`"
-        :to="item.route"
-        v-text="item.name"
-      />
+    <VSwitcher :headers="headers" :routable="true" :anchor-padding="15" align="start">
+      <NLink v-for="(item, index) in headers" :key="index" :slot="`tab-${index}`" :to="item.route" v-text="item.name" />
     </VSwitcher>
     <NuxtChild />
   </section>
