@@ -56,7 +56,7 @@
       <ElAlert title="题目都是单选，答完所有题之后只要满足「分区规则」即可加入分区" type="info" center show-icon :closable="false" />
     </header>
     <ul slot-scope="{ flow }" class="questions">
-      <TagQuestion v-for="(item, index) in flow" :key="item.slug" :item="item" :number="index + 1" :show-area="false" @select="handleSelect" />
+      <TagQuestion v-for="(item, index) in flow" :key="item.slug" :item="item" :number="index + 1" :show-zone="false" @select="handleSelect" />
     </ul>
     <footer slot="footer" class="qa-footer">
       <ElButton :loading="loading" class="submit-btn" type="danger" plain round @click="restart">

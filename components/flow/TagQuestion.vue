@@ -79,7 +79,7 @@
     <div :class="$style.content">
       <h2 :class="$style.title">
         <p v-html="(number > -1 ? `${number}. ` : '') + item.title.text" />
-        <template v-if="showArea">
+        <template v-if="showZone">
           <NLink v-if="item.area" :to="$alias.tag(item.area.slug)" target="_blank">
             <VImg :src="item.area.avatar" width="24" height="24" radius="5px" />
           </NLink>

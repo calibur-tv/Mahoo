@@ -211,7 +211,7 @@
     <div :class="[$style['pin-article-pc'], { [$style['pin-article-pc-media']]: item.media }]" class="only-pc">
       <h2 :class="$style.title">
         <span :class="$style.badge" v-text="item.badge" />
-        <div v-if="showArea" :class="$style.area">
+        <div v-if="showZone" :class="$style.area">
           <NLink v-if="item.area" :to="$alias.tag(item.area.slug)" target="_blank">
             <VImg :src="item.area.avatar" width="24" height="24" radius="5px" />
           </NLink>

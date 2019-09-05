@@ -100,7 +100,7 @@
     </ul>
     <FlowLoader ref="loader" func="getTagFlows" :type="sort === 'newest' ? 'lastId' : 'seenIds'" :query="query" :callback="patchPin">
       <ul slot-scope="{ flow }" class="flows">
-        <PinArticle v-for="item in flow" :key="item.slug" :show-area="showArea" :item="item" />
+        <PinArticle v-for="item in flow" :key="item.slug" :show-zone="showArea" :item="item" />
       </ul>
       <SkeletonArticle slot="loading" />
       <template slot="nothing">

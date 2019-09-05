@@ -112,7 +112,7 @@
         </ul>
         <FlowLoader ref="loader" func="getATField" type="page" :query="query">
           <ul slot-scope="{ flow }" class="flows">
-            <TagQuestion v-for="item in flow" :key="item.slug" :show-area="!slug" :show-control="true" :item="item" @remove="handleRemove(item.slug)" />
+            <TagQuestion v-for="item in flow" :key="item.slug" :show-zone="!slug" :show-control="true" :item="item" @remove="handleRemove(item.slug)" />
           </ul>
           <SkeletonArticle slot="loading" />
           <template slot="nothing">
