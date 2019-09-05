@@ -46,7 +46,7 @@
         <div class="left-aside">
           <JoinCard :tag="tag" />
           <Affix :top="70">
-            <TagHotList v-if="children" :slug="slug" title="热门游戏" :children="children" />
+            <TagHotList :slug="slug" title="热门游戏" :children="children" />
           </Affix>
         </div>
       </ElCol>
@@ -100,7 +100,7 @@ export default {
   data() {
     return {
       tag: null,
-      children: null,
+      children: [],
       is_master: false
     }
   },

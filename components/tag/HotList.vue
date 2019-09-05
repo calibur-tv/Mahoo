@@ -97,14 +97,14 @@
 </style>
 
 <template>
-  <div v-if="allChildren.length" class="tag-hot-list">
+  <div class="tag-hot-list">
     <h3 class="title only-pc">
       <span v-text="title" />
       <CreateTagBtn v-if="isAdmin" :parent="slug" @create="handleCreate">
         <i class="el-icon-plus fade-link" />
       </CreateTagBtn>
     </h3>
-    <RollList :list="allChildren" :fetch="getData" :count="10">
+    <RollList v-if="allChildren.length" :list="allChildren" :fetch="getData" :count="10">
       <i slot="icon" class="el-icon-refresh" />
       <template slot="text">
         &nbsp;换一换
