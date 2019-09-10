@@ -150,36 +150,33 @@ module.exports = {
     ]
 
     if (!isDev) {
-      result.push([
-        '@nuxtjs/pwa',
-        {
-          meta: {
-            mobileApp: false,
-            lang: 'zh-CN',
-            author: injectScript.author,
-            name: injectScript.title,
-            description: injectScript.description
-          },
-          icon: false
-        }
-      ])
+      result.push('@nuxtjs/pwa')
     }
 
     return result
   })(),
 
-  manifest: {
-    name: injectScript.name,
-    short_name: injectScript.title,
-    description: injectScript.description,
-    start_url: 'https://www.calibur.tv/?utm_source=pwa',
-    lang: 'zh-CN'
-  },
-
-  workbox: {
-    offlineStrategy: 'NetworkOnly',
-    workboxVersion: '4.3.1',
-    workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
+  pwa: {
+    manifest: {
+      name: injectScript.name,
+      short_name: injectScript.title,
+      description: injectScript.description,
+      start_url: 'https://www.calibur.tv/?utm_source=pwa',
+      lang: 'zh-CN'
+    },
+    workbox: {
+      offlineStrategy: 'NetworkOnly',
+      workboxVersion: '4.3.1',
+      workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
+    },
+    meta: {
+      mobileApp: false,
+      lang: 'zh-CN',
+      author: injectScript.author,
+      name: injectScript.title,
+      description: injectScript.description
+    },
+    icon: false
   },
 
   axios: {
