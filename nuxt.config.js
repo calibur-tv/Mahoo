@@ -174,6 +174,7 @@ module.exports = {
       mobileAppIOS: true,
       nativeUI: true,
       lang: 'zh-CN',
+      appleStatusBarStyle: 'black-translucent',
       author: injectScript.author,
       name: injectScript.title,
       description: injectScript.description
