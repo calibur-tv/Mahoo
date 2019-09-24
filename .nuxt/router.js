@@ -8,6 +8,12 @@ const _1116eb59 = () => interopDefault(import('../pages/about/index/managers.vue
 const _28d8da88 = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
 const _0377315e = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
 const _4d54d59e = () => interopDefault(import('../pages/wanderer/index.vue' /* webpackChunkName: "pages/wanderer/index" */))
+const _955f1180 = () => interopDefault(import('../pages/app/category.vue' /* webpackChunkName: "pages/app/category" */))
+const _5606daa0 = () => interopDefault(import('../pages/app/found.vue' /* webpackChunkName: "pages/app/found" */))
+const _d25088be = () => interopDefault(import('../pages/app/home.vue' /* webpackChunkName: "pages/app/home" */))
+const _69ec1df5 = () => interopDefault(import('../pages/app/launch.vue' /* webpackChunkName: "pages/app/launch" */))
+const _049b12cc = () => interopDefault(import('../pages/app/notice.vue' /* webpackChunkName: "pages/app/notice" */))
+const _74abdc8d = () => interopDefault(import('../pages/app/write.vue' /* webpackChunkName: "pages/app/write" */))
 const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
 const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
 const _527cab04 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
@@ -76,6 +82,36 @@ export const routerOptions = {
       component: _4d54d59e,
       props: false,
       name: "wanderer"
+    }, {
+      path: "/app/category",
+      component: _955f1180,
+      props: false,
+      name: "app-category"
+    }, {
+      path: "/app/found",
+      component: _5606daa0,
+      props: false,
+      name: "app-found"
+    }, {
+      path: "/app/home",
+      component: _d25088be,
+      props: false,
+      name: "app-home"
+    }, {
+      path: "/app/launch",
+      component: _69ec1df5,
+      props: false,
+      name: "app-launch"
+    }, {
+      path: "/app/notice",
+      component: _049b12cc,
+      props: false,
+      name: "app-notice"
+    }, {
+      path: "/app/write",
+      component: _74abdc8d,
+      props: false,
+      name: "app-write"
     }, {
       path: "/callback/auth-error",
       component: _314f18c9,

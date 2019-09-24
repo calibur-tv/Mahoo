@@ -161,7 +161,7 @@ module.exports = {
       name: injectScript.name,
       short_name: injectScript.title,
       description: injectScript.description,
-      start_url: 'https://www.calibur.tv/?utm_source=pwa',
+      start_url: 'https://www.calibur.tv/app/launch',
       lang: 'zh-CN'
     },
     workbox: {
@@ -170,13 +170,14 @@ module.exports = {
       workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
     },
     meta: {
-      mobileApp: false,
+      mobileApp: true,
+      mobileAppIOS: true,
+      nativeUI: true,
       lang: 'zh-CN',
       author: injectScript.author,
       name: injectScript.title,
       description: injectScript.description
-    },
-    icon: false
+    }
   },
 
   axios: {

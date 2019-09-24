@@ -1,0 +1,2 @@
+exports.ids=[8],exports.modules={366:function(t,e,o){"use strict";o.r(e);var r={name:"AppHome",layout:"app",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=o(1),component=Object(n.a)(r,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"app-home"}},[this._ssrNode("<h1>Home</h1> <p>这里显示我的页面</p>")])},[],!1,null,null,"0f844751");e.default=component.exports}};
+//# sourceMappingURL=6379139ae6e289f77691.js.map
