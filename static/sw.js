@@ -29,4 +29,4 @@ workbox.precaching.cleanupOutdatedCaches()
 
 // Register route handlers for runtimeCaching
 workbox.routing.registerRoute(new RegExp('https://file.calibur.tv/web/'), new workbox.strategies.CacheFirst ({}), 'GET')
-workbox.routing.registerRoute(new RegExp('/'), new workbox.strategies.NetworkOnly ({}), 'GET')
+workbox.routing.registerRoute(new RegExp('/'), new workbox.strategies.NetworkFirst ({}), 'GET')

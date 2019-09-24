@@ -165,7 +165,7 @@ module.exports = {
       lang: 'zh-CN'
     },
     workbox: {
-      offlineStrategy: 'NetworkOnly',
+      offlineStrategy: 'NetworkFirst',
       workboxVersion: '4.3.1',
       workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
     },
