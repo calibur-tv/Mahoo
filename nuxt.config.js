@@ -176,7 +176,7 @@ module.exports = {
       lang: 'zh-CN',
       appleStatusBarStyle: 'black-translucent',
       author: injectScript.author,
-      name: injectScript.title,
+      name: injectScript.name,
       description: injectScript.description
     }
   },
