@@ -96,7 +96,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#ff6881' },
+  loading: { color: '#ffffff' },
 
   /*
    ** Global CSS
@@ -158,11 +158,16 @@ module.exports = {
 
   pwa: {
     manifest: {
-      name: injectScript.name,
-      short_name: injectScript.title,
+      name: injectScript.title,
+      short_name: injectScript.name,
       description: injectScript.description,
-      start_url: 'https://www.calibur.tv/app/launch',
-      lang: 'zh-CN'
+      start_url: 'https://www.calibur.tv/app/found',
+      background_color: '#ffffff',
+      display: 'standalone',
+      lang: 'zh-CN',
+      serviceworker: {
+        src: './sw.js'
+      }
     },
     workbox: {
       offlineStrategy: 'NetworkFirst',

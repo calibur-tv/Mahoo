@@ -28,6 +28,7 @@ export default {
   watch: {},
   created() {},
   mounted() {
+    // https://developer.mozilla.org/en-US/docs/Web/Manifest/screenshots
     this.redirect()
   },
   methods: {
