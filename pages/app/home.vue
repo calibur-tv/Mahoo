@@ -180,7 +180,7 @@
       height: 40px;
       line-height: 40px;
       text-align: center;
-      background-color: $color-red;
+      background-color: #ee0a24;
       color: #fff;
       border-radius: 4px;
     }
