@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         name: 'theme-color',
-        content: '#f06595'
+        content: '#ffffff'
       },
       {
         name: 'format-detection',
@@ -96,7 +96,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#ffffff' },
+  loading: { color: '#f06595' },
 
   /*
    ** Global CSS

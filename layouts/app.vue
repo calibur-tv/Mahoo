@@ -91,17 +91,16 @@
 </template>
 
 <script>
+import useSignMixin from '~/mixins/useSign'
+import socketMixin from '~/mixins/socket'
+
 export default {
   name: 'AppLayout',
-  components: {},
-  props: {},
-  data() {
-    return {}
-  },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  mixins: [useSignMixin, socketMixin],
+  beforeMount() {
+    this.$channel.$when('user-not-sign', () => {
+      window.location = this.$alias.sign()
+    })
+  }
 }
 </script>

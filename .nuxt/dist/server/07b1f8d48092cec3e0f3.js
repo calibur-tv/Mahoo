@@ -1,0 +1,2 @@
+exports.ids=[10],exports.modules={365:function(t,e,o){"use strict";o.r(e);var c={name:"AppNotice",layout:"app",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},r=o(1),component=Object(r.a)(c,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"app-notice"}},[this._ssrNode("<h1>Notice</h1> <p>这里展示消息页面</p>")])},[],!1,null,null,"052a536c");e.default=component.exports}};
+//# sourceMappingURL=07b1f8d48092cec3e0f3.js.map
