@@ -259,7 +259,7 @@
         <p class="text oneline">设置</p>
       </div>
       <div class="logout-btn">
-        <button @click="handleLogout">退出登录</button>
+        <button @click="handleLogout">退出</button>
       </div>
     </div>
   </div>

@@ -172,7 +172,10 @@ module.exports = {
     workbox: {
       offlineStrategy: 'NetworkFirst',
       workboxVersion: '4.3.1',
-      workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
+      workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js',
+      cacheOptions: {
+        cacheId: Date.now()
+      }
     },
     meta: {
       mobileApp: true,
