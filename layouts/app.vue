@@ -99,7 +99,7 @@ export default {
   mixins: [useSignMixin, socketMixin],
   beforeMount() {
     this.$channel.$when('user-not-sign', () => {
-      window.location = this.$alias.sign()
+      this.$router.replace(`/app/sign?redirect=${encodeURIComponent('/app/found')}`)
     })
   }
 }

@@ -180,7 +180,7 @@
       height: 40px;
       line-height: 40px;
       text-align: center;
-      background-color: #ee0a24;
+      background-color: #ff6881;
       color: #fff;
       border-radius: 4px;
     }
@@ -259,7 +259,7 @@
         <p class="text oneline">设置</p>
       </div>
       <div class="logout-btn">
-        <button @click="handleLogout">退出</button>
+        <button @click="handleLogout">退出登录</button>
       </div>
     </div>
   </div>
@@ -281,15 +281,13 @@ export default {
       return this.$store.state.user
     }
   },
-  watch: {},
-  created() {},
-  mounted() {},
   methods: {
     handleLogout() {
       logout(this)
       this.$cookie.remove('JWT-TOKEN')
       this.$channel.socketDisconnect()
-      window.location = '/app/found'
+      this.$store.commit('USER_LOGOUT')
+      this.$router.replace('/app/sign')
     }
   }
 }

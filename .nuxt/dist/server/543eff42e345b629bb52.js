@@ -1,0 +1,2 @@
+exports.ids=[7],exports.modules={381:function(t,e,o){"use strict";o.r(e);var d={name:"AppHome",layout:"app",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=o(1),component=Object(n.a)(d,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"app-found"}},[this._ssrNode("<h1>Found</h1> <p>这里展示信息流</p>")])},[],!1,null,null,"71e17d00");e.default=component.exports}};
+//# sourceMappingURL=543eff42e345b629bb52.js.map

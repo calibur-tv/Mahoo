@@ -8,6 +8,7 @@ export const state = () => ({
   haveAuthToken: false,
   roles: null,
   isAuth: false,
+  isLogout: false,
   logging: false,
   mailbox: {
     unread_message_total: 0,
@@ -34,10 +35,20 @@ export const mutations = {
     state.logging = false
   },
   SET_USER_TOKEN(state, token) {
+    if (state.isLogout) {
+      return
+    }
     state.haveAuthToken = !!token
   },
   SET_LOGGING(state) {
     state.logging = true
+  },
+  USER_LOGOUT(state) {
+    state.haveAuthToken = false
+    state.isAuth = false
+    state.logging = false
+    state.isLogout = true
+    state.user = {}
   },
   UPDATE_USER_INFO(state, { key, value }) {
     Vue.set(state.user, key, value)
