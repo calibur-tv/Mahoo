@@ -1,7 +1,7 @@
 <template>
   <div id="app-found">
     <h1>Found</h1>
-    <p>这里展示信息流</p>
+    <p>这里展示信息流.</p>
   </div>
 </template>
 
