@@ -171,7 +171,7 @@
   }
 
   .logout-btn {
-    padding: 10px 15px;
+    padding: 10px 15px 20px;
 
     button {
       display: block;

@@ -1,6 +1,6 @@
 <template>
   <div id="app-found">
-    <VSwitcher :headers="['关注', '推荐']" sticky swipe animated :fixed-top="0">
+    <VSwitcher :headers="['关注', '推荐']" sticky swipe animated :fixed-top="0" :default-index="1">
       <VScroller slot="0" :throttle="-1">
         <p>start</p>
         <p>关注</p>

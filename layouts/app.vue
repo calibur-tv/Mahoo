@@ -10,6 +10,7 @@
     height: 100%;
     padding-bottom: 50px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   #main-tab {
@@ -41,7 +42,6 @@
         flex-grow: 1;
         text-align: center;
         height: 100%;
-        padding-top: 4px;
         color: rgb(140, 140, 140);
         display: flex;
         flex-direction: column;
@@ -50,9 +50,10 @@
 
         i {
           display: block;
-          width: 30px;
-          height: 30px;
-          background-color: rgb(140, 140, 140);
+          width: 25px;
+          height: 25px;
+          font-size: 23px;
+          margin-bottom: 3px;
         }
 
         span {
@@ -65,6 +66,67 @@
         }
       }
     }
+
+    .nuxt-link-active i {
+      animation: scale 250ms 1;
+    }
+
+    .link-0 {
+      i:before {
+        content: '\e905';
+      }
+
+      &.nuxt-link-active {
+        i:before {
+          content: '\e906';
+        }
+      }
+    }
+
+    .link-1 {
+      i:before {
+        content: '\e70e';
+      }
+
+      &.nuxt-link-active {
+        i:before {
+          content: '\e70b';
+        }
+      }
+    }
+
+    .link-2 {
+      i:before {
+        content: '\e720';
+      }
+
+      &.nuxt-link-active {
+        i:before {
+          content: '\e71f';
+        }
+      }
+    }
+
+    .link-3 {
+      i:before {
+        content: '\e703';
+      }
+
+      &.nuxt-link-active {
+        i:before {
+          content: '\e702';
+        }
+      }
+    }
+
+    @include keyframes(scale) {
+      50% {
+        transform: scale(0.8);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
 }
 </style>
@@ -74,23 +136,23 @@
     <nuxt class="main-view" />
     <div id="main-tab">
       <div class="tab-core">
-        <NLink to="/app/found" replace>
-          <i />
+        <NLink class="link-0" to="/app/found" replace>
+          <i class="iconfont" />
           <span>发现</span>
         </NLink>
-        <NLink to="/app/category" replace>
-          <i />
+        <NLink class="link-1" to="/app/category" replace>
+          <i class="iconfont" />
           <span>分类</span>
         </NLink>
         <NLink to="/app/write">
           <span>+</span>
         </NLink>
-        <NLink to="/app/notice" replace>
-          <i />
+        <NLink class="link-2" to="/app/notice" replace>
+          <i class="iconfont" />
           <span>消息</span>
         </NLink>
-        <NLink to="/app/home" replace>
-          <i />
+        <NLink class="link-3" to="/app/home" replace>
+          <i class="iconfont" />
           <span>我的</span>
         </NLink>
       </div>
@@ -107,7 +169,7 @@ export default {
   mixins: [useSignMixin, socketMixin],
   beforeMount() {
     this.$channel.$when('user-not-sign', () => {
-      this.$router.replace(`/app/sign?redirect=${encodeURIComponent('/app/found')}`)
+      // this.$router.replace(`/app/sign?redirect=${encodeURIComponent('/app/found')}`)
     })
   }
 }

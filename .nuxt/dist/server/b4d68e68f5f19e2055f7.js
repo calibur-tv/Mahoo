@@ -1,2 +1,0 @@
-exports.ids=[6],exports.modules={366:function(t,e,o){"use strict";o.r(e);var r={name:"AppCategory",layout:"app",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=o(1),component=Object(n.a)(r,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"app-category"}},[this._ssrNode("<h1>Category</h1> <p>这里展示分区、用户的各种列表</p>")])},[],!1,null,null,"af20aa20");e.default=component.exports}};
-//# sourceMappingURL=b4d68e68f5f19e2055f7.js.map
