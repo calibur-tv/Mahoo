@@ -120,8 +120,6 @@
   }
 
   .main-menu {
-    padding-bottom: 30px;
-
     .item {
       height: 45px;
       margin-top: 8px;

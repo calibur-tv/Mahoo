@@ -9,12 +9,14 @@
   .main-view {
     flex-grow: 1;
     width: 100%;
+    overflow: auto;
   }
 
   #main-tab {
     position: relative;
     height: 50px;
     width: 100%;
+    flex-shrink: 0;
 
     .tab-core {
       position: fixed;

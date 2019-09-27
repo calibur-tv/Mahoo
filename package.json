@@ -46,6 +46,7 @@
     "cross-env": "^6.0.0",
     "element-ui": "^2.12.0",
     "geetest-captcha": "^1.1.1",
+    "h5-vue-scroller": "^1.0.2",
     "js-cookie": "^2.2.1",
     "koa": "2.8.1",
     "mint-ui": "^2.2.13",
