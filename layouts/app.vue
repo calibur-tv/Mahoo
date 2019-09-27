@@ -1,5 +1,16 @@
 <style lang="scss">
 #app-layout {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .main-view {
+    flex-grow: 1;
+    width: 100%;
+  }
+
   #main-tab {
     position: relative;
     height: 50px;
@@ -63,7 +74,7 @@
 
 <template>
   <div id="app-layout">
-    <nuxt />
+    <nuxt class="main-view" />
     <div id="main-tab">
       <div class="tab-core">
         <NLink to="/app/found" replace>

@@ -1,7 +1,13 @@
 <template>
   <div id="app-found">
-    <h1>Found</h1>
-    <p>这里展示信息流.</p>
+    <VSwitcher :headers="['关注', '推荐']" sticky swipe animated>
+      <template slot="0">
+        关注
+      </template>
+      <template slot="1">
+        推荐
+      </template>
+    </VSwitcher>
   </div>
 </template>
 

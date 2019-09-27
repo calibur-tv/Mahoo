@@ -75,9 +75,10 @@
     main {
       @extend %clearfix;
 
-      button {
+      .daily-sign-btn {
         float: right;
         margin-left: 10px;
+        border-radius: 40px;
       }
 
       .meta {
@@ -199,11 +200,11 @@
             <div class="nickname"><p class="oneline" v-text="self.nickname" /></div>
             <div class="badge level">LV{{ self.level }}</div>
           </div>
-          <p class="intro">邀请码 {{ self.slug }}</p>
+          <p class="intro">cc号：{{ self.slug }}</p>
         </div>
       </header>
       <main>
-        <!--        <DaySignBtn :signed="daySign" @signed="handleSigned" />-->
+        <DailySignBtn v-model="self" />
         <div class="meta">
           <div class="item">
             <p class="oneline" v-text="$utils.shortenNumber(self.stat_activity + self.stat_exposure)" />
@@ -267,18 +268,34 @@
 
 <script>
 import { logout } from '~/api/userApi'
+import DailySignBtn from '~/components/button/DailySignBtn'
 
 export default {
   name: 'AppHome',
   layout: 'app',
-  components: {},
-  props: {},
+  components: {
+    DailySignBtn
+  },
   data() {
-    return {}
+    return {
+      patch: {}
+    }
   },
   computed: {
     self() {
-      return this.$store.state.user
+      return {
+        ...this.$store.state.user,
+        ...this.patch
+      }
+    }
+  },
+  mounted() {
+    if (this.$store.state.isAuth) {
+      this.patchUser()
+    } else {
+      this.$channel.$when('user-signed', () => {
+        this.patchUser()
+      })
     }
   },
   methods: {
@@ -288,6 +305,18 @@ export default {
       this.$channel.socketDisconnect()
       this.$store.commit('USER_LOGOUT')
       this.$router.replace('/app/sign')
+    },
+    patchUser() {
+      this.$axios
+        .$get('v1/user/patch', {
+          params: {
+            slug: this.self.slug
+          }
+        })
+        .then(data => {
+          this.patch = data
+        })
+        .catch(() => {})
     }
   }
 }
