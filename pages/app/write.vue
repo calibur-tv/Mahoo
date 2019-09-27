@@ -1,14 +1,119 @@
 <template>
   <div id="app-write">
-    <h1>Write</h1>
-    <p>这里展示写作页面</p>
+    <Header title="发帖" />
+    <p>begin</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>write</p>
+    <p>end</p>
   </div>
 </template>
 
 <script>
+import Header from '~/components/app/Header'
+
 export default {
   name: 'AppWrite',
-  components: {},
+  components: {
+    Header
+  },
   props: {},
   data() {
     return {}

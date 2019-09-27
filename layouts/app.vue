@@ -25,7 +25,9 @@
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
+      backdrop-filter: saturate(180%) blur(20px);
 
+      /*
       &:before {
         content: '';
         position: absolute;
@@ -36,6 +38,7 @@
         transform: scaleY(0.5);
         background-color: #e7e7e7;
       }
+      */
 
       a {
         flex-grow: 1;
