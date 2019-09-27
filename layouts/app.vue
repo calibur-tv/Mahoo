@@ -10,7 +10,6 @@
     height: 100%;
     padding-bottom: 50px;
     overflow: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   #main-tab {
@@ -169,7 +168,7 @@ export default {
   mixins: [useSignMixin, socketMixin],
   beforeMount() {
     this.$channel.$when('user-not-sign', () => {
-      // this.$router.replace(`/app/sign?redirect=${encodeURIComponent('/app/found')}`)
+      this.$router.replace(`/app/sign?redirect=${encodeURIComponent('/app/found')}`)
     })
   }
 }

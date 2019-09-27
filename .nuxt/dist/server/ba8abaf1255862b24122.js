@@ -1,2 +1,0 @@
-exports.ids=[12],exports.modules={377:function(t,e,r){"use strict";r.r(e);var o={name:"AppWrite",components:{},props:{},data:()=>({}),computed:{},watch:{},created(){},mounted(){},methods:{}},n=r(1),component=Object(n.a)(o,function(){var t=this.$createElement;return(this._self._c||t)("div",{attrs:{id:"app-write"}},[this._ssrNode("<h1>Write</h1> <p>这里展示写作页面</p>")])},[],!1,null,null,"b7e0f1c6");e.default=component.exports}};
-//# sourceMappingURL=ba8abaf1255862b24122.js.map
