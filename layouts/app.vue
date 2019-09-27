@@ -25,20 +25,6 @@
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
-      backdrop-filter: saturate(180%) blur(20px);
-
-      /*
-      &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 1px;
-        transform: scaleY(0.5);
-        background-color: #e7e7e7;
-      }
-      */
 
       a {
         flex-grow: 1;
@@ -121,6 +107,15 @@
       }
     }
 
+    .link-write.link-write i {
+      font-size: 40px;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      margin-bottom: 0;
+      color: $color-main;
+    }
+
     @include keyframes(scale) {
       50% {
         transform: scale(0.8);
@@ -146,8 +141,8 @@
           <i class="iconfont" />
           <span>分类</span>
         </NLink>
-        <NLink to="/app/write">
-          <span>+</span>
+        <NLink class="link-write" to="/app/write">
+          <i class="iconfont ic-addition_fill" />
         </NLink>
         <NLink class="link-2" to="/app/notice" replace>
           <i class="iconfont" />

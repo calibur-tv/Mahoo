@@ -10,9 +10,10 @@ import '../theme/index.css'
 
 const _1a3ae26b = () => import('../layouts/app.vue'  /* webpackChunkName: "layouts/app" */).then(m => m.default || m)
 const _6f6c098b = () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m)
+const _2d280385 = () => import('../layouts/page.vue'  /* webpackChunkName: "layouts/page" */).then(m => m.default || m)
 const _1a3b339e = () => import('../layouts/web.vue'  /* webpackChunkName: "layouts/web" */).then(m => m.default || m)
 
-const layouts = { "_app": _1a3ae26b,"_default": _6f6c098b,"_web": _1a3b339e }
+const layouts = { "_app": _1a3ae26b,"_default": _6f6c098b,"_page": _2d280385,"_web": _1a3b339e }
 
 let resolvedLayouts = {}
 
