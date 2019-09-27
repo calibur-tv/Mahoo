@@ -9140,10 +9140,10 @@ v-copy@^0.1.0:
   dependencies:
     modern-copy "^1.0.3"
 
-v-switcher@^1.0.79:
-  version "1.0.79"
-  resolved "https://registry.npm.taobao.org/v-switcher/download/v-switcher-1.0.79.tgz#2fee2b8f2e03289b4a50972f438de4668d710375"
-  integrity sha1-L+4rjy4DKJtKUJcvQ43kZo1xA3U=
+v-switcher@^1.0.80:
+  version "1.0.80"
+  resolved "https://registry.npm.taobao.org/v-switcher/download/v-switcher-1.0.80.tgz#e28e7a7d7f560de4b6d24977930175a67a1f8496"
+  integrity sha1-4o56fX9WDeS20kl3kwF1pnofhJY=
   dependencies:
     vue "^2.6.6"
 

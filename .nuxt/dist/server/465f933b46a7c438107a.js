@@ -1,0 +1,2 @@
+exports.ids=[5],exports.modules={365:function(t,l,e){"use strict";e.r(l);var o={name:"AboutLayout",layout:"web"},r=e(1),component=Object(r.a)(o,function(){var t=this.$createElement,l=this._self._c||t;return l("div",{attrs:{id:"about-layout"}},[l("ElRow",{staticClass:"container"},[l("ElCol",{attrs:{span:16,xs:24}},[l("NuxtChild")],1),this._v(" "),l("ElCol",{attrs:{span:8,xs:0}},[l("br")])],1)],1)},[],!1,null,null,"8807b808");l.default=component.exports}};
+//# sourceMappingURL=465f933b46a7c438107a.js.map
