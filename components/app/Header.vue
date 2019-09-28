@@ -25,7 +25,7 @@
     line-height: $header-height;
     color: $color-main;
     text-align: center;
-    font-size: 14px;
+    font-size: 15px;
   }
 
   &-left {
@@ -43,6 +43,7 @@
     > * {
       line-height: $header-height;
       text-align: center;
+      font-weight: 500 !important;
     }
   }
 

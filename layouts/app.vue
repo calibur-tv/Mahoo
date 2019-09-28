@@ -30,11 +30,12 @@
         flex-grow: 1;
         text-align: center;
         height: 100%;
-        color: #8c8c8c;
+        color: rgb(140, 140, 140);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 50px;
 
         i {
           display: block;
@@ -107,50 +108,13 @@
       }
     }
 
-    .link-write.link-write {
-      position: relative;
+    .link-write.link-write i {
+      font-size: 40px;
+      width: 50px;
       height: 50px;
-      width: 90px;
-      overflow: hidden;
-
-      i {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: block;
-        width: 90px;
-        height: 90px;
-        background-color: $color-main;
-        box-shadow: 0 0 6px 0 $color-main;
-        color: #fff;
-        border-radius: 45px;
-        margin-bottom: 0;
-
-        &:before,
-        &:after {
-          content: '';
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          background-color: #fff;
-          border-radius: 2px;
-        }
-
-        &:before {
-          width: 20px;
-          height: 2px;
-          margin-left: -10px;
-          margin-top: -1px;
-        }
-
-        &:after {
-          width: 2px;
-          height: 20px;
-          margin-top: -10px;
-          margin-left: -1px;
-        }
-      }
+      line-height: 50px;
+      margin-bottom: 0;
+      color: $color-main;
     }
 
     @include keyframes(scale) {
@@ -179,7 +143,7 @@
           <span>分类</span>
         </NLink>
         <NLink class="link-write" to="/app/write">
-          <i />
+          <i class="iconfont ic-addition_fill" />
         </NLink>
         <NLink class="link-2" to="/app/notice" replace>
           <i class="iconfont" />
