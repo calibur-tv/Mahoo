@@ -68,6 +68,7 @@
 
         &::placeholder {
           color: rgb(102, 102, 102);
+          line-height: 16px;
         }
       }
     }
