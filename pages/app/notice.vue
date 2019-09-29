@@ -18,8 +18,8 @@
       }
 
       &-item {
-        font-size: 14px;
-        padding: 0 5px;
+        font-size: 16px;
+        padding: 0 10px;
         color: $color-text-2;
 
         &.is-active {
@@ -46,7 +46,7 @@
 
 <template>
   <div id="app-notice">
-    <VSwitcher :headers="['消息', '聊天', '通知']" align="center" sticky disabled-swipe swipe :fixed-top="0" :anchor-padding="5">
+    <VSwitcher :headers="['消息', '聊天', '通知']" align="center" sticky disabled-swipe swipe :fixed-top="0" :anchor-padding="10">
       <VScroller slot="0" :throttle="-1">
         <p>start</p>
         <p>消息</p>

@@ -5,8 +5,7 @@
       &-item {
         color: $color-text-2;
         font-weight: bold;
-        padding: 0 5px;
-        width: 55px;
+        padding: 0 10px;
 
         &.is-active {
           font-size: 20px;
@@ -36,7 +35,7 @@
 
 <template>
   <div id="app-found">
-    <VSwitcher :headers="['关注', '推荐']" sticky swipe animated :fixed-top="0" :default-index="1" :anchor-padding="10">
+    <VSwitcher :headers="['关注', '推荐', '漫友圈']" sticky swipe animated :fixed-top="0" :default-index="1" :anchor-padding="15">
       <VScroller slot="0" :throttle="-1">
         <p>start</p>
         <p>关注</p>
@@ -243,6 +242,110 @@
         <p>推荐</p>
         <p>推荐</p>
         <p>推荐</p>
+        <p>end</p>
+      </VScroller>
+      <VScroller slot="2" :throttle="-1">
+        <p>start</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
+        <p>漫友圈</p>
         <p>end</p>
       </VScroller>
     </VSwitcher>

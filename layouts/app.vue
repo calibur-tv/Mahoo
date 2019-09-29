@@ -131,7 +131,9 @@
 
 <template>
   <div id="app-layout">
-    <nuxt class="main-view" />
+    <keep-alive>
+      <nuxt class="main-view" />
+    </keep-alive>
     <div id="main-tab">
       <div class="tab-core">
         <NLink class="link-0" to="/app/found" replace>
@@ -140,7 +142,7 @@
         </NLink>
         <NLink class="link-1" to="/app/category" replace>
           <i class="iconfont" />
-          <span>分类</span>
+          <span>分区</span>
         </NLink>
         <NLink class="link-write" to="/app/write">
           <i class="iconfont ic-addition_fill" />

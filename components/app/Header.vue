@@ -44,13 +44,16 @@
     > * {
       line-height: $header-height;
       text-align: center;
+    }
+
+    i {
       font-weight: bolder !important;
+      font-size: 16px;
     }
   }
 
   &-back {
     height: $header-height;
-    font-size: 16px;
   }
 }
 </style>
