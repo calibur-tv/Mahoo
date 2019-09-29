@@ -113,31 +113,29 @@
     <div class="room-header">
       {{ name }}
     </div>
-    <no-ssr>
-      <FlowLoader ref="loader" func="getUserMessage" type="sinceId" :query="query" :callback="handleMessageLoad" :cache-timeout="86400" :auto="0" class="room-body">
-        <div ref="wrap" slot-scope="{ flow }" class="room-chats">
-          <Scroll ref="scroll" :data="flow" @top="handleScrollUp">
-            <ChatRoom ref="room" :avatar-component="avatarComp" :message-components="messageComps" />
-          </Scroll>
-        </div>
-      </FlowLoader>
-      <div class="room-footer">
-        <textarea
-          v-model="message"
-          maxlength="500"
-          placeholder="say it..."
-          @keyup.enter.exact.prevent="handleAddBubble"
-          @keyup.ctrl.exact.prevent="handleAddBubble"
-          @keydown.meta.enter.prevent="handleNewLine"
-        />
-        <div class="helper">
-          <span v-text="computeHelperTxt" />
-          <button @click="handleAddBubble">
-            发送
-          </button>
-        </div>
+    <FlowLoader ref="loader" func="getUserMessage" type="sinceId" :query="query" :callback="handleMessageLoad" :callback-once="false" :cache-timeout="86400" :auto="0" class="room-body">
+      <div ref="wrap" slot-scope="{ flow }" class="room-chats">
+        <Scroll ref="scroll" :data="flow" @top="handleScrollUp">
+          <ChatRoom ref="room" :avatar-component="avatarComp" :message-components="messageComps" />
+        </Scroll>
       </div>
-    </no-ssr>
+    </FlowLoader>
+    <div class="room-footer">
+      <textarea
+        v-model="message"
+        maxlength="500"
+        placeholder="say it..."
+        @keyup.enter.exact.prevent="handleAddBubble"
+        @keyup.ctrl.exact.prevent="handleAddBubble"
+        @keydown.meta.enter.prevent="handleNewLine"
+      />
+      <div class="helper">
+        <span v-text="computeHelperTxt" />
+        <button @click="handleAddBubble">
+          发送
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -219,6 +217,7 @@ export default {
     initRoom() {
       this.$nextTick(async () => {
         this.$refs.room && this.$refs.room.clearMessage()
+        this.$refs.loader && this.$refs.loader.forceCallback()
         await this.$refs.loader.initData({ is_up: 1 })
         await this.$refs.loader.loadMore({ force: true })
         this.clearUnreadCount()

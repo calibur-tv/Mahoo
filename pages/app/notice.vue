@@ -82,38 +82,7 @@
         <p>end</p>
       </VScroller>
       <VScroller slot="1" :throttle="-1">
-        <p>start</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>聊天</p>
-        <p>end</p>
+        <MessageMenu v-if="slug" :slug="slug" />
       </VScroller>
       <VScroller slot="2" :throttle="-1">
         <p>start</p>
@@ -154,15 +123,23 @@
 </template>
 
 <script>
+import MessageMenu from '~/components/chat/Menu'
+
 export default {
   name: 'AppNotice',
   layout: 'app',
-  components: {},
+  components: {
+    MessageMenu
+  },
   props: {},
   data() {
     return {}
   },
-  computed: {},
+  computed: {
+    slug() {
+      return this.$store.state.user.slug
+    }
+  },
   watch: {},
   created() {},
   mounted() {},

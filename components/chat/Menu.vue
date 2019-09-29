@@ -99,7 +99,7 @@
 <template>
   <ul class="message-menu">
     <li v-for="item in menu" :key="item.channel">
-      <NLink :to="$alias.user($route.params.slug, `message/?mailto=${item.channel}&name=${item.user.nickname}`)" class="room-item clearfix">
+      <div class="room-item clearfix" @click="emitClick(item)">
         <VImg v-if="item.user.avatar" :src="item.user.avatar" width="42" height="42" radius="50%" :alt="item.user.nickname" />
         <div class="content">
           <p class="nickname oneline" v-html="item.user.nickname" />
@@ -107,7 +107,7 @@
             <div v-if="item.count" class="read-badge" v-text="item.count" />
           </div>
         </div>
-      </NLink>
+      </div>
       <div class="close" @click="deleteChannel(item)">
         &times;
       </div>
@@ -201,6 +201,9 @@ export default {
           this.$store.commit('DELETE_MESSAGE_MENU', item.channel)
         })
         .catch(() => {})
+    },
+    emitClick(item) {
+      this.$emit('open', item)
     }
   }
 }
