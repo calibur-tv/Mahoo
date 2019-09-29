@@ -1,7 +1,7 @@
 <template>
   <div id="app-category">
     <h1>Category</h1>
-    <p>这里展示分区、用户的各种列表</p>
+    <p>为什么我非得成为一个了不起的人不可？我就不能度过无所事事的一生吗？</p>
   </div>
 </template>
 

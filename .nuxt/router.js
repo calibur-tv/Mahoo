@@ -12,6 +12,7 @@ const _0ad0cebe = () => interopDefault(import('../pages/app/category.vue' /* web
 const _00dcc81c = () => interopDefault(import('../pages/app/found.vue' /* webpackChunkName: "pages/app/found" */))
 const _ae88fbc2 = () => interopDefault(import('../pages/app/home.vue' /* webpackChunkName: "pages/app/home" */))
 const _25be9598 = () => interopDefault(import('../pages/app/notice.vue' /* webpackChunkName: "pages/app/notice" */))
+const _470d7c68 = () => interopDefault(import('../pages/app/search.vue' /* webpackChunkName: "pages/app/search" */))
 const _4f766806 = () => interopDefault(import('../pages/app/sign.vue' /* webpackChunkName: "pages/app/sign" */))
 const _c17e3462 = () => interopDefault(import('../pages/app/write.vue' /* webpackChunkName: "pages/app/write" */))
 const _52e2f78b = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
@@ -102,6 +103,11 @@ export const routerOptions = {
       component: _25be9598,
       props: false,
       name: "app-notice"
+    }, {
+      path: "/app/search",
+      component: _470d7c68,
+      props: false,
+      name: "app-search"
     }, {
       path: "/app/sign",
       component: _4f766806,
