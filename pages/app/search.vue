@@ -1,5 +1,7 @@
 <style lang="scss">
 #app-search {
+  height: 100vh;
+
   .search-box {
     position: fixed;
     left: 0;
@@ -8,10 +10,6 @@
     height: 40px;
     background-color: #fff;
     z-index: 9;
-
-    &-shim {
-      height: 40px;
-    }
 
     &-cancel {
       font-size: 16px;
@@ -40,12 +38,12 @@
 
       .el-icon-close {
         position: absolute;
-        right: 20px;
-        top: 12px;
-        width: 16px;
-        height: 16px;
-        line-height: 16px;
-        font-size: 12px;
+        right: 21px;
+        top: 13px;
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+        font-size: 11px;
         text-align: center;
         color: #fff;
         background-color: rgba(0, 0, 0, 0.2);
@@ -64,15 +62,22 @@
         border-radius: 20px;
         color: rgb(102, 102, 102);
         caret-color: $color-main;
-        line-height: 30px;
+        line-height: 16px;
         font-size: 14px;
-        padding: 0 30px;
+        padding: 7px 30px;
 
         &::placeholder {
           color: rgb(102, 102, 102);
         }
       }
     }
+  }
+
+  .search-content {
+    height: 100%;
+    padding-top: 40px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 </style>
@@ -90,109 +95,110 @@
           <i v-if="query" class="el-icon-close" @click="query = ''" />
         </div>
       </div>
-      <div class="search-box-shim" />
-      <p>start</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>搜索</p>
-      <p>end</p>
+      <div class="search-content">
+        <p>start</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>搜索</p>
+        <p>end</p>
+      </div>
     </div>
   </PageTransition>
 </template>
