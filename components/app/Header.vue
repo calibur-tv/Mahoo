@@ -14,6 +14,7 @@
     width: 100%;
     height: $header-height;
     background-color: #fff;
+    z-index: 9;
   }
 
   &-text {
@@ -25,7 +26,7 @@
     line-height: $header-height;
     color: $color-main;
     text-align: center;
-    font-size: 15px;
+    font-size: 16px;
   }
 
   &-left {
@@ -43,7 +44,7 @@
     > * {
       line-height: $header-height;
       text-align: center;
-      font-weight: 500 !important;
+      font-weight: bolder !important;
     }
   }
 
