@@ -4,9 +4,11 @@
     div {
       position: relative;
       width: 25%;
-      height: 65px;
-      float: left;
+      height: 75px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       text-align: center;
+      float: left;
 
       &:after {
         content: '';
