@@ -4,9 +4,9 @@
     div {
       position: relative;
       width: 25%;
-      height: 75px;
-      padding-top: 5px;
-      padding-bottom: 5px;
+      height: 90px;
+      padding-top: 15px;
+      padding-bottom: 10px;
       text-align: center;
       float: left;
 
