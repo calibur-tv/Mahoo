@@ -1,44 +1,51 @@
 <style lang="scss">
 #app-notice {
-  .v-switcher {
-    &-header {
-      &-tabs {
-        position: relative;
+  .msg-panel {
+    div {
+      position: relative;
+      width: 25%;
+      height: 65px;
+      float: left;
+      text-align: center;
 
-        &:after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 100%;
-          height: 1px;
-          background-color: #f2f6fc;
-          transform: scaleY(0.5);
-        }
-      }
-
-      &-item {
-        font-size: 16px;
-        padding: 0 10px;
-        color: $color-text-2;
-
-        &.is-active {
-          color: $color-black;
-          animation: pop-up 250ms 1;
-        }
-      }
-
-      &-anchor {
-        height: 2px;
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
         bottom: 0;
-        background-color: $color-black;
+        width: 100%;
+        height: 1px;
+        background-color: #f2f6fc;
+        transform: scaleY(0.5);
       }
 
-      @include keyframes(pop-up) {
-        50% {
-          transform: scale(1.2);
-        }
+      span {
+        display: block;
+        font-size: 13px;
+        color: $color-text-2;
       }
+
+      i {
+        font-size: 26px;
+      }
+    }
+
+    .ic-message_fill {
+      color: $color-green;
+    }
+
+    .ic-eit {
+      color: #fff;
+      background-color: $color-yellow;
+      border-radius: 50%;
+    }
+
+    .ic-good_fill {
+      color: $color-red;
+    }
+
+    .ic-notice_fill {
+      color: $color-blue;
     }
   }
 }
@@ -46,79 +53,25 @@
 
 <template>
   <div id="app-notice">
-    <VSwitcher :headers="['消息', '聊天', '通知']" align="center" sticky disabled-swipe swipe :fixed-top="0" :anchor-padding="10">
-      <VScroller slot="0" :throttle="-1">
-        <p>start</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>消息</p>
-        <p>end</p>
-      </VScroller>
-      <VScroller slot="1" :throttle="-1">
-        <MessageMenu v-if="slug" :slug="slug" />
-      </VScroller>
-      <VScroller slot="2" :throttle="-1">
-        <p>start</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>通知</p>
-        <p>end</p>
-      </VScroller>
-    </VSwitcher>
+    <div class="msg-panel clearfix">
+      <div>
+        <i class="iconfont ic-message_fill" />
+        <span>回复我的</span>
+      </div>
+      <div>
+        <i class="iconfont ic-eit" />
+        <span>@我</span>
+      </div>
+      <div>
+        <i class="iconfont ic-good_fill" />
+        <span>收到的赞</span>
+      </div>
+      <div>
+        <i class="iconfont ic-notice_fill" />
+        <span>系统通知</span>
+      </div>
+    </div>
+    <MessageMenu v-if="slug" :slug="slug" />
   </div>
 </template>
 
