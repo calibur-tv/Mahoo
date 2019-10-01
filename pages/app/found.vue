@@ -154,108 +154,18 @@
         <p>end</p>
       </VScroller>
       <VScroller slot="1" :throttle="-1">
-        <p>start</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>推荐</p>
-        <p>end</p>
+        <FlowLoader
+          func="getFlowRecommendedIndex"
+          type="seenIds"
+          :query="{
+            $axios,
+            changing: 'slug'
+          }"
+        >
+          <ul slot-scope="{ flow }">
+            <PinRecommendedItem v-for="item in flow" :key="item.slug" :item="item" />
+          </ul>
+        </FlowLoader>
       </VScroller>
       <VScroller slot="2" :throttle="-1">
         <p>start</p>
@@ -371,10 +281,14 @@
 </template>
 
 <script>
+import PinRecommendedItem from '~/components/flow/PinRecommendedItem'
+
 export default {
   name: 'AppHome',
   layout: 'app',
-  components: {},
+  components: {
+    PinRecommendedItem
+  },
   props: {},
   data() {
     return {}
