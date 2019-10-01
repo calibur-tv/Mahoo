@@ -33,7 +33,7 @@ export const mutations = {
     state.myTagsFetched = true
   },
   SET_HOTTEST_TAGS(state, tags) {
-    state.hottest_tags = tags
+    state.hottest_tags = tags.result
   },
   SET_MY_TAGS(state, data) {
     Object.keys(data).forEach(type => {
