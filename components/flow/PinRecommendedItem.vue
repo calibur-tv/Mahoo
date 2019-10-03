@@ -121,9 +121,8 @@
       margin-top: 10px;
       color: $color-main-light;
 
-      > div {
-        display: inline;
-        line-height: 20px;
+      > span {
+        line-height: 14px;
         padding: 3px 10px;
         margin-right: 10px;
         border-radius: 4px;
@@ -201,9 +200,9 @@
         </template>
       </div>
       <div class="zone oneline">
-        <div v-if="item.area" v-text="item.area.name" />
-        <div v-if="item.topic" v-text="item.topic.name" />
-        <div v-if="item.notebook" v-text="item.notebook.name" />
+        <span v-if="item.area" v-text="item.area.name" />
+        <span v-if="item.topic" v-text="item.topic.name" />
+        <span v-if="item.notebook" v-text="item.notebook.name" />
       </div>
     </div>
     <div class="footer">
