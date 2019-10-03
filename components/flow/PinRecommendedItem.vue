@@ -116,13 +116,14 @@
     }
 
     .zone {
-      height: 20px;
+      height: 21px;
       overflow: hidden;
       margin-top: 10px;
       color: $color-main-light;
+      font-size: 0;
 
       > span {
-        line-height: 14px;
+        line-height: 21px;
         padding: 3px 10px;
         margin-right: 10px;
         border-radius: 4px;
