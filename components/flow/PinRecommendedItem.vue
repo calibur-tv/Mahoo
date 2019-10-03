@@ -1,12 +1,17 @@
 <style lang="scss">
 .pin-rec-item {
-  padding: 0 10px;
+  padding: 10px 10px 0;
+
+  &:not(:last-child) {
+    border-bottom: 10px solid #e7ecf2;
+  }
 
   .header {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 5px;
 
     .user-avatar {
       margin-right: 5px;
@@ -14,16 +19,133 @@
   }
 
   .content {
+    margin-bottom: 5px;
+
     .text {
       @include multi-line(20px, 3);
+      margin-bottom: 5px;
+    }
+
+    .img {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      border-radius: 5px;
+      background-color: $color-gray-bg;
+    }
+
+    .wrap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .image-1 {
+      height: 170px;
+
+      .img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .image-2 {
+      position: relative;
+      height: 0;
+      padding-top: 50%;
+
+      .wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .img {
+          flex-grow: 1;
+          height: 100%;
+
+          &:first-child {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .image-3 {
+      position: relative;
+      height: 0;
+      padding-top: 66.7%;
+
+      .wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .big {
+          flex-grow: 2;
+          margin-right: 5px;
+        }
+
+        .small {
+          flex-grow: 1;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .img {
+            flex-grow: 1;
+            width: 100%;
+
+            &:first-child {
+              margin-bottom: 5px;
+            }
+          }
+        }
+
+        .img {
+          height: 100%;
+        }
+      }
     }
   }
 
   .footer {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    height: 30px;
+    line-height: 30px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 1px;
+      transform: scaleY(0.5);
+      background-color: #e7ecf2;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      color: $color-icon-2;
+
+      i {
+        margin-right: 5px;
+      }
+    }
   }
 }
 </style>
@@ -31,24 +153,46 @@
 <template>
   <div class="pin-rec-item">
     <div class="header">
-      <UserAvatar :user="item.author" :size="30" />
-      <UserNickname :user="item.author" />
+      <UserAvatar disabled :user="item.author" :size="30" />
+      <UserNickname disabled :user="item.author" />
     </div>
     <div class="content">
       <div class="text" v-html="item.intro" />
+      <div v-if="item.media" class="media">
+        <template v-if="item.media.image_count">
+          <div v-if="item.media.image_count === 1" class="image-1">
+            <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 200, mode: 2 })})` }" />
+          </div>
+          <div v-else-if="item.media.image_count === 2" class="image-2">
+            <div class="wrap">
+              <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 200, mode: 2 })})` }" />
+              <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[1].url, { width: 200, mode: 2 })})` }" />
+            </div>
+          </div>
+          <div v-else class="image-3">
+            <div class="wrap">
+              <div class="img big" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 300, mode: 2 })})` }" />
+              <div class="small">
+                <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[1].url, { width: 150, mode: 2 })})` }" />
+                <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[2].url, { width: 150, mode: 2 })})` }" />
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
     </div>
     <div class="footer">
       <div>
-        <i class="iconfont ic-message_fill" />
+        <i class="iconfont ic-browse" />
+        <span v-text="item.visit_count" />
+      </div>
+      <div>
+        <i class="iconfont ic-message" />
         <span v-text="item.comment_count" />
       </div>
       <div>
-        <i class="iconfont ic-good_fill" />
+        <i class="iconfont ic-good" />
         <span v-text="item.like_count" />
-      </div>
-      <div>
-        <i class="iconfont ic-mark_fill" />
-        <span v-text="item.mark_count" />
       </div>
     </div>
   </div>

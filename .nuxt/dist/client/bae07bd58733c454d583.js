@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[49],{627:function(e,t,n){"use strict";n.r(t);n(40);var r={asyncData(e){var{redirect:t,route:n}=e;t("".concat(n.path.replace(/\/$/,""),"/following"),n.query)}},c=n(9),component=Object(c.a)(r,function(){var e=this.$createElement;return(this._self._c||e)("div")},[],!1,null,null,null);t.default=component.exports}}]);

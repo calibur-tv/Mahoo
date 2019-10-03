@@ -26,7 +26,7 @@ export default {
       default: null
     }
   },
-  head() {
+  head () {
     return {
       title: this.message,
       meta: [
@@ -38,10 +38,10 @@ export default {
     }
   },
   computed: {
-    statusCode() {
+    statusCode () {
       return (this.error && this.error.statusCode) || 500
     },
-    message() {
+    message () {
       return this.error.message || `Error`
     }
   }

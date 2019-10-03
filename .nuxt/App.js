@@ -1,5 +1,12 @@
 import Vue from 'vue'
-import { getMatchedComponentsInstances, promisify, globalHandleError } from './utils'
+
+import {
+  getMatchedComponentsInstances,
+  promisify,
+  globalHandleError
+} from './utils'
+
+import NuxtError from '../layouts/error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
 import '../node_modules/normalize.css/normalize.css'
@@ -22,8 +29,17 @@ export default {
 return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.title}`)
 },"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"},{"name":"theme-color","content":"#ffffff"},{"name":"format-detection","content":"telephone=no,email=no,address=no"},{"name":"applicable-device","content":"pc,mobile"},{"name":"renderer","content":"webkit|ie-comp|ie-stand"},{"name":"force-rendering","content":"webkit"},{"http-equiv":"X-UA-Compatible","content":"IE=edge,chrome=1"},{"hid":"description","name":"description","content":"","template":val => (val ? `${val},${process.env.INJECT.description}` : `${process.env.INJECT.description}`)},{"hid":"keywords","name":"keywords","content":"","template":val => (val ? `${val},${process.env.INJECT.keywords}` : `${process.env.INJECT.keywords}`)},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-capable","name":"apple-mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-status-bar-style","name":"apple-mobile-web-app-status-bar-style","content":"default"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"咔哩吧"},{"hid":"author","name":"author","content":"冰淤"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"咔哩吧"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"咔哩吧"},{"hid":"og:description","name":"og:description","property":"og:description","content":"咔哩吧是一个二次元社区"},{"hid":"og:image","name":"og:image","property":"og:image","content":"https:\u002F\u002Ffile.calibur.tv\u002Fweb\u002Ficons\u002Ficon_512.a9a872.png"},{"hid":"og:image:width","name":"og:image:width","property":"og:image:width","content":512},{"hid":"og:image:height","name":"og:image:height","property":"og:image:height","content":512},{"hid":"og:image:type","name":"og:image:type","property":"og:image:type","content":"image\u002Fpng"}],"link":[{"rel":"dns-prefetch","href":"https:\u002F\u002Ffile.calibur.tv"},{"rel":"dns-prefetch","href":"https:\u002F\u002Fm1.calibur.tv"},{"rel":"preconnect","href":"https:\u002F\u002Fwww.calibur.tv"},{"rel":"preconnect","href":"https:\u002F\u002Fapi.calibur.tv"},{"rel":"icon","type":"image\u002Fx-icon","href":"https:\u002F\u002Ffile.calibur.tv\u002Ffavicon.ico"},{"rel":"manifest","href":"https:\u002F\u002Ffile.calibur.tv\u002Fweb\u002Fmanifest.159c4c59.json"},{"rel":"shortcut icon","href":"https:\u002F\u002Ffile.calibur.tv\u002Fweb\u002Ficons\u002Ficon_64.a9a872.png"},{"rel":"apple-touch-icon","href":"https:\u002F\u002Ffile.calibur.tv\u002Fweb\u002Ficons\u002Ficon_512.a9a872.png","sizes":"512x512"},{"rel":"apple-touch-startup-image","href":"https:\u002F\u002Ffile.calibur.tv\u002Fweb\u002Ficons\u002Ficon_512.a9a872.png"}],"bodyAttrs":{"id":"calibur"},"script":[{"src":"https:\u002F\u002Fpolyfill.alicdn.com\u002Fpolyfill.min.js","type":"text\u002Fjavascript"},{"innerHTML":"var _hmt=_hmt||[];(function (){var hm=document.createElement(\"script\");hm.src=\"https:\u002F\u002Fhm.baidu.com\u002Fhm.js?c10304a2f70ee2ddf8d2818551d37a4b\";var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(hm,s)})();","type":"text\u002Fjavascript","async":true},{"innerHTML":"(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https:\u002F\u002Fzz.bdstatic.com\u002Flinksubmit\u002Fpush.js'}else{bp.src='http:\u002F\u002Fpush.zhanzhang.baidu.com\u002Fpush.js'}var s=document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(bp,s)})();","type":"text\u002Fjavascript","async":true},{"src":"\u002F\u002Fqzonestyle.gtimg.cn\u002Fqzone\u002Fqzact\u002Fcommon\u002Fshare\u002Fshare.js","type":"text\u002Fjavascript","async":true},{"src":"\u002F\u002Fres2.wx.qq.com\u002Fopen\u002Fjs\u002Fjweixin-1.4.0.js","type":"text\u002Fjavascript","async":true}],"__dangerouslyDisableSanitizers":["script"],"style":[],"htmlAttrs":{"lang":"zh-CN"}},
 
-  render(h, props) {
+  render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
+
+    if (this.nuxt.err && NuxtError.layout) {
+      this.setLayout(
+        typeof NuxtError.layout === 'function'
+          ? NuxtError.layout(this.context)
+          : NuxtError.layout
+      )
+    }
+
     const layoutEl = h(this.layout || 'nuxt')
     const templateEl = h('div', {
       domProps: {
@@ -38,7 +54,7 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
         mode: 'out-in'
       },
       on: {
-        beforeEnter(el) {
+        beforeEnter (el) {
           // Ensure to trigger scroll event after calling scrollBehavior
           window.$nuxt.$nextTick(() => {
             window.$nuxt.$emit('triggerScroll')
@@ -51,22 +67,30 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
       domProps: {
         id: '__nuxt'
       }
-    }, [loadingEl, transitionEl])
+    }, [
+      loadingEl,
+
+      transitionEl
+    ])
   },
+
   data: () => ({
     isOnline: true,
+
     layout: null,
     layoutName: ''
   }),
-  beforeCreate() {
+
+  beforeCreate () {
     Vue.util.defineReactive(this, 'nuxt', this.$options.nuxt)
   },
-  created() {
+  created () {
     // Add this.$nuxt in child instances
     Vue.prototype.$nuxt = this
     // add to window so we can listen when ready
     if (process.client) {
       window.$nuxt = this
+
       this.refreshOnlineStatus()
       // Setup the listeners
       window.addEventListener('online', this.refreshOnlineStatus)
@@ -78,7 +102,7 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
     this.context = this.$options.context
   },
 
-  mounted() {
+  mounted () {
     this.$loading = this.$refs.loading
   },
   watch: {
@@ -86,12 +110,13 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
   },
 
   computed: {
-    isOffline() {
+    isOffline () {
       return !this.isOnline
     }
   },
+
   methods: {
-    refreshOnlineStatus() {
+    refreshOnlineStatus () {
       if (process.client) {
         if (typeof window.navigator.onLine === 'undefined') {
           // If the browser doesn't support connection status reports
@@ -103,19 +128,22 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
         }
       }
     },
-    async refresh() {
+
+    async refresh () {
       const pages = getMatchedComponentsInstances(this.$route)
 
       if (!pages.length) {
         return
       }
       this.$loading.start()
-      const promises = pages.map(async (page) => {
+
+      const promises = pages.map((page) => {
         const p = []
 
         if (page.$options.fetch) {
           p.push(promisify(page.$options.fetch, this.context))
         }
+
         if (page.$options.asyncData) {
           p.push(
             promisify(page.$options.asyncData, this.context)
@@ -126,6 +154,7 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
               })
           )
         }
+
         return Promise.all(p)
       })
       try {
@@ -138,21 +167,27 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
       this.$loading.finish()
     },
 
-    errorChanged() {
+    errorChanged () {
       if (this.nuxt.err && this.$loading) {
-        if (this.$loading.fail) this.$loading.fail()
-        if (this.$loading.finish) this.$loading.finish()
+        if (this.$loading.fail) {
+          this.$loading.fail()
+        }
+        if (this.$loading.finish) {
+          this.$loading.finish()
+        }
       }
     },
 
-    setLayout(layout) {
-      if (!layout || !resolvedLayouts['_' + layout]) layout = 'default'
+    setLayout (layout) {
+      if (!layout || !resolvedLayouts['_' + layout]) {
+        layout = 'default'
+      }
       this.layoutName = layout
       let _layout = '_' + layout
       this.layout = resolvedLayouts[_layout]
       return this.layout
     },
-    loadLayout(layout) {
+    loadLayout (layout) {
       const undef = !layout
       const nonexistent = !(layouts['_' + layout] || resolvedLayouts['_' + layout])
       let _layout = '_' + ((undef || nonexistent) ? 'default' : layout)
@@ -172,6 +207,7 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
         })
     }
   },
+
   components: {
     NuxtLoading
   }

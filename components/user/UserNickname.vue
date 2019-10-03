@@ -7,7 +7,7 @@
   float: left;
   max-width: 100%;
 
-  &:hover {
+  &.active:hover {
     color: $color-main;
   }
 
@@ -59,7 +59,7 @@
 </style>
 
 <template>
-  <div class="clearfix">
+  <div class="clearfix oneline">
     <div v-if="disabled" class="user-nickname">
       <div class="nickname">
         <p class="oneline" v-html="nickname || user.nickname" />
@@ -68,9 +68,9 @@
         <i class="iconfont" :class="[$style['ic-sex'], `ic-${sexClass.name}`]" :style="{ backgroundColor: sexClass.color }" />
       </span>
       <span v-if="level" :class="[$style.title, $style['ic-level']]" v-text="`Lv${user.level}`" />
-      <span v-for="(item, index) in user.roles" :key="index" :class="[$style.title, $style['ic-title']]" v-text="item" />
+      <span v-for="(item, index) in user.title" :key="index" :class="[$style.title, $style['ic-title']]" v-text="item" />
     </div>
-    <NLink v-else :to="$alias.user(user.slug)" target="_blank" class="user-nickname">
+    <NLink v-else :to="$alias.user(user.slug)" target="_blank" class="user-nickname active">
       <div class="nickname">
         <p class="oneline" v-html="nickname || user.nickname" />
       </div>
