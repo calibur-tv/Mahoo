@@ -117,36 +117,19 @@
 
     .zone {
       height: 20px;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
       overflow: hidden;
       margin-top: 10px;
+      color: $color-main-light;
 
       > div {
-        position: relative;
-        height: 20px;
+        display: inline;
         line-height: 20px;
-        background-color: rgba($color-main, 0.2);
-        padding: 0 10px;
+        padding: 3px 10px;
         margin-right: 10px;
         border-radius: 4px;
-        font-size: 0;
-        flex-shrink: 0;
-
-        img {
-          width: 15px;
-          height: 15px;
-          margin-right: 2px;
-          margin-left: -2px;
-        }
-
-        span {
-          display: inline-block;
-          color: $color-main-light;
-          font-size: 12px;
-        }
+        background-color: rgba($color-main, 0.2);
+        color: $color-main-light;
+        font-size: 12px;
       }
     }
   }
@@ -217,16 +200,10 @@
           </div>
         </template>
       </div>
-      <div class="zone">
-        <div v-if="item.area" class="oneline">
-          <span v-text="item.area.name" />
-        </div>
-        <div v-if="item.topic" class="oneline">
-          <span v-text="item.topic.name" />
-        </div>
-        <div v-if="item.notebook" class="oneline">
-          <span v-text="item.notebook.name" />
-        </div>
+      <div class="zone oneline">
+        <div v-if="item.area" v-text="item.area.name" />
+        <div v-if="item.topic" v-text="item.topic.name" />
+        <div v-if="item.notebook" v-text="item.notebook.name" />
       </div>
     </div>
     <div class="footer">
