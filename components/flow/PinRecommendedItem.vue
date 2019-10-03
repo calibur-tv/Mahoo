@@ -120,7 +120,7 @@
       overflow: hidden;
       margin-top: 10px;
       color: $color-main-light;
-      font-size: 0;
+      vertical-align: top;
 
       > span {
         line-height: 21px;
