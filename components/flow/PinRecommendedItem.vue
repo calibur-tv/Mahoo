@@ -19,96 +19,133 @@
   }
 
   .content {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 
     .text {
       @include multi-line(20px, 3);
       margin-bottom: 5px;
     }
 
-    .img {
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      border-radius: 5px;
-      background-color: $color-gray-bg;
-    }
-
-    .wrap {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .image-1 {
-      height: 170px;
-
+    .media {
       .img {
-        height: 100%;
-        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        border-radius: 5px;
+        background-color: $color-gray-bg;
       }
-    }
-
-    .image-2 {
-      position: relative;
-      height: 0;
-      padding-top: 50%;
 
       .wrap {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .image-1 {
+        height: 170px;
 
         .img {
-          flex-grow: 1;
           height: 100%;
-
-          &:first-child {
-            margin-right: 5px;
-          }
+          width: 100%;
         }
       }
-    }
 
-    .image-3 {
-      position: relative;
-      height: 0;
-      padding-top: 66.7%;
+      .image-2 {
+        position: relative;
+        height: 0;
+        padding-top: 50%;
 
-      .wrap {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-
-        .big {
-          flex-grow: 2;
-          margin-right: 5px;
-        }
-
-        .small {
-          flex-grow: 1;
-          height: 100%;
+        .wrap {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           justify-content: center;
           align-items: center;
 
           .img {
             flex-grow: 1;
-            width: 100%;
+            height: 100%;
 
             &:first-child {
-              margin-bottom: 5px;
+              margin-right: 5px;
             }
           }
         }
+      }
 
-        .img {
-          height: 100%;
+      .image-3 {
+        position: relative;
+        height: 0;
+        padding-top: 66.7%;
+
+        .wrap {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          .big {
+            flex-grow: 2;
+            margin-right: 5px;
+          }
+
+          .small {
+            flex-grow: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .img {
+              flex-grow: 1;
+              width: 100%;
+
+              &:first-child {
+                margin-bottom: 5px;
+              }
+            }
+          }
+
+          .img {
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .zone {
+      height: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      overflow: hidden;
+      margin-top: 10px;
+
+      > div {
+        position: relative;
+        height: 20px;
+        line-height: 20px;
+        background-color: rgba($color-main, 0.2);
+        padding: 0 10px;
+        margin-right: 10px;
+        border-radius: 4px;
+        font-size: 0;
+        flex-shrink: 0;
+
+        img {
+          width: 15px;
+          height: 15px;
+          margin-right: 2px;
+          margin-left: -2px;
+        }
+
+        span {
+          display: inline-block;
+          color: $color-main-light;
+          font-size: 12px;
         }
       }
     }
@@ -179,6 +216,17 @@
             </div>
           </div>
         </template>
+      </div>
+      <div class="zone">
+        <div v-if="item.area" class="oneline">
+          <span v-text="item.area.name" />
+        </div>
+        <div v-if="item.topic" class="oneline">
+          <span v-text="item.topic.name" />
+        </div>
+        <div v-if="item.notebook" class="oneline">
+          <span v-text="item.notebook.name" />
+        </div>
       </div>
     </div>
     <div class="footer">
