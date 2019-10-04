@@ -49,7 +49,7 @@
 <template>
   <div id="app-found">
     <VSwitcher :headers="['关注', '推荐', '漫友圈']" sticky swipe animated :fixed-top="0" :default-index="1" :anchor-padding="10">
-      <VScroller slot="0" :throttle="-1">
+      <VScroller slot="0">
         <p>start</p>
         <p>关注</p>
         <p>关注</p>
@@ -153,7 +153,7 @@
         <p>关注</p>
         <p>end</p>
       </VScroller>
-      <VScroller slot="1" :throttle="-1" @refresh="refreshMove" @refresh-end="refreshEnd">
+      <VScroller slot="1" @refresh="refreshMove" @refresh-end="refreshEnd">
         <Refresher ref="refresher" @refresh="handleRefresh" />
         <FlowLoader
           ref="recommended"
@@ -170,7 +170,7 @@
           </ul>
         </FlowLoader>
       </VScroller>
-      <VScroller slot="2" :throttle="-1">
+      <VScroller slot="2">
         <p>start</p>
         <p>漫友圈</p>
         <p>漫友圈</p>
@@ -305,7 +305,9 @@ export default {
       this.$refs.recommended.refresh(true)
     },
     handleCallback({ refresh }) {
-      refresh && this.$refs.refresher.end()
+      setTimeout(() => {
+        refresh && this.$refs.refresher.end()
+      }, 1000)
     }
   }
 }

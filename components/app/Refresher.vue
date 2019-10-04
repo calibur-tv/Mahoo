@@ -4,12 +4,15 @@
   background-size: 80px;
   background-position: center 10px;
   background-repeat: no-repeat;
-  transition: height 0.2s ease-in;
+
+  &.translate {
+    transition: height 200ms ease-in;
+  }
 }
 </style>
 
 <template>
-  <div class="refresher" :style="style" />
+  <div class="refresher" :class="{ translate }" :style="style" />
 </template>
 
 <script>
@@ -17,7 +20,8 @@ export default {
   name: 'Refresher',
   data() {
     return {
-      height: 0
+      height: 0,
+      translate: false
     }
   },
   computed: {
@@ -29,9 +33,11 @@ export default {
   },
   methods: {
     start(offset) {
+      this.translate = false
       this.height = offset
     },
     next() {
+      this.translate = true
       if (this.height < 80) {
         this.height = 0
         return
