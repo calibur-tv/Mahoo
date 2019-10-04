@@ -153,14 +153,17 @@
         <p>关注</p>
         <p>end</p>
       </VScroller>
-      <VScroller slot="1" :throttle="-1">
+      <VScroller slot="1" :throttle="-1" @refresh="refreshMove" @refresh-end="refreshEnd">
+        <Refresher ref="refresher" @refresh="handleRefresh" />
         <FlowLoader
+          ref="recommended"
           func="getFlowRecommendedIndex"
           type="seenIds"
           :query="{
             $axios,
             changing: 'slug'
           }"
+          :callback="handleCallback"
         >
           <ul slot-scope="{ flow }">
             <PinRecommendedItem v-for="item in flow" :key="item.slug" :item="item" />
@@ -282,21 +285,28 @@
 
 <script>
 import PinRecommendedItem from '~/components/flow/PinRecommendedItem'
+import Refresher from '~/components/app/Refresher'
 
 export default {
   name: 'AppHome',
   layout: 'app',
   components: {
-    PinRecommendedItem
+    PinRecommendedItem,
+    Refresher
   },
-  props: {},
-  data() {
-    return {}
-  },
-  computed: {},
-  watch: {},
-  created() {},
-  mounted() {},
-  methods: {}
+  methods: {
+    refreshMove({ offset }) {
+      this.$refs.refresher.start(offset)
+    },
+    refreshEnd() {
+      this.$refs.refresher.next()
+    },
+    handleRefresh() {
+      this.$refs.recommended.refresh(true)
+    },
+    handleCallback({ refresh }) {
+      refresh && this.$refs.refresher.end()
+    }
+  }
 }
 </script>

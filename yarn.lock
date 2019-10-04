@@ -838,10 +838,10 @@
   resolved "https://registry.yarnpkg.com/@editorjs/header/-/header-2.3.0.tgz#ce48414e3d8b39b1ed5633d35e3684b158fb9e98"
   integrity sha512-H3ILtnw3nVYrjj7CkgGAh1UovmRx/AAAzypLbzW7ElUVAbyL4Tx/iIE/SAp4sNbARXmVGin0mgzYqlRQr3hg5w==
 
-"@editorjs/image@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@editorjs/image/-/image-2.3.1.tgz#ba575a5db3b647e725acafdfbccd54df6a231c06"
-  integrity sha512-q5rQPruHkJycH9h3sYoM/I83fqnpA6khw4CqEempJ58JCmm7rnYZdi8bh8jhcgnhydpKqv3SVdk0LZJjAOKZDw==
+"@editorjs/image@^2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@editorjs/image/-/image-2.3.2.tgz#1523730b016999716552ce6e6abe401ed3b621ce"
+  integrity sha512-mT22tb4SfEvZ9+P0rIdY+uImY/xg9Qc4FMsY7p8rMUfB7DetPEvgpOM4+qknmDIY+Qo6BDwPov9cdxGa2YDEcg==
 
 "@editorjs/link@^2.1.3":
   version "2.1.3"
