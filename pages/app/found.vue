@@ -161,7 +161,8 @@
           type="seenIds"
           :query="{
             $axios,
-            changing: 'slug'
+            changing: 'slug',
+            rand_id: randId
           }"
           :callback="handleCallback"
         >
@@ -287,6 +288,10 @@
 import PinRecommendedItem from '~/components/flow/PinRecommendedItem'
 import Refresher from '~/components/app/Refresher'
 
+const makeRandomId = () => {
+  return '0123456789abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 36)]
+}
+
 export default {
   name: 'AppHome',
   layout: 'app',
@@ -296,7 +301,8 @@ export default {
   },
   data() {
     return {
-      activeIndex: 1
+      activeIndex: 1,
+      randId: makeRandomId()
     }
   },
   mounted() {
@@ -324,6 +330,7 @@ export default {
       this.$refs.refresher.next()
     },
     handleRefresh() {
+      this.randId = makeRandomId()
       this.$refs.recommended.refresh(true)
     },
     handleCallback({ refresh }) {
