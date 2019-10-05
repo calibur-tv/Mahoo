@@ -48,7 +48,7 @@
 
 <template>
   <div id="app-found">
-    <VSwitcher :headers="['关注', '推荐', '漫友圈']" sticky swipe animated :fixed-top="0" :default-index="1" :anchor-padding="10">
+    <VSwitcher :headers="['关注', '推荐', '漫友圈']" sticky swipe animated :fixed-top="0" :default-index="activeIndex" :anchor-padding="10" @change="handleSwitch">
       <VScroller slot="0">
         <p>start</p>
         <p>关注</p>
@@ -294,7 +294,29 @@ export default {
     PinRecommendedItem,
     Refresher
   },
+  data() {
+    return {
+      activeIndex: 1
+    }
+  },
+  mounted() {
+    this.watchRefresh()
+  },
   methods: {
+    handleSwitch(index) {
+      this.activeIndex = index
+    },
+    watchRefresh() {
+      this.$channel.$on('main-tab-refresh', index => {
+        if (index !== 0) {
+          return
+        }
+        if (this.activeIndex !== 1) {
+          return
+        }
+        this.$refs.refresher.refresh()
+      })
+    },
     refreshMove({ offset }) {
       this.$refs.refresher.start(offset)
     },

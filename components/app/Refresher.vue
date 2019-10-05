@@ -1,18 +1,37 @@
 <style lang="scss">
 .refresher {
-  background-image: url(~assets/img/loading.gif);
-  background-size: 80px;
-  background-position: center 10px;
-  background-repeat: no-repeat;
+  overflow: hidden;
+  text-align: center;
+
+  &.refreshing {
+    background-image: url(~assets/img/loading.gif);
+    background-size: 80px;
+    background-position: center 10px;
+    background-repeat: no-repeat;
+  }
 
   &.translate {
     transition: height 200ms ease-in;
+  }
+
+  i {
+    transition: 200ms ease-in;
+
+    &.rotate {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>
 
 <template>
-  <div class="refresher" :class="{ translate }" :style="style" />
+  <div class="refresher" :class="{ translate, refreshing }" :style="style">
+    <template v-if="!refreshing">
+      <br />
+      <i class="el-icon-bottom" :class="{ rotate: height >= 100 }" />
+      <p v-text="height < 100 ? '下拉刷新' : '松开刷新'" />
+    </template>
+  </div>
 </template>
 
 <script>
@@ -21,7 +40,8 @@ export default {
   data() {
     return {
       height: 0,
-      translate: false
+      translate: false,
+      refreshing: false
     }
   },
   computed: {
@@ -38,15 +58,25 @@ export default {
     },
     next() {
       this.translate = true
-      if (this.height < 80) {
+      if (this.height < 100) {
         this.height = 0
         return
       }
       this.height = 100
+      this.refreshing = true
       this.$emit('refresh')
     },
     end() {
       this.height = 0
+      setTimeout(() => {
+        this.refreshing = false
+      }, 500)
+    },
+    refresh() {
+      this.refreshing = true
+      this.translate = true
+      this.height = 100
+      this.$emit('refresh')
     }
   }
 }

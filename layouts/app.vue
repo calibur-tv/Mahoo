@@ -136,22 +136,22 @@
     </keep-alive>
     <div id="main-tab">
       <div class="tab-core">
-        <NLink class="link-0" to="/app/found" replace>
+        <NLink class="link-0" to="/app/found" replace @click.native="handleClick(0)">
           <i class="iconfont" />
           <span>发现</span>
         </NLink>
-        <NLink class="link-1" to="/app/category" replace>
+        <NLink class="link-1" to="/app/category" replace @click.native="handleClick(1)">
           <i class="iconfont" />
           <span>分区</span>
         </NLink>
         <NLink class="link-write" to="/app/write">
           <i class="iconfont ic-addition_fill" />
         </NLink>
-        <NLink class="link-2" to="/app/notice" replace>
+        <NLink class="link-2" to="/app/notice" replace @click.native="handleClick(2)">
           <i class="iconfont" />
           <span>消息</span>
         </NLink>
-        <NLink class="link-3" to="/app/home" replace>
+        <NLink class="link-3" to="/app/home" replace @click.native="handleClick(3)">
           <i class="iconfont" />
           <span>我的</span>
         </NLink>
@@ -167,10 +167,24 @@ import socketMixin from '~/mixins/socket'
 export default {
   name: 'AppLayout',
   mixins: [useSignMixin, socketMixin],
+  data() {
+    return {
+      activeIndex: 0
+    }
+  },
   beforeMount() {
     this.$channel.$when('user-not-sign', () => {
       this.$router.replace(`/app/sign?redirect=${encodeURIComponent('/app/found')}`)
     })
+  },
+  methods: {
+    handleClick(index) {
+      this.$channel.$emit('main-tab-click', index)
+      if (index === this.activeIndex) {
+        this.$channel.$emit('main-tab-refresh', index)
+      }
+      this.activeIndex = index
+    }
   }
 }
 </script>
