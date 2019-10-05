@@ -153,7 +153,7 @@
         <p>关注</p>
         <p>end</p>
       </VScroller>
-      <VScroller slot="1" @refresh="refreshMove" @refresh-end="refreshEnd">
+      <VScroller ref="scroller" slot="1" @refresh="refreshMove" @refresh-end="refreshEnd">
         <Refresher ref="refresher" @refresh="handleRefresh" />
         <FlowLoader
           ref="recommended"
@@ -287,9 +287,11 @@
 <script>
 import PinRecommendedItem from '~/components/flow/PinRecommendedItem'
 import Refresher from '~/components/app/Refresher'
+import scrollToY from '~/assets/js/scrollToY'
 
-const makeRandomId = () => {
-  return Math.floor(Math.random() * 10)
+const makeRandomId = (curId = '') => {
+  const str = '0123456789'.replace(curId, '')
+  return str[Math.floor(Math.random() * str.length)]
 }
 
 export default {
@@ -320,7 +322,8 @@ export default {
         if (this.activeIndex !== 1) {
           return
         }
-        this.$refs.refresher.refresh()
+        this.$refs.refresher && this.$refs.refresher.refresh()
+        this.$refs.scroller && scrollToY(0, 100, this.$refs.scroller.$el)
       })
     },
     refreshMove({ offset }) {
@@ -330,14 +333,14 @@ export default {
       this.$refs.refresher.next()
     },
     handleRefresh() {
-      this.randId = makeRandomId()
+      this.randId = makeRandomId(this.randId)
       this.$refs.recommended.refresh(true)
     },
     handleCallback({ refresh, data }) {
       if (refresh) {
         setTimeout(() => {
           this.$toast.info(`${data.result.length} 条新内容`)
-          this.$refs.refresher.end()
+          this.$refs.refresher && this.$refs.refresher.end()
         }, 1000)
       }
     }

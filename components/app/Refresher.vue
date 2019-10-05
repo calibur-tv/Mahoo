@@ -73,6 +73,9 @@ export default {
       }, 500)
     },
     refresh() {
+      if (this.refreshing) {
+        return
+      }
       this.refreshing = true
       this.translate = true
       this.height = 100
