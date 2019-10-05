@@ -289,7 +289,7 @@ import PinRecommendedItem from '~/components/flow/PinRecommendedItem'
 import Refresher from '~/components/app/Refresher'
 
 const makeRandomId = () => {
-  return '0123456789abcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 36)]
+  return Math.floor(Math.random() * 10)
 }
 
 export default {
@@ -333,10 +333,13 @@ export default {
       this.randId = makeRandomId()
       this.$refs.recommended.refresh(true)
     },
-    handleCallback({ refresh }) {
-      setTimeout(() => {
-        refresh && this.$refs.refresher.end()
-      }, 1000)
+    handleCallback({ refresh, data }) {
+      if (refresh) {
+        setTimeout(() => {
+          this.$toast.info(`${data.result.length} 条新内容`)
+          this.$refs.refresher.end()
+        }, 1000)
+      }
     }
   }
 }
