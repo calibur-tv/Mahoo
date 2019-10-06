@@ -304,7 +304,8 @@ export default {
   data() {
     return {
       activeIndex: 1,
-      randId: makeRandomId()
+      randId: makeRandomId(),
+      newRandId: ''
     }
   },
   mounted() {
@@ -333,11 +334,22 @@ export default {
       this.$refs.refresher.next()
     },
     handleRefresh() {
-      this.randId = makeRandomId(this.randId)
-      this.$refs.recommended.refresh(true)
+      this.newRandId = makeRandomId(this.randId)
+      this.$store.dispatch('flow/initData', {
+        func: 'getFlowRecommendedIndex',
+        type: 'seenIds',
+        query: {
+          __refresh__: true,
+          $axios: this.$axios,
+          changing: 'slug',
+          rand_id: this.newRandId
+        },
+        callback: this.handleCallback
+      })
     },
     handleCallback({ refresh, data }) {
       if (refresh) {
+        this.randId = this.newRandId
         setTimeout(() => {
           this.$toast.info(`${data.result.length} 条新内容`)
           this.$refs.refresher && this.$refs.refresher.end()
