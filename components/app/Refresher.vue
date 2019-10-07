@@ -47,7 +47,7 @@ export default {
   computed: {
     style() {
       return {
-        height: `${Math.min(this.height, 200)}px`
+        height: `${this.height / 2 + Math.sqrt(this.height)}px`
       }
     }
   },
