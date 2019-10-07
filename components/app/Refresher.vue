@@ -46,6 +46,11 @@ export default {
   },
   computed: {
     style() {
+      if (this.refreshing) {
+        return {
+          height: '100px'
+        }
+      }
       return {
         height: `${this.height / 2 + Math.sqrt(this.height)}px`
       }
