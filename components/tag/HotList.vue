@@ -124,7 +124,7 @@
 <script>
 import CreateTagBtn from '~/components/button/CreateTagBtn'
 import RollList from 'vue-roll-list'
-import { tagChildren } from '~/api/tagApi'
+import { tagChildren } from '~/api/flowApi'
 
 export default {
   name: 'TagHotList',

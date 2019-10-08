@@ -41,7 +41,8 @@
 
 <script>
 import ZoneMixin from '~/mixins/zone'
-import { showTag, tagChildren } from '~/api/tagApi'
+import { showTag } from '~/api/tagApi'
+import { tagChildren } from '~/api/flowApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
 import TagHotList from '~/components/tag/HotList'

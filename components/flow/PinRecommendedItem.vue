@@ -151,8 +151,8 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 40px;
 
     &:before {
       content: '';

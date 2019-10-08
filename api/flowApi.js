@@ -88,3 +88,13 @@ export const getFlowRecommendedIndex = ({ $axios, seen_ids, rand_id }) => {
     params: { seen_ids, rand_id }
   })
 }
+
+export const tagHottest = ({ $axios, page, take }) =>
+  $axios.$get('v1/tag/hottest', {
+    params: { page, take }
+  })
+
+export const tagChildren = ({ $axios, slug, page, take }) =>
+  $axios.$get('v1/tag/children', {
+    params: { slug, page, take }
+  })

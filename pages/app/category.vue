@@ -1,7 +1,77 @@
+<style lang="scss">
+#app-category {
+  .tag-list {
+    padding: 5px;
+
+    li {
+      display: block;
+      width: 33.3%;
+      padding: 5px;
+      float: left;
+      text-align: center;
+
+      div {
+        background-color: $color-gray-3;
+        border-radius: 5px;
+        padding: 15px 15px 10px;
+        overflow: hidden;
+      }
+
+      figure {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-top: 100%;
+        margin-bottom: 5px;
+      }
+
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 5%;
+        object-fit: cover;
+      }
+
+      p {
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      span {
+        font-size: 12px;
+        color: $color-text-2;
+      }
+    }
+  }
+}
+</style>
+
 <template>
   <div id="app-category">
-    <h1>Category</h1>
-    <p>为什么我非得成为一个了不起的人不可？我就不能度过无所事事的一生吗？</p>
+    <FlowLoader
+      func="tagHottest"
+      type="page"
+      :query="{
+        take: 12,
+        $axios
+      }"
+    >
+      <ul slot-scope="{ flow }" class="tag-list clearfix">
+        <li v-for="item in flow" :key="item.slug">
+          <div>
+            <figure>
+              <img :src="$resize(item.avatar, { width: 100 })" />
+            </figure>
+            <p class="oneline" v-html="item.name" />
+            <span>{{ item.seen_user_count }} 关注</span>
+          </div>
+        </li>
+      </ul>
+    </FlowLoader>
   </div>
 </template>
 

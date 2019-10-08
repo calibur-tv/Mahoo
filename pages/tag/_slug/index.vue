@@ -56,7 +56,8 @@
 </template>
 
 <script>
-import { showTag, tagChildren } from '~/api/tagApi'
+import { showTag } from '~/api/tagApi'
+import { tagChildren } from '~/api/flowApi'
 import Affix from '~/components/common/Affix'
 import PinFlowList from '~/components/flow/PinFlowList'
 import JoinCard from '~/components/tag/JoinCard'
