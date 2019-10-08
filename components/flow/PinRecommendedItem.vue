@@ -133,7 +133,7 @@
       color: $color-main-light;
       line-height: 1;
 
-      > span {
+      a {
         line-height: 21px;
         padding: 3px 10px;
         margin-right: 10px;
@@ -184,65 +184,71 @@
 <template>
   <div class="pin-rec-item">
     <div class="header">
-      <UserAvatar disabled :user="item.author" :size="30" />
-      <UserNickname disabled :user="item.author" />
+      <NLink :to="`/app/user?slug=${item.author.slug}`">
+        <UserAvatar disabled :user="item.author" :size="30" />
+      </NLink>
+      <NLink :to="`/app/user?slug=${item.author.slug}`">
+        <UserNickname disabled :user="item.author" />
+      </NLink>
     </div>
     <div class="content">
-      <div class="text" v-html="item.intro" />
-      <div v-if="item.media" class="media">
-        <template v-if="item.media.image_count">
-          <div v-if="item.media.image_count === 1" class="image-1">
-            <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 200, mode: 2 })})` }">
-              <div v-if="item.media.images[0].mime === 'image/gif'" class="badge">
-                <span>GIF</span>
-              </div>
-            </div>
-          </div>
-          <div v-else-if="item.media.image_count === 2" class="image-2">
-            <div class="wrap">
+      <NLink :to="`/app/pin?slug=${item.slug}`">
+        <div class="text" v-html="item.intro" />
+        <div v-if="item.media" class="media">
+          <template v-if="item.media.image_count">
+            <div v-if="item.media.image_count === 1" class="image-1">
               <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 200, mode: 2 })})` }">
                 <div v-if="item.media.images[0].mime === 'image/gif'" class="badge">
                   <span>GIF</span>
                 </div>
               </div>
-              <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[1].url, { width: 200, mode: 2 })})` }">
-                <div v-if="item.media.images[1].mime === 'image/gif'" class="badge">
-                  <span>GIF</span>
-                </div>
-              </div>
             </div>
-          </div>
-          <div v-else class="image-3">
-            <div class="wrap">
-              <div class="img big" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 300, mode: 2 })})` }">
-                <div v-if="item.media.images[0].mime === 'image/gif'" class="badge">
-                  <span>GIF</span>
+            <div v-else-if="item.media.image_count === 2" class="image-2">
+              <div class="wrap">
+                <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 200, mode: 2 })})` }">
+                  <div v-if="item.media.images[0].mime === 'image/gif'" class="badge">
+                    <span>GIF</span>
+                  </div>
                 </div>
-              </div>
-              <div class="small">
-                <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[1].url, { width: 150, mode: 2 })})` }">
+                <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[1].url, { width: 200, mode: 2 })})` }">
                   <div v-if="item.media.images[1].mime === 'image/gif'" class="badge">
                     <span>GIF</span>
                   </div>
                 </div>
-                <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[2].url, { width: 150, mode: 2 })})` }">
-                  <div v-if="item.media.image_count - 3 > 0" class="badge">
-                    <i class="el-icon-picture-outline" />
-                    <span>+{{ item.media.image_count - 3 }}</span>
-                  </div>
-                  <div v-else-if="item.media.images[2].mime === 'image/gif'" class="badge">
+              </div>
+            </div>
+            <div v-else class="image-3">
+              <div class="wrap">
+                <div class="img big" :style="{ backgroundImage: `url(${$resize(item.media.images[0].url, { width: 300, mode: 2 })})` }">
+                  <div v-if="item.media.images[0].mime === 'image/gif'" class="badge">
                     <span>GIF</span>
+                  </div>
+                </div>
+                <div class="small">
+                  <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[1].url, { width: 150, mode: 2 })})` }">
+                    <div v-if="item.media.images[1].mime === 'image/gif'" class="badge">
+                      <span>GIF</span>
+                    </div>
+                  </div>
+                  <div class="img" :style="{ backgroundImage: `url(${$resize(item.media.images[2].url, { width: 150, mode: 2 })})` }">
+                    <div v-if="item.media.image_count - 3 > 0" class="badge">
+                      <i class="el-icon-picture-outline" />
+                      <span>+{{ item.media.image_count - 3 }}</span>
+                    </div>
+                    <div v-else-if="item.media.images[2].mime === 'image/gif'" class="badge">
+                      <span>GIF</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </template>
-      </div>
+          </template>
+        </div>
+      </NLink>
       <div class="zone oneline">
-        <span v-if="item.area" v-text="item.area.name" />
-        <span v-if="item.topic" v-text="item.topic.name" />
-        <span v-if="item.notebook" v-text="item.notebook.name" />
+        <NLink v-if="item.area" :to="`/app/zone?slug=${item.area.slug}`" v-text="item.area.name" />
+        <NLink v-if="item.topic" :to="`/app/zone?slug=${item.topic.slug}`" v-text="item.topic.name" />
+        <NLink v-if="item.notebook" :to="`/app/zone?slug=${item.notebook.slug}`" v-text="item.notebook.name" />
       </div>
     </div>
     <div class="footer">

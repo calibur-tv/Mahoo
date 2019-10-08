@@ -9,7 +9,7 @@
     padding: 15px 15px 0;
     background-color: #fff;
 
-    header {
+    .header {
       margin-bottom: 18px;
       @extend %clearfix;
 
@@ -72,7 +72,7 @@
       }
     }
 
-    main {
+    .main {
       @extend %clearfix;
 
       .daily-sign-btn {
@@ -190,7 +190,7 @@
 <template>
   <div id="app-home">
     <div class="panel">
-      <header>
+      <NLink :to="`/app/user?slug=${self.slug}`" class="header">
         <img :src="$resize(self.avatar, { width: 130 })" class="avatar" />
         <img src="~/assets/img/app/home/link.png" class="link" />
         <div class="content">
@@ -200,8 +200,8 @@
           </div>
           <p class="intro">cc号：{{ self.slug }}</p>
         </div>
-      </header>
-      <main>
+      </NLink>
+      <main class="main">
         <DailySignBtn v-model="self" />
         <div class="meta">
           <div class="item">

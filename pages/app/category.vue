@@ -29,7 +29,8 @@
       float: left;
       text-align: center;
 
-      div {
+      a {
+        display: block;
         background-color: $color-gray-3;
         border-radius: 5px;
         padding: 15px 15px 10px;
@@ -84,13 +85,13 @@
       >
         <ul slot-scope="{ flow }" class="tag-list clearfix">
           <li v-for="item in flow" :key="item.slug">
-            <div>
+            <NLink :to="`/app/zone?slug=${item.slug}`">
               <figure>
                 <img :src="$resize(item.avatar, { width: 100 })" />
               </figure>
               <p class="oneline" v-html="item.name" />
               <span>{{ item.seen_user_count }} 关注</span>
-            </div>
+            </NLink>
           </li>
         </ul>
       </FlowLoader>
