@@ -93,8 +93,3 @@ export const tagHottest = ({ $axios, page, take }) =>
   $axios.$get('v1/tag/hottest', {
     params: { page, take }
   })
-
-export const tagChildren = ({ $axios, slug, page, take }) =>
-  $axios.$get('v1/tag/children', {
-    params: { slug, page, take }
-  })
