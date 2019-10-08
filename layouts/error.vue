@@ -51,9 +51,12 @@
         <div class="subtitle">
           不存在的内容，或者正在审核中。
         </div>
-        <nuxt-link class="back" to="/">
+        <NLink class="back only-h5" to="/app/found">
           返回首页
-        </nuxt-link>
+        </NLink>
+        <NLink class="back only-pc" to="/">
+          返回首页
+        </NLink>
       </div>
       <div v-else-if="statusCode >= 500" id="error-500">
         <img src="~assets/img/error/500.jpeg" alt="error-500" @click="toastMessage" />
@@ -61,9 +64,9 @@
         <div class="subtitle">
           服务器出了点问题，工程师正在加紧抢修ヽ( ° ▽°)ノ
         </div>
-        <nuxt-link class="back" to="/">
+        <NLink class="back" to="/">
           返回首页
-        </nuxt-link>
+        </NLink>
       </div>
     </div>
   </div>
