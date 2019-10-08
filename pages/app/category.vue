@@ -1,7 +1,26 @@
 <style lang="scss">
 #app-category {
+  .title {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 10px 0;
+    background-color: #fff;
+    color: $color-black;
+    z-index: 11;
+  }
+
+  .title-shim {
+    height: 50px;
+  }
+
   .tag-list {
-    padding: 5px;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 5px;
 
     li {
       display: block;
@@ -52,6 +71,8 @@
 
 <template>
   <div id="app-category">
+    <p class="title">热门圈子</p>
+    <div class="title-shim" />
     <FlowLoader
       func="tagHottest"
       type="page"

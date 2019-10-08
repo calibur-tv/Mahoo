@@ -142,7 +142,7 @@
         </NLink>
         <NLink class="link-1" to="/app/category" replace @click.native="handleClick(1)">
           <i class="iconfont" />
-          <span>分区</span>
+          <span>圈子</span>
         </NLink>
         <NLink class="link-write" to="/app/write">
           <i class="iconfont ic-addition_fill" />
