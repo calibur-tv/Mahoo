@@ -18,6 +18,10 @@
     height: 50px;
   }
 
+  .flow-loader {
+    height: 100%;
+  }
+
   .tag-list {
     -webkit-overflow-scrolling: touch;
     padding: 0 5px;
@@ -81,7 +85,7 @@
         $axios
       }"
     >
-      <ul slot-scope="{ flow }" class="tag-list clearfix">
+      <VScroller slot-scope="{ flow }" :throttle="-1" class="tag-list clearfix">
         <li v-for="item in flow" :key="item.slug">
           <div>
             <figure>
@@ -91,7 +95,7 @@
             <span>{{ item.seen_user_count }} 关注</span>
           </div>
         </li>
-      </ul>
+      </VScroller>
     </FlowLoader>
   </div>
 </template>
