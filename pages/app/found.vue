@@ -349,8 +349,8 @@ export default {
     },
     handleCallback({ refresh, data }) {
       if (refresh) {
-        this.randId = this.newRandId
         setTimeout(() => {
+          this.randId = this.newRandId
           this.$toast.info(`${data.result.length} 条新内容`)
           this.$refs.refresher && this.$refs.refresher.end()
         }, 1000)

@@ -2,12 +2,14 @@
 .refresher {
   overflow: hidden;
   text-align: center;
+  background-color: $color-gray-bg;
 
   &.refreshing {
     background-image: url(~assets/img/loading.gif);
     background-size: 80px;
     background-position: center 10px;
     background-repeat: no-repeat;
+    background-color: #fff;
   }
 
   &.translate {

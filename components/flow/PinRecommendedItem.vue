@@ -3,7 +3,7 @@
   padding: 10px 10px 0;
 
   &:not(:last-child) {
-    border-bottom: 10px solid #e7ecf2;
+    border-bottom: 10px solid $color-gray-bg;
   }
 
   .header {
