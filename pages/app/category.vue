@@ -18,10 +18,6 @@
     height: 50px;
   }
 
-  .flow-loader {
-    height: 100%;
-  }
-
   .tag-list {
     -webkit-overflow-scrolling: touch;
     padding: 0 5px;
@@ -77,26 +73,28 @@
   <div id="app-category">
     <p class="title">热门圈子</p>
     <div class="title-shim" />
-    <FlowLoader
-      func="tagHottest"
-      type="page"
-      :query="{
-        take: 12,
-        $axios
-      }"
-    >
-      <VScroller slot-scope="{ flow }" :throttle="-1" class="tag-list clearfix">
-        <li v-for="item in flow" :key="item.slug">
-          <div>
-            <figure>
-              <img :src="$resize(item.avatar, { width: 100 })" />
-            </figure>
-            <p class="oneline" v-html="item.name" />
-            <span>{{ item.seen_user_count }} 关注</span>
-          </div>
-        </li>
-      </VScroller>
-    </FlowLoader>
+    <VScroller :throttle="-1">
+      <FlowLoader
+        func="tagHottest"
+        type="page"
+        :query="{
+          take: 12,
+          $axios
+        }"
+      >
+        <ul slot-scope="{ flow }" class="tag-list clearfix">
+          <li v-for="item in flow" :key="item.slug">
+            <div>
+              <figure>
+                <img :src="$resize(item.avatar, { width: 100 })" />
+              </figure>
+              <p class="oneline" v-html="item.name" />
+              <span>{{ item.seen_user_count }} 关注</span>
+            </div>
+          </li>
+        </ul>
+      </FlowLoader>
+    </VScroller>
   </div>
 </template>
 
