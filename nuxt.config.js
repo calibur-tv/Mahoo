@@ -163,7 +163,7 @@ module.exports = {
       description: injectScript.description,
       start_url: 'https://www.calibur.tv/app/found',
       background_color: '#ffffff',
-      display: 'standalone',
+      display: 'fullscreen',
       lang: 'zh-CN',
       serviceworker: {
         src: './sw.js'

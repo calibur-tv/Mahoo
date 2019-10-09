@@ -79,7 +79,7 @@
         func="tagHottest"
         type="page"
         :query="{
-          take: 12,
+          take: 18,
           $axios
         }"
       >
