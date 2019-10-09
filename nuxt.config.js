@@ -163,7 +163,7 @@ module.exports = {
       description: injectScript.description,
       start_url: 'https://www.calibur.tv/app/found',
       background_color: '#ffffff',
-      display: 'fullscreen',
+      display: 'standalone',
       lang: 'zh-CN',
       serviceworker: {
         src: './sw.js'
@@ -200,16 +200,6 @@ module.exports = {
           }
         }
       }
-    },
-    scrollBehavior: function(to, from, savedPosition) {
-      if (savedPosition) {
-        return savedPosition
-      }
-      let position = { x: 0, y: 0 }
-      if (to.hash) {
-        position = { selector: to.hash }
-      }
-      return position
     }
   },
 
