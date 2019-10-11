@@ -10,6 +10,7 @@
     background-color: #fff;
 
     .header {
+      display: block;
       margin-bottom: 18px;
       @extend %clearfix;
 
