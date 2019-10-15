@@ -306,9 +306,11 @@
       </VSwitcher>
     </div>
     <div class="container">
-      <br />
-      <ElAlert v-if="showBirthday" title="祝这位不愿透露姓名的御坂妹妹生日快乐~！" type="success" />
-      <br />
+      <template v-if="showBirthday">
+        <br />
+        <ElAlert title="祝这位不愿透露姓名的御坂妹妹生日快乐~！" type="success" />
+        <br />
+      </template>
       <ElRow class="h5-no-margin" :gutter="10">
         <ElCol class="h5-no-margin" :span="17" :xs="24">
           <section class="user-section">
