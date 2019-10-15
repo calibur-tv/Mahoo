@@ -306,6 +306,9 @@
       </VSwitcher>
     </div>
     <div class="container">
+      <br />
+      <ElAlert v-if="showBirthday" title="祝这位不愿透露姓名的御坂妹妹生日快乐~！" type="success" />
+      <br />
       <ElRow class="h5-no-margin" :gutter="10">
         <ElCol class="h5-no-margin" :span="17" :xs="24">
           <section class="user-section">
@@ -346,11 +349,13 @@ import UserNickname from '~/components/user/UserNickname'
 import DailySignBtn from '~/components/button/DailySignBtn'
 import UserFollowBtn from '~/components/button/UserFollowBtn'
 import SendMailBtn from '~/components/button/SendMailBtn'
+import { Alert } from 'element-ui'
 
 export default {
   name: 'UserLayout',
   layout: 'web',
   components: {
+    ElAlert: Alert,
     UserAvatar,
     UserNickname,
     DailySignBtn,
@@ -380,6 +385,10 @@ export default {
     }
   },
   computed: {
+    showBirthday() {
+      const ts = Date.now()
+      return ts >= 1571155200000 && ts <= 1571241599000 && this.slug === 'cc-a18jd'
+    },
     isMine() {
       return this.$store.getters.isMine(this.slug)
     },
