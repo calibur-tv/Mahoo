@@ -2,6 +2,9 @@ import Axios from 'axios'
 
 // Axios.prototype cannot be modified
 const axiosExtra = {
+  setBaseURL (baseURL) {
+    this.defaults.baseURL = baseURL
+  },
   setHeader (name, value, scopes = 'common') {
     for (let scope of Array.isArray(scopes) ? scopes : [ scopes ]) {
       if (!value) {
@@ -54,16 +57,16 @@ export default (ctx, inject) => {
   // Axios creates only one which is shared across SSR requests!
   // https://github.com/mzabriskie/axios/blob/master/lib/defaults.js
   const headers = {
-    common : {
-      'Accept': 'application/json, text/plain, */*'
+    "common": {
+        "Accept": "application/json, text/plain, */*"
     },
-    delete: {},
-    get: {},
-    head: {},
-    post: {},
-    put: {},
-    patch: {}
-  }
+    "delete": {},
+    "get": {},
+    "head": {},
+    "post": {},
+    "put": {},
+    "patch": {}
+}
 
   const axiosOptions = {
     baseURL,
@@ -77,6 +80,8 @@ export default (ctx, inject) => {
   delete axiosOptions.headers.common['cf-ray']
   delete axiosOptions.headers.common['cf-connecting-ip']
   delete axiosOptions.headers.common['content-length']
+  delete axiosOptions.headers.common['content-md5']
+  delete axiosOptions.headers.common['content-type']
 
   if (process.server) {
     // Don't accept brotli encoding because Node can't parse it
@@ -85,6 +90,8 @@ export default (ctx, inject) => {
 
   // Create new axios instance
   const axios = Axios.create(axiosOptions)
+  axios.CancelToken = Axios.CancelToken
+  axios.isCancel = Axios.isCancel
 
   // Extend axios proto
   extendAxiosInstance(axios)
