@@ -46,9 +46,7 @@
         <template v-if="item.data.visit_type !== 0 && !reward">
           密码投食后可见
         </template>
-        <template v-else>
-          密码：{{ item.data.password }}
-        </template>
+        <template v-else> 密码：{{ item.data.password }} </template>
       </div>
     </a>
   </div>

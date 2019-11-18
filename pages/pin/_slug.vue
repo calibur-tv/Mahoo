@@ -243,20 +243,15 @@ export default {
     TimelineDrawerBtn,
     ToolDropdown
   },
-  head() {
-    const { title, intro } = this
-    const meta = [{ hid: 'description', name: 'description', content: intro }]
-    if (title.banner) {
-      meta.push({
-        hid: 'share-image',
-        name: 'share-image',
-        content: title.banner.url
+  asyncData({ app, error, params, query }) {
+    return app.$axios
+      .$get('v1/pin/show', {
+        params: Object.assign({}, params, query)
       })
-    }
-    return {
-      title: title.text,
-      meta
-    }
+      .then(data => {
+        return { ...data }
+      })
+      .catch(error)
   },
   data() {
     return {
@@ -301,16 +296,6 @@ export default {
     isAdmin() {
       return this.$store.getters.isAdmin
     }
-  },
-  asyncData({ app, error, params, query }) {
-    return app.$axios
-      .$get('v1/pin/show', {
-        params: Object.assign({}, params, query)
-      })
-      .then(data => {
-        return { ...data }
-      })
-      .catch(error)
   },
   beforeMount() {
     this.patchPin()
@@ -361,6 +346,21 @@ export default {
           })
         })
         .catch(() => {})
+    }
+  },
+  head() {
+    const { title, intro } = this
+    const meta = [{ hid: 'description', name: 'description', content: intro }]
+    if (title.banner) {
+      meta.push({
+        hid: 'share-image',
+        name: 'share-image',
+        content: title.banner.url
+      })
+    }
+    return {
+      title: title.text,
+      meta
     }
   }
 }

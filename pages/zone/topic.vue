@@ -54,11 +54,6 @@ export default {
     Affix
   },
   mixins: [ZoneMixin],
-  data() {
-    return {
-      slug: process.env.TAGS.topic
-    }
-  },
   asyncData({ app, error }) {
     const slug = process.env.TAGS.topic
     return Promise.all([showTag(app, { slug }), tagChildren(app, { slug })])
@@ -69,6 +64,11 @@ export default {
         }
       })
       .catch(error)
+  },
+  data() {
+    return {
+      slug: process.env.TAGS.topic
+    }
   }
 }
 </script>

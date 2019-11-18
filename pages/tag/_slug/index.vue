@@ -73,28 +73,10 @@ export default {
     TagHotList,
     TagControlPanel
   },
-  head() {
-    const { tag } = this
-    return {
-      title: tag.name,
-      meta: [
-        { hid: 'keywords', name: 'keywords', content: tag.alias },
-        { hid: 'description', name: 'description', content: `${tag.name},${tag.intro}` },
-        { hid: 'share-image', name: 'share-image', content: tag.avatar }
-      ]
-    }
-  },
   props: {
     slug: {
       type: String,
       required: true
-    }
-  },
-  data() {
-    return {
-      tag: null,
-      children: [],
-      is_master: false
     }
   },
   asyncData({ app, error, params }) {
@@ -107,6 +89,13 @@ export default {
         }
       })
       .catch(error)
+  },
+  data() {
+    return {
+      tag: null,
+      children: [],
+      is_master: false
+    }
   },
   beforeMount() {
     this.patchTag()
@@ -131,6 +120,17 @@ export default {
           this.is_master = data.is_master
         })
         .catch(() => {})
+    }
+  },
+  head() {
+    const { tag } = this
+    return {
+      title: tag.name,
+      meta: [
+        { hid: 'keywords', name: 'keywords', content: tag.alias },
+        { hid: 'description', name: 'description', content: `${tag.name},${tag.intro}` },
+        { hid: 'share-image', name: 'share-image', content: tag.avatar }
+      ]
     }
   }
 }

@@ -90,6 +90,15 @@ export default {
     ElCollapseItem: CollapseItem,
     UserAvatar
   },
+  asyncData({ app, error }) {
+    return app.$axios
+      .$get('v1/user/managers')
+      .then(list => {
+        const actives = Object.keys(list)
+        return { list, actives }
+      })
+      .catch(error)
+  },
   data() {
     return {
       list: [],
@@ -103,15 +112,6 @@ export default {
     showDelete() {
       return this.$hasRole('remove_manager')
     }
-  },
-  asyncData({ app, error }) {
-    return app.$axios
-      .$get('v1/user/managers')
-      .then(list => {
-        const actives = Object.keys(list)
-        return { list, actives }
-      })
-      .catch(error)
   },
   methods: {
     removeManager(role, slug) {

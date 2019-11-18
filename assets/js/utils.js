@@ -57,7 +57,7 @@ export const checkInView = (dom, preload = 1) => {
     return false
   }
   const rect = dom.getBoundingClientRect()
-  return rect.top < window.innerHeight + preload && rect.bottom + preload > 0 && (rect.left < window.innerWidth + preload && rect.right + preload > 0)
+  return rect.top < window.innerHeight + preload && rect.bottom + preload > 0 && rect.left < window.innerWidth + preload && rect.right + preload > 0
 }
 
 export const on = (function() {

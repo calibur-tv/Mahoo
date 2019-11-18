@@ -26,17 +26,17 @@ export default {
   components: {
     GameItem
   },
-  data() {
-    return {
-      list: []
-    }
-  },
   asyncData({ app, error, params }) {
     return bookmarkTags(app, params)
       .then(tags => {
         return { list: tags.game }
       })
       .catch(error)
+  },
+  data() {
+    return {
+      list: []
+    }
   },
   beforeMount() {
     this.batchPatch()

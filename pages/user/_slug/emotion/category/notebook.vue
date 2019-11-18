@@ -15,17 +15,17 @@ export default {
   components: {
     NotebookItem
   },
-  data() {
-    return {
-      list: []
-    }
-  },
   asyncData({ app, error, params }) {
     return bookmarkTags(app, params)
       .then(tags => {
         return { list: tags.notebook }
       })
       .catch(error)
+  },
+  data() {
+    return {
+      list: []
+    }
   },
   beforeMount() {
     this.batchPatch()

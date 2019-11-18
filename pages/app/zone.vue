@@ -85,13 +85,6 @@ export default {
     Header
   },
   props: {},
-  data() {
-    return {
-      tag: null
-    }
-  },
-  computed: {},
-  watch: {},
   asyncData({ app, error, query }) {
     const { slug } = query
     return showTag(app, { slug })
@@ -102,6 +95,13 @@ export default {
       })
       .catch(error)
   },
+  data() {
+    return {
+      tag: null
+    }
+  },
+  computed: {},
+  watch: {},
   created() {},
   mounted() {},
   methods: {}

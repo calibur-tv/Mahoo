@@ -72,6 +72,14 @@ export default {
       required: true
     }
   },
+  asyncData({ app, error, params }) {
+    return showTag(app, params)
+      .then(tag => {
+        tag.alias = tag.alias.split(',')
+        return { tag }
+      })
+      .catch(error)
+  },
   data() {
     return {
       tag: null
@@ -89,14 +97,6 @@ export default {
       }
       return result
     }
-  },
-  asyncData({ app, error, params }) {
-    return showTag(app, params)
-      .then(tag => {
-        tag.alias = tag.alias.split(',')
-        return { tag }
-      })
-      .catch(error)
   }
 }
 </script>

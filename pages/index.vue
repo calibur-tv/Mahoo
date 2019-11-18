@@ -138,13 +138,13 @@ export default {
     GridArea,
     PinArticle
   },
+  async asyncData({ store }) {
+    await store.dispatch('global/getHottestTags')
+  },
   computed: {
     tags() {
       return this.$store.state.global.hottest_tags
     }
-  },
-  async asyncData({ store }) {
-    await store.dispatch('global/getHottestTags')
   },
   methods: {
     handleTabSwitch(index) {

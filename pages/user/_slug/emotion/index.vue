@@ -222,6 +222,13 @@ export default {
       required: true
     }
   },
+  asyncData({ app, error, params }) {
+    return bookmarkTags(app, params)
+      .then(tags => {
+        return { tags }
+      })
+      .catch(error)
+  },
   data() {
     return {
       tags: null
@@ -234,13 +241,6 @@ export default {
     TA() {
       return this.$utils.convertTA(this.user.sex, this.isMine)
     }
-  },
-  asyncData({ app, error, params }) {
-    return bookmarkTags(app, params)
-      .then(tags => {
-        return { tags }
-      })
-      .catch(error)
   },
   beforeMount() {
     this.batchPatch()

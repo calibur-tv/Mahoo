@@ -28,9 +28,7 @@
       <el-form-item>
         <el-button :loading="submitBtnLoading" :disabled="submitBtnDisabled" class="submit-btn" type="primary" round @click="submitForm">
           {{ submitBtnText }}
-          <template v-if="timeout">
-            （{{ timeout }}s 后可重新获取）
-          </template>
+          <template v-if="timeout"> （{{ timeout }}s 后可重新获取） </template>
         </el-button>
       </el-form-item>
     </el-form>

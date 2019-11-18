@@ -316,25 +316,6 @@ export default {
     ElUpload: Upload
   },
   mixins: [mustSign, upload],
-  head: {
-    title: '创作中心'
-  },
-  data() {
-    return {
-      slug: '',
-      title: {
-        banner: null,
-        text: ''
-      },
-      content: [],
-      notebook: '',
-      area: '',
-      topic: '',
-      last_edit_at: '',
-      published_at: '',
-      loading: false
-    }
-  },
   asyncData({ app, error, query }) {
     const slug = query.slug
     if (!slug) {
@@ -351,6 +332,22 @@ export default {
         return { ...data }
       })
       .catch(error)
+  },
+  data() {
+    return {
+      slug: '',
+      title: {
+        banner: null,
+        text: ''
+      },
+      content: [],
+      notebook: '',
+      area: '',
+      topic: '',
+      last_edit_at: '',
+      published_at: '',
+      loading: false
+    }
   },
   mounted() {
     if (this.$cache.has(`editor_local_draft_title-${this.slug}`)) {
@@ -470,6 +467,9 @@ export default {
       this.$cache.remove(`editor_local_draft_title-${this.slug}`)
       this.$cache.remove(`editor_local_draft-${this.slug}`)
     }
+  },
+  head: {
+    title: '创作中心'
   }
 }
 </script>

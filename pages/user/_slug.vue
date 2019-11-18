@@ -370,16 +370,12 @@ export default {
       required: true
     }
   },
-  head() {
-    const { user } = this
-    return {
-      title: `${user.nickname}的个人空间`,
-      meta: [
-        { hid: 'keywords', name: 'keywords', content: user.nickname },
-        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` },
-        { hid: 'share-image', name: 'share-image', content: user.avatar }
-      ]
-    }
+  asyncData({ app, error, params }) {
+    return getUserInfo(app, params)
+      .then(user => {
+        return { user }
+      })
+      .catch(error)
   },
   data() {
     return {
@@ -458,13 +454,6 @@ export default {
       return result
     }
   },
-  asyncData({ app, error, params }) {
-    return getUserInfo(app, params)
-      .then(user => {
-        return { user }
-      })
-      .catch(error)
-  },
   beforeMount() {
     this.patchUser()
   },
@@ -491,6 +480,17 @@ export default {
     },
     handleFollowAction(result) {
       this.user.followers_count -= -result
+    }
+  },
+  head() {
+    const { user } = this
+    return {
+      title: `${user.nickname}的个人空间`,
+      meta: [
+        { hid: 'keywords', name: 'keywords', content: user.nickname },
+        { hid: 'description', name: 'description', content: `${user.nickname},${user.signature}` },
+        { hid: 'share-image', name: 'share-image', content: user.avatar }
+      ]
     }
   }
 }

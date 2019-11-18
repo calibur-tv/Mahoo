@@ -54,11 +54,6 @@ export default {
     PinFlowList
   },
   mixins: [ZoneMixin],
-  data() {
-    return {
-      slug: process.env.TAGS.game
-    }
-  },
   asyncData({ app, error }) {
     const slug = process.env.TAGS.game
     return Promise.all([showTag(app, { slug }), tagChildren(app, { slug })])
@@ -69,6 +64,11 @@ export default {
         }
       })
       .catch(error)
+  },
+  data() {
+    return {
+      slug: process.env.TAGS.game
+    }
   }
 }
 </script>

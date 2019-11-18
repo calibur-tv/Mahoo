@@ -86,9 +86,6 @@ export default {
       default: null
     }
   },
-  head: {
-    title: '出错了'
-  },
   computed: {
     statusCode() {
       if (this.message === '继续操作前请先登录') {
@@ -115,6 +112,9 @@ export default {
     toastMessage() {
       this.$toast.error(this.message)
     }
+  },
+  head: {
+    title: '出错了'
   }
 }
 </script>
