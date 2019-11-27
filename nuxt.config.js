@@ -141,49 +141,12 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: (() => {
-    const result = [
-      '@nuxtjs/style-resources',
-      '@nuxtjs/axios',
-      // '~/modules/cache',
-      '~/modules/auth'
-    ]
-
-    if (!isDev) {
-      result.push('@nuxtjs/pwa')
-    }
-
-    return result
-  })(),
-
-  pwa: {
-    manifest: {
-      name: injectScript.title,
-      short_name: injectScript.name,
-      description: injectScript.description,
-      start_url: 'https://www.calibur.tv/app/found',
-      background_color: '#ffffff',
-      display: 'fullscreen',
-      lang: 'zh-CN',
-      serviceworker: {
-        src: './sw.js'
-      }
-    },
-    workbox: {
-      offlineStrategy: 'NetworkOnly',
-      workboxVersion: '4.3.1',
-      workboxURL: 'https://file.calibur.tv/static/workbox/4.3.1/workbox-sw.js'
-    },
-    meta: {
-      mobileApp: true,
-      mobileAppIOS: true,
-      nativeUI: true,
-      lang: 'zh-CN',
-      author: injectScript.author,
-      name: injectScript.name,
-      description: injectScript.description
-    }
-  },
+  modules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/axios',
+    // '~/modules/cache',
+    '~/modules/auth'
+  ],
 
   axios: {
     progress: false

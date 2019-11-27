@@ -8,16 +8,6 @@ const _21fee4d7 = () => interopDefault(import('../pages/about/index/managers.vue
 const _2012e0ba = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
 const _a4c9c662 = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
 const _5fc3f5a2 = () => interopDefault(import('../pages/wanderer/index.vue' /* webpackChunkName: "pages/wanderer/index" */))
-const _0ad0cebe = () => interopDefault(import('../pages/app/category.vue' /* webpackChunkName: "pages/app/category" */))
-const _00dcc81c = () => interopDefault(import('../pages/app/found.vue' /* webpackChunkName: "pages/app/found" */))
-const _ae88fbc2 = () => interopDefault(import('../pages/app/home.vue' /* webpackChunkName: "pages/app/home" */))
-const _25be9598 = () => interopDefault(import('../pages/app/notice.vue' /* webpackChunkName: "pages/app/notice" */))
-const _1e3b4a85 = () => interopDefault(import('../pages/app/pin.vue' /* webpackChunkName: "pages/app/pin" */))
-const _470d7c68 = () => interopDefault(import('../pages/app/search.vue' /* webpackChunkName: "pages/app/search" */))
-const _4f766806 = () => interopDefault(import('../pages/app/sign.vue' /* webpackChunkName: "pages/app/sign" */))
-const _9457b9ea = () => interopDefault(import('../pages/app/user.vue' /* webpackChunkName: "pages/app/user" */))
-const _c17e3462 = () => interopDefault(import('../pages/app/write.vue' /* webpackChunkName: "pages/app/write" */))
-const _0f74fb28 = () => interopDefault(import('../pages/app/zone.vue' /* webpackChunkName: "pages/app/zone" */))
 const _52e2f78b = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
 const _53d88cae = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
 const _5e93e146 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
@@ -86,56 +76,6 @@ export const routerOptions = {
     component: _5fc3f5a2,
     props: false,
     name: "wanderer"
-  }, {
-    path: "/app/category",
-    component: _0ad0cebe,
-    props: false,
-    name: "app-category"
-  }, {
-    path: "/app/found",
-    component: _00dcc81c,
-    props: false,
-    name: "app-found"
-  }, {
-    path: "/app/home",
-    component: _ae88fbc2,
-    props: false,
-    name: "app-home"
-  }, {
-    path: "/app/notice",
-    component: _25be9598,
-    props: false,
-    name: "app-notice"
-  }, {
-    path: "/app/pin",
-    component: _1e3b4a85,
-    props: false,
-    name: "app-pin"
-  }, {
-    path: "/app/search",
-    component: _470d7c68,
-    props: false,
-    name: "app-search"
-  }, {
-    path: "/app/sign",
-    component: _4f766806,
-    props: false,
-    name: "app-sign"
-  }, {
-    path: "/app/user",
-    component: _9457b9ea,
-    props: false,
-    name: "app-user"
-  }, {
-    path: "/app/write",
-    component: _c17e3462,
-    props: false,
-    name: "app-write"
-  }, {
-    path: "/app/zone",
-    component: _0f74fb28,
-    props: false,
-    name: "app-zone"
   }, {
     path: "/callback/auth-error",
     component: _52e2f78b,
