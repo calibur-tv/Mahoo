@@ -106,7 +106,7 @@ export default {
     },
     showSuggestion: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   data() {
