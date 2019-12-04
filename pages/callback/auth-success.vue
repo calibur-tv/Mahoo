@@ -43,7 +43,7 @@ export default {
     })
     setInterval(() => {
       if (this.timer === 1) {
-        window.location = this.redirect ? decodeURIComponent(this.redirect) : '/'
+        window.location = '/'
       } else {
         this.timer--
       }
