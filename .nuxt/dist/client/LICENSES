@@ -150,7 +150,7 @@ and limitations under the License.
 /*!
  * Editor.js
  * 
- * @version 2.15.1
+ * @version 2.16.0
  * 
  * @licence Apache-2.0
  * @author CodeX <https://codex.so>
@@ -181,4 +181,24 @@ and limitations under the License.
  * @license MIT
  * @author CodeX (https://codex.so)
  * @version 1.1.1
+ */
+
+/**
+ * Base Paragraph Block for the Editor.js.
+ * Represents simple paragraph
+ *
+ * @author CodeX (team@codex.so)
+ * @copyright CodeX 2018
+ * @license The MIT License (MIT)
+ */
+
+/*!
+ * CodeX.Tooltips
+ * 
+ * @version 1.0.0
+ * 
+ * @licence MIT
+ * @author CodeX <https://codex.so>
+ * 
+ * 
  */

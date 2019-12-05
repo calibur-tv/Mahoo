@@ -141,13 +141,13 @@ export default {
   },
   methods: {
     authQQ() {
-      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=sign&redirect=${this.redirect}`
+      window.location.href = `https://api.calibur.tv/callback/oauth2/qq?from=sign`
     },
     authWechat() {
-      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=sign&redirect=${this.redirect}`
+      window.location.href = `https://api.calibur.tv/callback/oauth2/wechat?from=sign`
     },
     authWeixin() {
-      window.location.href = `https://api.calibur.tv/callback/oauth2/weixin?from=sign&redirect=${this.redirect}`
+      window.location.href = `https://api.calibur.tv/callback/oauth2/weixin?from=sign`
     },
     redirect() {
       return this.$route.query.redirect ? this.$route.query.redirect : encodeURIComponent(window.location.href)

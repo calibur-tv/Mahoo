@@ -212,6 +212,7 @@ export default class Ui {
    */
   toggleStatus(status) {
     for (const statusType in Ui.status) {
+      // eslint-disable-next-line
       if (Ui.status.hasOwnProperty(statusType)) {
         this.nodes.wrapper.classList.toggle(`${this.CSS.wrapper}--${Ui.status[statusType]}`, status === Ui.status[statusType])
       }

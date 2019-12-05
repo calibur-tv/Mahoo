@@ -229,6 +229,7 @@ export default class ImageTool {
   async onPaste(event) {
     switch (event.type) {
       case 'tag':
+        // eslint-disable-next-line
         const image = event.detail.data
 
         /** Images from PDF */
@@ -244,12 +245,14 @@ export default class ImageTool {
         break
 
       case 'pattern':
+        // eslint-disable-next-line
         const url = event.detail.data
 
         this.uploadUrl(url)
         break
 
       case 'file':
+        // eslint-disable-next-line
         const file = event.detail.file
 
         this.uploadFile(file)
