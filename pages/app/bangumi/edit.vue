@@ -64,9 +64,6 @@ import upload from '~/mixins/upload'
 export default {
   name: 'EditBangumi',
   layout: 'app',
-  head: {
-    title: '编辑番剧'
-  },
   components: {
     ElUpload: Upload,
     ElSelect: Select
@@ -114,6 +111,9 @@ export default {
           this.loading = false
         })
     }
+  },
+  head: {
+    title: '编辑番剧'
   }
 }
 </script>
