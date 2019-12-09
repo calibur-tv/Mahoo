@@ -1,6 +1,20 @@
 <style lang="scss">
 #edit-idol {
   padding: 15px;
+
+  .avatar-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 10%;
+      margin-right: 15px;
+    }
+  }
 }
 </style>
 
@@ -9,6 +23,25 @@
     <el-form ref="form" label-position="top" label-width="80px">
       <ElFormItem label="名称">
         <ElInput v-model="idol.name" />
+      </ElFormItem>
+      <ElFormItem label="头像">
+        <div class="avatar-field">
+          <img :src="$resize(idol.avatar, { width: 100 })" class="avatar" />
+          <ElUpload
+            :show-file-list="false"
+            :action="imageUploadAction"
+            :limit="uploadImageLimit"
+            :data="uploadHeaders"
+            :accept="imageUploadAccept"
+            :before-upload="handleImageUploadBefore"
+            :on-success="avatarUploadSuccess"
+            :on-error="handleImageUploadError"
+          >
+            <ElButton :loading="!!uploadPending" type="success" plain round size="mini">
+              {{ uploadPending ? '图片上传中...' : '点击上传头像' }}
+            </ElButton>
+          </ElUpload>
+        </div>
       </ElFormItem>
       <ElFormItem label="别名">
         <ElSelect v-model="idol.alias" multiple filterable allow-create default-first-option placeholder="请输入番剧别名" popper-class="hidden-select-options" class="hidden-select-input" />
@@ -26,14 +59,16 @@
 <script>
 import useSignMixin from '~/mixins/useSign'
 import mustSign from '~/mixins/mustSign'
-import { Select } from 'element-ui'
+import { Upload, Select } from 'element-ui'
+import upload from '~/mixins/upload'
 
 export default {
   name: 'EditBangumi',
   components: {
+    ElUpload: Upload,
     ElSelect: Select
   },
-  mixins: [useSignMixin, mustSign],
+  mixins: [useSignMixin, mustSign, upload],
   props: {},
   asyncData({ app, error, query }) {
     const slug = query.slug
@@ -56,6 +91,10 @@ export default {
     }
   },
   methods: {
+    avatarUploadSuccess(res, file) {
+      this.handleImageUploadSuccess(res, file)
+      this.idol.avatar = res.data.url
+    },
     handleSubmit() {
       if (this.loading) {
         return
