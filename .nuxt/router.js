@@ -15,6 +15,8 @@ const _b3ad3950 = () => interopDefault(import('../pages/zone/atfield.vue' /* web
 const _3c5ad14a = () => interopDefault(import('../pages/zone/bangumi.vue' /* webpackChunkName: "pages/zone/bangumi" */))
 const _386a6491 = () => interopDefault(import('../pages/zone/game.vue' /* webpackChunkName: "pages/zone/game" */))
 const _9a06fbc0 = () => interopDefault(import('../pages/zone/topic.vue' /* webpackChunkName: "pages/zone/topic" */))
+const _23354702 = () => interopDefault(import('../pages/app/bangumi/edit.vue' /* webpackChunkName: "pages/app/bangumi/edit" */))
+const _22fdeba2 = () => interopDefault(import('../pages/app/idol/edit.vue' /* webpackChunkName: "pages/app/idol/edit" */))
 const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
 const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
 const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
@@ -111,6 +113,16 @@ export const routerOptions = {
     component: _9a06fbc0,
     props: false,
     name: "zone-topic"
+  }, {
+    path: "/app/bangumi/edit",
+    component: _23354702,
+    props: false,
+    name: "app-bangumi-edit"
+  }, {
+    path: "/app/idol/edit",
+    component: _22fdeba2,
+    props: false,
+    name: "app-idol-edit"
   }, {
     path: "/pin/:slug?",
     component: _30aed12c,
