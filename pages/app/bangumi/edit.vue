@@ -22,7 +22,7 @@
   <div v-if="bangumi" id="edit-bangumi">
     <el-form ref="form" label-position="top" label-width="80px">
       <ElFormItem label="名称">
-        <ElInput v-model="bangumi.name" />
+        <ElInput v-model="bangumi.name" disabled />
       </ElFormItem>
       <ElFormItem label="头像">
         <div class="avatar-field">
@@ -57,19 +57,21 @@
 </template>
 
 <script>
-import useSignMixin from '~/mixins/useSign'
 import mustSign from '~/mixins/mustSign'
 import { Upload, Select } from 'element-ui'
 import upload from '~/mixins/upload'
 
 export default {
   name: 'EditBangumi',
+  layout: 'app',
+  head: {
+    title: '编辑番剧'
+  },
   components: {
     ElUpload: Upload,
     ElSelect: Select
   },
-  mixins: [useSignMixin, mustSign, upload],
-  props: {},
+  mixins: [mustSign, upload],
   asyncData({ app, error, query }) {
     const slug = query.slug
     if (!slug) {
