@@ -104,24 +104,26 @@ module.exports = {
   css: ['normalize.css', '~/assets/css/global.scss', '~/theme/index.css'],
 
   render: {
-    csp: {
-      reportOnly: false,
-      policies: {
-        'object-src': ["'none'"],
-        'style-src': ["'self'", "'unsafe-inline'", '*.calibur.tv', 'static.geetest.com'],
-        'script-src': [
-          "'unsafe-inline'",
-          '*.calibur.tv',
-          'hm.baidu.com',
-          '*.geetest.com',
-          'zz.bdstatic.com',
-          'push.zhanzhang.baidu.com',
-          'res2.wx.qq.com',
-          'qzonestyle.gtimg.cn',
-          'polyfill.alicdn.com'
-        ]
-      }
-    }
+    csp: isDev
+      ? false
+      : {
+          reportOnly: false,
+          policies: {
+            'object-src': ["'none'"],
+            'style-src': ["'self'", "'unsafe-inline'", '*.calibur.tv', 'static.geetest.com'],
+            'script-src': [
+              "'unsafe-inline'",
+              '*.calibur.tv',
+              'hm.baidu.com',
+              '*.geetest.com',
+              'zz.bdstatic.com',
+              'push.zhanzhang.baidu.com',
+              'res2.wx.qq.com',
+              'qzonestyle.gtimg.cn',
+              'polyfill.alicdn.com'
+            ]
+          }
+        }
   },
 
   /*

@@ -38,6 +38,10 @@ export default app => {
     token = parseCookie(app.context.req.headers.cookie)
   }
 
+  if (!token && app) {
+    token = app.context.query.token
+  }
+
   token = ~['undefined', 'null'].indexOf(token) ? '' : token
   if (typeof window !== 'undefined') {
     window.__AUTH_TOKEN__ = token

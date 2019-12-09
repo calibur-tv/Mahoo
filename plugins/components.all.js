@@ -6,11 +6,9 @@ import { Button, Row, Col, Form, FormItem, Input, Tag } from 'element-ui'
 import lazyload from '~/directives/lazyload'
 import share from '~/directives/share'
 import Image from '~/components/common/Image'
-import VScroller from 'h5-vue-scroller'
 
 Vue.use(lazyload)
 Vue.use(share)
-Vue.component(VScroller.name, VScroller)
 Vue.component(Image.name, Image)
 Vue.component(Switcher.name, Switcher)
 Vue.component(VueMixinStore.FlowLoader.name, VueMixinStore.FlowLoader)

@@ -325,11 +325,12 @@ export default {
       .$get('v1/pin/update/content', {
         params: { slug }
       })
-      .then(data => {
+      .then(res => {
+        const data = { ...res }
         data.area = data.area ? data.area.slug : ''
         data.topic = data.topic ? data.topic.slug : ''
         data.notebook = data.notebook ? data.notebook.slug : ''
-        return { ...data }
+        return data
       })
       .catch(error)
   },
