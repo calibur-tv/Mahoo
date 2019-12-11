@@ -119,6 +119,7 @@ import mustSign from '~/mixins/mustSign'
 
 export default {
   name: 'UserEdit',
+  layout: 'app',
   components: {
     ElSwitch: Switch,
     ElRadio: Radio,
@@ -287,6 +288,9 @@ export default {
         }
       })
     }
+  },
+  head: {
+    title: '个人简介'
   }
 }
 </script>
