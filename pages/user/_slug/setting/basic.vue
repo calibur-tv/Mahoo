@@ -268,7 +268,7 @@ export default {
             await settingProfile(this, {
               nickname: this.nickname,
               signature: this.signature,
-              birthday: new Date(this.birthday).getTime() / 1000,
+              birthday: new Date(this.$utils.adjustDate(this.birthday)).getTime() / 1000,
               birth_secret: this.birthSecret,
               sex_secret: this.sexSecret,
               sex: this.sex,
