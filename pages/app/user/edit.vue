@@ -1,5 +1,7 @@
 <style lang="scss">
 #user-edit {
+  padding: 20px;
+
   .avatar-field {
     display: flex;
     flex-direction: row;
