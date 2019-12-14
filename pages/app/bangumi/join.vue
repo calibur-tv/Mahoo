@@ -11,9 +11,7 @@ import mustSign from '~/mixins/mustSign'
 
 export default {
   name: 'BangumiJoin',
-  head: {
-    title: '答题'
-  },
+  layout: 'app',
   mixins: [mustSign],
   data() {
     return {}
@@ -22,6 +20,9 @@ export default {
   watch: {},
   created() {},
   mounted() {},
-  methods: {}
+  methods: {},
+  head: {
+    title: '答题'
+  }
 }
 </script>
