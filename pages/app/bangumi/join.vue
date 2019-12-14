@@ -11,6 +11,9 @@ import mustSign from '~/mixins/mustSign'
 
 export default {
   name: 'BangumiJoin',
+  head: {
+    title: '答题'
+  },
   mixins: [mustSign],
   data() {
     return {}
