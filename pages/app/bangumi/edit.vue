@@ -1,18 +1,52 @@
 <style lang="scss">
 #edit-bangumi {
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
-  .avatar-field {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+  .avatar {
+    width: 75px;
+    height: 75px;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 10px 0;
+  }
 
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 10%;
-      margin-right: 15px;
+  .title {
+    display: block;
+    width: 100%;
+    font-weight: 500;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .intro {
+    display: block;
+    width: 100%;
+    color: $color-text-2;
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+
+  hr {
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: #e7ecf2;
+    border: none;
+    outline: none;
+  }
+
+  .controls {
+    width: 100%;
+
+    a {
+      display: block;
+      width: 100%;
+      padding: 10px 20px;
     }
   }
 }
@@ -20,55 +54,23 @@
 
 <template>
   <div v-if="bangumi" id="edit-bangumi">
-    <el-form ref="form" label-position="top" label-width="80px">
-      <ElFormItem label="名称">
-        <ElInput v-model="bangumi.name" disabled />
-      </ElFormItem>
-      <ElFormItem label="头像">
-        <div class="avatar-field">
-          <img :src="$resize(bangumi.avatar, { width: 100 })" class="avatar" />
-          <ElUpload
-            :show-file-list="false"
-            :action="imageUploadAction"
-            :limit="uploadImageLimit"
-            :data="uploadHeaders"
-            :accept="imageUploadAccept"
-            :before-upload="handleImageUploadBefore"
-            :on-success="avatarUploadSuccess"
-            :on-error="handleImageUploadError"
-          >
-            <ElButton :loading="!!uploadPending" type="success" plain round size="mini">
-              {{ uploadPending ? '图片上传中...' : '点击上传头像' }}
-            </ElButton>
-          </ElUpload>
-        </div>
-      </ElFormItem>
-      <ElFormItem label="别名">
-        <ElSelect v-model="bangumi.alias" multiple filterable allow-create default-first-option placeholder="请输入番剧别名" popper-class="hidden-select-options" class="hidden-select-input" />
-      </ElFormItem>
-      <ElFormItem label="简介">
-        <ElInput v-model="bangumi.intro" type="textarea" rows="4" resize="vertical" />
-      </ElFormItem>
-      <ElFormItem>
-        <ElButton @click="handleSubmit">提交</ElButton>
-      </ElFormItem>
-    </el-form>
+    <img class="avatar" :src="$resize(bangumi.avatar, { width: 150 })" />
+    <p class="title oneline" v-text="bangumi.name" />
+    <p class="intro" v-html="bangumi.intro" />
+    <hr />
+    <div class="controls">
+      <NLink v-if="showEdit" :to="`/app/bangumi/profile?slug=${bangumi.slug}`">
+        <i class="el-icon-setting" />
+        <span>编辑番剧</span>
+      </NLink>
+    </div>
   </div>
 </template>
 
 <script>
-import mustSign from '~/mixins/mustSign'
-import { Upload, Select } from 'element-ui'
-import upload from '~/mixins/upload'
-
 export default {
   name: 'EditBangumi',
   layout: 'app',
-  components: {
-    ElUpload: Upload,
-    ElSelect: Select
-  },
-  mixins: [mustSign, upload],
   asyncData({ app, error, query }) {
     const slug = query.slug
     if (!slug) {
@@ -85,35 +87,16 @@ export default {
   },
   data() {
     return {
-      bangumi: null,
-      loading: false
+      bangumi: null
     }
   },
-  methods: {
-    avatarUploadSuccess(res, file) {
-      this.handleImageUploadSuccess(res, file)
-      this.bangumi.avatar = res.data.url
-    },
-    handleSubmit() {
-      if (this.loading) {
-        return
-      }
-      this.loading = true
-      this.$axios
-        .$post('v1/bangumi/update/profile', this.bangumi)
-        .then(() => {
-          this.$toast.success('修改成功')
-        })
-        .catch(err => {
-          this.$toast.error(err.message)
-        })
-        .finally(() => {
-          this.loading = false
-        })
+  computed: {
+    showEdit() {
+      return this.$hasRole('edit_bangumi')
     }
   },
   head: {
-    title: '编辑番剧'
+    title: ''
   }
 }
 </script>
