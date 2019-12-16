@@ -140,7 +140,7 @@ export default {
           title: this.title,
           answers: this.answers.map(_ => _.value).filter(_ => _),
           right_index: this.rightOpt,
-          tag_slug: this.slug
+          bangumi_slug: this.slug
         })
         .then(() => {
           this.$toast.success('提交成功').then(() => {
