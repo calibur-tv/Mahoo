@@ -1,5 +1,7 @@
 <style lang="scss">
-.create-bangumi-atfield-form {
+#create-bangumi-question {
+  padding: 15px;
+
   .form-tip {
     font-size: 12px;
     color: $color-orange;
@@ -8,7 +10,7 @@
 </style>
 
 <template>
-  <ElForm v-if="bangumi" ref="form" :disabled="submitting" label-position="right" label-width="80px" class="create-bangumi-atfield-form">
+  <ElForm v-if="bangumi" id="create-bangumi-question" ref="form" :disabled="submitting" label-position="top">
     <ElFormItem>
       <h1>为《{{ bangumi.name }}》出题</h1>
       <br />
@@ -47,7 +49,7 @@
 import { Radio, RadioGroup, Alert } from 'element-ui'
 
 export default {
-  name: 'CreateTagATFieldForm',
+  name: 'CreateBangumiQuestion',
   layout: 'app',
   components: {
     ElAlert: Alert,
