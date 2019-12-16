@@ -1,5 +1,7 @@
 <style lang="scss">
 #bangumi-rule {
+  padding: 15px;
+
   .el-slider {
     margin-left: 10px;
     margin-right: 10px;
@@ -38,7 +40,6 @@
         :format-tooltip="formatQAMinutes"
       />
     </ElFormItem>
-    -->
     <ElFormItem label="加入方式">
       <ElRadioGroup v-model="rule.rule_type">
         <ElRadio :label="0">
@@ -55,7 +56,6 @@
         加入方式更改之后不会影响「正在答题」和「已经加入」的人
       </p>
     </ElFormItem>
-    <!--
     <ElFormItem label="考核方式">
       <ElRadioGroup v-model="rule.result_type">
         <ElRadio :label="0">
@@ -80,6 +80,7 @@ import { Slider, Radio, RadioGroup } from 'element-ui'
 
 export default {
   name: 'EditTagRuleForm',
+  layout: 'app',
   components: {
     ElSlider: Slider,
     ElRadio: Radio,
@@ -146,6 +147,9 @@ export default {
           this.$toast.error(err.message)
         })
     }
+  },
+  head: {
+    title: '入圈规则'
   }
 }
 </script>
