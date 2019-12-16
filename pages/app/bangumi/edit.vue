@@ -76,6 +76,10 @@
         <i class="el-icon-connection" />
         <span>相关番剧</span>
       </NLink>
+      <NLink :to="`/app/bangumi/test?slug=${bangumi.slug}`">
+        <i class="el-icon-edit" />
+        <span>添加题目</span>
+      </NLink>
     </div>
   </div>
 </template>

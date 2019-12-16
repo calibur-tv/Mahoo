@@ -19,6 +19,7 @@ const _ecbca100 = () => interopDefault(import('../pages/app/bangumi/edit.vue' /*
 const _52d0e2c0 = () => interopDefault(import('../pages/app/bangumi/join.vue' /* webpackChunkName: "pages/app/bangumi/join" */))
 const _02aea723 = () => interopDefault(import('../pages/app/bangumi/profile.vue' /* webpackChunkName: "pages/app/bangumi/profile" */))
 const _05ac591c = () => interopDefault(import('../pages/app/bangumi/relation.vue' /* webpackChunkName: "pages/app/bangumi/relation" */))
+const _346bfbf0 = () => interopDefault(import('../pages/app/bangumi/test.vue' /* webpackChunkName: "pages/app/bangumi/test" */))
 const _490ba271 = () => interopDefault(import('../pages/app/idol/edit.vue' /* webpackChunkName: "pages/app/idol/edit" */))
 const _593b6784 = () => interopDefault(import('../pages/app/user/edit.vue' /* webpackChunkName: "pages/app/user/edit" */))
 const _5b43da6e = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
@@ -137,6 +138,11 @@ export const routerOptions = {
     component: _05ac591c,
     props: false,
     name: "app-bangumi-relation"
+  }, {
+    path: "/app/bangumi/test",
+    component: _346bfbf0,
+    props: false,
+    name: "app-bangumi-test"
   }, {
     path: "/app/idol/edit",
     component: _490ba271,
