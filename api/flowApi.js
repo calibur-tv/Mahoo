@@ -93,3 +93,16 @@ export const tagHottest = ({ $axios, page, take }) =>
   $axios.$get('v1/tag/hottest', {
     params: { page, take }
   })
+
+export const getBangumiQuestionTrials = ({ $axios, page, take, bangumi_slug, user_slug, status, sort }) => {
+  return $axios.$get('v1/join/flow', {
+    params: {
+      page,
+      take,
+      bangumi_slug,
+      user_slug,
+      status,
+      sort
+    }
+  })
+}

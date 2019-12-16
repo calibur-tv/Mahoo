@@ -88,7 +88,7 @@
         <i class="el-icon-edit" />
         <span>添加题目</span>
       </NLink>
-      <NLink v-if="trialQuestion" :to="`/app/bangumi/trial?slug=${bangumi.slug}`">
+      <NLink v-if="trialQuestion" :to="`/app/bangumi/trial?bangumi_slug=${bangumi.slug}`">
         <i class="el-icon-edit" />
         <span>审核题目</span>
         <span v-if="trialInfo">（待审：{{ trialInfo.trial }}，库存：{{ trialInfo.pass }}）</span>
