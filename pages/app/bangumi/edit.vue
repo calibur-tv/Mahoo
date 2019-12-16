@@ -47,6 +47,10 @@
       display: block;
       width: 100%;
       padding: 10px 20px;
+
+      &:not(:first-child) {
+        border-top: 1px solid $color-gray-line;
+      }
     }
   }
 }
@@ -75,6 +79,10 @@
       <NLink v-if="showRelation" :to="`/app/bangumi/relation?slug=${bangumi.slug}`">
         <i class="el-icon-connection" />
         <span>相关番剧</span>
+      </NLink>
+      <NLink v-if="changeTagRule" :to="`/app/bangumi/rule?slug=${bangumi.slug}`">
+        <i class="el-icon-s-operation" />
+        <span>入圈规则</span>
       </NLink>
       <NLink :to="`/app/bangumi/test?slug=${bangumi.slug}`">
         <i class="el-icon-edit" />
@@ -116,6 +124,9 @@ export default {
     },
     showRelation() {
       return this.$hasRole('update_bangumi')
+    },
+    changeTagRule() {
+      return this.$hasRole('change_tag_rule')
     }
   },
   head: {
