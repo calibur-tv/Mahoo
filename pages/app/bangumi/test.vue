@@ -54,12 +54,6 @@ export default {
     ElRadio: Radio,
     ElRadioGroup: RadioGroup
   },
-  props: {
-    slug: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       bangumi: null,
@@ -85,6 +79,11 @@ export default {
       ],
       rightOpt: -1,
       rule: null
+    }
+  },
+  computed: {
+    slug() {
+      return this.$route.query.slug
     }
   },
   mounted() {
