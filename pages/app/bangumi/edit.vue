@@ -43,7 +43,7 @@
   .controls {
     width: 100%;
 
-    a {
+    > * {
       display: block;
       width: 100%;
       padding: 10px 20px;
@@ -57,11 +57,24 @@
     <img class="avatar" :src="$resize(bangumi.avatar, { width: 150 })" />
     <p class="title oneline" v-text="bangumi.name" />
     <p class="intro" v-html="bangumi.intro" />
+    <template v-if="isAdmin">
+      <hr />
+      <div class="controls">
+        <div>
+          <span>番剧ID：</span>
+          <span v-text="bangumi.slug" />
+        </div>
+      </div>
+    </template>
     <hr />
     <div class="controls">
       <NLink v-if="showEdit" :to="`/app/bangumi/profile?slug=${bangumi.slug}`">
         <i class="el-icon-setting" />
         <span>编辑番剧</span>
+      </NLink>
+      <NLink v-if="showRelation" :to="`/app/bangumi/relation?slug=${bangumi.slug}`">
+        <i class="el-icon-connection" />
+        <span>相关番剧</span>
       </NLink>
     </div>
   </div>
@@ -91,8 +104,14 @@ export default {
     }
   },
   computed: {
+    isAdmin() {
+      return this.$store.getters.isAdmin
+    },
     showEdit() {
-      return this.$hasRole('edit_bangumi')
+      return this.$hasRole('update_bangumi')
+    },
+    showRelation() {
+      return this.$hasRole('update_bangumi')
     }
   },
   head: {
