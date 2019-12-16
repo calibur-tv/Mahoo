@@ -88,6 +88,11 @@
         <i class="el-icon-edit" />
         <span>添加题目</span>
       </NLink>
+      <NLink v-if="trialQuestion" :to="`/app/bangumi/trial?slug=${bangumi.slug}`">
+        <i class="el-icon-edit" />
+        <span>审核题目</span>
+        <span v-if="trialInfo">（待审：{{ trialInfo.trial }}，库存：{{ trialInfo.pass }}）</span>
+      </NLink>
     </div>
   </div>
 </template>
@@ -112,7 +117,8 @@ export default {
   },
   data() {
     return {
-      bangumi: null
+      bangumi: null,
+      trialInfo: null
     }
   },
   computed: {
@@ -127,6 +133,26 @@ export default {
     },
     changeTagRule() {
       return this.$hasRole('change_tag_rule')
+    },
+    trialQuestion() {
+      return this.$hasRole('trial_qa')
+    }
+  },
+  mounted() {
+    this.getTrialInfo()
+  },
+  methods: {
+    getTrialInfo() {
+      this.$axios
+        .$get('v1/bangumi/atfield', {
+          params: {
+            slug: this.bangumi.slug
+          }
+        })
+        .then(data => {
+          this.trialInfo = data
+        })
+        .catch()
     }
   },
   head: {
