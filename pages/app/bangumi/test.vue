@@ -48,6 +48,7 @@ import { Radio, RadioGroup, Alert } from 'element-ui'
 
 export default {
   name: 'CreateTagATFieldForm',
+  layout: 'app',
   components: {
     ElAlert: Alert,
     ElRadio: Radio,
@@ -94,7 +95,9 @@ export default {
     getBangumi() {
       this.$axios
         .$get('v1/bangumi/show', {
-          slug: this.slug
+          params: {
+            slug: this.slug
+          }
         })
         .then(bangumi => {
           this.bangumi = bangumi
@@ -148,6 +151,9 @@ export default {
           this.submitting = false
         })
     }
+  },
+  head: {
+    title: '添加题目'
   }
 }
 </script>
