@@ -96,7 +96,7 @@ export default {
     }
   },
   head: {
-    title: ''
+    title: '番剧介绍'
   }
 }
 </script>
