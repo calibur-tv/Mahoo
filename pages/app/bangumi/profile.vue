@@ -50,7 +50,7 @@
         <ElInput v-model="bangumi.intro" type="textarea" rows="4" resize="vertical" />
       </ElFormItem>
       <ElFormItem>
-        <ElButton @click="handleSubmit">提交</ElButton>
+        <ElButton type="success" round @click="handleSubmit">提交</ElButton>
       </ElFormItem>
     </el-form>
   </div>

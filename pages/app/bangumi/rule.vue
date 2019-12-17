@@ -90,7 +90,7 @@ export default {
     return {
       rule: {
         question_count: 30,
-        right_rate: 100,
+        right_rate: 80,
         qa_minutes: 30,
         rule_type: 0,
         result_type: 0

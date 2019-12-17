@@ -14,7 +14,7 @@
     <ElFormItem>
       <h1>为《{{ bangumi.name }}》出题</h1>
       <br />
-      <ElAlert v-if="rule" :description="`当前番剧需要有「${rule.question_count}道」题入库之后才能开放加入`" title="当前番剧答题规则" type="success" />
+      <ElAlert description="题目提交完，需要审核通过之后才会入库" title="出题规则" type="success" />
     </ElFormItem>
     <ElFormItem label="题目">
       <ElInput v-model="title" :rows="2" type="textarea" placeholder="请输入题目" resize="none" maxlength="50" show-word-limit />

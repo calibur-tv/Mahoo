@@ -4,27 +4,27 @@
 
   .trial-item {
     border-bottom: 1px solid $color-gray-line;
-  }
 
-  .question {
-    font-weight: 500;
-    font-size: 18px;
-    margin-bottom: 5px;
-    margin-top: 10px;
-  }
+    .question {
+      font-weight: 500;
+      font-size: 18px;
+      margin-bottom: 5px;
+      margin-top: 10px;
+    }
 
-  .answers {
-    list-style-type: upper-alpha;
-    margin-left: 1.3em;
-    margin-bottom: 10px;
-  }
+    .answers {
+      list-style-type: upper-alpha;
+      margin-left: 1.3em;
+      margin-bottom: 10px;
+    }
 
-  .controls {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+    .controls {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
   }
 }
 </style>
