@@ -80,9 +80,8 @@ module.exports = {
         async: true
       },
       {
-        src: '//qzonestyle.gtimg.cn/qzone/qzact/common/share/share.js',
-        type: 'text/javascript',
-        async: true
+        src: '//qqq.gtimg.cn/miniprogram/webview_jssdk/qqjssdk-1.0.0.js',
+        type: 'text/javascript'
       },
       {
         src: '//res2.wx.qq.com/open/js/jweixin-1.4.0.js',

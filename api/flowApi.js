@@ -106,3 +106,14 @@ export const getBangumiQuestionTrials = ({ $axios, page, take, bangumi_slug, use
     }
   })
 }
+
+export const getIdolFans = ({ $axios, page, take, slug, sort }) => {
+  return $axios.$get('v1/idol/fans', {
+    params: {
+      page,
+      take,
+      slug,
+      sort
+    }
+  })
+}

@@ -1,9 +1,8 @@
-<style lang="scss">
-</style>
+<style lang="scss"></style>
 
 <template>
   <div id="app-admin">
-    app-admin
+    {{ isQQ }}
   </div>
 </template>
 
@@ -14,12 +13,16 @@ export default {
   components: {},
   props: {},
   data() {
-    return {}
+    return {
+      isQQ: true
+    }
   },
   computed: {},
   watch: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.isQQ = /qq/.test(window.navigator.userAgent.toLowerCase())
+  },
   methods: {},
   head: {
     title: '控制台'

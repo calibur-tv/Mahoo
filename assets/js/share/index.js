@@ -7,16 +7,21 @@ export default url => {
     return
   }
 
+  const isQQ = /qq/.test((window.navigator.userAgent || '').toLowerCase())
+
   axios
     .get(`${process.env.API_URL_BROWSER}v1/door/oauth2/ticket`, {
-      params: { url }
+      params: { url, isQQ }
     })
     .then(resp => {
       const config = resp.data.data
-      const qqProvider = new QQ(config)
-      const wechatProvider = new Wechat(config)
-      qqProvider.init()
-      wechatProvider.init()
+      if (isQQ) {
+        const qqProvider = new QQ(config)
+        qqProvider.init()
+      } else {
+        const wechatProvider = new Wechat(config)
+        wechatProvider.init()
+      }
     })
     .catch(() => {})
 }
