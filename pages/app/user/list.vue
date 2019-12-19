@@ -19,8 +19,8 @@
 <template>
   <div id="user-list">
     <template v-if="headers.length">
-      <VSwitcher :headers="headers" align="center">
-        <FlowLoader v-for="(item, index) in headers" :key="index" :slot="`${index}`" :func="item.func" :type="item.type" :query="item.query">
+      <VSwitcher :headers="headers" align="center" @change="handleChange">
+        <FlowLoader v-for="(item, index) in headers" ref="loader" :key="index" :slot="`${index}`" :func="item.func" :type="item.type" :query="item.query">
           <ul slot-scope="{ flow }">
             <UserItem v-for="user in flow" :key="user.slug" :user="user" />
           </ul>
@@ -94,7 +94,11 @@ export default {
   watch: {},
   created() {},
   mounted() {},
-  methods: {},
+  methods: {
+    handleChange(index) {
+      this.$refs.loader[index].initData()
+    }
+  },
   head: {
     title: '用户列表'
   }
