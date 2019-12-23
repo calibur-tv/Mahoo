@@ -41,13 +41,9 @@
             </li>
           </ol>
           <div class="controls">
-            <div v-if="bangumiSlug">
+            <div>
               <span>用户：</span>
               <span v-text="item.user.nickname" />
-            </div>
-            <div v-if="userSlug">
-              <span>番剧：</span>
-              <span v-text="item.bangumi.slug" />
             </div>
             <div>
               <button @click="handleDelete(item.id)">拒绝</button>
@@ -73,12 +69,6 @@ export default {
     }
   },
   computed: {
-    bangumiSlug() {
-      return this.$route.query.bangumi_slug
-    },
-    userSlug() {
-      return this.$route.query.user_slug
-    },
     query() {
       const query = this.$route.query
 
