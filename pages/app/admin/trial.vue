@@ -16,6 +16,10 @@
       list-style-type: upper-alpha;
       margin-left: 1.3em;
       margin-bottom: 10px;
+
+      .is-selected {
+        background-color: $color-main;
+      }
     }
 
     .controls {
@@ -38,11 +42,11 @@
 <template>
   <div id="admin-qa-trial">
     <FlowLoader ref="loader" func="getBangumiQuestionTrials" type="page" :query="{ $axios }">
-      <div slot-scope="{ flow }">
+      <div slot-scope="{ flow, extra }">
         <div v-for="item in flow" :key="item.id" class="trial-item">
           <p class="question" v-html="item.title" />
           <ol class="answers">
-            <li v-for="(val, key) in item.answers" :key="key">
+            <li v-for="(val, key) in item.answers" :class="{ 'is-selected': checkIsSelected(extra, key, item.id) }" :key="key">
               <span v-html="val" />
             </li>
           </ol>
@@ -114,6 +118,16 @@ export default {
         .finally(() => {
           this.loading = false
         })
+    },
+    checkIsSelected(extra, key, id) {
+      const answers = extra.answers || {}
+      let result = false
+      Object.keys(answers).forEach(ansId => {
+        if (ansId.toString() === id.toString() && !result) {
+          result = answers[ansId] === key
+        }
+      })
+      return result
     }
   },
   head: {
