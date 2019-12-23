@@ -5,9 +5,9 @@ Vue.use(Vuex)
 
 const VUEX_PROPERTIES = ['state', 'getters', 'actions', 'mutations']
 
-let store = {}
+let store = {};
 
-void (function updateModules () {
+(function updateModules () {
   store = normalizeRoot(require('../store/index.js'), 'store/index.js')
 
   // If store is an exported method = classic mode (deprecated)
