@@ -40,7 +40,7 @@
         <div v-for="item in flow" :key="item.id" class="trial-item">
           <p class="question" v-html="item.title" />
           <ol class="answers">
-            <li v-for="(val, key) in item.answers" :class="{ 'is-selected': checkIsSelected(extra, key, item.id) }" :key="key">
+            <li v-for="(val, key) in item.answers" :key="key" :class="{ 'is-selected': checkIsSelected(extra, key, item.id) }">
               <span v-html="val" />
             </li>
           </ol>

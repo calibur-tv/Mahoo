@@ -19,6 +19,14 @@
       <span>审核题目</span>
       <span v-if="trialInfo">（待审：{{ trialInfo.trial }}，库存：{{ trialInfo.pass }}）</span>
     </NLink>
+    <NLink to="/app/admin/create-bangumi">
+      <i class="el-icon-plus" />
+      <span>创建番剧</span>
+    </NLink>
+    <NLink to="/app/admin/create-idol">
+      <i class="el-icon-plus" />
+      <span>创建偶像</span>
+    </NLink>
   </div>
 </template>
 
