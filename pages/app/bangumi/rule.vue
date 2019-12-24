@@ -76,15 +76,13 @@
 </template>
 
 <script>
-import { Slider, Radio, RadioGroup } from 'element-ui'
+import { Slider } from 'element-ui'
 
 export default {
   name: 'EditTagRuleForm',
   layout: 'app',
   components: {
-    ElSlider: Slider,
-    ElRadio: Radio,
-    ElRadioGroup: RadioGroup
+    ElSlider: Slider
   },
   data() {
     return {

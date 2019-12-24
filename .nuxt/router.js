@@ -3,57 +3,64 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _9f5ec3a4 = () => interopDefault(import('../pages/about/index.vue' /* webpackChunkName: "pages/about/index" */))
-const _21fee4d7 = () => interopDefault(import('../pages/about/index/managers.vue' /* webpackChunkName: "pages/about/index/managers" */))
-const _2012e0ba = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
-const _a4c9c662 = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
-const _5fc3f5a2 = () => interopDefault(import('../pages/wanderer/index.vue' /* webpackChunkName: "pages/wanderer/index" */))
-const _eaa096fc = () => interopDefault(import('../pages/app/admin/index.vue' /* webpackChunkName: "pages/app/admin/index" */))
-const _52e2f78b = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
-const _53d88cae = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
-const _5e93e146 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
-const _08ac8a54 = () => interopDefault(import('../pages/zone/atfield.vue' /* webpackChunkName: "pages/zone/atfield" */))
-const _dc49ae70 = () => interopDefault(import('../pages/zone/bangumi.vue' /* webpackChunkName: "pages/zone/bangumi" */))
-const _62ff6dd3 = () => interopDefault(import('../pages/zone/game.vue' /* webpackChunkName: "pages/zone/game" */))
-const _49eebdc4 = () => interopDefault(import('../pages/zone/topic.vue' /* webpackChunkName: "pages/zone/topic" */))
-const _1d31d970 = () => interopDefault(import('../pages/app/admin/create-bangumi.vue' /* webpackChunkName: "pages/app/admin/create-bangumi" */))
-const _16c0f499 = () => interopDefault(import('../pages/app/admin/create-idol.vue' /* webpackChunkName: "pages/app/admin/create-idol" */))
-const _ebb04e74 = () => interopDefault(import('../pages/app/admin/trial.vue' /* webpackChunkName: "pages/app/admin/trial" */))
-const _ecbca100 = () => interopDefault(import('../pages/app/bangumi/edit.vue' /* webpackChunkName: "pages/app/bangumi/edit" */))
-const _52d0e2c0 = () => interopDefault(import('../pages/app/bangumi/join.vue' /* webpackChunkName: "pages/app/bangumi/join" */))
-const _02aea723 = () => interopDefault(import('../pages/app/bangumi/profile.vue' /* webpackChunkName: "pages/app/bangumi/profile" */))
-const _05ac591c = () => interopDefault(import('../pages/app/bangumi/relation.vue' /* webpackChunkName: "pages/app/bangumi/relation" */))
-const _57a60f72 = () => interopDefault(import('../pages/app/bangumi/rule.vue' /* webpackChunkName: "pages/app/bangumi/rule" */))
-const _346bfbf0 = () => interopDefault(import('../pages/app/bangumi/test.vue' /* webpackChunkName: "pages/app/bangumi/test" */))
-const _2877c2e0 = () => interopDefault(import('../pages/app/bangumi/trial.vue' /* webpackChunkName: "pages/app/bangumi/trial" */))
-const _490ba271 = () => interopDefault(import('../pages/app/idol/edit.vue' /* webpackChunkName: "pages/app/idol/edit" */))
-const _593b6784 = () => interopDefault(import('../pages/app/user/edit.vue' /* webpackChunkName: "pages/app/user/edit" */))
-const _77cbb65c = () => interopDefault(import('../pages/app/user/list.vue' /* webpackChunkName: "pages/app/user/list" */))
-const _5b43da6e = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
-const _57a7ba76 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
-const _2d1f3f58 = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
-const _bb4595ac = () => interopDefault(import('../pages/user/_slug/draft.vue' /* webpackChunkName: "pages/user/_slug/draft" */))
-const _32905227 = () => interopDefault(import('../pages/user/_slug/emotion/index.vue' /* webpackChunkName: "pages/user/_slug/emotion/index" */))
-const _7a918050 = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
-const _b1597bce = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
-const _36a211dc = () => interopDefault(import('../pages/user/_slug/setting/index.vue' /* webpackChunkName: "pages/user/_slug/setting/index" */))
-const _017caf38 = () => interopDefault(import('../pages/user/_slug/setting/basic.vue' /* webpackChunkName: "pages/user/_slug/setting/basic" */))
-const _97ca7f3e = () => interopDefault(import('../pages/user/_slug/setting/oauth2.vue' /* webpackChunkName: "pages/user/_slug/setting/oauth2" */))
-const _e3c88f98 = () => interopDefault(import('../pages/user/_slug/social.vue' /* webpackChunkName: "pages/user/_slug/social" */))
-const _c9fb7092 = () => interopDefault(import('../pages/user/_slug/social/index.vue' /* webpackChunkName: "pages/user/_slug/social/index" */))
-const _a1a98a0c = () => interopDefault(import('../pages/user/_slug/social/followers.vue' /* webpackChunkName: "pages/user/_slug/social/followers" */))
-const _7b47ab76 = () => interopDefault(import('../pages/user/_slug/social/following.vue' /* webpackChunkName: "pages/user/_slug/social/following" */))
-const _263a2fba = () => interopDefault(import('../pages/user/_slug/social/friends.vue' /* webpackChunkName: "pages/user/_slug/social/friends" */))
-const _7e517b48 = () => interopDefault(import('../pages/user/_slug/timeline.vue' /* webpackChunkName: "pages/user/_slug/timeline" */))
-const _31671bb9 = () => interopDefault(import('../pages/user/_slug/emotion/category.vue' /* webpackChunkName: "pages/user/_slug/emotion/category" */))
-const _76bfc643 = () => interopDefault(import('../pages/user/_slug/emotion/category/bangumi.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/bangumi" */))
-const _54e53a38 = () => interopDefault(import('../pages/user/_slug/emotion/category/game.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/game" */))
-const _34cc6ca1 = () => interopDefault(import('../pages/user/_slug/emotion/category/notebook.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/notebook" */))
-const _25dc6159 = () => interopDefault(import('../pages/user/_slug/emotion/category/topic.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/topic" */))
-const _62dc08cb = () => interopDefault(import('../pages/tag/_slug/atfield.vue' /* webpackChunkName: "pages/tag/_slug/atfield" */))
-const _e5cf7bd4 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
-const _52b07c1c = () => interopDefault(import('../pages/tag/_slug/qa.vue' /* webpackChunkName: "pages/tag/_slug/qa" */))
-const _cf3462a0 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _524e4528 = () => interopDefault(import('../pages/about/index.vue' /* webpackChunkName: "pages/about/index" */))
+const _1116eb59 = () => interopDefault(import('../pages/about/index/managers.vue' /* webpackChunkName: "pages/about/index/managers" */))
+const _28d8da88 = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
+const _0377315e = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
+const _4d54d59e = () => interopDefault(import('../pages/wanderer/index.vue' /* webpackChunkName: "pages/wanderer/index" */))
+const _af2bb680 = () => interopDefault(import('../pages/app/admin/index.vue' /* webpackChunkName: "pages/app/admin/index" */))
+const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
+const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
+const _527cab04 = () => interopDefault(import('../pages/callback/auth-success.vue' /* webpackChunkName: "pages/callback/auth-success" */))
+const _b3ad3950 = () => interopDefault(import('../pages/zone/atfield.vue' /* webpackChunkName: "pages/zone/atfield" */))
+const _3c5ad14a = () => interopDefault(import('../pages/zone/bangumi.vue' /* webpackChunkName: "pages/zone/bangumi" */))
+const _386a6491 = () => interopDefault(import('../pages/zone/game.vue' /* webpackChunkName: "pages/zone/game" */))
+const _9a06fbc0 = () => interopDefault(import('../pages/zone/topic.vue' /* webpackChunkName: "pages/zone/topic" */))
+const _1f97ee6c = () => interopDefault(import('../pages/app/admin/create-bangumi.vue' /* webpackChunkName: "pages/app/admin/create-bangumi" */))
+const _0aa9be57 = () => interopDefault(import('../pages/app/admin/create-idol.vue' /* webpackChunkName: "pages/app/admin/create-idol" */))
+const _b03b6df8 = () => interopDefault(import('../pages/app/admin/trial.vue' /* webpackChunkName: "pages/app/admin/trial" */))
+const _23354702 = () => interopDefault(import('../pages/app/bangumi/edit.vue' /* webpackChunkName: "pages/app/bangumi/edit" */))
+const _702b2622 = () => interopDefault(import('../pages/app/bangumi/join.vue' /* webpackChunkName: "pages/app/bangumi/join" */))
+const _3dca6f3e = () => interopDefault(import('../pages/app/bangumi/profile.vue' /* webpackChunkName: "pages/app/bangumi/profile" */))
+const _277c4c18 = () => interopDefault(import('../pages/app/bangumi/relation.vue' /* webpackChunkName: "pages/app/bangumi/relation" */))
+const _1d8cb218 = () => interopDefault(import('../pages/app/bangumi/rule.vue' /* webpackChunkName: "pages/app/bangumi/rule" */))
+const _7f5d998a = () => interopDefault(import('../pages/app/bangumi/test.vue' /* webpackChunkName: "pages/app/bangumi/test" */))
+const _f6b91164 = () => interopDefault(import('../pages/app/bangumi/trial.vue' /* webpackChunkName: "pages/app/bangumi/trial" */))
+const _22fdeba2 = () => interopDefault(import('../pages/app/idol/edit.vue' /* webpackChunkName: "pages/app/idol/edit" */))
+const _78d7b3fc = () => interopDefault(import('../pages/app/user/edit.vue' /* webpackChunkName: "pages/app/user/edit" */))
+const _698f8c90 = () => interopDefault(import('../pages/app/user/list.vue' /* webpackChunkName: "pages/app/user/list" */))
+const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
+const _75622ab4 = () => interopDefault(import('../pages/tag/_slug/index.vue' /* webpackChunkName: "pages/tag/_slug/index" */))
+const _0513205a = () => interopDefault(import('../pages/user/_slug.vue' /* webpackChunkName: "pages/user/_slug" */))
+const _3bf0ccac = () => interopDefault(import('../pages/user/_slug/draft.vue' /* webpackChunkName: "pages/user/_slug/draft" */))
+const _315d47a9 = () => interopDefault(import('../pages/user/_slug/emotion/index.vue' /* webpackChunkName: "pages/user/_slug/emotion/index" */))
+const _04c5815c = () => interopDefault(import('../pages/user/_slug/message.vue' /* webpackChunkName: "pages/user/_slug/message" */))
+const _2a5f011b = () => interopDefault(import('../pages/user/_slug/setting.vue' /* webpackChunkName: "pages/user/_slug/setting" */))
+const _356f075e = () => interopDefault(import('../pages/user/_slug/setting/index.vue' /* webpackChunkName: "pages/user/_slug/setting/index" */))
+const _0049a4ba = () => interopDefault(import('../pages/user/_slug/setting/basic.vue' /* webpackChunkName: "pages/user/_slug/setting/basic" */))
+const _e22709c2 = () => interopDefault(import('../pages/user/_slug/setting/oauth2.vue' /* webpackChunkName: "pages/user/_slug/setting/oauth2" */))
+const _26fb10f2 = () => interopDefault(import('../pages/user/_slug/social.vue' /* webpackChunkName: "pages/user/_slug/social" */))
+const _37df99f5 = () => interopDefault(import('../pages/user/_slug/social/index.vue' /* webpackChunkName: "pages/user/_slug/social/index" */))
+const _1c793e38 = () => interopDefault(import('../pages/user/_slug/social/followers.vue' /* webpackChunkName: "pages/user/_slug/social/followers" */))
+const _2ed4a298 = () => interopDefault(import('../pages/user/_slug/social/following.vue' /* webpackChunkName: "pages/user/_slug/social/following" */))
+const _010bea78 = () => interopDefault(import('../pages/user/_slug/social/friends.vue' /* webpackChunkName: "pages/user/_slug/social/friends" */))
+const _5cbd9c86 = () => interopDefault(import('../pages/user/_slug/timeline.vue' /* webpackChunkName: "pages/user/_slug/timeline" */))
+const _c295c212 = () => interopDefault(import('../pages/user/_slug/emotion/category.vue' /* webpackChunkName: "pages/user/_slug/emotion/category" */))
+const _6bedab81 = () => interopDefault(import('../pages/user/_slug/emotion/category/bangumi.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/bangumi" */))
+const _dea4e48c = () => interopDefault(import('../pages/user/_slug/emotion/category/game.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/game" */))
+const _3549a1ba = () => interopDefault(import('../pages/user/_slug/emotion/category/notebook.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/notebook" */))
+const _631e7e17 = () => interopDefault(import('../pages/user/_slug/emotion/category/topic.vue' /* webpackChunkName: "pages/user/_slug/emotion/category/topic" */))
+const _08893cee = () => interopDefault(import('../pages/tag/_slug/atfield.vue' /* webpackChunkName: "pages/tag/_slug/atfield" */))
+const _d3605bd0 = () => interopDefault(import('../pages/tag/_slug/edit.vue' /* webpackChunkName: "pages/tag/_slug/edit" */))
+const _059fb6c4 = () => interopDefault(import('../pages/tag/_slug/qa.vue' /* webpackChunkName: "pages/tag/_slug/qa" */))
+const _5ce5d46e = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+
+// TODO: remove in Nuxt 3
+const emptyFn = () => {}
+const originalPush = Router.prototype.push
+Router.prototype.push = function push (location, onComplete = emptyFn, onAbort) {
+  return originalPush.call(this, location, onComplete, onAbort)
+}
 
 Vue.use(Router)
 
@@ -66,249 +73,249 @@ export const routerOptions = {
 
   routes: [{
     path: "/about",
-    component: _9f5ec3a4,
+    component: _524e4528,
     props: false,
     name: "about",
     children: [{
       path: "managers",
-      component: _21fee4d7,
+      component: _1116eb59,
       props: false,
       name: "about-index-managers"
     }]
   }, {
     path: "/search",
-    component: _2012e0ba,
+    component: _28d8da88,
     props: false,
     name: "search"
   }, {
     path: "/sign",
-    component: _a4c9c662,
+    component: _0377315e,
     props: false,
     name: "sign"
   }, {
     path: "/wanderer",
-    component: _5fc3f5a2,
+    component: _4d54d59e,
     props: false,
     name: "wanderer"
   }, {
     path: "/app/admin",
-    component: _eaa096fc,
+    component: _af2bb680,
     props: false,
     name: "app-admin"
   }, {
     path: "/callback/auth-error",
-    component: _52e2f78b,
+    component: _314f18c9,
     props: false,
     name: "callback-auth-error"
   }, {
     path: "/callback/auth-redirect",
-    component: _53d88cae,
+    component: _5f4427ab,
     props: false,
     name: "callback-auth-redirect"
   }, {
     path: "/callback/auth-success",
-    component: _5e93e146,
+    component: _527cab04,
     props: false,
     name: "callback-auth-success"
   }, {
     path: "/zone/atfield",
-    component: _08ac8a54,
+    component: _b3ad3950,
     props: false,
     name: "zone-atfield"
   }, {
     path: "/zone/bangumi",
-    component: _dc49ae70,
+    component: _3c5ad14a,
     props: false,
     name: "zone-bangumi"
   }, {
     path: "/zone/game",
-    component: _62ff6dd3,
+    component: _386a6491,
     props: false,
     name: "zone-game"
   }, {
     path: "/zone/topic",
-    component: _49eebdc4,
+    component: _9a06fbc0,
     props: false,
     name: "zone-topic"
   }, {
     path: "/app/admin/create-bangumi",
-    component: _1d31d970,
+    component: _1f97ee6c,
     props: false,
     name: "app-admin-create-bangumi"
   }, {
     path: "/app/admin/create-idol",
-    component: _16c0f499,
+    component: _0aa9be57,
     props: false,
     name: "app-admin-create-idol"
   }, {
     path: "/app/admin/trial",
-    component: _ebb04e74,
+    component: _b03b6df8,
     props: false,
     name: "app-admin-trial"
   }, {
     path: "/app/bangumi/edit",
-    component: _ecbca100,
+    component: _23354702,
     props: false,
     name: "app-bangumi-edit"
   }, {
     path: "/app/bangumi/join",
-    component: _52d0e2c0,
+    component: _702b2622,
     props: false,
     name: "app-bangumi-join"
   }, {
     path: "/app/bangumi/profile",
-    component: _02aea723,
+    component: _3dca6f3e,
     props: false,
     name: "app-bangumi-profile"
   }, {
     path: "/app/bangumi/relation",
-    component: _05ac591c,
+    component: _277c4c18,
     props: false,
     name: "app-bangumi-relation"
   }, {
     path: "/app/bangumi/rule",
-    component: _57a60f72,
+    component: _1d8cb218,
     props: false,
     name: "app-bangumi-rule"
   }, {
     path: "/app/bangumi/test",
-    component: _346bfbf0,
+    component: _7f5d998a,
     props: false,
     name: "app-bangumi-test"
   }, {
     path: "/app/bangumi/trial",
-    component: _2877c2e0,
+    component: _f6b91164,
     props: false,
     name: "app-bangumi-trial"
   }, {
     path: "/app/idol/edit",
-    component: _490ba271,
+    component: _22fdeba2,
     props: false,
     name: "app-idol-edit"
   }, {
     path: "/app/user/edit",
-    component: _593b6784,
+    component: _78d7b3fc,
     props: false,
     name: "app-user-edit"
   }, {
     path: "/app/user/list",
-    component: _77cbb65c,
+    component: _698f8c90,
     props: false,
     name: "app-user-list"
   }, {
     path: "/pin/:slug?",
-    component: _5b43da6e,
+    component: _30aed12c,
     props: true,
     name: "pin-slug"
   }, {
     path: "/tag/:slug?",
-    component: _57a7ba76,
+    component: _75622ab4,
     props: true,
     name: "tag-slug"
   }, {
     path: "/user/:slug?",
-    component: _2d1f3f58,
+    component: _0513205a,
     props: true,
     name: "user-slug",
     children: [{
       path: "draft",
-      component: _bb4595ac,
+      component: _3bf0ccac,
       props: true,
       name: "user-slug-draft"
     }, {
       path: "emotion",
-      component: _32905227,
+      component: _315d47a9,
       props: true,
       name: "user-slug-emotion"
     }, {
       path: "message",
-      component: _7a918050,
+      component: _04c5815c,
       props: true,
       name: "user-slug-message"
     }, {
       path: "setting",
-      component: _b1597bce,
+      component: _2a5f011b,
       props: true,
       children: [{
         path: "",
-        component: _36a211dc,
+        component: _356f075e,
         name: "user-slug-setting"
       }, {
         path: "basic",
-        component: _017caf38,
+        component: _0049a4ba,
         name: "user-slug-setting-basic"
       }, {
         path: "oauth2",
-        component: _97ca7f3e,
+        component: _e22709c2,
         name: "user-slug-setting-oauth2"
       }]
     }, {
       path: "social",
-      component: _e3c88f98,
+      component: _26fb10f2,
       props: true,
       children: [{
         path: "",
-        component: _c9fb7092,
+        component: _37df99f5,
         name: "user-slug-social"
       }, {
         path: "followers",
-        component: _a1a98a0c,
+        component: _1c793e38,
         name: "user-slug-social-followers"
       }, {
         path: "following",
-        component: _7b47ab76,
+        component: _2ed4a298,
         name: "user-slug-social-following"
       }, {
         path: "friends",
-        component: _263a2fba,
+        component: _010bea78,
         name: "user-slug-social-friends"
       }]
     }, {
       path: "timeline",
-      component: _7e517b48,
+      component: _5cbd9c86,
       props: true,
       name: "user-slug-timeline"
     }, {
       path: "emotion/category",
-      component: _31671bb9,
+      component: _c295c212,
       props: true,
       name: "user-slug-emotion-category",
       children: [{
         path: "bangumi",
-        component: _76bfc643,
+        component: _6bedab81,
         name: "user-slug-emotion-category-bangumi"
       }, {
         path: "game",
-        component: _54e53a38,
+        component: _dea4e48c,
         name: "user-slug-emotion-category-game"
       }, {
         path: "notebook",
-        component: _34cc6ca1,
+        component: _3549a1ba,
         name: "user-slug-emotion-category-notebook"
       }, {
         path: "topic",
-        component: _25dc6159,
+        component: _631e7e17,
         name: "user-slug-emotion-category-topic"
       }]
     }]
   }, {
     path: "/tag/:slug?/atfield",
-    component: _62dc08cb,
+    component: _08893cee,
     props: true,
     name: "tag-slug-atfield"
   }, {
     path: "/tag/:slug?/edit",
-    component: _e5cf7bd4,
+    component: _d3605bd0,
     props: true,
     name: "tag-slug-edit"
   }, {
     path: "/tag/:slug?/qa",
-    component: _52b07c1c,
+    component: _059fb6c4,
     props: true,
     name: "tag-slug-qa"
   }, {
     path: "/",
-    component: _cf3462a0,
+    component: _5ce5d46e,
     props: false,
     name: "index"
   }],

@@ -41,7 +41,7 @@
 
 <template>
   <div id="admin-qa-trial">
-    <FlowLoader ref="loader" func="getBangumiQuestionTrials" type="page" :query="{ $axios, 'status': 0 }">
+    <FlowLoader ref="loader" func="getBangumiQuestionTrials" type="page" :query="{ $axios, status: 0 }">
       <div slot-scope="{ flow, extra }">
         <div v-for="item in flow" :key="item.id" class="trial-item">
           <p class="question" v-html="item.title" />
