@@ -244,11 +244,10 @@ async function render (to, from, next) {
     }
 
     // Load layout for error page
-    const errorLayout = (NuxtError.options || NuxtError).layout
     const layout = await this.loadLayout(
-      typeof errorLayout === 'function'
-        ? errorLayout.call(NuxtError, app.context)
-        : errorLayout
+      typeof NuxtError.layout === 'function'
+        ? NuxtError.layout(app.context)
+        : NuxtError.layout
     )
 
     await callMiddleware.call(this, Components, app.context, layout)
@@ -257,7 +256,7 @@ async function render (to, from, next) {
     }
 
     // Show error page
-    app.context.error({ statusCode: 404, message: 'This page could not be found' })
+    app.context.error({ statusCode: 404, message: `This page could not be found` })
     return next()
   }
 
@@ -323,7 +322,7 @@ async function render (to, from, next) {
 
     // ...If .validate() returned false
     if (!isValid) {
-      this.error({ statusCode: 404, message: 'This page could not be found' })
+      this.error({ statusCode: 404, message: `This page could not be found` })
       return next()
     }
 
@@ -416,7 +415,7 @@ async function render (to, from, next) {
     globalHandleError(error)
 
     // Load error layout
-    let layout = (NuxtError.options || NuxtError).layout
+    let layout = NuxtError.layout
     if (typeof layout === 'function') {
       layout = layout(app.context)
     }
@@ -449,7 +448,7 @@ function showNextPage (to) {
 
   // Set layout
   let layout = this.$options.nuxt.err
-    ? (NuxtError.options || NuxtError).layout
+    ? NuxtError.layout
     : to.matched[0].components.default.options.layout
 
   if (typeof layout === 'function') {

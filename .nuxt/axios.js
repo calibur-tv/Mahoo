@@ -1,5 +1,4 @@
 import Axios from 'axios'
-import defu from 'defu'
 
 // Axios.prototype cannot be modified
 const axiosExtra = {
@@ -34,9 +33,6 @@ const axiosExtra = {
   onError(fn) {
     this.onRequestError(fn)
     this.onResponseError(fn)
-  },
-  create(options) {
-    return createAxiosInstance(defu(options, this.defaults))
   }
 }
 
@@ -49,20 +45,6 @@ const extendAxiosInstance = axios => {
   for (let key in axiosExtra) {
     axios[key] = axiosExtra[key].bind(axios)
   }
-}
-
-const createAxiosInstance = axiosOptions => {
-  // Create new axios instance
-  const axios = Axios.create(axiosOptions)
-  axios.CancelToken = Axios.CancelToken
-  axios.isCancel = Axios.isCancel
-
-  // Extend axios proto
-  extendAxiosInstance(axios)
-
-  // Setup interceptors
-
-  return axios
 }
 
 export default (ctx, inject) => {
@@ -106,7 +88,15 @@ export default (ctx, inject) => {
     axiosOptions.headers.common['accept-encoding'] = 'gzip, deflate'
   }
 
-  const axios = createAxiosInstance(axiosOptions)
+  // Create new axios instance
+  const axios = Axios.create(axiosOptions)
+  axios.CancelToken = Axios.CancelToken
+  axios.isCancel = Axios.isCancel
+
+  // Extend axios proto
+  extendAxiosInstance(axios)
+
+  // Setup interceptors
 
   // Inject axios to the context as $axios
   ctx.$axios = axios

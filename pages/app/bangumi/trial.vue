@@ -78,7 +78,8 @@ export default {
 
       return {
         ...query,
-        $axios: this.$axios
+        $axios: this.$axios,
+        status: 0
       }
     }
   },

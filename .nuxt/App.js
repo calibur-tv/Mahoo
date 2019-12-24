@@ -32,15 +32,12 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
 
-    if (this.nuxt.err && NuxtError) {
-      const errorLayout = (NuxtError.options || NuxtError).layout
-      if (errorLayout) {
-        this.setLayout(
-          typeof errorLayout === 'function'
-            ? errorLayout.call(NuxtError, this.context)
-            : errorLayout
-        )
-      }
+    if (this.nuxt.err && NuxtError.layout) {
+      this.setLayout(
+        typeof NuxtError.layout === 'function'
+          ? NuxtError.layout(this.context)
+          : NuxtError.layout
+      )
     }
 
     const layoutEl = h(this.layout || 'nuxt')
@@ -49,7 +46,7 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
         id: '__layout'
       },
       key: this.layoutName
-    }, [layoutEl])
+    }, [ layoutEl ])
 
     const transitionEl = h('transition', {
       props: {
@@ -64,7 +61,7 @@ return (val ? `${val} - ${process.env.INJECT.title}` : `${process.env.INJECT.tit
           })
         }
       }
-    }, [templateEl])
+    }, [ templateEl ])
 
     return h('div', {
       domProps: {
