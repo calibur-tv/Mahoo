@@ -23,10 +23,6 @@
       <i class="el-icon-plus" />
       <span>创建番剧</span>
     </NLink>
-    <NLink to="/app/admin/create-idol">
-      <i class="el-icon-plus" />
-      <span>创建偶像</span>
-    </NLink>
   </div>
 </template>
 

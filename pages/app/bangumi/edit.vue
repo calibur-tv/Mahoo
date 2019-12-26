@@ -84,6 +84,10 @@
         <i class="el-icon-s-operation" />
         <span>入圈规则</span>
       </NLink>
+      <NLink :to="`/app/admin/create-idol?slug=${bangumi.slug}`">
+        <i class="el-icon-plus" />
+        <span>添加偶像</span>
+      </NLink>
       <NLink :to="`/app/bangumi/test?slug=${bangumi.slug}`">
         <i class="el-icon-edit" />
         <span>添加题目</span>
