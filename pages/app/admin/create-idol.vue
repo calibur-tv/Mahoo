@@ -122,7 +122,16 @@ export default {
         })
         .catch(err => {
           if (err.statusCode === 400) {
-            // TODO jump to idol
+            this.$toast.stop()
+            this.$confirm('该角色已存在，是否跳转？')
+              .then(() => {
+                const isQQ = /qq/.test(window.navigator.userAgent.toLowerCase())
+                const self = isQQ ? window.qq : window.wx
+                self.miniProgram.navigateTo({
+                  url: `/pages/idol/show/index?slug=${err.message}`
+                })
+              })
+              .catch(() => {})
             return
           }
           return this.$toast.error(err.message)
@@ -139,7 +148,12 @@ export default {
               bangumi_slug: this.$route.query.slug
             })
             .then(slug => {
-              console.log(slug)
+              this.$toast.info('创建成功')
+              const isQQ = /qq/.test(window.navigator.userAgent.toLowerCase())
+              const self = isQQ ? window.qq : window.wx
+              self.miniProgram.navigateTo({
+                url: `/pages/idol/show/index?slug=${slug}`
+              })
             })
             .catch(err => {
               this.$toast.error(err.message)

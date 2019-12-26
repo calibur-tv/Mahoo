@@ -260,12 +260,13 @@ export default {
           slug: this.slug
         })
         .then(result => {
-          if (result === 'pass') {
-            this.$toast.success('挑战成功！')
-          } else {
-            this.$toast.info('挑战失败！')
-          }
-          // window.location.reload()
+          this.$toast.info(result).then(() => {
+            const isQQ = /qq/.test(window.navigator.userAgent.toLowerCase())
+            const self = isQQ ? window.qq : window.wx
+            self.miniProgram.redirectTo({
+              url: `/pages/bangumi/show/index?slug=${this.slug}`
+            })
+          })
         })
         .catch(err => {
           this.$toast.error(err.message)

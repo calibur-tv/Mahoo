@@ -125,7 +125,15 @@ export default {
         .catch(err => {
           if (err.statusCode === 400) {
             this.$toast.stop()
-            // TODO jump to bangumi
+            this.$confirm('该番剧已存在，是否跳转？')
+              .then(() => {
+                const isQQ = /qq/.test(window.navigator.userAgent.toLowerCase())
+                const self = isQQ ? window.qq : window.wx
+                self.miniProgram.navigateTo({
+                  url: `/pages/bangumi/show/index?slug=${err.message}`
+                })
+              })
+              .catch(() => {})
             return
           }
           return this.$toast.error(err.message)
@@ -141,7 +149,12 @@ export default {
               alias: [this.tag.name, ...this.tag.alias]
             })
             .then(slug => {
-              console.log(slug)
+              this.$toast.info('创建成功')
+              const isQQ = /qq/.test(window.navigator.userAgent.toLowerCase())
+              const self = isQQ ? window.qq : window.wx
+              self.miniProgram.navigateTo({
+                url: `/pages/bangumi/show/index?slug=${slug}`
+              })
             })
             .catch(err => {
               this.$toast.error(err.message)
