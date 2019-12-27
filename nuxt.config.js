@@ -203,6 +203,14 @@ module.exports = {
     },
     publicPath: isDev ? '/_nuxt/' : `${qiniu.host}${qiniu.key_prefix}`,
     babel: {
+      presets: [
+        [
+          '@nuxt/babel-preset-app',
+          {
+            corejs: { version: 3 }
+          }
+        ]
+      ],
       plugins: [
         [
           'component',

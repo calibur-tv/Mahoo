@@ -2686,6 +2686,11 @@ core-js@^2.4.0, core-js@^2.6.5:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
   integrity sha512-5wjnpaT/3dV+XB4borEsnAYQchn00XSgTAWKDkEqv+K8KevjbzmofK6hfJ9TZIlpj2N0xQpazy7PiRQiWHqzWg==
 
+core-js@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.1.tgz#39d5e2e346258cc01eb7d44345b1c3c014ca3f05"
+  integrity sha512-186WjSik2iTGfDjfdCZAxv2ormxtKgemjC3SI6PL31qOA0j5LhTDVjHChccoc7brwLvpvLPiMyRlcO88C4l1QQ==
+
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -9392,12 +9397,12 @@ vue-meta@^2.3.1:
   dependencies:
     deepmerge "^4.0.0"
 
-vue-mixin-store@1.1.71:
-  version "1.1.71"
-  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.71.tgz#0f9837672906364fcc0a756919b2b4e50d3d0ae6"
-  integrity sha512-6oqcivVjuJuYOLevjSdO3EMQdmDStg3+hzCf8Sp+tgg/qTcyqXQDmWzLmbjrsTQzsstxh5xlc09AoXvI3638aw==
+vue-mixin-store@1.1.74:
+  version "1.1.74"
+  resolved "https://registry.yarnpkg.com/vue-mixin-store/-/vue-mixin-store-1.1.74.tgz#9ec0d6dc73a1e5c1e0bac464f0423692dfd6c757"
+  integrity sha512-wgd94QS9mhOx5RT7VDo7zTGAfAGeITgZ1tVqTellWp/16cQ40anEpFlArKube6JuaHx3kMaKXcaQ25ncwsEtXw==
   dependencies:
-    vue "^2.6.6"
+    vue "^2.6.11"
 
 vue-native-websocket@^2.0.13:
   version "2.0.13"
