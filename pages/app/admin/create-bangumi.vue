@@ -44,7 +44,7 @@
         <ElSelect v-model="tag.alias" multiple filterable allow-create default-first-option placeholder="请输入标签别名" popper-class="hidden-select-options" class="hidden-select-input" />
       </ElFormItem>
       <ElFormItem label="简介" required>
-        <ElInput v-model="tag.intro" type="textarea" :show-word-limit="true" :rows="8" maxlength="233" resize="none" placeholder="请输入板块介绍" />
+        <ElInput v-model="tag.intro" type="textarea" :show-word-limit="true" :rows="8" maxlength="500" resize="none" placeholder="请输入板块介绍" />
       </ElFormItem>
       <ElFormItem>
         <ElButton :loading="submitting" type="success" round @click="submit">
@@ -61,6 +61,7 @@ import upload from '~/mixins/upload'
 
 export default {
   name: 'CreateBangumi',
+  layout: 'app',
   components: {
     ElUpload: Upload,
     ElSelect: Select
@@ -163,6 +164,9 @@ export default {
         }
       })
     }
+  },
+  head: {
+    title: '创建番剧'
   }
 }
 </script>
