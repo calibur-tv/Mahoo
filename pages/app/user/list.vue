@@ -22,7 +22,7 @@
       <VSwitcher :headers="headers" align="center" @change="handleChange">
         <FlowLoader v-for="(item, index) in headers" ref="loader" :key="index" :slot="`${index}`" :func="item.func" :type="item.type" :query="item.query">
           <ul slot-scope="{ flow }">
-            <UserItem v-for="user in flow" :key="user.slug" :user="user" />
+            <UserItem v-for="user in flow" :key="user.slug" :user="user" :score="computedUserScore(user, item.query.sort)" />
           </ul>
         </FlowLoader>
       </VSwitcher>
@@ -37,7 +37,7 @@
       }"
     >
       <ul slot-scope="{ flow }">
-        <UserItem v-for="item in flow" :key="item.slug" :user="item" />
+        <UserItem v-for="user in flow" :key="user.slug" :user="user" :score="computedUserScore(user)" />
       </ul>
     </FlowLoader>
   </div>
@@ -97,6 +97,16 @@ export default {
   methods: {
     handleChange(index) {
       this.$refs.loader[index].initData()
+    },
+    computedUserScore(user, sort) {
+      const { query } = this
+      if (query.type === 'idol_fans') {
+        if (sort === 'news') {
+          return this.$utils.timeAgo(user.list_score)
+        }
+        return `${user.list_score}股`
+      }
+      return ''
     }
   },
   head: {

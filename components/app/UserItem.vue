@@ -49,7 +49,7 @@
     </div>
     <div class="content">
       <p class="nickname oneline" v-html="user.nickname" />
-      <p class="intro oneline" v-text="user.signature" />
+      <p class="intro oneline" v-text="score || user.signature" />
     </div>
   </li>
 </template>
@@ -61,6 +61,10 @@ export default {
     user: {
       type: Object,
       required: true
+    },
+    score: {
+      type: String,
+      default: ''
     }
   },
   methods: {
