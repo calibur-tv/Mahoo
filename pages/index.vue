@@ -86,7 +86,7 @@
     <div class="only-pc container">
       <component :is="`${item.type}-area`" v-for="item in tags" :key="item.slug" :name="item.name" :slug="item.slug" />
       <p class="beian">
-        互联网 ICP 备案：沪 ICP 备 17050785 号 - 1
+        <a href="http://www.beian.miit.gov.cn/" target="_blank">互联网 ICP 备案：沪 ICP 备 17050785 号 - 1</a>
       </p>
     </div>
     <div class="only-h5">
