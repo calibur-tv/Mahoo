@@ -83,9 +83,9 @@ export const getTimeline = ({ $axios, type, slug }) => {
   })
 }
 
-export const getFlowRecommendedIndex = ({ $axios, seen_ids, rand_id }) => {
+export const getFlowRecommendedIndex = ({ $axios, seen_ids }) => {
   return $axios.$get('v1/flow/index', {
-    params: { seen_ids, rand_id }
+    params: { seen_ids }
   })
 }
 

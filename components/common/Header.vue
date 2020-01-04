@@ -424,14 +424,6 @@ export default {
           name: '动漫'
         },
         {
-          route: '/zone/game',
-          name: '游戏'
-        },
-        {
-          route: '/zone/topic',
-          name: '话题'
-        },
-        {
           route: '/about/managers',
           name: '学园'
         }
