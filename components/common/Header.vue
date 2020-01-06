@@ -418,7 +418,7 @@ export default {
   },
   computed: {
     headers() {
-      const result = [
+      return [
         {
           route: '/zone/bangumi',
           name: '动漫'
@@ -428,13 +428,6 @@ export default {
           name: '学园'
         }
       ]
-      if (this.$hasRole('visit_qa')) {
-        result.push({
-          route: '/zone/atfield',
-          name: '题库'
-        })
-      }
-      return result
     },
     isAuth() {
       return this.$store.state.isAuth
