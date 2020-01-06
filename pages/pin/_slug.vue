@@ -159,13 +159,6 @@
       </template>
       <ContentAuthor :user="author">
         <div slot="intro" class="metas">
-          <div v-if="topic || area" class="oneline">
-            <NLink v-if="topic" target="_blank" :to="$alias.tag(topic.slug)" v-text="topic.name" />
-            <span v-if="topic && area">·</span>
-            <template v-if="area">
-              <NLink target="_blank" :to="$alias.tag(area.slug)" v-text="area.name" />
-            </template>
-          </div>
           <div>
             <i class="iconfont ic-time only-pc" />
             <ElTooltip effect="dark" placement="bottom" :content="'发表于：' + $utils.timeAgo(published_at)" :disabled="!published_at || published_at === last_edit_at">
@@ -197,7 +190,6 @@
           <PinRewardBtn v-model="reward_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinMarkBtn v-model="mark_count" class="btn" :pin-slug="slug" :user-slug="author.slug" />
           <PinShareBtn class="btn" />
-          <TimelineDrawerBtn class="btn only-pc" type="pin" :slug="slug" />
           <ToolDropdown class="btn" :slug="slug" :is-mine="isMine" :topic="(topic && topic.slug) || ''" :area="(area && area.slug) || ''" />
         </div>
       </div>
@@ -223,7 +215,6 @@ import PinRewardBtn from '~/components/button/PinRewardBtn'
 import PinMarkBtn from '~/components/button/PinMarkBtn'
 import PinShareBtn from '~/components/button/PinShareBtn'
 import UserFollowBtn from '~/components/button/UserFollowBtn'
-import TimelineDrawerBtn from '~/components/button/TimelineDrawerBtn'
 import ToolDropdown from '~/components/pin/ToolDropdown'
 
 export default {
@@ -240,7 +231,6 @@ export default {
     PinMarkBtn,
     PinShareBtn,
     UserFollowBtn,
-    TimelineDrawerBtn,
     ToolDropdown
   },
   asyncData({ app, error, params, query }) {

@@ -16,6 +16,6 @@ export default {
   },
 
   create(slug) {
-    return slug ? `/wanderer?slug=${slug}` : '/wanderer'
+    return slug ? `/write?slug=${slug}` : '/write'
   }
 }

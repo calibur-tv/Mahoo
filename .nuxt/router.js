@@ -7,7 +7,7 @@ const _524e4528 = () => interopDefault(import('../pages/about/index.vue' /* webp
 const _1116eb59 = () => interopDefault(import('../pages/about/index/managers.vue' /* webpackChunkName: "pages/about/index/managers" */))
 const _28d8da88 = () => interopDefault(import('../pages/search.vue' /* webpackChunkName: "pages/search" */))
 const _0377315e = () => interopDefault(import('../pages/sign.vue' /* webpackChunkName: "pages/sign" */))
-const _4d54d59e = () => interopDefault(import('../pages/wanderer/index.vue' /* webpackChunkName: "pages/wanderer/index" */))
+const _5566533e = () => interopDefault(import('../pages/write/index.vue' /* webpackChunkName: "pages/write/index" */))
 const _af2bb680 = () => interopDefault(import('../pages/app/admin/index.vue' /* webpackChunkName: "pages/app/admin/index" */))
 const _314f18c9 = () => interopDefault(import('../pages/callback/auth-error.vue' /* webpackChunkName: "pages/callback/auth-error" */))
 const _5f4427ab = () => interopDefault(import('../pages/callback/auth-redirect.vue' /* webpackChunkName: "pages/callback/auth-redirect" */))
@@ -93,10 +93,10 @@ export const routerOptions = {
     props: false,
     name: "sign"
   }, {
-    path: "/wanderer",
-    component: _4d54d59e,
+    path: "/write",
+    component: _5566533e,
     props: false,
-    name: "wanderer"
+    name: "write"
   }, {
     path: "/app/admin",
     component: _af2bb680,
