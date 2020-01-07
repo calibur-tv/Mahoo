@@ -27,6 +27,9 @@ const _1d8cb218 = () => interopDefault(import('../pages/app/bangumi/rule.vue' /*
 const _7f5d998a = () => interopDefault(import('../pages/app/bangumi/test.vue' /* webpackChunkName: "pages/app/bangumi/test" */))
 const _f6b91164 = () => interopDefault(import('../pages/app/bangumi/trial.vue' /* webpackChunkName: "pages/app/bangumi/trial" */))
 const _22fdeba2 = () => interopDefault(import('../pages/app/idol/edit.vue' /* webpackChunkName: "pages/app/idol/edit" */))
+const _35bcc1e7 = () => interopDefault(import('../pages/app/public/news.vue' /* webpackChunkName: "pages/app/public/news" */))
+const _1c47a280 = () => interopDefault(import('../pages/app/public/rank.vue' /* webpackChunkName: "pages/app/public/rank" */))
+const _101a9190 = () => interopDefault(import('../pages/app/public/rule.vue' /* webpackChunkName: "pages/app/public/rule" */))
 const _78d7b3fc = () => interopDefault(import('../pages/app/user/edit.vue' /* webpackChunkName: "pages/app/user/edit" */))
 const _698f8c90 = () => interopDefault(import('../pages/app/user/list.vue' /* webpackChunkName: "pages/app/user/list" */))
 const _30aed12c = () => interopDefault(import('../pages/pin/_slug.vue' /* webpackChunkName: "pages/pin/_slug" */))
@@ -192,6 +195,21 @@ export const routerOptions = {
     component: _22fdeba2,
     props: false,
     name: "app-idol-edit"
+  }, {
+    path: "/app/public/news",
+    component: _35bcc1e7,
+    props: false,
+    name: "app-public-news"
+  }, {
+    path: "/app/public/rank",
+    component: _1c47a280,
+    props: false,
+    name: "app-public-rank"
+  }, {
+    path: "/app/public/rule",
+    component: _101a9190,
+    props: false,
+    name: "app-public-rule"
   }, {
     path: "/app/user/edit",
     component: _78d7b3fc,
