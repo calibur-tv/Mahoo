@@ -7,6 +7,11 @@
 <template>
   <div id="create-bangumi">
     <ElForm ref="form" :model="tag" :rules="rules" :disabled="submitting" label-position="top" class="edit-tag-info-form">
+      <ElFormItem label="类型">
+        <ElRadio v-model="radio" :label="0">动漫</ElRadio>
+        <ElRadio v-model="radio" :label="1">游戏</ElRadio>
+        <ElRadio v-model="radio" :label="9">其它</ElRadio>
+      </ElFormItem>
       <ElFormItem label="来源" required>
         <ElInput v-model="tag.id" placeholder="去 bgm.tv 寻找那个番剧吧！" />
       </ElFormItem>
@@ -56,13 +61,14 @@
 </template>
 
 <script>
-import { Upload, Select } from 'element-ui'
+import { Upload, Select, Radio } from 'element-ui'
 import upload from '~/mixins/upload'
 
 export default {
   name: 'CreateBangumi',
   layout: 'app',
   components: {
+    ElRadio: Radio,
     ElUpload: Upload,
     ElSelect: Select
   },
@@ -84,6 +90,7 @@ export default {
       callback()
     }
     return {
+      radio: 0,
       tag: {
         id: '',
         avatar: '',
@@ -166,7 +173,7 @@ export default {
     }
   },
   head: {
-    title: '创建番剧'
+    title: '创建分区'
   }
 }
 </script>

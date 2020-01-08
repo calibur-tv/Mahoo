@@ -21,7 +21,7 @@
     </NLink>
     <NLink to="/app/admin/create-bangumi">
       <i class="el-icon-plus" />
-      <span>创建番剧</span>
+      <span>创建分区</span>
     </NLink>
   </div>
 </template>
