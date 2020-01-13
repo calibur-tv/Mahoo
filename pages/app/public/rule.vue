@@ -2,7 +2,7 @@
 
 <template>
   <div id="public-rule">
-    PublicRule
+    章程就是大家好好的别做坏事
   </div>
 </template>
 

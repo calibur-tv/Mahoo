@@ -2,7 +2,7 @@
 
 <template>
   <div id="public-news">
-    PublicNews
+    今天没什么新闻
   </div>
 </template>
 

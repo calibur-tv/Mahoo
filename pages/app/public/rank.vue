@@ -2,7 +2,7 @@
 
 <template>
   <div id="public-rank">
-    PublicRank
+    暂无排行数据
   </div>
 </template>
 
