@@ -2,8 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'Mahoo',
-      script: './node_modules/nuxt/bin/nuxt.js',
-      args: 'start',
+      script: './server/index.js',
       watch: false,
       instances: 'max',
       ignore_watch: 'node_modules',
