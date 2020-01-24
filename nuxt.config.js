@@ -150,9 +150,9 @@ module.exports = {
    */
   modules: [
     '@nuxtjs/style-resources',
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
     // '~/modules/cache',
-    '~/modules/auth'
+    // '~/modules/auth'
   ],
 
   axios: {
